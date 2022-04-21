@@ -27,7 +27,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }))
 function getStatus(username) {
-  Axios.post('http://localhost:3010/getStatus', {
+  Axios.post('https://voluntutorcloud-server.herokuapp.com/getStatus', {
     username: username,
   }).then((response) => {
     console.log(response.data[0]['LoginStatus'])
@@ -71,13 +71,13 @@ function Function() {
   let name = "";
   
   useEffect(() => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       if (response.data.isLoggedIn) {
         setUsername(response.data.user[0].username)
         name = response.data.user[0].username;
       }
       setIsLoggedIn(response.data.isLoggedIn)
-      Axios.post('http://localhost:3010/getLang', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
         username: name,
       }).then((response) => {
         console.log(response.data);

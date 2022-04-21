@@ -14,7 +14,7 @@ function Dropdown() {
 
   const logout = (functionName) => {
     if(functionName == "logout")
-    Axios.post("http://localhost:3010/logout").then((response) => {
+    Axios.post("https://voluntutorcloud-server.herokuapp.com/logout").then((response) => {
       console.log(response);
     })
   }

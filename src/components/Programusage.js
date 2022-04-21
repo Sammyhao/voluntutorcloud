@@ -42,12 +42,12 @@ function Programusage() {
   let g = ["Date" ,"課堂日期"]
   let h = ["Agenda" ,"課堂進度"]
   useLayoutEffect(() => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username;
-        Axios.post("http://localhost:3010/findContact", {
+        Axios.post("https://voluntutorcloud-server.herokuapp.com/findContact", {
           username: username
         }).then((response) => {
-          Axios.post('http://localhost:3010/getLang', {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
             username: username,
           }).then((response) => {
             console.log(response.data);
@@ -58,7 +58,7 @@ function Programusage() {
           for(let i = 0; i < response.data.length; i++) {
             const student = response.data[i];
             console.log(student);
-            Axios.post("http://localhost:3010/getRecord", {
+            Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
               username: student.username,
               studentname: student.studentname,
               studentmail: student.studentmail

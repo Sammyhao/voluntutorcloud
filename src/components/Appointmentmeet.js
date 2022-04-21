@@ -92,19 +92,19 @@ function Appointmentmeet() {
     setopenmsgsend(false)
   }
   useEffect(() => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       username = response.data.user[0].username;
-      Axios.post('http://localhost:3010/findContact', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
         username: username
       }).then((response) => {
         setContactInfo(response.data);
         setLoading(false);
       })
-      Axios.post('http://localhost:3010/getUserProfile', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
         username: username
       }).then((response) => {
         setGoogleMeetLink(response.data[0].googleMeetLink);
-        Axios.post('http://localhost:3010/getLang', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
             username: username,
         }).then((response) => {
             console.log(response.data);
@@ -141,13 +141,13 @@ function Appointmentmeet() {
       }
       console.log(templateParams);
 
-      Axios.post("http://localhost:3010/getRecord", {
+      Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
         username: contactInfo[0].username,
         studentname: contactInfo[0].studentname,
         studentmail: contactInfo[0].studentmail,
       }).then((response) => {
         totalhour = response.data[response.data.length-1].hoursleft;
-        Axios.post("http://localhost:3010/updateRecord", {
+        Axios.post("https://voluntutorcloud-server.herokuapp.com/updateRecord", {
           username: contactInfo[0].username,
           studentname: contactInfo[0].studentname,
           studentmail: contactInfo[0].studentmail,

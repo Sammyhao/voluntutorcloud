@@ -15,7 +15,7 @@ function SignIn_design() {
   const [passwordShown, setPasswordShown] = useState(false)
   const navigate = useNavigate()
   const login = () => {
-    Axios.post('http://localhost:3010/login', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/login', {
       username: username,
       password: password,
     }).then((response) => {
@@ -31,7 +31,7 @@ function SignIn_design() {
   }
 
   function changeStatus() {
-    Axios.post('http://localhost:3010/changeStatus', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/changeStatus', {
       username: username,
       LoginStatus: true,
     }).then((response) => {

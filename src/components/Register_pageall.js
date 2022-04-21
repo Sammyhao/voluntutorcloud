@@ -136,7 +136,7 @@ function Register_pageall() {
       googlemeet
     )
 
-    Axios.post('http://localhost:3010/register', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/register', {
       username: usernameReg,
       password: passwordReg,
       role: r,

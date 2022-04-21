@@ -26,10 +26,10 @@ function Navbar() {
   let c = ["Contact","聯絡我們"]
   let d = ["SIGN IN/UP","登入/註冊"]
   useEffect(() => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       setIsLoggedIn(response.data.isLoggedIn)
       username = response.data.user[0].username;
-      Axios.post('http://localhost:3010/getLang', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
         username: username,
       }).then((response) => {
         console.log(response.data);

@@ -47,12 +47,12 @@ export default function Portfolio() {
   let gh = ["The most memorable thing in your life...","最印象深刻的事..."]
   let hi = ["The most precious things in the world...","生命中最重要的人事物..."]
   useEffect(() => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       if (response.data.isLoggedIn) {
         username = response.data.user[0].username
         console.log(username)
       }
-      Axios.post('http://localhost:3010/getLang', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
         username: username,
       }).then((response) => {
         console.log(response.data);
@@ -60,13 +60,13 @@ export default function Portfolio() {
         else setStatus(0);
         console.log(status);
       })
-      Axios.post('http://localhost:3010/findContact', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
         username: username,
       }).then((response) => {
         console.log(response.data)
         for (let i = 0; i < response.data.length; i++) {
           // console.log(i);
-          Axios.post('http://localhost:3010/getProfolio', {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
             name: response.data[i].studentname,
           }).then((response) => {
             if (response.data.length) {

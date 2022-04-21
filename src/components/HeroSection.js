@@ -19,12 +19,12 @@ function HeroSection() {
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       if (response.data.isLoggedIn) {
         username = response.data.user[0].username;
       }
       setIsLoggedIn(response.data.isLoggedIn)
-      Axios.post('http://localhost:3010/getLang', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
         username: username,
       }).then((response) => {
         console.log(response.data);
@@ -32,7 +32,7 @@ function HeroSection() {
         else setStatus(0);
         console.log(status);
       })
-      Axios.post('http://localhost:3010/getStatus', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getStatus', {
         username: username,
       }).then(response => {
         setName(response.data[0].firstname + " " + response.data[0].lastname);

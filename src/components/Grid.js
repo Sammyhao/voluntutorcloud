@@ -84,13 +84,13 @@ function Grid_sub(props) {
 
   useEffect(() => {
     if (subject == '') {
-      Axios.post('http://localhost:3010/programWithoutSub').then((response) => {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/programWithoutSub').then((response) => {
         if (response.data.length) {
           setProgramInfo(response.data)
         }
       })
     }
-    Axios.post('http://localhost:3010/program', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
       subject: subject,
     }).then((response) => {
       if (response.data.length) {
@@ -100,13 +100,13 @@ function Grid_sub(props) {
 
     let name = "";
 
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response)
       if (response.data.isLoggedIn) {
         setUsername(response.data.user[0].username)
         name = response.data.user[0].username;
       }
-      Axios.post('http://localhost:3010/getLang', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
         username: name,
       }).then((response) => {
         console.log(response.data);
@@ -120,10 +120,10 @@ function Grid_sub(props) {
   const [username, setUsername] = useState('')
 
   const updateBookList = (program) => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response)
       if (response.data.isLoggedIn) {
-        Axios.post('http://localhost:3010/updateFavList', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavList', {
           username: username,
           program: program,
           isBooked: true,
@@ -138,10 +138,10 @@ function Grid_sub(props) {
   }
 
   const updateFavList = (program) => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response)
       if (response.data.isLoggedIn) {
-        Axios.post('http://localhost:3010/updateFavList', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavList', {
           username: username,
           program: program,
           isBooked: false,

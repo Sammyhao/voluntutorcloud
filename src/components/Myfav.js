@@ -82,13 +82,13 @@ function Myfav() {
   ]
   let m = ['Yes', '確定送出']
   useEffect(() => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response)
       if (response.data.isLoggedIn) {
         username = response.data.user[0].username
       }
       console.log(username)
-      Axios.post('http://localhost:3010/getLang', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
         username: username,
       }).then((response) => {
         console.log(response.data)
@@ -96,7 +96,7 @@ function Myfav() {
         else setStatus(0)
         console.log(status)
       })
-      Axios.post('http://localhost:3010/getFavList', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getFavList', {
         username: username,
       }).then((response) => {
         if (response.data.length) {
@@ -115,10 +115,10 @@ function Myfav() {
   let username = ''
 
   const updateBookList = (program) => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response)
       if (response.data.isLoggedIn) {
-        Axios.post('http://localhost:3010/updateFavListinMyFav', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavListinMyFav', {
           username: program.username,
           program: program,
           isBooked: true,
@@ -138,7 +138,7 @@ function Myfav() {
   }
 
   const deleteProgram = (program) => {
-    Axios.post('http://localhost:3010/deleteFavList', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteFavList', {
       username: program.username,
       programId: program.programId,
     }).then((response) => {

@@ -242,7 +242,7 @@ function Profile_user() {
   }
   
   const logout = () => {
-    Axios.post("http://localhost:3010/logout").then((response) => {
+    Axios.post("https://voluntutorcloud-server.herokuapp.com/logout").then((response) => {
       console.log(response);
     })
   }
@@ -252,11 +252,11 @@ function Profile_user() {
   const [status, setStatus] = useState(0);
   
   useEffect(() => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response.data);
       setname(response.data.user[0].username);
       username = response.data.user[0].username;
-      Axios.post("http://localhost:3010/getUserProfile", {
+      Axios.post("https://voluntutorcloud-server.herokuapp.com/getUserProfile", {
         username: username
       }).then((response) => {
         console.log(response.data[0].username, response.data[0].phone);
@@ -272,7 +272,7 @@ function Profile_user() {
         setstudentpers(response.data[0].targetStuPerso);
         setbio(response.data[0].bio);
         setabout(response.data[0].about);
-        Axios.post('http://localhost:3010/getLang', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
           username: username,
         }).then((response) => {
           console.log(response.data);
@@ -290,7 +290,7 @@ function Profile_user() {
 
   const changeLang = (lang) => {
       console.log(name);
-      Axios.post('http://localhost:3010/setLang', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/setLang', {
         username: name,
         lang: lang,
       }).then((response) => {
@@ -328,7 +328,7 @@ function Profile_user() {
               maxLength={10}
             onClick={showUser}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updateUsername", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateUsername", {
                 username: name,
                 newUsername: e.target.value
               }).then((response) => {
@@ -366,7 +366,7 @@ function Profile_user() {
                  value={phone}
                  maxLength={10}
                   onChange={(e) => {
-                    Axios.post("http://localhost:3010/updatePhone", {
+                    Axios.post("https://voluntutorcloud-server.herokuapp.com/updatePhone", {
                       username: name,
                       phone: e.target.value
                     }).then((response) => {
@@ -386,7 +386,7 @@ function Profile_user() {
                 value={email}
                 onChange={(e) => {
                   validateEmail(e)
-                  Axios.post("http://localhost:3010/updateEmail", {
+                  Axios.post("https://voluntutorcloud-server.herokuapp.com/updateEmail", {
                     username: name,
                     email: e.target.value
                   }).then((response) => {
@@ -419,7 +419,7 @@ function Profile_user() {
             value={gender}
             maxLength={15}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updateGender", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateGender", {
                 username: name,
                 gender: e.target.value
               }).then((response) => {
@@ -440,7 +440,7 @@ function Profile_user() {
             maxLength={20}
             onChange={(e) => {
               console.log(birthday);
-              Axios.post("http://localhost:3010/updateBirthday", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateBirthday", {
                 username: name,
                 birthday: e.target.value
               }).then((response) => {
@@ -460,7 +460,7 @@ function Profile_user() {
             value={grade}
             maxLength={4}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updateGrade", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateGrade", {
                 username: name,
                 grade: e.target.value
               }).then((response) => {
@@ -479,7 +479,7 @@ function Profile_user() {
            disabled={readonlypersoninfo}
            value={school}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updateSchoolname", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateSchoolname", {
                 username: name,
                 schoolname: e.target.value
               }).then((response) => {
@@ -508,7 +508,7 @@ function Profile_user() {
             disabled={readonlyprefer}
             value={preferredsubject}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updatePreferredSubjects", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updatePreferredSubjects", {
                 username: name,
                 preferredSubjects: e.target.value
               }).then((response) => {
@@ -527,7 +527,7 @@ function Profile_user() {
             disabled={readonlyprefer}
             value={studentage}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updateTargetStuAge", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateTargetStuAge", {
                 username: name,
                 targetStuAge: e.target.value
               }).then((response) => {
@@ -547,7 +547,7 @@ function Profile_user() {
             value={studentgender}
             maxLength={15}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updateTargetStuGen", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateTargetStuGen", {
                 username: name,
                 targetStuGen: e.target.value
               }).then((response) => {
@@ -568,7 +568,7 @@ function Profile_user() {
             value={studentpers}
             maxLength = {15}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updateTargetStuPerso", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateTargetStuPerso", {
                 username: name,
                 targetStuPerso: e.target.value
               }).then((response) => {
@@ -600,7 +600,7 @@ function Profile_user() {
            disabled={readonlybio}
            value={cd[status]}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updateBio", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateBio", {
                 username: name,
                 bio: e.target.value
               }).then((response) => {
@@ -629,7 +629,7 @@ function Profile_user() {
                     disabled={readonlyabout}
                     value={ef[status]}
             onChange={(e) => {
-              Axios.post("http://localhost:3010/updateAbout", {
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateAbout", {
                 username: name,
                 about: e.target.value
               }).then((response) => {

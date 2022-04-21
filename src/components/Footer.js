@@ -12,7 +12,7 @@ function Footer() {
   }
 
   function subscribe() {
-    Axios.post('http://localhost:3010/AddToMailingList', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/AddToMailingList', {
       email: emailAddress,
     }).then((response) => {
       console.log(response)
@@ -23,9 +23,9 @@ function Footer() {
   let username = "";
   
   useEffect(() => {
-    Axios.get('http://localhost:3010/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       username = response.data.user[0].username;
-      Axios.post('http://localhost:3010/getLang', {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
         username: username,
       }).then((response) => {
         console.log(response.data);
