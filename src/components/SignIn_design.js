@@ -22,6 +22,7 @@ function SignIn_design() {
       if (response.data.message) {
         setLoginStatus(response.data.message)
       } else {
+        console.log(response);
         setLoginStatus('Hello, ' + response.data[0].username + '.')
         navigate('/')
         //change the global variable that saves the user's status
