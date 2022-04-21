@@ -35,6 +35,7 @@ function HeroSection() {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/getStatus', {
         username: username,
       }).then(response => {
+        console.log(response.data);
         setName(response.data[0].firstname + " " + response.data[0].lastname);
         setLoading(false);
       })
