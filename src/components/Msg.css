@@ -1,0 +1,241 @@
+.chatengine {
+  margin-top: 80px;
+}
+.out {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 627px;
+  color: grey;
+  opacity: 0.3;
+}
+.warningmsg {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #745140;
+  font-weight: 700;
+  font-size: 25px;
+  padding: 20px;
+}
+.chathistory {
+  background-color: #e1d7d2;
+  width: 30%;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+.searchpad {
+  padding: 20px;
+}
+.search {
+  height: 50px;
+  background: #b17b67;
+  text-align: left;
+  padding-left: 20px;
+  border-radius: 5px;
+  line-height: 50px;
+  font-size: 16px;
+  margin: 0;
+  color: #efe9e5;
+}
+.searchicon {
+  font-size: 150%;
+  margin-right: 8px;
+  height: 50px;
+  float: right;
+}
+
+.peoplelist {
+  height: calc(100vh-50px);
+}
+.chatcontent {
+  background-color: #d8ccc7;
+  margin-top: 80px;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.chatname {
+  width: 100%;
+  height: 60px;
+  text-align: left;
+  padding-left: 20px;
+  line-height: 60px;
+  color: #745140;
+  height: 10%;
+  font-size: 18px;
+  background-color: rgb(225, 215, 210, 0.5);
+}
+.chat {
+  height: 70%;
+  width: 100%;
+  padding: 15px;
+  overflow-y: hidden;
+}
+.send {
+  height: 20%;
+  width: 100%;
+  padding-top: 15px;
+  color: #b17b67;
+  font-size: 15px;
+  padding-left: 20px;
+  background-color: rgb(225, 215, 210, 0.5);
+}
+.outerbox {
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 100%;
+}
+.shadowing {
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+.shadowing:hover {
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.05);
+}
+.imagemsg {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #d6b7a8;
+}
+.msg_icon {
+  font-size: 20px;
+  color: #fdfaf1;
+}
+.infoboxmsg {
+  padding-top: 3px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  align-items: left;
+}
+
+.namemsg {
+  font-size: 15px;
+  color: #745140;
+}
+.latestmsg {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #c49483;
+}
+.numbermsg {
+  background-color: #b17b67;
+  height: 20px;
+  align-self: right;
+  width: 20px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 10px;
+  line-height: 20px;
+  color: #d8ccc7;
+}
+.align {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.messagesend {
+  color: #745140;
+  height: 100%;
+  padding: 7px 0px 7px;
+  font-size: 15px;
+  border: none;
+}
+.messagesend::placeholder {
+  color: #b25634;
+  opacity: 0.7;
+}
+.messagesend:focus {
+  padding: 0;
+  color: #745140;
+  padding: 7px 0px 7px;
+  font-size: 15px;
+  text-align: start;
+  outline: none;
+  border: none;
+}
+.chat {
+  display: flex;
+  flex-direction: column;
+}
+.chatava {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #d6b7a8;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.student_msg {
+  height: auto;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  justify-content: center;
+}
+.words_student {
+  background-color: #c49483;
+  width: fit-content;
+  padding: 15px;
+  margin-left: 10px;
+  border-radius: 7px;
+  color: #fdfafe;
+}
+.words {
+  background-color: #d6b7a8;
+  width: fit-content;
+  padding: 15px;
+  border-radius: 7px;
+  color: #745140;
+}
+.sendword {
+  font-family: 'Lora';
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  color: #b25634;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+.teacher_msg {
+  height: auto;
+  padding: 5px;
+  align-self: flex-end;
+}
+@media screen and (max-width: 900px) {
+  .chathistory {
+    width: 0;
+    display: none;
+  }
+  .chatcontent {
+    width: 100%;
+  }
+}

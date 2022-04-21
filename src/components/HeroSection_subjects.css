@@ -1,0 +1,107 @@
+.hero--tutor_title {
+  height: 100vh;
+  width: 100%;
+  letter-spacing: 5px;
+  text-align: center;
+  display: flex;
+  background: #5a7e84;
+  color: #d69d88;
+  font-size: 100px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
+  object-fit: contain;
+  /* transform: translateY(offsetY * 0.5); */
+}
+
+.hero--yilan {
+  background: #bdb7e1;
+  color: #ffeac0;
+  letter-spacing: 5px;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  font-size: 100px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
+  object-fit: contain;
+}
+
+.hero--hualien {
+  background: #bccddb;
+  color: #d67777;
+  letter-spacing: 5px;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  font-size: 100px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
+  object-fit: contain;
+}
+
+.hero--taitung {
+  background: #e6cada;
+  color: #7699d4;
+  letter-spacing: 5px;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  font-size: 100px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
+  object-fit: contain;
+}
+
+/* .hero--tutor_title > h1 {
+  font-size: 100px;
+  margin-top: -100px;
+}
+
+.hero--tutor_title > p {
+  margin-top: 8px;
+  font-size: 32px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+@media screen and (max-width: 960px) {
+  .hero--tutor_title > h1 {
+    font-size: 70px;
+    margin-top: -150px;
+  }
+} */
+
+/* @media screen and (max-width: 768px) {
+  .hero--tutor_title > h1 {
+    font-size: 50px;
+    margin-top: -100px;
+  }
+
+  .hero--tutor_title > p {
+    font-size: 30px;
+  }
+} */

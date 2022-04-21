@@ -1,0 +1,279 @@
+.titlefav {
+  color: #b25634;
+  font-weight: 100;
+  font-size: 50px;
+  padding-top: 30px;
+  padding-left: 50px;
+}
+#bookingprogramdia {
+  background-color: whitesmoke;
+  overflow: block;
+  position: relative;
+  display: flex;
+  font-weight: 700;
+  color: #b25634;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  height: wrap;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#bookingprogramdia_sub {
+  background-color: whitesmoke;
+  overflow: block;
+  position: relative;
+  display: flex;
+  color: #b25634;
+  flex-direction: row;
+  font-weight: 400;
+  justify-items: center;
+  align-items: center;
+  height: wrap;
+  font-size: 14px;
+  padding-bottom: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#outcontainer {
+  margin-top: 80px;
+}
+#nofav {
+  margin-top: 80px;
+  display: flex;
+  height: 500px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+#fav_container {
+  padding: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+}
+
+#fav_cardbox {
+  background-color: #efe9e5;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+}
+#fav_topic {
+  font-family: 'Lora';
+  color: #b25634;
+  text-align: center;
+  font-weight: 100;
+  font-size: 23px;
+  margin-top: 15px;
+}
+#fav_subtopic {
+  font-family: 'Lora';
+  text-align: center;
+  color: #c49483;
+  font-size: 15px;
+  margin-top: 15px;
+}
+#add {
+  position: absolute;
+  font-family: 'Lora';
+  color: #b25634;
+  margin-bottom: 5px;
+  bottom: 0px;
+}
+.heart {
+  color: #b25634;
+  margin-right: 3px;
+}
+#fav_image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  overflow: hidden;
+  object-fit: cover;
+  transition: all 0.2s linear;
+}
+#imagebox {
+  overflow: hidden;
+}
+
+#imageouter {
+  position: relative;
+}
+.image_overlay {
+  position: absolute;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.image_overlay > * {
+  transform: translateY(20px);
+  transition: transform 0.25s;
+}
+.image_overlay:hover {
+  backdrop-filter: blur(2px);
+  opacity: 1;
+}
+.image_overlay:hover > * {
+  transform: translateY(0);
+}
+.image_text {
+  font-weight: bold;
+  font-family: 'Lora';
+  letter-spacing: 1px;
+  color: #fdfaf1;
+}
+/* .onhover {
+    position: absolute;
+    visibility: visible;
+    opacity: 1;
+    top: 80;
+    transition: opacity 0.2s, visibility 0.2s;
+  } */
+#wrap {
+  padding: 30px;
+  height: 300px;
+  overflow: block;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
+  position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#innerwrap {
+  position: absolute;
+  padding-right: 30px;
+  bottom: 20px;
+}
+#dialog_topic,
+#dialog_subtitle {
+  color: #fdfaf1;
+  font-family: 'Lora';
+}
+
+#dialog_topic {
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+}
+#book {
+  color: #fdfaf1;
+  font-family: 'Lora';
+  background-color: #60a399;
+  padding-right: 7px;
+  padding-left: 7px;
+}
+
+#buttonwrap {
+  padding-top: 15px;
+}
+#dialog_add {
+  margin-left: 15px;
+  color: #fdfaf1;
+  font-family: 'Lora';
+  background-color: #eba68a;
+  padding-right: 7px;
+  padding-left: 7px;
+}
+.heart_dialog {
+  color: #fdfaf1;
+  margin-right: 3px;
+}
+#lowerwrap {
+  padding: 30px;
+  background-color: #e1d7d2;
+}
+#loc {
+  display: flex;
+  flex-direction: row;
+}
+.loc_dialog {
+  padding: 0;
+  color: #b25634;
+  font-size: 210%;
+}
+#position {
+  font-size: 15px;
+  margin-left: 10px;
+  color: #485861;
+  font-weight: 600;
+}
+#subject {
+  width: 30%;
+  padding-left: 15px;
+  font-weight: 500;
+  padding-top: 3px;
+  font-size: 15px;
+  color: #4a7d76;
+}
+#content {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: row;
+}
+#school_content {
+  width: 70%;
+  font-size: 12.5px;
+  color: #625f5f;
+  line-height: 23px;
+}
+#misc {
+  font-size: 10px;
+  width: 30%;
+  padding-left: 15px;
+}
+.basicinfo {
+  margin-top: 3px;
+}
+#date_topic {
+  color: #b25634;
+  font-size: 12px;
+}
+#coordinator_topic,
+#target_topic {
+  margin-top: 9px;
+  color: #49968c;
+  font-size: 12px;
+}
+#word {
+  margin-top: 80px;
+}
+#location_inner {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+}
+
+#viewschool {
+  font-family: 'Lora';
+  width: 200px;
+  cursor: pointer;
+  background-color: #c49483;
+  color: #efe9e5;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  border: 1px solid #c49483;
+  border-radius: 5px;
+  padding: 8px 20px;
+}

@@ -1,0 +1,125 @@
+import React, { useState, useEffect } from 'react'
+import './Footer.css'
+import { Button } from './Button'
+import { Link } from 'react-router-dom'
+import Axios from 'axios'
+
+function Footer() {
+  const [emailAddress, setEmailAddress] = useState('')
+
+  const saveEmailAddress = (e) => {
+    setEmailAddress(e.target.value)
+  }
+
+  function subscribe() {
+    Axios.post('http://localhost:3010/AddToMailingList', {
+      email: emailAddress,
+    }).then((response) => {
+      console.log(response)
+    })
+    setEmailAddress('')
+  }
+  const [status, setStatus] = useState(0);
+  let username = "";
+  
+  useEffect(() => {
+    Axios.get('http://localhost:3010/login').then((response) => {
+      username = response.data.user[0].username;
+      Axios.post('http://localhost:3010/getLang', {
+        username: username,
+      }).then((response) => {
+        console.log(response.data);
+        if(response.data == "chinese") setStatus(1);
+        else setStatus(0);
+        console.log(status);
+      })
+    })
+  })
+
+  let a = ["Join Voluntutor Cloud to receive the newest information!","加入Voluntutor Cloud以獲取最新資訊！"]
+  let b = ["You can unsubscribe at any time.","你可以隨時取消訂閱。"]
+  let c = ["Your email","你的Email"]
+  let d = ["Subscribe NOW","加入我們"]
+  return (
+    <div className="footer-container">
+      <section className="footer-subscription">
+        <p className="footer-subscription-heading">
+        {a[status]}</p>
+        <p className="footer-subscription-text">
+        {b[status]}
+        </p>
+        <div className="input-areas">
+          <form className="form-email">
+            <input
+              className="footer-input"
+              name="email"
+              type="email"
+              value={emailAddress}
+              placeholder={c[status]}
+              onChange={saveEmailAddress}
+            />
+            <Link to="/" className="btn-foot">
+              <div className="footer-btn" onClick={subscribe}>
+              {d[status]}
+              </div>
+            </Link>
+          </form>
+        </div>
+      </section>
+
+      <section class="social-media">
+        <div class="social-media-wrap">
+          <div class="footer-logo">
+            <Link to="/" className="social-logo">
+              Voluntutor Cloud
+              {/* <i class="fab fa-typo3" /> */}
+            </Link>
+          </div>
+          <small class="website-rights">Voluntutor Cloud © 2022</small>
+          <div class="social-icons">
+            <i
+              class="social-icon-link line"
+              href="https://line.me/R/ti/p/@564usgab"
+              target="_blank"
+              aria-label="Line"
+            />
+            <a
+              class="social-icon-link instagram"
+              href="https://www.instagram.com/voluntutor_cloud/"
+              target="_blank"
+              aria-label="Instagram"
+            >
+              <i class="fab fa-instagram" />
+            </a>
+            <Link
+              class="social-icon-link youtube"
+              to="/"
+              target="_blank"
+              aria-label="Youtube"
+            >
+              <i class="fab fa-youtube" />
+            </Link>
+            <Link
+              class="social-icon-link twitter"
+              to="/"
+              target="_blank"
+              aria-label="Twitter"
+            >
+              <i class="fab fa-twitter" />
+            </Link>
+            <Link
+              class="social-icon-link twitter"
+              to="/"
+              target="_blank"
+              aria-label="LinkedIn"
+            >
+              <i class="fab fa-linkedin" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+export default Footer

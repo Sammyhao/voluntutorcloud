@@ -1,0 +1,102 @@
+.btn {
+  padding: 8px 20px;
+  border-radius: 2px;
+  font-family: 'Lora';
+  outline: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.btn--primary {
+  font-family: 'Lora';
+  background-color: #745140;
+  color: #e1d7d2;
+  letter-spacing: 0.5px;
+  border: 1px solid #745140;
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: #e6dcd7;
+  font-family: 'Lora';
+  letter-spacing: 0.5px;
+  padding: 8px 20px;
+  border: 1px solid #e6dcd7;
+  transition: all 0.3s ease-out;
+}
+.btn--footer {
+  font-family: 'Lora';
+  background-color: #fff;
+  color: #c49483;
+  border: 1px solid #fff;
+  letter-spacing: 0.5px;
+}
+.btn--signup {
+  background-color: transparent;
+  letter-spacing: 0.5px;
+  color: #fbf5ed;
+  padding: 8px 20px;
+  font-family: 'Lora';
+  border: 1px solid #fbf5ed;
+  transition: all 0.3s ease-out;
+}
+.btn--medium {
+  padding: 8px 20px;
+  font-size: 18px;
+}
+
+.btn--large {
+  padding: 12px 26px;
+  font-size: 20px;
+}
+
+.btn--footerSize {
+  padding: 8px 20px;
+  font-size: 18px;
+}
+
+.btn--large2 {
+  padding: 12px 26px;
+  font-size: 20px;
+}
+
+.btn--large:hover,
+.btn--medium:hover {
+  transition: all 0.3s ease-out;
+  background: #e6dcd7;
+  color: #b25634;
+  transition: 250ms;
+}
+
+.btn--large2:hover {
+  transition: all 0.3s ease-out;
+  background: #00000000;
+  color: #e1d7d2;
+  border-color: #e1d7d2;
+  transition: 250ms;
+}
+
+.btn--signupSize {
+  transition: all 0.3s ease-out;
+  background: #00000000;
+  color: #fbf5ed;
+  border-color: #fbf5ed;
+  transition: 250ms;
+}
+
+.btn--footerSize:hover {
+  transition: all 0.3s ease-out;
+  background: #c49483;
+  color: #fff;
+  border-color: #fff;
+  transition: 250ms;
+}
+
+.btn--signupSize:hover {
+  background-color: #fbf5ed;
+  color: #c49483;
+  padding: 8px 20px;
+  border: 1px solid #fbf5ed;
+  transition: all 0.3s ease-out;
+}

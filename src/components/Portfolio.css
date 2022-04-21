@@ -1,0 +1,289 @@
+.outcontainer_port {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  background-color: #efe9e5;
+}
+.image_port_cont {
+  width: 150px;
+  display: flex;
+  height: 150px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f6f1ef ;
+  border-radius: 10px;
+  box-shadow: 15px 15px 5px -8px #e6dcd7;
+}
+.stuprof_icon {
+  width: 60px;
+  height: 60px;
+  color: #c49483;
+}
+
+.top_bar {
+  display: flex;
+  flex-direction: row;
+  height: wrap;
+  background-color: #c49483;
+}
+.pic_port {
+  width: 500px;
+  padding: 30px;
+}
+.t_port {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #efe9e5;
+}
+.sub_port {
+  font-size: 20px;
+  color: #745140;
+  margin-bottom: 20px;
+}
+.image_port {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.words_port {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subline {
+  margin-top: 30px;
+  background-color: #efe9e5;
+  line-height: 0.5px;
+}
+.button_port {
+  margin: 5px;
+  width: 190px;
+  border-radius: 3px;
+  background-color: #00000000;
+  padding: 8px 20px;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #efe9e5;
+  border: 1px solid #efe9e5;
+  font-family: 'Lora';
+}
+
+.button_port:hover {
+  transition: all 0.3s ease-out;
+  background: #efe9e5;
+  color: #c49483;
+  transition: 250ms;
+  border: 1px solid #c49483;
+  cursor: pointer;
+}
+
+.basics {
+  margin: 50px;
+  height: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.colorfilling {
+  width: 10%;
+  background-color: #f6f1ef;
+  margin-left: -30px;
+}
+.studentimg {
+  width: 150px;
+  height: 150px;
+  z-index: 1;
+  border-radius: 50%;
+}
+.basicinfo_student {
+  width: 100%;
+  box-shadow: 15px 15px 5px -8px #e6dcd7;
+  display: flex;
+  border-radius: 5px;
+  padding: 20px;
+  margin-left: 30px;
+  padding-left: 50px;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f6f1ef;
+}
+.name_port {
+  color: #b17b67;
+  font-size: 22px;
+  padding: 5px;
+}
+.others_port {
+  padding: 5px;
+  color: #745140;
+  font-size: 17px;
+}
+.grid_port {
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+  margin-bottom: 50px;
+}
+.first_port {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.second_port {
+  width: 50%;
+}
+.infobox {
+  padding-bottom: 30px;
+  padding-top: 30px;
+  margin: 20px;
+  background-color: #f6f1ef;
+  box-shadow: 12px 12px 5px -8px #e6dcd7;
+}
+.title_port {
+  color: #b17b67;
+  font-size: 24px;
+  margin-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.primline {
+  background-color: #e1d7d2;
+  margin-bottom: 20px;
+}
+.learn_words {
+  color: #745140;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  font-size: 17px;
+}
+.content_port_abt {
+  color: #745140;
+  font-size: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.content_port {
+  color: #745140;
+  font-size: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 15px;
+}
+.subtitle_port {
+  color: #b17b67;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 20px;
+  margin-top: 30px;
+}
+.subtitle_sub_port {
+  padding-left: 30px;
+  padding-right: 30px;
+  color: #c49483;
+  margin-top: 30px;
+  font-size: 17px;
+}
+.learn_more {
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  width: auto;
+  border-radius: 3px;
+  background-color: #00000000;
+  padding: 8px 20px;
+  font-size: 20px;
+  text-align: center;
+  max-width: 300px;
+  color: #b17b67;
+  border: 1px solid #b17b67;
+  font-family: 'Lora';
+}
+
+.learn_more:hover {
+  transition: all 0.3s ease-out;
+  background: #efe9e5;
+  color: #c49483;
+  transition: 250ms;
+  border: 1px solid #c49483;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 820px) {
+  .grid_port {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 50px;
+    padding: 0;
+  }
+  .infobox {
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .image_port_cont {
+    width: 0;
+    display: none;
+  }
+  .stuprof_icon {
+    width: 0;
+    display: none;
+  }
+  .first_port {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .second_port {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  .image_port {
+    width: 0;
+    display: none;
+  }
+  .words_port {
+    margin-top: 80px;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .image_port_cont {
+    width: 0;
+    display: none;
+  }
+  .basicinfo_student {
+    width: 90%;
+    margin: 0;
+  }
+  .basics {
+    margin: 0;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  .basicinfo_student {
+    margin-left: 0px;
+    padding-left: 25px;
+  }
+}

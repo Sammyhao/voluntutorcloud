@@ -1,0 +1,250 @@
+.cards {
+  padding: 4rem;
+  background-color: #e1d7d2;
+}
+
+.cardsTitle {
+  text-align: center;
+  color: #745140;
+  letter-spacing: 1px;
+}
+
+#cardsSubTitle {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.cards__container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.cards__wrapper {
+  position: relative;
+  margin: 50px 0 45px;
+}
+
+.cards__items {
+  margin-bottom: 24px;
+}
+
+.cards__item {
+  display: flex;
+  flex: 1;
+  margin: 0 1rem;
+  background-color: #5a7e84;
+}
+
+.cards__item__link {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+  -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.cards__item__pic-wrap {
+  position: relative;
+  width: 90%;
+  align-self: center;
+  padding-top: 67%;
+  margin-top: 5%;
+  overflow: hidden;
+}
+
+.fade-img {
+  animation-name: fade-img;
+  animation-duration: 2s;
+}
+
+.cards__item__img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  transition: all 0.2s linear;
+}
+.cards__item__img:hover {
+  transform: scale(1.1);
+}
+
+.cards__item__info {
+  padding: 20px 30px 30px;
+}
+
+.cards__item__text {
+  color: #fef5ed;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1200px) {
+  .content__blog__container {
+    width: 84%;
+  }
+  .cards__item {
+    min-width: 300px;
+  }
+}
+
+@media only screen and (min-width: 924px) {
+  .cards__items {
+    display: flex;
+    min-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 924px) {
+  .cards__item {
+    margin-bottom: 2rem;
+    min-width: 370px;
+  }
+}
+
+.cards {
+  padding: 4rem;
+  margin-top: 80px;
+  background-color: #e1d7d2;
+}
+
+.cardsTitle {
+  text-align: center;
+  color: #745140;
+}
+
+#cardsSubTitle {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.cards__container_tutor {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.cards__wrapper_tutor {
+  position: relative;
+  min-width: 350px;
+  margin: 50px 0 45px;
+}
+
+.cards__items {
+  margin-bottom: 24px;
+}
+
+.cards__item__tutor {
+  display: flex;
+  flex: 1;
+
+  min-width: 280px;
+  margin: 0 1rem;
+  background-color: #5a7e84;
+}
+
+.cards__item__link {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+  -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.cards__item__pic-wrap {
+  position: relative;
+  width: 90%;
+  align-self: center;
+  padding-top: 67%;
+  margin-top: 5%;
+  overflow: hidden;
+}
+
+.fade-img {
+  animation-name: fade-img;
+  animation-duration: 2s;
+}
+
+.cards__item__img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  transition: all 0.2s linear;
+}
+.cards__item__img:hover {
+  transform: scale(1.1);
+}
+
+.cards__item__info {
+  padding: 20px 30px 30px;
+}
+
+.cards__item__text {
+  color: #fbf5ed;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1200px) {
+  .content__blog__container {
+    width: 84%;
+  }
+  .cards__wrapper_tutor {
+    min-width: 400px;
+  }
+}
+
+@media only screen and (min-width: 924px) {
+  .cards__items {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 924px) {
+  .cards__items {
+    min-width: 390px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .cards__item__tutor {
+    margin-bottom: 2rem;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .cards__item__tutor {
+    margin-bottom: 2rem;
+    min-width: 235px;
+  }
+}
