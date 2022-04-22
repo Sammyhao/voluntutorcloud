@@ -88,6 +88,7 @@ function Profile_user() {
   let g = ["Phone: ","手機號碼："]
   let h = ["Enter Phone number","請輸入手機號碼"]
   let i = ["Email: ","Email帳號："]
+  let hdf = ["Enter Email","請輸入Email帳號"]
   let j = ["Personal Information","個人資料"]
   let k = ["Gender: ","性別："]
   let l = ["Female/Male/Others","男/女/其他"]
@@ -209,11 +210,7 @@ function Profile_user() {
   }
 
   const handleclick_bio = () => {
-    console.log("ddfdd")
-    if(bio==""){
-      setbioerror(c[status])
-    }else
-       {
+    
         setbioerror("")
         setbioclick(!bioclick)
         setbiostyle(<BiEdit/>)
@@ -222,14 +219,11 @@ function Profile_user() {
         setbiostyle(<BsCheckLg/>)
     }else{
       setreadbio("disabled")
-    }}
+    }
   }
 
   const handleclick_about = () => {
-    if(about==""){
-      setabouterror(c[status])
-    }else
-       {
+    
         setabouterror("")
         setaboutclick(!aboutclick)
         setaboutstyle(<BiEdit/>)
@@ -238,7 +232,7 @@ function Profile_user() {
         setaboutstyle(<BsCheckLg/>)
     }else{
       setreadabout("disabled")
-    }}
+    }
   }
   
   const logout = () => {
@@ -351,7 +345,7 @@ function Profile_user() {
                  id="phone_input"
                  className={contactclick ? 'edittabley' : 'edittablen'}
                  type="tel"
-                 placeholder={i[status]}
+                 placeholder={h[status]}
                  disabled={readonlycontact}
                  value={phone}
                  maxLength={10}
@@ -367,11 +361,11 @@ function Profile_user() {
                 />
               </div>
             <div className = "wrapprof">
-              <div className = "textbef">i[status]</div>
+              <div className = "textbef">{i[status]}</div>
                 <input
                 className={contactclick ? 'edittabley' : 'edittablen'}
                 type="text" 
-                placeholder={i[status]}
+                placeholder={hdf[status]}
                 disabled = {readonlycontact}
                 value={email}
                 onChange={(e) => {
@@ -638,10 +632,10 @@ function Profile_user() {
               </div>
               <Divider className="line"></Divider>
               <div className="information">
-                <div className="containpro">
-                 <div onClick={() => changeLang("chinese")}>中文</div>
-                 <p>/</p>
-                 <div onClick={() => changeLang("english")}>English</div>
+                <div className="language">
+                 <div className = "lang" onClick={() => changeLang("chinese")}>中文</div>
+                 <div className = "slash">/</div>
+                 <div className = "lang" onClick={() => changeLang("english")}>English</div>
                 </div>
               </div>
             </div>
