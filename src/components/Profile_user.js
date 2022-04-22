@@ -367,7 +367,7 @@ function Profile_user() {
                 />
               </div>
             <div className = "wrapprof">
-              <div className = "textbef"> </div>
+              <div className = "textbef">i[status]</div>
                 <input
                 className={contactclick ? 'edittabley' : 'edittablen'}
                 type="text" 
