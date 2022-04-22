@@ -26,7 +26,6 @@ const Progress = ({ done }) => {
   )
 }
 
-const contacttemp = contactInfo.map(item => item).reverse();
 let username = "";
 
 function Programusage() {
@@ -71,6 +70,7 @@ function Programusage() {
         });
     })
   }, [])
+  const contacttemp = contactInfo.map(item => item).reverse();
 
   const showContactInfo = () => {
     console.log(contactInfo);
