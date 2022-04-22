@@ -66,8 +66,8 @@ function Myfav() {
   const [favProgramList, setFavProgramList] = useState([])
   const [status, setStatus] = useState(0)
   let a = [
-    "Oops, seems like you don't have any student yet.",
-    '噢, 看來您還沒有任何學生呢。',
+    "Oops, it seems like you have nothing in your favorite list. ",
+    '噢, 看來你還沒加入任何志工計畫到你的最愛呢。',
   ]
   let b = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
   let c = ['My List', '我的最愛']
@@ -120,12 +120,12 @@ function Myfav() {
 
   let username = ''
 
-  const updateBookList = (program) => {
+  const updateBookList = () => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response)
       if (response.data.isLoggedIn) {
         var templateParams = {
-          vc_program: program ,
+          vc_program: p ,
           username: program.username
         }
         emailjs
@@ -138,6 +138,7 @@ function Myfav() {
       .then(
         function (response) {
           console.log('SUCCESS!', response.status, response.text)
+          setBookOpen(true)
         },
         function (error) {
           console.log('FAILED...', error)
@@ -149,9 +150,9 @@ function Myfav() {
         //   isBooked: true,})
 
 
-        .then((response) => {
-          console.log(response)
-        })
+        // .then((response) => {
+        //   console.log(response)
+        // })
       } else {
         console.log('user not logged in')
       }
@@ -204,7 +205,7 @@ function Myfav() {
           open={check_open_book}
         >
           <div id="bookingprogramdia"> {l[status]}</div>
-          <div id="bookingyet" onClick={() => setBookOpen(true)}>
+          <div id="bookingyet" onClick={updateBookList}>
             {m[status]}
           </div>
         </BootstrapDialog>

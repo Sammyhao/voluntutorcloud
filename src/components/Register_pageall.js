@@ -60,7 +60,7 @@ function Register_pageall() {
   let a = ["Please fill in the blank","請完整填入資料"]
   let b = ["Please enter a valid email","請填入正確的email帳號"]
   let c = ["Please fill in all the blanks","請完整填入資料"]
-  let d = ["Password does ont match","密碼不相同"]
+  let d = ["Password does not match","密碼不相同"]
   let e = ["Password is too short","密碼長度太短"]
   let f = ["Wrong Validation Code","驗證碼錯誤"]
   let g = ["Please choose a role" , "請選擇身分"]
