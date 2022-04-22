@@ -192,12 +192,13 @@ function Profile_user() {
   }
 
   const handleclick_pref = () => {
-    if(preferredsubject=="" || studentage=="" || studentgender=="" || studentpers==""){
-      
-      setprefererror(c[status])
-      console.log(prefererror)
-    }else
-       {
+    // console.log("outside")
+    // if(preferredsubject=="" || studentage=="" || studentgender=="" || studentpers==""){
+    //   console.log("blanks there are")
+    //   setprefererror(c[status])
+    //   console.log(prefererror)
+    // }else
+    //    {
         setprefererror("")
         setpreferclick(!preferclick)
         setprefstyle(<BiEdit/>)
@@ -206,7 +207,7 @@ function Profile_user() {
         setprefstyle(<BsCheckLg/>)
     }else{
       setreadprefer("disabled")
-    }}
+    }
   }
 
   const handleclick_bio = () => {
@@ -582,7 +583,7 @@ function Profile_user() {
            type="text"
            placeholder={cd[status]}
            disabled={readonlybio}
-           value={cd[status]}
+           value={bio}
             onChange={(e) => {
               Axios.post("https://voluntutorcloud-server.herokuapp.com/updateBio", {
                 username: name,
@@ -611,7 +612,7 @@ function Profile_user() {
                     type="text"
                     placeholder={ef[status]}
                     disabled={readonlyabout}
-                    value={ef[status]}
+                    value={about}
             onChange={(e) => {
               Axios.post("https://voluntutorcloud-server.herokuapp.com/updateAbout", {
                 username: name,
