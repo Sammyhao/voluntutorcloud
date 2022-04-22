@@ -7,9 +7,15 @@
 }
 .language{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.lang{
+  color: #745140
+}
+.slash{
+  color: #745140
 }
 .background {
   align-self: center;
