@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Grid.css'
 import { RiHeart3Line, RiHeart3Fill, RiMapPin2Fill } from 'react-icons/ri'
 import '../App.css'
+import emailjs from "emailjs-com";
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -67,15 +68,22 @@ BootstrapDialogTitle.propTypes = {
 function Grid_sub(props) {
   const numberOfCards = 200
   const [open, setOpen] = useState(false)
+  const [check_open_book, setcheckopen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
-
+  let p;
   const handleClose = () => {
     setOpen(false)
   }
   const handlebookclose = () => {
     setBookOpen(false)
   }
-
+  const handlefinalclose = () => {
+    setcheckopen(false)
+  }
+  const bookingprogram = (program) =>{
+    setcheckopen(true)
+    p = program;
+  }
   // const [subject, setSubject] = useState('Math') // change the subject from here
   const [subject, setSubject] = useState(props.sub)
   const [programInfo, setProgramInfo] = useState([])
@@ -119,18 +127,39 @@ function Grid_sub(props) {
 
   const [username, setUsername] = useState('')
 
-  const updateBookList = (program) => {
+  const updateBookList = () => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response)
       if (response.data.isLoggedIn) {
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavList', {
-          username: username,
-          program: program,
-          isBooked: true,
-        }).then((response) => {
-          console.log(response)
-        })
-        setBookOpen(true)
+        var templateParams = {
+          vc_program: p ,
+          username: program.username
+        }
+        emailjs
+      .send(
+        'service_z12yzef',
+        'template_zg8ezog',
+        templateParams,
+        'QZBU3bIops8KtosSX',
+      )
+      .then(
+        function (response) {
+          console.log('SUCCESS!', response.status, response.text)
+          setBookOpen(true)
+        },
+        function (error) {
+          console.log('FAILED...', error)
+        },
+      )
+        // Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavListinMyFav', {
+        //   username: program.username,
+        //   program: program,
+        //   isBooked: true,})
+
+
+        // .then((response) => {
+        //   console.log(response)
+        // })
       } else {
         console.log('user not logged in')
       }
@@ -165,7 +194,20 @@ function Grid_sub(props) {
   let i = ["Coordinator","聯絡窗口"]
   let j = ["Target Student","學生年段"]
   let k = ["View School","查看學校"]
-  let l = ["Learn more...","了解更多"]
+  let l = ["Learn more...","了解更多"] 
+  let n = [
+    'Are you sure you want to book this program?',
+    '你確定你要報名此志工計畫？按下送出後即無法收回。',
+  ]
+  let m = ['Yes', '確定送出']
+  let o = ["There is no volunteering programs yet.","目前沒有進行中的志工計畫。"]
+  let q = ["Stay tuned!","敬請期待！"]
+  if(programInfo.length==0){
+    return(<div className = "nokid">
+    <div className="noStudentFont">{o[status]}</div>
+    <div className="noStudentFont2">{q[status]}</div>
+  </div>)
+  }else{
   return (
     <div id="outcontainer">
       <div id="dialog_reg_wrap">
@@ -176,7 +218,19 @@ function Grid_sub(props) {
           open={open_book}
         >
           <div id="bookingprogramdia">{d[status]}</div>
-          <div id="bookingprogramdia_sub">{e[status]}
+          <div id="bookingprogramdia_sub">{e[status]}</div>
+        </BootstrapDialog>
+      </div>
+      <div id="dialog_reg_wrap">
+        <BootstrapDialog
+          onClose={handlefinalclose}
+          id="dialog_registered"
+          aria-labelledby="customized-dialog-title"
+          open={check_open_book}
+        >
+          <div id="bookingprogramdia"> {n[status]}</div>
+          <div id="bookingyet" onClick={updateBookList}>
+            {m[status]}
           </div>
         </BootstrapDialog>
       </div>
@@ -328,7 +382,7 @@ function Grid_sub(props) {
         </Grid>
       </div>
     </div>
-  )
+  )}
 }
 
 export default Grid_sub

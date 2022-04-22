@@ -148,6 +148,7 @@
   align-items: center;
   height: 35px;
   width: 50vw;
+  padding-right: 20px;
 }
 .progressbar {
   margin-left: 50px;

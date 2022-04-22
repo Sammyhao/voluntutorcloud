@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Myfav.css'
+import emailjs from "emailjs-com";
 import { RiHeart3Line, RiMapPin2Fill } from 'react-icons/ri'
 import '../App.css'
 import Grid from '@mui/material/Grid'
@@ -45,6 +46,7 @@ function Myfav() {
 
   const [open_book, setBookOpen] = useState(false)
   const [check_open_book, setcheckopen] = useState(false)
+  let p;
   const handleClose = () => {
     setOpen(false)
   }
@@ -53,6 +55,10 @@ function Myfav() {
   }
   const handlefinalclose = () => {
     setcheckopen(false)
+  }
+  const bookingprogram = (program) =>{
+    setcheckopen(true)
+    p = program;
   }
   const [subject, setSubject] = useState('Math') // change the subject from here
   const [schoolname, setSchoolname] = useState('')
@@ -118,15 +124,34 @@ function Myfav() {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response)
       if (response.data.isLoggedIn) {
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavListinMyFav', {
-          username: program.username,
-          program: program,
-          isBooked: true,
-        }).then((response) => {
+        var templateParams = {
+          vc_program: program ,
+          username: program.username
+        }
+        emailjs
+      .send(
+        'service_z12yzef',
+        'template_zg8ezog',
+        templateParams,
+        'QZBU3bIops8KtosSX',
+      )
+      .then(
+        function (response) {
+          console.log('SUCCESS!', response.status, response.text)
+        },
+        function (error) {
+          console.log('FAILED...', error)
+        },
+      )
+        // Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavListinMyFav', {
+        //   username: program.username,
+        //   program: program,
+        //   isBooked: true,})
+
+
+        .then((response) => {
           console.log(response)
         })
-
-        setcheckopen(true)
       } else {
         console.log('user not logged in')
       }
@@ -179,7 +204,7 @@ function Myfav() {
           open={check_open_book}
         >
           <div id="bookingprogramdia"> {l[status]}</div>
-          <div id="bookingyet" onClick={() => open_book(true)}>
+          <div id="bookingyet" onClick={() => setBookOpen(true)}>
             {m[status]}
           </div>
         </BootstrapDialog>
@@ -212,7 +237,7 @@ function Myfav() {
                 <Button
                   id="book"
                   size="small"
-                  onClick={() => updateBookList(program)}
+                  onClick={bookingprogram(program)}
                 >
                   {f[status]}
                 </Button>

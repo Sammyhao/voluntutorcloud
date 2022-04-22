@@ -67,7 +67,7 @@ function Profile_user() {
   const [bioclick, setbioclick] = useState(false)
   const [aboutclick, setaboutclick] = useState(false)
   const [privacyclick, setprivacyclick] = useState(false)
-  const [readonly, setread] = useState('')
+  // const [readonly, setread] = useState('')
   const [userInfo, setUserInfo] = useState([])
   const [emailError, setEmailError] = useState('')
   const [iconstyle, seticonstyle] = useState(<div><MdModeEdit/></div>)
@@ -79,7 +79,7 @@ function Profile_user() {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   
-  let a = ["Please enter your username.","請輸入你的使用者名稱"]
+  // let a = ["Please enter your name.","請輸入你的使用者名稱"]
   let b = ["Please enter a valid email.","請輸入正確的Email"]
   let c = ["Please fill in the blanks.","請完整填入資訊"]
   let d = ["Please contact the administrator to change the password.","請聯絡主辦者以更改密碼。"]
@@ -131,21 +131,21 @@ function Profile_user() {
   const handleClose = () => {
     setOpen(false)
   }
-  const handleClick = () => {
-    if(name==""){
-      seterrormessage(a[status])
-    }else{
-      seterrormessage("")
-    setClick(!click)
-    seticonstyle(<MdModeEdit/>)
-    if(!click){
-      setread("")
-      seticonstyle(<BsCheckLg/>)
-    }else{
-      setread("disabled")
+  // const handleClick = () => {
+  //   if(name==""){
+  //     seterrormessage(a[status])
+  //   }else{
+  //     seterrormessage("")
+  //   setClick(!click)
+  //   seticonstyle(<MdModeEdit/>)
+  //   if(!click){
+  //     setread("")
+  //     seticonstyle(<BsCheckLg/>)
+  //   }else{
+  //     setread("disabled")
       
-    }}
-  }
+  //   }}
+  // }
     
   const validateEmail = (e) => {
     var email = e.target.value
@@ -322,22 +322,12 @@ function Profile_user() {
             className={click ? 'edity' : 'editn'}
             type="text"
               placeholder={e[status]}
-              disabled={readonly}
+              disabled="disabled"
               value={name}
-              size={name.length}
-              maxLength={10}
-            onClick={showUser}
             onChange={(e) => {
-              Axios.post("https://voluntutorcloud-server.herokuapp.com/updateUsername", {
-                username: name,
-                newUsername: e.target.value
-              }).then((response) => {
-                console.log(response);
-              })
               setname(e.target.value)
             }}
           />
-          <div className="pen" onClick={handleClick}>{iconstyle}</div>
           
           
             </div>
