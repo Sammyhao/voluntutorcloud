@@ -109,18 +109,18 @@ function Register_pageall() {
     children: PropTypes.node
   }
   const savedata = () => {
-    let r = ''
+    let temprole = ''
 
     if (teacherstyle == true) {
-      r = 'teacher'
+      temprole = 'teacher'
     } else {
-      r = 'student'
+      temprole = 'student'
     }
 
     console.log(
       usernameReg,
       passwordReg,
-      r,
+      temprole,
       FirstnameReg,
       LastnameReg,
       GenderReg,
@@ -139,7 +139,7 @@ function Register_pageall() {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/register', {
       username: usernameReg,
       password: passwordReg,
-      role: r,
+      role: temprole,
       firstname: FirstnameReg,
       lastName: LastnameReg,
       gender: GenderReg,
@@ -235,11 +235,8 @@ function Register_pageall() {
     }
   }
   const pageplus1_5 = () => {
-    if (teacherstyle == true) {
-      console.log('not teacher')
       if (validationcode != 'vcwego') {
         seterrormessage(f[status])
-      }
     } else {
       setpagenum(pagenum - 0.5)
       seterrormessage('')
@@ -255,6 +252,10 @@ function Register_pageall() {
   }
   const pageminus = () => {
     setpagenum(pagenum - 1)
+    seterrormessage('')
+  }
+  const pageminus_spc = () => {
+    setpagenum(pagenum - 0.5)
     seterrormessage('')
   }
   const pageminus1_5 = () => {
@@ -457,7 +458,7 @@ function Register_pageall() {
               </div>
             </div>
             <div className="btn_reg">
-              <button className="back" onClick={pageminus}>
+              <button className="back" onClick={pageminus_spc}>
               {o[status]}
               </button>
               <button className="next" onClick={pageplus2}>
