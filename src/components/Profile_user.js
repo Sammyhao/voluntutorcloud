@@ -115,6 +115,7 @@ function Profile_user() {
   let gh = ["Privacy & Security","隱私以及安全性"]
   let hi = ["Change Password","更改密碼"]
   let ij = ["Log Out", "登出"]
+  let jk = ["Please contact the administrator to change the password.", "請聯絡管理者以更改密碼。"]
 
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
@@ -304,8 +305,8 @@ function Profile_user() {
         open={open}
       >
         <div id="prof_registeredsucc">
-          Please contact the administrator to change the password.
-        </div>
+        {jk[status]}
+          </div>
       </BootstrapDialog>
       </div>
       <div className="background">

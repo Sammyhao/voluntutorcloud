@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { GrFavorite, GrPin } from 'react-icons/gr'
 import { AiOutlineMessage, AiOutlineCalendar } from 'react-icons/ai'
 import { RiFolder3Line } from 'react-icons/ri'
+import { SiGooglemeet } from 'react-icons/si'
 import Axios from 'axios'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
@@ -47,7 +48,7 @@ function Function() {
   let c = ["Appointment","會議安排"]
   let d = ["Usage","服務時數"]
   let e = ["Message","訊息"]
-  let f = ["Portfolio","學生檔案"]
+  let f = ["Booking","預約會議"]
   let g = ["Sign in to unlock functions!!","登入以解鎖功能！"]
   let h = ["SIGN IN","登入"]
   let i = ["BEGIN YOUR JOURNEY!!","開始你的旅程！"]
@@ -92,8 +93,8 @@ function Function() {
       '/mylist',
       '/appointment',
       '/program_usage',
+      '/book',
       '/message',
-      '/Student_portfolio',
     ]
     return (
       <div className="container_func">
@@ -111,7 +112,7 @@ function Function() {
             <Link className="func_link" to={logged[1]}>
               <div className="outcont_function">
                 <div className="icon_func_even">
-                  <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+                  <SiGooglemeet className="icon_func"></SiGooglemeet>
                 </div>
                 <div className="subtitle_func">{c[status]}</div>
               </div>
@@ -128,19 +129,20 @@ function Function() {
   
           <div className="temprow">
             <Link className="func_link" to={logged[3]}>
-              <div className="outcont_function">
+            <div className="outcont_function">
+                <div className="icon_func_odd">
+                  <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+                </div>
+                <div className="subtitle_func">{f[status]}</div>
+              </div>
+              
+            </Link>
+            <Link className="func_link" to={logged[4]}>
+            <div className="outcont_function">
                 <div className="icon_func_even">
                   <AiOutlineMessage className="icon_func"></AiOutlineMessage>
                 </div>
                 <div className="subtitle_func">{e[status]}</div>
-              </div>
-            </Link>
-            <Link className="func_link" to={logged[4]}>
-              <div className="outcont_function">
-                <div className="icon_func_odd">
-                  <RiFolder3Line className="icon_func"></RiFolder3Line>
-                </div>
-                <div className="subtitle_func">{f[status]}</div>
               </div>
             </Link>
           </div>

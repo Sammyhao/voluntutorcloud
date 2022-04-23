@@ -94,7 +94,7 @@ export default function Portfolio() {
             <div className="sub_port">{d[status]}</div>
           </div>
         </div>
-      <div className = "nokid">
+      <div className = "nokidport">
         <div className="noStudentFont">{a[status]}</div>
         <div className="noStudentFont2">{b[status]}</div>
       </div>
