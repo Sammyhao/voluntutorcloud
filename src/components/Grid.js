@@ -98,7 +98,9 @@ function Grid_sub(props) {
     console.log("subject");
     console.log(subject);
     if (subject == '') {
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/programWithoutSub').then((response) => {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
+        subject: "chinese",
+      }).then((response) => {
         console.log("fetched data for school tour");
         console.log(response.data.length);
         if (response.data.length) {
@@ -204,7 +206,7 @@ function Grid_sub(props) {
   let i = ["Coordinator","聯絡窗口"]
   let j = ["Target Student","學生年段"]
   let k = ["View School","查看學校"]
-  let l = ["Learn more...","了解更多"] 
+  let l = ["Learn more...","了解更多..."] 
   let n = [
     'Are you sure you want to book this program?',
     '你確定你要報名此志工計畫？按下送出後即無法收回。',

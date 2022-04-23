@@ -85,11 +85,11 @@ function Myfav() {
   let m = ['Yes', '確定送出']
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud.herokuapp.com/login').then((response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         console.log(response)
         username = response.data.user[0].username;
         console.log(username)
-        Axios.post('https://voluntutorcloud.herokuapp.com/getLang', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/login', {
           username: username,
         }).then((response) => {
           console.log(response.data)
@@ -98,7 +98,7 @@ function Myfav() {
           console.log(status)
           setLoading1(false);
         })
-        Axios.post('https://voluntutorcloud.herokuapp.com/getFavList', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/login', {
           username: username,
         }).then((response) => {
           if (response.data.length) {
@@ -119,7 +119,7 @@ function Myfav() {
   let username = ''
 
   const updateBookList = (program) => {
-    Axios.get('https://voluntutorcloud.herokuapp.com/login').then(
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
         console.log(response)
         if (response.data.isLoggedIn) {
