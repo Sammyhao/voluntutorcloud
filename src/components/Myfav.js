@@ -180,9 +180,8 @@ function Myfav() {
         <div className="noStudentFont2">{b[status]}</div>
       </div>
     )
-  }
-
-  return (
+  } else {
+    return (
     <div id="outcontainer">
       <h1 className="titlefav" onClick={showFavProgramList}>
         {c[status]}
@@ -348,6 +347,7 @@ function Myfav() {
       </div>
     </div>
   )
+  }
 }
 
 export default Myfav
