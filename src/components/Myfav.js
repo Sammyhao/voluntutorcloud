@@ -61,6 +61,7 @@ function Myfav() {
   const [status, setStatus] = useState(0)
   const [isLoading1, setLoading1] = useState(true);
   const [isLoading2, setLoading2] = useState(true);
+  const [favProgramListLen, setFavProgramListLen] = useState(0);
 
   let a = [
     "There's nothing in your favorite list!",
@@ -103,6 +104,7 @@ function Myfav() {
           username: username,
         }).then((response) => {
           console.log(response.data);
+          setFavProgramListLen(response.data.length);
           if (response.data.length) {
             for (let i = 0; i < response.data.length; i++) {
               if (response.data[i].isBooked == false)
@@ -157,9 +159,9 @@ function Myfav() {
     })
   }
 
-  if (isLoading1 == 0 || isLoading2 == 0 || !favProgramList) {
+  if (isLoading1 == true || isLoading2 == true || favProgramListLen == 0) {
     console.log(favProgramList);
-    console.log("favProgramList");
+    console.log("favProgramList null");
     return (
       <div id="nofav">
         <div className="noStudentFont">{a[status]}</div>
