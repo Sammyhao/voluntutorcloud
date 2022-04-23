@@ -82,8 +82,7 @@ function Myfav() {
   ]
   let m = ['Yes', '確定送出']
   useEffect(() => {
-    Axios.get('https://voluntutorcloud.herokuapp.com/login').then(
-      (response) => {
+    Axios.get('https://voluntutorcloud.herokuapp.com/login').then((response) => {
         console.log(response)
         if (response.data.isLoggedIn) {
           username = response.data.user[0].username
@@ -154,6 +153,7 @@ function Myfav() {
   }
 
   if (favProgramList.length == 0) {
+    console.log(status);
     return (
       <div id="nofav">
         <div className="noStudentFont">{a[status]}</div>
