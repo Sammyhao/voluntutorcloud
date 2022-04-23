@@ -91,8 +91,12 @@ function Grid_sub(props) {
   const [address, setAddress] = useState('')
 
   useEffect(() => {
+    console.log("subject");
+    console.log(subject);
     if (subject == '') {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/programWithoutSub').then((response) => {
+        console.log("fetched data for school tour");
+        console.log(response.data.length);
         if (response.data.length) {
           setProgramInfo(response.data)
         }
