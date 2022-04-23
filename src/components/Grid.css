@@ -22,6 +22,20 @@
   padding-right: 15px;
   padding-left: 15px;
 }
+#bookingprogramdia {
+  background-color: whitesmoke;
+  overflow: block;
+  position: relative;
+  display: flex;
+  font-weight: 700;
+  color: #b25634;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  height: wrap;
+  padding: 15px;
+  text-align: center;
+}
 #bookingprogramdia_sub {
   background-color: whitesmoke;
   overflow: block;

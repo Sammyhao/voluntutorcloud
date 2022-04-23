@@ -212,7 +212,7 @@
   padding: 7px 0px 7px;
   font-size: 15px;
   border: none;
-  width: wrap;
+  width: 200px;
 }
 .edittabley::placeholder {
   color: #b25634;

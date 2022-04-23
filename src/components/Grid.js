@@ -231,7 +231,7 @@ function Grid_sub(props) {
           aria-labelledby="customized-dialog-title"
           open={open_fav}
         >
-          <div id="bookingprogramdia">{z[status]}</div>
+          <div id="favoritetitle">{z[status]}</div>
           
         </BootstrapDialog>
       </div>

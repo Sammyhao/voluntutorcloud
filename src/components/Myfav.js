@@ -89,7 +89,7 @@ function Myfav() {
         console.log(response)
         username = response.data.user[0].username;
         console.log(username)
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/login', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
           username: username,
         }).then((response) => {
           console.log(response.data)
@@ -98,7 +98,7 @@ function Myfav() {
           console.log(status)
           setLoading1(false);
         })
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/login', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getFavList', {
           username: username,
         }).then((response) => {
           if (response.data.length) {
@@ -124,7 +124,7 @@ function Myfav() {
         console.log(response)
         if (response.data.isLoggedIn) {
           Axios.post(
-            'https://voluntutorcloud.herokuapp.com/updateFavListinMyFav',
+            'https://voluntutorcloud-server.herokuapp.com/updateFavListinMyFav',
             {
               username: program.username,
               program: program,
@@ -147,7 +147,7 @@ function Myfav() {
   }
 
   const deleteProgram = (program) => {
-    Axios.post('https://voluntutorcloud.herokuapp.com/deleteFavList', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteFavList', {
       username: program.username,
       programId: program.programId,
     }).then((response) => {
