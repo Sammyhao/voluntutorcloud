@@ -97,7 +97,7 @@ export default function Booking() {
   let m = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
 
   const sendfirst = () => {
-    if(date=="" || time ==""|| duration ==""){
+    if(date== "" || time == "" || duration == ""){
           setnoneopen(true)
     } else{
         setOpen(true)

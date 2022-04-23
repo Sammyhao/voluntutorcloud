@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
 import './Msg.css'
 import '../App.css'
 import { FaUser } from 'react-icons/fa'
 import { ChatEngine } from 'react-chat-engine'
+import Axios from 'axios'
 
 function Msg() {
   let num = [1, 2, 3]
