@@ -128,7 +128,7 @@ function Appointmentmeet() {
     
   }
 
-  const actualsend = () =>{
+  const actualsend = () => {
     console.log(contactInfo[0].username, contactInfo[0].studentname, contactInfo[0].studentmail, classDate, classduration, agenda, task, notes);
       var templateParams = {
         parent_email: contactInfo[0].studentmail,

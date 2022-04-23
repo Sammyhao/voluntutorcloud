@@ -8,7 +8,24 @@ import { ChatEngine } from 'react-chat-engine'
 function Msg() {
   let num = [1, 2, 3]
   const [msg, setmsg] = useState('')
-  let status = 0;
+
+  const [status, setStatus] = useState(0);
+  let username = "";
+  
+  useEffect(() => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+      username = response.data.user[0].username;
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+        username: username,
+      }).then((response) => {
+        console.log(response.data);
+        if(response.data == "chinese") setStatus(1);
+        else setStatus(0);
+        console.log(status);
+      })
+    })
+  })
+
   let a = ["You have to be paired with a student to unlock the function.","你需要和一位學生配對後才能解鎖訊息功能"]
   return (
     <div>

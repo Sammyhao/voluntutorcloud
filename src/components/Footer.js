@@ -19,6 +19,7 @@ function Footer() {
     })
     setEmailAddress('')
   }
+
   const [status, setStatus] = useState(0);
   let username = "";
   
@@ -40,6 +41,7 @@ function Footer() {
   let b = ["You can unsubscribe at any time.","你可以隨時取消訂閱。"]
   let c = ["Your email","你的Email"]
   let d = ["Subscribe NOW","加入我們"]
+  
   return (
     <div className="footer-container">
       <section className="footer-subscription">
