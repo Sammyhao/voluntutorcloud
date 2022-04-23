@@ -101,6 +101,7 @@ function Myfav() {
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getFavList', {
           username: username,
         }).then((response) => {
+          console.log(response.data);
           if (response.data.length) {
             for (let i = 0; i < response.data.length; i++) {
               if (response.data[i].isBooked == false)
