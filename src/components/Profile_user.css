@@ -8,11 +8,12 @@
 .language{
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: left;
 }
 .lang{
-  color: #745140
+  color: #745140;
+  cursor: pointer;
 }
 .slash{
   color: #745140

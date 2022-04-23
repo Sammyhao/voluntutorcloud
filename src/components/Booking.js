@@ -66,6 +66,9 @@ export default function Booking() {
 let i = ["Please double check before you send the invitation.","在傳送前請再次確認資料是否有誤。"]
 let j = ["Please fill in all the fields.","請完整填入資訊"]
 let k = ["Booking Invitation sent. Please check the message box if the student is unavailable during the time.","會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議。"]
+let l = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
+let m = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
+
 const sendfirst = () =>{
    if(date=="" || time ==""|| duration ==""){
         setnoneopen(true)
@@ -78,6 +81,8 @@ const sendsecond = () =>{
   // save the data here (date,time,duration)
   setfinalopen(true)
 }  
+// 這裡true的條件改成是否有學生喔
+if (true){
 return (
       <div className='outestcontainerbook'>
         <div id="dialogcontainer">
@@ -165,5 +170,10 @@ return (
         </div>
         </div>
     </div>
-  )
+  )}else{
+    return (<div className = "nokid">
+    <div className="noStudentFont">{l[status]}</div>
+    <div className="noStudentFont2">{m[status]}</div>
+  </div>)
+  }
 }

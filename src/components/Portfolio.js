@@ -84,9 +84,20 @@ export default function Portfolio() {
 
   if (isLoading || studentProfolio.length == 0) {
     return (
+      <div className = "outcontainer_port">
+      <div className="top_bar">
+          <div className="image_port">
+            <img className="pic_port" src="/images/children_learning.png" />
+          </div>
+          <div className="words_port">
+            <div className="t_port">{c[status]}</div>
+            <div className="sub_port">{d[status]}</div>
+          </div>
+        </div>
       <div className = "nokid">
         <div className="noStudentFont">{a[status]}</div>
         <div className="noStudentFont2">{b[status]}</div>
+      </div>
       </div>
     )
   } else {
