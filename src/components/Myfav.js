@@ -157,7 +157,7 @@ function Myfav() {
     })
   }
 
-  if (isLoading1 == 0 || isLoading2 == 0 ||favProgramList.length == 0) {
+  if (isLoading1 == 0 || isLoading2 == 0 || !favProgramList) {
     console.log(favProgramList);
     console.log("favProgramList");
     return (
