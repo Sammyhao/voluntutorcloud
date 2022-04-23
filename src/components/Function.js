@@ -130,7 +130,7 @@ function Function() {
           <div className="temprow">
             <Link className="func_link" to={logged[3]}>
             <div className="outcont_function">
-                <div className="icon_func_odd">
+                <div className="icon_func_even">
                   <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
                 </div>
                 <div className="subtitle_func">{f[status]}</div>
@@ -139,7 +139,7 @@ function Function() {
             </Link>
             <Link className="func_link" to={logged[4]}>
             <div className="outcont_function">
-                <div className="icon_func_even">
+                <div className="icon_func_odd">
                   <AiOutlineMessage className="icon_func"></AiOutlineMessage>
                 </div>
                 <div className="subtitle_func">{e[status]}</div>
@@ -179,14 +179,16 @@ function Function() {
                     <GrFavorite className="icon_func"></GrFavorite>
                   </div>
                   <div className="subtitle_func">{b[status]}</div>
-                </div><div className="outcont_function" onClick = {() => {
+                </div>
+                <div className="outcont_function" onClick = {() => {
                             setOpen(true);
                           }}>
                   <div className="icon_func_even">
                     <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
                   </div>
                   <div className="subtitle_func">{c[status]}</div>
-                </div><div className="outcont_function" onClick = {() => {
+                </div>
+                <div className="outcont_function" onClick = {() => {
                             setOpen(true);
                           }}>
                   <div className="icon_func_odd">
@@ -196,20 +198,21 @@ function Function() {
                 </div>
             </div>
     
-            <div className="temprow"><div className="outcont_function" onClick = {() => {
+            <div className="temprow">
+              <div className="outcont_function" onClick = {() => {
                             setOpen(true);
                           }}>
                   <div className="icon_func_even">
-                    <AiOutlineMessage className="icon_func"></AiOutlineMessage>
+                    <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
                   </div>
-                  <div className="subtitle_func">{e[status]}</div>
+                  <div className="subtitle_func">{f[status]}</div>
                 </div><div className="outcont_function" onClick = {() => {
                             setOpen(true);
                           }}>
                   <div className="icon_func_odd">
-                    <RiFolder3Line className="icon_func"></RiFolder3Line>
+                    <AiOutlineMessage className="icon_func"></AiOutlineMessage>
                   </div>
-                  <div className="subtitle_func">{f[status]}</div>
+                  <div className="subtitle_func">{e[status]}</div>
                 </div>
             </div>
           </div>
