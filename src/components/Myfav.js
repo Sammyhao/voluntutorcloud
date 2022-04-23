@@ -168,7 +168,7 @@ function Myfav() {
     )
   } else {
     console.log(favProgramList);
-    console.log("favProgramList");
+    console.log("favProgramList fetched not null");
     return (
       <div id="outcontainer">
         <h1 className="titlefav" onClick={showFavProgramList}>
