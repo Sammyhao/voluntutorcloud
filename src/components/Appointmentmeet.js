@@ -116,6 +116,7 @@ function Appointmentmeet() {
       })
     })
   }, [])
+  
   function updateRecord() {
     console.log(contactInfo[0].username, contactInfo[0].studentname, contactInfo[0].studentmail, classDate, classduration, agenda, task, notes);
 

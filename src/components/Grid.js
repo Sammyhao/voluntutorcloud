@@ -70,9 +70,13 @@ function Grid_sub(props) {
   const [open, setOpen] = useState(false)
   const [check_open_book, setcheckopen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
+  const [open_fav, setFavOpen] = useState(false)
   let p;
   const handleClose = () => {
     setOpen(false)
+  }
+  const handlefav = () => {
+    setFavOpen(false)
   }
   const handlebookclose = () => {
     setBookOpen(false)
@@ -182,6 +186,7 @@ function Grid_sub(props) {
         }).then((response) => {
           console.log(response)
         })
+        setFavOpen(true)
       } else {
         console.log('user not logged in')
       }
@@ -191,8 +196,8 @@ function Grid_sub(props) {
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
   let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
   let c = ["My List","我的最愛"]
-  let d = ["Program Booked!" ,"志工計畫已報名！"]
-  let e = ["Please wait for notification from the administrator.","主辦者將盡快與你聯絡~"]
+  let e = ["You cannot enroll in two programs at the same time." ,"目前不得同時報名多個志工計畫"]
+  let d = ["You are already enrolled in a program.","你已經在志工計畫當中囉~"]
   let f = ["BOOK NOW!","現在報名！"]
   let g = ["Add to list","加入最愛"]
   let h = ["Dates/Service hours","日期/服務時間"]
@@ -207,6 +212,7 @@ function Grid_sub(props) {
   let m = ['Yes', '確定送出']
   let o = ["There is no volunteering programs yet.","目前沒有進行中的志工計畫。"]
   let q = ["Stay tuned!","敬請期待！"]
+  let z = ['Added to favorite list.', "已加入最愛"]
 
   if(programInfo.length==0) {
     return(<div className = "nokid">
@@ -216,6 +222,17 @@ function Grid_sub(props) {
   } else {
     return (
       <div id="outcontainer">
+        <div id="dialog_reg_wrap">
+        <BootstrapDialog
+          onClose={handlefav}
+          id="dialog_registered"
+          aria-labelledby="customized-dialog-title"
+          open={open_fav}
+        >
+          <div id="bookingprogramdia">{z[status]}</div>
+          
+        </BootstrapDialog>
+      </div>
         <div id="dialog_reg_wrap">
           <BootstrapDialog
             onClose={handlebookclose}

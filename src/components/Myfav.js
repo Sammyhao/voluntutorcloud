@@ -42,7 +42,6 @@ BootstrapDialogTitle.propTypes = {
 
 function Myfav() {
   const [open, setOpen] = useState(false)
-
   const [open_book, setBookOpen] = useState(false)
   const [check_open_book, setcheckopen] = useState(false)
   const handleClose = () => {
@@ -59,6 +58,9 @@ function Myfav() {
   const [address, setAddress] = useState('')
   const [favProgramList, setFavProgramList] = useState([])
   const [status, setStatus] = useState(0)
+  const [isLoading1, setLoading1] = useState(true);
+  const [isLoading2, setLoading2] = useState(true);
+
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
@@ -81,12 +83,11 @@ function Myfav() {
     '你確定你要報名此志工計畫？按下送出後即無法收回。',
   ]
   let m = ['Yes', '確定送出']
+
   useEffect(() => {
     Axios.get('https://voluntutorcloud.herokuapp.com/login').then((response) => {
         console.log(response)
-        if (response.data.isLoggedIn) {
-          username = response.data.user[0].username
-        }
+        username = response.data.user[0].username;
         console.log(username)
         Axios.post('https://voluntutorcloud.herokuapp.com/getLang', {
           username: username,
@@ -95,6 +96,7 @@ function Myfav() {
           if (response.data == 'chinese') setStatus(1)
           else setStatus(0)
           console.log(status)
+          setLoading1(false);
         })
         Axios.post('https://voluntutorcloud.herokuapp.com/getFavList', {
           username: username,
@@ -108,6 +110,7 @@ function Myfav() {
                 ])
             }
           }
+          setLoading2(false);
         })
       },
     )
@@ -152,7 +155,7 @@ function Myfav() {
     })
   }
 
-  if (favProgramList.length == 0) {
+  if (isLoading1 == 0 || isLoading2 == 0 ||favProgramList.length == 0) {
     console.log(status);
     return (
       <div id="nofav">
@@ -167,6 +170,7 @@ function Myfav() {
       <h1 className="titlefav" onClick={showFavProgramList}>
         {c[status]}
       </h1>
+      
       <div id="dialog_reg_wrap">
         <BootstrapDialog
           onClose={handlebookclose}
