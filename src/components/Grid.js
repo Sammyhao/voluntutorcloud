@@ -101,14 +101,15 @@ function Grid_sub(props) {
           setProgramInfo(response.data)
         }
       })
+    } else {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
+        subject: subject,
+      }).then((response) => {
+        if (response.data.length) {
+          setProgramInfo(response.data)
+        }
+      })
     }
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
-      subject: subject,
-    }).then((response) => {
-      if (response.data.length) {
-        setProgramInfo(response.data)
-      }
-    })
 
     let name = "";
 
@@ -206,187 +207,189 @@ function Grid_sub(props) {
   let m = ['Yes', '確定送出']
   let o = ["There is no volunteering programs yet.","目前沒有進行中的志工計畫。"]
   let q = ["Stay tuned!","敬請期待！"]
-  if(programInfo.length==0){
+
+  if(programInfo.length==0) {
     return(<div className = "nokid">
     <div className="noStudentFont">{o[status]}</div>
     <div className="noStudentFont2">{q[status]}</div>
   </div>)
-  }else{
-  return (
-    <div id="outcontainer">
-      <div id="dialog_reg_wrap">
-        <BootstrapDialog
-          onClose={handlebookclose}
-          id="dialog_registered"
-          aria-labelledby="customized-dialog-title"
-          open={open_book}
-        >
-          <div id="bookingprogramdia">{d[status]}</div>
-          <div id="bookingprogramdia_sub">{e[status]}</div>
-        </BootstrapDialog>
-      </div>
-      <div id="dialog_reg_wrap">
-        <BootstrapDialog
-          onClose={handlefinalclose}
-          id="dialog_registered"
-          aria-labelledby="customized-dialog-title"
-          open={check_open_book}
-        >
-          <div id="bookingprogramdia"> {n[status]}</div>
-          <div id="bookingyet" onClick={updateBookList}>
-            {m[status]}
-          </div>
-        </BootstrapDialog>
-      </div>
-      <div id="dialogcontainer">
-        <BootstrapDialog
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
-          <div
-            id="wrap"
-            style={{
-              background: program.schoolpic + ' center center/cover no-repeat',
-              width: '600px',
-            }}
+  } else {
+    return (
+      <div id="outcontainer">
+        <div id="dialog_reg_wrap">
+          <BootstrapDialog
+            onClose={handlebookclose}
+            id="dialog_registered"
+            aria-labelledby="customized-dialog-title"
+            open={open_book}
           >
-            <div id="innerwrap">
-              <Typography id="dialog_topic" variant="h5" component="div">
-                {program.schoolname}
-              </Typography>
-              <Typography
-                id="dialog_subtitle"
-                variant="subtitle2"
-                component="div"
-              >
-                {program.schoolintro}
-              </Typography>
-              <div id="buttonwrap">
-                <Button
-                  id="book"
-                  size="small"
-                  onClick={() => updateBookList(program)}
-                >
-                 {f[status]}
-                </Button>
-                <Button
-                  id="dialog_add"
-                  size="small"
-                  onClick={() => updateFavList(program)}
-                >
-                  <RiHeart3Line className="heart_dialog" />
-                  {g[status]}
-                </Button>
-              </div>
+            <div id="bookingprogramdia">{d[status]}</div>
+            <div id="bookingprogramdia_sub">{e[status]}</div>
+          </BootstrapDialog>
+        </div>
+        <div id="dialog_reg_wrap">
+          <BootstrapDialog
+            onClose={handlefinalclose}
+            id="dialog_registered"
+            aria-labelledby="customized-dialog-title"
+            open={check_open_book}
+          >
+            <div id="bookingprogramdia"> {n[status]}</div>
+            <div id="bookingyet" onClick={updateBookList}>
+              {m[status]}
             </div>
-          </div>
-          <div>
-            <div id="lowerwrap">
-              <div id="loc">
-                <div id="location_inner">
-                  <RiMapPin2Fill className="loc_dialog" />
-                  <div id="position">{program.address}</div>
-                </div>
-                <div id="subject">{program.subject}</div>
-              </div>
-              <div id="content">
-                <div id="school_content">{program.content}</div>
-                <div id="misc">
-                  <div className="basicinfo" id="date_topic">
-                  {h[status]}
-                  </div>
-                  <div className="basicinfo" id="day">
-                    {program.day}
-                  </div>
-                  <div className="basicinfo" id="time">
-                    {program.sttime}
-                  </div>
-                  <div className="basicinfo" id="coordinator_topic">
-                  {i[status]}
-                  </div>
-                  <div className="basicinfo" id="phone">
-                    {program.contactnum}
-                  </div>
-                  <div className="basicinfo" id="email">
-                    {program.email}
-                  </div>
-                  <div className="basicinfo" id="target_topic">
-                  {j[status]}
-                  </div>
-                  <div className="basicinfo" id="target">
-                    {program.targetstudent}
-                  </div>
+          </BootstrapDialog>
+        </div>
+        <div id="dialogcontainer">
+          <BootstrapDialog
+            onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+            open={open}
+          >
+            <div
+              id="wrap"
+              style={{
+                background: program.schoolpic + ' center center/cover no-repeat',
+                width: '600px',
+              }}
+            >
+              <div id="innerwrap">
+                <Typography id="dialog_topic" variant="h5" component="div">
+                  {program.schoolname}
+                </Typography>
+                <Typography
+                  id="dialog_subtitle"
+                  variant="subtitle2"
+                  component="div"
+                >
+                  {program.schoolintro}
+                </Typography>
+                <div id="buttonwrap">
+                  <Button
+                    id="book"
+                    size="small"
+                    onClick={() => updateBookList(program)}
+                  >
+                  {f[status]}
+                  </Button>
+                  <Button
+                    id="dialog_add"
+                    size="small"
+                    onClick={() => updateFavList(program)}
+                  >
+                    <RiHeart3Line className="heart_dialog" />
+                    {g[status]}
+                  </Button>
                 </div>
               </div>
             </div>
-          </div>
-        </BootstrapDialog>
-      </div>
-      {/* inMap */}
-      <div id="gridcontainer">
-        <Grid container id="container" spacing={4}>
-          {programInfo.map((e) => {
-            return (
-              <Grid item xs={12} sm={6} md={4} lg={3} className="column">
-                <Card id="cardbox" justify="space-between">
-                  <div id="imageouter">
-                    <div id="imagebox">
-                      <CardMedia
-                        id="image"
-                        component="img"
-                        height="200"
-                        image={e.schoolpicdia}
-                        alt="school pic"
-                      />
+            <div>
+              <div id="lowerwrap">
+                <div id="loc">
+                  <div id="location_inner">
+                    <RiMapPin2Fill className="loc_dialog" />
+                    <div id="position">{program.address}</div>
+                  </div>
+                  <div id="subject">{program.subject}</div>
+                </div>
+                <div id="content">
+                  <div id="school_content">{program.content}</div>
+                  <div id="misc">
+                    <div className="basicinfo" id="date_topic">
+                    {h[status]}
                     </div>
-                    <div
-                      class="image_overlay image_overlay -- blur"
-                      onClick={() => {
-                        program = e
-                        setOpen(true)
-                        console.log(program)
-                      }}
-                    >
-                      <div class="image_text">{l[status]}</div>
+                    <div className="basicinfo" id="day">
+                      {program.day}
+                    </div>
+                    <div className="basicinfo" id="time">
+                      {program.sttime}
+                    </div>
+                    <div className="basicinfo" id="coordinator_topic">
+                    {i[status]}
+                    </div>
+                    <div className="basicinfo" id="phone">
+                      {program.contactnum}
+                    </div>
+                    <div className="basicinfo" id="email">
+                      {program.email}
+                    </div>
+                    <div className="basicinfo" id="target_topic">
+                    {j[status]}
+                    </div>
+                    <div className="basicinfo" id="target">
+                      {program.targetstudent}
                     </div>
                   </div>
-                  {/* <Typography className="onhover">Learn more</Typography> */}
-                  <CardContent>
-                    <Typography
-                      id="topic"
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                    >
-                      {e.schoolname}
-                    </Typography>
-                    <Typography
-                      id="subtopic"
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      {e.address}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      id="add"
-                      size="small"
-                      onClick={() => updateFavList(e)}
-                    >
-                      <RiHeart3Line className="heart" />
-                      {g[status]}
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            )
-          })}
-        </Grid>
+                </div>
+              </div>
+            </div>
+          </BootstrapDialog>
+        </div>
+        {/* inMap */}
+        <div id="gridcontainer">
+          <Grid container id="container" spacing={4}>
+            {programInfo.map((e) => {
+              return (
+                <Grid item xs={12} sm={6} md={4} lg={3} className="column">
+                  <Card id="cardbox" justify="space-between">
+                    <div id="imageouter">
+                      <div id="imagebox">
+                        <CardMedia
+                          id="image"
+                          component="img"
+                          height="200"
+                          image={e.schoolpicdia}
+                          alt="school pic"
+                        />
+                      </div>
+                      <div
+                        class="image_overlay image_overlay -- blur"
+                        onClick={() => {
+                          program = e
+                          setOpen(true)
+                          console.log(program)
+                        }}
+                      >
+                        <div class="image_text">{l[status]}</div>
+                      </div>
+                    </div>
+                    {/* <Typography className="onhover">Learn more</Typography> */}
+                    <CardContent>
+                      <Typography
+                        id="topic"
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                      >
+                        {e.schoolname}
+                      </Typography>
+                      <Typography
+                        id="subtopic"
+                        variant="body2"
+                        color="text.secondary"
+                      >
+                        {e.address}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        id="add"
+                        size="small"
+                        onClick={() => updateFavList(e)}
+                      >
+                        <RiHeart3Line className="heart" />
+                        {g[status]}
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </div>
       </div>
-    </div>
-  )}
+    )
+  }
 }
 
 export default Grid_sub
