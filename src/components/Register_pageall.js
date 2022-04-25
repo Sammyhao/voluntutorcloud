@@ -57,6 +57,7 @@ function Register_pageall() {
   const navigate = useNavigate()
   const [status, setStatus] = useState(0);
   const [stu_chinese_name, setchinname] = useState("")
+  const [stu_chinese_name_first, setchinname_first] = useState("")
   let a = ["Please fill in the blank","請完整填入資料"]
   let b = ["Please enter a valid email","請填入正確的email帳號"]
   let c = ["Please fill in all the blanks","請完整填入資料"]
@@ -97,7 +98,8 @@ function Register_pageall() {
   let kl = ["Create a Google Meet Link for future meetings!!" ,"創造一個未來會議的Google Meet連結!!"]
   let lm = ["Create a Google Meet Link","請填入Google Meet連結"]
   let mn = ["Register","註冊"]
-  let no = ["Please Enter Your Chinese Name","請輸入你的中文姓名"]
+  let no = ["Please Enter Your Last Name (Chinese)","請輸入你的中文姓氏"]
+  let op = ["Please Enter Your First Name (Chinese)","請輸入你的中文名字"]
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
   
@@ -277,7 +279,7 @@ function Register_pageall() {
         }
       }
     }}else{
-      if (stu_chinese_name == ''){
+      if (stu_chinese_name == '' || stu_chinese_name_first==''){
         seterrormessage(c[status])
       }else {
         setpagenum(pagenum + 1)
@@ -389,9 +391,6 @@ function Register_pageall() {
           <div className="dot">
             <div className="innerdot"></div>
           </div>
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
           <div className="dot"></div>
           <div className="dot"></div>
           <div className="dot"></div>
@@ -438,9 +437,6 @@ function Register_pageall() {
       return(
         <div className="all">
         <div className="bar">
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
           <div className="dot">
             <div className="innerdot"></div>
           </div>
@@ -491,9 +487,6 @@ function Register_pageall() {
     return (
 <div className="all">
       <div className="bar">
-      <div className="dot">
-          <div className="innerdot"></div>
-        </div>
 
         <div className="dot">
           <div className="innerdot"></div>
@@ -575,9 +568,6 @@ function Register_pageall() {
     )}else{
       return (<div className="all">
       <div className="bar">
-      <div className="dot">
-          <div className="innerdot"></div>
-        </div>
 
         <div className="dot">
           <div className="innerdot"></div>
@@ -612,6 +602,20 @@ function Register_pageall() {
                 <ImCross id="clear_reg" />
               </button>
             </div>
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type="text"
+                value={stu_chinese_name_first}
+                placeholder={op[status]}
+                onChange={(e) => {
+                  setchinname_first(e.target.value)
+                }}
+              />
+              <button id="reset_reg" onClick={() => setchinname_first('')}>
+                <ImCross id="clear_reg" />
+              </button>
+            </div>
           </div>
           <div className="btn_reg">
             <button className="back" onClick={pageminus1_5}>
@@ -630,9 +634,6 @@ function Register_pageall() {
     return (
       <div className="all">
         <div className="bar">
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
 
           <div className="dot">
             <div className="innerdot"></div>
@@ -747,9 +748,6 @@ function Register_pageall() {
 
 <div className="all">
       <div className="bar">
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
 
         <div className="dot">
           <div className="innerdot"></div>
@@ -836,9 +834,6 @@ function Register_pageall() {
     return (
       <div className="all">
         <div className="bar">
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
 
           <div className="dot">
             <div className="innerdot"></div>
@@ -925,9 +920,6 @@ function Register_pageall() {
     )}else{
       return(<div className="all">
       <div className="bar">
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
 
         <div className="dot">
           <div className="innerdot"></div>
@@ -1065,9 +1057,6 @@ function Register_pageall() {
     return (
       <div className="all">
         <div className="bar">
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
 
           <div className="dot">
             <div className="innerdot"></div>
@@ -1189,9 +1178,6 @@ function Register_pageall() {
         </BootstrapDialog>
         </div>
         <div className="bar">
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
           <div className="dot">
             <div className="innerdot"></div>
           </div>
