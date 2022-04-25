@@ -9,7 +9,7 @@ import Function from '../Function'
 import S_hero from '../S_HeroSection'
 import S_Function from '../S_Function'
 function Home() {
-  let role = 1
+  let role = 0
   if(role ==0){
   return (
     <>
