@@ -107,7 +107,7 @@ function S_Navbar() {
                   <CgClose className="icons_cross"></CgClose>
                 </Link>
               </li>
-              {SidebarData.map((item, index) => {
+              {S_SidebarData.map((item, index) => {
                 return (
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
