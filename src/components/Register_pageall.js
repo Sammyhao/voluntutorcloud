@@ -204,6 +204,7 @@ function Register_pageall() {
     }
   }
   const pageplus5 = () => {
+    console.log(pagenum)
     if (
       subjectReg == '' ||
       agereg == '' ||
@@ -218,6 +219,7 @@ function Register_pageall() {
     }
   }
   const pageplus4 = () => {
+    console.log(pagenum)
     if (birthdayreg == '' || gradereg == '' || schoolnamereg == '') {
       console.log('errormessage')
       seterrormessage(c[status])
@@ -227,6 +229,7 @@ function Register_pageall() {
     }
   }
   const pageplus3 = () => {
+    console.log(pagenum)
     if (
       FirstnameReg == '' ||
       LastnameReg == '' ||
@@ -287,7 +290,7 @@ function Register_pageall() {
     }
   }
   const pageplus1 = () => {
-    
+    console.log(pagenum)
     if (studentstyle == false || teacherstyle == false) {
       setpagenum(pagenum + 1.5)
       seterrormessage('')
@@ -296,19 +299,18 @@ function Register_pageall() {
     }
   }
   const pageminus = () => {
+    console.log(pagenum)
     setpagenum(pagenum - 1)
     seterrormessage('')
   }
   const pageminus_spc = () => {
     console.log(pagenum)
     setpagenum(pagenum - 0.5)
-    console.log(pagenum)
     seterrormessage('')
   }
   const pageminus1_5 = () => {
     console.log(pagenum)
     setpagenum(pagenum - 0.5)
-    console.log(pagenum)
     seterrormessage('')
   }
   const togglecPassword = () => {
