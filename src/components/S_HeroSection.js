@@ -4,7 +4,7 @@ import './HeroSection.css'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
-function HeroSection() {
+function S_HeroSection() {
   Axios.defaults.withCredentials = true
   let username = "";
   const [status, setStatus] = useState(0);
@@ -80,4 +80,4 @@ function HeroSection() {
   }
 }
 
-export default HeroSection
+export default S_HeroSection

@@ -14,7 +14,7 @@ import Axios from 'axios'
 import '@progress/kendo-theme-default/dist/all.css'
 import { HashLink } from "react-router-hash-link";
 
-function Navbar() {
+function S_Navbar() {
   // global variable!
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [status, setStatus] = useState(0);
@@ -212,4 +212,4 @@ function Navbar() {
   }
 }
 
-export default Navbar
+export default S_Navbar

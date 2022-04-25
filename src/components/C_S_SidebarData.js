@@ -7,7 +7,7 @@ import { AiOutlineMessage, AiOutlineCalendar } from 'react-icons/ai'
 import { SiGooglemeet } from 'react-icons/si'
 import { RiFolder3Line } from 'react-icons/ri'
 
-export const C_SidebarData = [
+export const C_S_SidebarData = [
   {
     title: '我的檔案',
     path: '/profile',

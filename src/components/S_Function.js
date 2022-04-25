@@ -36,7 +36,7 @@ function getStatus(username) {
   })
 }
 
-function Function() {
+function S_Function() {
   Axios.defaults.withCredentials = true
   const [username, setUsername] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -202,4 +202,4 @@ function Function() {
   
   
 }
-export default Function
+export default S_Function
