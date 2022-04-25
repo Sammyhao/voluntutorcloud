@@ -7,6 +7,7 @@ import About_us from '../About_us'
 import Team from '../Team'
 import Function from '../Function'
 import S_hero from '../S_HeroSection'
+import S_Function from '../S_Function'
 function Home() {
   let role = 1
   if(role ==0){
@@ -25,7 +26,7 @@ function Home() {
       <>
       <Navbar></Navbar>
       <S_hero />
-      <Function></Function>
+      <S_Function></S_Function>
       <About_us></About_us>
       <Team></Team>
       <Footer></Footer>
