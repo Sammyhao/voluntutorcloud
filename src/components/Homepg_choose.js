@@ -32,7 +32,7 @@ function Homepg_choose() {
   return (
     <div className="hpch_outest">
       <div className="hpch_outcont">
-        <div className="about_ustitle">{a[status]}</div>
+        <div className="hpch_title">{a[status]}</div>
         <div className="hpch_inncont">
           <div className="hpch_column">
             <div className="hpch_listcont">
