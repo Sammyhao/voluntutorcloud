@@ -242,6 +242,7 @@ function Register_pageall() {
     }
   }
   const pageplus2 = () => {
+    console.log(pagenum)
     if(teacherstyle == false){
     if (usernameReg == '' || passwordReg == '' || cPassword == '') {
       console.log('errormessage')
@@ -269,17 +270,18 @@ function Register_pageall() {
     }
   }
   const pageplus1_5 = () => {
+    console.log(pagenum)
     if(teacherstyle == false){
       if (validationcode != 'vcwego') {
         seterrormessage(f[status])
     } else {
-      setpagenum(pagenum - 0.5)
+      setpagenum(pagenum + 0.5)
       seterrormessage('')
     }}else{
       if (validationcode != 'vcds') {
         seterrormessage(f[status])
     } else {
-      setpagenum(pagenum - 0.5)
+      setpagenum(pagenum + 0.5)
       seterrormessage('')
     }
     }
@@ -298,11 +300,14 @@ function Register_pageall() {
     seterrormessage('')
   }
   const pageminus_spc = () => {
+    console.log(pagenum)
     setpagenum(pagenum - 0.5)
+    console.log(pagenum)
     seterrormessage('')
   }
   const pageminus1_5 = () => {
-    setpagenum(pagenum - 1.5)
+    console.log(pagenum)
+    setpagenum(pagenum - 0.5)
     console.log(pagenum)
     seterrormessage('')
   }
