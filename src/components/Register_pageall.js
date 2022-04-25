@@ -235,11 +235,12 @@ function Register_pageall() {
       FirstnameReg == '' ||
       LastnameReg == '' ||
       GenderReg == '' ||
-      PhoneReg == ''
+      PhoneReg == '' ||
+      EmailReg == ''
     ) {
       console.log('errormessage')
       seterrormessage(c[status])
-    } else {
+    } else if(emailError == "") {
       setpagenum(pagenum + 1)
       seterrormessage('')
     }}else{
