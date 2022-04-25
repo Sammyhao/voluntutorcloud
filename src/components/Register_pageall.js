@@ -111,6 +111,9 @@ function Register_pageall() {
   }
   const savedatastu = () =>{
     let temprole = "student"
+    console.log(stu_chinese_name)
+    console.log(usernameReg)
+    console.log(passwordReg)
     // save data here
     // stu_chinese_name
     // usernameReg
@@ -176,6 +179,7 @@ function Register_pageall() {
     if (usernameReg == '' || passwordReg == '' || cPassword == '') {
       console.log('errormessage')
       seterrormessage(c[status])
+    } else {
       if (passwordReg != cPassword) {
         console.log('errormessage')
         seterrormessage(d[status])
@@ -184,17 +188,13 @@ function Register_pageall() {
           console.log('errormessage')
           seterrormessage(e[status])
         } else {
-          setpagenum(pagenum + 1)
-          seterrormessage('')
+            seterrormessage('')
+            setOpen(true);
+            savedatastu();
         }
       }
-    }else{
-    seterrormessage('')
-    setOpen(true);
-    savedatastu();
     }
-  }
-  }
+  }}
   const validateEmail = (e) => {
     var email = e.target.value
     if (!validator.isEmail(email)) {
