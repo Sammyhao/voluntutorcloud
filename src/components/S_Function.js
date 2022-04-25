@@ -118,9 +118,6 @@ function Function() {
               </div>
             </Link>
             
-          </div>
-  
-          <div className="temprow">
           <Link className="func_link" to={logged[2]}>
               <div className="outcont_function">
                 <div className="icon_func_odd">
@@ -183,9 +180,6 @@ function Function() {
                   <div className="subtitle_func">{d[status]}</div>
                 </div>
                 
-            </div>
-    
-            <div className="temprow">
               <div className="outcont_function" onClick = {() => {
                             setOpen(true);
                           }}>
