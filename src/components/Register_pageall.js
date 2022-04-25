@@ -74,7 +74,7 @@ function Register_pageall() {
   let o = ["Back","前一步"]
   let p = ["Begin Your Journey","開始你的旅程！"]
   let q = ["Username", "帳號名稱"]
-  let r = ["Password (required length: 8 characters", "密碼 (長度需大於8個字元)"]
+  let r = ["Password (required length: 8 characters)", "密碼 (長度需大於8個字元)"]
   let s = ["Confirm Password","確認密碼"]
   let t = ["Basic Information" ,"基本資料"]
   let u = ["First name","名字"]
@@ -114,10 +114,13 @@ function Register_pageall() {
     console.log(stu_chinese_name)
     console.log(usernameReg)
     console.log(passwordReg)
+    console.log(PhoneReg)
+    console.log(EmailReg)
+    console.log(GenderReg)
+    console.log(gradereg)
+    console.log(birthdayreg)
+    console.log(schoolnamereg)
     // save data here
-    // stu_chinese_name
-    // usernameReg
-    // passwordReg
   }
   const savedata = () => {
     let temprole = "teacher"
@@ -176,24 +179,15 @@ function Register_pageall() {
     savedata()}
     
   }else{
-    if (usernameReg == '' || passwordReg == '' || cPassword == '') {
+    if (PhoneReg == "" || EmailReg == "" || GenderReg == "" || birthdayreg == '' || gradereg == '' || schoolnamereg == '') {
       console.log('errormessage')
       seterrormessage(c[status])
     } else {
-      if (passwordReg != cPassword) {
-        console.log('errormessage')
-        seterrormessage(d[status])
-      } else {
-        if (passwordReg.length < 8) {
-          console.log('errormessage')
-          seterrormessage(e[status])
-        } else {
-            seterrormessage('')
-            setOpen(true);
-            savedatastu();
-        }
-      }
+      seterrormessage('')
+      setOpen(true);
+      savedatastu();
     }
+        
   }}
   const validateEmail = (e) => {
     var email = e.target.value
@@ -230,11 +224,11 @@ function Register_pageall() {
   }
   const pageplus3 = () => {
     console.log(pagenum)
+    if(teacherstyle == false){
     if (
       FirstnameReg == '' ||
       LastnameReg == '' ||
       GenderReg == '' ||
-      PhoneReg == '' ||
       PhoneReg == ''
     ) {
       console.log('errormessage')
@@ -242,6 +236,24 @@ function Register_pageall() {
     } else {
       setpagenum(pagenum + 1)
       seterrormessage('')
+    }}else{
+      if (usernameReg == '' || passwordReg == '' || cPassword == '') {
+        console.log('errormessage')
+        seterrormessage(c[status])
+      } else {
+        if (passwordReg != cPassword) {
+          console.log('errormessage')
+          seterrormessage(d[status])
+        } else {
+          if (passwordReg.length < 8) {
+            console.log('errormessage')
+            seterrormessage(e[status])
+          } else {
+            setpagenum(pagenum + 1)
+            seterrormessage('')
+          }
+        }
+      }
     }
   }
   const pageplus2 = () => {
@@ -334,13 +346,6 @@ function Register_pageall() {
           <div className="dot">
             <div className="innerdot"></div>
           </div>
-
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
         </div>
         <div className="role_full">
           <Link to="/sign-in">
@@ -440,6 +445,7 @@ function Register_pageall() {
           <div className="dot">
             <div className="innerdot"></div>
           </div>
+          <div className="dot"></div>
           <div className="dot"></div>
           <div className="dot"></div>
         </div>
@@ -581,6 +587,7 @@ function Register_pageall() {
           <div className="innerdot"></div>
         </div>
         <div className="dot"></div>
+          <div className="dot"></div>
       </div>
       <div className="full">
         <Link to="/sign-in">
@@ -741,7 +748,7 @@ function Register_pageall() {
 
 <div className="all">
       <div className="bar">
-      <div className="dot">
+        <div className="dot">
           <div className="innerdot"></div>
         </div>
 
@@ -754,6 +761,8 @@ function Register_pageall() {
         <div className="dot">
           <div className="innerdot"></div>
         </div>
+        
+          <div className="dot"></div>
       </div>
       <div className="full">
         <Link to="/sign-in">
@@ -814,14 +823,9 @@ function Register_pageall() {
               <button className="back" onClick={pageminus}>
               {o[status]}
               </button>
-              {/* <Link to="/"> */}
-              <button className="next" onClick={() => {
-                        
-                        register();
-                      }}>
-                {mn[status]}
+              <button className="next" onClick={pageplus3}>
+              {l[status]}
               </button>
-              {/* </Link> */}
             </div>
         </div>
       </div>
@@ -829,6 +833,7 @@ function Register_pageall() {
       )
     }
   } else if (pagenum == 3) {
+    if(teacherstyle == false){
     return (
       <div className="all">
         <div className="bar">
@@ -918,7 +923,143 @@ function Register_pageall() {
           </div>
         </div>
       </div>
-    )
+    )}else{
+      return(<div className="all">
+      <div className="bar">
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+        
+          <div className="dot">
+          <div className="innerdot"></div></div>
+      </div>
+      <div className="full">
+        <Link to="/sign-in">
+          <div className="signintext">{h[status]}</div>
+        </Link>
+        <div className="regsub">
+          <div className="regwords">
+            <h1 className="title_reg">{t[status]}</h1>
+
+            <div class="warning">{errormessage}</div>
+          </div>
+          <div className="reg">
+          <div className="reggroup">
+                <input
+                  className="register_input"
+                  type="text"
+                  value={GenderReg}
+                  placeholder={w[status]}
+                  onChange={(e) => {
+                    setGenderReg(e.target.value)
+                  }}
+                />
+                <button id="reset_reg" onClick={() => setGenderReg('')}>
+                  <ImCross id="clear_reg" />
+                </button>
+              </div>
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type="text"
+                value={birthdayreg}
+                maxLength={20}
+                placeholder={ab[status]}
+                onChange={(e) => {
+                  setbirthdayreg(e.target.value)
+                }}
+              />
+              <button id="reset_reg" onClick={() => setbirthdayreg('')}>
+                <ImCross id="clear_reg" />
+              </button>
+            </div>
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type="text"
+                maxLength={4}
+                value={gradereg}
+                placeholder={bc[status]}
+                onChange={(e) => {
+                  setgradereg(e.target.value)
+                }}
+              />
+              <button id="reset_reg" onClick={() => setgradereg('')}>
+                <ImCross id="clear_reg" />
+              </button>
+            </div>
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type="text"
+                value={schoolnamereg}
+                placeholder={cd[status]}
+                onChange={(e) => {
+                  setschoolnamereg(e.target.value)
+                }}
+              />
+              <button id="reset_reg" onClick={() => setschoolnamereg('')}>
+                <ImCross id="clear_reg" />
+              </button>
+            </div>
+            <div className="reggroup">
+                <input
+                  className="register_input"
+                  type="text"
+                  value={EmailReg}
+                  placeholder={y[status]}
+                  onChange={(e) => {
+                    validateEmail(e)
+                    setEmailReg(e.target.value)
+                  }}
+                />
+                <button id="reset_reg" onClick={() => setEmailReg('')}>
+                  <ImCross id="clear_reg" />
+                </button>
+              </div>
+            <div className="reggroup">
+                <input
+                  className="register_input"
+                  type="tel"
+                  maxLength={10}
+                  value={PhoneReg}
+                  placeholder={x[status]}
+                  onChange={(e) => {
+                    setPhoneReg(e.target.value)
+                  }}
+                />
+                <button id="reset_reg" onClick={() => setPhoneReg('')}>
+                  <ImCross id="clear_reg" />
+                </button>
+              </div>
+          </div>
+          <div className="btn_reg">
+              <button className="back" onClick={pageminus}>
+              {o[status]}
+              </button>
+              {/* <Link to="/"> */}
+              <button className="next" onClick={() => {
+                        
+                        register();
+                      }}>
+                {mn[status]}
+              </button>
+              {/* </Link> */}
+            </div>
+        </div>
+      </div>
+    </div>)
+    }
   } else if (pagenum == 4) {
     return (
       <div className="all">
