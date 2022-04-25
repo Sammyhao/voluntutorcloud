@@ -28,6 +28,7 @@ function Homepg_choose() {
   let e = ["Science","自然"]
   let f = ["Social Studies","社會"]
   let g = ["Computing","資訊"]
+  let h = ["/images/homepagequote.png", "/images/homepagequote_chinese.png"]
   return (
     <div className="hpch_outest">
       <div className="hpch_outcont">
@@ -80,7 +81,7 @@ function Homepg_choose() {
           </div>
         </div>
       </div>
-      <img className="quote" src="/images/homepagequote.png"></img>
+      <img className="quote" src={h[status]}></img>
     </div>
   )
 }

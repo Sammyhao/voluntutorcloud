@@ -52,7 +52,7 @@ function Function() {
   let g = ["Sign in to unlock functions!!","登入以解鎖功能！"]
   let h = ["SIGN IN","登入"]
   let i = ["BEGIN YOUR JOURNEY!!","選擇一項功能吧！"]
-  let j = ["Teacher Portfolio","老師檔案！"]
+  let j = ["Teacher Portfolio","老師檔案"]
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
   
