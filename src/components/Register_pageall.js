@@ -531,7 +531,7 @@ function Register_pageall() {
                 type={passwordShown ? 'text' : 'password'}
                 placeholder={r[status]}
                 minLength={8}
-                value = {confirmPassword}
+                value = {passwordReg}
                 onChange={(e) => {
                   setPasswordReg(e.target.value)
                 }}
