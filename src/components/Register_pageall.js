@@ -56,7 +56,7 @@ function Register_pageall() {
   const [emailError, setEmailError] = useState('')
   const navigate = useNavigate()
   const [status, setStatus] = useState(0);
-  
+  const [stu_chinese_name, setchinname] = useState("")
   let a = ["Please fill in the blank","請完整填入資料"]
   let b = ["Please enter a valid email","請填入正確的email帳號"]
   let c = ["Please fill in all the blanks","請完整填入資料"]
@@ -96,6 +96,7 @@ function Register_pageall() {
   let kl = ["Create a Google Meet Link for future meetings!!" ,"創造一個未來會議的Google Meet連結!!"]
   let lm = ["Create a Google Meet Link","請填入Google Meet連結"]
   let mn = ["Register","註冊"]
+  let no = ["Please Enter Your Chinese Name","請輸入你的中文姓名"]
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
   
@@ -108,14 +109,15 @@ function Register_pageall() {
   BootstrapDialogTitle.propTypes = {
     children: PropTypes.node
   }
+  const savedatastu = () =>{
+    let temprole = "student"
+    // save data here
+    // stu_chinese_name
+    // usernameReg
+    // passwordReg
+  }
   const savedata = () => {
-    let temprole = ''
-
-    if (teacherstyle == true) {
-      temprole = 'teacher'
-    } else {
-      temprole = 'student'
-    }
+    let temprole = "teacher"
 
     console.log(
       usernameReg,
@@ -159,7 +161,10 @@ function Register_pageall() {
     })
   }
 
-  const register = () => {if (googlemeet == '') {
+  const register = () => {
+    
+    if(teacherstyle == false){
+    if (googlemeet == '') {
     console.log('errormessage')
     seterrormessage(a[status])
   } else {
@@ -167,7 +172,28 @@ function Register_pageall() {
     setOpen(true);
     savedata()}
     
-    
+  }else{
+    if (usernameReg == '' || passwordReg == '' || cPassword == '') {
+      console.log('errormessage')
+      seterrormessage(c[status])
+      if (passwordReg != cPassword) {
+        console.log('errormessage')
+        seterrormessage(d[status])
+      } else {
+        if (passwordReg.length < 8) {
+          console.log('errormessage')
+          seterrormessage(e[status])
+        } else {
+          setpagenum(pagenum + 1)
+          seterrormessage('')
+        }
+      }
+    }else{
+    seterrormessage('')
+    setOpen(true);
+    savedatastu();
+    }
+  }
   }
   const validateEmail = (e) => {
     var email = e.target.value
@@ -216,6 +242,7 @@ function Register_pageall() {
     }
   }
   const pageplus2 = () => {
+    if(teacherstyle == false){
     if (usernameReg == '' || passwordReg == '' || cPassword == '') {
       console.log('errormessage')
       seterrormessage(c[status])
@@ -232,23 +259,33 @@ function Register_pageall() {
           seterrormessage('')
         }
       }
+    }}else{
+      if (stu_chinese_name == ''){
+        seterrormessage(c[status])
+      }else {
+        setpagenum(pagenum + 1)
+        seterrormessage('')
+      }
     }
   }
   const pageplus1_5 = () => {
+    if(teacherstyle == false){
       if (validationcode != 'vcwego') {
         seterrormessage(f[status])
     } else {
       setpagenum(pagenum - 0.5)
       seterrormessage('')
+    }}else{
+      if (validationcode != 'vcds') {
+        seterrormessage(f[status])
+    } else {
+      setpagenum(pagenum - 0.5)
+      seterrormessage('')
+    }
     }
   }
   const pageplus1 = () => {
-    let trole = ''
-    if (teacherstyle == true) {
-      trole = 'teacher'
-    } else {
-      trole = 'student'
-    }
+    
     console.log(trole)
     if (studentstyle == false || teacherstyle == false) {
       setpagenum(pagenum + 1.5)
@@ -340,6 +377,7 @@ function Register_pageall() {
       </div>
     )
   } else if (pagenum == 1.5) {
+    if(teacherstyle == false){
     return (
       <div className="all">
         <div className="bar">
@@ -391,23 +429,16 @@ function Register_pageall() {
           </div>
         </div>
       </div>
-    )
-  } else if (pagenum == 1) {
-    return (
-      <div className="all">
+    )}else{
+      return(
+        <div className="all">
         <div className="bar">
           <div className="dot">
             <div className="innerdot"></div>
           </div>
-
           <div className="dot">
             <div className="innerdot"></div>
           </div>
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
-          <div className="dot"></div>
-          <div className="dot"></div>
           <div className="dot"></div>
           <div className="dot"></div>
         </div>
@@ -417,7 +448,7 @@ function Register_pageall() {
           </Link>
           <div className="regsub">
             <div className="regwords">
-              <h1 className="title_reg">{p[status]}</h1>
+              <h1 className="title_reg">{m[status]}</h1>
               <div class="warning">{errormessage}</div>
             </div>
             <div className="reg">
@@ -425,58 +456,170 @@ function Register_pageall() {
                 <input
                   className="register_input"
                   type="text"
-                  value={usernameReg}
-                  placeholder={q[status]}
+                  value={validationcode}
+                  placeholder={n[status]}
                   onChange={(e) => {
-                    setUsernameReg(e.target.value)
+                    setValidationcode(e.target.value)
                   }}
                 />
-                <button id="reset_reg" onClick={() => setUsernameReg('')}>
+                <button id="reset_reg" onClick={() => setValidationcode('')}>
                   <ImCross id="clear_reg" />
-                </button>
-              </div>
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type={passwordShown ? 'text' : 'password'}
-                  placeholder={r[status]}
-                  minLength={8}
-                  onChange={(e) => {
-                    setPasswordReg(e.target.value)
-                  }}
-                />
-                <button id="show_reg" onClick={togglePassword}>
-                  <BsFillEyeSlashFill id="showpass_reg" />
-                </button>
-              </div>
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type={cpasswordShown ? 'text' : 'password'}
-                  placeholder={s[status]}
-                  minLength={8}
-                  onChange={(e) => {
-                    confirmPassword(e.target.value)
-                  }}
-                />
-                <button id="show_reg" onClick={togglecPassword}>
-                  <BsFillEyeSlashFill id="showpass_reg" />
                 </button>
               </div>
             </div>
             <div className="btn_reg">
-              <button className="back" onClick={pageminus_spc}>
+              <button className="back" onClick={pageminus1_5}>
               {o[status]}
               </button>
-              <button className="next" onClick={pageplus2}>
-              {l[status]}
+              <button className="next" onClick={pageplus1_5}>
+             {l[status]}
               </button>
             </div>
           </div>
         </div>
       </div>
-    )
+      )
+    }
+  } else if (pagenum == 1) {
+    if(teacherstyle == false){
+    return (
+<div className="all">
+      <div className="bar">
+      <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+        <div className="dot"></div>
+        <div className="dot"></div>
+        <div className="dot"></div>
+        <div className="dot"></div>
+      </div>
+      <div className="full">
+        <Link to="/sign-in">
+          <div className="signintext">{h[status]}</div>
+        </Link>
+        <div className="regsub">
+          <div className="regwords">
+            <h1 className="title_reg">{p[status]}</h1>
+            <div class="warning">{errormessage}</div>
+          </div>
+          <div className="reg">
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type="text"
+                value={usernameReg}
+                placeholder={q[status]}
+                onChange={(e) => {
+                  setUsernameReg(e.target.value)
+                }}
+              />
+              <button id="reset_reg" onClick={() => setUsernameReg('')}>
+                <ImCross id="clear_reg" />
+              </button>
+            </div>
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type={passwordShown ? 'text' : 'password'}
+                placeholder={r[status]}
+                minLength={8}
+                value = {confirmPassword}
+                onChange={(e) => {
+                  setPasswordReg(e.target.value)
+                }}
+              />
+              <button id="show_reg" onClick={togglePassword}>
+                <BsFillEyeSlashFill id="showpass_reg" />
+              </button>
+            </div>
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type={cpasswordShown ? 'text' : 'password'}
+                placeholder={s[status]}
+                minLength={8}
+                value = {cPassword}
+                onChange={(e) => {
+                  confirmPassword(e.target.value)
+                }}
+              />
+              <button id="show_reg" onClick={togglecPassword}>
+                <BsFillEyeSlashFill id="showpass_reg" />
+              </button>
+            </div>
+          </div>
+          <div className="btn_reg">
+            <button className="back" onClick={pageminus_spc}>
+            {o[status]}
+            </button>
+            <button className="next" onClick={pageplus2}>
+            {l[status]}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    )}else{
+      return (<div className="all">
+      <div className="bar">
+      <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+        <div className="dot"></div>
+      </div>
+      <div className="full">
+        <Link to="/sign-in">
+          <div className="signintext">{h[status]}</div>
+        </Link>
+        <div className="regsub">
+          <div className="regwords">
+            <h1 className="title_reg">{no[status]}</h1>
+            <div class="warning">{errormessage}</div>
+          </div>
+          <div className="reg">
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type="text"
+                value={stu_chinese_name}
+                placeholder={no[status]}
+                onChange={(e) => {
+                  setchinname(e.target.value)
+                }}
+              />
+              <button id="reset_reg" onClick={() => setchinname('')}>
+                <ImCross id="clear_reg" />
+              </button>
+            </div>
+          </div>
+          <div className="btn_reg">
+            <button className="back" onClick={pageminus_spc}>
+            {o[status]}
+            </button>
+            <button className="next" onClick={pageplus2}>
+            {l[status]}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>)
+    }
   } else if (pagenum == 2) {
+    if(teacherstyle == false){
     return (
       <div className="all">
         <div className="bar">
@@ -592,7 +735,98 @@ function Register_pageall() {
           </div>
         </div>
       </div>
-    )
+    )}else{
+      return (
+
+<div className="all">
+      <div className="bar">
+      <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+        <div className="dot">
+          <div className="innerdot"></div>
+        </div>
+      </div>
+      <div className="full">
+        <Link to="/sign-in">
+          <div className="signintext">{h[status]}</div>
+        </Link>
+        <div className="regsub">
+          <div className="regwords">
+            <h1 className="title_reg">{p[status]}</h1>
+            <div class="warning">{errormessage}</div>
+          </div>
+          <div className="reg">
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type="text"
+                value={usernameReg}
+                placeholder={q[status]}
+                onChange={(e) => {
+                  setUsernameReg(e.target.value)
+                }}
+              />
+              <button id="reset_reg" onClick={() => setUsernameReg('')}>
+                <ImCross id="clear_reg" />
+              </button>
+            </div>
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type={passwordShown ? 'text' : 'password'}
+                placeholder={r[status]}
+                minLength={8}
+                value={passwordReg}
+                onChange={(e) => {
+                  setPasswordReg(e.target.value)
+                }}
+              />
+              <button id="show_reg" onClick={togglePassword}>
+                <BsFillEyeSlashFill id="showpass_reg" />
+              </button>
+            </div>
+            <div className="reggroup">
+              <input
+                className="register_input"
+                type={cpasswordShown ? 'text' : 'password'}
+                placeholder={s[status]}
+                minLength={8}
+                value = {cPassword}
+                onChange={(e) => {
+                  confirmPassword(e.target.value)
+                }}
+              />
+              <button id="show_reg" onClick={togglecPassword}>
+                <BsFillEyeSlashFill id="showpass_reg" />
+              </button>
+            </div>
+          </div>
+          <div className="btn_reg">
+              <button className="back" onClick={pageminus}>
+              {o[status]}
+              </button>
+              {/* <Link to="/"> */}
+              <button className="next" onClick={() => {
+                        
+                        register();
+                      }}>
+                {mn[status]}
+              </button>
+              {/* </Link> */}
+            </div>
+        </div>
+      </div>
+    </div>
+      )
+    }
   } else if (pagenum == 3) {
     return (
       <div className="all">
