@@ -6,7 +6,7 @@ import Dropdown from './Dropdown'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { FaBars } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
-import { SidebarData } from './S_SidebarData'
+import { S_SidebarData } from './S_SidebarData'
 import { C_S_SidebarData } from './C_S_SidebarData'
 
 import { IconContext } from 'react-icons'
