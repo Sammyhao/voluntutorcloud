@@ -98,6 +98,7 @@ function Register_pageall() {
   let kl = ["Create a Google Meet Link for future meetings!!" ,"創造一個未來會議的Google Meet連結!!"]
   let lm = ["Create a Google Meet Link","請填入Google Meet連結"]
   let mn = ["Register","註冊"]
+  let pq = ["Please Enter Your Chinese Name","請輸入你的中文姓名"]
   let no = ["Please Enter Your Last Name (Chinese)","請輸入你的中文姓氏"]
   let op = ["Please Enter Your First Name (Chinese)","請輸入你的中文名字"]
   const BootstrapDialogTitle = (props) => {
@@ -115,6 +116,7 @@ function Register_pageall() {
   const savedatastu = () =>{
     let temprole = "student"
     console.log(stu_chinese_name)
+    console.log(stu_chinese_name_first)
     console.log(usernameReg)
     console.log(passwordReg)
     console.log(PhoneReg)
@@ -185,7 +187,8 @@ function Register_pageall() {
     if (PhoneReg == "" || EmailReg == "" || GenderReg == "" || birthdayreg == '' || gradereg == '' || schoolnamereg == '') {
       console.log('errormessage')
       seterrormessage(c[status])
-    } else {
+    
+    } else if(emailError == "") {
       seterrormessage('')
       setOpen(true);
       savedatastu();
@@ -584,7 +587,7 @@ function Register_pageall() {
         </Link>
         <div className="regsub">
           <div className="regwords">
-            <h1 className="title_reg">{no[status]}</h1>
+            <h1 className="title_reg">{ pq[status]}</h1>
             <div class="warning">{errormessage}</div>
           </div>
           <div className="reg">
