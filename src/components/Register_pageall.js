@@ -85,6 +85,7 @@ function Register_pageall() {
   let z = ["Detailed Information","詳細資訊"]
   let ab = ["Birthday (Format: 2004/01/01)" ,"生日 (格式：2004/01/01)"]
   let bc = ["Grade (9th/10th/11th)","年級 (九/十/十一)"]
+  let zz = ["Grade (1th/2th...)","年級 (一/二...)"]
   let cd = ["School name","學校名稱"]
   let de = ["Preference", "你的喜好"]
   let ef = ["Preferred Subjects (Chinese/Math...)","偏好科目 (國文/數學...)"]
@@ -343,9 +344,7 @@ function Register_pageall() {
     return (
       <div className="all">
         <div className="bar">
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
+          
         </div>
         <div className="role_full">
           <Link to="/sign-in">
@@ -989,7 +988,7 @@ function Register_pageall() {
                 type="text"
                 maxLength={4}
                 value={gradereg}
-                placeholder={bc[status]}
+                placeholder={zz[status]}
                 onChange={(e) => {
                   setgradereg(e.target.value)
                 }}
@@ -1012,21 +1011,7 @@ function Register_pageall() {
                 <ImCross id="clear_reg" />
               </button>
             </div>
-            <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={EmailReg}
-                  placeholder={y[status]}
-                  onChange={(e) => {
-                    validateEmail(e)
-                    setEmailReg(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setEmailReg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
+            
             <div className="reggroup">
                 <input
                   className="register_input"
@@ -1042,6 +1027,22 @@ function Register_pageall() {
                   <ImCross id="clear_reg" />
                 </button>
               </div>
+              <div className="reggroup">
+                <input
+                  className="register_input"
+                  type="text"
+                  value={EmailReg}
+                  placeholder={y[status]}
+                  onChange={(e) => {
+                    validateEmail(e)
+                    setEmailReg(e.target.value)
+                  }}
+                />
+                <button id="reset_reg" onClick={() => setEmailReg('')}>
+                  <ImCross id="clear_reg" />
+                </button>
+              </div>
+              <div class="emailwarning">{emailError}</div>
           </div>
           <div className="btn_reg">
               <button className="back" onClick={pageminus}>
