@@ -243,6 +243,13 @@ function Register_pageall() {
     }
   }
   const pageplus1 = () => {
+    let trole = ''
+    if (teacherstyle == true) {
+      trole = 'teacher'
+    } else {
+      trole = 'student'
+    }
+    console.log(trole)
     if (studentstyle == false || teacherstyle == false) {
       setpagenum(pagenum + 1.5)
       seterrormessage('')
