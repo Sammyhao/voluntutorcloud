@@ -1,18 +1,15 @@
 import '../../App.css'
 import HeroSection from '../HeroSection'
-// import C_HeroSection from '../C_HeroSection'
 import Footer from '../Footer'
-// import C_Footer from '../C_Footer'
 import Navbar from '../Navbar'
-// import C_Navbar from '../C_Navbar'
 import Homepageprog from '../Homepg_choose'
-// import C_Homepageprog from '../C_Homepg_choose'
 import About_us from '../About_us'
-// import C_Team from '../C_Team'
 import Team from '../Team'
 import Function from '../Function'
-// import C_Function from '../C_Function'
+import S_hero from '../S_HeroSection'
 function Home() {
+  let role = 1
+  if(role ==0){
   return (
     <>
       <Navbar></Navbar>
@@ -21,9 +18,20 @@ function Home() {
       <Homepageprog></Homepageprog>
       <About_us></About_us>
       <Team></Team>
-      <Footer id = "footer_homepage"></Footer>
+      <Footer></Footer>
     </>
-  )
+  )}else{
+    return(
+      <>
+      <Navbar></Navbar>
+      <S_hero />
+      <Function></Function>
+      <About_us></About_us>
+      <Team></Team>
+      <Footer></Footer>
+    </>
+    )
+  }
 }
 
 export default Home
