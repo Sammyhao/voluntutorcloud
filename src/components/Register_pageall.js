@@ -286,7 +286,6 @@ function Register_pageall() {
   }
   const pageplus1 = () => {
     
-    console.log(trole)
     if (studentstyle == false || teacherstyle == false) {
       setpagenum(pagenum + 1.5)
       seterrormessage('')
