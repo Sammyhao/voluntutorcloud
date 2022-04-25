@@ -292,7 +292,7 @@ function Register_pageall() {
   const pageplus1 = () => {
     console.log(pagenum)
     if (studentstyle == false || teacherstyle == false) {
-      setpagenum(pagenum + 1.5)
+      setpagenum(pagenum + 0.5)
       seterrormessage('')
     } else {
       seterrormessage(g[status])
@@ -301,11 +301,6 @@ function Register_pageall() {
   const pageminus = () => {
     console.log(pagenum)
     setpagenum(pagenum - 1)
-    seterrormessage('')
-  }
-  const pageminus_spc = () => {
-    console.log(pagenum)
-    setpagenum(pagenum - 0.5)
     seterrormessage('')
   }
   const pageminus1_5 = () => {
@@ -382,7 +377,7 @@ function Register_pageall() {
         </div>
       </div>
     )
-  } else if (pagenum == 1.5) {
+  } else if (pagenum == 0.5) {
     if(teacherstyle == false){
     return (
       <div className="all">
@@ -562,7 +557,7 @@ function Register_pageall() {
             </div>
           </div>
           <div className="btn_reg">
-            <button className="back" onClick={pageminus_spc}>
+            <button className="back" onClick={pageminus1_5}>
             {o[status]}
             </button>
             <button className="next" onClick={pageplus2}>
@@ -613,7 +608,7 @@ function Register_pageall() {
             </div>
           </div>
           <div className="btn_reg">
-            <button className="back" onClick={pageminus_spc}>
+            <button className="back" onClick={pageminus1_5}>
             {o[status]}
             </button>
             <button className="next" onClick={pageplus2}>
