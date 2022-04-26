@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Divider } from '@mui/material'
-import './S_Booking.css'
+import './Booking.css'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -164,12 +164,14 @@ export default function S_Booking() {
             <div className="bookingimageprog">
               <FaUser className="bookingprog_avatar" />
             </div>
+            <div className = "bookingwordswrapfirst">
             <div className="bookingrequesttotal">
               <div className="bookingrequestsub">teacher's name</div>
               <div className="bookinrequesttime">time duration</div>
             </div>
             <div className="bookingrequesttotal">
               <div className="bookingrequestdetailtime">18:00 ~ 19:00</div>
+            </div>
             </div>
             <div className="bookingbuttonswrapping">
               <div className="buttonbookingcheck">Cancel</div>
