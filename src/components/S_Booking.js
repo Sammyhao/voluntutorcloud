@@ -151,8 +151,10 @@ export default function S_Booking() {
                 <div className="bookingfinal">{k[status]}</div>
           </BootstrapDialog></div>
           <div className="bookingwraping">
-      <div className="bookingtitleall">Bookings</div>
+            <div className="bookingtitleall">Bookings</div>
+      <Divider></Divider>
       <div className="bookingoutestwrap">
+        
         <div className="bookingtime">
           <div className="bookingrequesttime">2022/5/12</div>
         </div>

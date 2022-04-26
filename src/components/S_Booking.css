@@ -129,7 +129,6 @@ font-size: 22px;
   font-size: 50px;
   color: #745140;
   width: 100%;
-  font-size: 30px;
   margin-bottom: 20px;
 }
 .bookingrow {
@@ -200,6 +199,8 @@ font-size: 22px;
   display: flex;
   flex-direction: column;
   padding: 50px;
+  height: 400px;
+  margin-top: 80px;
   align-items: center;
   justify-content: start;
 }
