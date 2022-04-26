@@ -12,6 +12,7 @@ import Axios from 'axios'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
+import { FaUser } from 'react-icons/fa'
 import DialogTitle from '@mui/material/DialogTitle'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
