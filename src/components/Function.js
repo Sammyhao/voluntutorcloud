@@ -184,7 +184,7 @@ function Function() {
                             setOpen(true);
                           }}>
                   <div className="icon_func_even">
-                    <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+                    <SiGooglemeet className="icon_func"></SiGooglemeet>
                   </div>
                   <div className="subtitle_func">{c[status]}</div>
                 </div>
