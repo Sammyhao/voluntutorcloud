@@ -150,6 +150,9 @@ font-size: 22px;
   display: flex;
   flex-direction: row;
 }
+.bookingwordswrapfirst{
+  display: flex;
+  flex-direction: row;}
 .bookingwrapsecond {
   padding: 30px;
   width: 100%;

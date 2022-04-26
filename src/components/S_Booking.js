@@ -161,10 +161,10 @@ export default function S_Booking() {
         </div>
         <div className="bookingrow">
           <div className="bookingwrapsecond">
+            <div className = "bookingwordswrapfirst">
             <div className="bookingimageprog">
               <FaUser className="bookingprog_avatar" />
             </div>
-            <div className = "bookingwordswrapfirst">
             <div className="bookingrequesttotal">
               <div className="bookingrequestsub">teacher's name</div>
               <div className="bookinrequesttime">time duration</div>
