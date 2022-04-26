@@ -169,9 +169,9 @@ export default function S_Booking() {
               <div className="bookingrequestsub">teacher's name</div>
               <div className="bookinrequesttime">time duration</div>
             </div>
+            </div>
             <div className="bookingrequesttotal">
               <div className="bookingrequestdetailtime">18:00 ~ 19:00</div>
-            </div>
             </div>
             <div className="bookingbuttonswrapping">
               <div className="buttonbookingcheck">Cancel</div>

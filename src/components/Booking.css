@@ -152,7 +152,11 @@ font-size: 22px;
 }
 .bookingwordswrapfirst{
   display: flex;
-  flex-direction: row;}
+  flex-direction: row;
+  width: 45%;
+  justify-content: center;
+  align-items: center;
+}
 .bookingwrapsecond {
   padding: 30px;
   width: 100%;
