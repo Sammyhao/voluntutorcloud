@@ -152,7 +152,8 @@ export default function S_Booking() {
           </BootstrapDialog></div>
           <div className="bookingwraping">
             <div className="bookingtitleall">Bookings</div>
-      <Divider></Divider>
+      
+            <Divider className="line"></Divider>
       <div className="bookingoutestwrap">
         
         <div className="bookingtime">
