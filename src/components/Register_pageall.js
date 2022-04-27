@@ -128,7 +128,7 @@ function Register_pageall() {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/registerForStu', {
       username: usernameReg,
       password: passwordReg,
-      role: "teacher",
+      role: "student",
       firstname: stu_chinese_name_first,
       lastname: stu_chinese_name,
       gender: GenderReg,
