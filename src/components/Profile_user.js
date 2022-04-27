@@ -47,6 +47,7 @@ function Profile_user() {
   const [studentpers, setstudentpers] = useState('outgoing')
   const [bio, setbio] = useState('For Better Unity, Help Your Community ')
   const [about, setabout] = useState('Join Voluntutor Cloud!')
+  const [password, setpassword] = useState('');
   const [errormessage, seterrormessage] = useState('')
   const [contacterror, setcontacterror] = useState('')
   const [personerror, setpersonerror] = useState('')

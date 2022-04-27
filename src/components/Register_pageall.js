@@ -113,8 +113,7 @@ function Register_pageall() {
   BootstrapDialogTitle.propTypes = {
     children: PropTypes.node
   }
-  const savedatastu = () =>{
-    let temprole = "student"
+  const savedatastu = () => {
     console.log(stu_chinese_name)
     console.log(stu_chinese_name_first)
     console.log(usernameReg)
@@ -126,7 +125,24 @@ function Register_pageall() {
     console.log(birthdayreg)
     console.log(schoolnamereg)
     // save data here
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/registerForStu', {
+      username: usernameReg,
+      password: passwordReg,
+      role: "teacher",
+      firstname: stu_chinese_name_first,
+      lastname: stu_chinese_name,
+      gender: GenderReg,
+      phone: PhoneReg,
+      email: EmailReg,
+      birthday: birthdayreg,
+      grade: gradereg,
+      schoolname: schoolnamereg
+    }).then(response => {
+      console.log(response);
+      console.log("Successful Post.");
+    })
   }
+
   const savedata = () => {
     let temprole = "teacher"
 
@@ -175,26 +191,29 @@ function Register_pageall() {
   const register = () => {
     
     if(teacherstyle == false){
-    if (googlemeet == '') {
-    console.log('errormessage')
-    seterrormessage(a[status])
-  } else {
-    seterrormessage('')
-    setOpen(true);
-    savedata()}
-    
-  }else{
-    if (PhoneReg == "" || EmailReg == "" || GenderReg == "" || birthdayreg == '' || gradereg == '' || schoolnamereg == '') {
-      console.log('errormessage')
-      seterrormessage(c[status])
-    
-    } else if(emailError == "") {
-      seterrormessage('')
-      setOpen(true);
-      savedatastu();
+      if (googlemeet == '') {
+        console.log('errormessage')
+        seterrormessage(a[status])
+      } else {
+        seterrormessage('')
+        setOpen(true);
+        savedata()
+      }  
+    } else {
+      if (PhoneReg == "" || EmailReg == "" || GenderReg == "" || birthdayreg == '' || gradereg == '' || schoolnamereg == '') {
+        console.log('errormessage')
+        seterrormessage(c[status])      
+      } else if(emailError == "") {
+        seterrormessage('')
+        setOpen(true);
+        savedatastu();
+      }    
     }
-        
-  }}
+
+
+
+  }
+
   const validateEmail = (e) => {
     var email = e.target.value
     if (!validator.isEmail(email)) {
@@ -596,7 +615,7 @@ function Register_pageall() {
               <input
                 className="register_input"
                 type="text"
-                value={stu_chinese_name}
+                value={stu_chinese_name} // stu_chinese_name
                 placeholder={no[status]}
                 onChange={(e) => {
                   setchinname(e.target.value)
@@ -610,7 +629,7 @@ function Register_pageall() {
               <input
                 className="register_input"
                 type="text"
-                value={stu_chinese_name_first}
+                value={stu_chinese_name_first} // stu_chinese_name_first
                 placeholder={op[status]}
                 onChange={(e) => {
                   setchinname_first(e.target.value)
@@ -782,7 +801,7 @@ function Register_pageall() {
                 value={usernameReg}
                 placeholder={q[status]}
                 onChange={(e) => {
-                  setUsernameReg(e.target.value)
+                  setUsernameReg(e.target.value) // usernameReg
                 }}
               />
               <button id="reset_reg" onClick={() => setUsernameReg('')}>
@@ -797,7 +816,7 @@ function Register_pageall() {
                 minLength={8}
                 value={passwordReg}
                 onChange={(e) => {
-                  setPasswordReg(e.target.value)
+                  setPasswordReg(e.target.value) // passwordReg
                 }}
               />
               <button id="show_reg" onClick={togglePassword}>
@@ -956,7 +975,7 @@ function Register_pageall() {
                   value={GenderReg}
                   placeholder={w[status]}
                   onChange={(e) => {
-                    setGenderReg(e.target.value)
+                    setGenderReg(e.target.value) // genderReg
                   }}
                 />
                 <button id="reset_reg" onClick={() => setGenderReg('')}>
@@ -971,7 +990,7 @@ function Register_pageall() {
                 maxLength={20}
                 placeholder={ab[status]}
                 onChange={(e) => {
-                  setbirthdayreg(e.target.value)
+                  setbirthdayreg(e.target.value) // birthdayreg
                 }}
               />
               <button id="reset_reg" onClick={() => setbirthdayreg('')}>
@@ -986,7 +1005,7 @@ function Register_pageall() {
                 value={gradereg}
                 placeholder={zz[status]}
                 onChange={(e) => {
-                  setgradereg(e.target.value)
+                  setgradereg(e.target.value) // graderreg
                 }}
               />
               <button id="reset_reg" onClick={() => setgradereg('')}>
@@ -1000,7 +1019,7 @@ function Register_pageall() {
                 value={schoolnamereg}
                 placeholder={cd[status]}
                 onChange={(e) => {
-                  setschoolnamereg(e.target.value)
+                  setschoolnamereg(e.target.value) // schoolnamereg
                 }}
               />
               <button id="reset_reg" onClick={() => setschoolnamereg('')}>
@@ -1016,7 +1035,7 @@ function Register_pageall() {
                   value={PhoneReg}
                   placeholder={x[status]}
                   onChange={(e) => {
-                    setPhoneReg(e.target.value)
+                    setPhoneReg(e.target.value) // phoneReg
                   }}
                 />
                 <button id="reset_reg" onClick={() => setPhoneReg('')}>
@@ -1031,7 +1050,7 @@ function Register_pageall() {
                   placeholder={y[status]}
                   onChange={(e) => {
                     validateEmail(e)
-                    setEmailReg(e.target.value)
+                    setEmailReg(e.target.value) // emailReg
                   }}
                 />
                 <button id="reset_reg" onClick={() => setEmailReg('')}>
