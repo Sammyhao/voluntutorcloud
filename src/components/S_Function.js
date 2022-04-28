@@ -43,16 +43,15 @@ function S_Function() {
   
   const [open, setOpen] = useState(false)
   let logged = []
-  let a = ["BEGIN YOUR JOURNEY","開始你的旅程"]
-  // let b = ["My List","我的最愛"]
-  let c = ["Appointment","會議安排"]
-  let d = ["Usage","服務時數"]
-  let e = ["Message","訊息"]
-  // let f = ["Booking","預約會議"]
-  let g = ["Sign in to unlock functions!!","登入以解鎖功能！"]
-  let h = ["SIGN IN","登入"]
-  let i = ["BEGIN YOUR JOURNEY!!","選擇一項功能吧！"]
-  let j = ["Teacher Portfolio","老師檔案"]
+  let a = ['BEGIN YOUR JOURNEY', '開始你的旅程']
+  let b = ['My List', '我的最愛']
+  let c = ['Teacher Portfolio', '老師檔案']
+  let d = ['Usage', '服務時數']
+  let e = ['Message', '訊息']
+  let f = ['Booking', '預約會議']
+  let g = ['Sign in to unlock functions!!', '登入以解鎖功能！']
+  let h = ['SIGN IN', '登入']
+  let i = ['BEGIN YOUR JOURNEY!!', '開始你的旅程！']
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
   
@@ -91,34 +90,53 @@ function S_Function() {
   }, [])
   if (isLoggedIn) {
     logged = [
-      '/appointment',
+      '/mylist',
+      '/Student_portfolio',
       '/program_usage',
+      '/book',
       '/message',
-      '/Student_portfolio'
     ]
     return (
-      <div className="container_func">
+<div className="container_func">
         <div className="title_function">{a[status]}</div>
         <div className="list_function">
           <div className="temprow">
             <Link className="func_link" to={logged[0]}>
               <div className="outcont_function">
                 <div className="icon_func_odd">
-                  <SiGooglemeet className="icon_func"></SiGooglemeet>
+                  <GrFavorite className="icon_func"></GrFavorite>
                 </div>
-                <div className="subtitle_func">{c[status]}</div>
+                <div className="subtitle_func">{b[status]}</div>
               </div>
             </Link>
             <Link className="func_link" to={logged[1]}>
               <div className="outcont_function">
                 <div className="icon_func_even">
+                  <RiFolder3Line className="icon_func"></RiFolder3Line>
+                </div>
+                <div className="subtitle_func">{c[status]}</div>
+              </div>
+            </Link>
+            <Link className="func_link" to={logged[2]}>
+              <div className="outcont_function">
+                <div className="icon_func_odd">
                   <GrPin className="icon_func"></GrPin>
                 </div>
                 <div className="subtitle_func">{d[status]}</div>
               </div>
             </Link>
-            
-          <Link className="func_link" to={logged[2]}>
+          </div>
+
+          <div className="temprow">
+            <Link className="func_link" to={logged[3]}>
+              <div className="outcont_function">
+                <div className="icon_func_even">
+                  <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+                </div>
+                <div className="subtitle_func">{f[status]}</div>
+              </div>
+            </Link>
+            <Link className="func_link" to={logged[4]}>
               <div className="outcont_function">
                 <div className="icon_func_odd">
                   <AiOutlineMessage className="icon_func"></AiOutlineMessage>
@@ -126,16 +144,6 @@ function S_Function() {
                 <div className="subtitle_func">{e[status]}</div>
               </div>
             </Link>
-            <Link className="func_link" to={logged[3]}>
-            <div className="outcont_function">
-                <div className="icon_func_even">
-                  <RiFolder3Line className="icon_func"></RiFolder3Line>
-                </div>
-                <div className="subtitle_func">{j[status]}</div>
-              </div>
-              
-            </Link>
-            
           </div>
         </div>
       </div>
@@ -144,62 +152,83 @@ function S_Function() {
     return (
       <div className="container_func">
         <div id="dialog_reg_wrap">
-        <BootstrapDialog
-          onClose={handleClose}
-          id = "dialog_registered"
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
-          <div id="registeredsucc">
-          {g[status]}
-          </div>
-          <Link to="/sign-in">
-          <div id="return">
-          {h[status]}
-          </div>
-          </Link>
-        </BootstrapDialog>
+          <BootstrapDialog
+            onClose={handleClose}
+            id="dialog_registered"
+            aria-labelledby="customized-dialog-title"
+            open={open}
+          >
+            <div id="registeredsucc">{g[status]}</div>
+            <Link to="/sign-in">
+              <div id="return">{h[status]}</div>
+            </Link>
+          </BootstrapDialog>
         </div>
-          <div className="title_function">{i[status]}</div>
-          <div className="list_function">
-            <div className="temprow">
-                <div className="outcont_function" onClick = {() => {
-                            setOpen(true);
-                          }}>
-                  <div className="icon_func_odd">
-                    <SiGooglemeet className="icon_func"></SiGooglemeet>
-                  </div>
-                  <div className="subtitle_func">{c[status]}</div>
-                </div>
-                <div className="outcont_function" onClick = {() => {
-                            setOpen(true);
-                          }}>
-                  <div className="icon_func_even">
-                    <GrPin className="icon_func"></GrPin>
-                  </div>
-                  <div className="subtitle_func">{d[status]}</div>
-                </div>
-                
-              <div className="outcont_function" onClick = {() => {
-                            setOpen(true);
-                          }}>
-                  <div className="icon_func_odd">
-                    <AiOutlineMessage className="icon_func"></AiOutlineMessage>
-                  </div>
-                  <div className="subtitle_func">{e[status]}</div>
-                </div>
-                <div className="outcont_function" onClick = {() => {
-                            setOpen(true);
-                          }}>
-                  <div className="icon_func_even">
-                    <RiFolder3Line className="icon_func"></RiFolder3Line>
-                  </div>
-                  <div className="subtitle_func">{j[status]}</div>
-                </div>
+        <div className="title_function">{i[status]}</div>
+        <div className="list_function">
+          <div className="temprow">
+            <div
+              className="outcont_function"
+              onClick={() => {
+                setOpen(true)
+              }}
+            >
+              <div className="icon_func_odd">
+                <GrFavorite className="icon_func"></GrFavorite>
+              </div>
+              <div className="subtitle_func">{b[status]}</div>
+            </div>
+            <div
+              className="outcont_function"
+              onClick={() => {
+                setOpen(true)
+              }}
+            >
+              <div className="icon_func_even">
+                <RiFolder3Line className="icon_func"></RiFolder3Line>
+              </div>
+              <div className="subtitle_func">{c[status]}</div>
+            </div>
+            <div
+              className="outcont_function"
+              onClick={() => {
+                setOpen(true)
+              }}
+            >
+              <div className="icon_func_odd">
+                <GrPin className="icon_func"></GrPin>
+              </div>
+              <div className="subtitle_func">{d[status]}</div>
             </div>
           </div>
-        </div>)}
-  
-  
+
+          <div className="temprow">
+            <div
+              className="outcont_function"
+              onClick={() => {
+                setOpen(true)
+              }}
+            >
+              <div className="icon_func_even">
+                <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+              </div>
+              <div className="subtitle_func">{f[status]}</div>
+            </div>
+            <div
+              className="outcont_function"
+              onClick={() => {
+                setOpen(true)
+              }}
+            >
+              <div className="icon_func_odd">
+                <AiOutlineMessage className="icon_func"></AiOutlineMessage>
+              </div>
+              <div className="subtitle_func">{e[status]}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 export default S_Function

@@ -6,7 +6,7 @@ import Prog from '../Programusage'
 import S_prog from '../S_Programusage'
 
 export default function Programusage() {
-  let role = 0
+  let role = 1
   if (role == 0) {
     return (
       <>

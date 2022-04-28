@@ -13,7 +13,6 @@ import Program_usage from './components/pages/Program_usage'
 import Book from './components/pages/Book'
 import Student_portfolio from './components/pages/Student_portfolio'
 import Message from './components/pages/Message'
-import Studenttask from './components/pages/Student_task'
 import 'font-awesome/css/font-awesome.min.css'
 function App() {
   return (
@@ -39,8 +38,7 @@ function App() {
             element={<Student_portfolio />}
           ></Route>
           <Route exact path="/message" element={<Message />}></Route>
-          <Route exact path="/studentstask" element={<Studenttask />}></Route>
-        </Routes>
+          </Routes>
 
         {/* <Footer></Footer> */}
       </Router>

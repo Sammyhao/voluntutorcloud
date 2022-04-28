@@ -10,7 +10,7 @@ import S_Navbar from '../S_Navbar'
 import S_hero from '../S_HeroSection'
 import S_Function from '../S_Function'
 function Home() {
-  let role = 0
+  let role = 1
   if(role ==0){
   return (
     <>

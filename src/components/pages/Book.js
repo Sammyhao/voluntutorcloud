@@ -18,6 +18,7 @@ export default function Appointment() {
         Axios.get('https://voluntutorcloud-server.herokuapp.com/getRole', {
           username: username,
         }).then((response) => {
+          console.log(response.data);
           setRole(response.data);
           setLoading(false);
         })
