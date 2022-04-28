@@ -6,7 +6,7 @@ import Prof from '../Profile_user'
 import S_Prof from '../S_Profile_user'
 
 export default function Profile() {
-  let role = 1
+  let role = 0
   if (role == 0) {
     return (
       <>
