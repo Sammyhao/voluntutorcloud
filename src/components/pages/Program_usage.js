@@ -6,6 +6,7 @@ import Navbar from '../Navbar'
 import Prog from '../Programusage'
 import S_prog from '../S_Programusage'
 import Loading from '../Loading'
+import S_Navbar from '../S_Navbar'
 
 export default function Programusage() {
   const [role, setRole] = useState("");
@@ -47,7 +48,7 @@ export default function Programusage() {
     } else {
       return (
         <>
-          <Navbar></Navbar>
+          <S_Navbar></S_Navbar>
           <S_prog></S_prog>
           <Footer></Footer>
         </>

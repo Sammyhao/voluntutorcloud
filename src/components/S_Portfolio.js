@@ -27,8 +27,8 @@ export default function S_Portfolio() {
   
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
   let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
-  let c = ["Student's Portfolio","學生檔案"]
-  let d = ["Learn More About Your Student!!","來了解你的學生吧！"]
+  let c = ["Teacher's Portfolio","老師檔案"]
+  let d = ["Learn More About Your Teacher!!","來了解你的老師吧！"]
   let f = ['Contact Information', '聯絡資訊']
   let g = ['Phone: ', '手機號碼：']
   let i = ['Email: ', 'Email帳號：']

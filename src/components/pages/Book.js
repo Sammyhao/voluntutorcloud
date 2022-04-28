@@ -6,6 +6,7 @@ import S_Booking from '../S_Booking'
 import Book from '../Booking'
 import Loading from '../Loading'
 import Axios from 'axios'
+import S_Navbar from '../S_Navbar'
 
 export default function Appointment() {
   const [role, setRole] = useState("");
@@ -46,7 +47,7 @@ export default function Appointment() {
     } else {
       return (
         <>
-          <Navbar></Navbar>
+          <S_Navbar></S_Navbar>
           <S_Booking></S_Booking>
           <Footer></Footer>
         </>

@@ -3,10 +3,11 @@ import '../../App.css'
 import Footer from '../Footer'
 import Navbar from '../Port_nav'
 import Port from '../Portfolio'
+import S_Navbar from '../S_Navbar'
 import S_Port from '../S_Portfolio'
 
 export default function Student_portfolio() {
-  let role = 1;
+  let role = 0;
   if(role==0){
   return (
     <>
@@ -17,7 +18,7 @@ export default function Student_portfolio() {
   )}else{
     return (
       <>
-        <Navbar></Navbar>
+        <S_Navbar></S_Navbar>
         <S_Port></S_Port>
         <Footer></Footer>
       </>

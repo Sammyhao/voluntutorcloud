@@ -6,6 +6,7 @@ import Navbar from '../Navbar'
 import Prof from '../Profile_user'
 import S_Prof from '../S_Profile_user'
 import Loading from '../Loading'
+import S_Navbar from '../S_Navbar'
 
 
 export default function Profile() {
@@ -48,7 +49,7 @@ export default function Profile() {
     } else {
       return (
         <>
-          <Navbar></Navbar>
+          <S_Navbar></S_Navbar>
           <S_Prof></S_Prof>
           <Footer></Footer>
         </>
