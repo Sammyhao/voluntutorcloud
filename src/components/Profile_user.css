@@ -5,18 +5,18 @@
   align-items: center;
   margin-top: 80px;
 }
-.language{
+.language {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: left;
 }
-.lang{
+.lang {
   color: #745140;
   cursor: pointer;
 }
-.slash{
-  color: #745140
+.slash {
+  color: #745140;
 }
 .background {
   align-self: center;
@@ -229,7 +229,7 @@
   flex-direction: row;
   align-items: center;
 }
-.emailwarning_prof{
+.emailwarning_prof {
   color: red;
   font-size: 13px;
   font-weight: 100;
@@ -300,14 +300,14 @@ textarea {
   text-align: center;
   font-size: 17px;
   color: #fbf5ed;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   text-decoration: none;
 }
-#prof_registeredsucc{
+#prof_registeredsucc {
   background-color: whitesmoke;
   overflow: block;
   position: relative;
-  display:flex;
+  display: flex;
   color: #b25634;
   flex-direction: row;
   justify-items: center;
@@ -315,7 +315,6 @@ textarea {
   height: wrap;
   font-size: 17px;
   padding: 25px;
-  
 }
 .btn-prof:hover {
   text-decoration: none;
@@ -325,11 +324,10 @@ textarea {
   cursor: pointer;
   transition: 250ms;
 }
-.prof_icon_main{
+.prof_icon_main {
   color: #745140;
   height: 70px;
   width: 70px;
-
 }
 @media screen and (max-width: 720px) {
   .containerprofile {
@@ -350,4 +348,11 @@ textarea {
     display: flex;
     flex-direction: column;
   }
+}
+
+.contactsubtitles {
+  color: #b25634;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
