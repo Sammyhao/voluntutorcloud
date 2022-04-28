@@ -35,21 +35,23 @@ export default function Programusage() {
       </>
     )
 
-  } else if (role == 0) {
-    return (
-      <>
-        <Navbar></Navbar>
-        <Prog></Prog>
-        <Footer></Footer>
-      </>
-    )
   } else {
-    return (
-      <>
-        <Navbar></Navbar>
-        <S_prog></S_prog>
-        <Footer></Footer>
-      </>
-    )
+    if (role == "teacher") {
+      return (
+        <>
+          <Navbar></Navbar>
+          <Prog></Prog>
+          <Footer></Footer>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Navbar></Navbar>
+          <S_prog></S_prog>
+          <Footer></Footer>
+        </>
+      )
+    }
   }
 }

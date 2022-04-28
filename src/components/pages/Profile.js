@@ -36,21 +36,23 @@ export default function Profile() {
       </>
     )
 
-  } else if (role == 0) {
-    return (
-      <>
-        <Navbar></Navbar>
-        <Prof></Prof>
-        <Footer></Footer>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <Navbar></Navbar>
-        <S_Prof></S_Prof>
-        <Footer></Footer>
-      </>
-    )
+  } else{
+    if (role == "teacher") {
+      return (
+        <>
+          <Navbar></Navbar>
+          <Prof></Prof>
+          <Footer></Footer>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Navbar></Navbar>
+          <S_Prof></S_Prof>
+          <Footer></Footer>
+        </>
+      )
+    }
   }
 }

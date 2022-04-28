@@ -41,6 +41,7 @@ function Home() {
   //   <Maintainance/>
   //   </>
   // )
+
   if(isLoading) {
     return(
       <>
@@ -48,30 +49,33 @@ function Home() {
       </>
     )
 
-  } else if(role == 0){
-  return (
-    <>
-      <Navbar></Navbar>
-      <HeroSection />
-      <Function></Function>
-      <Homepageprog></Homepageprog>
-      <About_us></About_us>
-      <Team></Team>
-      <Footer></Footer>
-    </>
-  )} else{
-    return(
-      <>
-      <S_Navbar></S_Navbar>
-      <S_hero />
-      <S_Function></S_Function>
-      <Homepageprog></Homepageprog>
-      <About_us></About_us>
-      <Team></Team>
-      <Footer></Footer>
-    </>
-    )
-  }
+  }else {
+    if(role == "teacher"){
+      return (
+        <>
+          <Navbar></Navbar>
+          <HeroSection />
+          <Function></Function>
+          <Homepageprog></Homepageprog>
+          <About_us></About_us>
+          <Team></Team>
+          <Footer></Footer>
+        </>
+    )} else{
+      return(
+        <>
+        <S_Navbar></S_Navbar>
+        <S_hero />
+        <S_Function></S_Function>
+        <Homepageprog></Homepageprog>
+        <About_us></About_us>
+        <Team></Team>
+        <Footer></Footer>
+      </>
+      )
+    }
+  } 
+  
 }
 
 export default Home

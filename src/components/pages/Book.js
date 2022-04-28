@@ -34,22 +34,23 @@ export default function Appointment() {
       <Loading/>
       </>
     )
-
-  } else if (role == "teacher") {
-    return (
-      <>
-        <Navbar></Navbar>
-        <Book></Book>
-        <Footer></Footer>
-      </>
-    )
   } else {
-    return (
-      <>
-        <Navbar></Navbar>
-        <S_Booking></S_Booking>
-        <Footer></Footer>
-      </>
-    )
+    if (role == "teacher") {
+      return (
+        <>
+          <Navbar></Navbar>
+          <Book></Book>
+          <Footer></Footer>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Navbar></Navbar>
+          <S_Booking></S_Booking>
+          <Footer></Footer>
+        </>
+      )
+    }
   }
 }
