@@ -96,10 +96,10 @@ export default function S_Booking() {
   let j = ['Meeting Canceled', '會議已取消']
   let k = ['Meeting Booked', '會議已預約']
   let l = [
-    "Oops, seems like you don't have any student yet.",
-    '噢, 看來您還沒有任何學生呢。',
+    "Oops, you are not paired with a teacher yet!",
+    '噢, 目前您還未和老師成功配對！',
   ]
-  let m = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
+  let m = ['We will assign you a teacher soon!', '我們會盡快配對一位老師給您！']
   let n = ['Join', '加入會議']
   let o = ['Bookings', '預約會議']
   let p = ['Cancel', '拒絕']

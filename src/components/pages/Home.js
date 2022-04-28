@@ -12,34 +12,34 @@ import S_hero from '../S_HeroSection'
 import S_Function from '../S_Function'
 function Home() {
   let role = 0
-  return (
-    <>
-    <Maintainance/>
-    </>
-  )
-  // if(role ==0){
   // return (
   //   <>
-  //     <Navbar></Navbar>
-  //     <HeroSection />
-  //     <Function></Function>
-  //     <Homepageprog></Homepageprog>
-  //     <About_us></About_us>
-  //     <Team></Team>
-  //     <Footer></Footer>
+  //   <Maintainance/>
   //   </>
-  // )}else{
-  //   return(
-  //     <>
-  //     <S_Navbar></S_Navbar>
-  //     <S_hero />
-  //     <S_Function></S_Function>
-  //     <About_us></About_us>
-  //     <Team></Team>
-  //     <Footer></Footer>
-  //   </>
-  //   )
-  // }
+  // )
+  if(role ==0){
+  return (
+    <>
+      <Navbar></Navbar>
+      <HeroSection />
+      <Function></Function>
+      <Homepageprog></Homepageprog>
+      <About_us></About_us>
+      <Team></Team>
+      <Footer></Footer>
+    </>
+  )}else{
+    return(
+      <>
+      <S_Navbar></S_Navbar>
+      <S_hero />
+      <S_Function></S_Function>
+      <About_us></About_us>
+      <Team></Team>
+      <Footer></Footer>
+    </>
+    )
+  }
 }
 
 export default Home

@@ -21,12 +21,6 @@ export const C_S_SidebarData = [
     icon: <AiOutlineCalendar />,
   },
   {
-    title: '會議安排',
-    path: '/appointment',
-    cName: 'nav-text',
-    icon: <SiGooglemeet />,
-  },
-  {
     title: '服務時數',
     path: '/program_usage',
     cName: 'nav-text',

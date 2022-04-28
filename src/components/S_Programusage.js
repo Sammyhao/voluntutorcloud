@@ -33,8 +33,11 @@ function Programusage() {
 
   const [contactInfo, setContactInfo] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
-  let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
+  let a = [
+    "Oops, you are not paired with a teacher yet!",
+    '噢, 目前您還未和老師成功配對！',
+  ]
+  let b = ['We will assign you a teacher soon!', '我們會盡快配對一位老師給您！']
   let c = ["Total hours:","總小時數："]
   let d = [" hrs" ,"小時"]
   let e = ["Records" ,"課堂紀錄"]
