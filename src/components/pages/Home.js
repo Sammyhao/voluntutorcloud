@@ -23,11 +23,11 @@ function Home() {
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        username = response.data.user[0].username
         console.log(response.data);
         if(response.data.length == 0) {
           setLoading(false);
         }
+        username = response.data.user[0].username
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getRole', {
           username: username,
         }).then((response) => {
