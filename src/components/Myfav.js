@@ -159,16 +159,22 @@ function Myfav() {
     })
   }
 
-  if (isLoading1 == true || isLoading2 == true || favProgramListLen == 0) {
+  if (isLoading1 == true || isLoading2 == true) {
     console.log(favProgramList);
     console.log("favProgramList null");
     return (
-      <div id="nofav">
-        <div className="noStudentFont">{a[status]}</div>
-        <div className="noStudentFont2">{b[status]}</div>
+      <div className = "loading">
+          Loading...
       </div>
     )
-  } else {
+  } else if(favProgramListLen == 0){
+      console.log(favProgramListLen);
+      return(
+      <div id="nofav">
+              <div className="noStudentFont">{a[status]}</div>
+              <div className="noStudentFont2">{b[status]}</div>
+      </div>)
+  }else {
     console.log(favProgramList);
     console.log("favProgramList fetched not null");
     return (
