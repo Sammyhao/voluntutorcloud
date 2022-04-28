@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import '../../App.css'
 import HeroSection from '../HeroSection'
 import Footer from '../Footer'
@@ -10,6 +11,8 @@ import Function from '../Function'
 import S_Navbar from '../S_Navbar'
 import S_hero from '../S_HeroSection'
 import S_Function from '../S_Function'
+import Axios from 'axios'
+
 function Home() {
 
   const [role, setRole] = useState("");
