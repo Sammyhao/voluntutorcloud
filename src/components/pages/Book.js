@@ -4,6 +4,7 @@ import Footer from '../Footer'
 import Navbar from '../Navbar'
 import S_Booking from '../S_Booking'
 import Book from '../Booking'
+import Loading from '../Loading'
 import Axios from 'axios'
 
 export default function Appointment() {
@@ -19,7 +20,6 @@ export default function Appointment() {
           username: username,
         }).then((response) => {
           console.log("role");
-
           console.log(response.data);
           setRole(response.data);
           setLoading(false);
@@ -28,7 +28,14 @@ export default function Appointment() {
     )
   })
   
-  if (role == "teacher" || isLoading) {
+  if(isLoading) {
+    return(
+      <>
+      <Loading/>
+      </>
+    )
+
+  } else if (role == "teacher") {
     return (
       <>
         <Navbar></Navbar>
