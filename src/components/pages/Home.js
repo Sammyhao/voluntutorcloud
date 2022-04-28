@@ -11,6 +11,7 @@ import Function from '../Function'
 import S_Navbar from '../S_Navbar'
 import S_hero from '../S_HeroSection'
 import S_Function from '../S_Function'
+import Loading from '../Loading'
 import Axios from 'axios'
 
 function Home() {
@@ -40,7 +41,14 @@ function Home() {
   //   <Maintainance/>
   //   </>
   // )
-  if(role == 0 || isLoading){
+  if(isLoading) {
+    return(
+      <>
+      <Loading/>
+      </>
+    )
+
+  } else if(role == 0){
   return (
     <>
       <Navbar></Navbar>
@@ -51,12 +59,13 @@ function Home() {
       <Team></Team>
       <Footer></Footer>
     </>
-  )}else{
+  )} else{
     return(
       <>
       <S_Navbar></S_Navbar>
       <S_hero />
       <S_Function></S_Function>
+      <Homepageprog></Homepageprog>
       <About_us></About_us>
       <Team></Team>
       <Footer></Footer>

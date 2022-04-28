@@ -101,14 +101,14 @@ function S_Function() {
         <div className="title_function">{a[status]}</div>
         <div className="list_function">
           <div className="temprow">
-            <Link className="func_link" to={logged[0]}>
+            {/* <Link className="func_link" to={logged[0]}>
               <div className="outcont_function">
                 <div className="icon_func_odd">
                   <GrFavorite className="icon_func"></GrFavorite>
                 </div>
                 <div className="subtitle_func">{b[status]}</div>
               </div>
-            </Link>
+            </Link> */}
             <Link className="func_link" to={logged[1]}>
               <div className="outcont_function">
                 <div className="icon_func_even">
