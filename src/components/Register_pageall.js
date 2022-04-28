@@ -372,6 +372,25 @@ function Register_pageall() {
           
         </div>
         <div className="role_full">
+        <div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
           <Link to="/sign-in">
             <div className="signintext">{h[status]}</div>
           </Link>
@@ -420,7 +439,25 @@ function Register_pageall() {
           <div className="dot"></div>
           <div className="dot"></div>
         </div>
-        <div className="full">
+        <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
           <Link to="/sign-in">
             <div className="signintext">{h[status]}</div>
           </Link>
@@ -467,7 +504,25 @@ function Register_pageall() {
           <div className="dot"></div>
           <div className="dot"></div>
         </div>
-        <div className="full">
+        <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
           <Link to="/sign-in">
             <div className="signintext">{h[status]}</div>
           </Link>
@@ -522,7 +577,25 @@ function Register_pageall() {
         <div className="dot"></div>
         <div className="dot"></div>
       </div>
-      <div className="full">
+      <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
         <Link to="/sign-in">
           <div className="signintext">{h[status]}</div>
         </Link>
@@ -601,7 +674,25 @@ function Register_pageall() {
         <div className="dot"></div>
           <div className="dot"></div>
       </div>
-      <div className="full">
+      <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
         <Link to="/sign-in">
           <div className="signintext">{h[status]}</div>
         </Link>
@@ -671,7 +762,25 @@ function Register_pageall() {
           <div className="dot"></div>
           <div className="dot"></div>
         </div>
-        <div className="full">
+        <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
           <Link to="/sign-in">
             <div className="signintext">{h[status]}</div>
           </Link>
@@ -784,7 +893,25 @@ function Register_pageall() {
         
           <div className="dot"></div>
       </div>
-      <div className="full">
+      <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
         <Link to="/sign-in">
           <div className="signintext">{h[status]}</div>
         </Link>
@@ -873,7 +1000,25 @@ function Register_pageall() {
           <div className="dot"></div>
           <div className="dot"></div>
         </div>
-        <div className="full">
+        <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
           <Link to="/sign-in">
             <div className="signintext">{h[status]}</div>
           </Link>
@@ -957,7 +1102,25 @@ function Register_pageall() {
           <div className="dot">
           <div className="innerdot"></div></div>
       </div>
-      <div className="full">
+      <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
         <Link to="/sign-in">
           <div className="signintext">{h[status]}</div>
         </Link>
@@ -1099,7 +1262,25 @@ function Register_pageall() {
 
           <div className="dot"></div>
         </div>
-        <div className="full">
+        <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
           <Link to="/sign-in">
             <div className="signintext">{h[status]}</div>
           </Link>
@@ -1220,7 +1401,25 @@ function Register_pageall() {
             <div className="innerdot"></div>
           </div>
         </div>
-        <div className="full">
+        <div className="full"><div className="languagereg">
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(1)
+              }}
+            >
+              中
+            </div>
+            <div className="wordslog">/</div>
+            <div
+              className="wordslog"
+              onClick={() => {
+                setStatus(0)
+              }}
+            >
+              English
+            </div>
+          </div>
           <Link to="/sign-in">
             <div className="signintext">{h[status]}</div>
           </Link>

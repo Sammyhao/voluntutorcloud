@@ -11,13 +11,32 @@ import S_Navbar from '../S_Navbar'
 import S_hero from '../S_HeroSection'
 import S_Function from '../S_Function'
 function Home() {
-  let role = 0
+
+  const [role, setRole] = useState("");
+  const [isLoading, setLoading] = useState(true);
+  let username = "";
+
+  useEffect(() => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+      (response) => {
+        username = response.data.user[0].username
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getRole', {
+          username: username,
+        }).then((response) => {
+          console.log(response.data);
+          setRole(response.data);
+          setLoading(false);
+        })
+      }
+    )
+  })
+
   // return (
   //   <>
   //   <Maintainance/>
   //   </>
   // )
-  if(role ==0){
+  if(role == 0 || isLoading){
   return (
     <>
       <Navbar></Navbar>

@@ -6,6 +6,18 @@
   flex-direction: row;
   align-items: center;
 }
+
+.languagereg {
+  position: absolute;
+  padding: 20px;
+  top: 0;
+  text-decoration: none;
+  color: #745140;
+  right: 70px;
+  cursor: pointer;
+  display: flex;
+  flex: row;
+}
 #registeredsucc{
   background-color: whitesmoke;
   overflow: block;

@@ -4,7 +4,7 @@
   margin: 0;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   height: 100vh;
   z-index: 0;
   background-color: #e6dcd7;
@@ -16,6 +16,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.wordslog {
+  align-items: flex-start;
+  text-align: start;
+  cursor: pointer;
+  color: #745140;
+}
+.languagelog {
+  margin: 0;
+  position: absolute;
+  top: 95px;
+  right: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .pic_sign {
   padding: 30px;

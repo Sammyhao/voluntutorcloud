@@ -26,7 +26,7 @@ export default function Appointment() {
     )
   })
   
-  if (role == "teacher") {
+  if (role == "teacher" || isLoading) {
     return (
       <>
         <Navbar></Navbar>

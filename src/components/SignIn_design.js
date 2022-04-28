@@ -103,6 +103,25 @@ function SignIn_design() {
         <br />
         <br />
       </div>
+      <div className="languagelog">
+        <div
+          className="wordslog"
+          onClick={() => {
+            setStatus(1)
+          }}
+        >
+          中
+        </div>
+        <div className="wordslog">/</div>
+        <div
+          className="wordslog"
+          onClick={() => {
+            setStatus(0)
+          }}
+        >
+          English
+        </div>
+      </div>
     </div>
   )
 }
