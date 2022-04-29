@@ -38,8 +38,9 @@ const BootstrapDialogTitle = (props) => {
 let program = 0
 
 const opengoogle = () => {
-  window.location.replace(bookingInfo["0"]["googlemeetlink"]);
+  // window.location.replace(bookingInfo["0"]["googlemeetlink"]);
 }
+
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
