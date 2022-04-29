@@ -38,7 +38,7 @@ const BootstrapDialogTitle = (props) => {
 let program = 0
 
 const opengoogle = () => {
-  // window.location.replace(bookingInfo["0"]["googlemeetlink"]);
+  window.location.replace(googlemeetlink);
 }
 
 BootstrapDialogTitle.propTypes = {
@@ -84,6 +84,9 @@ export default function S_Booking() {
   let username = '', studentname = '', teacherusername = "";
   const [teachername, setTeachername] = useState();
 
+  const [googlemeetlink, setGoogleMeetLink] = useState('');
+  const [teacherRealname, setTeacherRealname] = useState('');
+
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
@@ -124,6 +127,13 @@ export default function S_Booking() {
                 console.log(response);
                 setBookingInfo(response.data);
                 setBookingInfoLen(response.data.length)
+              })
+              Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+                username: username,
+              }).then((response) => {
+                console.log(response);
+                setGoogleMeetLink(response.data[0].googlemeetlink);
+                setTeacherRealname(response.data[0].firstname + " " + response.data[0].lastname);
               })
               setLoading2(false)
             })
@@ -227,7 +237,7 @@ export default function S_Booking() {
                         <FaUser className="bookingprog_avatar" />
                       </div>
                       <div className="bookingrequesttotal">
-                        <div className="bookingrequestsub">{bookingInfo["0"]["username"]}</div>
+                        <div className="bookingrequestsub">{teacherRealname}</div>
                         <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
                       </div>
                       <div className="bookingrequesttotaltime">
@@ -249,9 +259,7 @@ export default function S_Booking() {
                 className="bookingwrappbottom"
                 style={{ display: cancel ? 'block' : 'none' }}
               >
-                <div className="bookingtime">
-                  <div className="bookingrequesttime">{bookingInfo["0"]["date"]}</div>
-                </div>
+               
                 <div className="bookingrow">
                   <div className="bookingwrapsecond">
                     <div className="bookingwordswrapfirst">
@@ -259,7 +267,7 @@ export default function S_Booking() {
                         <FaUser className="bookingprog_avatar" />
                       </div>
                       <div className="bookingrequesttotal">
-                        <div className="bookingrequestsub">{bookingInfo["0"]["username"]}</div>
+                        <div className="bookingrequestsub">{teacherRealname}</div>
                         <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
                       </div>
                       <div className="bookingrequesttotaltime">
