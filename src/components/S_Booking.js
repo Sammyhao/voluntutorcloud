@@ -80,10 +80,10 @@ export default function S_Booking() {
           console.log(status)
           setLoading1(false)
         })
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getStuName', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
           username: username,
         }).then((response) => {
-          console.log(response.data)
+          console.log(response.data[0])
           studentname = response.data[0].lastname + response.data[0].firstname;
           console.log("studentname:");
           console.log(studentname);
