@@ -38,8 +38,9 @@ const BootstrapDialogTitle = (props) => {
 let program = 0
 
 const opengoogle = () => {
-  window.location.replace(bookingInfo["0"]["googlemeetlink"]);
+  // window.location.replace(bookingInfo["0"]["googlemeetlink"]);
 }
+
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
@@ -52,7 +53,7 @@ export default function S_Booking() {
     setcancelopen(false)
   }
 
-  const cancelmeeting = () => {
+  const cancelmeeting = (booking) => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
       studentname: studentname,
       username: teacherusername,
@@ -60,6 +61,7 @@ export default function S_Booking() {
     }).then((response) => {
       console.log(response);
     });
+    bkg = booking
     setcancelopen(true)
     setcancel(false)
   }
@@ -68,7 +70,7 @@ export default function S_Booking() {
     setconfirmopen(false)
   }
 
-  const confirmmeeting = () => {
+  const confirmmeeting = (booking) => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
       studentname: studentname,
       username: teacherusername,
@@ -76,6 +78,7 @@ export default function S_Booking() {
     }).then((response) => {
       console.log(response);
     });
+    bkg = booking;
     setconfirmopen(true)
     setcancel(false)
   }
@@ -92,6 +95,8 @@ export default function S_Booking() {
 
   let username = '', studentname = '', teacherusername = "";
   const [teachername, setTeachername] = useState();
+
+  let bkg = 0;
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -230,7 +235,7 @@ export default function S_Booking() {
             >
               <div className="bookingconfirmheaders">{k[status]}</div>
               <div className="bookingconfirmcontent">
-                {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]} 
+                {bkg["date"]} {bkg["time"]} {bkg["duration"]} 
               </div>
             </BootstrapDialog>
           </div>
@@ -287,13 +292,13 @@ export default function S_Booking() {
                       </div>
                     </div>
                     <div className="bookingbuttonswrapping">
-                      <div className="buttonbookingcheck" onClick={cancelmeeting}>
+                      <div className="buttonbookingcheck" onClick={() => cancelmeeting(booking)}>
                         {/* this is where meeting is cancelled */}
                         {p[status]}
                       </div>
                       <div
                         className="buttonbookingcheck"
-                        onClick={confirmmeeting}
+                        onClick={() => confirmmeeting(booking)}
                       >
                         {/* this is where meeting is confirmed */}
                         {q[status]}

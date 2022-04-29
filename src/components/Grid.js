@@ -147,30 +147,21 @@ function Grid_sub(props) {
           username: program.username
         }
         emailjs
-      .send(
-        'service_z12yzef',
-        'template_zg8ezog',
-        templateParams,
-        'QZBU3bIops8KtosSX',
-      )
-      .then(
-        function (response) {
-          console.log('SUCCESS!', response.status, response.text)
-          setBookOpen(true)
-        },
-        function (error) {
-          console.log('FAILED...', error)
-        },
-      )
-        // Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavListinMyFav', {
-        //   username: program.username,
-        //   program: program,
-        //   isBooked: true,})
-
-
-        // .then((response) => {
-        //   console.log(response)
-        // })
+        .send(
+          'service_z12yzef',
+          'template_zg8ezog',
+          templateParams,
+          'QZBU3bIops8KtosSX',
+        )
+        .then(
+          function (response) {
+            console.log('SUCCESS!', response.status, response.text)
+            setBookOpen(true)
+          },
+          function (error) {
+            console.log('FAILED...', error)
+          },
+        )
       } else {
         console.log('user not logged in')
       }
