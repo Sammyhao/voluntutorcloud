@@ -93,7 +93,7 @@ export default function S_Booking() {
   let date = '2022/5/12'
   let time = '18:00 ~ 19:00'
   let timeduration = '1.5 hr'
-  let fulltime = '2022/5/12 18:00 ~ 19:00'
+  let fulltime = date+" "+time;
   let j = ['Meeting Canceled', '會議已取消']
   let k = ['Meeting Booked', '會議已預約']
   let l = [
@@ -196,12 +196,14 @@ export default function S_Booking() {
                   </div>
                   <div className="bookingbuttonswrapping">
                     <div className="buttonbookingcheck" onClick={cancelmeeting}>
+                      {/* this is where meeting is cancelled */}
                       {p[status]}
                     </div>
                     <div
                       className="buttonbookingcheck"
                       onClick={confirmmeeting}
                     >
+                      {/* this is where meeting is confirmed */}
                       {q[status]}
                     </div>
                   </div>
