@@ -64,6 +64,7 @@ export default function S_Booking() {
   const [contactInfo, setContactInfo] = useState([])
   const [bookingInfo, setBookingInfo] = useState([]);
   const [bookingInfoLen, setBookingInfoLen] = useState([]);
+  const [haveSetStatus, setHaveSetStatus] = useState(false);
 
   let username = '', studentname = '', teacherusername = "";
   const [teachername, setTeachername] = useState();
@@ -72,42 +73,47 @@ export default function S_Booking() {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
         username = response.data.user[0].username
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-          username: username,
-        }).then((response) => {
-          console.log(response.data)
-          if (response.data == 'chinese') setStatus(1)
-          else setStatus(0)
-          console.log(status)
-          setLoading1(false)
-        })
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
-          username: username,
-        }).then((response) => {
-          console.log(response.data[0])
-          studentname = response.data[0].lastname + response.data[0].firstname;
-          console.log("studentname:");
-          console.log(studentname);
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
-            studentname: studentname,
+        if(haveSetStatus == false) {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+            username: username,
           }).then((response) => {
-            console.log("response from findTeacher:");
-            console.log(response);
-            teacherusername = response.data[0].username;
-            console.log("teacherusername:");
-            console.log(teacherusername);
-            setTeachername(teacherusername);
-            Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
-              studentname: studentname,
-              username: teacherusername,
-            }).then((response) => {
-              console.log(response);
-              setBookingInfo(response.data);
-              setBookingInfoLen(response.data.length)
-            })
-            setLoading2(false)
+            console.log(response.data)
+            if (response.data == 'chinese') setStatus(1)
+            else setStatus(0)
+            console.log(status)
+            setLoading1(false)
+            setHaveSetStatus(true);
           })
-        })
+        }
+        if(isLoading2) {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+            username: username,
+          }).then((response) => {
+            console.log(response.data[0])
+            studentname = response.data[0].lastname + response.data[0].firstname;
+            console.log("studentname:");
+            console.log(studentname);
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
+              studentname: studentname,
+            }).then((response) => {
+              console.log("response from findTeacher:");
+              console.log(response);
+              teacherusername = response.data[0].username;
+              console.log("teacherusername:");
+              console.log(teacherusername);
+              setTeachername(teacherusername);
+              Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+                studentname: studentname,
+                username: teacherusername,
+              }).then((response) => {
+                console.log(response);
+                setBookingInfo(response.data);
+                setBookingInfoLen(response.data.length)
+              })
+              setLoading2(false)
+            })
+          })
+        }
       },
     )
   })
