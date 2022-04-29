@@ -28,15 +28,15 @@ function Home() {
           setLoading(false);
         }else {
           username = response.data.user[0].username
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getRole', {
+            username: username,
+          }).then((response) => {
+            console.log("role");
+            console.log(response.data);
+            setRole(response.data);
+            setLoading(false);
+          })
         }
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getRole', {
-          username: username,
-        }).then((response) => {
-          console.log("role");
-          console.log(response.data);
-          setRole(response.data);
-          setLoading(false);
-        })
       }
     )
   })
