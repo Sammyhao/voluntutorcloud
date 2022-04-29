@@ -91,8 +91,8 @@ export default function S_Booking() {
             studentname: studentname,
           }).then((response) => {
             console.log("response from findTeacher:");
-            console.log(response.data[0]);
-            teacherusername = response.data[0];
+            console.log(response);
+            teacherusername = response;
             console.log("teacherusername:");
             console.log(teacherusername);
             setLoading2(false)
