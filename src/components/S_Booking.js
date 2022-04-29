@@ -109,6 +109,30 @@ export default function S_Booking() {
     )
   })
 
+  /*
+{id: 534, username: 'admin_stu', password: 'admin', role: 'student', firstname: 'admin', …}
+about: "No Pref"
+bio: "No Pref"
+birthday: "0000-00-00"
+email: "admin@gmail.com"
+firstname: "admin"
+gender: "No Pref"
+googlemeetlink: "No Pref"
+grade: "No Pref"
+id: 534
+lang: "english"
+lastname: "admin"
+password: "admin"
+phone: "No Pref"
+preferredSubjects: "No Pref"
+role: "student"
+schoolname: "No Pref"
+targetStuAge: 0
+targetStuGen: "No Pref"
+targetStuPerso: "No Pref"
+username: "admin_stu"
+[[Prototype]]: Object */
+
   let a = ['Upcoming Meetings', '加入會議']
   // let teachername = 'Ruby'
   let date = '2022/5/12'

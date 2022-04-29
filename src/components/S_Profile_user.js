@@ -272,6 +272,7 @@ function Profile_user() {
             username: username,
           },
         ).then((response) => {
+          // studentphone, phone, email, gender, birthday, grade, school, preferredsubject, bio, about
           console.log(response.data[0].username, response.data[0].phone)
           setphone(response.data[0].phone)
           setemail(response.data[0].email)
