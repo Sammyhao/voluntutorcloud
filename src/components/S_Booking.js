@@ -62,8 +62,10 @@ export default function S_Booking() {
   const [isLoading1, setLoading1] = useState(true)
   const [isLoading2, setLoading2] = useState(true)
   const [contactInfo, setContactInfo] = useState([])
+  const [bookingInfo, setBookingInfo] = useState([]);
 
-  let username = ''
+  let username = '', studentname = '', teacherusername = "";
+  const [teachername, setTeachername] = useState();
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -78,18 +80,37 @@ export default function S_Booking() {
           console.log(status)
           setLoading1(false)
         })
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getStuName', {
           username: username,
         }).then((response) => {
-          setContactInfo(response.data)
-          setLoading2(false)
+          console.log(response.data)
+          studentname = response.data[0].lastname + response.data[0].firstname;
+          console.log("studentname:");
+          console.log(studentname);
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/findTeacher', {
+            studentname: studentname,
+          }).then((response) => {
+            console.log("response from findTeacher:");
+            console.log(response.data);
+            teacherusername = response.data;
+            console.log("teacherusername:");
+            console.log(teacherusername);
+            // setTeachername(teacherusername);
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+              studentname: studentname,
+              teachername: teacherusername,
+            }).then((response) => {
+              setBookingInfo(response.data);
+            })
+            setLoading2(false)
+          })
         })
       },
     )
   })
 
   let a = ['Upcoming Meetings', '加入會議']
-  let teachername = 'Ruby'
+  // let teachername = 'Ruby'
   let date = '2022/5/12'
   let time = '18:00 ~ 19:00'
   let timeduration = '1.5 hr'
@@ -110,7 +131,7 @@ export default function S_Booking() {
     return(
       <Loading/>
     )
-  } else if(contactInfo.length==0){
+  } else if(contactInfo.length == 0){
     return (
       <div className="nokid">
         <div className="noStudentFont">{l[status]}</div>
