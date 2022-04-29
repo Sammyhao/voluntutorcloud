@@ -22,7 +22,7 @@ function S_Navbar() {
   const [sidebar, setSidebar] = useState(false)
   const showSidebar = () => setSidebar(!sidebar)
   let a = ["Home","首頁"]
-  // let b = ["Programs","志工計畫"]
+  let b = ["Bookings","會議預約"]
   let c = ["Contact","聯絡我們"]
   let d = ["SIGN IN/UP","登入/註冊"]
   useEffect(() => {
@@ -87,7 +87,11 @@ function S_Navbar() {
                     {a[status]}
                   </Link>
                 </li>
-                
+                <li className="nav-item">
+                  <Link to="/book" className="nav-links" onClick={closeMobileMenu}>
+                  {b[status]}
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                   
@@ -139,6 +143,7 @@ function S_Navbar() {
                     {a[status]}
                   </Link>
                 </li>
+                
                 <li className="nav-item">
                   <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                   

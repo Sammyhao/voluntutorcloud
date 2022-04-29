@@ -25,9 +25,11 @@ export default function S_Portfolio() {
   const [studentpers, setstudentpers] = useState('outgoing')
   const [bio, setbio] = useState('For Better Unity, Help Your Community ')
   const [about, setabout] = useState('Join Voluntutor Cloud!')
-  
-  let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
-  let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
+  let a = [
+    "Oops, you are not paired with a teacher yet!",
+    '噢, 目前您還未和老師成功配對！',
+  ]
+  let b = ['We will assign you a teacher soon!', '我們會盡快配對一位老師給您！']
   let c = ["Teacher's Portfolio","老師檔案"]
   let d = ["Learn More About Your Teacher!!","來了解你的老師吧！"]
   let f = ['Contact Information', '聯絡資訊']

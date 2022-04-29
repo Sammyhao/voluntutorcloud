@@ -95,15 +95,14 @@ export default function S_Booking() {
             teacherusername = response;
             console.log("teacherusername:");
             console.log(teacherusername);
+            setTeachername(teacherusername);
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+              studentname: studentname,
+              teachername: teacherusername,
+            }).then((response) => {
+              setBookingInfo(response.data);
+            })
             setLoading2(false)
-            // setTeachername(teacherusername);
-            // Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
-            //   studentname: studentname,
-            //   teachername: teacherusername,
-            // }).then((response) => {
-            //   setBookingInfo(response.data);
-            // })
-            // setLoading2(false)
           })
         })
       },
@@ -140,6 +139,7 @@ export default function S_Booking() {
       </div>
     )
   }else {
+    console.log(bookingInfo);
     return (
       <div className="outestcontainerbook">
         <div id="dialogcontainer">

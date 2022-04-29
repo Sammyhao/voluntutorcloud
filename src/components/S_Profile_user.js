@@ -224,25 +224,6 @@ function Profile_user() {
     }
   }
 
-  const handleclick_pref = () => {
-    // console.log("outside")
-    // if(preferredsubject=="" || studentage=="" || studentgender=="" || studentpers==""){
-    //   console.log("blanks there are")
-    //   setprefererror(c[status])
-    //   console.log(prefererror)
-    // }else
-    //    {
-    setprefererror('')
-    setpreferclick(!preferclick)
-    setprefstyle(<BiEdit />)
-    if (!preferclick) {
-      setreadprefer('')
-      setprefstyle(<BsCheckLg />)
-    } else {
-      setreadprefer('disabled')
-    }
-  }
-
   const handleclick_bio = () => {
     setbioerror('')
     setbioclick(!bioclick)
