@@ -87,24 +87,24 @@ export default function S_Booking() {
           studentname = response.data[0].lastname + response.data[0].firstname;
           console.log("studentname:");
           console.log(studentname);
-          setLoading2(false)
-          // Axios.post('https://voluntutorcloud-server.herokuapp.com/findTeacher', {
-          //   studentname: studentname,
-          // }).then((response) => {
-          //   console.log("response from findTeacher:");
-          //   console.log(response.data);
-          //   teacherusername = response.data;
-          //   console.log("teacherusername:");
-          //   console.log(teacherusername);
-          //   // setTeachername(teacherusername);
-          //   Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
-          //     studentname: studentname,
-          //     teachername: teacherusername,
-          //   }).then((response) => {
-          //     setBookingInfo(response.data);
-          //   })
-          //   setLoading2(false)
-          // })
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/findTeacher', {
+            studentname: studentname,
+          }).then((response) => {
+            console.log("response from findTeacher:");
+            console.log(response.data);
+            teacherusername = response.data;
+            console.log("teacherusername:");
+            console.log(teacherusername);
+            setLoading2(false)
+            // setTeachername(teacherusername);
+            // Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+            //   studentname: studentname,
+            //   teachername: teacherusername,
+            // }).then((response) => {
+            //   setBookingInfo(response.data);
+            // })
+            // setLoading2(false)
+          })
         })
       },
     )
