@@ -87,7 +87,8 @@ export default function Portfolio() {
     return(
       <Loading/>
     )
-  }else if(studentProfolio.length == 0) {
+  }else{
+    if(studentProfolio.length == 0) {
     return (
       <div className = "outcontainer_port">
       <div className="top_bar">
@@ -262,4 +263,5 @@ export default function Portfolio() {
       </div>
     )
   }
+}
 }

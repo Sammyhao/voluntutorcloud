@@ -142,7 +142,8 @@ export default function Booking() {
     return(
       <Loading></Loading>
     )
-  }else if (contactInfo.length == 0){
+  }else {
+    if (contactInfo.length == 0){
     return(
       <div className = "nokid">
         <div className="noStudentFont">{n[status]}</div>
@@ -237,5 +238,5 @@ export default function Booking() {
           </div>
           </div>
       </div>
-  )}
+  )}}
 }

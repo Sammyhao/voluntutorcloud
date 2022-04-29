@@ -20,31 +20,38 @@ function HeroSection() {
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      if (response.data.isLoggedIn) {
-        username = response.data.user[0].username;
-      }
-      setIsLoggedIn(response.data.isLoggedIn)
-      console.log("username");
-      console.log(username);
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-        username: username,
-      }).then((response) => {
-        console.log(response.data);
-        if(response.data == "chinese") setStatus(1);
-        else setStatus(0);
-        console.log("status");
-        console.log(status);
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        if (response.data.isLoggedIn) {
+          username = response.data.user[0].username;
+        }
+        setIsLoggedIn(response.data.isLoggedIn)
+        console.log("username");
+        console.log(username);
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+          username: username,
+        }).then((response) => {
+          console.log(response.data);
+          if(response.data == "chinese") setStatus(1);
+          else setStatus(0);
+          console.log("status");
+          console.log(status);
+        })
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getStatus', {
+          username: username,
+        }).then(response => {
+          console.log(response.data);
+          setName(response.data[0].firstname + " " + response.data[0].lastname);
+          setLoading(false);
+        })
       })
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getStatus', {
-        username: username,
-      }).then(response => {
-        console.log(response.data);
-        setName(response.data[0].firstname + " " + response.data[0].lastname);
-        setLoading(false);
-      })
-    })
+    }
   }, [])
+  if(isLoading){
+    return(
+      <Loading></Loading>
+    )
+  }else{
   if(!isLoggedIn){
     return (
       <div className="hero-container">
@@ -65,12 +72,7 @@ function HeroSection() {
         </div>
       </div>
     )
-  }else if(isLoading) {
-    return(
-      <Loading></Loading>
-    )
-    
-  } else {
+  }else {
     return (
       <div className="hero-container">
         <div className="left_hero">
@@ -82,7 +84,7 @@ function HeroSection() {
         </div>
       </div>
     )
-  }
+  }}
 }
 
 export default HeroSection

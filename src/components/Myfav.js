@@ -46,6 +46,7 @@ function Myfav() {
   const [open, setOpen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
   const [check_open_book, setcheckopen] = useState(false)
+  const [myfavLen, setMyfavlen] = useState([]);
   const handleClose = () => {
     setOpen(false)
   }
@@ -58,11 +59,10 @@ function Myfav() {
   const [subject, setSubject] = useState('Math') // change the subject from here
   const [schoolname, setSchoolname] = useState('')
   const [address, setAddress] = useState('')
-  const [favProgramList, setFavProgramList] = useState([])
   const [status, setStatus] = useState(0)
   const [isLoading1, setLoading1] = useState(true);
   const [isLoading2, setLoading2] = useState(true);
-  const [favProgramListLen, setFavProgramListLen] = useState(0);
+  const [favProgramListLen, setFavProgramListLen] = useState([]);
 
   let a = [
     "There's nothing in your favorite list!",
@@ -166,8 +166,8 @@ function Myfav() {
     return (
       <Loading></Loading>
     )
-  } else if(favProgramListLen == 0){
-      console.log(favProgramListLen);
+  }else{
+    if(favProgramListLen == 0){
       return(
       <div id="nofav">
               <div className="noStudentFont">{a[status]}</div>
@@ -343,7 +343,7 @@ function Myfav() {
         </div>
       </div>
     )
-  }
+  }}
 }
 
 export default Myfav

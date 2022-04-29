@@ -52,7 +52,7 @@ function Appointmentmeet() {
   let r = ["Add additional notes!!","請輸入課堂筆記"]
 
   const meet = () => {
-    window.location.replace("https://meet.google.com/xmu-xtgs-grv");
+    window.location.replace(googleMeetLink);
   }
   let username = "";
   const [studentname, setStudentname] = useState("");

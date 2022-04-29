@@ -272,6 +272,7 @@ input::-webkit-inner-spin-button {
   background-color: #d6b7ab;
   padding: 8px 30px;
   font-size: 20px;
+  margin-bottom: 50px;
   width: fit-content;
   color: #fbf5ed;
   font-family: 'Lora';
