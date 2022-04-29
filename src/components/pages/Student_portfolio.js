@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '../../App.css'
+import Axios from 'axios'
 import Footer from '../Footer'
 import Navbar from '../Port_nav'
 import Port from '../Portfolio'
 import S_Navbar from '../S_Navbar'
 import S_Port from '../S_Portfolio'
+import Loading from '../Loading'
 
 export default function Student_portfolio() {
   const [role, setRole] = useState("");
@@ -34,20 +36,32 @@ export default function Student_portfolio() {
       }
     )
   })
-  if(role==0){
-  return (
-    <>
-      <Navbar></Navbar>
-      <Port></Port>
-      <Footer></Footer>
-    </>
-  )}else{
-    return (
+  
+  if(isLoading) {
+    return(
       <>
+      <Loading/>
+      </>
+    )
+
+  } else{
+    if (role == "teacher") {
+      return (
+        <>
+        <Navbar></Navbar>
+        <Port></Port>
+        <Footer></Footer>
+      </>
+      )
+    } else {
+      return (
+        <>
         <S_Navbar></S_Navbar>
         <S_Port></S_Port>
         <Footer></Footer>
       </>
-    )
+      )
+    }
   }
+  
 }
