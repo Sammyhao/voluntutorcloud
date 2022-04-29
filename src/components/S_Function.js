@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './Function.css'
 import { Link } from 'react-router-dom'
 import { GrFavorite, GrPin } from 'react-icons/gr'
+import { CgProfile } from 'react-icons/cg'
+import { BsCalendarCheck } from 'react-icons/bs'
+import { MdBookmarkBorder, MdOutlineSchool } from 'react-icons/md'
 import { AiOutlineMessage, AiOutlineCalendar } from 'react-icons/ai'
-import { RiFolder3Line } from 'react-icons/ri'
 import { SiGooglemeet } from 'react-icons/si'
+import { RiFolder3Line } from 'react-icons/ri'
 import Axios from 'axios'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
@@ -104,7 +107,7 @@ function S_Function() {
             <Link className="func_link" to={logged[0]}>
               <div className="outcont_function">
                 <div className="icon_func_odd">
-                  <GrFavorite className="icon_func"></GrFavorite>
+                  <CgProfile className="icon_func"></CgProfile>
                 </div>
                 <div className="subtitle_func">{b[status]}</div>
               </div>
@@ -112,7 +115,7 @@ function S_Function() {
             <Link className="func_link" to={logged[1]}>
               <div className="outcont_function">
                 <div className="icon_func_even">
-                  <SiGooglemeet className="icon_func"></SiGooglemeet>
+                  <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
                 </div>
                 <div className="subtitle_func">{c[status]}</div>
               </div>
@@ -131,18 +134,18 @@ function S_Function() {
             <Link className="func_link" to={logged[3]}>
             <div className="outcont_function">
                 <div className="icon_func_even">
-                  <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+                  <AiOutlineMessage className="icon_func"></AiOutlineMessage>
                 </div>
-                <div className="subtitle_func">{f[status]}</div>
+                <div className="subtitle_func">{e[status]}</div>
               </div>
               
             </Link>
             <Link className="func_link" to={logged[4]}>
             <div className="outcont_function">
                 <div className="icon_func_odd">
-                  <AiOutlineMessage className="icon_func"></AiOutlineMessage>
+                  <RiFolder3Line className="icon_func"></RiFolder3Line>
                 </div>
-                <div className="subtitle_func">{e[status]}</div>
+                <div className="subtitle_func">{f[status]}</div>
               </div>
             </Link>
           </div>
@@ -176,7 +179,7 @@ function S_Function() {
                             setOpen(true);
                           }}>
                   <div className="icon_func_odd">
-                    <GrFavorite className="icon_func"></GrFavorite>
+                    <CgProfile className="icon_func"></CgProfile>
                   </div>
                   <div className="subtitle_func">{b[status]}</div>
                 </div>
@@ -184,7 +187,7 @@ function S_Function() {
                             setOpen(true);
                           }}>
                   <div className="icon_func_even">
-                    <SiGooglemeet className="icon_func"></SiGooglemeet>
+                    <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
                   </div>
                   <div className="subtitle_func">{c[status]}</div>
                 </div>
@@ -203,14 +206,14 @@ function S_Function() {
                             setOpen(true);
                           }}>
                   <div className="icon_func_even">
-                    <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+                    <AiOutlineMessage className="icon_func"></AiOutlineMessage>
                   </div>
                   <div className="subtitle_func">{f[status]}</div>
                 </div><div className="outcont_function" onClick = {() => {
                             setOpen(true);
                           }}>
                   <div className="icon_func_odd">
-                    <AiOutlineMessage className="icon_func"></AiOutlineMessage>
+                    <RiFolder3Line className="icon_func"></RiFolder3Line>
                   </div>
                   <div className="subtitle_func">{e[status]}</div>
                 </div>

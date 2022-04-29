@@ -185,7 +185,7 @@ username: "admin_stu"
           >
             <div className="bookingconfirmheaders">{k[status]}</div>
             <div className="bookingconfirmcontent">
-              {date} {time} {timeduration}
+              {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]}
             </div>
           </BootstrapDialog>
         </div>
@@ -201,11 +201,11 @@ username: "admin_stu"
                       <FaUser className="bookingprog_avatar" />
                     </div>
                     <div className="bookingrequesttotal">
-                      <div className="bookingrequestsub">{teachername}</div>
-                      <div className="bookinrequesttime">{timeduration}</div>
+                      <div className="bookingrequestsub">{bookingInfo["0"]["username"]}</div>
+                      <div className="bookinrequesttime">{bookingInfo["0"]["duration"]}</div>
                     </div>
                     <div className="bookingrequesttotaltime">
-                      <div className="detailtimeforupcomings">{fulltime}</div>
+                      <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div>
                     </div>
                   </div>
                   <div className="bookingbuttonswrapping">
@@ -224,7 +224,7 @@ username: "admin_stu"
               style={{ display: cancel ? 'block' : 'none' }}
             >
               <div className="bookingtime">
-                <div className="bookingrequesttime">{date}</div>
+                <div className="bookingrequesttime">{bookingInfo["0"]["date"]}</div>
               </div>
               <div className="bookingrow">
                 <div className="bookingwrapsecond">
@@ -233,11 +233,11 @@ username: "admin_stu"
                       <FaUser className="bookingprog_avatar" />
                     </div>
                     <div className="bookingrequesttotal">
-                      <div className="bookingrequestsub">{teachername}</div>
-                      <div className="bookinrequesttime">{timeduration}</div>
+                      <div className="bookingrequestsub">{bookingInfo["0"]["username"]}</div>
+                      <div className="bookinrequesttime">{bookingInfo["0"]["duration"]}</div>
                     </div>
                     <div className="bookingrequesttotaltime">
-                      <div className="detailtimeforbook">{fulltime}</div>
+                      <div className="detailtimeforbook">{bookingInfo["0"]["date"] + ' ' + bookingInfo["0"]["time"]}</div>
                     </div>
                   </div>
                   <div className="bookingbuttonswrapping">
