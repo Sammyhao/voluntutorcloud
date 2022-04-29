@@ -59,6 +59,7 @@ export default function Booking() {
   const [isLoading1, setLoading1] = useState(true);
   const [isLoading2, setLoading2] = useState(true);
   const [contactInfo, setContactInfo] = useState([]);
+  const [haveSetStatus, setHaveSetStatus] = useState(false);
 
   let username = "";
   const [name, setName] = useState("");
@@ -67,15 +68,18 @@ export default function Booking() {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       username = response.data.user[0].username;
       setName(username);
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-        username: username,
-      }).then((response) => {
-        console.log(response.data);
-        if(response.data == "chinese") setStatus(1);
-        else setStatus(0);
-        console.log(status);
-        setLoading1(false);
-      })
+      if(haveSetStatus == false) {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+          username: username,
+        }).then((response) => {
+          console.log(response.data);
+          if(response.data == "chinese") setStatus(1);
+          else setStatus(0);
+          console.log(status);
+          setLoading1(false);
+          setHaveSetStatus(true);
+        })
+      }
       Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
         username: username
       }).then((response) => {
