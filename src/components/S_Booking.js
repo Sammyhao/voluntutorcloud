@@ -87,7 +87,7 @@ export default function S_Booking() {
           studentname = response.data[0].lastname + response.data[0].firstname;
           console.log("studentname:");
           console.log(studentname);
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/findTeacher', {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
             studentname: studentname,
           }).then((response) => {
             console.log("response from findTeacher:");
