@@ -41,45 +41,45 @@ function Home() {
     )
   })
 
-  return (
-    <>
-    <Maintainance/>
-    </>
-  )
+  // return (
+  //   <>
+  //   <Maintainance/>
+  //   </>
+  // )
 
-  // if(isLoading) {
-  //   return(
-  //     <>
-  //     <Loading/>
-  //     </>
-  //   )
+  if(isLoading) {
+    return(
+      <>
+      <Loading/>
+      </>
+    )
 
-  // }else {
-  //   if(role == "teacher"){
-  //     return (
-  //       <>
-  //         <Navbar></Navbar>
-  //         <HeroSection />
-  //         <Function></Function>
-  //         <Homepageprog></Homepageprog>
-  //         <About_us></About_us>
-  //         <Team></Team>
-  //         <Footer></Footer>
-  //       </>
-  //   )} else {
-  //     return(
-  //       <>
-  //       <S_Navbar></S_Navbar>
-  //       <S_hero />
-  //       <S_Function></S_Function>
-  //       <Homepageprog></Homepageprog>
-  //       <About_us></About_us>
-  //       <Team></Team>
-  //       <Footer></Footer>
-  //     </>
-  //     )
-  //   }
-  // } 
+  }else {
+    if(role == "teacher"){
+      return (
+        <>
+          <Navbar></Navbar>
+          <HeroSection />
+          <Function></Function>
+          <Homepageprog></Homepageprog>
+          <About_us></About_us>
+          <Team></Team>
+          <Footer></Footer>
+        </>
+    )} else {
+      return(
+        <>
+        <S_Navbar></S_Navbar>
+        <S_hero />
+        <S_Function></S_Function>
+        <Homepageprog></Homepageprog>
+        <About_us></About_us>
+        <Team></Team>
+        <Footer></Footer>
+      </>
+      )
+    }
+  } 
   
 }
 
