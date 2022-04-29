@@ -99,7 +99,7 @@ export default function S_Booking() {
             setTeachername(teacherusername);
             Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
               studentname: studentname,
-              teachername: teacherusername,
+              username: teacherusername,
             }).then((response) => {
               console.log(response);
               setBookingInfo(response.data);
@@ -159,7 +159,7 @@ username: "admin_stu"
       <Loading/>
     )
   } else {
-    if(bookingInfoLen == 0){
+    if(bookingInfoLen == 0) {
       return (
         <div className="nokid">
           <div className="noStudentFont">{l[status]}</div>
