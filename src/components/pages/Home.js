@@ -89,7 +89,6 @@ function Home() {
         <S_Navbar></S_Navbar>
         <S_hero />
         <S_Function></S_Function>
-        <Homepageprog></Homepageprog>
         <About_us></About_us>
         <Team></Team>
         <Footer></Footer>
