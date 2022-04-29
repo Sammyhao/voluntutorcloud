@@ -47,11 +47,7 @@ function HeroSection() {
       })
     }
   }, [])
-  if(isLoading){
-    return(
-      <Loading></Loading>
-    )
-  }else{
+  
   if(!isLoggedIn){
     return (
       <div className="hero-container">
@@ -73,6 +69,11 @@ function HeroSection() {
       </div>
     )
   }else {
+    if(isLoading){
+      return(
+        <Loading></Loading>
+      )
+    }else{
     return (
       <div className="hero-container">
         <div className="left_hero">

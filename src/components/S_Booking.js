@@ -38,9 +38,8 @@ const BootstrapDialogTitle = (props) => {
 let program = 0
 
 const opengoogle = () => {
-  // window.location.replace(bookingInfo["0"]["googlemeetlink"]);
+  window.location.replace(bookingInfo["0"]["googlemeetlink"]);
 }
-
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
@@ -53,15 +52,7 @@ export default function S_Booking() {
     setcancelopen(false)
   }
 
-  const cancelmeeting = (booking) => {
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
-      studentname: studentname,
-      username: teacherusername,
-      status: "cancelled"
-    }).then((response) => {
-      console.log(response);
-    });
-    bkg = booking
+  const cancelmeeting = () => {
     setcancelopen(true)
     setcancel(false)
   }
@@ -70,15 +61,14 @@ export default function S_Booking() {
     setconfirmopen(false)
   }
 
-  const confirmmeeting = (booking) => {
+  const confirmmeeting = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
       studentname: studentname,
       username: teacherusername,
-      status: "confirmed"
+      status: "confirm"
     }).then((response) => {
       console.log(response);
     });
-    bkg = booking;
     setconfirmopen(true)
     setcancel(false)
   }
@@ -86,17 +76,12 @@ export default function S_Booking() {
   const [status, setStatus] = useState(0)
   const [isLoading1, setLoading1] = useState(true)
   const [isLoading2, setLoading2] = useState(true)
-  const [contactInfo, setContactInfo] = useState([]);
-  const [pendingBookingInfo, setPendingBookingInfo] = useState([]);
-  const [pendingBookingInfoLen, setPendingBookingInfoLen] = useState([]);
-  const [confirmedBookingInfo, setConfirmedBookingInfo] = useState([]);
-  const [confirmedBookingInfoLen, setConfirmedBookingInfoLen] = useState([]);
+  const [bookingInfo, setBookingInfo] = useState([]);
+  const [bookingInfoLen, setBookingInfoLen] = useState([]);
   const [haveSetStatus, setHaveSetStatus] = useState(false);
 
   let username = '', studentname = '', teacherusername = "";
   const [teachername, setTeachername] = useState();
-
-  let bkg = 0;
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -134,20 +119,10 @@ export default function S_Booking() {
               Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
                 studentname: studentname,
                 username: teacherusername,
-                status: "pending"
               }).then((response) => {
                 console.log(response);
-                setPendingBookingInfo(response.data);
-                setPendingBookingInfoLen(response.data.length);
-              })
-              Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
-                studentname: studentname,
-                username: teacherusername,
-                status: "confirmed"
-              }).then((response) => {
-                console.log(response);
-                setConfirmedBookingInfo(response.data);
-                setConfirmedBookingInfoLen(response.data.length);
+                setBookingInfo(response.data);
+                setBookingInfoLen(response.data.length)
               })
               setLoading2(false)
             })
@@ -183,7 +158,7 @@ export default function S_Booking() {
 */
 // meetlinktemp: https://meet.google.com/ddk-cuae-bnn
 
-  let a = ['Upcoming Meetings', '即將來臨的會議']
+  let a = ['Upcoming Meetings', '加入會議']
   // let teachername = 'Ruby'
   let date = '2022/5/12'
   let time = '18:00 ~ 19:00'
@@ -206,7 +181,7 @@ export default function S_Booking() {
       <Loading/>
     )
   } else {
-    if(pendingBookingInfoLen == 0 && confirmedBookingInfoLen == 0) {
+    if(bookingInfoLen == 0) {
       return (
         <div className="nokid">
           <div className="noStudentFont">{l[status]}</div>
@@ -235,38 +210,35 @@ export default function S_Booking() {
             >
               <div className="bookingconfirmheaders">{k[status]}</div>
               <div className="bookingconfirmcontent">
-                {bkg["date"]} {bkg["time"]} {bkg["duration"]} 
+                {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]} 
               </div>
             </BootstrapDialog>
           </div>
           <div className="bookingwraping">
             <div className="bookingwrappinginnerfirst">
               <div className="bookingtitleall">{a[status]}</div>
-              {confirmedBookingInfo.map((booking) => {
-                return (
-                  <div className="bookingoutestwrap">
-                    <div className="bookingrow">
-                      <div className="bookingwrapsecond">
-                        <div className="bookingwordswrapfirst">
-                          <div className="bookingimageprog">
-                            <FaUser className="bookingprog_avatar" />
-                          </div>
-                          <div className="bookingrequesttotal">
-                            <div className="bookingrequestsub">{booking["username"]}</div>
-                            <div className="bookinrequesttime">{booking["duration"]} hr</div>
-                          </div>
-                          <div className="bookingrequesttotaltime">
-                            <div className="detailtimeforupcomings">{booking["date"] + " " + booking["0"]["time"]}</div>
-                          </div>
-                        </div>
-                        <div className="bookingbuttonswrapping">
-                          <div className="buttonbookingcheck" onClick={opengoogle}>{n[status]}</div>
-                        </div>
+
+              <div className="bookingoutestwrap">
+                <div className="bookingrow">
+                  <div className="bookingwrapsecond">
+                    <div className="bookingwordswrapfirst">
+                      <div className="bookingimageprog">
+                        <FaUser className="bookingprog_avatar" />
+                      </div>
+                      <div className="bookingrequesttotal">
+                        <div className="bookingrequestsub">{bookingInfo["0"]["username"]}</div>
+                        <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
+                      </div>
+                      <div className="bookingrequesttotaltime">
+                        <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div>
                       </div>
                     </div>
+                    <div className="bookingbuttonswrapping">
+                      <div className="buttonbookingcheck" onClick={opengoogle}>{n[status]}</div>
+                    </div>
                   </div>
-                )
-              })}
+                </div>
+              </div>
             </div>
             {/* <Divider className="lineforbooking"></Divider> */}
             <div className="bookingwrappinginnerfirst">
@@ -276,7 +248,9 @@ export default function S_Booking() {
                 className="bookingwrappbottom"
                 style={{ display: cancel ? 'block' : 'none' }}
               >
-              {pendingBookingInfo.map((booking) => {
+                <div className="bookingtime">
+                  <div className="bookingrequesttime">{bookingInfo["0"]["date"]}</div>
+                </div>
                 <div className="bookingrow">
                   <div className="bookingwrapsecond">
                     <div className="bookingwordswrapfirst">
@@ -284,21 +258,21 @@ export default function S_Booking() {
                         <FaUser className="bookingprog_avatar" />
                       </div>
                       <div className="bookingrequesttotal">
-                        <div className="bookingrequestsub">{booking["username"]}</div>
-                        <div className="bookinrequesttime">{booking["duration"]} hr</div>
+                        <div className="bookingrequestsub">{bookingInfo["0"]["username"]}</div>
+                        <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
                       </div>
                       <div className="bookingrequesttotaltime">
-                        <div className="detailtimeforbook">{booking["date"] + ' ' + booking["time"]}</div>
+                        <div className="detailtimeforbook">{bookingInfo["0"]["date"] + ' ' + bookingInfo["0"]["time"]}</div>
                       </div>
                     </div>
                     <div className="bookingbuttonswrapping">
-                      <div className="buttonbookingcheck" onClick={() => cancelmeeting(booking)}>
+                      <div className="buttonbookingcheck" onClick={cancelmeeting}>
                         {/* this is where meeting is cancelled */}
                         {p[status]}
                       </div>
                       <div
                         className="buttonbookingcheck"
-                        onClick={() => confirmmeeting(booking)}
+                        onClick={confirmmeeting}
                       >
                         {/* this is where meeting is confirmed */}
                         {q[status]}
@@ -306,7 +280,6 @@ export default function S_Booking() {
                     </div>
                   </div>
                 </div>
-              })}
               </div>
             </div>
           </div>
