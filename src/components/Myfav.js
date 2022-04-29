@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Myfav.css'
 import { RiHeart3Line, RiMapPin2Fill } from 'react-icons/ri'
 import '../App.css'
+import Loading from '../Loading'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -163,9 +164,7 @@ function Myfav() {
     console.log(favProgramList);
     console.log("favProgramList null");
     return (
-      <div className = "loading">
-          Loading...
-      </div>
+      <Loading></Loading>
     )
   } else if(favProgramListLen == 0){
       console.log(favProgramListLen);

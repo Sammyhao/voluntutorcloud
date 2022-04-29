@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../App.css'
 import './HeroSection.css'
 import { Link } from 'react-router-dom'
+import Loading from '../Loading'
 import Axios from 'axios'
 
 function HeroSection() {
@@ -44,8 +45,11 @@ function HeroSection() {
       })
     })
   }, [])
-
-  if (!isLoggedIn || isLoading) {
+  if(isLoading){
+    return(
+      <Loading></Loading>
+    )
+  }else if(!isLoggedIn) {
     return (
       <div className="hero-container">
         <div className="left_hero">

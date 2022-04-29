@@ -4,6 +4,8 @@ import './HeroSection.css'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
+import Loading from '../Loading'
+
 function S_HeroSection() {
   Axios.defaults.withCredentials = true
   let username = "";
@@ -44,7 +46,11 @@ function S_HeroSection() {
       })
     })
   }, [])
-
+  if(isLoading){
+    return(
+    <Loading></Loading>
+    )
+  }
   if (!isLoggedIn || isLoading) {
     return (
       <div className="hero-container">

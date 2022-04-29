@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Typography from '@material-ui/core/Typography'
+import Loading from '../Loading'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
@@ -60,10 +61,12 @@ export default function Booking() {
   const [contactInfo, setContactInfo] = useState([]);
 
   let username = "";
+  const [name, setName] = useState("");
   
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       username = response.data.user[0].username;
+      setName(username);
       Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
         username: username,
       }).then((response) => {
@@ -82,6 +85,10 @@ export default function Booking() {
     })
   })
 
+
+  
+  let n = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
+  let o = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
   let a = ["Book A Meeting", "預約會議"]
   let b = ["Send Invitation","傳送邀請"]
   let c = ["Date: ","日期："]
@@ -93,8 +100,6 @@ export default function Booking() {
   let i = ["Please double check before you send the invitation.","在傳送前請再次確認資料是否有誤。"]
   let j = ["Please fill in all the fields.","請完整填入資訊"]
   let k = ["Booking Invitation sent. Please check the message box if the student is unavailable during the time.","會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議。"]
-  let l = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
-  let m = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
 
   const sendfirst = () => {
     if(date== "" || time == "" || duration == ""){
@@ -106,10 +111,37 @@ export default function Booking() {
   const sendsecond = () => {
     setOpen(false)
     // save the data here (date,time,duration)
+    updateBooking();
     setfinalopen(true)
   }  
+
+  const updateBooking = () => {
+    console.log(name, contactInfo[0].studentname, )
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBooking', {
+      username: name,
+      studentname: contactInfo[0].studentname,
+      date: date,
+      time: time,
+      duration: duration,
+    }).then((response) => {
+      console.log(response);
+    })
+  }
+
   // 這裡true的條件改成是否有學生喔
-  if (!isLoading1 && !isLoading2 && contactInfo.length > 0){
+  if(isLoading1 || isLoading2){
+    console.log("contactinfo length: ",contactInfo.length)
+    return(
+      <Loading></Loading>
+    )
+  }else if (contactInfo.length == 0){
+    return(
+      <div className = "nokid">
+        <div className="noStudentFont">{n[status]}</div>
+        <div className="noStudentFont2">{o[status]}</div>
+      </div>
+    )
+  } else{
     return (
         <div className='outestcontainerbook'>
           <div id="dialogcontainer">
@@ -197,12 +229,5 @@ export default function Booking() {
           </div>
           </div>
       </div>
-  )} else {
-      return (
-      <div className = "nokid">
-        <div className="noStudentFont">{l[status]}</div>
-        <div className="noStudentFont2">{m[status]}</div>
-      </div>
-      )
-    }
+  )}
 }

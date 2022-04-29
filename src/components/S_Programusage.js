@@ -4,6 +4,7 @@ import './Programusage.css'
 import '../App.css'
 import { FaUser } from 'react-icons/fa'
 
+import Loading from '../Loading'
 import Axios from 'axios'
 const Progress = ({ done }) => {
   const [style, setStyle] = React.useState({})
@@ -86,7 +87,11 @@ function Programusage() {
     console.log(contact);
   }
 
-  if(isLoading || contactInfo.length == 0) {
+  if(isLoading){
+    return(
+      <Loading/>
+    )
+  }else if(contactInfo.length == 0) {
     console.log("isLoading")
     return (
       <div className = "nokid">

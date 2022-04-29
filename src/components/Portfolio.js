@@ -3,6 +3,7 @@ import './Portfolio.css'
 import Axios from 'axios'
 import { FaUser } from 'react-icons/fa'
 
+import Loading from '../Loading'
 import { Divider } from '@mui/material'
 import { CgNametag } from 'react-icons/cg'
 export default function Portfolio() {
@@ -82,7 +83,11 @@ export default function Portfolio() {
     })
   }, [])
 
-  if (isLoading || studentProfolio.length == 0) {
+  if (isLoading){
+    return(
+      <Loading/>
+    )
+  }else if(studentProfolio.length == 0) {
     return (
       <div className = "outcontainer_port">
       <div className="top_bar">

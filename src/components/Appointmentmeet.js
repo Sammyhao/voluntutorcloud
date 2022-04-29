@@ -10,6 +10,7 @@ import './Programusage.css'
 import '../App.css'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
+import Loading from '../Loading'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
@@ -188,7 +189,11 @@ function Appointmentmeet() {
 
   }
  
-  if(isLoading || isLoading2 || contactInfo.length == 0) {
+  if(isLoading || isLoading2){
+    return(
+      <Loading/>
+    )
+  }else if(contactInfo.length == 0) {
     return (
       <div className = "nokid">
         <div className="noStudentFont">{a[status]}</div>

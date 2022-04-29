@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Divider } from '@mui/material'
 import './Booking.css'
 import Grid from '@mui/material/Grid'
+import Loading from '../Loading'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
@@ -105,7 +106,18 @@ export default function S_Booking() {
   let p = ['Cancel', '拒絕']
   let q = ['Confirm', '確認']
   // 這裡true的條件改成是否有學生喔
-  if (!isLoading1 && !isLoading2 && contactInfo.length > 0) {
+  if (isLoading1 || isLoading2){
+    return(
+      <Loading/>
+    )
+  } else if(contactInfo.length==0){
+    return (
+      <div className="nokid">
+        <div className="noStudentFont">{l[status]}</div>
+        <div className="noStudentFont2">{m[status]}</div>
+      </div>
+    )
+  }else {
     return (
       <div className="outestcontainerbook">
         <div id="dialogcontainer">
@@ -200,12 +212,5 @@ export default function S_Booking() {
         </div>
       </div>
     )
-  } else {
-    return (
-      <div className="nokid">
-        <div className="noStudentFont">{l[status]}</div>
-        <div className="noStudentFont2">{m[status]}</div>
-      </div>
-    )
-  }
+  } 
 }
