@@ -355,7 +355,7 @@ function Profile_user() {
             />
           </div>
 
-          <div class="warning_prof">{errormessage}</div>
+          {/* <div class="warning_prof">{errormessage}</div> */}
         </div>
         <div className="containerprofile">
           <div className="left">
@@ -443,7 +443,7 @@ function Profile_user() {
                     }}
                   />
                 </div>
-                <div class="emailwarning_prof">{emailError}</div>
+                {/* <div class="emailwarning_prof">{emailError}</div> */}
               </div>
             </div>
             <div className="contact">
@@ -455,7 +455,7 @@ function Profile_user() {
               </div>
               <Divider className="line"></Divider>
               <div className="information">
-                <div class="warning_prof">{personerror}</div>
+                {/* <div class="warning_prof">{personerror}</div> */}
                 <div className="wrapprof">
                   <div className="textbef">{k[status]} </div>
                   <input
@@ -559,7 +559,7 @@ function Profile_user() {
               </div>
               <Divider className="line"></Divider>
               <div className="information">
-                <div class="warning_prof">{prefererror}</div>
+                {/* <div class="warning_prof">{prefererror}</div> */}
                 <div className="wrapprof">
                   <input
                     className={preferclick ? 'edittabley' : 'edittablen'}
@@ -594,7 +594,7 @@ function Profile_user() {
               </div>
               <Divider className="line"></Divider>
               <div className="information">
-                <div class="warning_prof_bio">{bioerror}</div>
+                {/* <div class="warning_prof_bio">{bioerror}</div> */}
 
                 <div className="wrapprof">
                   <textarea
@@ -629,7 +629,7 @@ function Profile_user() {
               </div>
               <Divider className="line"></Divider>
               <div className="information" id="bioandhobby">
-                <div class="warning_prof_bio">{abouterror}</div>
+                {/* <div class="warning_prof_bio">{abouterror}</div> */}
 
                 <div className="wrapprof">
                   <textarea

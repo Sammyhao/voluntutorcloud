@@ -92,7 +92,7 @@ export default function S_Booking() {
           }).then((response) => {
             console.log("response from findTeacher:");
             console.log(response);
-            teacherusername = response;
+            teacherusername = response.data[0].username;
             console.log("teacherusername:");
             console.log(teacherusername);
             setTeachername(teacherusername);
