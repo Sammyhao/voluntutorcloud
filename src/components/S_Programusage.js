@@ -4,7 +4,7 @@ import './Programusage.css'
 import '../App.css'
 import { FaUser } from 'react-icons/fa'
 
-import Loading from '../Loading'
+import Loading from './Loading'
 import Axios from 'axios'
 const Progress = ({ done }) => {
   const [style, setStyle] = React.useState({})
