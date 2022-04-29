@@ -8,7 +8,6 @@ import S_Prof from '../S_Profile_user'
 import Loading from '../Loading'
 import S_Navbar from '../S_Navbar'
 
-
 export default function Profile() {
   const [role, setRole] = useState("");
   const [isLoading, setLoading] = useState(true);
