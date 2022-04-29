@@ -63,6 +63,7 @@ export default function S_Booking() {
   const [isLoading2, setLoading2] = useState(true)
   const [contactInfo, setContactInfo] = useState([])
   const [bookingInfo, setBookingInfo] = useState([]);
+  const [bookingInfoLen, setBookingInfoLen] = useState([]);
 
   let username = '', studentname = '', teacherusername = "";
   const [teachername, setTeachername] = useState();
@@ -100,7 +101,9 @@ export default function S_Booking() {
               studentname: studentname,
               teachername: teacherusername,
             }).then((response) => {
+              console.log(response);
               setBookingInfo(response.data);
+              setBookingInfoLen(response.data.length)
             })
             setLoading2(false)
           })
@@ -155,15 +158,14 @@ username: "admin_stu"
     return(
       <Loading/>
     )
-  } else if(bookingInfo.length == 0){
+  } else if(bookingInfoLen == 0){
     return (
       <div className="nokid">
         <div className="noStudentFont">{l[status]}</div>
         <div className="noStudentFont2">{m[status]}</div>
       </div>
     )
-  }else {
-    console.log(bookingInfo);
+  } else {
     return (
       <div className="outestcontainerbook">
         <div id="dialogcontainer">
