@@ -37,9 +37,6 @@ const BootstrapDialogTitle = (props) => {
 
 let program = 0
 
-const opengoogle = () => {
-  window.location.replace(googlemeetlink);
-}
 
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
@@ -48,6 +45,10 @@ export default function S_Booking() {
   const [cancelopen, setcancelopen] = useState(false)
   const [confirmopen, setconfirmopen] = useState(false)
   const [cancel, setcancel] = useState(true)
+  
+  const opengoogle = () => {
+    window.location.replace(googlemeetlink);
+  }
 
   const handlecancelclose = () => {
     setcancelopen(false)
