@@ -18,6 +18,7 @@ function Home() {
 
   const [role, setRole] = useState("");
   const [isLoading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   let username = "";
 
   useEffect(() => {
@@ -26,6 +27,7 @@ function Home() {
         console.log(response.data);
         if(!response.data.isLoggedIn) {
           setLoading(false);
+          setIsLoggedIn(false);
         }else {
           username = response.data.user[0].username
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getRole', {
@@ -55,7 +57,18 @@ function Home() {
     )
 
   }else {
-    if(role == "teacher"){
+    if(isLoggedIn == false) {
+      return (
+        <>
+          <Navbar></Navbar>
+          <HeroSection />
+          <Function></Function>
+          <Homepageprog></Homepageprog>
+          <About_us></About_us>
+          <Team></Team>
+          <Footer></Footer>
+        </>
+    )} else if(role == "teacher"){
       return (
         <>
           <Navbar></Navbar>
