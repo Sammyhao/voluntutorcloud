@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '../../App.css'
 import S_Message from '../S_Msg'
 import Message from '../Msg'
 import S_Navbar from '../S_Navbar'
 
+import Axios from 'axios'
 import Loading from '../Loading'
 import Navbar from '../Navbar'
 
@@ -42,8 +43,7 @@ export default function Messages() {
       </>
     )
 
-  }
-  if(role ==0){
+  }else if(role == "teacher"){
     return(
       <>
         <Navbar></Navbar>
