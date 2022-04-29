@@ -28,6 +28,8 @@ function Home() {
         if(!response.data.isLoggedIn) {
           setLoading(false);
           setIsLoggedIn(false);
+          console.log("isLoggedIn");
+          console.log(isLoggedIn);
         }else {
           username = response.data.user[0].username
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getRole', {
@@ -57,6 +59,8 @@ function Home() {
     )
 
   }else {
+    console.log("isLoggedIn");
+    console.log(isLoggedIn);
     if(isLoggedIn == false) {
       return (
         <>
