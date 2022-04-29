@@ -3,7 +3,7 @@ import './Portfolio.css'
 import Axios from 'axios'
 import { FaUser } from 'react-icons/fa'
 
-import Loading from '../Loading'
+import Loading from './Loading'
 import { Divider } from '@mui/material'
 import { CgNametag } from 'react-icons/cg'
 export default function Portfolio() {

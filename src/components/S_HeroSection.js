@@ -4,7 +4,7 @@ import './HeroSection.css'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
-import Loading from '../Loading'
+import Loading from './Loading'
 
 function S_HeroSection() {
   Axios.defaults.withCredentials = true

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BiEdit } from 'react-icons/bi'
-import Loading from '../Loading'
+import Loading from './Loading'
 import { FaUser } from 'react-icons/fa'
 import { AiFillLock } from 'react-icons/ai'
 import { MdModeEdit } from 'react-icons/md'
