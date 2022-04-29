@@ -130,6 +130,9 @@ export default function Booking() {
     }).then((response) => {
       console.log(response);
     })
+    setdate("")
+    settime("")
+    setduration("")
   }
 
   // 這裡true的條件改成是否有學生喔
