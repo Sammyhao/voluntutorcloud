@@ -127,6 +127,7 @@ export default function Booking() {
       date: date,
       time: time,
       duration: duration,
+      status: "pending"
     }).then((response) => {
       console.log(response);
     })
