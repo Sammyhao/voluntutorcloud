@@ -256,7 +256,7 @@ export default function S_Booking() {
                             <div className="bookinrequesttime">{booking["duration"]} hr</div>
                           </div>
                           <div className="bookingrequesttotaltime">
-                            <div className="detailtimeforupcomings">{booking["date"] + " " + bookingInfo["0"]["time"]}</div>
+                            <div className="detailtimeforupcomings">{booking["date"] + " " + booking["0"]["time"]}</div>
                           </div>
                         </div>
                         <div className="bookingbuttonswrapping">

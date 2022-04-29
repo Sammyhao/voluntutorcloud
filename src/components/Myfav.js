@@ -62,7 +62,8 @@ function Myfav() {
   const [status, setStatus] = useState(0)
   const [isLoading1, setLoading1] = useState(true);
   const [isLoading2, setLoading2] = useState(true);
-  const [favProgramListLen, setFavProgramListLen] = useState([]);
+  const [favProgramListLen, setFavProgramListLen] = useState(0);
+  const [favProgramList, setFavProgramList] = useState([]);
 
   let a = [
     "There's nothing in your favorite list!",
