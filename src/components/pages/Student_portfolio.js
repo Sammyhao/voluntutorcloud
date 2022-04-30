@@ -4,7 +4,7 @@ import Axios from 'axios'
 import Footer from '../Footer'
 import Navbar from '../Port_nav'
 import Port from '../Portfolio'
-import S_Navbar from '../S_Navbar'
+import S_Navbar from '../S_Port_nav'
 import S_Port from '../S_Portfolio'
 import Loading from '../Loading'
 

@@ -1,7 +1,7 @@
 .outcontainer_port {
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  margin-top: 30px;
   background-color: #efe9e5;
 }
 .image_port_cont {

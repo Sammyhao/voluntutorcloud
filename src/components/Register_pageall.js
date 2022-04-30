@@ -140,7 +140,7 @@ function Register_pageall() {
     }).then(response => {
       console.log(response);
       console.log("Successful.");
-      setOpen(true);
+      setOpen(true)
     })
   }
 
