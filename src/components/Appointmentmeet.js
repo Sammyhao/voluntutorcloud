@@ -192,7 +192,8 @@ function Appointmentmeet() {
     return(
       <Loading/>
     )
-  }else if(contactInfo.length == 0) {
+  }else
+  {if(contactInfo.length == 0) {
     return (
       <div className = "nokid">
         <div className="noStudentFont">{a[status]}</div>
@@ -368,5 +369,5 @@ function Appointmentmeet() {
       </div>
     )
   }
-}
+}}
 export default Appointmentmeet;

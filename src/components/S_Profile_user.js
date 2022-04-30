@@ -5,6 +5,7 @@ import { AiFillLock } from 'react-icons/ai'
 import { MdModeEdit } from 'react-icons/md'
 import { BsCheckLg } from 'react-icons/bs'
 
+import Loading from './Loading'
 import './Profile_user.css'
 import { Divider } from '@mui/material'
 import Axios from 'axios'
@@ -120,9 +121,9 @@ function Profile_user() {
   let e = ['Enter Your Name', '請輸入你的名字']
   let f = ['Contact Information', '聯絡資訊']
   let g = ['Phone: ', '手機號碼：']
-  let h = ['Enter Phone number', '請輸入手機號碼']
+  let h = ['None', '無']
   let i = ['Email: ', 'Email帳號：']
-  let hdf = ['Enter Email', '請輸入Email帳號']
+  let hdf = ['None', '無']
   let j = ['Personal Information', '個人資料']
   let k = ['Gender: ', '性別：']
   let l = ['Female/Male/Others', '男/女/其他']
@@ -263,8 +264,8 @@ function Profile_user() {
   }
 
   let username = ''
-  const [isLoading, setLoadings] = useState(true)
   const [status, setStatus] = useState(0)
+  const [isLoading ,setLoading] = useState(true);
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -298,6 +299,7 @@ function Profile_user() {
             setParentcontactnum(response.data[0].parentcontactnum);
             setParentemail(response.data[0].parentmail);
             setRequiredsubject(response.data[0].requiredsub);
+            setLoading(false);
           })
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
             username: username,
@@ -339,6 +341,12 @@ function Profile_user() {
     })
   }
 
+  if(isLoading) {
+    return(
+      <>
+      <Loading/>
+      </>
+  )}else{
   return (
     <div className="frame">
       <div id="dialog_reg_wrap">
@@ -712,6 +720,6 @@ function Profile_user() {
         </Link>
       </div>
     </div>
-  )
+  )}
 }
 export default Profile_user

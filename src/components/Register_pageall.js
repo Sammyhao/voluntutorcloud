@@ -183,6 +183,7 @@ function Register_pageall() {
       targetStuPerso: personalityreg,
       googleMeetLink: googlemeet
     }).then((response) => {
+      setOpen(true);
       console.log(response.data)
       console.log('Successful post.')
     })

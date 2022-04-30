@@ -143,7 +143,11 @@ function S_Navbar() {
                     {a[status]}
                   </Link>
                 </li>
-                
+                <li className="nav-item">
+                  <Link to="/book" className="nav-links" onClick={closeMobileMenu}>
+                  {b[status]}
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                   
