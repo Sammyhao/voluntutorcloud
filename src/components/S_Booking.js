@@ -83,7 +83,7 @@ export default function S_Booking() {
   const [haveSetStatus, setHaveSetStatus] = useState(false);
 
   let username = '', studentname = '', teacherusername = "";
-  const [teachername, setTeachername] = useState();
+  const [teachername, setTeachername] = useState("");
 
   const [googlemeetlink, setGoogleMeetLink] = useState('');
   const [teacherRealname, setTeacherRealname] = useState('');
@@ -105,15 +105,6 @@ export default function S_Booking() {
             setHaveSetStatus(true);
           })
         }
-
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getRole', {
-          username: username,
-        }).then((response) => {
-          console.log("role");
-          console.log(response.data);
-          setRole(response.data);
-        })
-
         if(isLoading2) {
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
             username: username,
@@ -205,7 +196,7 @@ export default function S_Booking() {
       <Loading/>
     )
   } else {
-    if(teachername == "") {
+    if(teacherRealname == "") {
       return (
         <div className="nokid">
           <div className="noStudentFont">{l[status]}</div>
