@@ -285,7 +285,6 @@ function Profile_user() {
           setbirthday(response.data[0].birthday)
           setgrade(response.data[0].grade)
           setschool(response.data[0].schoolname)
-          setpreferredsubject(response.data[0].preferredSubjects)
           setstudentage(response.data[0].targetStuAge)
           setstudentgender(response.data[0].targetStuGen)
           setstudentpers(response.data[0].targetStuPerso)
@@ -297,6 +296,7 @@ function Profile_user() {
             setStudentEmail(response.data[0].studentmail);
             setParentcontactnum(response.data[0].parentcontactnum);
             setParentemail(response.data[0].parentmail);
+            setpreferredsubject(response.data[0].requiredsub);
           })
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
             username: username,
