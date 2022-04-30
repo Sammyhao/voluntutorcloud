@@ -137,10 +137,11 @@ function Register_pageall() {
       birthday: birthdayreg,
       grade: gradereg,
       schoolname: schoolnamereg
-    }).then(response => {
+    }).then(response => {      
+      setOpen(true)
       console.log(response);
       console.log("Successful.");
-      setOpen(true)
+
     })
   }
 
