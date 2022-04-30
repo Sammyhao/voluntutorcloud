@@ -139,7 +139,7 @@ function Register_pageall() {
       schoolname: schoolnamereg
     }).then(response => {
       console.log(response);
-      console.log("Successful Post.");
+      console.log("Successful.");
       setOpen(true);
     })
   }
