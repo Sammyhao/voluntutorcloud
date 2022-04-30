@@ -196,14 +196,6 @@ export default function S_Booking() {
       <Loading/>
     )
   } else {
-    if(teacherRealname == "") {
-      return (
-        <div className="nokid">
-          <div className="noStudentFont">{l[status]}</div>
-          <div className="noStudentFont2">{m[status]}</div>
-        </div>
-      )
-    } else {
       return (
         <div className="outestcontainerbook">
           <div id="dialogcontainer">
@@ -299,5 +291,4 @@ export default function S_Booking() {
         </div>
       )
     }
-  }
 }
