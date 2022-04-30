@@ -41,7 +41,8 @@ function Profile_user() {
   const [birthday, setbirthday] = useState('20040101')
   const [grade, setgrade] = useState('11th')
   const [school, setschool] = useState('Wego Private High School')
-  const [preferredsubject, setpreferredsubject] = useState('Math')
+  const [preferredsubject, setpreferredsubject] = useState('Chinese')
+  const [requiredsubject, setRequiredsubject] = useState("No Subject");
   const [studentage, setstudentage] = useState('3th')
   const [studentgender, setstudentgender] = useState('No preference')
   const [studentphone, setstudentphone] = useState('0912345673')
@@ -296,7 +297,7 @@ function Profile_user() {
             setStudentEmail(response.data[0].studentmail);
             setParentcontactnum(response.data[0].parentcontactnum);
             setParentemail(response.data[0].parentmail);
-            setpreferredsubject(response.data[0].requiredsub);
+            setRequiredsubject(response.data[0].requiredsub);
           })
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
             username: username,
@@ -579,18 +580,18 @@ function Profile_user() {
                     type="text"
                     placeholder={u[status]}
                     disabled={readonlyprefer}
-                    value={preferredsubject}
+                    value={requiredsubject}
                     onChange={(e) => {
                       Axios.post(
                         'https://voluntutorcloud-server.herokuapp.com/updatePreferredSubjects',
                         {
                           username: name,
-                          preferredSubjects: e.target.value,
+                          requiredsub: e.target.value,
                         },
                       ).then((response) => {
                         console.log(response)
                       })
-                      setpreferredsubject(e.target.value)
+                      setRequiredsubject(e.target.value)
                     }}
                   />
                 </div>
