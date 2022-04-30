@@ -69,6 +69,11 @@ function Profile_user() {
   const [aboutclick, setaboutclick] = useState(false)
   const [privacyclick, setprivacyclick] = useState(false)
   // const [readonly, setread] = useState('')
+  // contact info declaration
+  const [studentemail, setStudentEmail] = useState("");
+  const [parentemail, setParentemail] = useState("");
+  const [parentcontactnum, setParentcontactnum] = useState("");
+  // contact info declaration
   const [userInfo, setUserInfo] = useState([])
   const [emailError, setEmailError] = useState('')
   const [iconstyle, seticonstyle] = useState(
@@ -286,6 +291,13 @@ function Profile_user() {
           setstudentpers(response.data[0].targetStuPerso)
           setbio(response.data[0].bio)
           setabout(response.data[0].about)
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+            name: response.data[0].lastname + response.data[0].firstname,
+          }).then((response) => {
+            setStudentEmail(response.data[0].studentmail);
+            setParentcontactnum(response.data[0].parentcontactnum);
+            setParentemail(response.data[0].parentmail);
+          })
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
             username: username,
           }).then((response) => {
@@ -373,14 +385,14 @@ function Profile_user() {
                 <div class="warning_prof">{contacterror}</div>
                 <div className="contactsubtitles">Student</div>
                 <div className="wrapprof">
-                  <div className="textbef">{g[status]} </div>
+                  <div className="textbef">{i[status]} </div>
                   <input
                     id="phone_input"
                     className={contactclick ? 'edittabley' : 'edittablen'}
                     type="tel"
                     placeholder={h[status]}
                     disabled={readonlycontact}
-                    value={studentphone}
+                    value={studentemail}
                     maxLength={10}
                     onChange={(e) => {
                       Axios.post(
@@ -405,7 +417,7 @@ function Profile_user() {
                     type="tel"
                     placeholder={h[status]}
                     disabled={readonlycontact}
-                    value={phone}
+                    value={parentcontactnum}
                     maxLength={10}
                     onChange={(e) => {
                       Axios.post(
@@ -428,7 +440,7 @@ function Profile_user() {
                     type="text"
                     placeholder={hdf[status]}
                     disabled={readonlycontact}
-                    value={email}
+                    value={parentemail}
                     onChange={(e) => {
                       validateEmail(e)
                       Axios.post(
