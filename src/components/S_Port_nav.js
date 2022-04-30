@@ -68,7 +68,7 @@ function S_Port_nav() {
               <CgClose className="icons_cross"></CgClose>
             </Link>
           </li>
-          {SidebarData.map((item, index) => {
+          {S_SidebarData.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
                 <Link to={item.path}>
@@ -101,7 +101,7 @@ function S_Port_nav() {
                 <CgClose className="icons_cross"></CgClose>
               </Link>
             </li>
-            {C_SidebarData.map((item, index) => {
+            {C_S_SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
