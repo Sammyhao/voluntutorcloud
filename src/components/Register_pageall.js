@@ -1090,6 +1090,24 @@ function Register_pageall() {
       </div>
     )}else{
       return(<div className="all">
+        <div id="dialog_reg_wrap">
+        <BootstrapDialog
+          id = "dialog_registered"
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <div id="registeredsucc">
+          {ij[status]}
+          </div>
+          <Link to="/sign-in">
+          <div id="return">
+          {jk[status]}
+          </div>
+          </Link>
+          <div>
+          </div>
+        </BootstrapDialog>
+        </div>
       <div className="bar">
 
         <div className="dot">
