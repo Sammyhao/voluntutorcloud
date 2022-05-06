@@ -130,7 +130,7 @@ export default function Studymat() {
     },
   ]
 
-  
+
   function fetchSubMat(grade, subject) {
     let subMat = [];
 
@@ -177,7 +177,7 @@ export default function Studymat() {
                           onClick={() => {
                             setopen(true)
                             let grade = e.id.substring(e.id.length - 1);
-                            fetchSubMat(grade, e.subjects[i]);
+                            fetchSubMat(grade, e.subjects_name[i]);
                           }}
                         ></img>
                         <div className="subjectwords">{e.subjects_name[i]}</div>
