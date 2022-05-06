@@ -130,7 +130,7 @@ export default function Studymat() {
     },
   ]
 
-  let subMat = [];
+  const [subMat, setSubMat] = useState([]);
 
   function fetchSubMat(grade, subject) {
     console.log(grade, subject);
@@ -139,7 +139,8 @@ export default function Studymat() {
       subject: subject
     }).then((response) => {
       console.log(response);
-      subMat = response.data;
+      setSubMat(response.data);
+      setopen(true)
     })
   }
 
@@ -154,7 +155,7 @@ export default function Studymat() {
             open={open}
           >
             <div id="studydialog">Detailed Materials</div>
-            <div id="links">
+            <div>
               {subMat.map((mat) => {
                 console.log("mat");
                 console.log(mat);
@@ -183,7 +184,6 @@ export default function Studymat() {
                           className="studysubject"
                           src={e.subjects[i]}
                           onClick={() => {
-                            setopen(true)
                             let grade = e.id.substring(e.id.length - 1);
                             console.log(grade, e.subjects_name[i]);
                             fetchSubMat(grade, e.subjects_name[i]);
