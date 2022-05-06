@@ -165,7 +165,7 @@ export default function Studymat() {
                   console.log(mat);
                   return (
                     <>
-                      <div id="links">{mat.chapterDesc}: <Link>{mat.link}</Link></div>
+                      <div id="links">{mat.chapterDesc}: {mat.link}</div>
                     </>
                   )
                 })}
