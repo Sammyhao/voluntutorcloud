@@ -154,15 +154,17 @@ export default function Studymat() {
             open={open}
           >
             <div id="studydialog">Detailed Materials</div>
-            <div id="links">{}</div>
-            <div id="links">links</div>
-            {subMat.map((mat) => {
-              return (
-                <>
-                  <div id="links">{mat.chapterDesc}: {mat.link}</div>
-                </>
-              )
-            })}
+            <div id="links">
+              {subMat.map((mat) => {
+                console.log("mat");
+                console.log(mat);
+                return (
+                  <>
+                    <div id="links">{mat.chapterDesc}: <link>{mat.link}</link></div>
+                  </>
+                )
+              })}
+            </div>
 
             <div></div>
           </BootstrapDialog>
