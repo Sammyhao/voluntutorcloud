@@ -130,10 +130,9 @@ export default function Studymat() {
     },
   ]
 
+  let subMat = [];
 
   function fetchSubMat(grade, subject) {
-    let subMat = [];
-
     console.log(grade, subject);
     Axios.post("https://voluntutorcloud-server.herokuapp.com/getSubMat", {
       grade: grade,
