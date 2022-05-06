@@ -155,6 +155,7 @@ export default function Studymat() {
             open={open}
           >
             <div id="studydialog">Detailed Materials</div>
+            <div id="studydialog" onClick={() => {console.log(mat)}}>Where is the materials?</div>
             <div>
               {subMat.map((mat) => {
                 console.log("mat");
@@ -166,8 +167,6 @@ export default function Studymat() {
                 )
               })}
             </div>
-
-            <div></div>
           </BootstrapDialog>
         </div>
         <div className="titlestudytotal">Study Materials</div>
