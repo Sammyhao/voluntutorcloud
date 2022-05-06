@@ -165,7 +165,7 @@ export default function Studymat() {
                   console.log(mat);
                   return (
                     <>
-                      <div id="links">{mat.chapterDesc}: {mat.link}</div>
+                      <div id="links">{mat.chapterDesc}: <p onClick={() => window.location.replace(mat.link)}>{mat.link}</p></div>
                     </>
                   )
                 })}
