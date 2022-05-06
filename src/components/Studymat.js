@@ -145,60 +145,107 @@ export default function Studymat() {
   }
 
   if (status == 0) {
-    return (
-      <div className="outerwrapstudy">
-        <div id="dialog_reg_wrap">
-          <BootstrapDialog
-            onClose={handleclose}
-            id="dialog_registered"
-            aria-labelledby="customized-dialog-title"
-            open={open}
-          >
-            <div id="studydialog">Detailed Materials</div>
-            <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div>
-            <div>
-              {subMat.map((mat) => {
-                console.log("mat");
-                console.log(mat);
-                return (
-                  <>
-                    <div id="links">{mat.chapterDesc}: <link>{mat.link}</link></div>
-                  </>
-                )
-              })}
-            </div>
-          </BootstrapDialog>
-        </div>
-        <div className="titlestudytotal">Study Materials</div>
-        <div className="studymatsecondwrap">
-          {gradearr_eng.map((e) => {
-            return (
-              <div className="studymatwrap">
-                <div className="studymattitle">{e.id}</div>
-                <div className="titleandimg">
-                  <div className="studysubjectwrap">
-                    {e.index.map((i) => (
-                      <div>
-                        <img
-                          className="studysubject"
-                          src={e.subjects[i]}
-                          onClick={() => {
-                            let grade = e.id.substring(e.id.length - 1);
-                            console.log(grade, e.subjects_name[i]);
-                            fetchSubMat(grade, e.subjects_name[i]);
-                          }}
-                        ></img>
-                        <div className="subjectwords">{e.subjects_name[i]}</div>
-                      </div>
-                    ))}
+    console.log(subMat.length);
+    if(subMat.length) {
+      return (
+        <div className="outerwrapstudy">
+          <div id="dialog_reg_wrap">
+            <BootstrapDialog
+              onClose={handleclose}
+              id="dialog_registered"
+              aria-labelledby="customized-dialog-title"
+              open={open}
+            >
+              <div id="studydialog">Detailed Materials</div>
+              {/* <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div> */}
+              <div>
+                {subMat.map((mat) => {
+                  console.log("mat");
+                  console.log(mat);
+                  return (
+                    <>
+                      <div id="links">{mat.chapterDesc}: <link>{mat.link}</link></div>
+                    </>
+                  )
+                })}
+              </div>
+            </BootstrapDialog>
+          </div>
+          <div className="titlestudytotal">Study Materials</div>
+          <div className="studymatsecondwrap">
+            {gradearr_eng.map((e) => {
+              return (
+                <div className="studymatwrap">
+                  <div className="studymattitle">{e.id}</div>
+                  <div className="titleandimg">
+                    <div className="studysubjectwrap">
+                      {e.index.map((i) => (
+                        <div>
+                          <img
+                            className="studysubject"
+                            src={e.subjects[i]}
+                            onClick={() => {
+                              let grade = e.id.substring(e.id.length - 1);
+                              console.log(grade, e.subjects_name[i]);
+                              fetchSubMat(grade, e.subjects_name[i]);
+                            }}
+                          ></img>
+                          <div className="subjectwords">{e.subjects_name[i]}</div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div className="outerwrapstudy">
+          <div id="dialog_reg_wrap">
+            <BootstrapDialog
+              onClose={handleclose}
+              id="dialog_registered"
+              aria-labelledby="customized-dialog-title"
+              open={open}
+            >
+              <div id="studydialog">Detailed Materials</div>
+              {/* <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div> */}
+            </BootstrapDialog>
+          </div>
+          <div className="titlestudytotal">Study Materials</div>
+          <div className="studymatsecondwrap">
+            {gradearr_eng.map((e) => {
+              return (
+                <div className="studymatwrap">
+                  <div className="studymattitle">{e.id}</div>
+                  <div className="titleandimg">
+                    <div className="studysubjectwrap">
+                      {e.index.map((i) => (
+                        <div>
+                          <img
+                            className="studysubject"
+                            src={e.subjects[i]}
+                            onClick={() => {
+                              let grade = e.id.substring(e.id.length - 1);
+                              console.log(grade, e.subjects_name[i]);
+                              fetchSubMat(grade, e.subjects_name[i]);
+                            }}
+                          ></img>
+                          <div className="subjectwords">{e.subjects_name[i]}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )
+    }
   } else {
   }
 }
