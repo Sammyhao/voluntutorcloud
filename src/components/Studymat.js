@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
+import Axios from 'axios'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -128,6 +129,21 @@ export default function Studymat() {
       ],
     },
   ]
+
+  
+  function fetchSubMat(grade, subject) {
+    let subMat = [];
+
+    console.log(grade, subject);
+    Axios.post("https://voluntutorcloud-server.herokuapp.com/getSubMat", {
+      grade: grade,
+      subject: subject
+    }).then((response) => {
+      console.log(response);
+      subMat = response.data;
+    })
+  }
+
   if (status == 0) {
     return (
       <div className="outerwrapstudy">
@@ -139,6 +155,7 @@ export default function Studymat() {
             open={open}
           >
             <div id="studydialog">Detailed Materials</div>
+            <div id="links">{}</div>
             <div id="links">links</div>
 
             <div></div>
@@ -159,6 +176,8 @@ export default function Studymat() {
                           src={e.subjects[i]}
                           onClick={() => {
                             setopen(true)
+                            let grade = e.id.substring(e.id.length - 1);
+                            fetchSubMat(grade, e.subjects[i]);
                           }}
                         ></img>
                         <div className="subjectwords">{e.subjects_name[i]}</div>
