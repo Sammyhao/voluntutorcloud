@@ -177,6 +177,7 @@ export default function Studymat() {
                           onClick={() => {
                             setopen(true)
                             let grade = e.id.substring(e.id.length - 1);
+                            console.log(grade, e.subjects_name[i]);
                             fetchSubMat(grade, e.subjects_name[i]);
                           }}
                         ></img>
