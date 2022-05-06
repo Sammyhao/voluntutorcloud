@@ -51,6 +51,12 @@ export const C_SidebarData = [
     icon: <AiOutlineMessage />,
   },
   {
+    title: '教學教材',
+    path: '/studymat',
+    cName: 'nav-text',
+    icon: <AiOutlineMessage />,
+  },
+  {
     title: '學生檔案',
     path: '/Student_portfolio',
     cName: 'nav-text',

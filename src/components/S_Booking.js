@@ -203,6 +203,8 @@ export default function S_Booking() {
       <Loading/>
     )
   } else {
+    console.log("bookingInfo");
+    console.log(bookingInfo);
     console.log(bookingInfoLen);
     if(bookingInfoLen == 0) {
       return (

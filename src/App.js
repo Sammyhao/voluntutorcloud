@@ -13,6 +13,7 @@ import Program_usage from './components/pages/Program_usage'
 import Book from './components/pages/Book'
 import Student_portfolio from './components/pages/Student_portfolio'
 import Message from './components/pages/Message'
+import Studymat from './components/pages/Study'
 import 'font-awesome/css/font-awesome.min.css'
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route exact path="/profile" element={<Profile />}></Route>
           <Route exact path="/appointment" element={<Appointment />}></Route>
           <Route exact path="/book" element={<Book />}></Route>
+          <Route exact path="/studymat" element={<Studymat />}></Route>
+          
           <Route
             exact
             path="/program_usage"

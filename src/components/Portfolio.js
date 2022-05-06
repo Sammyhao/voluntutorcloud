@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Portfolio.css'
 import Axios from 'axios'
 import { FaUser } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Loading from './Loading'
 import { Divider } from '@mui/material'
@@ -180,9 +181,9 @@ export default function Portfolio() {
                 {studentProfolio['0']['0'].requiredsub}
               </div>
               <div className="subtitle_port">{t[status]}</div>
-              <div className="content_port">
-                {studentProfolio['0']['0'].teachingmat}
-              </div>
+              <Link to="/studymat">
+              <div className="learn_more">{i[status]}</div>
+              </Link>
               <div className="subtitle_port">{u[status]}</div>
               <div className="content_port">
                 {studentProfolio['0']['0'].addinotes}

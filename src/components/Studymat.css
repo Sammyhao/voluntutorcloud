@@ -1,0 +1,148 @@
+.outerwrapstudy {
+  margin-top: 80px;
+  height: wrap;
+  width: wrap;
+  background-color: #ebe6e2;
+  padding: 70px;
+}
+.studysubject {
+  height: 100px;
+  cursor: pointer;
+  margin: 40px;
+  width: 100px;
+  transition: transform 0.3s;
+}
+.studysubject:hover {
+  transform: scale(1.1);
+}
+
+#studydialog {
+  background-color: whitesmoke;
+  overflow: block;
+  position: relative;
+  display: flex;
+  color: #b25634;
+  font-weight: 700;
+  font-size: 22px;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  height: wrap;
+  padding: 10px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.titlestudytotal {
+  color: #745140;
+  font-size: 50px;
+}
+#links {
+  background-color: whitesmoke;
+  overflow: block;
+  position: relative;
+  display: flex;
+  color: #745140;
+  flex-direction: row;
+  justify-items: flex-start;
+  align-items: center;
+  height: wrap;
+  padding: 20px;
+  cursor: pointer;
+  padding-top: 10px;
+  text-decoration: underline;
+  padding-left: 30px;
+}
+.studysubjectwrap {
+  height: wrap;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.titleandimg {
+  height: wrap;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.titlesubjectwrap {
+  height: wrap;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 70px;
+}
+.subjectwords {
+  width: 100%;
+  text-align: center;
+  color: #745140;
+  font-size: 20px;
+}
+.studymatwrap {
+  height: wrap;
+  margin-bottom: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.studymattitle {
+  margin-top: 30px;
+  color: #b25634;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 960px) {
+  .studymattitle {
+    margin-top: 30px;
+    color: #b25634;
+    font-size: 35px;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+  }
+  .studysubjectwrap {
+    height: wrap;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .titlestudytotal {
+    text-align: center;
+    width: 100%;
+    color: #745140;
+    font-size: 50px;
+  }
+  .studysubject {
+    height: 150px;
+    cursor: pointer;
+    margin: 40px;
+    width: 150px;
+  }
+  .subjectwords {
+    width: 100%;
+    text-align: center;
+    color: #745140;
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .titlestudytotal {
+    text-align: center;
+    width: 100%;
+    color: #745140;
+    font-size: 40px;
+  }
+}

@@ -51,6 +51,12 @@ export const SidebarData = [
     icon: <AiOutlineMessage />,
   },
   {
+    title: 'Study Materials',
+    path: '/studymat',
+    cName: 'nav-text',
+    icon: <AiOutlineMessage />,
+  },
+  {
     title: 'Student Portfolio',
     path: '/Student_portfolio',
     cName: 'nav-text',
