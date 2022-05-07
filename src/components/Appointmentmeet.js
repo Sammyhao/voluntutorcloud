@@ -114,6 +114,9 @@ function Appointmentmeet() {
     })
   }, [])
   
+  const meet = () => {
+    window.location.replace(googleMeetLink);
+  }
   function updateRecord() {
     console.log(contactInfo[0].username, contactInfo[0].studentname, contactInfo[0].studentmail, classDate, classduration, agenda, task, notes);
 
@@ -289,8 +292,8 @@ function Appointmentmeet() {
             <div className="app_name">{contactInfo["0"].studentname}</div>
           </div>
           </div>
-          <a className="meet" href={googleMeetLink}
-          target="_blank">{m[status]}</a>
+          <div className="meet" onClick={meet}
+          >{m[status]}</div>
         </div>
         <div className='classdate'>
           <div className="app_title">{f[status]}</div>
