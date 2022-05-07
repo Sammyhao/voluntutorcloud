@@ -52,7 +52,7 @@ function Appointmentmeet() {
   let r = ["Add additional notes!!","請輸入課堂筆記"]
 
   const meet = () => {
-    window.location.replace(googleMeetLink);
+    window.open(googleMeetLink);
   }
   let username = "";
   const [studentname, setStudentname] = useState("");

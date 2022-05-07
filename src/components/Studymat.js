@@ -131,10 +131,87 @@ export default function Studymat() {
     },
   ]
 
-  const [subMat, setSubMat] = useState([]);
+  
+let gradearr_ch = [
+  {
+    id: '一年級',
+    index: ['0', '1', '2', '3'],
+    subjects: [
+      '/images/home_chine.png',
+      '/images/home_math.png',
+      '/images/home_eng.png',
+      '/images/home_socia.png',
+    ],
+    subjects_name: ['國文', '數學', '英文', '生活'],
+  },
+  {
+    id: '二年級',
+    index: ['0', '1', '2', '3'],
+    subjects: [
+      '/images/home_chine.png',
+      '/images/home_math.png',
+      '/images/home_eng.png',
+      '/images/home_socia.png',
+    ],
+    subjects_name: ['國文', '數學', '英文', '生活'],
+  },
+  {
+    id: '三年級',
+    index: ['0', '1', '2', '3', '4'],
+    subjects: [
+      '/images/home_chine.png',
+      '/images/home_math.png',
+      '/images/home_eng.png',
+      '/images/home_socia.png',
+      '/images/home_science.png',
+    ],
+    subjects_name: ['國文', '數學', '英文', '社會', '自然'],
+  },
+  {
+    id: '四年級',
+    index: ['0', '1', '2', '3', '4'],
+    subjects: [
+      '/images/home_chine.png',
+      '/images/home_math.png',
+      '/images/home_eng.png',
+      '/images/home_socia.png',
+      '/images/home_science.png',
+    ],
+    subjects_name: ['國文', '數學', '英文', '社會', '自然'],
+  },
+  {
+    id: '五年級',
+    index: ['0', '1', '2', '3', '4'],
+    subjects: [
+      '/images/home_chine.png',
+      '/images/home_math.png',
+      '/images/home_eng.png',
+      '/images/home_socia.png',
+      '/images/home_science.png',
+    ],
+    subjects_name: ['國文', '數學', '英文', '社會', '自然'],
+  },
+  {
+    id: '六年級',
+    index: ['0', '1', '2', '3', '4'],
+    subjects: [
+      '/images/home_chine.png',
+      '/images/home_math.png',
+      '/images/home_eng.png',
+      '/images/home_socia.png',
+      '/images/home_science.png',
+    ],
+    subjects_name: ['國文', '數學', '英文', '社會', '自然'],
+  },
+]
 
+  const [subMat, setSubMat] = useState([]);
+  const [sub, setsub] = useState("");
+  const [gra, setgra] = useState("");
   function fetchSubMat(grade, subject) {
     console.log(grade, subject);
+    setsub(subject);
+    setgra(grade);
     Axios.post("https://voluntutorcloud-server.herokuapp.com/getSubMat", {
       grade: grade,
       subject: subject
@@ -157,7 +234,7 @@ export default function Studymat() {
               aria-labelledby="customized-dialog-title"
               open={open}
             >
-              <div id="studydialog">Detailed Materials</div>
+              <div id="studydialog">{gra}/{sub}</div>
               {/* <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div> */}
               <div>
                 {subMat.map((mat) => {
@@ -165,7 +242,7 @@ export default function Studymat() {
                   console.log(mat);
                   return (
                     <>
-                      <div id="links">{mat.chapterDesc}: <p onClick={() => window.location.replace(mat.link)}>{mat.link}</p></div>
+                      <div id="links">{mat.chapterDesc}<p onClick={() => window.open(mat.link)}></p></div>
                     </>
                   )
                 })}
@@ -250,76 +327,3 @@ export default function Studymat() {
   } else {
   }
 }
-
-// let gradearr_ch = [
-//   {
-//     id: '一年級',
-//     index: ['0', '1', '2', '3'],
-//     subjects: [
-//       '/images/home_chine.png',
-//       '/images/home_math.png',
-//       '/images/home_eng.png',
-//       '/images/home_socia.png',
-//     ],
-//     subjects_name: ['國文', '數學', '英文', '生活'],
-//   },
-//   {
-//     id: '二年級',
-//     index: ['0', '1', '2', '3'],
-//     subjects: [
-//       '/images/home_chine.png',
-//       '/images/home_math.png',
-//       '/images/home_eng.png',
-//       '/images/home_socia.png',
-//     ],
-//     subjects_name: ['國文', '數學', '英文', '生活'],
-//   },
-//   {
-//     id: '三年級',
-//     index: ['0', '1', '2', '3', '4'],
-//     subjects: [
-//       '/images/home_chine.png',
-//       '/images/home_math.png',
-//       '/images/home_eng.png',
-//       '/images/home_socia.png',
-//       '/images/home_science.png',
-//     ],
-//     subjects_name: ['國文', '數學', '英文', '社會', '自然'],
-//   },
-//   {
-//     id: '四年級',
-//     index: ['0', '1', '2', '3', '4'],
-//     subjects: [
-//       '/images/home_chine.png',
-//       '/images/home_math.png',
-//       '/images/home_eng.png',
-//       '/images/home_socia.png',
-//       '/images/home_science.png',
-//     ],
-//     subjects_name: ['國文', '數學', '英文', '社會', '自然'],
-//   },
-//   {
-//     id: '五年級',
-//     index: ['0', '1', '2', '3', '4'],
-//     subjects: [
-//       '/images/home_chine.png',
-//       '/images/home_math.png',
-//       '/images/home_eng.png',
-//       '/images/home_socia.png',
-//       '/images/home_science.png',
-//     ],
-//     subjects_name: ['國文', '數學', '英文', '社會', '自然'],
-//   },
-//   {
-//     id: '六年級',
-//     index: ['0', '1', '2', '3', '4'],
-//     subjects: [
-//       '/images/home_chine.png',
-//       '/images/home_math.png',
-//       '/images/home_eng.png',
-//       '/images/home_socia.png',
-//       '/images/home_science.png',
-//     ],
-//     subjects_name: ['國文', '數學', '英文', '社會', '自然'],
-//   },
-// ]
