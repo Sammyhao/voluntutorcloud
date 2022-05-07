@@ -234,7 +234,7 @@ let gradearr_ch = [
               aria-labelledby="customized-dialog-title"
               open={open}
             >
-              <div id="studydialog">{gra}/{sub}</div>
+              <div id="studydialog">{gra} grade / {sub} Detailed Materials</div>
               {/* <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div> */}
               <div>
                 {subMat.map((mat) => {
@@ -242,7 +242,8 @@ let gradearr_ch = [
                   console.log(mat);
                   return (
                     <>
-                      <div id="links">{mat.chapterDesc}<p onClick={() => window.open(mat.link)}></p></div>
+                      <a id="links"
+                      href={mat.link}>{mat.chapterDesc}</a>
                     </>
                   )
                 })}

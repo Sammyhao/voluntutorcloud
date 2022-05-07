@@ -51,9 +51,6 @@ function Appointmentmeet() {
   let q = ["1. Read one English book.","1. 閱讀一本英文繪本"]
   let r = ["Add additional notes!!","請輸入課堂筆記"]
 
-  const meet = () => {
-    window.open(googleMeetLink);
-  }
   let username = "";
   const [studentname, setStudentname] = useState("");
   const [studentmail, setStudentmail] = useState("");
@@ -292,7 +289,7 @@ function Appointmentmeet() {
             <div className="app_name">{contactInfo["0"].studentname}</div>
           </div>
           </div>
-          <div className="meet" onClick={meet}>{m[status]}</div>
+          <a className="meet" href={googleMeetLink}>{m[status]}</a>
         </div>
         <div className='classdate'>
           <div className="app_title">{f[status]}</div>
