@@ -242,7 +242,7 @@ let gradearr_ch = [
               <div id="warningdialogstudy">{d[status]}</div>
               
               {/* <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div> */}
-              <div>
+              <div className = "wrapperlinks">
                 {subMat.map((mat) => {
                   console.log("mat");
                   console.log(mat);
@@ -255,6 +255,7 @@ let gradearr_ch = [
                   )
                 })}
               </div>
+              
             </BootstrapDialog>
           </div>
           <div className="titlestudytotal">{c[status]}</div>

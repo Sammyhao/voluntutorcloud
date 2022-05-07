@@ -29,9 +29,9 @@
   align-items: center;
   height: wrap;
   padding: 10px;
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 #warningdialogstudy{
   background-color: whitesmoke;
@@ -46,8 +46,8 @@
   align-items: center;
   height: wrap;
   padding: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 .titlestudytotal {
   color: #745140;
@@ -63,10 +63,15 @@
   justify-items: flex-start;
   align-items: center;
   height: wrap;
-  padding: 20px;
-  cursor: pointer;
   padding-top: 10px;
+  cursor: pointer;
   text-decoration: underline;
+}
+.wrapperlinks{
+  height: wrap;
+  width: wrap;
+  padding: 30px;
+
 }
 .studysubjectwrap {
   height: wrap;
