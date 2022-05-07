@@ -247,11 +247,12 @@ let gradearr_ch = [
                   console.log("mat");
                   console.log(mat);
                   return (
-                    <>
+                    <div className='wordlinkwrapping'>
+                      <div className = "dotforstudy">• </div>
                       <a id="links"
                       href={mat.link}
-                      target="_blank">• {mat.chapterDesc}</a>
-                    </>
+                      target="_blank">{mat.chapterDesc}</a>
+                    </div>
                   )
                 })}
               </div>

@@ -67,6 +67,19 @@
   cursor: pointer;
   text-decoration: underline;
 }
+.dotforstudy{
+  background-color: whitesmoke;
+  overflow: block;
+  position: relative;
+  display: flex;
+  color: #745140;
+  flex-direction: row;
+  justify-items: flex-start;
+  align-items: center;
+  height: wrap;
+  padding-top: 10px;
+
+}
 .wrapperlinks{
   background-color: whitesmoke;
   overflow: block;
@@ -75,6 +88,10 @@
   padding: 30px;
   padding-top: 5px;
 
+}
+.wordlinkwrapping{
+  display: flex;
+  flex-direction: row;
 }
 .studysubjectwrap {
   height: wrap;
