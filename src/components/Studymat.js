@@ -34,6 +34,10 @@ export default function Studymat() {
     setopen(false)
   }
   let status = 0
+  let a = ["grade","年級"]
+  let b = ["Detailed Materials","教學教材"]
+  let c = ["Study Materials","志工教學教材"]
+  let d = ["Study Materials can only be used for volunteering session purposes.","教學教材只限使用於志工教學，請勿濫用。"]
   let gradearr_eng = [
     {
       id: 'Grade 1',
@@ -234,7 +238,9 @@ let gradearr_ch = [
               aria-labelledby="customized-dialog-title"
               open={open}
             >
-              <div id="studydialog">{gra} grade / {sub} Detailed Materials</div>
+              <div id="studydialog">{gra} {a[status]} / {sub} {b[status]}</div>
+              <div id="warningdialogstudy">{d[status]}</div>
+              
               {/* <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div> */}
               <div>
                 {subMat.map((mat) => {
@@ -243,14 +249,15 @@ let gradearr_ch = [
                   return (
                     <>
                       <a id="links"
-                      href={mat.link}>{mat.chapterDesc}</a>
+                      href={mat.link}
+                      target="_blank">• {mat.chapterDesc}</a>
                     </>
                   )
                 })}
               </div>
             </BootstrapDialog>
           </div>
-          <div className="titlestudytotal">Study Materials</div>
+          <div className="titlestudytotal">{c[status]}</div>
           <div className="studymatsecondwrap">
             {gradearr_eng.map((e) => {
               return (
@@ -290,11 +297,24 @@ let gradearr_ch = [
               aria-labelledby="customized-dialog-title"
               open={open}
             >
-              <div id="studydialog">Detailed Materials</div>
+              <div id="studydialog">{gra} {a[status]} / {sub} {b[status]}</div>
               {/* <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div> */}
+              <div>
+                {subMat.map((mat) => {
+                  console.log("mat");
+                  console.log(mat);
+                  return (
+                    <>
+                      <a id="links"
+                      href={mat.link}
+                      target="_blank">{mat.chapterDesc}</a>
+                    </>
+                  )
+                })}
+              </div>
             </BootstrapDialog>
           </div>
-          <div className="titlestudytotal">Study Materials</div>
+          <div className="titlestudytotal">{c[status]}</div>
           <div className="studymatsecondwrap">
             {gradearr_eng.map((e) => {
               return (
@@ -322,9 +342,7 @@ let gradearr_ch = [
               )
             })}
           </div>
-        </div>
-      )
+        </div>)
     }
-  } else {
   }
 }

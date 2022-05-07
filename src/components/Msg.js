@@ -27,7 +27,7 @@ function Msg() {
     })
   })
 
-  let a = ["You have to be paired with a student to unlock the function.","你需要和一位學生配對後才能解鎖訊息功能"]
+  let a = ["Function will be completed soon","此功能即將完成，請敬請期待！"]
   return (
     <div>
       <div className="warningmsg">

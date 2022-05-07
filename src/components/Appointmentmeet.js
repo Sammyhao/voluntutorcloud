@@ -289,7 +289,8 @@ function Appointmentmeet() {
             <div className="app_name">{contactInfo["0"].studentname}</div>
           </div>
           </div>
-          <a className="meet" href={googleMeetLink}>{m[status]}</a>
+          <a className="meet" href={googleMeetLink}
+          target="_blank">{m[status]}</a>
         </div>
         <div className='classdate'>
           <div className="app_title">{f[status]}</div>
