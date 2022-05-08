@@ -218,7 +218,6 @@ let gradearr_ch = [
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response.data);
-      setname(response.data.user[0].username);
       username = response.data.user[0].username;
       Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
         username: username,
