@@ -31,8 +31,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }))
 
-let googlemeetlinkalt = "";
-
 function Appointmentmeet() {
   const [status, setStatus] = useState(0);
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
@@ -91,6 +89,8 @@ function Appointmentmeet() {
   const handlesendmsg = () =>{
     setopenmsgsend(false)
   }
+
+  let googlemeetlinkalt = "";
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
