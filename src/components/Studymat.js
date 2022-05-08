@@ -213,7 +213,7 @@ let gradearr_ch = [
   const [sub, setsub] = useState("");
   const [gra, setgra] = useState("");
   let username = "";
-  const [isLoading, setLoadings] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [status, setStatus] = useState(0);
 
   useEffect(() => {
