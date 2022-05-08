@@ -104,7 +104,7 @@ function Appointmentmeet() {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
         username: username
       }).then((response) => {
-        setGoogleMeetLink(response.data[0].googleMeetLink);
+        setGoogleMeetLink(response.data[0].googlemeetlink);
         // googlemeetlinkalt = response.data[0].googleMeetLink;
         console.log(response.data);
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
