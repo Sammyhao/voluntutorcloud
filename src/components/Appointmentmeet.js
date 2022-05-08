@@ -90,7 +90,7 @@ function Appointmentmeet() {
     setopenmsgsend(false)
   }
 
-  let googlemeetlinkalt = "";
+  var googlemeetlinkalt = "";
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
