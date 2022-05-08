@@ -122,9 +122,9 @@ function Appointmentmeet() {
   
   const meet = () => {
     console.log("google meet link is ", googleMeetLink);
-    console.log("google meet link alt is ", googleMeetLinkalt);
+    // console.log("google meet link alt is ", googleMeetLinkalt);
     if(googleMeetLink) window.location.replace(googleMeetLink);
-    else window.location.replace(googlemeetlinkalt);
+    // else window.location.replace(googlemeetlinkalt);
   }
 
   function updateRecord() {
