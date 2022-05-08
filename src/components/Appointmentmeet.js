@@ -30,6 +30,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }))
+
+let googlemeetlinkalt = "";
+
 function Appointmentmeet() {
   const [status, setStatus] = useState(0);
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
@@ -88,6 +91,7 @@ function Appointmentmeet() {
   const handlesendmsg = () =>{
     setopenmsgsend(false)
   }
+
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       username = response.data.user[0].username;
@@ -101,7 +105,8 @@ function Appointmentmeet() {
         username: username
       }).then((response) => {
         setGoogleMeetLink(response.data[0].googleMeetLink);
-        console.log(googleMeetLink);
+        googlemeetlinkalt = response.data[0].googleMeetLink;
+        console.log(response.data);
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
             username: username,
         }).then((response) => {
@@ -116,8 +121,12 @@ function Appointmentmeet() {
   }, [])
   
   const meet = () => {
-    window.location.replace(googleMeetLink);
+    console.log("google meet link is ", googleMeetLink);
+    console.log("google meet link alt is ", googleMeetLinkalt);
+    if(googleMeetLink) window.location.replace(googleMeetLink);
+    else window.location.replace(googlemeetlinkalt);
   }
+
   function updateRecord() {
     console.log(contactInfo[0].username, contactInfo[0].studentname, contactInfo[0].studentmail, classDate, classduration, agenda, task, notes);
 
