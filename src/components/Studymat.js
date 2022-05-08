@@ -33,7 +33,6 @@ export default function Studymat() {
   const handleclose = () => {
     setopen(false)
   }
-  let status = 0
   let a = ["grade","年級"]
   let b = ["Detailed Materials","教學教材"]
   let c = ["Study Materials","志工教學教材"]
@@ -212,6 +211,26 @@ let gradearr_ch = [
   const [subMat, setSubMat] = useState([]);
   const [sub, setsub] = useState("");
   const [gra, setgra] = useState("");
+  let username = "";
+  const [isLoading, setLoadings] = useState(true);
+  const [status, setStatus] = useState(0);
+
+  useEffect(() => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+      console.log(response.data);
+      setname(response.data.user[0].username);
+      username = response.data.user[0].username;
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+        username: username,
+      }).then((response) => {
+        console.log(response.data);
+        if(response.data == "chinese") setStatus(1);
+        else setStatus(0);
+        console.log(status);
+      })
+    })
+  }, [])
+
   function fetchSubMat(grade, subject) {
     console.log(grade, subject);
     setsub(subject);
