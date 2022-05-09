@@ -207,14 +207,6 @@ export default function S_Booking() {
     console.log("bookingInfo");
     console.log(bookingInfo);
     console.log(bookingInfoLen);
-    if(isLoading1 || isLoading2) {
-      return (
-        <div className="nokid">
-          <div className="noStudentFont">{l[status]}</div>
-          <div className="noStudentFont2">{m[status]}</div>
-        </div>
-      )
-    } else {
       if(bookingInfoLen == 0) {
         return (
           <div className="outestcontainerbook">
@@ -237,7 +229,7 @@ export default function S_Booking() {
               >
                 <div className="bookingconfirmheaders">{k[status]}</div>
                 <div className="bookingconfirmcontent">
-                  {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]} 
+                  {/* {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]}  */}
                 </div>
               </BootstrapDialog>
             </div>
@@ -254,10 +246,10 @@ export default function S_Booking() {
                         </div>
                         <div className="bookingrequesttotal">
                           <div className="bookingrequestsub">{teacherRealname}</div>
-                          <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
+                          <div className="bookinrequesttime">1 hr</div>
                         </div>
                         <div className="bookingrequesttotaltime">
-                          <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div>
+                          {/* <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div> */}
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
@@ -279,8 +271,11 @@ export default function S_Booking() {
                
               </div>
             </div>
-          </div>)
-      } else {
+          </div>
+        )
+      } 
+      
+      else {
         return (
           <div className="outestcontainerbook">
             <div id="dialogcontainer">
@@ -376,6 +371,5 @@ export default function S_Booking() {
           </div>
         )
       }
-    }
   }
 }
