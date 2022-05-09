@@ -178,7 +178,7 @@ export default function S_Booking() {
   username: "admin_stu"
   [[Prototype]]: Object 
 */
-// meetlinktemp: https://meet.google.com/ddk-cuae-bnn
+  meetlinktemp: "https://meet.google.com/ddk-cuae-bnn"
 
   let a = ['Upcoming Meetings', '加入會議']
   // let teachername = 'Ruby'
@@ -259,20 +259,23 @@ export default function S_Booking() {
               {/* <Divider className="lineforbooking"></Divider> */}
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitlebooking">{o[status]}</div>
-                <div
-                  className="bookingwrappbottom"
-                  >
-                <div className="bookingcontent">{r[status]}</div>
- 
-                </div>
+                 
                
-              </div>
+              </div> 
             </div>
           </div>
         )
       // } 
   }
 }
+
+{/* <div
+                  className="bookingwrappbottom"
+                  style={ 'block' }
+                  >
+                <div className="bookingcontent">{r[status]}</div>
+ 
+                </div> */}
 
 // else {
 //   return (
