@@ -78,8 +78,8 @@ export default function S_Booking() {
   const [status, setStatus] = useState(0)
   const [isLoading1, setLoading1] = useState(true)
   const [isLoading2, setLoading2] = useState(true)
-  const [bookingInfo, setBookingInfo] = useState([]);
-  const [bookingInfoLen, setBookingInfoLen] = useState([]);
+  // const [bookingInfo, setBookingInfo] = useState([]);
+  // const [bookingInfoLen, setBookingInfoLen] = useState([]);
   const [haveSetStatus, setHaveSetStatus] = useState(false);
 
   let username = '', studentname = '', teacherusername = "";
@@ -136,8 +136,8 @@ export default function S_Booking() {
                 username: teacherusername,
               }).then((response) => {
                 console.log(response);
-                setBookingInfo(response.data);
-                setBookingInfoLen(response.data.length)
+                // setBookingInfo(response.data);
+                // setBookingInfoLen(response.data.length)
               })
               Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
                 username: username,
@@ -204,10 +204,7 @@ export default function S_Booking() {
       <Loading/>
     )
   } else {
-    console.log("bookingInfo");
-    console.log(bookingInfo);
-    console.log(bookingInfoLen);
-      if(bookingInfoLen == 0) {
+      // if(bookingInfoLen == 0) {
         return (
           <div className="outestcontainerbook">
             <div id="dialogcontainer">
@@ -273,103 +270,103 @@ export default function S_Booking() {
             </div>
           </div>
         )
-      } 
-      
-      else {
-        return (
-          <div className="outestcontainerbook">
-            <div id="dialogcontainer">
-              <BootstrapDialog
-                onClose={handlecancelclose}
-                id="diabook"
-                aria-labelledby="customized-dialog-title"
-                open={cancelopen}
-              >
-                <div className="bookingprogramdia">{j[status]}</div>
-              </BootstrapDialog>
-            </div>
-            <div id="dialogcontainer">
-              <BootstrapDialog
-                onClose={handleconfirmopen}
-                id="diabook"
-                aria-labelledby="customized-dialog-title"
-                open={confirmopen}
-              >
-                <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">
-                  {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]} 
-                </div>
-              </BootstrapDialog>
-            </div>
-            <div className="bookingwraping">
-              <div className="bookingwrappinginnerfirst">
-                <div className="bookingtitleall">{a[status]}</div>
-  
-                <div className="bookingoutestwrap">
-                  <div className="bookingrow">
-                    <div className="bookingwrapsecond">
-                      <div className="bookingwordswrapfirst">
-                        <div className="bookingimageprog">
-                          <FaUser className="bookingprog_avatar" />
-                        </div>
-                        <div className="bookingrequesttotal">
-                          <div className="bookingrequestsub">{teacherRealname}</div>
-                          <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
-                        </div>
-                        <div className="bookingrequesttotaltime">
-                          <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div>
-                        </div>
-                      </div>
-                      <div className="bookingbuttonswrapping">
-                        <div className="buttonbookingcheck" onClick={opengoogle}>{n[status]}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* <Divider className="lineforbooking"></Divider> */}
-              <div className="bookingwrappinginnerfirst">
-                <div className="bookingtitlebooking">{o[status]}</div>
-  
-                <div
-                  className="bookingwrappbottom"
-                  style={{ display: cancel ? 'block' : 'none' }}
-                >
-                 
-                  <div className="bookingrow">
-                    <div className="bookingwrapsecond">
-                      <div className="bookingwordswrapfirst">
-                        <div className="bookingimageprog">
-                          <FaUser className="bookingprog_avatar" />
-                        </div>
-                        <div className="bookingrequesttotal">
-                          <div className="bookingrequestsub">{teacherRealname}</div>
-                          <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
-                        </div>
-                        <div className="bookingrequesttotaltime">
-                          <div className="detailtimeforbook">{bookingInfo["0"]["date"] + ' ' + bookingInfo["0"]["time"]}</div>
-                        </div>
-                      </div>
-                      <div className="bookingbuttonswrapping">
-                        <div className="buttonbookingcheck" onClick={cancelmeeting}>
-                          {/* this is where meeting is cancelled */}
-                          {p[status]}
-                        </div>
-                        <div
-                          className="buttonbookingcheck"
-                          onClick={confirmmeeting}
-                        >
-                          {/* this is where meeting is confirmed */}
-                          {q[status]}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      }
+      // } 
   }
 }
+
+// else {
+//   return (
+//     <div className="outestcontainerbook">
+//       <div id="dialogcontainer">
+//         <BootstrapDialog
+//           onClose={handlecancelclose}
+//           id="diabook"
+//           aria-labelledby="customized-dialog-title"
+//           open={cancelopen}
+//         >
+//           <div className="bookingprogramdia">{j[status]}</div>
+//         </BootstrapDialog>
+//       </div>
+//       <div id="dialogcontainer">
+//         <BootstrapDialog
+//           onClose={handleconfirmopen}
+//           id="diabook"
+//           aria-labelledby="customized-dialog-title"
+//           open={confirmopen}
+//         >
+//           <div className="bookingconfirmheaders">{k[status]}</div>
+//           <div className="bookingconfirmcontent">
+//             {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]} 
+//           </div>
+//         </BootstrapDialog>
+//       </div>
+//       <div className="bookingwraping">
+//         <div className="bookingwrappinginnerfirst">
+//           <div className="bookingtitleall">{a[status]}</div>
+
+//           <div className="bookingoutestwrap">
+//             <div className="bookingrow">
+//               <div className="bookingwrapsecond">
+//                 <div className="bookingwordswrapfirst">
+//                   <div className="bookingimageprog">
+//                     <FaUser className="bookingprog_avatar" />
+//                   </div>
+//                   <div className="bookingrequesttotal">
+//                     <div className="bookingrequestsub">{teacherRealname}</div>
+//                     <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
+//                   </div>
+//                   <div className="bookingrequesttotaltime">
+//                     <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div>
+//                   </div>
+//                 </div>
+//                 <div className="bookingbuttonswrapping">
+//                   <div className="buttonbookingcheck" onClick={opengoogle}>{n[status]}</div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//         {/* <Divider className="lineforbooking"></Divider> */}
+//         <div className="bookingwrappinginnerfirst">
+//           <div className="bookingtitlebooking">{o[status]}</div>
+
+//           <div
+//             className="bookingwrappbottom"
+//             style={{ display: cancel ? 'block' : 'none' }}
+//           >
+           
+//             <div className="bookingrow">
+//               <div className="bookingwrapsecond">
+//                 <div className="bookingwordswrapfirst">
+//                   <div className="bookingimageprog">
+//                     <FaUser className="bookingprog_avatar" />
+//                   </div>
+//                   <div className="bookingrequesttotal">
+//                     <div className="bookingrequestsub">{teacherRealname}</div>
+//                     <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
+//                   </div>
+//                   <div className="bookingrequesttotaltime">
+//                     <div className="detailtimeforbook">{bookingInfo["0"]["date"] + ' ' + bookingInfo["0"]["time"]}</div>
+//                   </div>
+//                 </div>
+//                 <div className="bookingbuttonswrapping">
+//                   <div className="buttonbookingcheck" onClick={cancelmeeting}>
+//                     {/* this is where meeting is cancelled */}
+//                     {p[status]}
+//                   </div>
+//                   <div
+//                     className="buttonbookingcheck"
+//                     onClick={confirmmeeting}
+//                   >
+//                     {/* this is where meeting is confirmed */}
+//                     {q[status]}
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
