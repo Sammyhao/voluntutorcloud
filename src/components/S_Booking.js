@@ -197,6 +197,7 @@ export default function S_Booking() {
   let o = ['Bookings', '預約會議']
   let p = ['Cancel', '拒絕']
   let q = ['Confirm', '確認']
+  let r = ['You have not received any bookings', '你還沒有收到任何會議預約邀請喔']
   // 這裡true的條件改成是否有學生喔
   if (isLoading1 || isLoading2){
     return(
@@ -214,91 +215,158 @@ export default function S_Booking() {
         </div>
       )
     } else {
-      return (
-        <div className="outestcontainerbook">
-          <div id="dialogcontainer">
-            <BootstrapDialog
-              onClose={handlecancelclose}
-              id="diabook"
-              aria-labelledby="customized-dialog-title"
-              open={cancelopen}
-            >
-              <div className="bookingprogramdia">{j[status]}</div>
-            </BootstrapDialog>
-          </div>
-          <div id="dialogcontainer">
-            <BootstrapDialog
-              onClose={handleconfirmopen}
-              id="diabook"
-              aria-labelledby="customized-dialog-title"
-              open={confirmopen}
-            >
-              <div className="bookingconfirmheaders">{k[status]}</div>
-              <div className="bookingconfirmcontent">
-                {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]} 
-              </div>
-            </BootstrapDialog>
-          </div>
-          <div className="bookingwraping">
-            <div className="bookingwrappinginnerfirst">
-              <div className="bookingtitleall">{a[status]}</div>
-
-              <div className="bookingoutestwrap">
-                <div className="bookingrow">
-                  <div className="bookingwrapsecond">
-                    <div className="bookingwordswrapfirst">
-                      <div className="bookingimageprog">
-                        <FaUser className="bookingprog_avatar" />
-                      </div>
-                      <div className="bookingrequesttotal">
-                        <div className="bookingrequestsub">{teacherRealname}</div>
-                        <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
-                      </div>
-                      <div className="bookingrequesttotaltime">
-                        <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div>
-                      </div>
-                    </div>
-                    <div className="bookingbuttonswrapping">
-                      <div className="buttonbookingcheck" onClick={opengoogle}>{n[status]}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <Divider className="lineforbooking"></Divider> */}
-            <div className="bookingwrappinginnerfirst">
-              <div className="bookingtitlebooking">{o[status]}</div>
-
-              <div
-                className="bookingwrappbottom"
-                style={{ display: cancel ? 'block' : 'none' }}
+      if(bookingInfoLen == 0) {
+        return (
+          <div className="outestcontainerbook">
+            <div id="dialogcontainer">
+              <BootstrapDialog
+                onClose={handlecancelclose}
+                id="diabook"
+                aria-labelledby="customized-dialog-title"
+                open={cancelopen}
               >
-               
-                <div className="bookingrow">
-                  <div className="bookingwrapsecond">
-                    <div className="bookingwordswrapfirst">
-                      <div className="bookingimageprog">
-                        <FaUser className="bookingprog_avatar" />
+                <div className="bookingprogramdia">{j[status]}</div>
+              </BootstrapDialog>
+            </div>
+            <div id="dialogcontainer">
+              <BootstrapDialog
+                onClose={handleconfirmopen}
+                id="diabook"
+                aria-labelledby="customized-dialog-title"
+                open={confirmopen}
+              >
+                <div className="bookingconfirmheaders">{k[status]}</div>
+                <div className="bookingconfirmcontent">
+                  {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]} 
+                </div>
+              </BootstrapDialog>
+            </div>
+            <div className="bookingwraping">
+              <div className="bookingwrappinginnerfirst">
+                <div className="bookingtitleall">{a[status]}</div>
+  
+                <div className="bookingoutestwrap">
+                  <div className="bookingrow">
+                    <div className="bookingwrapsecond">
+                      <div className="bookingwordswrapfirst">
+                        <div className="bookingimageprog">
+                          <FaUser className="bookingprog_avatar" />
+                        </div>
+                        <div className="bookingrequesttotal">
+                          <div className="bookingrequestsub">{teacherRealname}</div>
+                          <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
+                        </div>
+                        <div className="bookingrequesttotaltime">
+                          <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div>
+                        </div>
                       </div>
-                      <div className="bookingrequesttotal">
-                        <div className="bookingrequestsub">{teacherRealname}</div>
-                        <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
-                      </div>
-                      <div className="bookingrequesttotaltime">
-                        <div className="detailtimeforbook">{bookingInfo["0"]["date"] + ' ' + bookingInfo["0"]["time"]}</div>
+                      <div className="bookingbuttonswrapping">
+                        <div className="buttonbookingcheck" onClick={opengoogle}>{n[status]}</div>
                       </div>
                     </div>
-                    <div className="bookingbuttonswrapping">
-                      <div className="buttonbookingcheck" onClick={cancelmeeting}>
-                        {/* this is where meeting is cancelled */}
-                        {p[status]}
+                  </div>
+                </div>
+              </div>
+              {/* <Divider className="lineforbooking"></Divider> */}
+              <div className="bookingwrappinginnerfirst">
+                <div className="bookingtitlebooking">{o[status]}</div>
+                <div
+                  className="bookingwrappbottom"
+                  >
+                <div className="detailtimeforbook">{r[status]}</div>
+ 
+                </div>
+               
+              </div>
+            </div>
+          </div>)
+      } else {
+        return (
+          <div className="outestcontainerbook">
+            <div id="dialogcontainer">
+              <BootstrapDialog
+                onClose={handlecancelclose}
+                id="diabook"
+                aria-labelledby="customized-dialog-title"
+                open={cancelopen}
+              >
+                <div className="bookingprogramdia">{j[status]}</div>
+              </BootstrapDialog>
+            </div>
+            <div id="dialogcontainer">
+              <BootstrapDialog
+                onClose={handleconfirmopen}
+                id="diabook"
+                aria-labelledby="customized-dialog-title"
+                open={confirmopen}
+              >
+                <div className="bookingconfirmheaders">{k[status]}</div>
+                <div className="bookingconfirmcontent">
+                  {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]} 
+                </div>
+              </BootstrapDialog>
+            </div>
+            <div className="bookingwraping">
+              <div className="bookingwrappinginnerfirst">
+                <div className="bookingtitleall">{a[status]}</div>
+  
+                <div className="bookingoutestwrap">
+                  <div className="bookingrow">
+                    <div className="bookingwrapsecond">
+                      <div className="bookingwordswrapfirst">
+                        <div className="bookingimageprog">
+                          <FaUser className="bookingprog_avatar" />
+                        </div>
+                        <div className="bookingrequesttotal">
+                          <div className="bookingrequestsub">{teacherRealname}</div>
+                          <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
+                        </div>
+                        <div className="bookingrequesttotaltime">
+                          <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div>
+                        </div>
                       </div>
-                      <div
-                        className="buttonbookingcheck"
-                        onClick={confirmmeeting}
-                      >
-                        {/* this is where meeting is confirmed */}
-                        {q[status]}
+                      <div className="bookingbuttonswrapping">
+                        <div className="buttonbookingcheck" onClick={opengoogle}>{n[status]}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <Divider className="lineforbooking"></Divider> */}
+              <div className="bookingwrappinginnerfirst">
+                <div className="bookingtitlebooking">{o[status]}</div>
+  
+                <div
+                  className="bookingwrappbottom"
+                  style={{ display: cancel ? 'block' : 'none' }}
+                >
+                 
+                  <div className="bookingrow">
+                    <div className="bookingwrapsecond">
+                      <div className="bookingwordswrapfirst">
+                        <div className="bookingimageprog">
+                          <FaUser className="bookingprog_avatar" />
+                        </div>
+                        <div className="bookingrequesttotal">
+                          <div className="bookingrequestsub">{teacherRealname}</div>
+                          <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
+                        </div>
+                        <div className="bookingrequesttotaltime">
+                          <div className="detailtimeforbook">{bookingInfo["0"]["date"] + ' ' + bookingInfo["0"]["time"]}</div>
+                        </div>
+                      </div>
+                      <div className="bookingbuttonswrapping">
+                        <div className="buttonbookingcheck" onClick={cancelmeeting}>
+                          {/* this is where meeting is cancelled */}
+                          {p[status]}
+                        </div>
+                        <div
+                          className="buttonbookingcheck"
+                          onClick={confirmmeeting}
+                        >
+                          {/* this is where meeting is confirmed */}
+                          {q[status]}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -306,8 +374,8 @@ export default function S_Booking() {
               </div>
             </div>
           </div>
-        </div>
-      )
+        )
+      }
     }
   }
 }

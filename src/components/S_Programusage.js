@@ -35,8 +35,10 @@ function Programusage() {
   const [contactInfo, setContactInfo] = useState([]);
   const [isLoading, setLoading] = useState(true);
   let a = [
-    "Oops, you are not paired with a teacher yet!",
-    '噢, 目前您還未和老師成功配對！',
+    // "Oops, you are not paired with a teacher yet!",
+    'Looking forward to the first lesson!',
+    // '噢, 目前您還未和老師成功配對！',
+    '請期待第一次的課程!'
   ]
   let b = ['We will assign you a teacher soon!', '我們會盡快配對一位老師給您！']
   let c = ["Total hours:","總小時數："]
@@ -95,7 +97,8 @@ function Programusage() {
     console.log("isLoading")
     return (
       <div className = "nokid">
-        <div className="noStudentFont">{a[status]}</div>
+        {/* <div className="noStudentFont">{a[status]}</div> */}
+        {/* <div className="noStudentFont2">{b[status]}</div> */}
         <div className="noStudentFont2">{b[status]}</div>
       </div>
     )
