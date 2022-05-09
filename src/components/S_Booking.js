@@ -47,7 +47,7 @@ export default function S_Booking() {
   const [cancel, setcancel] = useState(true)
   
   const opengoogle = () => {
-    window.location.replace(googlemeetlink);
+    window.location.replace(meetlinktemp);
   }
 
   const handlecancelclose = () => {
@@ -178,7 +178,7 @@ export default function S_Booking() {
   username: "admin_stu"
   [[Prototype]]: Object 
 */
-  meetlinktemp: "https://meet.google.com/ddk-cuae-bnn"
+  let meetlinktemp = "https://meet.google.com/ddk-cuae-bnn"
 
   let a = ['Upcoming Meetings', '加入會議']
   // let teachername = 'Ruby'
