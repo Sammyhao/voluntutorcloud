@@ -207,7 +207,15 @@ export default function S_Booking() {
     console.log("bookingInfo");
     console.log(bookingInfo);
     console.log(bookingInfoLen);
-    if(bookingInfoLen == 0) {
+    if(isLoading1 || isLoading2) {
+      return (
+        <div className="nokid">
+          <div className="noStudentFont">{l[status]}</div>
+          <div className="noStudentFont2">{m[status]}</div>
+        </div>
+      )
+    } else {
+      if(bookingInfoLen == 0) {
         return (
           <div className="outestcontainerbook">
             <div id="dialogcontainer">
@@ -265,7 +273,7 @@ export default function S_Booking() {
                 <div
                   className="bookingwrappbottom"
                   >
-                <div className="detailtimeforbook">{r[status]}</div>
+                <div className="bookingcontent">{r[status]}</div>
  
                 </div>
                
