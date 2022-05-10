@@ -411,15 +411,15 @@ function Profile_user() {
             }}
           />
           <div className="btn-save" onClick={(e) => {
-            console.log(e.target.value);
+            console.log(googlemeetlink);
             Axios.post(
               'https://voluntutorcloud-server.herokuapp.com/updateGooglemeetlink',
               {
                 username: name,
-                googlemeetlink: e.target.value,
+                googlemeetlink: googlemeetlink,
               },
             ).then((response) => {
-              console.log(e.target.value)
+              console.log(googlemeetlink)
               console.log(response)
             })
           }}>{lm[status]}</div>
