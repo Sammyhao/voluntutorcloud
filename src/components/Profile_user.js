@@ -242,13 +242,6 @@ function Profile_user() {
   const logout = () => {
     Axios.post("https://voluntutorcloud-server.herokuapp.com/logout").then((response) => {
       console.log(response);
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-        if (response.data.isLoggedIn) {
-          Axios.post("https://voluntutorcloud-server.herokuapp.com/logout").then((response) => {console.log(response)})
-        } else {
-          
-        }
-      })
     })
   }
 
