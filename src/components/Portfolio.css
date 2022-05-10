@@ -236,7 +236,7 @@
   border: 1px solid #b17b67;
   font-family: 'Lora';
   }
-.learn_more_second{
+.learn_more_second:hover{
   transition: all 0.3s ease-out;
   background: #efe9e5;
   color: #c49483;
