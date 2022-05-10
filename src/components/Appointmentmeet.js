@@ -157,7 +157,8 @@ function Appointmentmeet() {
         studentname: contactInfo[0].studentname,
         studentmail: contactInfo[0].studentmail,
       }).then((response) => {
-        totalhour = response.data[response.data.length-1].hoursleft;
+        if(response.data.length) totalhour = response.data[response.data.length-1].hoursleft;
+        else totalhour = 8;
         Axios.post("https://voluntutorcloud-server.herokuapp.com/updateRecord", {
           username: contactInfo[0].username,
           studentname: contactInfo[0].studentname,
