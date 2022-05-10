@@ -411,6 +411,7 @@ function Profile_user() {
             }}
           />
           <div className="btn-save" onClick={(e) => {
+            console.log(name, e.target.value);
             Axios.post(
               'https://voluntutorcloud-server.herokuapp.com/updateGooglemeetlink',
               {
