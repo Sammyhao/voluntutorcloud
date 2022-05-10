@@ -36,7 +36,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }))
 function Profile_user() {
-  const [googlemeet, setgooglemeet] = useState('')
 
   const [name, setname] = useState('VolunTutor Cloud')
   const [phone, setphone] = useState('0912345678')
@@ -398,7 +397,7 @@ function Profile_user() {
         <div className="googleMeetLinkTempchanging">
           <div className="googlemeetfirst">{mn[status]}</div>
           <div className="linkpersonal">
-            https://meet.google.com/nkg-ucod-rre?authuser=1
+              {googlemeetlink}
           </div>
           <div className="googlemeetwarning">{kl[status]}</div>
           <input
@@ -406,12 +405,14 @@ function Profile_user() {
             className="googlemeetedit"
             type="text"
             placeholder="Google Meet Link"
-            value={googlemeet}
+            value={googlemeetlink}
             onChange={(e) => {
               setGooglemeetlink(e.target.value)
             }}
           />
-          <div className="btn-save" >{lm[status]}</div>
+          <div className="btn-save" onClick={(e) => {
+            
+          }}>{lm[status]}</div>
         </div>
         <div className="currentprogram">
           <BsFillEmojiSmileFill className="currentprogramicon"></BsFillEmojiSmileFill>

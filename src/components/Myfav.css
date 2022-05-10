@@ -38,6 +38,12 @@
   padding-left: 15px;
   justify-content: center;
 }
+
+#fav_outcontainer{
+  margin-top: 80px;
+  height: 100vh;
+}
+
 #outcontainer {
   margin-top: 80px;
   height: 100vh;
@@ -47,11 +53,17 @@
   #outcontainer {
     height: 1000px;
   }
+  #fav_outcontainer{
+    height: 1600px;
+  }
 }
 
 @media screen and (max-width: 600px) {
   #outcontainer {
     height: 1200px;
+  }
+  #fav_outcontainer{
+    height: 1400px;
   }
 }
 #nofav {
