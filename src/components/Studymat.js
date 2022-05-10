@@ -46,7 +46,7 @@ export default function Studymat() {
         '/images/home_chine.png',
         '/images/home_math.png',
         '/images/home_eng.png',
-        '/images/home_eng.png',
+        '/images/home_life.png',
       ],
       subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
     },
@@ -57,7 +57,7 @@ export default function Studymat() {
         '/images/home_chine.png',
         '/images/home_math.png',
         '/images/home_eng.png',
-        '/images/home_eng.png',
+        '/images/home_life.png',
       ],
       subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
     },
@@ -138,29 +138,35 @@ export default function Studymat() {
   
 let gradearr_ch = [
   {
-    id: '一年級',
+    id: 'Grade 1',
+    grade_title: '一年級',
     index: ['0', '1', '2', '3'],
     subjects: [
       '/images/home_chine.png',
       '/images/home_math.png',
       '/images/home_eng.png',
-      '/images/home_socia.png',
+      '/images/home_life.png',
     ],
-    subjects_name: ['國文', '數學', '英文', '生活'],
+    
+    subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
+    subjects_name_title: ['國文', '數學', '英文', '生活'],
   },
   {
-    id: '二年級',
+    id: 'Grade 2',
+    grade_title: '二年級',
     index: ['0', '1', '2', '3'],
     subjects: [
       '/images/home_chine.png',
       '/images/home_math.png',
       '/images/home_eng.png',
-      '/images/home_socia.png',
+      '/images/home_life.png',
     ],
-    subjects_name: ['國文', '數學', '英文', '生活'],
+    subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
+    subjects_name_title: ['國文', '數學', '英文', '生活'],
   },
   {
-    id: '三年級',
+    id: 'Grade 3',
+    grade_title: '三年級',
     index: ['0', '1', '2', '3', '4'],
     subjects: [
       '/images/home_chine.png',
@@ -169,10 +175,18 @@ let gradearr_ch = [
       '/images/home_socia.png',
       '/images/home_science.png',
     ],
-    subjects_name: ['國文', '數學', '英文', '社會', '自然'],
+    subjects_name: [
+      'Chinese',
+      'Math',
+      'English',
+      'Social Studies',
+      'Science',
+    ],
+    subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
   },
   {
-    id: '四年級',
+    id: 'Grade 4',
+    grade_title: '四年級',
     index: ['0', '1', '2', '3', '4'],
     subjects: [
       '/images/home_chine.png',
@@ -181,10 +195,18 @@ let gradearr_ch = [
       '/images/home_socia.png',
       '/images/home_science.png',
     ],
-    subjects_name: ['國文', '數學', '英文', '社會', '自然'],
+    subjects_name: [
+      'Chinese',
+      'Math',
+      'English',
+      'Social Studies',
+      'Science',
+    ],
+    subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
   },
   {
-    id: '五年級',
+    id: 'Grade 5',
+    grade_title: '五年級',
     index: ['0', '1', '2', '3', '4'],
     subjects: [
       '/images/home_chine.png',
@@ -193,10 +215,18 @@ let gradearr_ch = [
       '/images/home_socia.png',
       '/images/home_science.png',
     ],
-    subjects_name: ['國文', '數學', '英文', '社會', '自然'],
+    subjects_name: [
+      'Chinese',
+      'Math',
+      'English',
+      'Social Studies',
+      'Science',
+    ],
+    subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
   },
   {
-    id: '六年級',
+    id: 'Grade 6',
+    grade_title: '六年級',
     index: ['0', '1', '2', '3', '4'],
     subjects: [
       '/images/home_chine.png',
@@ -205,7 +235,14 @@ let gradearr_ch = [
       '/images/home_socia.png',
       '/images/home_science.png',
     ],
-    subjects_name: ['國文', '數學', '英文', '社會', '自然'],
+    subjects_name: [
+      'Chinese',
+      'Math',
+      'English',
+      'Social Studies',
+      'Science',
+    ],
+    subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
   },
 ]
 
@@ -297,7 +334,10 @@ let gradearr_ch = [
                             className="studysubject"
                             src={e.subjects[i]}
                             onClick={() => {
+                              
                               let grade = e.id.substring(e.id.length - 1);
+                              setgra(grade)
+                              setsub(e.subjects_name[i]);
                               console.log(grade, e.subjects_name[i]);
                               fetchSubMat(grade, e.subjects_name[i]);
                             }}
@@ -347,7 +387,7 @@ let gradearr_ch = [
             {gradearr_ch.map((e) => {
               return (
                 <div className="studymatwrap">
-                  <div className="studymattitle">{e.id}</div>
+                  <div className="studymattitle">{e.grade_title}</div>
                   <div className="titleandimg">
                     <div className="studysubjectwrap">
                       {e.index.map((i) => (
@@ -356,12 +396,15 @@ let gradearr_ch = [
                             className="studysubject"
                             src={e.subjects[i]}
                             onClick={() => {
+                              let g = e.grade_title.substring(0,1);
+                              setgra(g)
+                              setsub(e.subjects_name_title[i]);
                               let grade = e.id.substring(e.id.length - 1);
                               console.log(grade, e.subjects_name[i]);
                               fetchSubMat(grade, e.subjects_name[i]);
                             }}
                           ></img>
-                          <div className="subjectwords">{e.subjects_name[i]}</div>
+                          <div className="subjectwords">{e.subjects_name_title[i]}</div>
                         </div>
                       ))}
                     </div>

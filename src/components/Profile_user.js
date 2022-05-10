@@ -75,6 +75,7 @@ function Profile_user() {
   // const [readonly, setread] = useState('')
   const [userInfo, setUserInfo] = useState([])
   const [emailError, setEmailError] = useState('')
+  const [googlemeetlink, setGooglemeetlink] = useState('');
   const [iconstyle, seticonstyle] = useState(
     <div>
       <MdModeEdit />
@@ -319,6 +320,8 @@ function Profile_user() {
           setstudentpers(response.data[0].targetStuPerso)
           setbio(response.data[0].bio)
           setabout(response.data[0].about)
+          setGooglemeetlink(response.data[0].googlemeetlink)
+          
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
             username: username,
           }).then((response) => {
@@ -405,10 +408,10 @@ function Profile_user() {
             placeholder="Google Meet Link"
             value={googlemeet}
             onChange={(e) => {
-              setgooglemeet(e.target.value)
+              setGooglemeetlink(e.target.value)
             }}
           />
-          <div className="btn-save">{lm[status]}</div>
+          <div className="btn-save" >{lm[status]}</div>
         </div>
         <div className="currentprogram">
           <BsFillEmojiSmileFill className="currentprogramicon"></BsFillEmojiSmileFill>
