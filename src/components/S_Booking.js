@@ -47,6 +47,7 @@ export default function S_Booking() {
   const [cancel, setcancel] = useState(true)
   
   const opengoogle = () => {
+    console.log(googlemeetlink);
     window.location.replace(googlemeetlink);
   }
 
@@ -252,7 +253,7 @@ export default function S_Booking() {
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitleall">{a[status]}</div>
   
-                {/* <div className="bookingoutestwrap">
+                <div className="bookingoutestwrap">
                   <div className="bookingrow">
                     <div className="bookingwrapsecond">
                       <div className="bookingwordswrapfirst">
@@ -261,9 +262,9 @@ export default function S_Booking() {
                         </div>
                         <div className="bookingrequesttotal">
                           <div className="bookingrequestsub">{teacherRealname}</div>
-                          <div className="bookinrequesttime">1 hr</div>
+                          <div className="bookinrequesttime">5/12/2022 or 5/13/2022 19:00~20:00</div>
                         </div>
-                        <div className="bookingrequesttotaltime">
+                        <div className="bookingrequesttotaltime">1 hr
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
@@ -271,7 +272,7 @@ export default function S_Booking() {
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
 
                 <div className="bookingwrappbottom">
                   <div className="bookingcontent">{r[status]}</div>
