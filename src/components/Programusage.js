@@ -37,7 +37,7 @@ function Programusage() {
 
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
   let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
-  let z = ["Total hours: ","總小時數："]
+  let c = ["Total hours: ","總小時數："]
   let d = [" hrs" ,"小時"]
   let e = ["Records" ,"課堂紀錄"]
   let f = ["Notes", "課堂筆記"]
