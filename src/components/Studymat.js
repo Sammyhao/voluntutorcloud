@@ -249,10 +249,12 @@ let gradearr_ch = [
   }
 
   if (isLoading){
+    console.log("isLoading");
     return(
       <Loading/>
     )
   }else{
+    console.log("finish loading");
     console.log(status);
     if (status == 0) {
       console.log(subMat.length);

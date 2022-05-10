@@ -357,7 +357,7 @@ textarea {
   margin-bottom: 10px;
 }
 .googleMeetLinkTempchanging {
-  background-color: #c49483;
+  background-color: rgba(245, 245, 245, 0.4);
   width: 90%;
   height: wrap;
   border-radius: 5px;
@@ -387,23 +387,24 @@ textarea {
   margin-right: 20px;
 }
 .googlemeetwarning {
-  color: #fbf5ed;
+  color: #c49483;
   text-align: center;
   font-weight: 400;
 }
 .googlemeetfirst {
-  color: darkred;
+  color: #c49483;
   text-align: center;
   font-weight: 400;
   margin-bottom: 15px;
   font-size: 18px;
 }
 .linkpersonal {
-  color: black;
+  color: #b25634;
   text-align: center;
-  font-weight: 700;
-  margin-bottom: 15px;
+  font-weight: 400;
+  margin-bottom: 50px;
   font-size: 23px;
+  margin-top: 15px;
 }
 .googlemeetedit {
   background-color: #d6b7ab;
