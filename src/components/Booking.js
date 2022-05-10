@@ -179,7 +179,7 @@ export default function Booking() {
           aria-labelledby="customized-dialog-title"
           open={noneopen}
           >
-        <div className="bookingprogramdia">{j[status]}</div>
+          <div className="bookingprogramdia">{j[status]}</div>
           </BootstrapDialog></div>
           <div id="dialogcontainer">
           <BootstrapDialog
@@ -188,55 +188,81 @@ export default function Booking() {
           aria-labelledby="customized-dialog-title"
           open={finalopen}
           >
-        <div className="bookingfinal">{k[status]}</div>
+          <div className="bookingfinal">{k[status]}</div>
           </BootstrapDialog></div>
           <div className = "outerbook">
-          <div className = "topbarbook">
-          <div className = "titlebook">{a[status]}</div>
-          <div className = "bookbtn" onClick={sendfirst}>{b[status]}</div>
+                <div className = "topbarbook">
+                <div className = "titlebook">{a[status]}</div>
+                <div className = "bookbtn" onClick={sendfirst}>{b[status]}</div>
+                </div>
+                <Divider></Divider>
+                <div className = "inputbook_outercont">
+                <div className="titlebooksub">{c[status]} </div>
+                <input
+                    className="inputbook"
+                    type="text"
+                      placeholder={d[status]}
+                      value={date}
+                      maxLength={10}
+                    onChange={(e) => {
+                        setdate(e.target.value)
+                    }}
+                  />
+                </div>
+                <Divider></Divider>
+                <div className = "inputbook_outercont">
+                <div className="titlebooksub">{e[status]} </div>
+                    <input
+                    className="inputbook"
+                    type="text"
+                      placeholder={f[status]}
+                      value={time}
+                      maxLength={11}
+                    onChange={(e) => {
+                        settime(e.target.value)
+                    }}
+                  />
+                </div>
+                <Divider></Divider>
+                <div className = "inputbook_outercont">
+                <div className="titlebooksub">{g[status]}</div>
+                <input
+                    className="inputbook"
+                    type="number"
+                      placeholder={h[status]}
+                      value={duration}
+                    onChange={(e) => {
+                        setduration(e.target.value)
+                    }}
+                  />
+                </div>
+                </div>
+                <div className="outerbook">
+        <div className="topbarbook">
+          <div className="titlebook">{l[status]}</div>
+        </div>
+        <Divider></Divider>
+        <div className="bookingoutestwrap">
+          <div className="bookingrow_teacher">
+            <div className="bookingwrapsecond">
+              <div className="bookingwordswrapfirst">
+                <div className="bookingimageprog">
+                  <FaUser className="bookingprog_avatar" />
+                </div>
+                <div className="bookingrequesttotal">
+                  <div className="bookingrequestsub">Student Name</div>
+                  <div className="bookinrequesttime">1.5 hr</div>
+                </div>
+                <div className="bookingrequesttotaltime">
+                  <div className="detailtimeforupcomings">
+                    05/22/2022 18:00~19:00
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <Divider></Divider>
-          <div className = "inputbook_outercont">
-          <div className="titlebooksub">{c[status]} </div>
-          <input
-              className="inputbook"
-              type="text"
-                placeholder={d[status]}
-                value={date}
-                maxLength={10}
-              onChange={(e) => {
-                  setdate(e.target.value)
-              }}
-            />
-          </div>
-          <Divider></Divider>
-          <div className = "inputbook_outercont">
-          <div className="titlebooksub">{e[status]} </div>
-              <input
-              className="inputbook"
-              type="text"
-                placeholder={f[status]}
-                value={time}
-                maxLength={11}
-              onChange={(e) => {
-                  settime(e.target.value)
-              }}
-            />
-          </div>
-          <Divider></Divider>
-          <div className = "inputbook_outercont">
-          <div className="titlebooksub">{g[status]}</div>
-          <input
-              className="inputbook"
-              type="number"
-                placeholder={h[status]}
-                value={duration}
-              onChange={(e) => {
-                  setduration(e.target.value)
-              }}
-            />
-          </div>
-          </div>
+        </div>
+      </div>
       </div>
   )}}
 }

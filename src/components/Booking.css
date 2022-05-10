@@ -149,16 +149,6 @@
   margin-top: 50px;
   margin-bottom: 20px;
 }
-.bookingrow {
-  background-color: #efe9e5;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  align-items: center;
-  margin-top: 15px;
-  box-shadow: 12px 12px 4px -8px rgb(197, 192, 192);
-  justify-content: start;
-}
 .bookingprog_avatar {
   color: #fdfaf1;
   font-size: 30px;
@@ -929,4 +919,15 @@
   color: #b17b67;
   font-size: 17px;
   text-align: center;
+}
+
+
+.bookingrow_teacher {
+  background-color: #efe9e5;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin-top: 15px;
+  justify-content: start;
 }

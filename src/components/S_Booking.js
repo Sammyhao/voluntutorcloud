@@ -276,16 +276,16 @@ export default function S_Booking() {
 
                 <div className="bookingwrappbottom">
                   <div className="bookingcontent">{r[status]}</div>
-                </div>
-              </div>
+                  </div>
+                  </div>
 
-              {/* <Divider className="lineforbooking"></Divider> */}
-              <div className="bookingwrappinginnerfirst">
-                <div className="bookingtitlebooking">{o[status]}</div>
-                <div className="bookingwrappbottom">
-                  <div className="bookingcontent">{r[status]}</div>
-                </div>
-              </div>
+                 {/* <Divider className="lineforbooking"></Divider> */}
+                  <div className="bookingwrappinginnerfirst">
+                  <div className="bookingtitlebooking">{o[status]}</div>
+                  <div className="bookingwrappbottom">
+                   <div className="bookingcontent">{r[status]}</div>
+                  </div>
+                  </div>
             </div>
           </div>
         )
