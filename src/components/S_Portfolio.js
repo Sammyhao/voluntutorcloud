@@ -11,6 +11,7 @@ export default function S_Portfolio() {
   let contactInfo = []
   const [studentProfolio, setStudentProfolio] = useState([])
   const [isLoading, setLoading] = useState(true)
+  const [hasSetStatus, setHasSetStatus] = useState(false);
   const [status, setStatus] = useState(0);
   const [name, setname] = useState('VolunTutor Cloud')
   const [phone, setphone] = useState('0912345678')
@@ -42,40 +43,54 @@ export default function S_Portfolio() {
   let q = ['School: ', '學校：']
   let bc = ['Bio', '自介']
   let de = ['About me', '關於我']
+  let studentname = "";
+
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      if (response.data.isLoggedIn) {
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username
-        console.log(username)
-      }
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-        username: username,
-      }).then((response) => {
-        console.log(response.data);
-        if(response.data == "chinese") setStatus(1);
-        else setStatus(0);
-        console.log(status);
-      })
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
-        username: username,
-      }).then((response) => {
-        console.log(response.data)
-        for (let i = 0; i < response.data.length; i++) {
-          // console.log(i);
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-            name: response.data[i].studentname,
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+          username: username,
+        }).then((response) => {
+          console.log(response.data[0]);
+          studentname = response.data[0].lastname + response.data[0].firstname;
+          console.log("studentname:");
+          console.log(studentname);
+  
+          if(!hasSetStatus) {
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+              username: username,
+            }).then((response) => {
+              console.log(response.data);
+              if(response.data == "chinese") setStatus(1);
+              else setStatus(0);
+              setHasSetStatus(1);
+              console.log(status);
+            })
+          }
+  
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
+            studentname: studentname
           }).then((response) => {
-            if (response.data.length) {
-              setStudentProfolio((studentProfolio) => [
-                ...studentProfolio,
-                response.data,
-              ])
+            console.log(response.data)
+            for (let i = 0; i < response.data.length; i++) {
+              // console.log(i);
+              Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+                name: response.data[i].studentname,
+              }).then((response) => {
+                if (response.data.length) {
+                  setStudentProfolio((studentProfolio) => [
+                    ...studentProfolio,
+                    response.data,
+                  ])
+                }
+              })
             }
+            setLoading(false)
           })
-        }
-        setLoading(false)
+        })
       })
-    })
+    }
   }, [])
 
   if (isLoading){
