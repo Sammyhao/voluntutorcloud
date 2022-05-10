@@ -137,28 +137,28 @@ export default function Studymat() {
 
   
 let gradearr_ch = [
-  // {
-  //   id: '一年級',
-  //   index: ['0', '1', '2', '3'],
-  //   subjects: [
-  //     '/images/home_chine.png',
-  //     '/images/home_math.png',
-  //     '/images/home_eng.png',
-  //     '/images/home_socia.png',
-  //   ],
-  //   subjects_name: ['國文', '數學', '英文', '生活'],
-  // },
-  // {
-  //   id: '二年級',
-  //   index: ['0', '1', '2', '3'],
-  //   subjects: [
-  //     '/images/home_chine.png',
-  //     '/images/home_math.png',
-  //     '/images/home_eng.png',
-  //     '/images/home_socia.png',
-  //   ],
-  //   subjects_name: ['國文', '數學', '英文', '生活'],
-  // },
+  {
+    id: '一年級',
+    index: ['0', '1', '2', '3'],
+    subjects: [
+      '/images/home_chine.png',
+      '/images/home_math.png',
+      '/images/home_eng.png',
+      '/images/home_socia.png',
+    ],
+    subjects_name: ['國文', '數學', '英文', '生活'],
+  },
+  {
+    id: '二年級',
+    index: ['0', '1', '2', '3'],
+    subjects: [
+      '/images/home_chine.png',
+      '/images/home_math.png',
+      '/images/home_eng.png',
+      '/images/home_socia.png',
+    ],
+    subjects_name: ['國文', '數學', '英文', '生活'],
+  },
   {
     id: '三年級',
     index: ['0', '1', '2', '3', '4'],
@@ -255,7 +255,7 @@ let gradearr_ch = [
     )
   }else{
     console.log("finish loading");
-    console.log(status);
+    console.log(subMat);
     if (status == 0) {
       console.log(subMat.length);
       if(subMat.length) {
@@ -270,8 +270,6 @@ let gradearr_ch = [
               >
                 <div id="studydialog">{gra} {a[status]} / {sub} {b[status]}</div>
                 <div id="warningdialogstudy">{d[status]}</div>
-                
-                {/* <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div> */}
                 <div className = "wrapperlinks">
                   {subMat.map((mat) => {
                     console.log("mat");
@@ -333,7 +331,6 @@ let gradearr_ch = [
                   <div id="studydialog">{gra} {a[status]} / {sub} {b[status]}</div>
                   <div id="warningdialogstudy">{d[status]}</div>
                   
-                  {/* <div id="studydialog" onClick={() => {console.log(subMat)}}>Where is the materials?</div> */}
                   <div className = "wrapperlinks">
                     {subMat.map((mat) => {
                       console.log("mat");
