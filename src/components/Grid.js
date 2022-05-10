@@ -139,33 +139,32 @@ function Grid_sub(props) {
   const [username, setUsername] = useState('')
 
   const updateBookList = () => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      console.log(response)
-      if (response.data.isLoggedIn) {
-        var templateParams = {
-          vc_program: p ,
-          username: program.username
-        }
-        emailjs
-        .send(
-          'service_z12yzef',
-          'template_zg8ezog',
-          templateParams,
-          'QZBU3bIops8KtosSX',
-        )
-        .then(
-          function (response) {
-            console.log('SUCCESS!', response.status, response.text)
-            setBookOpen(true)
-          },
-          function (error) {
-            console.log('FAILED...', error)
-          },
-        )
-      } else {
-        console.log('user not logged in')
-      }
-    })
+    // Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+      setBookOpen(true)
+    //   if (response.data.isLoggedIn) {
+    //     var templateParams = {
+    //       vc_program: p ,
+    //       username: program.username
+    //     }
+    //     emailjs
+    //     .send(
+    //       'service_z12yzef',
+    //       'template_zg8ezog',
+    //       templateParams,
+    //       'QZBU3bIops8KtosSX',
+    //     )
+    //     .then(
+    //       function (response) {
+    //         console.log('SUCCESS!', response.status, response.text)
+    //       },
+    //       function (error) {
+    //         console.log('FAILED...', error)
+    //       },
+    //     )
+    //   } else {
+    //     console.log('user not logged in')
+    //   }
+    // })
   }
 
   const updateFavList = (program) => {

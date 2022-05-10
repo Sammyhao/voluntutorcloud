@@ -13,13 +13,13 @@
   font-weight: 700;
   color: #b25634;
   flex-direction: row;
-  justify-items: center;
   align-items: center;
   height: wrap;
   padding-top: 15px;
   padding-right: 15px;
   padding-left: 15px;
   text-align: center;
+  justify-content: center;
 }
 #bookingprogramdia_sub {
   background-color: whitesmoke;
@@ -30,13 +30,13 @@
   flex-direction: row;
   font-weight: 400;
   text-align: center;
-  justify-items: center;
   align-items: center;
   height: wrap;
   font-size: 14px;
   padding-bottom: 15px;
   padding-right: 15px;
   padding-left: 15px;
+  justify-content: center;
 }
 #outcontainer {
   margin-top: 80px;

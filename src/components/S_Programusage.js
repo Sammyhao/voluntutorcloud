@@ -31,7 +31,7 @@ let username = "";
 
 function Programusage() {
   const [status, setStatus] = useState(0);
-
+  const [hasSetStatus, setHasSetStatus] = useState(false);
   const [contactInfo, setContactInfo] = useState([]);
   const [isLoading, setLoading] = useState(true);
   let a = [
@@ -47,33 +47,48 @@ function Programusage() {
   let f = ["Notes", "課堂筆記"]
   let g = ["Date" ,"課堂日期"]
   let h = ["Agenda" ,"課堂進度"]
+  let studentname = "";
   useLayoutEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username;
-        Axios.post("https://voluntutorcloud-server.herokuapp.com/findContact", {
-          username: username
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+          username: username,
         }).then((response) => {
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-            username: username,
+          console.log(response.data[0])
+          studentname = response.data[0].lastname + response.data[0].firstname;
+          console.log("studentname:");
+          console.log(studentname);
+          
+          Axios.post("https://voluntutorcloud-server.herokuapp.com/findContactbyName", {
+            studentname: studentname
           }).then((response) => {
-            console.log(response.data);
-            if(response.data == "chinese") setStatus(1);
-            else setStatus(0);
-            console.log(status);
-          })
-          for(let i = 0; i < response.data.length; i++) {
-            const student = response.data[i];
-            console.log(student);
-            Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
-              username: student.username,
-              studentname: student.studentname,
-              studentmail: student.studentmail
-            }).then((response) => {
-              if(response.data.length) setContactInfo(contactInfo => [...contactInfo, response.data])
-            })
-          }
-          setLoading(false);
-        });
+            
+            if(!hasSetStatus) {
+              Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+                username: username,
+              }).then((response) => {
+                console.log(response.data);
+                if(response.data == "chinese") setStatus(1);
+                else setStatus(0);
+                setHasSetStatus(1);
+                console.log(status);
+              })
+            }
+  
+            for(let i = 0; i < response.data.length; i++) {
+              const student = response.data[i];
+              console.log(student);
+              Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
+                username: student.username,
+                studentname: student.studentname,
+                studentmail: student.studentmail
+              }).then((response) => {
+                if(response.data.length) setContactInfo(contactInfo => [...contactInfo, response.data])
+              })
+            }
+            setLoading(false);
+          });
+        })
     })
   }, [])
   const contacttemp = contactInfo.map(item => item).reverse();
@@ -98,7 +113,6 @@ function Programusage() {
     return (
       <div className = "nokid">
         <div className="noStudentFont">{a[status]}</div>
-        <div className="noStudentFont2">{b[status]}</div>
         <div className="noStudentFont2">{b[status]}</div>
       </div>
     )
