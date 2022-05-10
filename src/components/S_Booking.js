@@ -181,6 +181,13 @@ export default function S_Booking() {
 // meetlinktemp: https://meet.google.com/ddk-cuae-bnn
 
   let a = ['Upcoming Meetings', '即將到來的會議']
+  let c = [
+    // "Oops, you are not paired with a teacher yet!",
+    'Looking forward to the first lesson!',
+    '噢, 目前您還未和老師成功配對！',
+    // '請期待第一次的課程!'
+  ]
+  let b = ['We will assign you a teacher soon!', '我們會盡快配對一位老師給您！']
   // let teachername = 'Ruby'
   let date = '2022/5/12'
   let time = '18:00 ~ 19:00'
@@ -210,7 +217,7 @@ export default function S_Booking() {
       if(teachername == "") {
         return (
           <div className = "nokid">
-            <div className="noStudentFont">{a[status]}</div>
+            <div className="noStudentFont">{c[status]}</div>
             <div className="noStudentFont2">{b[status]}</div>
           </div>
         )
