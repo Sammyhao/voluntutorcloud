@@ -56,7 +56,7 @@ function Programusage() {
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
           username: username,
         }).then((response) => {
-          console.log(response.data[0])
+          console.log(response.data[0]);
           studentname = response.data[0].lastname + response.data[0].firstname;
           console.log("studentname:");
           console.log(studentname);
@@ -76,20 +76,20 @@ function Programusage() {
                 console.log(status);
               })
             }
-  
-            for(let i = 0; i < response.data.length; i++) {
-              const student = response.data[i];
-              setStpair(stpair => [...stpair, student]);
-              console.log(student);
-              Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
-                username: student.username,
-                studentname: student.studentname,
-                studentmail: student.studentmail
-              }).then((response) => {
-                if(response.data.length) setContactInfo(contactInfo => [...contactInfo, response.data])
-              })
-            }
-            setLoading(false);
+
+            console.log(response.data[0]);
+            setStpair(stpair => [...stpair, response.data[0]]);
+            console.log(student);
+
+            Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
+              username: student.username,
+              studentname: student.studentname,
+              studentmail: student.studentmail
+            }).then((response) => {
+              if(response.data.length) setContactInfo(contactInfo => [...contactInfo, response.data])
+              setLoading(false);
+            })
+
           });
         })
     })
@@ -112,7 +112,7 @@ function Programusage() {
       <Loading/>
     )
   } else if(contactInfo.length == 0) {
-    console.log("isLoading")
+    console.log("contactInfo empty");
     console.log("stpair");
     console.log(stpair);
     return (
@@ -154,7 +154,7 @@ function Programusage() {
       </div>
     )
   } else {
-    console.log("finish Loading")
+    console.log("contactInfo not empty");
     console.log(contactInfo);
 
     return (
