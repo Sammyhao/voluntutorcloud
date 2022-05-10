@@ -181,8 +181,8 @@ export default function Portfolio() {
                 {studentProfolio['0']['0'].requiredsub}
               </div>
               <div className="subtitle_port">{t[status]}</div>
-              <Link to="/studymat">
-              <div className="learn_more">{i[status]}</div>
+              <Link className="studymat" to="/studymat">
+              <div className="learn_more_second">{i[status]}</div>
               </Link>
               <div className="subtitle_port">{u[status]}</div>
               <div className="content_port">
