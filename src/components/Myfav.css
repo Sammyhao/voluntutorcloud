@@ -42,6 +42,18 @@
   margin-top: 80px;
   height: 100vh;
 }
+
+@media screen and (max-width: 900px) {
+  #outcontainer {
+    height: 1000px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #outcontainer {
+    height: 1200px;
+  }
+}
 #nofav {
   margin-top: 80px;
   display: flex;

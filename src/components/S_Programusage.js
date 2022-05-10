@@ -34,6 +34,7 @@ function Programusage() {
   const [hasSetStatus, setHasSetStatus] = useState(false);
   const [contactInfo, setContactInfo] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [stpair, setStpair] = useState([]);
   let a = [
     // "Oops, you are not paired with a teacher yet!",
     'Looking forward to the first lesson!',
@@ -48,6 +49,7 @@ function Programusage() {
   let g = ["Date" ,"課堂日期"]
   let h = ["Agenda" ,"課堂進度"]
   let studentname = "";
+
   useLayoutEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username;
@@ -58,7 +60,7 @@ function Programusage() {
           studentname = response.data[0].lastname + response.data[0].firstname;
           console.log("studentname:");
           console.log(studentname);
-          
+
           Axios.post("https://voluntutorcloud-server.herokuapp.com/findContactbyName", {
             studentname: studentname
           }).then((response) => {
@@ -77,6 +79,7 @@ function Programusage() {
   
             for(let i = 0; i < response.data.length; i++) {
               const student = response.data[i];
+              setStpair(stpair => [...stpair, student]);
               console.log(student);
               Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
                 username: student.username,
@@ -108,12 +111,46 @@ function Programusage() {
     return(
       <Loading/>
     )
-  }else if(contactInfo.length == 0) {
+  } else if(contactInfo.length == 0) {
     console.log("isLoading")
+    console.log("stpair");
+    console.log(stpair);
     return (
-      <div className = "nokid">
-        <div className="noStudentFont">{a[status]}</div>
-        <div className="noStudentFont2">{b[status]}</div>
+      <div className="outcontainerprog">
+        {/* <div className="searchprog" onClick={showContactInfo}>
+          Find subjects
+          <BiSearchAlt className="searchicon"></BiSearchAlt>
+        </div> */}
+        <div className="subjectlist">
+          {stpair.map((st) => {
+            return (
+              <div className = "outsidewrapsub">
+              <div className="wrapsubj">
+                <div className="subject">
+                  <div className="second">
+                    <div className="imageprog">
+                      <FaUser className = "prog_avatar"/>
+                    </div>
+                    <div className="total">
+                      <div className="sub" onClick={() => showContact(st)}>{st.studentname}</div>
+                      <div className="time">{c[status]}8{d[status]}</div>
+                    </div>
+                  </div>
+                  <div className="progressbar">
+                    <Progress done="8" />
+                  </div>
+                </div>
+                </div>
+                <div className="rowwrap">
+                <div className = "row1">
+                <div className="title_rec">{e[status]}</div>
+                <div className="title_not">{f[status]}</div>
+                </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   } else {
