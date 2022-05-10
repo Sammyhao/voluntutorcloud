@@ -51,7 +51,8 @@ function Programusage() {
   let studentname = "";
 
   useLayoutEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username;
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
           username: username,
@@ -78,8 +79,8 @@ function Programusage() {
             }
 
             console.log(response.data[0]);
-            setStpair(stpair => [...stpair, response.data[0]]);
-            console.log(student);
+            let student = response.data[0];
+            setStpair(stpair => [...stpair, student]);
 
             Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
               username: student.username,
@@ -92,7 +93,8 @@ function Programusage() {
 
           });
         })
-    })
+      })
+    }
   }, [])
   const contacttemp = contactInfo.map(item => item).reverse();
 
@@ -111,7 +113,7 @@ function Programusage() {
     return(
       <Loading/>
     )
-  } else if(contactInfo.length == 0) {
+  } else if (contactInfo.length == 0) {
     console.log("contactInfo empty");
     console.log("stpair");
     console.log(stpair);
