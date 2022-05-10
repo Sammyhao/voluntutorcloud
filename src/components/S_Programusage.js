@@ -97,8 +97,8 @@ function Programusage() {
     console.log("isLoading")
     return (
       <div className = "nokid">
-        {/* <div className="noStudentFont">{a[status]}</div> */}
-        {/* <div className="noStudentFont2">{b[status]}</div> */}
+        <div className="noStudentFont">{a[status]}</div>
+        <div className="noStudentFont2">{b[status]}</div>
         <div className="noStudentFont2">{b[status]}</div>
       </div>
     )

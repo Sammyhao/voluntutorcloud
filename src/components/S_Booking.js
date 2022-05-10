@@ -140,7 +140,7 @@ export default function S_Booking() {
                 setBookingInfoLen(response.data.length)
               })
               Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
-                username: username,
+                username: teacherusername, // bug
               }).then((response) => {
                 console.log(response);
                 setGoogleMeetLink(response.data[0].googlemeetlink);
@@ -180,7 +180,7 @@ export default function S_Booking() {
 */
 // meetlinktemp: https://meet.google.com/ddk-cuae-bnn
 
-  let a = ['Upcoming Meetings', '加入會議']
+  let a = ['Upcoming Meetings', '即將到來的會議']
   // let teachername = 'Ruby'
   let date = '2022/5/12'
   let time = '18:00 ~ 19:00'
@@ -207,6 +207,14 @@ export default function S_Booking() {
     console.log("bookingInfo");
     console.log(bookingInfo);
     console.log(bookingInfoLen);
+      if(teachername == "") {
+        return (
+          <div className = "nokid">
+            <div className="noStudentFont">{a[status]}</div>
+            <div className="noStudentFont2">{b[status]}</div>
+          </div>
+        )
+      }
       if(bookingInfoLen == 0) {
         return (
           <div className="outestcontainerbook">
@@ -237,7 +245,7 @@ export default function S_Booking() {
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitleall">{a[status]}</div>
   
-                <div className="bookingoutestwrap">
+                {/* <div className="bookingoutestwrap">
                   <div className="bookingrow">
                     <div className="bookingwrapsecond">
                       <div className="bookingwordswrapfirst">
@@ -249,7 +257,6 @@ export default function S_Booking() {
                           <div className="bookinrequesttime">1 hr</div>
                         </div>
                         <div className="bookingrequesttotaltime">
-                          {/* <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div> */}
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
@@ -257,25 +264,24 @@ export default function S_Booking() {
                       </div>
                     </div>
                   </div>
+                </div> */}
+
+                <div className="bookingwrappbottom">
+                  <div className="bookingcontent">{r[status]}</div>
                 </div>
               </div>
+
               {/* <Divider className="lineforbooking"></Divider> */}
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitlebooking">{o[status]}</div>
-                <div
-                  className="bookingwrappbottom"
-                  >
-                <div className="bookingcontent">{r[status]}</div>
- 
+                <div className="bookingwrappbottom">
+                  <div className="bookingcontent">{r[status]}</div>
                 </div>
-               
               </div>
             </div>
           </div>
         )
-      } 
-      
-      else {
+      } else {
         return (
           <div className="outestcontainerbook">
             <div id="dialogcontainer">
