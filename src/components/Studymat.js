@@ -217,19 +217,21 @@ let gradearr_ch = [
   const [status, setStatus] = useState(0);
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      console.log(response.data);
-      username = response.data.user[0].username;
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-        username: username,
-      }).then((response) => {
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         console.log(response.data);
-        if(response.data == "chinese") setStatus(1);
-        else setStatus(0);
-        console.log(status);
-        setLoading(false);
+        username = response.data.user[0].username;
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+          username: username,
+        }).then((response) => {
+          console.log(response.data);
+          if(response.data == "chinese") setStatus(1);
+          else setStatus(0);
+          console.log(status);
+          setLoading(false);
+        })
       })
-    })
+    }
   }, [])
 
   function fetchSubMat(grade, subject) {
@@ -251,6 +253,7 @@ let gradearr_ch = [
       <Loading/>
     )
   }else{
+    console.log(status);
     if (status == 0) {
       console.log(subMat.length);
       if(subMat.length) {
