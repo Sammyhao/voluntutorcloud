@@ -46,7 +46,7 @@ export default function Studymat() {
         '/images/home_chine.png',
         '/images/home_math.png',
         '/images/home_eng.png',
-        '/images/home_life.png',
+        '/images/home_eng.png',
       ],
       subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
     },
@@ -57,7 +57,7 @@ export default function Studymat() {
         '/images/home_chine.png',
         '/images/home_math.png',
         '/images/home_eng.png',
-        '/images/home_life.png',
+        '/images/home_eng.png',
       ],
       subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
     },
@@ -137,28 +137,28 @@ export default function Studymat() {
 
   
 let gradearr_ch = [
-  {
-    id: '一年級',
-    index: ['0', '1', '2', '3'],
-    subjects: [
-      '/images/home_chine.png',
-      '/images/home_math.png',
-      '/images/home_eng.png',
-      '/images/home_socia.png',
-    ],
-    subjects_name: ['國文', '數學', '英文', '生活'],
-  },
-  {
-    id: '二年級',
-    index: ['0', '1', '2', '3'],
-    subjects: [
-      '/images/home_chine.png',
-      '/images/home_math.png',
-      '/images/home_eng.png',
-      '/images/home_socia.png',
-    ],
-    subjects_name: ['國文', '數學', '英文', '生活'],
-  },
+  // {
+  //   id: '一年級',
+  //   index: ['0', '1', '2', '3'],
+  //   subjects: [
+  //     '/images/home_chine.png',
+  //     '/images/home_math.png',
+  //     '/images/home_eng.png',
+  //     '/images/home_socia.png',
+  //   ],
+  //   subjects_name: ['國文', '數學', '英文', '生活'],
+  // },
+  // {
+  //   id: '二年級',
+  //   index: ['0', '1', '2', '3'],
+  //   subjects: [
+  //     '/images/home_chine.png',
+  //     '/images/home_math.png',
+  //     '/images/home_eng.png',
+  //     '/images/home_socia.png',
+  //   ],
+  //   subjects_name: ['國文', '數學', '英文', '生活'],
+  // },
   {
     id: '三年級',
     index: ['0', '1', '2', '3', '4'],
