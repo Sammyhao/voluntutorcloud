@@ -205,7 +205,7 @@ export default function S_Booking() {
   let o = ['Bookings', '預約會議']
   let p = ['Cancel', '拒絕']
   let q = ['Confirm', '確認']
-  let r = ['You have not received any bookings', '你還沒有收到任何會議預約邀請喔']
+  let r = ['You have not received any bookings :)', '你還沒有收到任何會議預約邀請喔 :)']
   // 這裡true的條件改成是否有學生喔
   if (isLoading1 || isLoading2){
     return(
@@ -262,9 +262,9 @@ export default function S_Booking() {
                         </div>
                         <div className="bookingrequesttotal">
                           <div className="bookingrequestsub">{teacherRealname}</div>
-                          <div className="bookinrequesttime">5/12/2022 or 5/13/2022 19:00~20:00</div>
+                          <div className="bookinrequesttime">1 hr</div>
                         </div>
-                        <div className="bookingrequesttotaltime">1 hr
+                        <div className="detailtimeforupcomings">5/12/2022 or 5/13/2022 19:00~20:00
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
@@ -274,16 +274,16 @@ export default function S_Booking() {
                   </div>
                 </div>
 
-                <div className="bookingwrappbottom">
-                  <div className="bookingcontent">{r[status]}</div>
-                  </div>
                   </div>
 
                  {/* <Divider className="lineforbooking"></Divider> */}
                   <div className="bookingwrappinginnerfirst">
                   <div className="bookingtitlebooking">{o[status]}</div>
                   <div className="bookingwrappbottom">
-                   <div className="bookingcontent">{r[status]}</div>
+                    
+                  <div className="bookingrow">
+                   <div className="detailtimeforupcomings">{r[status]}</div>
+                   </div>
                   </div>
                   </div>
             </div>

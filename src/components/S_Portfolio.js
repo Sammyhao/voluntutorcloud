@@ -20,10 +20,6 @@ export default function S_Portfolio() {
   const [birthday, setbirthday] = useState('20040101')
   const [grade, setgrade] = useState('11th')
   const [school, setschool] = useState('Wego Private High School')
-  const [preferredsubject, setpreferredsubject] = useState('Math')
-  const [studentage, setstudentage] = useState('3th')
-  const [studentgender, setstudentgender] = useState('No preference')
-  const [studentpers, setstudentpers] = useState('outgoing')
   const [bio, setbio] = useState('For Better Unity, Help Your Community ')
   const [about, setabout] = useState('Join Voluntutor Cloud!')
   let a = [
@@ -49,6 +45,19 @@ export default function S_Portfolio() {
     if(isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username
+
+        if(!hasSetStatus) {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+            username: username,
+          }).then((response) => {
+            console.log(response.data);
+            if(response.data == "chinese") setStatus(1);
+            else setStatus(0);
+            setHasSetStatus(1);
+            console.log(status);
+          })
+        }
+
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
           username: username,
         }).then((response) => {
@@ -56,42 +65,21 @@ export default function S_Portfolio() {
           studentname = response.data[0].lastname + response.data[0].firstname;
           console.log("studentname:");
           console.log(studentname);
-  
-          if(!hasSetStatus) {
-            Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-              username: username,
-            }).then((response) => {
-              console.log(response.data);
-              if(response.data == "chinese") setStatus(1);
-              else setStatus(0);
-              setHasSetStatus(1);
-              console.log(status);
-            })
-          }
-  
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
-            studentname: studentname
-          }).then((response) => {
-            console.log(response.data)
-            for (let i = 0; i < response.data.length; i++) {
-              // console.log(i);
-              Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-                name: response.data[i].studentname,
-              }).then((response) => {
-                if (response.data.length) {
-                  setStudentProfolio((studentProfolio) => [
-                    ...studentProfolio,
-                    response.data,
-                  ])
-                }
-              })
-            }
-            setLoading(false)
+          setname(studentname);
+          setphone(response.data[0].phone)
+          setemail(response.data[0].email)
+          setgender(response.data[0].gender);
+          setbirthday(response.data[0].birthday)
+          setgrade(response.data[0].grade)
+          setschool(response.data[0].schoolname)
+          setbio(response.data[0].bio)
+          setabout(response.data[0].about)
+          setLoading(false)
           })
         })
-      })
+      }
     }
-  }, [])
+  , [])
 
   if (isLoading){
     return(

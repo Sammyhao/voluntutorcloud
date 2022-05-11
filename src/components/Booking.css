@@ -234,6 +234,10 @@
   height: 100%;
   margin-left: 30px;
 }
+.bookingcontent{
+  color: #745140;
+  font-size: 30px;
+}
 .bookingrequesttotaltime {
   height: 100%;
   margin-left: 50px;
