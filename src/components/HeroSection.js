@@ -23,27 +23,12 @@ function HeroSection() {
     if(isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         if (response.data.isLoggedIn) {
-          username = response.data.user[0].username;
+          setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
+          if(response.data.user[0].lang == "chinese") setStatus(1);
+          else setStatus(0);
         }
         setIsLoggedIn(response.data.isLoggedIn)
-        console.log("username");
-        console.log(username);
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-          username: username,
-        }).then((response) => {
-          console.log(response.data);
-          if(response.data == "chinese") setStatus(1);
-          else setStatus(0);
-          console.log("status");
-          console.log(status);
-        })
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getStatus', {
-          username: username,
-        }).then(response => {
-          console.log(response.data);
-          setName(response.data[0].firstname + " " + response.data[0].lastname);
-          setLoading(false);
-        })
+        setLoading(false);
       })
     }
   }, [])

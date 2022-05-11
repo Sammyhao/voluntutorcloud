@@ -64,7 +64,6 @@ function Appointmentmeet() {
   const [classduration, setClassduration] = useState("");
   const [googleMeetLink, setGoogleMeetLink] = useState("");
   const [isLoading, setLoading] = useState(true);
-  const [isLoading2, setLoading2] = useState(true);
   const [open, setOpen] = useState(false)
   const [open_send, setOpen_send] = useState(false)
   const [openmsgsend, setopenmsgsend] = useState(false)
@@ -93,31 +92,20 @@ function Appointmentmeet() {
   // var googlemeetlinkalt = "";
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      username = response.data.user[0].username;
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
-        username: username
-      }).then((response) => {
-        setContactInfo(response.data);
-        setLoading(false);
-      })
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
-        username: username
-      }).then((response) => {
-        setGoogleMeetLink(response.data[0].googlemeetlink);
-        // googlemeetlinkalt = response.data[0].googleMeetLink;
-        console.log(response.data);
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-            username: username,
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        username = response.data.user[0].username;
+        setGoogleMeetLink(response.data.user[0].googlemeetlink);
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+          username: username
         }).then((response) => {
-            console.log(response.data);
-            if(response.data == "chinese") setStatus(1);
-            else setStatus(0);
-            console.log(status);
+          setContactInfo(response.data);
+          setLoading(false);
         })
-        setLoading2(false);
       })
-    })
+    }
   }, [])
   
   const meet = () => {
@@ -199,7 +187,7 @@ function Appointmentmeet() {
 
   }
  
-  if(isLoading || isLoading2){
+  if(isLoading){
     return(
       <Loading/>
     )

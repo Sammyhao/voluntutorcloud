@@ -7,7 +7,7 @@ import { ChatEngine } from 'react-chat-engine'
 import Axios from 'axios'
 
 function Msg() {
-  let num = [1, 2, 3]
+  let num = [1]
   const [msg, setmsg] = useState('')
 
   const [status, setStatus] = useState(0);
@@ -30,9 +30,9 @@ function Msg() {
   let a = ["Function will be completed soon","此功能即將完成，請敬請期待！"]
   return (
     <div>
-      <div className="warningmsg">
+      {/* <div className="warningmsg">
         {a[status]}
-        </div>
+        </div> */}
       <div className="out">
         <div className="chathistory">
           <div className="searchpad">
@@ -50,11 +50,11 @@ function Msg() {
                       <FaUser className="msg_icon" />
                     </div>
                     <div className="infoboxmsg">
-                      <div className="namemsg">Voluntutor</div>
-                      <div className="latestmsg">Join us!</div>
+                      <div className="namemsg">Student</div>
+                      <div className="latestmsg">OHH right I almost forgot</div>
                     </div>
                     <div className="align">
-                      <div className="numbermsg">2</div>
+                      <div className="numbermsg">1</div>
                     </div>
                   </div>
                 </div>
@@ -108,7 +108,6 @@ function Msg() {
               type="text"
               placeholder="Enter your message..."
               value={msg}
-              disabled="true"
               onChange={(e) => {
                 setmsg(e.target.value)
               }}
@@ -122,3 +121,6 @@ function Msg() {
 }
 
 export default Msg
+
+
+{/* onclick: <div className="sendword">send</div> */}

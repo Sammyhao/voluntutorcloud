@@ -60,8 +60,7 @@ function Myfav() {
   const [schoolname, setSchoolname] = useState('')
   const [address, setAddress] = useState('')
   const [status, setStatus] = useState(0)
-  const [isLoading1, setLoading1] = useState(true);
-  const [isLoading2, setLoading2] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [favProgramListLen, setFavProgramListLen] = useState(0);
   const [favProgramList, setFavProgramList] = useState([]);
 
@@ -89,19 +88,12 @@ function Myfav() {
   let m = ['Yes', '確定送出']
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-        console.log(response)
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username;
-        console.log(username)
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-          username: username,
-        }).then((response) => {
-          console.log(response.data)
-          if (response.data == 'chinese') setStatus(1)
-          else setStatus(0)
-          console.log(status)
-          setLoading1(false);
-        })
+        if (response.data.user[0].lang == 'chinese') setStatus(1)
+        else setStatus(0)
+        
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getFavList', {
           username: username,
         }).then((response) => {
@@ -116,10 +108,10 @@ function Myfav() {
                 ])
             }
           }
-          setLoading2(false);
+          setLoading(false);
         })
-      },
-    )
+      })
+    }
   }, [])
 
   let username = ''
@@ -161,7 +153,7 @@ function Myfav() {
     })
   }
 
-  if (isLoading1 == true || isLoading2 == true) {
+  if (isLoading) {
     console.log(favProgramList);
     console.log("favProgramList null");
     return (

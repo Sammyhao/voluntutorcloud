@@ -46,17 +46,12 @@ function Programusage() {
   useLayoutEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username;
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
+
         Axios.post("https://voluntutorcloud-server.herokuapp.com/findContact", {
           username: username
         }).then((response) => {
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-            username: username,
-          }).then((response) => {
-            console.log(response.data);
-            if(response.data == "chinese") setStatus(1);
-            else setStatus(0);
-            console.log(status);
-          })
           for(let i = 0; i < response.data.length; i++) {
             const student = response.data[i];
             setStpair(stpair => [...stpair, student]);

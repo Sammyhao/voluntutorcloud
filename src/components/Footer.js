@@ -21,20 +21,18 @@ function Footer() {
   }
 
   const [status, setStatus] = useState(0);
+  const [isLoading, setLoading] = useState(true);
   let username = "";
   
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      username = response.data.user[0].username;
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-        username: username,
-      }).then((response) => {
-        console.log(response.data);
-        if(response.data == "chinese") setStatus(1);
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        username = response.data.user[0].username;
+        if(response.data.user[0].lang == "chinese") setStatus(1);
         else setStatus(0);
-        console.log(status);
+        setLoading(false);
       })
-    })
+    }
   })
 
   let a = ["Join Voluntutor Cloud to receive the newest information!","加入Voluntutor Cloud以獲取最新資訊！"]
