@@ -3,6 +3,6 @@ import './Maintainance.css'
 export default function Maintainance() {
     return(
     <div className = "maintainance">
-        We are currently in maintainance. Sorry for your inconvenience.
+        我們正在修補錯誤，請一個小時後再嘗試登入！！        
     </div>)
 }

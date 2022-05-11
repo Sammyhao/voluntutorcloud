@@ -45,57 +45,57 @@ function Home() {
     )
   })
 
-  // return (
-  //   <>
-  //   <Maintainance/>
-  //   </>
-  // )
+  return (
+    <>
+    <Maintainance/>
+    </>
+  )
 
-  if(isLoading) {
-    return(
-      <>
-      <Loading/>
-      </>
-    )
+  // if(isLoading) {
+  //   return(
+  //     <>
+  //     <Loading/>
+  //     </>
+  //   )
 
-  }else {
-    console.log("isLoggedIn");
-    console.log(isLoggedIn);
-    if(isLoggedIn == false) {
-      return (
-        <>
-          <Navbar></Navbar>
-          <HeroSection />
-          <Function></Function>
-          <Homepageprog></Homepageprog>
-          <About_us></About_us>
-          <Team></Team>
-          <Footer></Footer>
-        </>
-    )} else if(role == "teacher"){
-      return (
-        <>
-          <Navbar></Navbar>
-          <HeroSection />
-          <Function></Function>
-          <Homepageprog></Homepageprog>
-          <About_us></About_us>
-          <Team></Team>
-          <Footer></Footer>
-        </>
-    )} else {
-      return(
-        <>
-        <S_Navbar></S_Navbar>
-        <S_hero />
-        <S_Function></S_Function>
-        <About_us></About_us>
-        <Team></Team>
-        <Footer></Footer>
-      </>
-      )
-    }
-  } 
+  // }else {
+  //   console.log("isLoggedIn");
+  //   console.log(isLoggedIn);
+  //   if(isLoggedIn == false) {
+  //     return (
+  //       <>
+  //         <Navbar></Navbar>
+  //         <HeroSection />
+  //         <Function></Function>
+  //         <Homepageprog></Homepageprog>
+  //         <About_us></About_us>
+  //         <Team></Team>
+  //         <Footer></Footer>
+  //       </>
+  //   )} else if(role == "teacher"){
+  //     return (
+  //       <>
+  //         <Navbar></Navbar>
+  //         <HeroSection />
+  //         <Function></Function>
+  //         <Homepageprog></Homepageprog>
+  //         <About_us></About_us>
+  //         <Team></Team>
+  //         <Footer></Footer>
+  //       </>
+  //   )} else {
+  //     return(
+  //       <>
+  //       <S_Navbar></S_Navbar>
+  //       <S_hero />
+  //       <S_Function></S_Function>
+  //       <About_us></About_us>
+  //       <Team></Team>
+  //       <Footer></Footer>
+  //     </>
+  //     )
+  //   }
+  // } 
   
 }
 
