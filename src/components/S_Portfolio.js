@@ -48,77 +48,39 @@ export default function S_Portfolio() {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
           username = response.data.user[0].username
-
-          if (!hasSetStatus) {
-            Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-              username: username,
-            }).then((response) => {
-              console.log(response.data)
-              if (response.data == 'chinese') setStatus(1)
-              else setStatus(0)
-              setHasSetStatus(1)
-              console.log(status)
-            })
-          }
-
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
-            {
-              username: username,
-            },
-          ).then((response) => {
-            console.log(response.data[0])
-            studentname = response.data[0].lastname + response.data[0].firstname
-            console.log('studentname:')
-            console.log(studentname)
-            setLoading(false)
-            Axios.post(
-              'https://voluntutorcloud-server.herokuapp.com/getTeacher',
-              {
-                studentname: studentname,
-              },
-            ).then((response) => {
-              teacherusername = response.data[0].username
-              console.log('teacherusername')
-              console.log(teacherusername)
-              Axios.post(
-                'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
-                {
-                  username: teacherusername,
-                },
-              ).then((response) => {
-                console.log(response.data[0])
-                setname(
-                  response.data[0].firstname + ' ' + response.data[0].lastname,
-                )
-                setphone(response.data[0].phone)
-                setemail(response.data[0].email)
-                setgender(response.data[0].gender)
-                setbirthday(response.data[0].birthday)
-                setgrade(response.data[0].grade)
-                setschool(response.data[0].schoolname)(
-                  response.data[0].bio != '',
-                )
-                  ? setbio(response.data[0].bio)
-                  : setbio(bio)
-                response.data[0].about != ''
-                  ? setabout(response.data[0].about)
-                  : setabout(about)
-                console.log(
-                  name,
-                  phone,
-                  email,
-                  gender,
-                  birthday,
-                  grade,
-                  school,
-                  bio,
-                  about,
-                )
-                setLoading(false)
-              })
-            })
-          })
+          console.log("response.data.user[0]");
+          console.log(response.data.user[0]);
+          if (response.data.user[0].lang == 'chinese') {setStatus(1)}
+          else setStatus(0)
+          studentname = response.data.user[0].lastname + response.data.user[0].firstname
+          console.log(studentname)
+          // delete point
+          setname(response.data[0].firstname + ' ' + response.data[0].lastname)
+          setphone(response.data[0].phone)
+          setemail(response.data[0].email)
+          setgender(response.data[0].gender)
+          setbirthday(response.data[0].birthday)
+          setgrade(response.data[0].grade)
+          setschool(response.data[0].schoolname)(
+            response.data[0].bio != '',
+          )
+            ? setbio(response.data[0].bio)
+            : setbio(bio)
+          response.data[0].about != ''
+            ? setabout(response.data[0].about)
+            : setabout(about)
+          console.log(
+            name,
+            phone,
+            email,
+            gender,
+            birthday,
+            grade,
+            school,
+            bio,
+            about,
+          )
+          setLoading(false)
         },
       )
     }
@@ -183,3 +145,16 @@ export default function S_Portfolio() {
     </div>
   )
 }
+
+
+  // if (!hasSetStatus) {
+  //   Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
+  //     username: username,
+  //   }).then((response) => {
+  //     console.log(response.data)
+  //     if (response.data == 'chinese') setStatus(1)
+  //     else setStatus(0)
+  //     setHasSetStatus(1)
+  //     console.log(status)
+  //   })
+  // }
