@@ -39,6 +39,7 @@ export default function S_Portfolio() {
   let q = ['School: ', '學校：']
   let bc = ['Bio', '自介']
   let de = ['About me', '關於我']
+  let ef = ["None :)","還沒有填寫喔 :)"]
   let studentname = "", teacherusername = "";
 
   useEffect(() => {
@@ -83,8 +84,8 @@ export default function S_Portfolio() {
               setbirthday(response.data[0].birthday)
               setgrade(response.data[0].grade)
               setschool(response.data[0].schoolname)
-              setbio(response.data[0].bio)
-              setabout(response.data[0].about)
+              (response.data[0].bio != "") ? setbio(response.data[0].bio) : setbio(bio);
+              (response.data[0].about != "") ? setabout(response.data[0].about) : setabout(about);
               console.log(name, phone, email, gender, birthday, grade, school, bio, about);
               setLoading(false)
             })
