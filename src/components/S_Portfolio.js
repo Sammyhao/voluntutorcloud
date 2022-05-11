@@ -39,7 +39,7 @@ export default function S_Portfolio() {
   let q = ['School: ', '學校：']
   let bc = ['Bio', '自介']
   let de = ['About me', '關於我']
-  let studentname = "";
+  let studentname = "", teacherusername = "";
 
   useEffect(() => {
     if(isLoading) {
@@ -65,21 +65,34 @@ export default function S_Portfolio() {
           studentname = response.data[0].lastname + response.data[0].firstname;
           console.log("studentname:");
           console.log(studentname);
-          setname(studentname);
-          setphone(response.data[0].phone)
-          setemail(response.data[0].email)
-          setgender(response.data[0].gender);
-          setbirthday(response.data[0].birthday)
-          setgrade(response.data[0].grade)
-          setschool(response.data[0].schoolname)
-          setbio(response.data[0].bio)
-          setabout(response.data[0].about)
           setLoading(false)
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
+            studentname: studentname,
+          }).then((response) => {
+            teacherusername = response.data[0].username;
+            console.log("teacherusername");
+            console.log(teacherusername);
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+              username: teacherusername,
+            }).then((response) => {
+              console.log(response);
+              setname(response.data[0].lastname + response.data[0].firstname);
+              setphone(response.data[0].phone)
+              setemail(response.data[0].email)
+              setgender(response.data[0].gender);
+              setbirthday(response.data[0].birthday)
+              setgrade(response.data[0].grade)
+              setschool(response.data[0].schoolname)
+              setbio(response.data[0].bio)
+              setabout(response.data[0].about)
+              console.log(name, phone, email. gender, birthday, grade, school, bio, about);
+              setLoading(false)
+            })
           })
         })
-      }
+      })
     }
-  , [])
+  }, [])
 
   if (isLoading){
     return(

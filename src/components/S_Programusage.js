@@ -41,8 +41,8 @@ function Programusage() {
     // '噢, 目前您還未和老師成功配對！',
     '請期待第一次的課程!'
   ]
+  let c = ["Total hours: ","總小時數："]
   let b = ['We will assign you a teacher soon!', '我們會盡快配對一位老師給您！']
-  let c = ["Total hours:","總小時數："]
   let d = [" hrs" ,"小時"]
   let e = ["Records" ,"課堂紀錄"]
   let f = ["Notes", "課堂筆記"]
