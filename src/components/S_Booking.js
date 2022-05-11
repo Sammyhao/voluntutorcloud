@@ -104,7 +104,7 @@ export default function S_Booking() {
           }).then((response) => {
             console.log("response from findTeacher:");
             console.log(response);
-            teacherusername = response.data;
+            teacherusername = response.data[0].username;
             setTeachername(teacherusername);
             Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
               studentname: studentname,
@@ -179,7 +179,7 @@ export default function S_Booking() {
   let p = ['Cancel', '拒絕']
   let q = ['Confirm', '確認']
   let r = ['You have not received any bookings :)', '你還沒有收到任何會議預約邀請喔 :)']
-  
+
   // 這裡true的條件改成是否有學生喔
   if (isLoading){
     return(
