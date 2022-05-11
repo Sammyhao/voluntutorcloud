@@ -7,6 +7,7 @@ import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
+import { FaUser } from 'react-icons/fa'
 import Typography from '@material-ui/core/Typography'
 import Loading from './Loading'
 import Axios from 'axios'
@@ -105,6 +106,8 @@ export default function Booking() {
   let j = ["Please fill in all the fields.","請完整填入資訊"]
   let k = ["Booking Invitation sent. Please check the message box if the student is unavailable during the time.","會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議。"]
 
+
+  let l = ['Upcoming Meetings', "即將到來的會議'"]
   const sendfirst = () => {
     if(date== "" || time == "" || duration == ""){
           setnoneopen(true)
