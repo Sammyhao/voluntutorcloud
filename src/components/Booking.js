@@ -107,7 +107,7 @@ export default function Booking() {
   let k = ["Booking Invitation sent. Please check the message box if the student is unavailable during the time.","會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議。"]
 
 
-  let l = ['Upcoming Meetings', "即將到來的會議'"]
+  let l = ['Upcoming Meetings', "即將到來的會議"]
   const sendfirst = () => {
     if(date== "" || time == "" || duration == ""){
           setnoneopen(true)
@@ -240,7 +240,7 @@ export default function Booking() {
                   />
                 </div>
                 </div>
-                <div className="outerbook">
+                <div className="outerbook_upcoming">
         <div className="topbarbook">
           <div className="titlebook">{l[status]}</div>
         </div>
@@ -254,11 +254,11 @@ export default function Booking() {
                 </div>
                 <div className="bookingrequesttotal">
                   <div className="bookingrequestsub">Student Name</div>
-                  <div className="bookinrequesttime">1.5 hr</div>
+                  <div className="bookinrequesttime">1 hr</div>
                 </div>
                 <div className="bookingrequesttotaltime">
                   <div className="detailtimeforupcomings">
-                    05/22/2022 18:00~19:00
+                    05/12/2022 or 05/13/2022 18:00~19:00
                   </div>
                 </div>
               </div>
