@@ -248,7 +248,7 @@ export default function Booking() {
                 </div>
                 <div className="bookingrequesttotaltime">
                   <div className="detailtimeforupcomings">
-                    05/12 or 13 19:00~20:00 Please check Line group for further information
+                    05/12 or 13 19:00~20:00   Please check Line group for further information
                   </div>
                 </div>
               </div>

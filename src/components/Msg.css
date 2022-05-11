@@ -78,7 +78,7 @@
   height: 70%;
   width: 100%;
   padding: 15px;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 .send {
   height: 20%;
