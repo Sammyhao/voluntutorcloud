@@ -71,14 +71,9 @@ export default function S_Portfolio() {
               setgender(response.data[0].gender)
               setbirthday(response.data[0].birthday)
               setgrade(response.data[0].grade)
-              setschool(response.data[0].schoolname)(
-                response.data[0].bio != '',
-              )
-                ? setbio(response.data[0].bio)
-                : setbio(bio)
-              response.data[0].about != ''
-                ? setabout(response.data[0].about)
-                : setabout(about)
+              setschool(response.data[0].schoolname)
+              (response.data[0].bio != '') ? setbio(response.data[0].bio) : setbio(bio)
+              (response.data[0].about != '') ? setabout(response.data[0].about) : setabout(about)
               console.log(
                 "name, phone, email, gender, birthday, grade, school, bio, about")
               console.log(
