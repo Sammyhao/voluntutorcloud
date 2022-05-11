@@ -104,7 +104,6 @@ function S_Msg() {
               className="messagesend"
               type="text"
               placeholder="Enter your message..."
-              value={msg}
               disabled="true"
               onChange={(e) => {
                 setmsg(e.target.value)
