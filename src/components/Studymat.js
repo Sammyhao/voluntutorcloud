@@ -258,15 +258,9 @@ let gradearr_ch = [
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         console.log(response.data);
         username = response.data.user[0].username;
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-          username: username,
-        }).then((response) => {
-          console.log(response.data);
-          if(response.data == "chinese") setStatus(1);
-          else setStatus(0);
-          console.log(status);
-          setLoading(false);
-        })
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
+        setLoading(false);
       })
     }
   }, [])

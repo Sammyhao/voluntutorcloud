@@ -299,37 +299,21 @@ function Profile_user() {
       (response) => {
         console.log(response.data)
         setname(response.data.user[0].username)
-        username = response.data.user[0].username
-        Axios.post(
-          'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
-          {
-            username: username,
-          },
-        ).then((response) => {
-          console.log(response.data[0].username, response.data[0].phone)
-          setphone(response.data[0].phone)
-          setemail(response.data[0].email)
-          setgender(response.data[0].gender)
-          setbirthday(response.data[0].birthday)
-          setgrade(response.data[0].grade)
-          setschool(response.data[0].schoolname)
-          setpreferredsubject(response.data[0].preferredSubjects)
-          setstudentage(response.data[0].targetStuAge)
-          setstudentgender(response.data[0].targetStuGen)
-          setstudentpers(response.data[0].targetStuPerso)
-          setbio(response.data[0].bio)
-          setabout(response.data[0].about)
-          setGooglemeetlink(response.data[0].googlemeetlink)
-          
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-            username: username,
-          }).then((response) => {
-            console.log(response.data)
-            if (response.data == 'chinese') setStatus(1)
-            else setStatus(0)
-            console.log(status)
-          })
-        })
+        setphone(response.data.user[0].phone)
+        setemail(response.data.user[0].email)
+        setgender(response.data.user[0].gender)
+        setbirthday(response.data.user[0].birthday)
+        setgrade(response.data.user[0].grade)
+        setschool(response.data.user[0].schoolname)
+        setpreferredsubject(response.data.user[0].preferredSubjects)
+        setstudentage(response.data.user[0].targetStuAge)
+        setstudentgender(response.data.user[0].targetStuGen)
+        setstudentpers(response.data.user[0].targetStuPerso)
+        setbio(response.data.user[0].bio)
+        setabout(response.data.user[0].about)
+        setGooglemeetlink(response.data.user[0].googlemeetlink)
+        if (response.data.user[0].lang == 'chinese') setStatus(1)
+        else setStatus(0)
       },
     )
   }, [])

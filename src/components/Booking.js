@@ -57,8 +57,7 @@ export default function Booking() {
   const [time, settime] = useState('')
   const [duration, setduration] = useState('')
   const [status, setStatus] = useState(0);
-  const [isLoading1, setLoading1] = useState(true);
-  const [isLoading2, setLoading2] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [contactInfo, setContactInfo] = useState([]);
   const [haveSetStatus, setHaveSetStatus] = useState(false);
 
@@ -69,23 +68,14 @@ export default function Booking() {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       username = response.data.user[0].username;
       setName(username);
-      if(haveSetStatus == false) {
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-          username: username,
-        }).then((response) => {
-          console.log(response.data);
-          if(response.data == "chinese") setStatus(1);
-          else setStatus(0);
-          console.log(status);
-          setLoading1(false);
-          setHaveSetStatus(true);
-        })
-      }
+      if(response.data.user[0].lang == "chinese") setStatus(1);
+      else setStatus(0);
+
       Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
         username: username
       }).then((response) => {
         setContactInfo(response.data);
-        setLoading2(false);
+        setLoading(false);
       })
     })
   })
@@ -140,7 +130,7 @@ export default function Booking() {
   }
 
   // 這裡true的條件改成是否有學生喔
-  if(isLoading1 || isLoading2){
+  if(isLoading){
     console.log("contactinfo length: ",contactInfo.length)
     return(
       <Loading></Loading>
