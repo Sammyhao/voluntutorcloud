@@ -54,45 +54,27 @@ function Programusage() {
     if(isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username;
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
-          username: username,
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
+        studentname = response.data.user[0].lastname + response.data.user[0].firstname;
+        
+        Axios.post("https://voluntutorcloud-server.herokuapp.com/findContactbyName", {
+          studentname: studentname
         }).then((response) => {
           console.log(response.data[0]);
-          studentname = response.data[0].lastname + response.data[0].firstname;
-          console.log("studentname:");
-          console.log(studentname);
+          let student = response.data[0];
+          setStpair(stpair => [...stpair, student]);
 
-          Axios.post("https://voluntutorcloud-server.herokuapp.com/findContactbyName", {
-            studentname: studentname
+          Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
+            username: student.username,
+            studentname: student.studentname,
+            studentmail: student.studentmail
           }).then((response) => {
-            
-            if(!hasSetStatus) {
-              Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-                username: username,
-              }).then((response) => {
-                console.log(response.data);
-                if(response.data == "chinese") setStatus(1);
-                else setStatus(0);
-                setHasSetStatus(1);
-                console.log(status);
-              })
-            }
+            if(response.data.length) setContactInfo(contactInfo => [...contactInfo, response.data])
+            setLoading(false);
+          })
 
-            console.log(response.data[0]);
-            let student = response.data[0];
-            setStpair(stpair => [...stpair, student]);
-
-            Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
-              username: student.username,
-              studentname: student.studentname,
-              studentmail: student.studentmail
-            }).then((response) => {
-              if(response.data.length) setContactInfo(contactInfo => [...contactInfo, response.data])
-              setLoading(false);
-            })
-
-          });
-        })
+        });
       })
     }
   }, [])
