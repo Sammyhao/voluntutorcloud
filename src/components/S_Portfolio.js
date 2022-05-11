@@ -56,7 +56,7 @@ export default function S_Portfolio() {
           console.log("studentname")
           console.log(studentname)
           // delete point
-          Axios.get('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
             studentname: studentname
           }).then((response) => {
             teacherusername = response.data[0].username;
