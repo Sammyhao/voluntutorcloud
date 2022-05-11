@@ -50,7 +50,7 @@ function Msg() {
                       <FaUser className="msg_icon" />
                     </div>
                     <div className="infoboxmsg">
-                      <div className="namemsg">Student</div>
+                      <div className="namemsg">Student name</div>
                       <div className="latestmsg">OHH right I almost forgot</div>
                     </div>
                     <div className="align">
