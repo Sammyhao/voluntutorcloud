@@ -75,7 +75,7 @@ export default function S_Portfolio() {
             Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
               username: teacherusername,
             }).then((response) => {
-              console.log(response);
+              console.log(response.data[0]);
               setname(response.data[0].lastname + response.data[0].firstname);
               setphone(response.data[0].phone)
               setemail(response.data[0].email)
@@ -85,7 +85,7 @@ export default function S_Portfolio() {
               setschool(response.data[0].schoolname)
               setbio(response.data[0].bio)
               setabout(response.data[0].about)
-              console.log(name, phone, email. gender, birthday, grade, school, bio, about);
+              console.log(name, phone, email, gender, birthday, grade, school, bio, about);
               setLoading(false)
             })
           })
@@ -95,30 +95,12 @@ export default function S_Portfolio() {
   }, [])
 
   if (isLoading){
+    console.log('is loading')
     return(
       <Loading/>
     )
-  }else if(studentProfolio.length == 0) {
-    return (
-      <div className = "outcontainer_port">
-      <div className="top_bar">
-          <div className="image_port">
-            <img className="pic_port" src="/images/children_learning.png" />
-          </div>
-          <div className="words_port">
-            <div className="t_port">{c[status]}</div>
-            <div className="sub_port">{d[status]}</div>
-          </div>
-        </div>
-      <div className = "nokidport">
-        <div className="noStudentFont">{a[status]}</div>
-        <div className="noStudentFont2">{b[status]}</div>
-      </div>
-      </div>
-    )
   } else {
     console.log('finish loading')
-    console.log(studentProfolio)
     return (
       <div className="outcontainer_port">
         <div className="top_bar">

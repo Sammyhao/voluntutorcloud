@@ -264,7 +264,8 @@ export default function S_Booking() {
                           <div className="bookingrequestsub">{teacherRealname}</div>
                           <div className="bookinrequesttime">1 hr</div>
                         </div>
-                        <div className="bookingrequesttotaltime">5/12/2022 or 5/13/2022 19:00~20:00
+                        <div className="bookingrequesttotaltime">
+                          <div className='detailtimeforupcomings'>5/12/2022 or 5/13/2022 19:00~20:00</div>
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
@@ -282,8 +283,10 @@ export default function S_Booking() {
                   <div className="bookingwrappbottom">
                     
                   <div className="bookingrow">
-                    <div className='bookingrequesttotaltime'>
+                    <div className="bookingwrapsecond">
+                    <div className='bookingrequesttotaltimewarning'>
                    <div className="detailtimeerrornobook">{r[status]}</div>
+                   </div>
                    </div>
                    </div>
                   </div>
