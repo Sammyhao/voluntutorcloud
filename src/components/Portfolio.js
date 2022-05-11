@@ -157,11 +157,11 @@ export default function Portfolio() {
               <Divider className="primline"></Divider>
               <div className="subtitle_port">{n[status]}</div>
               <div className="content_port">
-              {p[status]} {studentProfolio['0']['0'].studentmail}
+              {o[status]} {studentProfolio['0']['0'].studentmail}
               </div>
               <div className="subtitle_port">{q[status]}</div>
               <div className="content_port">
-                 {studentProfolio['0']['0'].parentcontactnum}
+                {p[status]} {studentProfolio['0']['0'].parentcontactnum}
               </div>
               <div className="content_port">
               {o[status]} {studentProfolio['0']['0'].parentmail}
