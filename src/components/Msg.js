@@ -34,8 +34,10 @@ function Msg() {
     }
   }
 
-  function updateMsg() {
-
+  const updateMsg = () => {
+    let msg = {type: "user", text: curMsg};
+    setMsgRecRev(msgRecRev => [...msgRecRev, msg])
+    // Axios.post('')
   }
 
   useEffect(() => {
@@ -98,7 +100,7 @@ function Msg() {
                     </div>
                     <div className="infoboxmsg">
                       <div className="namemsg">Student name</div>
-                      <div className="latestmsg">{msgRec["0"].text}</div>
+                      <div className="latestmsg">{msgRecRev["0"].text}</div>
                     </div>
                     {/* <div className="align">
                       <div className="numbermsg">1</div>
