@@ -17,6 +17,7 @@ function Msg() {
   const [msgRec, setMsgRec] = useState([]);
   let msgStr = "";
   const [isLoading, setLoading] = useState(true);
+  const [isLoading2, setLoading2] = useState(true);
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
 
   function processMsg(msgStr) {
@@ -54,7 +55,7 @@ function Msg() {
   }
 
   useEffect(() => {
-    if(isLoading) {
+    if(isLoading || isLoading2) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
           username = response.data.user[0].username
@@ -65,7 +66,7 @@ function Msg() {
             studentname: studentname,
           }).then((response) => {
             teacherusername = response.data[0].username;
-            if(!hasProcessMsg) {
+            if(msgStr == "") {
               Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
                 username: teacherusername,
                 studentname: studentname
@@ -73,19 +74,19 @@ function Msg() {
                 msgStr = response.data[0].msg;
                 console.log("msgStr");
                 console.log(msgStr);
-                processMsg(msgStr);
-                setHasProcessMsg(true);
-                setLoading(false);
+                setLoading2(false);
               })
             }
           })
         },
       )
+      processMsg(msgStr);
+      setLoading(false);
     }
   })
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
-  if (isLoading) {
+  if (isLoading || isLoading2) {
     return (
       <Loading/>
     )
