@@ -13,6 +13,7 @@ function Msg() {
 
   const [status, setStatus] = useState(0)
   let username = '', studentname = "", teacherusername = "";
+  const [curMsg, setCurMsg] = useState('');
   const [msgRec, setMsgRec] = useState([]);
   let msgStr = "";
   const [isLoading, setLoading] = useState(true);
@@ -133,9 +134,9 @@ function Msg() {
               className="messagesend"
               type="text"
               placeholder="Enter your message..."
-              value={Msg}
+              value={curMsg}
               onChange={(e) => {
-                setMsg(e.target.value)
+                setCurMsg(e.target.value)
               }}
             />
             <div className="sendword">send</div>
