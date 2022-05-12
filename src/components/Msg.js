@@ -37,7 +37,7 @@ function Msg() {
 
   const updateMsg = () => {
     let msg = {type: "user", text: curMsg};
-    setMsgRec(msgRec => [msg, ...msgRec]);
+    setMsgRec(msgRec => [...msgRec, msg]);
   }
 
   useEffect(() => {
@@ -79,9 +79,6 @@ function Msg() {
     console.log(msgRec);
     return (
     <div>
-      {/* <div className="warningmsg">
-        {a[status]}
-        </div> */}
       <div className="out">
         <div className="chathistory">
           <div className="searchpad">
