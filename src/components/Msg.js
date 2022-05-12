@@ -73,8 +73,8 @@ function Msg() {
       <Loading/>
     )
   } else {
-    console.log("msgRecRev");
-    console.log(msgRecRev);
+    console.log("msgRec");
+    console.log(msgRec);
     return (
     <div>
       {/* <div className="warningmsg">
@@ -98,7 +98,7 @@ function Msg() {
                     </div>
                     <div className="infoboxmsg">
                       <div className="namemsg">Student name</div>
-                      <div className="latestmsg">{msgRecRev["0"].text}</div>
+                      <div className="latestmsg">{msgRec["0"].text}</div>
                     </div>
                     {/* <div className="align">
                       <div className="numbermsg">1</div>
@@ -112,7 +112,7 @@ function Msg() {
         <div className="chatcontent">
           <div className="chatname">Student name</div>
           <div className="chat">
-            {msgRecRev.map((e) => {
+            {msgRec.map((e) => {
               return <Msg_user type={e.type} text={e.text}></Msg_user>
             })}
             </div>
