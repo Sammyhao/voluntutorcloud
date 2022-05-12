@@ -35,8 +35,9 @@ function Msg() {
     }
   }
 
-  function updateMsg() {
-
+  const updateMsg = () => {
+    let msg = {type: "user", text: curMsg};
+    setMsgRec(msgRec => [msg, ...msgRec]);
   }
 
   useEffect(() => {
