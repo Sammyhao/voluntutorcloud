@@ -73,6 +73,8 @@ function Msg() {
       <Loading/>
     )
   } else {
+    console.log("msgRec");
+    console.log(msgRec);
     console.log("msgRecRev");
     console.log(msgRecRev);
     return (
