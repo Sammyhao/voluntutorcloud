@@ -20,6 +20,8 @@ function Msg() {
   const [msgForUpd, setMsgForUpd] = useState('');
   const [isLoading, setLoading] = useState(true);
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
+  const [usernameConst, setUsernameConst] = useState('');
+  const [studentnameConst, setStudentnameConst] = useState('');
 
   function processMsg(msgStr) {
     if(!msgRec.length) {
@@ -43,8 +45,13 @@ function Msg() {
     msgStr += "T:" + curMsg + 'ψ';
     console.log(msgStr);
     setMsgForUpd(msgStr + msgForUpd);
-    // Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', 
-    // )
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
+      username: usernameConst,
+      studentname: studentnameConst,
+      msg: msgForUpd
+    }).then((response) => {
+      console.log(response);
+    })
   }
 
   useEffect(() => {
@@ -52,12 +59,14 @@ function Msg() {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
           username = response.data.user[0].username
+          setUsernameConst(username);
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0);
           Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
             username: username,
           }).then((response) => {
             studentname = response.data[0].studentname;
+            setStudentnameConst(studentname);
             console.log("username, studentname: ");
             console.log(username, studentname);
             if(!hasProcessMsg) {
