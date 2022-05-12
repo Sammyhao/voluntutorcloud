@@ -15,7 +15,7 @@ function Msg() {
   let username = '', studentname = "", teacherusername = "";
   const [curMsg, setCurMsg] = useState('');
   const [msgRec, setMsgRec] = useState([]);
-
+  const [msgRecRev, setMsgRecRev] = useState([]);
   let msgStr = "";
   const [isLoading, setLoading] = useState(true);
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
@@ -32,6 +32,10 @@ function Msg() {
       }
       setHasProcessMsg(true);
     }
+  }
+
+  function updateMsg() {
+
   }
 
   useEffect(() => {
@@ -53,6 +57,7 @@ function Msg() {
               }).then((response) => {
                 msgStr = response.data[0].msg;
                 processMsg(msgStr);
+                setMsgRecRev(msgRec.reverse());
                 setLoading(false);
               })
             }
@@ -68,9 +73,8 @@ function Msg() {
       <Loading/>
     )
   } else {
-    console.log("msgRec");
-    console.log(msgRec);
-    const msgRecRev = msgRec.reverse();
+    console.log("msgRecRev");
+    console.log(msgRecRev);
     return (
     <div>
       {/* <div className="warningmsg">
@@ -94,7 +98,7 @@ function Msg() {
                     </div>
                     <div className="infoboxmsg">
                       <div className="namemsg">Student name</div>
-                      <div className="latestmsg">OHH right I almost forgot</div>
+                      <div className="latestmsg">{msgRec["0"].text}</div>
                     </div>
                     {/* <div className="align">
                       <div className="numbermsg">1</div>
@@ -122,7 +126,7 @@ function Msg() {
                 setCurMsg(e.target.value)
               }}
             />
-            <div className="sendword">send</div>
+            <div className="sendword" onClick={updateMsg}>send</div>
           </div>
         </div>
       </div>
