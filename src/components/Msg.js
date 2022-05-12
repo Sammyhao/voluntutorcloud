@@ -3,6 +3,7 @@ import { BiSearchAlt } from 'react-icons/bi'
 import './Msg.css'
 import '../App.css'
 import { Msg_recipient } from './Msg_recipient'
+import Loading from './Loading'
 import { Msg_user } from './Msg_user'
 import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
@@ -14,35 +15,44 @@ function Msg() {
   const [status, setStatus] = useState(0)
   let username = '', studentname = "", teacherusername = "";
   const [msgRec, setMsgRec] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      (response) => {
-        username = response.data.user[0].username
-        if (response.data.user[0].lang == 'chinese') setStatus(1)
-        else setStatus(0);
-        studentname = response.data.user[0].lastname + response.data.user[0].firstname;
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
-          studentname: studentname,
-        }).then((response) => {
-          teacherusername = response.data[0].username;
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
-            username: teacherusername,
-            studentname: studentname
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          username = response.data.user[0].username
+          if (response.data.user[0].lang == 'chinese') setStatus(1)
+          else setStatus(0);
+          studentname = response.data.user[0].lastname + response.data.user[0].firstname;
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
+            studentname: studentname,
           }).then((response) => {
-            setMsgRec(response);
-            console.log("msgRec");
-            console.log(response);
+            teacherusername = response.data[0].username;
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
+              username: teacherusername,
+              studentname: studentname
+            }).then((response) => {
+              setMsgRec(response);
+              console.log("msgRec");
+              console.log(response);
+              setLoading(false);
+            })
           })
-        })
-      },
-    )
+        },
+      )
+    }
   })
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
-  return (
+  if (isLoading) {
+    return (
+      <Loading/>
+    )
+  } else {
+    return (
     <div>
       {/* <div className="warningmsg">
         {a[status]}
@@ -111,7 +121,8 @@ function Msg() {
         </div>
       </div>
     </div>
-  )
+    )
+  }
 }
 
 export default Msg
