@@ -10,14 +10,33 @@ import Axios from 'axios'
 
 function Msg() {
   let num = [1]
-  const [msg, setmsg] = useState('')
 
   const [status, setStatus] = useState(0)
   let username = '', studentname = "", teacherusername = "";
   const [msgRec, setMsgRec] = useState([]);
+  let msgStr = "";
   const [isLoading, setLoading] = useState(true);
 
-  
+  function processMsg(msgStr) {
+    console.log("msgStr");
+    console.log(msgStr);
+    let type = "", text = "";
+    for(let i = 0; i < msgStr.length; i++) {
+      if(msgStr[i] == 'S') type = "student";
+      else if(msgStr[i] == 'T') type = "teacher";
+      else if(msgStr[i] == ':') {}
+      else if(msgStr[i] == 'ψ') {
+        let msg = {type: type, text: text};
+        console.log("msg: ");
+        console.log(msg);
+        setMsgRec(msgRec => [...msgRec, msg]);
+        type = "";
+        text = "";
+      }else {
+        text += msgStr[i];
+      }
+    }
+  }
 
   useEffect(() => {
     if(isLoading) {
@@ -35,9 +54,10 @@ function Msg() {
               username: teacherusername,
               studentname: studentname
             }).then((response) => {
-              setMsgRec(response);
-              console.log("msgRec");
-              console.log(response);
+              msgStr = response.data[0].msg;
+              console.log("msgStr");
+              console.log(msgStr);
+              processMsg(msgStr);
               setLoading(false);
             })
           })
@@ -52,6 +72,8 @@ function Msg() {
       <Loading/>
     )
   } else {
+    console.log("msgRec");
+    console.log(msgRec);
     return (
     <div>
       {/* <div className="warningmsg">
