@@ -15,7 +15,7 @@ function Msg() {
   let username = '', studentname = "", teacherusername = "";
   const [curMsg, setCurMsg] = useState('');
   const [msgRec, setMsgRec] = useState([]);
-  const [msgRecRev, setMsgRecRev] = useState([]);
+  let msgRecRev = [];
   let msgStr = "";
   const [isLoading, setLoading] = useState(true);
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
@@ -57,7 +57,7 @@ function Msg() {
               }).then((response) => {
                 msgStr = response.data[0].msg;
                 processMsg(msgStr);
-                setMsgRecRev(msgRec.reverse());
+                msgRecRev = msgRec.reverse();
                 setLoading(false);
               })
             }
