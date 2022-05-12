@@ -32,8 +32,6 @@ function Msg() {
         let msg = {type: t, text: category[1]};
         setMsgRec(msgRec => [...msgRec, msg]);
       }
-      setHasProcessMsg(true);
-      setLoading(false);
     }
   }
 
@@ -62,8 +60,11 @@ function Msg() {
               }).then((response) => {
                 msgStr = response.data[0].msg;
                 processMsg(msgStr);
+                console.log("msgRec");
                 console.log(msgRec);
                 setMsgRecRev(msgRec.reverse());
+                setHasProcessMsg(true);
+                setLoading(false);
               })
             }
           })
