@@ -20,24 +20,36 @@ function Msg() {
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
 
   function processMsg(msgStr) {
-    console.log("msgStr");
-    console.log(msgStr);
-    let type = "", text = "";
-    for(let i = 0; i < msgStr.length; i++) {
-      console.log(msgStr[i]);
-      if(msgStr[i] == 'S') {type = "student";}
-      else if(msgStr[i] == 'T') type = "teacher";
-      else if(msgStr[i] == ':') {}
-      else if(msgStr[i] == 'ψ') {
-        let msg = {type: type, text: text};
-        console.log("msg: ");
-        console.log(msg);
-        setMsgRec(msgRec => [...msgRec, msg]);
-        type = "";
-        text = "";
-      }else {
-        text += msgStr[i];
-      }
+    // console.log("msgStr");
+    // console.log(msgStr);
+    // let type = "", text = "";
+    // for(let i = 0; i < msgStr.length; i++) {
+    //   console.log(msgStr[i]);
+    //   if(msgStr[i] == 'S') {type = "student";}
+    //   else if(msgStr[i] == 'T') type = "teacher";
+    //   else if(msgStr[i] == ':') {}
+    //   else if(msgStr[i] == 'ψ') {
+    //     let msg = {type: type, text: text};
+    //     console.log("msg: ");
+    //     console.log(msg);
+    //     setMsgRec(msgRec => [...msgRec, msg]);
+    //     type = "";
+    //     text = "";
+    //   }else {
+    //     text += msgStr[i];
+    //   }
+    // }
+    const msgInfo = msgStr.split('ψ');
+    console.log("msgInfo");
+    console.log(msgInfo);
+    for(let i = 0; i < msgInfo.length; i++) {
+      const category = msgInfo[i].split(':');
+      console.log("category");
+      console.log(category);
+      let msg = {type: category[0], text: category[1]};
+      console.log("msg: ");
+      console.log(msg);
+      setMsgRec(msgRec => [...msgRec, msg]);
     }
   }
 
