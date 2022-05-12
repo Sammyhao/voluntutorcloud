@@ -17,13 +17,15 @@ function Msg() {
   const [msgRec, setMsgRec] = useState([]);
   let msgStr = "";
   const [isLoading, setLoading] = useState(true);
+  const [hasProcessMsg, setHasProcessMsg] = useState(false);
 
   function processMsg(msgStr) {
     console.log("msgStr");
     console.log(msgStr);
     let type = "", text = "";
     for(let i = 0; i < msgStr.length; i++) {
-      if(msgStr[i] == 'S') type = "student";
+      console.log(msgStr[i]);
+      if(msgStr[i] == 'S') {type = "student";}
       else if(msgStr[i] == 'T') type = "teacher";
       else if(msgStr[i] == ':') {}
       else if(msgStr[i] == 'ψ') {
@@ -51,16 +53,19 @@ function Msg() {
             studentname: studentname,
           }).then((response) => {
             teacherusername = response.data[0].username;
-            Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
-              username: teacherusername,
-              studentname: studentname
-            }).then((response) => {
-              msgStr = response.data[0].msg;
-              console.log("msgStr");
-              console.log(msgStr);
-              processMsg(msgStr);
-              setLoading(false);
-            })
+            if(!hasProcessMsg) {
+              Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
+                username: teacherusername,
+                studentname: studentname
+              }).then((response) => {
+                msgStr = response.data[0].msg;
+                console.log("msgStr");
+                console.log(msgStr);
+                processMsg(msgStr);
+                setHasProcessMsg(true);
+                setLoading(false);
+              })
+            }
           })
         },
       )
