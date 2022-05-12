@@ -17,6 +17,7 @@ function Msg() {
   const [msgRec, setMsgRec] = useState([]);
   let msgRecRev = [];
   let msgStr = "";
+  const [msgStrForUpdate, setMsgStrForUpdate] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
 
@@ -38,9 +39,7 @@ function Msg() {
   const updateMsg = () => {
     let msg = {type: "user", text: curMsg};
     setMsgRec(msgRec => [...msgRec, msg]);
-    msgStr += "T:" + curMsg + 'ψ';
-    console.log("msgStr");
-    console.log(msgStr);
+    setMsgStrForUpdate("T:" + curMsg + 'ψ' + msgStrForUpdate);
   }
 
   useEffect(() => {
@@ -61,6 +60,7 @@ function Msg() {
                 studentname: studentname
               }).then((response) => {
                 msgStr = response.data[0].msg;
+                setMsgStrForUpdate(msgStr);
                 processMsg(msgStr);
                 setLoading(false);
               })
