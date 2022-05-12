@@ -33,6 +33,7 @@ function Msg() {
         setMsgRec(msgRec => [...msgRec, msg]);
       }
     }
+    setLoading(false);
   }
 
   const updateMsg = () => {
@@ -64,7 +65,6 @@ function Msg() {
                 console.log(msgRec);
                 setMsgRecRev(msgRec.reverse());
                 setHasProcessMsg(true);
-                setLoading(false);
               })
             }
           })
