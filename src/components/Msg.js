@@ -23,8 +23,6 @@ function Msg() {
   function processMsg(msgStr) {
     if(!msgRec.length) {
       const msgInfo = msgStr.split('ψ');
-      console.log("msgInfo");
-      console.log(msgInfo);
       for(let i = 0; i < msgInfo.length; i++) {
         const category = msgInfo[i].split(':');
         let t = "";
@@ -32,14 +30,12 @@ function Msg() {
         let msg = {type: t, text: category[1]};
         setMsgRec(msgRec => [...msgRec, msg]);
       }
+      setHasProcessMsg(true);
     }
-    setLoading(false);
   }
 
-  const updateMsg = () => {
-    let msg = {type: "user", text: curMsg};
-    setMsgRecRev(msgRecRev => [...msgRecRev, msg])
-    // Axios.post('')
+  function updateMsg() {
+
   }
 
   useEffect(() => {
@@ -61,10 +57,8 @@ function Msg() {
               }).then((response) => {
                 msgStr = response.data[0].msg;
                 processMsg(msgStr);
-                console.log("msgRec");
-                console.log(msgRec);
                 setMsgRecRev(msgRec.reverse());
-                setHasProcessMsg(true);
+                setLoading(false);
               })
             }
           })
