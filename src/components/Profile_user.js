@@ -475,7 +475,7 @@ function Profile_user() {
 
           <div class="warning_prof">{errormessage}</div>
         </div>
-
+{/* 
         <div className="googleMeetLinkTempchanging">
           <div className="googlemeetfirst">{mn[status]}</div>
           <div className="linkpersonal">
@@ -505,7 +505,7 @@ function Profile_user() {
               console.log(response)
             })
           }}>{lm[status]}</div>
-        </div>
+        </div> */}
         <div className="currentprogram">
           <BsFillEmojiSmileFill className="currentprogramicon"></BsFillEmojiSmileFill>
           <div className="currentprogramcontent">{no[status]}</div>
