@@ -180,21 +180,7 @@ function Profile_user() {
   const handleClose = () => {
     setOpen(false)
   }
-  // const handleClick = () => {
-  //   if(name==""){
-  //     seterrormessage(a[status])
-  //   }else{
-  //     seterrormessage("")
-  //   setClick(!click)
-  //   seticonstyle(<MdModeEdit/>)
-  //   if(!click){
-  //     setread("")
-  //     seticonstyle(<BsCheckLg/>)
-  //   }else{
-  //     setread("disabled")
-
-  //   }}
-  // }
+ 
 
   const validateEmail = (e) => {
     var email = e.target.value
@@ -204,7 +190,7 @@ function Profile_user() {
       setEmailError('')
     }
   }
-  const handleclick_contact = () => {
+  const handleclick_contact = (phone, email) => {
     console.log(contactclick)
     if (phone == '' || email == '') {
       setcontacterror(c[status])
@@ -220,12 +206,31 @@ function Profile_user() {
         setreadcontact('disabled')
       }
     }
+
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updatePhone',
+      {
+        username: name,
+        phone: phone,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateEmail',
+      {
+        username: name,
+        email: email,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
   }
 
   const handleclick_pers = () => {
     console.log('dd')
     if (gender == '' || birthday == '' || grade == '' || school == '') {
-      setpersonerror(d[status])
+      setpersonerror(c[status])
     } else {
       setpersonerror('')
       setpersoninfoclick(!personinfoclick)
@@ -417,7 +422,7 @@ function Profile_user() {
             <div className="contact">
               <div className="titleprofile">
                 <div className="titlepro">{f[status]}</div>
-                <div className="edit" onClick={handleclick_contact}>
+                <div className="edit" onClick={() => handleclick_contact(phone, email)}>
                   {contactstyle}
                 </div>
               </div>
@@ -435,15 +440,6 @@ function Profile_user() {
                     value={phone}
                     maxLength={10}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updatePhone',
-                        {
-                          username: name,
-                          phone: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setphone(e.target.value)
                     }}
                   />
@@ -458,15 +454,6 @@ function Profile_user() {
                     value={email}
                     onChange={(e) => {
                       validateEmail(e)
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateEmail',
-                        {
-                          username: name,
-                          email: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setemail(e.target.value)
                     }}
                   />
