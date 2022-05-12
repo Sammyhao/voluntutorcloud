@@ -38,6 +38,9 @@ function Msg() {
   const updateMsg = () => {
     let msg = {type: "user", text: curMsg};
     setMsgRec(msgRec => [...msgRec, msg]);
+    msgStr += "T:" + curMsg + 'ψ';
+    console.log("msgStr");
+    console.log(msgStr);
   }
 
   useEffect(() => {
