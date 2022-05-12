@@ -79,16 +79,10 @@ function S_Function() {
       if (response.data.isLoggedIn) {
         setUsername(response.data.user[0].username)
         name = response.data.user[0].username;
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
       }
       setIsLoggedIn(response.data.isLoggedIn)
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-        username: name,
-      }).then((response) => {
-        console.log(response.data);
-        if(response.data == "chinese") setStatus(1);
-        else setStatus(0);
-        console.log(status);
-      })
     })
   }, [])
   if (isLoggedIn) {
