@@ -15,7 +15,6 @@ function Msg() {
   let username = '', studentname = "", teacherusername = "";
   const [curMsg, setCurMsg] = useState('');
   const [msgRec, setMsgRec] = useState([]);
-  const msgRecRev = [];
 
   let msgStr = "";
   const [isLoading, setLoading] = useState(true);
@@ -71,7 +70,7 @@ function Msg() {
   } else {
     console.log("msgRec");
     console.log(msgRec);
-    msgRecRev = msgRec.reverse();
+    const msgRecRev = msgRec.reverse();
     return (
     <div>
       {/* <div className="warningmsg">
