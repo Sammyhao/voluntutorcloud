@@ -26,6 +26,7 @@ function Home() {
         console.log(response.data);
         if(!response.data.isLoggedIn) {
           setIsLoggedIn(false);
+          setLoading(false);
         }else {
           setIsLoggedIn(true);
           setRole(response.data.user[0].role);
