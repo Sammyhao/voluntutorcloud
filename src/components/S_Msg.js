@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
 import './Msg.css'
 import '../App.css'
+import { Msg_recipient } from './Msg_recipient'
+import { Msg_user } from './Msg_user'
 import { FaUser } from 'react-icons/fa'
 import { ChatEngine } from 'react-chat-engine'
 import Axios from 'axios'
@@ -60,44 +62,24 @@ function S_Msg() {
           </div>
         </div>
         <div className="chatcontent">
-          <div className="chatname">Voluntutor</div>
+          <div className="chatname">Teacher name</div>
           <div className="chat">
-            <div className="teacher_msg">
-              <div className="words">Are you available next monday?</div>
-            </div>
-            <div className="student_msg">
-              <div className="chatava">
-                <FaUser className="msg_icon" />
-              </div>
-              <div className="words_student">
-                Yes, can we have a meeting then?
-              </div>
-            </div>
-            <div className="student_msg">
-              <div className="chatava">
-                <FaUser className="msg_icon" />
-              </div>
-              <div className="words_student">I'm okay with the time</div>
-            </div>
-            <div className="teacher_msg">
-              <div className="words">Sure!!</div>
-            </div>
-            <div className="teacher_msg">
-              <div className="words">See you then!</div>
-            </div>
-            <div className="teacher_msg">
-              <div className="words">
-                Make sure to finish up your homework and good luck on your
-                chinese exam tomorrow! Also remember to bring your science
-                textbook!
-              </div>
-            </div>
-            <div className="student_msg">
-              <div className="chatava">
-                <FaUser className="msg_icon" />
-              </div>
-              <div className="words_student">OHH right I almost forgot</div>
-            </div>
+            <Msg_recipient text={'Are you available next monday?'}></Msg_recipient>
+            <Msg_user
+              text={'Yes, can we have a meeting then?'}
+            ></Msg_user>
+            <Msg_user text={'I am okay with the time'}></Msg_user>
+
+            <Msg_recipient text={'Sure!!'}></Msg_recipient>
+
+            <Msg_recipient text={'See you then!'}></Msg_recipient>
+
+            <Msg_recipient
+              text={
+                'Make sure to finish up your homework and good luck on your chinese exam tomorrow! Also remember to bring your science textbook!'
+              }
+            ></Msg_recipient>
+            <Msg_user text={'OHH right I almost forgot'}></Msg_user>
           </div>
           <div className="send">
             <textarea

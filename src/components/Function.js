@@ -27,14 +27,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }))
-function getStatus(username) {
-  Axios.post('https://voluntutorcloud-server.herokuapp.com/getStatus', {
-    username: username,
-  }).then((response) => {
-    console.log(response.data[0]['LoginStatus'])
-    return response.data[0]['LoginStatus']
-  })
-}
 
 function Function() {
   Axios.defaults.withCredentials = true
@@ -69,23 +61,15 @@ function Function() {
   }
 
   const [status, setStatus] = useState(0);
-  let name = "";
   
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       if (response.data.isLoggedIn) {
         setUsername(response.data.user[0].username)
-        name = response.data.user[0].username;
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
       }
       setIsLoggedIn(response.data.isLoggedIn)
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-        username: name,
-      }).then((response) => {
-        console.log(response.data);
-        if(response.data == "chinese") setStatus(1);
-        else setStatus(0);
-        console.log(status);
-      })
     })
   }, [])
   if (isLoggedIn) {

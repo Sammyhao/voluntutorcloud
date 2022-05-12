@@ -97,25 +97,15 @@ function Grid_sub(props) {
   useEffect(() => {
     console.log("subject");
     console.log(subject);
-    if (subject == '') {
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
-        subject: "chinese",
-      }).then((response) => {
-        console.log("fetched data for school tour");
-        console.log(response.data.length);
-        if (response.data.length) {
-          setProgramInfo(response.data)
-        }
-      })
-    } else {
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
-        subject: subject,
-      }).then((response) => {
-        if (response.data.length) {
-          setProgramInfo(response.data)
-        }
-      })
-    }
+    if (subject == '') subject = "chinese";
+    
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
+      subject: subject,
+    }).then((response) => {
+      if (response.data.length) {
+        setProgramInfo(response.data)
+      }
+    })
 
     let name = "";
 
@@ -124,15 +114,9 @@ function Grid_sub(props) {
       if (response.data.isLoggedIn) {
         setUsername(response.data.user[0].username)
         name = response.data.user[0].username;
-      }
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-        username: name,
-      }).then((response) => {
-        console.log(response.data);
-        if(response.data == "chinese") setStatus(1);
+        if(response.data.user[0].lang == "chinese") setStatus(1);
         else setStatus(0);
-        console.log(status);
-      })
+      }
     })
   }, [])
 
