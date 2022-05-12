@@ -30,6 +30,7 @@ function Msg() {
         let msg = {type: t, text: category[1]};
         setMsgRec(msgRec => [...msgRec, msg]);
       }
+      msgRecRev = msgRec.reverse();
       setHasProcessMsg(true);
     }
   }
@@ -57,7 +58,6 @@ function Msg() {
               }).then((response) => {
                 msgStr = response.data[0].msg;
                 processMsg(msgStr);
-                msgRecRev = msgRec.reverse();
                 setLoading(false);
               })
             }
@@ -68,6 +68,7 @@ function Msg() {
   })
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
+  
   if (isLoading) {
     return (
       <Loading/>
