@@ -32,6 +32,7 @@ function Msg() {
         setMsgRec(msgRec => [msg, ...msgRec]);
       }
       // msgRecRev = msgRec.reverse();
+      setMsgForUpd(msgStr);
       setHasProcessMsg(true);
     }
   }
@@ -62,7 +63,6 @@ function Msg() {
                 studentname: studentname
               }).then((response) => {
                 msgStr = response.data[0].msg;
-                setMsgForUpd(msgStr);
                 processMsg(msgStr);
                 setLoading(false);
               })
