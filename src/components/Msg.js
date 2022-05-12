@@ -33,6 +33,7 @@ function Msg() {
         setMsgRec(msgRec => [...msgRec, msg]);
       }
       setHasProcessMsg(true);
+      setLoading(false);
     }
   }
 
@@ -63,7 +64,6 @@ function Msg() {
                 processMsg(msgStr);
                 console.log(msgRec);
                 setMsgRecRev(msgRec.reverse());
-                setLoading(false);
               })
             }
           })
