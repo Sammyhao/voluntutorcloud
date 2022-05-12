@@ -17,7 +17,6 @@ function Msg() {
   const [msgRec, setMsgRec] = useState([]);
   let msgStr = "";
   const [isLoading, setLoading] = useState(true);
-  const [isLoading2, setLoading2] = useState(true);
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
 
   function processMsg(msgStr) {
@@ -40,22 +39,25 @@ function Msg() {
     //     text += msgStr[i];
     //   }
     // }
-    const msgInfo = msgStr.split('ψ');
-    console.log("msgInfo");
-    console.log(msgInfo);
-    for(let i = 0; i < msgInfo.length; i++) {
-      const category = msgInfo[i].split(':');
-      console.log("category");
-      console.log(category);
-      let msg = {type: category[0], text: category[1]};
-      console.log("msg: ");
-      console.log(msg);
-      setMsgRec(msgRec => [...msgRec, msg]);
+    if(!msgRec.length) {
+      const msgInfo = msgStr.split('ψ');
+      console.log("msgInfo");
+      console.log(msgInfo);
+      for(let i = 0; i < msgInfo.length; i++) {
+        const category = msgInfo[i].split(':');
+        console.log("category");
+        console.log(category);
+        let msg = {type: category[0], text: category[1]};
+        console.log("msg: ");
+        console.log(msg);
+        setMsgRec(msgRec => [...msgRec, msg]);
+      }
+      setHasProcessMsg(true);
     }
   }
 
   useEffect(() => {
-    if(isLoading || isLoading2) {
+    if(isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
           username = response.data.user[0].username
@@ -66,7 +68,7 @@ function Msg() {
             studentname: studentname,
           }).then((response) => {
             teacherusername = response.data[0].username;
-            if(msgStr == "") {
+            if(!hasProcessMsg) {
               Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
                 username: teacherusername,
                 studentname: studentname
@@ -74,19 +76,18 @@ function Msg() {
                 msgStr = response.data[0].msg;
                 console.log("msgStr");
                 console.log(msgStr);
-                setLoading2(false);
+                processMsg(msgStr);
+                setLoading(false);
               })
             }
           })
         },
       )
-      processMsg(msgStr);
-      setLoading(false);
     }
   })
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
-  if (isLoading || isLoading2) {
+  if (isLoading) {
     return (
       <Loading/>
     )
