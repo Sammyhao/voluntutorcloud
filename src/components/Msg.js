@@ -133,9 +133,9 @@ function Msg() {
               className="messagesend"
               type="text"
               placeholder="Enter your message..."
-              value={msg}
+              value={Msg}
               onChange={(e) => {
-                setmsg(e.target.value)
+                setMsg(e.target.value)
               }}
             />
             <div className="sendword">send</div>
