@@ -190,7 +190,7 @@ function Profile_user() {
       setEmailError('')
     }
   }
-  const handleclick_contact = (phone, email) => {
+  const handleclick_contact = () => {
     console.log(contactclick)
     if (phone == '' || email == '') {
       setcontacterror(c[status])
@@ -242,6 +242,43 @@ function Profile_user() {
         setreadpersoninfo('disabled')
       }
     }
+
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateGender',
+      {
+        username: name,
+        gender: gender,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateBirthday',
+      {
+        username: name,
+        birthday: birthday,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateGrade',
+      {
+        username: name,
+        grade: grade,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateSchoolname',
+      {
+        username: name,
+        schoolname: school,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
   }
 
   const handleclick_pref = () => {
@@ -261,6 +298,43 @@ function Profile_user() {
     } else {
       setreadprefer('disabled')
     }
+
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updatePreferredSubjects',
+      {
+        username: name,
+        preferredSubjects: preferredsubject,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateTargetStuAge',
+      {
+        username: name,
+        targetStuAge: studentage,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateTargetStuGen',
+      {
+        username: name,
+        targetStuGen: studentgender,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateTargetStuPerso',
+      {
+        username: name,
+        targetStuPerso: studentpers,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
   }
 
   const handleclick_bio = () => {
@@ -273,6 +347,15 @@ function Profile_user() {
     } else {
       setreadbio('disabled')
     }
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateBio',
+      {
+        username: name,
+        bio: bio,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
   }
 
   const handleclick_about = () => {
@@ -285,6 +368,16 @@ function Profile_user() {
     } else {
       setreadabout('disabled')
     }
+
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/updateAbout',
+      {
+        username: name,
+        about: about,
+      },
+    ).then((response) => {
+      console.log(response)
+    })
   }
 
   const logout = () => {
@@ -422,7 +515,7 @@ function Profile_user() {
             <div className="contact">
               <div className="titleprofile">
                 <div className="titlepro">{f[status]}</div>
-                <div className="edit" onClick={() => handleclick_contact(phone, email)}>
+                <div className="edit" onClick={handleclick_contact}>
                   {contactstyle}
                 </div>
               </div>
@@ -481,15 +574,6 @@ function Profile_user() {
                     value={gender}
                     maxLength={15}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateGender',
-                        {
-                          username: name,
-                          gender: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setgender(e.target.value)
                     }}
                   />
@@ -505,15 +589,6 @@ function Profile_user() {
                     maxLength={20}
                     onChange={(e) => {
                       console.log(birthday)
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateBirthday',
-                        {
-                          username: name,
-                          birthday: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setbirthday(e.target.value)
                     }}
                   />
@@ -528,15 +603,6 @@ function Profile_user() {
                     value={grade}
                     maxLength={4}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateGrade',
-                        {
-                          username: name,
-                          grade: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setgrade(e.target.value)
                     }}
                   />
@@ -550,15 +616,6 @@ function Profile_user() {
                     disabled={readonlypersoninfo}
                     value={school}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateSchoolname',
-                        {
-                          username: name,
-                          schoolname: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setschool(e.target.value)
                     }}
                   />
@@ -584,15 +641,6 @@ function Profile_user() {
                     disabled={readonlyprefer}
                     value={preferredsubject}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updatePreferredSubjects',
-                        {
-                          username: name,
-                          preferredSubjects: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setpreferredsubject(e.target.value)
                     }}
                   />
@@ -606,15 +654,6 @@ function Profile_user() {
                     disabled={readonlyprefer}
                     value={studentage}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateTargetStuAge',
-                        {
-                          username: name,
-                          targetStuAge: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setstudentage(e.target.value)
                     }}
                   />
@@ -629,15 +668,6 @@ function Profile_user() {
                     value={studentgender}
                     maxLength={15}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateTargetStuGen',
-                        {
-                          username: name,
-                          targetStuGen: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setstudentgender(e.target.value)
                     }}
                   />
@@ -652,15 +682,6 @@ function Profile_user() {
                     value={studentpers}
                     maxLength={15}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateTargetStuPerso',
-                        {
-                          username: name,
-                          targetStuPerso: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setstudentpers(e.target.value)
                     }}
                   />
@@ -689,15 +710,6 @@ function Profile_user() {
                     disabled={readonlybio}
                     value={bio}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateBio',
-                        {
-                          username: name,
-                          bio: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setbio(e.target.value)
                     }}
                   />
@@ -723,15 +735,6 @@ function Profile_user() {
                     disabled={readonlyabout}
                     value={about}
                     onChange={(e) => {
-                      Axios.post(
-                        'https://voluntutorcloud-server.herokuapp.com/updateAbout',
-                        {
-                          username: name,
-                          about: e.target.value,
-                        },
-                      ).then((response) => {
-                        console.log(response)
-                      })
                       setabout(e.target.value)
                     }}
                   />
