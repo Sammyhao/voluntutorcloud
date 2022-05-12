@@ -15,6 +15,8 @@ function Msg() {
   let username = '', studentname = "", teacherusername = "";
   const [curMsg, setCurMsg] = useState('');
   const [msgRec, setMsgRec] = useState([]);
+  const msgRecRev = [];
+
   let msgStr = "";
   const [isLoading, setLoading] = useState(true);
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
@@ -69,6 +71,7 @@ function Msg() {
   } else {
     console.log("msgRec");
     console.log(msgRec);
+    msgRecRev = msgRec.reverse();
     return (
     <div>
       {/* <div className="warningmsg">
@@ -94,9 +97,9 @@ function Msg() {
                       <div className="namemsg">Student name</div>
                       <div className="latestmsg">OHH right I almost forgot</div>
                     </div>
-                    <div className="align">
+                    {/* <div className="align">
                       <div className="numbermsg">1</div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               )
@@ -109,7 +112,6 @@ function Msg() {
             {msgRec.map((e) => {
               return <Msg_user type={e.type} text={e.text}></Msg_user>
             })}
-            
             </div>
           <div className="send">
             <textarea
