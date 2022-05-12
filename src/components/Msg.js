@@ -23,6 +23,8 @@ function Msg() {
   function processMsg(msgStr) {
     if(!msgRec.length) {
       const msgInfo = msgStr.split('ψ');
+      console.log("msgInfo");
+      console.log(msgInfo);
       for(let i = 0; i < msgInfo.length; i++) {
         const category = msgInfo[i].split(':');
         let t = "";
@@ -59,6 +61,7 @@ function Msg() {
               }).then((response) => {
                 msgStr = response.data[0].msg;
                 processMsg(msgStr);
+                console.log(msgRec);
                 setMsgRecRev(msgRec.reverse());
                 setLoading(false);
               })
