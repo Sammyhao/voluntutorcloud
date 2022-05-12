@@ -43,6 +43,8 @@ function Msg() {
     msgStr += "T:" + curMsg + 'ψ';
     console.log(msgStr);
     setMsgForUpd(msgStr + msgForUpd);
+    // Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', 
+    // )
   }
 
   useEffect(() => {
@@ -52,14 +54,15 @@ function Msg() {
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0);
-          studentname = response.data.user[0].lastname + response.data.user[0].firstname;
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
-            studentname: studentname,
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+            username: username,
           }).then((response) => {
-            teacherusername = response.data[0].username;
+            studentname = response.data[0].studentname;
+            console.log("username, studentname: ");
+            console.log(username, studentname);
             if(!hasProcessMsg) {
               Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
-                username: teacherusername,
+                username: username,
                 studentname: studentname
               }).then((response) => {
                 msgStr = response.data[0].msg;
