@@ -18,20 +18,11 @@ export default function Student_portfolio() {
       (response) => {
         console.log(response.data);
         if(!response.data.isLoggedIn) {
-          setLoading(false);
           setIsLoggedIn(false);
-          console.log("isLoggedIn");
-          console.log(isLoggedIn);
+          setLoading(false);
         }else {
-          username = response.data.user[0].username
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getRole', {
-            username: username,
-          }).then((response) => {
-            console.log("role");
-            console.log(response.data);
-            setRole(response.data);
-            setLoading(false);
-          })
+          setRole(response.data.user[0].role);
+          setLoading(false);
         }
       }
     )

@@ -16,15 +16,8 @@ export default function Appointment() {
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        username = response.data.user[0].username
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getRole', {
-          username: username,
-        }).then((response) => {
-          console.log("role");
-          console.log(response.data);
-          setRole(response.data);
-          setLoading(false);
-        })
+        setRole(response.data.user[0].role);
+        setLoading(false);
       }
     )
   })
