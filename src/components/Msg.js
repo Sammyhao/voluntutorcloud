@@ -112,7 +112,7 @@ function Msg() {
         <div className="chatcontent">
           <div className="chatname">Student name</div>
           <div className="chat">
-            {msgRec.map((e) => {
+            {msgRecRev.map((e) => {
               return <Msg_user type={e.type} text={e.text}></Msg_user>
             })}
             </div>
