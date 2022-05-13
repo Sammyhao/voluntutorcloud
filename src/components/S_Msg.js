@@ -23,7 +23,7 @@ function S_Msg() {
   const [studentnameConst, setStudentnameConst] = useState('');
 
   function processMsg(msgStr, teacherusername, studentname) {
-    if(!msgRec.length) {
+    if(msgRec.length == 0 || !hasProcessMsg) {
       const msgInfo = msgStr.split('ψ');
       for(let i = 0; i < msgInfo.length; i++) {
         const category = msgInfo[i].split(':');
@@ -37,6 +37,7 @@ function S_Msg() {
       setStudentnameConst(studentname);
       setMsgForUpd(msgStr);
       setHasProcessMsg(true);
+      setLoading(false);
     }
   }
 
@@ -78,7 +79,7 @@ function S_Msg() {
                 studentname: studentname
               }).then((response) => {
                 msgStr = response.data[0].msg;
-                processMsg(msgStr, teacherusername, studentname);
+                if(isLoading) processMsg(msgStr, teacherusername, studentname);
                 setLoading(false);
               })
             }
