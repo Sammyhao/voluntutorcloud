@@ -58,7 +58,7 @@ function Msg() {
     let tempMsgForUpd = msgStr + msgForUpd;
     console.log("lastestMsg");
     console.log(lastestMsg);
-    if(lastestMsg == "") {
+    if(msgRec.length == "") {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/createMsg', {
         username: usernameConst,
         studentname: studentnameConst,
