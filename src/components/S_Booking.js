@@ -42,7 +42,7 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
 export default function S_Booking() {
-  const [cancelopen, setcancelopen] = useState(true)
+  const [cancelopen, setcancelopen] = useState(false)
   const [confirmopen, setconfirmopen] = useState(false)
   const [cancel, setcancel] = useState(true)
   
@@ -442,29 +442,7 @@ console.log(bookingInfoLen)
       }else{
         return (
           <div className="outestcontainerbook">
-            <div id="dialogcontainer">
-              <BootstrapDialog
-                onClose={handlecancelclose}
-                id="diabook"
-                aria-labelledby="customized-dialog-title"
-                open={cancelopen}
-              >
-                <div className="bookingprogramdia">{j[status]}</div>
-              </BootstrapDialog>
-            </div>
-            <div id="dialogcontainer">
-              <BootstrapDialog
-                onClose={handleconfirmopen}
-                id="diabook"
-                aria-labelledby="customized-dialog-title"
-                open={confirmopen}
-              >
-                <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">ddd
-                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
-                </div>
-              </BootstrapDialog>
-            </div>
+            
             <div className="bookingwraping">
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitleall">{a[status]}</div>
@@ -546,3 +524,27 @@ console.log(bookingInfoLen)
       }
   }
 }
+
+// <div id="dialogcontainer">
+//               <BootstrapDialog
+//                 onClose={handlecancelclose}
+//                 id="diabook"
+//                 aria-labelledby="customized-dialog-title"
+//                 open={cancelopen}
+//               >
+//                 <div className="bookingprogramdia">{j[status]}</div>
+//               </BootstrapDialog>
+//             </div>
+//             <div id="dialogcontainer">
+//               <BootstrapDialog
+//                 onClose={handleconfirmopen}
+//                 id="diabook"
+//                 aria-labelledby="customized-dialog-title"
+//                 open={confirmopen}
+//               >
+//                 <div className="bookingconfirmheaders">{k[status]}</div>
+//                 <div className="bookingconfirmcontent">ddd
+                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
+                {/* </div>
+              </BootstrapDialog>
+            </div> */}
