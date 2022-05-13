@@ -56,7 +56,9 @@ export default function S_Booking() {
   }
 
   const cancelmeeting = () => {
+    console.log("cancelled")
     setcancelopen(true)
+    console.log(cancelopen)
     setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
     setPendingBookingInfoLen(pendingBookingInfoLen-1);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
@@ -74,7 +76,9 @@ export default function S_Booking() {
   }
 
   const confirmmeeting = () => {
+    console.log("confirmed")
     setconfirmopen(true)
+    console.log(confirmopen)
     setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
     setPendingBookingInfoLen(pendingBookingInfoLen-1);
     setBookingInfo(bookingInfo => [...bookingInfo, pendingBookingInfo[0]]);
@@ -356,8 +360,8 @@ console.log(bookingInfoLen)
                 open={confirmopen}
               >
                 <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">
-                  {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]} 
+                <div className="bookingconfirmcontent">ddd
+                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
                 </div>
               </BootstrapDialog>
             </div>
@@ -456,8 +460,8 @@ console.log(bookingInfoLen)
                 open={confirmopen}
               >
                 <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">
-                  {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]} 
+                <div className="bookingconfirmcontent">ddd
+                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
                 </div>
               </BootstrapDialog>
             </div>
