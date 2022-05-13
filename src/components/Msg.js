@@ -26,7 +26,7 @@ function Msg() {
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
   function processMsg(msgStr, username, studentname) {
-    if(isLoading) {
+    if(msgRec.length == 0) {
       const msgInfo = msgStr.split('ψ');
       console.log("msgInfo");
       console.log(msgInfo);
@@ -35,7 +35,7 @@ function Msg() {
         let t = "";
         t = (category[0] == 'T') ? "user" : "recipient"
         let msg = {type: t, text: category[1]};
-        if(msgRec.length < msgInfo.length) setMsgRec(msgRec => [msg, ...msgRec]);
+        setMsgRec(msgRec => [msg, ...msgRec]);
       }
       // msgRecRev = msgRec.reverse();
       setUsernameConst(username);
