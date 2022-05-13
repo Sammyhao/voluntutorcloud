@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import './components/fonts.css'
@@ -16,6 +16,11 @@ import Message from './components/pages/Message'
 import Studymat from './components/pages/Study'
 import 'font-awesome/css/font-awesome.min.css'
 function App() {
+
+  useEffect(() => {
+    document.title = "VolunTutor Cloud";
+  })
+
   return (
     <div className="App">
       <Router>
