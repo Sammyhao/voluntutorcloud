@@ -64,8 +64,8 @@ function S_Msg() {
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0);
           studentname = response.data.user[0].lastname + response.data.user[0].firstname;
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
-            username: username,
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
+            studentname: studentname,
           }).then((response) => {
             console.log(response.data);
             teacherusername = response.data[0].username;
