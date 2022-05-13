@@ -71,6 +71,7 @@ export default function S_Booking() {
   const confirmmeeting = () => {
     console.log("confirmed")
     setconfirmopen(true)
+    console.log("whethe true")
     console.log(confirmopen)
     setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
     setPendingBookingInfoLen(pendingBookingInfoLen-1);
@@ -295,9 +296,7 @@ console.log(bookingInfoLen)
                 open={confirmopen}
               >
                 <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">
-                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
-                </div>
+                
               </BootstrapDialog>
             </div>
             <div className="bookingwraping">
@@ -372,9 +371,7 @@ console.log(bookingInfoLen)
                 open={confirmopen}
               >
                 <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">
-                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
-                </div>
+                
               </BootstrapDialog>
             </div>
             <div className="bookingwraping">
@@ -470,9 +467,7 @@ console.log(bookingInfoLen)
                 open={confirmopen}
               >
                 <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">
-                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
-                </div>
+                
               </BootstrapDialog>
             </div>
             <div className="bookingwraping">
