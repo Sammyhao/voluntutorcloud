@@ -24,6 +24,10 @@ function S_Msg() {
 
   function processMsg(msgStr, teacherusername, studentname) {
     if(msgRec.length == 0) {
+      console.log("msgInfo");
+      console.log(msgInfo);
+      console.log("msgRec");
+      console.log(msgRec);
       const msgInfo = msgStr.split('ψ');
       for(let i = 0; i < msgInfo.length; i++) {
         const category = msgInfo[i].split(':');

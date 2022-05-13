@@ -37,7 +37,6 @@ function Msg() {
         let msg = {type: t, text: category[1]};
         setMsgRec(msgRec => [msg, ...msgRec]);
       }
-      // msgRecRev = msgRec.reverse();
       setUsernameConst(username);
       setStudentnameConst(studentname);
       setMsgForUpd(msgStr);
