@@ -26,22 +26,24 @@ function S_Msg() {
     console.log("msgRec");
     console.log(msgRec);
     console.log(msgRec.length);
-    const msgInfo = msgStr.split('ψ');
-    console.log("msgInfo");
-    console.log(msgInfo);
-    if(msgRec.length == 0) {
-      for(let i = 0; i < msgInfo.length; i++) {
-        const category = msgInfo[i].split(':');
-        let t = "";
-        t = (category[0] == 'S') ? "user" : "recipient"
-        let msg = {type: t, text: category[1]};
-        setMsgRec(msgRec => [msg, ...msgRec]);
-      }
-      setUsernameConst(teacherusername);
-      setStudentnameConst(studentname);
-      setMsgForUpd(msgStr);
-      setHasProcessMsg(true);
-    } else return;
+    if(msgStr != "") {
+      const msgInfo = msgStr.split('ψ');
+      console.log("msgInfo");
+      console.log(msgInfo);
+      if(msgRec.length == 0) {
+        for(let i = 0; i < msgInfo.length; i++) {
+          const category = msgInfo[i].split(':');
+          let t = "";
+          t = (category[0] == 'S') ? "user" : "recipient"
+          let msg = {type: t, text: category[1]};
+          setMsgRec(msgRec => [msg, ...msgRec]);
+        }
+        setUsernameConst(teacherusername);
+        setStudentnameConst(studentname);
+        setMsgForUpd(msgStr);
+        setHasProcessMsg(true);
+      } else return;
+    }
   }
 
   const updateMsg = () => {
