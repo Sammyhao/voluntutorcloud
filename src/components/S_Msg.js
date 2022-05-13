@@ -83,7 +83,7 @@ function S_Msg() {
                 username: teacherusername,
                 studentname: studentname
               }).then((response) => {
-                msgStr = response.data[0].msg;
+                if(response.data.length) msgStr = response.data[0].msg;
                 processMsg(msgStr, teacherusername, studentname);
                 setLoading(false);
               })
