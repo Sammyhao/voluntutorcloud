@@ -56,7 +56,7 @@ export default function S_Booking() {
   }
 
   const cancelmeeting = () => {
-    setPendingBookingInfo(pendingBookingInfo.subarray(1, pendingBookingInfoLen));
+    setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
     setPendingBookingInfoLen(pendingBookingInfoLen-1);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
       studentname: studentnameFU,
@@ -74,7 +74,7 @@ export default function S_Booking() {
   }
 
   const confirmmeeting = () => {
-    setPendingBookingInfo(pendingBookingInfo.subarray(1, pendingBookingInfoLen));
+    setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
     setPendingBookingInfoLen(pendingBookingInfoLen-1);
     setBookingInfo(bookingInfo => [...bookingInfo, pendingBookingInfo[0]]);
     setBookingInfoLen(bookingInfoLen+1);
