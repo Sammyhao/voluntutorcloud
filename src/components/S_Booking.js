@@ -156,7 +156,8 @@ export default function S_Booking() {
       )
     }
   })
-
+console.log("booking info length:::")
+console.log(bookingInfoLen)
   /*
 {id: 534, username: 'admin_stu', password: 'admin', role: 'student', firstname: 'admin', …}
   about: "No Pref"
@@ -230,7 +231,7 @@ export default function S_Booking() {
           </div>
         )
       }
-      if(bookingInfoLen == 0 && pendingBookingInfoLen == 0) {
+      if(bookingInfoLen == 0) {
         return (
           <div className="outestcontainerbook">
             <div id="dialogcontainer">
