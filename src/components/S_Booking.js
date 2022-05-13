@@ -288,6 +288,18 @@ console.log(bookingInfoLen)
                 <div className="bookingprogramdia">{j[status]}</div>
               </BootstrapDialog>
             </div>
+            <div id="dialogcontainer">
+              <BootstrapDialog
+                id="diabook"
+                aria-labelledby="customized-dialog-title"
+                open={confirmopen}
+              >
+                <div className="bookingconfirmheaders">{k[status]}</div>
+                <div className="bookingconfirmcontent">
+                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
+                </div>
+              </BootstrapDialog>
+            </div>
             <div className="bookingwraping">
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitleall">{a[status]}</div>
