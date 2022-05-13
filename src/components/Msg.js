@@ -72,6 +72,7 @@ function Msg() {
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
             username: username,
           }).then((response) => {
+            console.log(response.data);
             studentname = response.data[0].studentname;
             console.log("username, studentname: ");
             console.log(username, studentname);
@@ -119,7 +120,7 @@ function Msg() {
                       <FaUser className="msg_icon" />
                     </div>
                     <div className="infoboxmsg">
-                      <div className="namemsg">{studentname}</div>
+                      <div className="namemsg">{studentnameConst}</div>
                       <div className="latestmsg">{msgRec[msgRec.length-1].text}</div>
                     </div>
                     {/* <div className="align">
@@ -132,7 +133,7 @@ function Msg() {
           </div>
         </div>
         <div className="chatcontent">
-          <div className="chatname">{studentname}</div>
+          <div className="chatname">{studentnameConst}</div>
           <div className="chat">
             {msgRec.map((e) => {
               return <Msg_user type={e.type} text={e.text}></Msg_user>
