@@ -80,7 +80,7 @@ function Msg() {
                 username: username,
                 studentname: studentname
               }).then((response) => {
-                msgStr = response.data[0].msg;
+                if(response.data.length) msgStr = response.data[0].msg;
                 processMsg(msgStr, username, studentname);
                 setLoading(false);
               })
