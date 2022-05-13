@@ -399,11 +399,11 @@ export default function Booking() {
               </div>
               <div className="bookingrequesttotal">
                 <div className="bookingrequestsub">{bookingInfo["0"]["studentname"]}</div>
-                <div className="bookinrequesttime">{e.duration} hr</div>
+                <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
               </div>
               <div className="bookingrequesttotaltime">
                 <div className="detailtimeforupcomings">
-                  {e.date} {space} {e.time}
+                  {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]}
                 </div>
               </div>
             </div>
