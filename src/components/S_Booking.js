@@ -56,8 +56,9 @@ export default function S_Booking() {
   }
 
   const cancelmeeting = () => {
-    // setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
-    // setPendingBookingInfoLen(pendingBookingInfoLen-1);
+    setcancelopen(true)
+    setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
+    setPendingBookingInfoLen(pendingBookingInfoLen-1);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
       studentname: studentnameFU,
       username: teacherusernameFU,
@@ -65,7 +66,6 @@ export default function S_Booking() {
     }).then((response) => {
       console.log(response);
     });
-    setcancelopen(true)
     setcancel(false)
   }
 
@@ -74,10 +74,11 @@ export default function S_Booking() {
   }
 
   const confirmmeeting = () => {
-    // setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
-    // setPendingBookingInfoLen(pendingBookingInfoLen-1);
-    // setBookingInfo(bookingInfo => [...bookingInfo, pendingBookingInfo[0]]);
-    // setBookingInfoLen(bookingInfoLen+1);
+    setconfirmopen(true)
+    setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
+    setPendingBookingInfoLen(pendingBookingInfoLen-1);
+    setBookingInfo(bookingInfo => [...bookingInfo, pendingBookingInfo[0]]);
+    setBookingInfoLen(bookingInfoLen+1);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
       studentname: studentnameFU,
       username: teacherusernameFU,
@@ -85,7 +86,6 @@ export default function S_Booking() {
     }).then((response) => {
       console.log(response);
     });
-    setconfirmopen(true)
     setcancel(false)
   }
 
