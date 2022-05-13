@@ -6,7 +6,6 @@ import Loading from './Loading'
 import { Msg_recipient } from './Msg_recipient'
 import { Msg_user } from './Msg_user'
 import { FaUser } from 'react-icons/fa'
-import { ChatEngine } from 'react-chat-engine'
 import Axios from 'axios'
 
 function S_Msg() {
@@ -16,7 +15,6 @@ function S_Msg() {
   let username = '', studentname = "", teacherusername = "";
   const [curMsg, setCurMsg] = useState('');
   const [msgRec, setMsgRec] = useState([]);
-  let msgRecRev = [];
   let msgStr = "";
   const [msgForUpd, setMsgForUpd] = useState('');
   const [isLoading, setLoading] = useState(true);
