@@ -56,6 +56,15 @@ export default function S_Booking() {
   }
 
   const cancelmeeting = () => {
+    setPendingBookingInfo(pendingBookingInfo.subarray(1, pendingBookingInfoLen));
+    setPendingBookingInfoLen(pendingBookingInfoLen-1);
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
+      studentname: studentnameFU,
+      username: teacherusernameFU,
+      status: "cancelled"
+    }).then((response) => {
+      console.log(response);
+    });
     setcancelopen(true)
     setcancel(false)
   }
@@ -65,10 +74,14 @@ export default function S_Booking() {
   }
 
   const confirmmeeting = () => {
+    setPendingBookingInfo(pendingBookingInfo.subarray(1, pendingBookingInfoLen));
+    setPendingBookingInfoLen(pendingBookingInfoLen-1);
+    setBookingInfo(bookingInfo => [...bookingInfo, pendingBookingInfo[0]]);
+    setBookingInfoLen(bookingInfoLen+1);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
-      studentname: studentname,
-      username: teacherusername,
-      status: "confirm"
+      studentname: studentnameFU,
+      username: teacherusernameFU,
+      status: "confirmed"
     }).then((response) => {
       console.log(response);
     });
@@ -78,13 +91,16 @@ export default function S_Booking() {
 
   const [status, setStatus] = useState(0)
   const [isLoading, setLoading] = useState(true)
-  const [bookingInfo, setBookingInfo] = useState([]);
-  const [pendingBookingInfo, setPendingBookingInfo] = useState([]);
+  const [bookingInfo, setBookingInfo] = useState([]); /*{}*/
+  const [pendingBookingInfo, setPendingBookingInfo] = useState([]); /*{}*/
   const [bookingInfoLen, setBookingInfoLen] = useState(0);
   const [pendingBookingInfoLen, setPendingBookingInfoLen] = useState(0);
   const [haveSetStatus, setHaveSetStatus] = useState(false);
 
   let username = '', studentname = '', teacherusername = "";
+  const [teacherusernameFU, setTeacherusernameFU] = useState("");
+  const [studentnameFU, setStudentnameFU] = useState("");
+
   const [teachername, setTeachername] = useState();
 
   const [googlemeetlink, setGoogleMeetLink] = useState('');
@@ -100,13 +116,14 @@ export default function S_Booking() {
           else setStatus(0)
           setRole(response.data.user[0].role);
           studentname = response.data.user[0].lastname + response.data.user[0].firstname;
-          
+          setStudentnameFU(studentname);
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
             studentname: studentname,
           }).then((response) => {
             console.log("response from findTeacher:");
             console.log(response);
             teacherusername = response.data[0].username;
+            setTeacherusernameFU(teacherusername)
             setTeachername(teacherusername);
             Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
               studentname: studentname,
@@ -191,7 +208,7 @@ export default function S_Booking() {
   let p = ['Cancel', '拒絕']
   let q = ['Confirm', '確認']
   let r = ['You have not received any bookings :)', '你還沒有收到任何會議預約邀請喔 :)']
-
+  let space = ' '
   // 這裡true的條件改成是否有學生喔
   if (isLoading){
     return(
@@ -252,10 +269,10 @@ export default function S_Booking() {
                         </div>
                         <div className="bookingrequesttotal">
                           <div className="bookingrequestsub">{teacherRealname}</div>
-                          <div className="bookinrequesttime">1 hr</div>
+                          <div className="bookinrequesttime"></div>
                         </div>
                         <div className="bookingrequesttotaltime">
-                          <div className='detailtimeforupcomings'>5/12/2022 or 5/13/2022 19:00~20:00</div>
+                          <div className='detailtimeforupcomings'></div>
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
@@ -315,6 +332,8 @@ export default function S_Booking() {
                 <div className="bookingtitleall">{a[status]}</div>
   
                 <div className="bookingoutestwrap">
+                  {bookingInfo.map((e) => {
+                    return(
                   <div className="bookingrow">
                     <div className="bookingwrapsecond">
                       <div className="bookingwordswrapfirst">
@@ -323,10 +342,10 @@ export default function S_Booking() {
                         </div>
                         <div className="bookingrequesttotal">
                           <div className="bookingrequestsub">{teacherRealname}</div>
-                          <div className="bookinrequesttime">{pendingBookingInfo["0"]["duration"]} hr</div>
+                          <div className="bookinrequesttime">{e.duration} hr</div>
                         </div>
                         <div className="bookingrequesttotaltime">
-                          <div className="detailtimeforupcomings">{pendingBookingInfo["0"]["date"] + " " + pendingBookingInfo["0"]["time"]}</div>
+                          <div className="detailtimeforupcomings">{e.date} {space} {e.time}</div>
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
@@ -334,6 +353,11 @@ export default function S_Booking() {
                       </div>
                     </div>
                   </div>
+                    )
+                  })}
+                  
+
+
                 </div>
               </div>
               {/* <Divider className="lineforbooking"></Divider> */}
@@ -344,7 +368,8 @@ export default function S_Booking() {
                   className="bookingwrappbottom"
                   style={{ display: cancel ? 'block' : 'none' }}
                 >
-                 
+                 {pendingBookingInfo.map((e)=>{
+                   return(
                   <div className="bookingrow">
                     <div className="bookingwrapsecond">
                       <div className="bookingwordswrapfirst">
@@ -353,10 +378,10 @@ export default function S_Booking() {
                         </div>
                         <div className="bookingrequesttotal">
                           <div className="bookingrequestsub">{teacherRealname}</div>
-                          <div className="bookinrequesttime">{pendingBookingInfo["0"]["duration"]} hr</div>
+                          <div className="bookinrequesttime">{e.duration} hr</div>
                         </div>
                         <div className="bookingrequesttotaltime">
-                          <div className="detailtimeforbook">{pendingBookingInfo["0"]["date"] + ' ' + pendingBookingInfo["0"]["time"]}</div>
+                          <div className="detailtimeforbook">{e.date} {space} {e.time}</div>
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
@@ -373,7 +398,8 @@ export default function S_Booking() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>)
+      })}
                 </div>
               </div>
             </div>
