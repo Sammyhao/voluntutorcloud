@@ -54,7 +54,7 @@ function Msg() {
     }).then((response) => {
       console.log(response);
     })
-    setMsgForUpd(msgStr + msgForUpd);
+    setMsgForUpd(tempMsgForUpd);
   }
 
   useEffect(() => {

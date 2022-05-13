@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
 import './Msg.css'
 import '../App.css'
+import Loading from './Loading'
 import { Msg_recipient } from './Msg_recipient'
 import { Msg_user } from './Msg_user'
 import { FaUser } from 'react-icons/fa'
@@ -10,27 +11,93 @@ import Axios from 'axios'
 
 function S_Msg() {
   let num = [1]
-  const [msg, setmsg] = useState('')
 
-  const [status, setStatus] = useState(0);
-  let username = "";
-  
-  useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      username = response.data.user[0].username;
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-        username: username,
-      }).then((response) => {
-        console.log(response.data);
-        if(response.data == "chinese") setStatus(1);
-        else setStatus(0);
-        console.log(status);
-      })
+  const [status, setStatus] = useState(0)
+  let username = '', studentname = "", teacherusername = "";
+  const [curMsg, setCurMsg] = useState('');
+  const [msgRec, setMsgRec] = useState([]);
+  let msgRecRev = [];
+  let msgStr = "";
+  const [msgForUpd, setMsgForUpd] = useState('');
+  const [isLoading, setLoading] = useState(true);
+  const [hasProcessMsg, setHasProcessMsg] = useState(false);
+  const [usernameConst, setUsernameConst] = useState('');
+  const [studentnameConst, setStudentnameConst] = useState('');
+
+  function processMsg(msgStr, teacherusername, studentname) {
+    if(!msgRec.length) {
+      const msgInfo = msgStr.split('ψ');
+      for(let i = 0; i < msgInfo.length; i++) {
+        const category = msgInfo[i].split(':');
+        let t = "";
+        t = (category[0] == 'S') ? "user" : "recipient"
+        let msg = {type: t, text: category[1]};
+        setMsgRec(msgRec => [msg, ...msgRec]);
+      }
+      // msgRecRev = msgRec.reverse();
+      setUsernameConst(teacherusername);
+      setStudentnameConst(studentname);
+      setMsgForUpd(msgStr);
+      setHasProcessMsg(true);
+    }
+  }
+
+  const updateMsg = () => {
+    let msg = {type: "user", text: curMsg};
+    setMsgRec(msgRec => [...msgRec, msg]);
+    msgStr += "S:" + curMsg + 'ψ';
+    console.log(msgStr);
+    let tempMsgForUpd = msgStr + msgForUpd;
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
+      username: usernameConst,
+      studentname: studentnameConst,
+      msg: tempMsgForUpd
+    }).then((response) => {
+      console.log(response);
     })
+    setMsgForUpd(tempMsgForUpd);
+  }
+
+  useEffect(() => {
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          username = response.data.user[0].username
+          if (response.data.user[0].lang == 'chinese') setStatus(1)
+          else setStatus(0);
+          studentname = response.data.user[0].lastname + response.data.user[0].firstname;
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
+            username: username,
+          }).then((response) => {
+            teacherusername = response.data[0].username;
+            console.log("username, studentname: ");
+            console.log(teacherusername, studentname);
+            if(!hasProcessMsg) {
+              Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
+                username: teacherusername,
+                studentname: studentname
+              }).then((response) => {
+                msgStr = response.data[0].msg;
+                processMsg(msgStr, teacherusername, studentname);
+                setLoading(false);
+              })
+            }
+          })
+        },
+      )
+    }
   })
 
-  let a = ["Function will be completed soon","此功能即將完成，請敬請期待！"]
-  return (
+  let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
+  
+  if (isLoading) {
+    return (
+      <Loading/>
+    )
+  } else {
+    console.log("msgRec");
+    console.log(msgRec);
+    return (
     <div>
       <div className="out">
         <div className="chathistory">
@@ -49,12 +116,12 @@ function S_Msg() {
                       <FaUser className="msg_icon" />
                     </div>
                     <div className="infoboxmsg">
-                      <div className="namemsg">Teacher name</div>
-                      <div className="latestmsg">OHH right I almost forgot</div>
+                      <div className="namemsg">Student name</div>
+                      <div className="latestmsg">{msgRec["0"].text}</div>
                     </div>
-                    <div className="align">
+                    {/* <div className="align">
                       <div className="numbermsg">1</div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               )
@@ -62,41 +129,29 @@ function S_Msg() {
           </div>
         </div>
         <div className="chatcontent">
-          <div className="chatname">Teacher name</div>
+          <div className="chatname">Student name</div>
           <div className="chat">
-            <Msg_recipient text={'Are you available next monday?'}></Msg_recipient>
-            <Msg_user
-              text={'Yes, can we have a meeting then?'}
-            ></Msg_user>
-            <Msg_user text={'I am okay with the time'}></Msg_user>
-
-            <Msg_recipient text={'Sure!!'}></Msg_recipient>
-
-            <Msg_recipient text={'See you then!'}></Msg_recipient>
-
-            <Msg_recipient
-              text={
-                'Make sure to finish up your homework and good luck on your chinese exam tomorrow! Also remember to bring your science textbook!'
-              }
-            ></Msg_recipient>
-            <Msg_user text={'OHH right I almost forgot'}></Msg_user>
-          </div>
+            {msgRec.map((e) => {
+              return <Msg_user type={e.type} text={e.text}></Msg_user>
+            })}
+            </div>
           <div className="send">
             <textarea
               className="messagesend"
               type="text"
               placeholder="Enter your message..."
-              disabled="true"
+              value={curMsg}
               onChange={(e) => {
-                setmsg(e.target.value)
+                setCurMsg(e.target.value)
               }}
             />
-            <div className="sendword">send</div>
+            <div className="sendword" onClick={updateMsg}>send</div>
           </div>
         </div>
       </div>
     </div>
-  )
+    )
+  }
 }
 
 export default S_Msg
