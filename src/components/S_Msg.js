@@ -36,7 +36,6 @@ function S_Msg() {
       setUsernameConst(teacherusername);
       setStudentnameConst(studentname);
       setMsgForUpd(msgStr);
-      setMsgRec(msgRec.slice(0, msgRec.size()));
       setHasProcessMsg(true);
     }
   }
@@ -98,6 +97,7 @@ function S_Msg() {
   } else {
     console.log("msgRec");
     console.log(msgRec);
+    setMsgRec(msgRec.slice(0, msgRec.length));
 
     return (
     <div>
