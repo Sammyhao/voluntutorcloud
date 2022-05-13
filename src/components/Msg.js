@@ -15,15 +15,15 @@ function Msg() {
   let username = '', studentname = "", teacherusername = "";
   const [curMsg, setCurMsg] = useState('');
   const [msgRec, setMsgRec] = useState([]);
+  let msgRecRev = [];
   let msgStr = "";
   const [msgForUpd, setMsgForUpd] = useState('');
   const [isLoading, setLoading] = useState(true);
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
-  let usernameForUpd = "", studentnameForUpd = "";
+  const [usernameConst, setUsernameConst] = useState('');
+  const [studentnameConst, setStudentnameConst] = useState('');
 
   function processMsg(msgStr, username, studentname) {
-    usernameForUpd = username;
-    studentnameForUpd = studentname;
     if(!msgRec.length) {
       const msgInfo = msgStr.split('ψ');
       for(let i = 0; i < msgInfo.length; i++) {
@@ -34,6 +34,8 @@ function Msg() {
         setMsgRec(msgRec => [msg, ...msgRec]);
       }
       // msgRecRev = msgRec.reverse();
+      setUsernameConst(username);
+      setStudentnameConst(studentname);
       setMsgForUpd(msgStr);
       setHasProcessMsg(true);
     }
@@ -45,15 +47,14 @@ function Msg() {
     msgStr += "T:" + curMsg + 'ψ';
     console.log(msgStr);
     let tempMsgForUpd = msgStr + msgForUpd;
-    console.log(usernameForUpd, studentnameForUpd, tempMsgForUpd);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
-      username: usernameForUpd,
-      studentname: studentnameForUpd,
+      username: usernameConst,
+      studentname: studentnameConst,
       msg: tempMsgForUpd
     }).then((response) => {
       console.log(response);
     })
-    setMsgForUpd(tempMsgForUpd);
+    setMsgForUpd(msgStr + msgForUpd);
   }
 
   useEffect(() => {
