@@ -27,10 +27,12 @@ function Msg() {
 
   function processMsg(msgStr, username, studentname) {
     console.log(msgStr);
-    if(msgRec.length == 0 && msgStr != "" && hasProcessMsg == false) {
+    if(msgRec.length == 0 && msgStr != "") {
       const msgInfo = msgStr.split('ψ');
       console.log("msgInfo");
       console.log(msgInfo);
+      console.log("msgRec.length");
+      console.log(msgRec.length);
       for(let i = 0; i < msgInfo.length; i++) {
         const category = msgInfo[i].split(':');
         let t = "";
