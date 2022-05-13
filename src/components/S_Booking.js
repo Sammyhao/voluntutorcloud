@@ -42,7 +42,7 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
 export default function S_Booking() {
-  const [cancelopen, setcancelopen] = useState(false)
+  const [cancelopen, setcancelopen] = useState(true)
   const [confirmopen, setconfirmopen] = useState(false)
   const [cancel, setcancel] = useState(true)
   

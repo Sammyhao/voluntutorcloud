@@ -294,6 +294,8 @@ export default function Booking() {
       </div>
       </div>
   )}else{
+    console.log('Booking Info not empty')
+    console.log(bookingInfo);
     return (
       <div className='outestcontainerbook'>
         <div id="dialogcontainer">
