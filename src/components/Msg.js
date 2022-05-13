@@ -27,7 +27,7 @@ function Msg() {
 
   function processMsg(msgStr, username, studentname) {
     console.log(msgStr);
-    if(msgRec.length == 0 && msgStr != "") {
+    if(msgRec.length == 0 && msgStr != "" && hasProcessMsg == false) {
       const msgInfo = msgStr.split('ψ');
       console.log("msgInfo");
       console.log(msgInfo);
@@ -37,6 +37,7 @@ function Msg() {
         t = (category[0] == 'T') ? "user" : "recipient"
         let msg = {type: t, text: category[1]};
         setMsgRec(msgRec => [msg, ...msgRec]);
+        setHasProcessMsg(true);
       }
       setUsernameConst(username);
       setStudentnameConst(studentname);
