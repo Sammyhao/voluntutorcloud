@@ -23,15 +23,19 @@ function Msg() {
   const [usernameConst, setUsernameConst] = useState('');
   const [studentnameConst, setStudentnameConst] = useState('');
 
+  // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
+
   function processMsg(msgStr, username, studentname) {
-    if(!msgRec.length) {
+    if(isLoading) {
       const msgInfo = msgStr.split('ψ');
+      console.log("msgInfo");
+      console.log(msgInfo);
       for(let i = 0; i < msgInfo.length; i++) {
         const category = msgInfo[i].split(':');
         let t = "";
         t = (category[0] == 'T') ? "user" : "recipient"
         let msg = {type: t, text: category[1]};
-        setMsgRec(msgRec => [msg, ...msgRec]);
+        if(msgRec.length < msgInfo.length) setMsgRec(msgRec => [msg, ...msgRec]);
       }
       // msgRecRev = msgRec.reverse();
       setUsernameConst(username);
@@ -43,6 +47,7 @@ function Msg() {
 
   const updateMsg = () => {
     let msg = {type: "user", text: curMsg};
+    setCurMsg("")
     setMsgRec(msgRec => [...msgRec, msg]);
     msgStr += "T:" + curMsg + 'ψ';
     console.log(msgStr);
@@ -64,7 +69,7 @@ function Msg() {
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0);
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
             username: username,
           }).then((response) => {
             studentname = response.data[0].studentname;
@@ -114,8 +119,8 @@ function Msg() {
                       <FaUser className="msg_icon" />
                     </div>
                     <div className="infoboxmsg">
-                      <div className="namemsg">Student name</div>
-                      <div className="latestmsg">{msgRec["0"].text}</div>
+                      <div className="namemsg">{studentname}</div>
+                      <div className="latestmsg">{msgRec[msgRec.length-1].text}</div>
                     </div>
                     {/* <div className="align">
                       <div className="numbermsg">1</div>
@@ -127,7 +132,7 @@ function Msg() {
           </div>
         </div>
         <div className="chatcontent">
-          <div className="chatname">Student name</div>
+          <div className="chatname">{studentname}</div>
           <div className="chat">
             {msgRec.map((e) => {
               return <Msg_user type={e.type} text={e.text}></Msg_user>
