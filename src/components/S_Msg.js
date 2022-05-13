@@ -33,6 +33,7 @@ function S_Msg() {
         setMsgRec(msgRec => [msg, ...msgRec]);
       }
       // msgRecRev = msgRec.reverse();
+      setMsgRec(msgRec.slice(0, msgRec.length));
       setUsernameConst(teacherusername);
       setStudentnameConst(studentname);
       setMsgForUpd(msgStr);
@@ -97,7 +98,6 @@ function S_Msg() {
   } else {
     console.log("msgRec");
     console.log(msgRec);
-    setMsgRec(msgRec.slice(0, msgRec.length));
 
     return (
     <div>
