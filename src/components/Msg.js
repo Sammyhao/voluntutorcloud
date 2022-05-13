@@ -41,12 +41,12 @@ function Msg() {
         let msg = {type: t, text: category[1]};
         setMsgRec(msgRec => [msg, ...msgRec]);
       }
-      setUsernameConst(username);
-      setStudentnameConst(studentname);
-      setMsgForUpd(msgStr);
       setLastestMsg(msgRec[msgRec.length-1].text);
-      setHasProcessMsg(true);
     }
+    setUsernameConst(username);
+    setStudentnameConst(studentname);
+    setMsgForUpd(msgStr);
+    setHasProcessMsg(true);
   }
 
   const updateMsg = () => {
