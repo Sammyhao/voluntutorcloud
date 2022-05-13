@@ -23,6 +23,11 @@ function S_Msg() {
   const [studentnameConst, setStudentnameConst] = useState('');
 
   function processMsg(msgStr, teacherusername, studentname) {
+    console.log(msgStr, teacherusername, studentname);
+    console.log("msgInfo");
+    console.log(msgInfo);
+    console.log("msgRec");
+    console.log(msgRec);
     if(msgRec.length == 0) {
       console.log("msgInfo");
       console.log(msgInfo);
