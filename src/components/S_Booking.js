@@ -286,6 +286,16 @@ console.log(bookingInfoLen)
       }else if (bookingInfoLen != 0 && pendingBookingInfoLen ==0){
         return (
           <div className="outestcontainerbook">
+            <div id="dialogcontainer">
+              <BootstrapDialog
+                onClose={handlecancelclose}
+                id="diabook"
+                aria-labelledby="customized-dialog-title"
+                open={cancelopen}
+              >
+                <div className="bookingprogramdia">{j[status]}</div>
+              </BootstrapDialog>
+            </div>
             <div className="bookingwraping">
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitleall">{a[status]}</div>
