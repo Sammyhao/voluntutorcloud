@@ -79,6 +79,7 @@ export default function Booking() {
         }).then((response) => {
           setContactInfo(response.data);
           studentname = response.data[0].studentname;
+          console.log(username, studentname);
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
             username: username,
             studentname: studentname,
