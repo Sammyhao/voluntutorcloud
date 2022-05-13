@@ -67,8 +67,8 @@ function S_Msg() {
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
             username: username,
           }).then((response) => {
-            console.log(response);
-            teacherusername = response.data;
+            console.log(response.data);
+            teacherusername = response.data[0].username;
             console.log("username, studentname: ");
             console.log(teacherusername, studentname);
             if(!hasProcessMsg) {
