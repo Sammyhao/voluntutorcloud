@@ -22,10 +22,14 @@ function Msg() {
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
   const [usernameConst, setUsernameConst] = useState('');
   const [studentnameConst, setStudentnameConst] = useState('');
+  const [lastestMsg, setLastestMsg] = useState(0);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
   function processMsg(msgStr, username, studentname) {
+    if(msgStr == "") {
+      setLastestMsg("");
+    }
     if(msgRec.length == 0 && msgStr != "") {
       const msgInfo = msgStr.split('ψ');
       console.log("msgInfo");
@@ -40,6 +44,7 @@ function Msg() {
       setUsernameConst(username);
       setStudentnameConst(studentname);
       setMsgForUpd(msgStr);
+      setLastestMsg(msgRec[msgRec.length-1].text);
       setHasProcessMsg(true);
     }
   }
@@ -120,7 +125,7 @@ function Msg() {
                     </div>
                     <div className="infoboxmsg">
                       <div className="namemsg">{studentnameConst}</div>
-                      <div className="latestmsg">{msgRec[msgRec.length-1].text}</div>
+                      <div className="latestmsg">{lastestMsg}</div>
                     </div>
                     {/* <div className="align">
                       <div className="numbermsg">1</div>
