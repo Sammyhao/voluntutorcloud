@@ -45,6 +45,7 @@ function Msg() {
     msgStr += "T:" + curMsg + 'ψ';
     console.log(msgStr);
     let tempMsgForUpd = msgStr + msgForUpd;
+    console.log(usernameForUpd, studentnameForUpd, tempMsgForUpd);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: usernameForUpd,
       studentname: studentnameForUpd,
