@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Divider } from '@mui/material'
 import './Booking.css'
+import emailjs from "emailjs-com";
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -137,6 +138,27 @@ export default function Booking() {
         status: "pending"
       }).then((response) => {
         console.log(response);
+        var templateParams = {
+          parent_email: contactInfo[0].studentmail,
+          student: contactInfo[0].studentname,
+          teacher: contactInfo[0].username
+        }
+        console.log(templateParams)
+      emailjs
+      .send(
+        'service_z12yzef',
+        'template_86pdu89',
+        templateParams,
+        'QZBU3bIops8KtosSX',
+      )
+      .then(
+        function (response) {
+          console.log('SUCCESS!', response.status, response.text)
+        },
+        function (error) {
+          console.log('FAILED...', error)
+        },
+      )
       })
     }
     setdate("")
