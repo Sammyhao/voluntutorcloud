@@ -60,8 +60,10 @@ export default function Booking() {
   const [isLoading, setLoading] = useState(true);
   const [contactInfo, setContactInfo] = useState([]);
   const [haveSetStatus, setHaveSetStatus] = useState(false);
+  const [bookingInfo, setBookingInfo] = useState([]);
+  const [bookingInfoLen, setBookingInfoLen] = useState(0);
 
-  let username = "";
+  let username = "", studentname = "";
   const [name, setName] = useState("");
   
   useEffect(() => {
@@ -75,7 +77,17 @@ export default function Booking() {
         username: username
       }).then((response) => {
         setContactInfo(response.data);
+        studentname = response.data[0].studentname;
         setLoading(false);
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+          username: username,
+          studentname: studentname,
+          status: "confirmed"
+        }).then((response) => {
+          console.log(response);
+          setBookingInfo(response.data);
+          setBookingInfoLen(response.data.length)
+        })
       })
     })
   })
@@ -136,6 +148,9 @@ export default function Booking() {
       <Loading></Loading>
     )
   }else {
+    console.log("bookingInfo:");
+    console.log(bookingInfo);
+    console.log(bookingInfoLen);
     if (contactInfo.length == 0){
     return(
       <div className = "nokid">

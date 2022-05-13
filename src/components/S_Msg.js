@@ -23,9 +23,13 @@ function S_Msg() {
   const [studentnameConst, setStudentnameConst] = useState('');
 
   function processMsg(msgStr, teacherusername, studentname) {
+    console.log("msgRec");
+    console.log(msgRec);
     console.log(msgRec.length);
     const msgInfo = msgStr.split('ψ');
-    if(msgRec.length < msgInfo.length) {
+    console.log("msgInfo");
+    console.log(msgInfo);
+    if(msgRec.length == 0) {
       for(let i = 0; i < msgInfo.length; i++) {
         const category = msgInfo[i].split(':');
         let t = "";
@@ -37,7 +41,7 @@ function S_Msg() {
       setStudentnameConst(studentname);
       setMsgForUpd(msgStr);
       setHasProcessMsg(true);
-    }
+    } else return;
   }
 
   const updateMsg = () => {

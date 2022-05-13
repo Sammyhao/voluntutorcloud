@@ -120,7 +120,7 @@ export default function S_Booking() {
             Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
               studentname: studentname,
               username: teacherusername,
-              status: "accepted"
+              status: "confirmed"
             }).then((response) => {
               console.log(response);
               setBookingInfo(response.data);
@@ -198,9 +198,13 @@ export default function S_Booking() {
       <Loading/>
     )
   } else {
-    console.log("bookingInfo");
-    console.log(bookingInfo);
-    console.log(bookingInfoLen);
+      console.log("bookingInfo:");
+      console.log(bookingInfo);
+      console.log(bookingInfoLen);
+      console.log("pendingBookingInfo:");
+      console.log(pendingBookingInfo);
+      console.log(pendingBookingInfoLen);
+
       if(teachername == "") {
         return (
           <div className = "nokid">
@@ -302,7 +306,7 @@ export default function S_Booking() {
               >
                 <div className="bookingconfirmheaders">{k[status]}</div>
                 <div className="bookingconfirmcontent">
-                  {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]} 
+                  {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]} 
                 </div>
               </BootstrapDialog>
             </div>
@@ -319,10 +323,10 @@ export default function S_Booking() {
                         </div>
                         <div className="bookingrequesttotal">
                           <div className="bookingrequestsub">{teacherRealname}</div>
-                          <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
+                          <div className="bookinrequesttime">{pendingBookingInfo["0"]["duration"]} hr</div>
                         </div>
                         <div className="bookingrequesttotaltime">
-                          <div className="detailtimeforupcomings">{bookingInfo["0"]["date"] + " " + bookingInfo["0"]["time"]}</div>
+                          <div className="detailtimeforupcomings">{pendingBookingInfo["0"]["date"] + " " + pendingBookingInfo["0"]["time"]}</div>
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
