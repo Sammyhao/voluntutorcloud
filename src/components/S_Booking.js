@@ -51,9 +51,9 @@ export default function S_Booking() {
     window.location.replace(googlemeetlink);
   }
 
-  const handlecancelclose = () => {
-    setcancelopen(false)
-  }
+  // const handlecancelclose = () => {
+  //   setcancelopen(false)
+  // }
 
   const cancelmeeting = () => {
     console.log("cancelled")

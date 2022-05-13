@@ -390,7 +390,7 @@ export default function Booking() {
       <Divider></Divider>
       <div className="bookingoutestwrap">
 
-        {bookingInfo.map((e) => {
+        {/* {bookingInfo.map((e) => { */}
         <div className="bookingrow_teacher">
           <div className="bookingwrapsecond">
             <div className="bookingwordswrapfirst">
@@ -398,7 +398,7 @@ export default function Booking() {
                 <FaUser className="bookingprog_avatar" />
               </div>
               <div className="bookingrequesttotal">
-                <div className="bookingrequestsub">{e.studentname}</div>
+                <div className="bookingrequestsub">{bookingInfo["0"]["studentname"]}</div>
                 <div className="bookinrequesttime">{e.duration} hr</div>
               </div>
               <div className="bookingrequesttotaltime">
@@ -408,7 +408,8 @@ export default function Booking() {
               </div>
             </div>
           </div>
-        </div>})}
+        </div>
+        {/* })} */}
 
 
       </div>
