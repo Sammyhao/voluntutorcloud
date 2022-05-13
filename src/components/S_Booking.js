@@ -288,7 +288,7 @@ console.log(bookingInfoLen)
           <div className="outestcontainerbook">
             <div id="dialogcontainer">
               <BootstrapDialog
-                onClose={handlecancelclose}
+                // onClose={handlecancelclose}
                 id="diabook"
                 aria-labelledby="customized-dialog-title"
                 open={cancelopen}
@@ -354,7 +354,7 @@ console.log(bookingInfoLen)
           <div className="outestcontainerbook">
             <div id="dialogcontainer">
               <BootstrapDialog
-                onClose={handlecancelclose}
+                // onClose={handlecancelclose}
                 id="diabook"
                 aria-labelledby="customized-dialog-title"
                 open={cancelopen}
