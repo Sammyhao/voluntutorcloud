@@ -51,10 +51,6 @@ export default function S_Booking() {
     window.location.replace(googlemeetlink);
   }
 
-  // const handlecancelclose = () => {
-  //   setcancelopen(false)
-  // }
-
   const cancelmeeting = () => {
     console.log("cancelled")
     setcancelopen(true)
@@ -71,9 +67,6 @@ export default function S_Booking() {
     setcancel(false)
   }
 
-  const handleconfirmopen = () => {
-    setconfirmopen(false)
-  }
 
   const confirmmeeting = () => {
     console.log("confirmed")
@@ -288,7 +281,6 @@ console.log(bookingInfoLen)
           <div className="outestcontainerbook">
             <div id="dialogcontainer">
               <BootstrapDialog
-                // onClose={handlecancelclose}
                 id="diabook"
                 aria-labelledby="customized-dialog-title"
                 open={cancelopen}
@@ -354,7 +346,6 @@ console.log(bookingInfoLen)
           <div className="outestcontainerbook">
             <div id="dialogcontainer">
               <BootstrapDialog
-                // onClose={handlecancelclose}
                 id="diabook"
                 aria-labelledby="customized-dialog-title"
                 open={cancelopen}
@@ -364,13 +355,12 @@ console.log(bookingInfoLen)
             </div>
             <div id="dialogcontainer">
               <BootstrapDialog
-                onClose={handleconfirmopen}
                 id="diabook"
                 aria-labelledby="customized-dialog-title"
                 open={confirmopen}
               >
                 <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">ddd
+                <div className="bookingconfirmcontent">
                   {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
                 </div>
               </BootstrapDialog>
@@ -452,7 +442,27 @@ console.log(bookingInfoLen)
       }else{
         return (
           <div className="outestcontainerbook">
-            
+            <div id="dialogcontainer">
+              <BootstrapDialog
+                id="diabook"
+                aria-labelledby="customized-dialog-title"
+                open={cancelopen}
+              >
+                <div className="bookingprogramdia">{j[status]}</div>
+              </BootstrapDialog>
+            </div>
+            <div id="dialogcontainer">
+              <BootstrapDialog
+                id="diabook"
+                aria-labelledby="customized-dialog-title"
+                open={confirmopen}
+              >
+                <div className="bookingconfirmheaders">{k[status]}</div>
+                <div className="bookingconfirmcontent">
+                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
+                </div>
+              </BootstrapDialog>
+            </div>
             <div className="bookingwraping">
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitleall">{a[status]}</div>
@@ -535,26 +545,3 @@ console.log(bookingInfoLen)
   }
 }
 
-// <div id="dialogcontainer">
-//               <BootstrapDialog
-//                 onClose={handlecancelclose}
-//                 id="diabook"
-//                 aria-labelledby="customized-dialog-title"
-//                 open={cancelopen}
-//               >
-//                 <div className="bookingprogramdia">{j[status]}</div>
-//               </BootstrapDialog>
-//             </div>
-//             <div id="dialogcontainer">
-//               <BootstrapDialog
-//                 onClose={handleconfirmopen}
-//                 id="diabook"
-//                 aria-labelledby="customized-dialog-title"
-//                 open={confirmopen}
-//               >
-//                 <div className="bookingconfirmheaders">{k[status]}</div>
-//                 <div className="bookingconfirmcontent">ddd
-                  {/* {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]}  */}
-                {/* </div>
-              </BootstrapDialog>
-            </div> */}
