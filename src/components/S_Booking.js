@@ -234,29 +234,6 @@ console.log(bookingInfoLen)
       if(bookingInfoLen == 0 && pendingBookingInfoLen ==0) {
         return (
           <div className="outestcontainerbook">
-            <div id="dialogcontainer">
-              <BootstrapDialog
-                onClose={handlecancelclose}
-                id="diabook"
-                aria-labelledby="customized-dialog-title"
-                open={cancelopen}
-              >
-                <div className="bookingprogramdia">{j[status]}</div>
-              </BootstrapDialog>
-            </div>
-            <div id="dialogcontainer">
-              <BootstrapDialog
-                onClose={handleconfirmopen}
-                id="diabook"
-                aria-labelledby="customized-dialog-title"
-                open={confirmopen}
-              >
-                <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">
-                  {/* {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]} {bookingInfo["0"]["duration"]}  */}
-                </div>
-              </BootstrapDialog>
-            </div>
             <div className="bookingwraping">
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitleall">{a[status]}</div>
@@ -305,35 +282,12 @@ console.log(bookingInfoLen)
       }else if (bookingInfoLen != 0 && pendingBookingInfoLen ==0){
         return (
           <div className="outestcontainerbook">
-            <div id="dialogcontainer">
-              <BootstrapDialog
-                onClose={handlecancelclose}
-                id="diabook"
-                aria-labelledby="customized-dialog-title"
-                open={cancelopen}
-              >
-                <div className="bookingprogramdia">{j[status]}</div>
-              </BootstrapDialog>
-            </div>
-            <div id="dialogcontainer">
-              <BootstrapDialog
-                onClose={handleconfirmopen}
-                id="diabook"
-                aria-labelledby="customized-dialog-title"
-                open={confirmopen}
-              >
-                <div className="bookingconfirmheaders">{k[status]}</div>
-                <div className="bookingconfirmcontent">
-                  {pendingBookingInfo["0"]["date"]} {pendingBookingInfo["0"]["time"]} {pendingBookingInfo["0"]["duration"]} 
-                </div>
-              </BootstrapDialog>
-            </div>
             <div className="bookingwraping">
               <div className="bookingwrappinginnerfirst">
                 <div className="bookingtitleall">{a[status]}</div>
   
                 <div className="bookingoutestwrap">
-                  {bookingInfo.map((e) => {
+              {bookingInfo.map((e) => {
                     return(
                   <div className="bookingrow">
                     <div className="bookingwrapsecond">
