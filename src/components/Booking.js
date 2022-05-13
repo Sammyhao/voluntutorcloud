@@ -67,30 +67,31 @@ export default function Booking() {
   const [name, setName] = useState("");
   
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      username = response.data.user[0].username;
-      setName(username);
-      if(response.data.user[0].lang == "chinese") setStatus(1);
-      else setStatus(0);
-
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
-        username: username
-      }).then((response) => {
-        setContactInfo(response.data);
-        studentname = response.data[0].studentname;
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
-          username: username,
-          studentname: studentname,
-          status: "confirmed"
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        username = response.data.user[0].username;
+        setName(username);
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+          username: username
         }).then((response) => {
-          console.log(response);
-          setBookingInfo(response.data);
-          setBookingInfoLen(response.data.length)
-          setLoading(false);
+          setContactInfo(response.data);
+          studentname = response.data[0].studentname;
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+            username: username,
+            studentname: studentname,
+            status: "confirmed"
+          }).then((response) => {
+            console.log(response);
+            setBookingInfo(response.data);
+            setBookingInfoLen(response.data.length)
+            setLoading(false);
+          })
         })
       })
-    })
-  })
+    }
+  }, [])
 
 
   
