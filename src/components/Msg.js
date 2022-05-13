@@ -56,13 +56,25 @@ function Msg() {
     msgStr += "T:" + curMsg + 'ψ';
     console.log(msgStr);
     let tempMsgForUpd = msgStr + msgForUpd;
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
-      username: usernameConst,
-      studentname: studentnameConst,
-      msg: tempMsgForUpd
-    }).then((response) => {
-      console.log(response);
-    })
+    console.log("lastestMsg");
+    console.log(lastestMsg);
+    if(lastestMsg == "") {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/createMsg', {
+        username: usernameConst,
+        studentname: studentnameConst,
+        msg: tempMsgForUpd
+      }).then((response) => {
+        console.log(response);
+      })
+    } else {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
+        username: usernameConst,
+        studentname: studentnameConst,
+        msg: tempMsgForUpd
+      }).then((response) => {
+        console.log(response);
+      })
+    }
     setMsgForUpd(tempMsgForUpd);
   }
 
