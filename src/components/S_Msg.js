@@ -44,6 +44,7 @@ function S_Msg() {
           console.log(msgRec[msgRec.length-1].text);
         }
         setLastestMsg(msgRec[msgRec.length-1].text);
+        console.log(teacherusername, studentname);
         setUsernameConst(teacherusername);
         setStudentnameConst(studentname);
         setMsgForUpd(msgStr);
