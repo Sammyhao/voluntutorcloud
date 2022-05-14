@@ -118,9 +118,7 @@ function Msg() {
   } else {
     console.log("msgRec");
     console.log(msgRec);
-    setLastestMsg(msgRec[msgRec.length-1].text);
-    console.log(usernameConst, studentnameConst)
-
+    console.log(usernameConst, studentname);
 
     return (
     <div>
