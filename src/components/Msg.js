@@ -30,21 +30,20 @@ function Msg() {
     if(msgStr == "") {
       setLastestMsg("");
     }
-    if(msgRec.length == 0 && msgStr != "") {
+    if(msgStr != "") {
       const msgInfo = msgStr.split('ψ');
       console.log("msgInfo");
       console.log(msgInfo);
-      for(let i = 0; i < msgInfo.length; i++) {
-        const category = msgInfo[i].split(':');
-        let t = "";
-        t = (category[0] == 'T') ? "user" : "recipient"
-        let msg = {type: t, text: category[1]};
-        setMsgRec(msgRec => [msg, ...msgRec]);
-      }
-      
-      // console.log(msgRec[msgRec.length-1].text);
-      // setLastestMsg(msgRec[msgRec.length-1].text);
-    } else setMsgRec(msgRec.slice(0, msgInfo.length));
+      if(msgRec.length == 0) {
+        for(let i = 0; i < msgInfo.length; i++) {
+          const category = msgInfo[i].split(':');
+          let t = "";
+          t = (category[0] == 'T') ? "user" : "recipient"
+          let msg = {type: t, text: category[1]};
+          setMsgRec(msgRec => [msg, ...msgRec]);
+        }
+      } else setMsgRec(msgRec.slice(0, msgInfo.length));
+    }
     
     console.log(teacherusername, studentname);
     setUsernameConst(username);
