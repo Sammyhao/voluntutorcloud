@@ -93,11 +93,13 @@ function Grid_sub(props) {
   const [programInfo, setProgramInfo] = useState([])
   const [schoolname, setSchoolname] = useState('')
   const [address, setAddress] = useState('')
+  let subjectFF = "";
 
   useEffect(() => {
     console.log("subject");
     console.log(subject);
-    if (subject == '') subject = "chinese";
+    if (subject == '') subjectFF = "chinese";
+    else subjectFF == subject;
     
     Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
       subject: subject,
