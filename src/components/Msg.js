@@ -101,6 +101,7 @@ function Msg() {
                 studentname: studentname
               }).then((response) => {
                 if(response.data.length) msgStr = response.data[0].msg;
+                console.log(msgStr);
                 processMsg(msgStr, username, studentname);
                 setLoading(false);
               })
