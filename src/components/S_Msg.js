@@ -41,8 +41,8 @@ function S_Msg() {
           t = (category[0] == 'S') ? "user" : "recipient"
           let msg = {type: t, text: category[1]};
           setMsgRec(msgRec => [msg, ...msgRec]);
+          console.log(msgRec[msgRec.length-1].text);
         }
-        setLastestMsg(msgRec[msgRec.length-1].text);
         setUsernameConst(teacherusername);
         setStudentnameConst(studentname);
         setMsgForUpd(msgStr);
@@ -120,6 +120,7 @@ function S_Msg() {
   } else {
     console.log("msgRec");
     console.log(msgRec);
+    setLastestMsg(msgRec[msgRec.length-1].text);
 
     return (
     <div>

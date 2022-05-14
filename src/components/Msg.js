@@ -41,6 +41,7 @@ function Msg() {
         let msg = {type: t, text: category[1]};
         setMsgRec(msgRec => [msg, ...msgRec]);
       }
+      console.log(msgRec[msgRec.length-1].text);
       setLastestMsg(msgRec[msgRec.length-1].text);
     }
     setUsernameConst(username);
@@ -117,6 +118,9 @@ function Msg() {
   } else {
     console.log("msgRec");
     console.log(msgRec);
+    setLastestMsg(msgRec[msgRec.length-1].text);
+    console.log(usernameConst, studentnameConst)
+
 
     return (
     <div>
