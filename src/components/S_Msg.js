@@ -21,8 +21,12 @@ function S_Msg() {
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
   const [usernameConst, setUsernameConst] = useState('');
   const [studentnameConst, setStudentnameConst] = useState('');
+  const [lastestMsg, setLastestMsg] = useState(0);
 
   function processMsg(msgStr, teacherusername, studentname) {
+    if(msgStr == "") {
+      setLastestMsg("");
+    }
     console.log("msgRec");
     console.log(msgRec);
     console.log(msgRec.length);
@@ -50,16 +54,28 @@ function S_Msg() {
     let msg = {type: "user", text: curMsg};
     setCurMsg("")
     setMsgRec(msgRec => [...msgRec, msg]);
-    msgStr += "S:" + curMsg + 'ψ';
+    msgStr += "T:" + curMsg + 'ψ';
     console.log(msgStr);
     let tempMsgForUpd = msgStr + msgForUpd;
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
-      username: usernameConst,
-      studentname: studentnameConst,
-      msg: tempMsgForUpd
-    }).then((response) => {
-      console.log(response);
-    })
+    console.log("lastestMsg");
+    console.log(lastestMsg);
+    if(msgRec.length == "") {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/createMsg', {
+        username: usernameConst,
+        studentname: studentnameConst,
+        msg: tempMsgForUpd
+      }).then((response) => {
+        console.log(response);
+      })
+    } else {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
+        username: usernameConst,
+        studentname: studentnameConst,
+        msg: tempMsgForUpd
+      }).then((response) => {
+        console.log(response);
+      })
+    }
     setMsgForUpd(tempMsgForUpd);
   }
 
@@ -124,7 +140,7 @@ function S_Msg() {
                     </div>
                     <div className="infoboxmsg">
                       <div className="namemsg">{usernameConst}</div>
-                      <div className="latestmsg">{msgRec[msgRec.length-1].text}</div>
+                      <div className="latestmsg">{lastestMsg}</div>
                     </div>
                     {/* <div className="align">
                       <div className="numbermsg">1</div>

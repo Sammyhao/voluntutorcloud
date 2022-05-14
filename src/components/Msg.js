@@ -117,6 +117,7 @@ function Msg() {
   } else {
     console.log("msgRec");
     console.log(msgRec);
+    
     return (
     <div>
       <div className="out">
