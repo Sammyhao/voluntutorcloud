@@ -44,7 +44,7 @@ function Msg() {
       
       // console.log(msgRec[msgRec.length-1].text);
       // setLastestMsg(msgRec[msgRec.length-1].text);
-    } else setMsgRec([]);
+    } else setMsgRec(msgRec.slice(0, msgInfo.length));
     
     console.log(teacherusername, studentname);
     setUsernameConst(username);
