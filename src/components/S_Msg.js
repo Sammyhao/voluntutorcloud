@@ -123,7 +123,7 @@ function S_Msg() {
                       <FaUser className="msg_icon" />
                     </div>
                     <div className="infoboxmsg">
-                      <div className="namemsg">{teacherusername}</div>
+                      <div className="namemsg">{usernameConst}</div>
                       <div className="latestmsg">{msgRec[msgRec.length-1].text}</div>
                     </div>
                     {/* <div className="align">
@@ -136,7 +136,7 @@ function S_Msg() {
           </div>
         </div>
         <div className="chatcontent">
-          <div className="chatname">{teacherusername}</div>
+          <div className="chatname">{usernameConst}</div>
           <div className="chat">
             {msgRec.map((e) => {
               return <Msg_user type={e.type} text={e.text}></Msg_user>
