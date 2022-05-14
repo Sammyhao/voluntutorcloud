@@ -22,7 +22,7 @@ function Msg() {
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
   const [usernameConst, setUsernameConst] = useState('');
   const [studentnameConst, setStudentnameConst] = useState('');
-  const [lastestMsg, setLastestMsg] = useState(0);
+  const [lastestMsg, setLastestMsg] = useState('');
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -117,7 +117,7 @@ function Msg() {
   } else {
     console.log("msgRec");
     console.log(msgRec);
-    
+
     return (
     <div>
       <div className="out">

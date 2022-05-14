@@ -21,7 +21,7 @@ function S_Msg() {
   const [hasProcessMsg, setHasProcessMsg] = useState(false);
   const [usernameConst, setUsernameConst] = useState('');
   const [studentnameConst, setStudentnameConst] = useState('');
-  const [lastestMsg, setLastestMsg] = useState(0);
+  const [lastestMsg, setLastestMsg] = useState('');
 
   function processMsg(msgStr, teacherusername, studentname) {
     if(msgStr == "") {
@@ -42,6 +42,7 @@ function S_Msg() {
           let msg = {type: t, text: category[1]};
           setMsgRec(msgRec => [msg, ...msgRec]);
         }
+        setLastestMsg(msgRec[msgRec.length-1].text);
         setUsernameConst(teacherusername);
         setStudentnameConst(studentname);
         setMsgForUpd(msgStr);
@@ -54,7 +55,7 @@ function S_Msg() {
     let msg = {type: "user", text: curMsg};
     setCurMsg("")
     setMsgRec(msgRec => [...msgRec, msg]);
-    msgStr += "T:" + curMsg + 'ψ';
+    msgStr += "S:" + curMsg + 'ψ';
     console.log(msgStr);
     let tempMsgForUpd = msgStr + msgForUpd;
     console.log("lastestMsg");
