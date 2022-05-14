@@ -15,8 +15,8 @@ import Student_portfolio from './components/pages/Student_portfolio'
 import Message from './components/pages/Message'
 import Studymat from './components/pages/Study'
 import 'font-awesome/css/font-awesome.min.css'
-function App() {
 
+function App() {
   useEffect(() => {
     document.title = "VolunTutor Cloud";
   })
