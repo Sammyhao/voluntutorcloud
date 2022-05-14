@@ -24,7 +24,6 @@ function S_Msg() {
   const [lastestMsg, setLastestMsg] = useState('');
 
   function processMsg(msgStr, teacherusername, studentname) {
-    setMsgRec([]);
     if(msgStr == "") {
       setLastestMsg("");
     }
@@ -50,7 +49,7 @@ function S_Msg() {
         setStudentnameConst(studentname);
         setMsgForUpd(msgStr);
         setHasProcessMsg(true);
-      } else return;
+      } else setMsgRec([]);
     }
   }
 
