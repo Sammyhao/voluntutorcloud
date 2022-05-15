@@ -43,10 +43,14 @@ BootstrapDialogTitle.propTypes = {
 }
 export default function Booking() {
     const [noneopen, setnoneopen] = useState(false)
+    const [bookedwarn, setbookedwarn] = usetState(false)
     const [open, setOpen] = useState(false)
     const [finalopen, setfinalopen] = useState(false)
     const handleClose = () => {
         setOpen(false)
+      }
+      const handleBook = () =>{
+        setbookedwarn(false)
       }
       const handlenoneclose = () => {
         setnoneopen(false)
@@ -113,6 +117,7 @@ export default function Booking() {
   let m = ["There's any upcoming meetings yet :)","目前沒有即將到來的會議 :)"]
 
   let l = ['Upcoming Meetings', "即將到來的會議"]
+  let p = ["You have already successfully booked a meeting with your student. Please book the next session after the upcoming meeting is over.","您已經和學生成功預約會議，請在下次會議結束後再預約接下來的課程。"]
   const sendfirst = () => {
     if(date== "" || time == "" || duration == ""){
           setnoneopen(true)
@@ -299,47 +304,20 @@ export default function Booking() {
     console.log(bookingInfo);
     return (
       <div className='outestcontainerbook'>
-        <div id="dialogcontainer">
+                <div id="dialogcontainer">
         <BootstrapDialog
-        onClose={handleClose}
+        onClose={handleBook}
         id="diabook"
         aria-labelledby="customized-dialog-title"
-        open={open}
+        open={bookedwarn}
         >
-      <div className="bookingprogramdia"> {i[status]}</div>
-      <div className="bookingprogramdia_sub">
-      {c[status]}{date}</div>
-      <div className="bookingprogramdia_sub">
-      {e[status]}{time}</div>
-      <div className="bookingprogramdia_sub">
-      {g[status]}{duration}</div>
-      <div className = "sendbookwrapper">
-      <div className = "sendbookingbtn" onClick={sendsecond}>{b[status]}</div>
-      </div>
-        </BootstrapDialog>
-        </div>
-        <div id="dialogcontainer">
-        <BootstrapDialog
-        onClose={handlenoneclose}
-        id="diabook"
-        aria-labelledby="customized-dialog-title"
-        open={noneopen}
-        >
-        <div className="bookingprogramdia">{j[status]}</div>
+        <div className="bookingprogramdia">{p[status]}</div>
         </BootstrapDialog></div>
-        <div id="dialogcontainer">
-        <BootstrapDialog
-        onClose={handlefinalclose}
-        id="diabook"
-        aria-labelledby="customized-dialog-title"
-        open={finalopen}
-        >
-        <div className="bookingfinal">{k[status]}</div>
-        </BootstrapDialog></div>
+        
         <div className = "outerbook">
               <div className = "topbarbook">
               <div className = "titlebook">{a[status]}</div>
-              <div className = "bookbtn" onClick={sendfirst}>{b[status]}</div>
+              <div className = "bookbtn" onClick= {()=>{setbookedwarn(true)}}>{b[status]}</div>
               </div>
               <Divider></Divider>
               <div className = "inputbook_outercont">
