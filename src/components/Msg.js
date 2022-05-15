@@ -37,6 +37,7 @@ function Msg() {
       if(msgRec.length == 0) {
         for(let i = 0; i < msgInfo.length; i++) {
           const category = msgInfo[i].split(':');
+          if(i == 0) setLastestMsg(category[1]); 
           let t = "";
           t = (category[0] == 'T') ? "user" : "recipient"
           let msg = {type: t, text: category[1]};
