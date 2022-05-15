@@ -160,7 +160,7 @@ function Myfav() {
       <Loading></Loading>
     )
   }else{
-    if(favProgramListLen == 0){
+    if(favProgramList.length == 0){
       return(
       <div id="nofav">
               <div className="noStudentFont">{a[status]}</div>
