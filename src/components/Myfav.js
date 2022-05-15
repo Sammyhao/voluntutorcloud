@@ -166,7 +166,8 @@ function Myfav() {
               <div className="noStudentFont">{a[status]}</div>
               <div className="noStudentFont2">{b[status]}</div>
       </div>)
-  }else {
+   }else {
+     console.log(favProgramList.length)
     console.log(favProgramList);
     console.log("favProgramList fetched not null");
     return (
