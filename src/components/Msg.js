@@ -10,7 +10,6 @@ import Axios from 'axios'
 
 function Msg() {
   let num = [1]
-
   const [status, setStatus] = useState(0)
   let username = '', studentname = "", teacherusername = "";
   const [curMsg, setCurMsg] = useState('');
@@ -112,6 +111,9 @@ function Msg() {
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
   
+  let b = ["Find friends","尋找朋友"]
+  let c = ["Enter your message...","請輸入訊息..."]
+  let d = ["send","傳送"]
   if (isLoading) {
     return (
       <Loading/>
@@ -127,7 +129,7 @@ function Msg() {
         <div className="chathistory">
           <div className="searchpad">
             <div className="search">
-              Find friends
+              {b[status]}
               <BiSearchAlt className="searchicon"></BiSearchAlt>
             </div>
           </div>
@@ -163,13 +165,13 @@ function Msg() {
             <textarea
               className="messagesend"
               type="text"
-              placeholder="Enter your message..."
+              placeholder={c[status]}
               value={curMsg}
               onChange={(e) => {
                 setCurMsg(e.target.value)
               }}
             />
-            <div className="sendword" onClick={updateMsg}>send</div>
+            <div className="sendword" onClick={updateMsg}>{d[status]}</div>
           </div>
         </div>
       </div>
