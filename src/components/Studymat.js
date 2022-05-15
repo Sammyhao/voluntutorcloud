@@ -393,6 +393,7 @@ let gradearr_ch = [
                               let g = e.grade_title.substring(0,1);
                               setgra(g)
                               setsub(e.subjects_name_title[i]);
+                              console.log(sub)
                               let grade = e.id.substring(e.id.length - 1);
                               console.log(grade, e.subjects_name[i]);
                               fetchSubMat(grade, e.subjects_name[i]);
