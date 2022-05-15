@@ -24,12 +24,6 @@ function S_Msg() {
   const [lastestMsg, setLastestMsg] = useState('');
 
   function processMsg(msgStr, teacherusername, studentname) {
-    if(msgStr == "") {
-      setLastestMsg("");
-    }
-    console.log("msgRec");
-    console.log(msgRec);
-    console.log(msgRec.length);
     if(msgStr != "") {
       const msgInfo = msgStr.split('ψ');
       console.log("msgInfo");
@@ -37,6 +31,7 @@ function S_Msg() {
       if(msgRec.length == 0) {
         for(let i = 0; i < msgInfo.length; i++) {
           const category = msgInfo[i].split(':');
+          if(i == 0) setLastestMsg(category[1]); 
           let t = "";
           t = (category[0] == 'S') ? "user" : "recipient"
           let msg = {type: t, text: category[1]};
