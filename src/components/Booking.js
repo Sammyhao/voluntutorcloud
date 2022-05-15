@@ -317,7 +317,7 @@ export default function Booking() {
         <div className = "outerbook">
               <div className = "topbarbook">
               <div className = "titlebook">{a[status]}</div>
-              <div className = "bookbtn" onClick= {()=>{setbookedwarn(true)}}>aaa {b[status]}</div>
+              <div className = "bookbtn" onClick = {()=>{setbookedwarn(true)}}>{b[status]}</div>
               </div>
               <Divider></Divider>
               <div className = "inputbook_outercont">
