@@ -162,8 +162,7 @@ function Myfav() {
   }else{
     if(favProgramList.length == 0){
       return(
-      <div id="fav_outcontainer">
-      
+      <div id="nofav">
               <div className="noStudentFont">{a[status]}</div>
               <div className="noStudentFont2">{b[status]}</div>
       </div>)
