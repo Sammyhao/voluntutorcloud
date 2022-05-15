@@ -45,9 +45,9 @@ function Programusage() {
   let b = ['We will assign you a teacher soon!', '我們會盡快配對一位老師給您！']
   let d = [" hrs" ,"小時"]
   let e = ["Records" ,"課堂紀錄"]
-  let f = ["Notes", "課堂筆記"]
+  let f = ["Agenda", "課堂進度"]
   let g = ["Date" ,"課堂日期"]
-  let h = ["Agenda" ,"課堂進度"]
+  let h = ["Notes" ,"課堂筆記"]
   let studentname = "";
 
   useLayoutEffect(() => {
@@ -188,10 +188,10 @@ function Programusage() {
                             </div>
                             <div className="content_rec_sec_ag">
                               <div className ="title_content_rec">{h[status]}</div>
-                              <div className = "content_content_rec">{record.agenda}</div>
+                              <div className = "content_content_rec">{record.notes}</div>
                             </div>  
                           </div>
-                          <div className="content_not">{record.notes}</div>
+                          <div className="content_not">{record.agenda}</div>
                         </div>
                       </div>
                       </div>
