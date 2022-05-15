@@ -43,7 +43,7 @@ BootstrapDialogTitle.propTypes = {
 }
 export default function Booking() {
     const [noneopen, setnoneopen] = useState(false)
-    const [bookedwarn, setbookedwarn] = usetState(false)
+    const [bookedwarn, setbookedwarn] = useState(false)
     const [open, setOpen] = useState(false)
     const [finalopen, setfinalopen] = useState(false)
     const handleClose = () => {
