@@ -172,7 +172,7 @@ function Programusage() {
                 <div className="title_not">{f[status]}</div>
                 </div>
                 </div>
-                <div>
+                <div className="programusagewr">
                   {contact.map((record) => {
                     return (
                       
