@@ -162,14 +162,12 @@ function Myfav() {
   }else{
     if(favProgramList.length == 0){
       return(
-      <div id="nofav">
+      <div id="fav_outcontainer">
+      
               <div className="noStudentFont">{a[status]}</div>
               <div className="noStudentFont2">{b[status]}</div>
       </div>)
    }else {
-     console.log(favProgramList.length)
-    console.log(favProgramList);
-    console.log("favProgramList fetched not null");
     return (
       <div id="fav_outcontainer">
         <h1 className="titlefav" onClick={showFavProgramList}>
