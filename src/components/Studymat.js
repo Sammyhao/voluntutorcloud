@@ -248,6 +248,7 @@ let gradearr_ch = [
 
   const [subMat, setSubMat] = useState([]);
   const [sub, setsub] = useState("");
+  const [chinsub,setchinsub] = useState("");
   const [gra, setgra] = useState("");
   let username = "";
   const [isLoading, setLoading] = useState(true);
@@ -357,7 +358,7 @@ let gradearr_ch = [
               aria-labelledby="customized-dialog-title"
               open={open}
             >
-              <div id="studydialog">{gra} {a[status]} / {sub} {b[status]}</div>
+              <div id="studydialog">{gra} {a[status]} / {chinsub} {b[status]}</div>
               <div id="warningdialogstudy">{d[status]}</div>
               <div className = "wrapperlinks">
                 {subMat.map((mat) => {
@@ -392,8 +393,8 @@ let gradearr_ch = [
                             onClick={() => {
                               let g = e.grade_title.substring(0,1);
                               setgra(g)
-                              setsub(e.subjects_name_title[i]);
-                              console.log(sub)
+                              setchinsub(e.subjects_name_title[i]);
+                              console.log(chinsub)
                               let grade = e.id.substring(e.id.length - 1);
                               console.log(grade, e.subjects_name[i]);
                               fetchSubMat(grade, e.subjects_name[i]);
