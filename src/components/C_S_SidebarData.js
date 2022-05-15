@@ -15,7 +15,7 @@ export const C_S_SidebarData = [
     icon: <CgProfile />,
   },
   {
-    title: '預約會議',
+    title: '會議預約',
     path: '/book',
     cName: 'nav-text',
     icon: <AiOutlineCalendar />,

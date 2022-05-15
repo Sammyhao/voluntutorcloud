@@ -15,7 +15,7 @@ export const S_SidebarData = [
     icon: <CgProfile />,
   },
   {
-    title: 'Booking',
+    title: 'Bookings',
     path: '/book',
     cName: 'nav-text',
     icon: <AiOutlineCalendar />,
