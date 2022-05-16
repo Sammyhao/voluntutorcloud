@@ -310,7 +310,7 @@ export default function Booking() {
     console.log(bookingInfo);
     return (
       <div className='outestcontainerbook'>
-        <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
+        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
           
                 <div id="dialogcontainer">
         <BootstrapDialog
