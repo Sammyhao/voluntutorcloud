@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import Loading from './Loading'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
+import Multi_student from './Multi_Students'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -118,6 +119,7 @@ export default function Booking() {
 
   let l = ['Upcoming Meetings', "即將到來的會議"]
   let p = ["You have already successfully booked a meeting with your student. Please book the next session after the upcoming meeting is over.","您已經和學生成功預約會議，請在下次會議結束後再預約接下來的課程。"]
+  let studentnum = 1;
   const sendfirst = () => {
     if(date== "" || time == "" || duration == ""){
           setnoneopen(true)
@@ -231,6 +233,7 @@ export default function Booking() {
           <div className="bookingfinal">{k[status]}</div>
           </BootstrapDialog></div>
           <div className = "outerbook">
+            <Multi_student></Multi_student>
                 <div className = "topbarbook">
                 <div className = "titlebook">{a[status]}</div>
                 <div className = "bookbtn" onClick={sendfirst}>{b[status]}</div>

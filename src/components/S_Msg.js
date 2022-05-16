@@ -34,9 +34,9 @@ function S_Msg() {
           if(i == 0) setLastestMsg(category[1]); 
           let t = "";
           t = (category[0] == 'S') ? "user" : "recipient"
+          if(category[1] == "") continue;
           let msg = {type: t, text: category[1]};
           setMsgRec(msgRec => [msg, ...msgRec]);
-          // console.log(msgRec[msgRec.length-1].text);
         }
         
         console.log(teacherusername, studentname);
