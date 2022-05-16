@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import Loading from './Loading'
 import { Divider } from '@mui/material'
+import {Multi_student} from './Multi_Students'
 import { CgNametag } from 'react-icons/cg'
 export default function Portfolio() {
   let username = ''
@@ -48,6 +49,9 @@ export default function Portfolio() {
   let fg = ["Dreams and Goals...","夢想和目標..."]
   let gh = ["The most memorable thing in your life...","最印象深刻的事..."]
   let hi = ["The most precious things in the world...","生命中最重要的人事物..."]
+  
+  let studentnum = 1;
+  let studentnamemulti = "name"
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       if (response.data.isLoggedIn) {
@@ -106,6 +110,7 @@ export default function Portfolio() {
     console.log(studentProfolio)
     return (
       <div className="outcontainer_port">
+        <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
         <div className="top_bar">
           <div className="image_port">
             <img className="pic_port" src="/images/children_learning.png" />

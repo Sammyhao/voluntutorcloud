@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import Loading from './Loading'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
-import Multi_student from './Multi_Students'
+import {Multi_student} from './Multi_Students'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -197,6 +197,8 @@ export default function Booking() {
     if(bookingInfoLen==0){
     return (
         <div className='outestcontainerbook'>
+          <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
+            
           <div id="dialogcontainer">
           <BootstrapDialog
           onClose={handleClose}
@@ -235,7 +237,6 @@ export default function Booking() {
           <div className="bookingfinal">{k[status]}</div>
           </BootstrapDialog></div>
           <div className = "outerbook">
-            <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
                 <div className = "topbarbook">
                 <div className = "titlebook">{a[status]}</div>
                 <div className = "bookbtn" onClick={sendfirst}>{b[status]}</div>
@@ -309,6 +310,8 @@ export default function Booking() {
     console.log(bookingInfo);
     return (
       <div className='outestcontainerbook'>
+        <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
+          
                 <div id="dialogcontainer">
         <BootstrapDialog
         onClose={handleBook}
@@ -320,7 +323,6 @@ export default function Booking() {
         </BootstrapDialog></div>
         
         <div className = "outerbook">
-          <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
             
               <div className = "topbarbook">
               <div className = "titlebook">{a[status]}</div>

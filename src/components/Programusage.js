@@ -4,6 +4,7 @@ import './Programusage.css'
 import '../App.css'
 import { FaUser } from 'react-icons/fa'
 
+import {Multi_student} from './Multi_Students'
 import Loading from './Loading'
 import Axios from 'axios'
 const Progress = ({ done }) => {
@@ -29,6 +30,8 @@ const Progress = ({ done }) => {
 
 let username = "";
 
+let studentnum = 1;
+let studentnamemulti = "name"
 function Programusage() {
   const [status, setStatus] = useState(0);
   const [contactInfo, setContactInfo] = useState([]);
@@ -103,6 +106,8 @@ function Programusage() {
           Find subjects
           <BiSearchAlt className="searchicon"></BiSearchAlt>
         </div> */}
+        <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
+            
         <div className="subjectlist">
           {stpair.map((st) => {
             return (
