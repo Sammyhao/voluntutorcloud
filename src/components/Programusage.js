@@ -30,7 +30,7 @@ const Progress = ({ done }) => {
 
 let username = "";
 
-let studentnum = 1;
+let studentnum = 2;
 let studentnamemulti = "name"
 function Programusage() {
   const [status, setStatus] = useState(0);

@@ -50,7 +50,7 @@ export default function Portfolio() {
   let gh = ["The most memorable thing in your life...","最印象深刻的事..."]
   let hi = ["The most precious things in the world...","生命中最重要的人事物..."]
   
-  let studentnum = 1;
+  let studentnum = 2;
   let studentnamemulti = "name"
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {

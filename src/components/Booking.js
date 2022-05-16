@@ -120,7 +120,7 @@ export default function Booking() {
   let l = ['Upcoming Meetings', "即將到來的會議"]
   let p = ["You have already successfully booked a meeting with your student. Please book the next session after the upcoming meeting is over.","您已經和學生成功預約會議，請在下次會議結束後再預約接下來的課程。"]
   
-  let studentnum = 1;
+  let studentnum = 2;
   let studentnamemulti = "name"
   const sendfirst = () => {
     if(date== "" || time == "" || duration == ""){
