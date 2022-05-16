@@ -92,8 +92,10 @@ function Appointmentmeet() {
 
   // var googlemeetlinkalt = "";
 
-  let studentnum = 2;
+  const [studentnum, setStudentnum] = useState(0);
+  //學生數量
   let studentnamemulti = "name"
+  //要放在列表的學生名字 (非螢幕上呈現的學生)
   useEffect(() => {
     if(isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
@@ -104,6 +106,9 @@ function Appointmentmeet() {
         Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
           username: username
         }).then((response) => {
+          setStudentnum(response.data.length);
+          console.log("Student number: ");
+          console.log(response.data.length);
           setContactInfo(response.data);
           setLoading(false);
         })
