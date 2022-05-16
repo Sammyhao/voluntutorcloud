@@ -44,7 +44,7 @@ function S_Msg() {
         setStudentnameConst(studentname);
         setMsgForUpd(msgStr);
         setHasProcessMsg(true);
-      } else setMsgRec(msgRec.slice(0, msgInfo.length));
+      } else setMsgRec(msgRec.slice(0, msgInfo.length-1));
     }
   }
 

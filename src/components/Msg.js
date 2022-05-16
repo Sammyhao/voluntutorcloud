@@ -31,7 +31,7 @@ function Msg() {
       console.log("msgInfo");
       console.log(msgInfo);
       if(msgRec.length == 0) {
-        for(let i = 0; i < msgInfo.length; i++) {
+        for(let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split(':');
           if(i == 0) setLastestMsg(category[1]); 
           let t = "";
@@ -40,7 +40,7 @@ function Msg() {
           let msg = {type: t, text: category[1]};
           setMsgRec(msgRec => [msg, ...msgRec]);
         }
-      } else setMsgRec(msgRec.slice(0, msgInfo.length));
+      } else setMsgRec(msgRec.slice(0, msgInfo.length-1));
     }
     
     console.log(teacherusername, studentname);
