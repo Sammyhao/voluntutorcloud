@@ -211,7 +211,7 @@ function Appointmentmeet() {
     console.log(contactInfo);
     return (
       <div className = "outsidecontainerapp">
-        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
+        <Multi_Students num={5} text={studentnamemulti}></Multi_Students>
             
       <div id="dialog_reg_wrap">
       <BootstrapDialog
