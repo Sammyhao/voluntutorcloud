@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
+import Multi_student from './Multi_Students'
 import DialogTitle from '@mui/material/DialogTitle'
 import IconButton from '@mui/material/IconButton'
 import { popoverClasses } from '@mui/material';
@@ -91,6 +92,8 @@ function Appointmentmeet() {
 
   // var googlemeetlinkalt = "";
 
+  let studentnum = 1;
+  let studentnamemulti = "name"
   useEffect(() => {
     if(isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
@@ -203,6 +206,8 @@ function Appointmentmeet() {
     console.log(contactInfo);
     return (
       <div className = "outsidecontainerapp">
+        <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
+            
       <div id="dialog_reg_wrap">
       <BootstrapDialog
         onClose={handleClose}

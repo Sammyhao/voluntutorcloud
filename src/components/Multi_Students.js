@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './Multi_Students.css'
 import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
-export default function Multi_Students() {
+
+export const Multi_Students = ({ num, name}) => {
   const [nameclick, setnameclick] = useState(false)
-  let student = ['李曉明']
+  let student = name
+  if(num==1){
+    return(<div></div>)
+  }else{
   return (
     <div className={nameclick ? 'choosekid active' : 'choosekid'}>
       <div className="multi">
@@ -27,5 +31,5 @@ export default function Multi_Students() {
         ></MdOutlineArrowForwardIos>
       )}
     </div>
-  )
+  )}
 }
