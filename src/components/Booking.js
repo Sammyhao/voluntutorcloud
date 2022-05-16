@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import Loading from './Loading'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
-import {Multi_student} from './Multi_Students'
+import {Multi_Students} from './Multi_Students'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -197,7 +197,7 @@ export default function Booking() {
     if(bookingInfoLen==0){
     return (
         <div className='outestcontainerbook'>
-          <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
+          <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
             
           <div id="dialogcontainer">
           <BootstrapDialog

@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import Loading from './Loading'
 import { Divider } from '@mui/material'
-import {Multi_student} from './Multi_Students'
+import {Multi_Students} from './Multi_Students'
 import { CgNametag } from 'react-icons/cg'
 export default function Portfolio() {
   let username = ''
@@ -110,7 +110,7 @@ export default function Portfolio() {
     console.log(studentProfolio)
     return (
       <div className="outcontainer_port">
-        <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
+        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
         <div className="top_bar">
           <div className="image_port">
             <img className="pic_port" src="/images/children_learning.png" />

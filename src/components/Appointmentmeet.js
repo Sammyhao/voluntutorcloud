@@ -18,7 +18,7 @@ import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
-import {Multi_student} from './Multi_Students'
+import {Multi_Students} from './Multi_Students'
 import DialogTitle from '@mui/material/DialogTitle'
 import IconButton from '@mui/material/IconButton'
 import { popoverClasses } from '@mui/material';
@@ -206,7 +206,7 @@ function Appointmentmeet() {
     console.log(contactInfo);
     return (
       <div className = "outsidecontainerapp">
-        <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
+        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
             
       <div id="dialog_reg_wrap">
       <BootstrapDialog

@@ -4,7 +4,7 @@ import './Programusage.css'
 import '../App.css'
 import { FaUser } from 'react-icons/fa'
 
-import {Multi_student} from './Multi_Students'
+import {Multi_Students} from './Multi_Students'
 import Loading from './Loading'
 import Axios from 'axios'
 const Progress = ({ done }) => {
@@ -106,7 +106,7 @@ function Programusage() {
           Find subjects
           <BiSearchAlt className="searchicon"></BiSearchAlt>
         </div> */}
-        <Multi_student num={studentnum} text={studentnamemulti}></Multi_student>
+        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
             
         <div className="subjectlist">
           {stpair.map((st) => {
