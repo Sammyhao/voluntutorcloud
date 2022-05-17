@@ -71,6 +71,34 @@ export default function Booking() {
 
   let username = "", studentname = "";
   const [name, setName] = useState("");
+  let datearr = [];
+
+  function checkBookingInfoValidity(bookingInfo) {
+    for(let i = 0; i < bookingInfo.length; i++) {
+      var date = bookingInfo[i].date;
+      datearr = date.split('/');
+      console.log(datearr);
+      for(let j = 0; j < date.length; j++) {
+        datearr[j] = Number(datearr[j]);
+      }
+      console.log(datearr);
+      let d = new Date().getDate;
+      let m = new Date().getMonth() + 1;
+      let y = new Date().getFullYear();
+      console.log(d, m, y);
+      if(y > datearr[0]) {
+        // delete booking
+      } else if(y == datearr[0]) {
+        if(m > datearr[1]) {
+          // delete booking
+        } else if(m == datearr[1]) {
+          if(d > datearr[2]) {
+            // delete booking
+          }
+        }
+      }
+    }
+  }
   
   useEffect(() => {
     if(isLoading) {
@@ -91,7 +119,7 @@ export default function Booking() {
             status: "confirmed"
           }).then((response) => {
             console.log(response);
-            setBookingInfo(response.data);
+            setBookingInfo(checkBookingInfoValidity(response.data));
             setBookingInfoLen(response.data.length)
             setLoading(false);
           })
