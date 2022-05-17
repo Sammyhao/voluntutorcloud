@@ -103,7 +103,6 @@ function Appointmentmeet() {
         Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
           username: username
         }).then((response) => {
-          setStudentnum(response.data.length);
           console.log("Student number: ");
           console.log(response.data.length);
           setContactInfo(response.data);
