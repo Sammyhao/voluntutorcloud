@@ -31,7 +31,7 @@ const Progress = ({ done }) => {
 let username = "";
 
 let studentnum = 2;
-let studentnamemulti = "name"
+let studentnamemulti = ["張曉明"]
 function Programusage() {
   const [status, setStatus] = useState(0);
   const [contactInfo, setContactInfo] = useState([]);

@@ -94,7 +94,7 @@ function Appointmentmeet() {
 
   const [studentnum, setStudentnum] = useState(0);
   //學生數量
-  let studentnamemulti = "name"
+  let studentnamemulti = ["張曉明"]
   //要放在列表的學生名字 (非螢幕上呈現的學生)
   useEffect(() => {
     if(isLoading) {
