@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography'
 import Loading from './Loading'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
-import {Multi_Students} from './Multi_Students'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -43,6 +42,38 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
 export default function Booking() {
+  const [nameclick, setnameclick] = useState(false)
+  const [multistyle, setmultistyle] =useState(<div></div>)
+  let multistudentname = ["張巧玲"]
+  let multistudentnum =2
+  if(multistudentnum==1){
+    setmultistyle(<div></div>)
+  }else{
+  setmultistyle(
+    <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+      <div className="multi">
+        {multistudentname.map((e) => {
+          return <div className="borderstudent">{e}</div>
+        })}
+      </div>
+      {nameclick ? (
+        <MdArrowBackIos
+          className="kidicon"
+          onClick={() => {
+            setnameclick(!nameclick)
+          }}
+        ></MdArrowBackIos>
+      ) : (
+        <MdOutlineArrowForwardIos
+          className="kidicon"
+          onClick={() => {
+            setnameclick(!nameclick)
+          }}
+        ></MdOutlineArrowForwardIos>
+      )}
+    </div>
+  )
+}
     const [noneopen, setnoneopen] = useState(false)
     const [bookedwarn, setbookedwarn] = useState(false)
     const [open, setOpen] = useState(false)
@@ -175,8 +206,6 @@ export default function Booking() {
   let l = ['Upcoming Meetings', "即將到來的會議"]
   let p = ["You have already successfully booked a meeting with your student. Please book the next session after the upcoming meeting is over.","您已經和學生成功預約會議，請在下次會議結束後再預約接下來的課程。"]
   
-  let studentnum = 2;
-  let studentnamemulti = ["name"]
   const sendfirst = () => {
     if(date== "" || time == "" || duration == ""){
           setnoneopen(true)
@@ -252,8 +281,7 @@ export default function Booking() {
     if(bookingInfoLen==0){
       return (
           <div className='outestcontainerbook'>
-            <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
-              
+            {multistyle}  
             <div id="dialogcontainer">
             <BootstrapDialog
             onClose={handleClose}
@@ -366,8 +394,7 @@ export default function Booking() {
     console.log(bookingInfo);
     return (
       <div className='outestcontainerbook'>
-        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
-          
+        {multistyle}  
                 <div id="dialogcontainer">
         <BootstrapDialog
         onClose={handleBook}
