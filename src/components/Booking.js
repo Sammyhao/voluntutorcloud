@@ -42,6 +42,7 @@ let program = 0
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
+
 export default function Booking() {
   const [nameclick, setnameclick] = useState(false)
   const multistyle = () => {
@@ -181,7 +182,8 @@ export default function Booking() {
         }).then((response) => {
           setContactInfo(response.data);
           studentname = response.data[0].studentname;
-          if(response.data.length == 2) setMultistudentname(multistudentname => [...multistudentname, response.data[1].studentname])
+          console.log(response.data.length);
+          if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
           console.log(username, studentname);
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
             username: username,
@@ -282,14 +284,19 @@ export default function Booking() {
     console.log("bookingInfo:");
     console.log(bookingInfo);
     console.log(bookingInfoLen);
+    console.log("multistudentname");
+    console.log(multistudentname);
+    console.log("multistudentnameLen");
+    console.log(multistudentname.length);
+
     if (contactInfo.length == 0){
-    return(
-      <div className = "nokid">
-        <div className="noStudentFont">{n[status]}</div>
-        <div className="noStudentFont2">{o[status]}</div>
-      </div>
-    )
-  } else{
+      return(
+        <div className = "nokid">
+          <div className="noStudentFont">{n[status]}</div>
+          <div className="noStudentFont2">{o[status]}</div>
+        </div>
+      )
+  } else {
     if(bookingInfoLen==0){
       return (
           <div className='outestcontainerbook'>
