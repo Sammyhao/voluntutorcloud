@@ -82,8 +82,27 @@ export default function Booking() {
 
   const updateMultistudentname = (e) => {
     console.log(e);
-    if(e == contactInfo[1].studentname) setMultistudentname([contactInfo[0].studentname]);
-    else setMultistudentname([contactInfo[1].studentname]);
+    let tempstudentname = "";
+    if(e == contactInfo[1].studentname) {
+      setMultistudentname([contactInfo[0].studentname]);
+      tempstudentname = contactInfo[1].studentname;
+    } else {
+      setMultistudentname([contactInfo[1].studentname]);
+      tempstudentname = contactInfo[0].studentname;
+    }
+
+    console.log(tempstudentname);
+
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+      username: username,
+      studentname: tempstudentname,
+      status: "confirmed"
+    }).then((response) => {
+      console.log(response);
+      setBookingInfo(checkBookingInfoValidity(response.data));
+      setBookingInfoLen(response.data.length)
+      setLoading(false);
+    })
   }
 
   

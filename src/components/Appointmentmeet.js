@@ -190,38 +190,49 @@ function Appointmentmeet() {
       setClassduration("")
 
   }
+
   const [nameclick, setnameclick] = useState(false)
-  const [multistyle, setmultistyle] =useState(<div></div>)
-  let multistudentname = ["張巧玲"]
-  let multistudentnum =2
-  if(multistudentnum==1){
-    setmultistyle(<div></div>)
-  }else{
-  setmultistyle(
-    <div className={nameclick ? 'choosekid active' : 'choosekid'}>
-      <div className="multi">
-        {multistudentname.map((e) => {
-          return <div className="borderstudent">{e}</div>
-        })}
-      </div>
-      {nameclick ? (
-        <MdArrowBackIos
-          className="kidicon"
-          onClick={() => {
-            setnameclick(!nameclick)
-          }}
-        ></MdArrowBackIos>
-      ) : (
-        <MdOutlineArrowForwardIos
-          className="kidicon"
-          onClick={() => {
-            setnameclick(!nameclick)
-          }}
-        ></MdOutlineArrowForwardIos>
-      )}
-    </div>
-  )
-}
+  function multistyle() {
+    console.log("into function")
+    console.log(multistudentname);
+    if(multistudentname.length == 0){
+      return (
+      <div></div>
+      )
+    }else{
+      return(
+        <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+          <div className="multi">
+            <div className="borderstudent" onClick={() => updateMultistudentname(multistudentname[0])}>{multistudentname[0]}</div>
+          </div>
+          {nameclick ? (
+            <MdArrowBackIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdArrowBackIos>
+          ) : (
+            <MdOutlineArrowForwardIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdOutlineArrowForwardIos>
+          )}
+        </div>
+      )
+    }
+  }
+
+  const [multistudentname, setMultistudentname] = useState([]);
+
+  const updateMultistudentname = (e) => {
+    console.log(e);
+    if(e == contactInfo[1].studentname) setMultistudentname([contactInfo[0].studentname]);
+    else setMultistudentname([contactInfo[1].studentname]);
+  }
+
   if(isLoading){
     return(
       <Loading/>

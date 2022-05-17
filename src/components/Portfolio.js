@@ -16,7 +16,6 @@ export default function Portfolio() {
   const [isLoading, setLoading] = useState(true)
   const [status, setStatus] = useState(0);
   
-  const [nameclick, setnameclick] = useState(false)
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
   let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
   let c = ["Student's Portfolio","學生檔案"]
@@ -51,37 +50,50 @@ export default function Portfolio() {
   let fg = ["Dreams and Goals...","夢想和目標..."]
   let gh = ["The most memorable thing in your life...","最印象深刻的事..."]
   let hi = ["The most precious things in the world...","生命中最重要的人事物..."]
-  const [multistyle, setmultistyle] =useState(<div></div>)
-  let multistudentname = ["張巧玲"]
-  let multistudentnum =2
-  if(multistudentnum==1){
-    setmultistyle(<div></div>)
-  }else{
-  setmultistyle(
-    <div className={nameclick ? 'choosekid active' : 'choosekid'}>
-      <div className="multi">
-        {multistudentname.map((e) => {
-          return <div className="borderstudent">{e}</div>
-        })}
-      </div>
-      {nameclick ? (
-        <MdArrowBackIos
-          className="kidicon"
-          onClick={() => {
-            setnameclick(!nameclick)
-          }}
-        ></MdArrowBackIos>
-      ) : (
-        <MdOutlineArrowForwardIos
-          className="kidicon"
-          onClick={() => {
-            setnameclick(!nameclick)
-          }}
-        ></MdOutlineArrowForwardIos>
-      )}
-    </div>
-  )
-}
+  
+  const [nameclick, setnameclick] = useState(false)
+  function multistyle() {
+    console.log("into function")
+    console.log(multistudentname);
+    if(multistudentname.length == 0){
+      return (
+      <div></div>
+      )
+    }else{
+      return(
+        <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+          <div className="multi">
+            <div className="borderstudent" onClick={() => updateMultistudentname(multistudentname[0])}>{multistudentname[0]}</div>
+          </div>
+          {nameclick ? (
+            <MdArrowBackIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdArrowBackIos>
+          ) : (
+            <MdOutlineArrowForwardIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdOutlineArrowForwardIos>
+          )}
+        </div>
+      )
+    }
+  }
+
+  const [multistudentname, setMultistudentname] = useState([]);
+
+  const updateMultistudentname = (e) => {
+    console.log(e);
+    if(e == contactInfo[1].studentname) setMultistudentname([contactInfo[0].studentname]);
+    else setMultistudentname([contactInfo[1].studentname]);
+  }
+
+
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       if (response.data.isLoggedIn) {
