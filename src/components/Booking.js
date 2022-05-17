@@ -45,6 +45,7 @@ BootstrapDialogTitle.propTypes = {
 
 export default function Booking() {
   const [nameclick, setnameclick] = useState(false)
+  
   function multistyle() {
     console.log("into function")
     console.log(multistudentname);
@@ -100,7 +101,6 @@ export default function Booking() {
     }).then((response) => {
       console.log(response);
       setBookingInfo(checkBookingInfoValidity(response.data));
-      setBookingInfoLen(response.data.length)
       setLoading(false);
     })
   }
@@ -166,7 +166,7 @@ export default function Booking() {
         // delete booking
         deleteBooking(bkinfo[i]);
         bkinfo.splice(i, 1);
-        setBookingInfoLen(bookingInfoLen-1);
+        setBookingInfoLen(bkinfo.length-1);
         i--;
       } else if(datearr[0] == y) {
         if(datearr[1] < m) {
@@ -174,7 +174,7 @@ export default function Booking() {
           console.log(m + ' is greater than ' + datearr[1])
           deleteBooking(bkinfo[i]);
           bkinfo.splice(i, 1);
-          setBookingInfoLen(bookingInfoLen-1);
+          setBookingInfoLen(bkinfo.length-1);
           i--;
         } else if(datearr[1] == m) {
           if(datearr[2] < d) {
@@ -182,7 +182,7 @@ export default function Booking() {
             console.log(d + ' is greater than ' + datearr[2])
             deleteBooking(bkinfo[i]);
             bkinfo.splice(i, 1);
-            setBookingInfoLen(bookingInfoLen-1);
+            setBookingInfoLen(bkinfo.length-1);
             i--;
           }
         }
@@ -213,7 +213,6 @@ export default function Booking() {
           }).then((response) => {
             console.log(response);
             setBookingInfo(checkBookingInfoValidity(response.data));
-            setBookingInfoLen(response.data.length)
             setLoading(false);
           })
         })
