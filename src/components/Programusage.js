@@ -36,6 +36,7 @@ function Programusage() {
   const [isLoading, setLoading] = useState(true);
   const [stpair, setStpair] = useState([]);
 
+  const [nameclick, setnameclick] = useState(false)
   const [multistyle, setmultistyle] =useState(<div></div>)
   let multistudentname = ["張巧玲"]
   let multistudentnum =2

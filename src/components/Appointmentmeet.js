@@ -191,6 +191,7 @@ function Appointmentmeet() {
       setClassduration("")
 
   }
+  const [nameclick, setnameclick] = useState(false)
   const [multistyle, setmultistyle] =useState(<div></div>)
   let multistudentname = ["張巧玲"]
   let multistudentnum =2
