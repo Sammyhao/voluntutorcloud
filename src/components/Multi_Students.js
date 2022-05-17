@@ -6,8 +6,10 @@ export const Multi_Students = ({ num, name}) => {
   const [nameclick, setnameclick] = useState(false)
   let student = [name]
   if(num==1){
+    console.log(num)
     return(<div></div>)
   }else{
+    console.log(num)
   return (
     <div className={nameclick ? 'choosekid active' : 'choosekid'}>
       <div className="multi">
