@@ -73,9 +73,9 @@ export default function Booking() {
   const [name, setName] = useState("");
   let datearr = [];
 
-  function checkBookingInfoValidity(bookingInfo) {
-    for(let i = 0; i < bookingInfo.length; i++) {
-      var date = bookingInfo[i].date;
+  function checkBookingInfoValidity(bkinfo) {
+    for(let i = 0; i < bkinfo.length; i++) {
+      var date = bkinfo[i].date;
       datearr = date.split('/');
       console.log(datearr);
       for(let j = 0; j < date.length; j++) {
@@ -83,18 +83,24 @@ export default function Booking() {
       }
       datearr = datearr.slice(0, 3);
       console.log(datearr);
-      let d = new Date().getDate;
+      let d = new Date().getDate();
       let m = new Date().getMonth() + 1;
       let y = new Date().getFullYear();
       console.log(d, m, y);
       if(y > datearr[0]) {
         // delete booking
+        bkinfo.splice(i, 1);
+        i--;
       } else if(y == datearr[0]) {
         if(m > datearr[1]) {
           // delete booking
+          bkinfo.splice(i, 1);
+          i--;
         } else if(m == datearr[1]) {
           if(d > datearr[2]) {
             // delete booking
+            bkinfo.splice(i, 1);
+            i--;
           }
         }
       }
