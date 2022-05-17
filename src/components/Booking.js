@@ -56,9 +56,7 @@ export default function Booking() {
       return(
         <div className={nameclick ? 'choosekid active' : 'choosekid'}>
           <div className="multi">
-            {multistudentname.map((e) => {
-              return <div className="borderstudent" onClick={() => updateMultistudentname(e)}>{e}</div>
-            })}
+            <div className="borderstudent" onClick={() => updateMultistudentname(multistudentname[0])}>{multistudentname[0]}</div>
           </div>
           {nameclick ? (
             <MdArrowBackIos
@@ -84,8 +82,8 @@ export default function Booking() {
 
   const updateMultistudentname = (e) => {
     console.log(e);
-    if(e == contactInfo[1].studentname) setMultistudentname(contactInfo[0].studentname);
-    else setMultistudentname(contactInfo[1].studentname);
+    if(e == contactInfo[1].studentname) setMultistudentname([contactInfo[0].studentname]);
+    else setMultistudentname([contactInfo[1].studentname]);
   }
 
   
