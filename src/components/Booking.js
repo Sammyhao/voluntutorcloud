@@ -87,17 +87,17 @@ export default function Booking() {
       let m = new Date().getMonth() + 1;
       let y = new Date().getFullYear();
       console.log(d, m, y);
-      if(y > datearr[0]) {
+      if(y < datearr[0]) {
         // delete booking
         bkinfo.splice(i, 1);
         i--;
       } else if(y == datearr[0]) {
-        if(m > datearr[1]) {
+        if(m < datearr[1]) {
           // delete booking
           bkinfo.splice(i, 1);
           i--;
         } else if(m == datearr[1]) {
-          if(d > datearr[2]) {
+          if(d < datearr[2]) {
             // delete booking
             bkinfo.splice(i, 1);
             i--;
