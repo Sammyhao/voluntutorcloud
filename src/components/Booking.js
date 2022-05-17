@@ -45,36 +45,40 @@ BootstrapDialogTitle.propTypes = {
 export default function Booking() {
   const [nameclick, setnameclick] = useState(false)
   const [multistyle, setmultistyle] =useState(<div></div>)
-  let multistudentname = ["張巧玲"]
-  let multistudentnum =2
-  if(multistudentnum==1){
+  const [multistudentname, setMultistudentname] = ["張巧玲"]
+
+  const updateMultistudentname = () => {
+    if(e==contactInfo[1].studentname) setMultistudentname(contactInfo[0].studentname);
+  }
+
+  if((multistudentname.length+1)==1){
     setmultistyle(<div></div>)
   }else{
-  setmultistyle(
-    <div className={nameclick ? 'choosekid active' : 'choosekid'}>
-      <div className="multi">
-        {multistudentname.map((e) => {
-          return <div className="borderstudent">{e}</div>
-        })}
+    setmultistyle(
+      <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+        <div className="multi">
+          {multistudentname.map((e) => {
+            return <div className="borderstudent" onClick={() => updateMultistudentname(e)}>{e}</div>
+          })}
+        </div>
+        {nameclick ? (
+          <MdArrowBackIos
+            className="kidicon"
+            onClick={() => {
+              setnameclick(!nameclick)
+            }}
+          ></MdArrowBackIos>
+        ) : (
+          <MdOutlineArrowForwardIos
+            className="kidicon"
+            onClick={() => {
+              setnameclick(!nameclick)
+            }}
+          ></MdOutlineArrowForwardIos>
+        )}
       </div>
-      {nameclick ? (
-        <MdArrowBackIos
-          className="kidicon"
-          onClick={() => {
-            setnameclick(!nameclick)
-          }}
-        ></MdArrowBackIos>
-      ) : (
-        <MdOutlineArrowForwardIos
-          className="kidicon"
-          onClick={() => {
-            setnameclick(!nameclick)
-          }}
-        ></MdOutlineArrowForwardIos>
-      )}
-    </div>
-  )
-}
+    )
+  }
     const [noneopen, setnoneopen] = useState(false)
     const [bookedwarn, setbookedwarn] = useState(false)
     const [open, setOpen] = useState(false)
@@ -91,6 +95,7 @@ export default function Booking() {
       const handlefinalclose = () => {
         setfinalopen(false)
       }
+
   const [date, setdate] = useState('')
   const [time, settime] = useState('')
   const [duration, setduration] = useState('')
@@ -171,6 +176,7 @@ export default function Booking() {
         }).then((response) => {
           setContactInfo(response.data);
           studentname = response.data[0].studentname;
+          if(response.data.length == 2) setMultistudentname([response.data[1].studentname])
           console.log(username, studentname);
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
             username: username,
