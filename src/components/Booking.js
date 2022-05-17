@@ -98,6 +98,7 @@ export default function Booking() {
       let y = new Date().getFullYear();
       console.log(d, m, y);
       if(datearr[0] < y) {
+        console.log(y + ' is greater than ' + datearr[0])
         // delete booking
         deleteBooking(bkinfo[i]);
         bkinfo.splice(i, 1);
@@ -106,6 +107,7 @@ export default function Booking() {
       } else if(datearr[0] == y) {
         if(datearr[1] < m) {
           // delete booking
+          console.log(m + ' is greater than ' + datearr[1])
           deleteBooking(bkinfo[i]);
           bkinfo.splice(i, 1);
           setBookingInfoLen(bookingInfoLen-1);
@@ -113,6 +115,7 @@ export default function Booking() {
         } else if(datearr[1] == m) {
           if(datearr[2] < d) {
             // delete booking
+            console.log(d + ' is greater than ' + datearr[2])
             deleteBooking(bkinfo[i]);
             bkinfo.splice(i, 1);
             setBookingInfoLen(bookingInfoLen-1);
