@@ -300,7 +300,7 @@ export default function Booking() {
 
   // 這裡true的條件改成是否有學生喔
   if(isLoading){
-    console.log("contactinfo length: ",contactInfo.length)
+    console.log("contactinfo length: ", contactInfo.length)
     return(
       <Loading></Loading>
     )
