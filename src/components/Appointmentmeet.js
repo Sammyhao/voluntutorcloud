@@ -106,6 +106,7 @@ function Appointmentmeet() {
         }).then((response) => {
           console.log("Student number: ");
           console.log(response.data.length);
+          if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
           setContactInfo(response.data);
           setChosenContact(response.data[0]);
           setLoading(false);
