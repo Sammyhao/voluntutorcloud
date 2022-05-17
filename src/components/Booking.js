@@ -81,6 +81,7 @@ export default function Booking() {
       for(let j = 0; j < date.length; j++) {
         datearr[j] = Number(datearr[j]);
       }
+      datearr = datearr.slice(0, 3);
       console.log(datearr);
       let d = new Date().getDate;
       let m = new Date().getMonth() + 1;
