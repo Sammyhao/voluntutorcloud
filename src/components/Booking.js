@@ -54,6 +54,7 @@ export default function Booking() {
       <div></div>
       )
     }else{
+      console.log(multistudentname[0]);
       return(
         <div className={nameclick ? 'choosekid active' : 'choosekid'}>
           <div className="multi">
@@ -85,9 +86,11 @@ export default function Booking() {
     console.log(e);
     let tempstudentname = "";
     if(e == contactInfo[1].studentname) {
+      console.log("zero change to one");
       setMultistudentname([contactInfo[0].studentname]);
       tempstudentname = contactInfo[1].studentname;
     } else {
+      console.log("one change to zero");
       setMultistudentname([contactInfo[1].studentname]);
       tempstudentname = contactInfo[0].studentname;
     }
@@ -304,6 +307,7 @@ export default function Booking() {
   } else {
     console.log("bookingInfo:");
     console.log(bookingInfo);
+    console.log("bookingInfoLen:");
     console.log(bookingInfoLen);
     console.log("multistudentname");
     console.log(multistudentname);
@@ -431,7 +435,6 @@ export default function Booking() {
       )
     }else{
       console.log('Booking Info not empty')
-      console.log(bookingInfo);
       return (
         <div className='outestcontainerbook'>
           {multistyle()}  
