@@ -148,6 +148,7 @@ export default function Booking() {
 
   function checkBookingInfoValidity(bkinfo) {
     console.log(bkinfo);
+    setBookingInfoLen(bkinfo.length);
     for(let i = 0; i < bkinfo.length; i++) {
       var date = bkinfo[i].date;
       datearr = date.split('/');
