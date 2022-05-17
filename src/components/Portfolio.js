@@ -10,7 +10,7 @@ import {Multi_Students} from './Multi_Students'
 import { CgNametag } from 'react-icons/cg'
 export default function Portfolio() {
   let username = ''
-  let contactInfo = []
+  const [contactInfo, setContactInfo] = useState([]);
   const [studentProfolio, setStudentProfolio] = useState([])
   const [isLoading, setLoading] = useState(true)
   const [status, setStatus] = useState(0);
@@ -59,13 +59,13 @@ export default function Portfolio() {
         if(response.data.user[0].lang == "chinese") setStatus(1);
         else setStatus(0);
       }
-      
       Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
         username: username,
       }).then((response) => {
         console.log(response.data)
+        setContactInfo(response.data);
+        if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
         for (let i = 0; i < response.data.length; i++) {
-          // console.log(i);
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
             name: response.data[i].studentname,
           }).then((response) => {
@@ -81,6 +81,57 @@ export default function Portfolio() {
       })
     })
   }, [])
+
+  const [nameclick, setnameclick] = useState(false)
+  
+  function multistyle() {
+    console.log("into function")
+    console.log(multistudentname);
+    if(multistudentname.length == 0){
+      return (
+      <div></div>
+      )
+    }else{
+      console.log(multistudentname[0]);
+      return(
+        <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+          <div className="multi">
+            <div className="borderstudent" onClick={() => updateMultistudentname(multistudentname[0])}>{multistudentname[0]}</div>
+          </div>
+          {nameclick ? (
+            <MdArrowBackIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdArrowBackIos>
+          ) : (
+            <MdOutlineArrowForwardIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdOutlineArrowForwardIos>
+          )}
+        </div>
+      )
+    }
+  }
+
+  const [multistudentname, setMultistudentname] = useState([]);
+
+  const updateMultistudentname = (e) => {
+    console.log(e);
+    if(e == contactInfo[1].studentname) {
+      console.log("zero change to one");
+      setMultistudentname([contactInfo[0].studentname]);
+      setChosenContact(contactInfo[1]);
+    } else {
+      console.log("one change to zero");
+      setMultistudentname([contactInfo[1].studentname]);
+      setChosenContact(contactInfo[0]);
+    }
+  }
 
   if (isLoading){
     return(
