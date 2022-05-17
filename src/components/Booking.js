@@ -280,7 +280,7 @@ export default function Booking() {
     return(
       <Loading></Loading>
     )
-  }else {
+  } else {
     console.log("bookingInfo:");
     console.log(bookingInfo);
     console.log(bookingInfoLen);
@@ -295,214 +295,214 @@ export default function Booking() {
           <div className="noStudentFont">{n[status]}</div>
           <div className="noStudentFont2">{o[status]}</div>
         </div>
+      )} 
+    else {
+      if(bookingInfoLen==0){
+        return (
+            <div className='outestcontainerbook'>
+              {multistyle}  
+              <div id="dialogcontainer">
+              <BootstrapDialog
+              onClose={handleClose}
+              id="diabook"
+              aria-labelledby="customized-dialog-title"
+              open={open}
+              >
+            <div className="bookingprogramdia"> {i[status]}</div>
+            <div className="bookingprogramdia_sub">
+            {c[status]}{date}</div>
+            <div className="bookingprogramdia_sub">
+            {e[status]}{time}</div>
+            <div className="bookingprogramdia_sub">
+            {g[status]}{duration}</div>
+            <div className = "sendbookwrapper">
+            <div className = "sendbookingbtn" onClick={sendsecond}>{b[status]}</div>
+            </div>
+              </BootstrapDialog>
+              </div>
+              <div id="dialogcontainer">
+              <BootstrapDialog
+              onClose={handlenoneclose}
+              id="diabook"
+              aria-labelledby="customized-dialog-title"
+              open={noneopen}
+              >
+              <div className="bookingprogramdia">{j[status]}</div>
+              </BootstrapDialog></div>
+              <div id="dialogcontainer">
+              <BootstrapDialog
+              onClose={handlefinalclose}
+              id="diabook"
+              aria-labelledby="customized-dialog-title"
+              open={finalopen}
+              >
+              <div className="bookingfinal">{k[status]}</div>
+              </BootstrapDialog></div>
+              <div className = "outerbook">
+                    <div className = "topbarbook">
+                    <div className = "titlebook">{a[status]}</div>
+                    <div className = "bookbtn" onClick={sendfirst}>{b[status]}</div>
+                    </div>
+                    <Divider></Divider>
+                    <div className = "inputbook_outercont">
+                    <div className="titlebooksub">{c[status]} </div>
+                    <input
+                        className="inputbook"
+                        type="text"
+                          placeholder={d[status]}
+                          value={date}
+                          maxLength={10}
+                        onChange={(e) => {
+                            setdate(e.target.value)
+                        }}
+                      />
+                    </div>
+                    <Divider></Divider>
+                    <div className = "inputbook_outercont">
+                    <div className="titlebooksub">{e[status]} </div>
+                        <input
+                        className="inputbook"
+                        type="text"
+                          placeholder={f[status]}
+                          value={time}
+                          maxLength={11}
+                        onChange={(e) => {
+                            settime(e.target.value)
+                        }}
+                      />
+                    </div>
+                    <Divider></Divider>
+                    <div className = "inputbook_outercont">
+                    <div className="titlebooksub">{g[status]}</div>
+                    <input
+                        className="inputbook"
+                        type="number"
+                          placeholder={h[status]}
+                          value={duration}
+                        onChange={(e) => {
+                            setduration(e.target.value)
+                        }}
+                      />
+                    </div>
+                    </div>
+                    <div className="outerbook_upcoming">
+            <div className="topbarbook">
+              <div className="titlebook">{l[status]}</div>
+            </div>
+            <Divider></Divider>
+            <div className="bookingoutestwrap">
+              <div className="bookingrow_teacher">
+                <div className="bookingwrapsecond">
+                  <div className="bookingwordswrapfirst">
+                    <div className="bookingimageprog">
+                      <FaUser className="bookingprog_avatar" />
+                    </div>
+                    
+                    <div className="bookingrequesttotaltime">
+                      <div className="detailtimeforupcomings">{m[status]}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
       )
-  } else {
-    if(bookingInfoLen==0){
+    }else{
+      console.log('Booking Info not empty')
+      console.log(bookingInfo);
       return (
-          <div className='outestcontainerbook'>
-            <div id="dialogcontainer">
-            <BootstrapDialog
-            onClose={handleClose}
-            id="diabook"
-            aria-labelledby="customized-dialog-title"
-            open={open}
-            >
-          <div className="bookingprogramdia"> {i[status]}</div>
-          <div className="bookingprogramdia_sub">
-          {c[status]}{date}</div>
-          <div className="bookingprogramdia_sub">
-          {e[status]}{time}</div>
-          <div className="bookingprogramdia_sub">
-          {g[status]}{duration}</div>
-          <div className = "sendbookwrapper">
-          <div className = "sendbookingbtn" onClick={sendsecond}>{b[status]}</div>
-          </div>
-            </BootstrapDialog>
-            </div>
-            <div id="dialogcontainer">
-            <BootstrapDialog
-            onClose={handlenoneclose}
-            id="diabook"
-            aria-labelledby="customized-dialog-title"
-            open={noneopen}
-            >
-            <div className="bookingprogramdia">{j[status]}</div>
-            </BootstrapDialog></div>
-            <div id="dialogcontainer">
-            <BootstrapDialog
-            onClose={handlefinalclose}
-            id="diabook"
-            aria-labelledby="customized-dialog-title"
-            open={finalopen}
-            >
-            <div className="bookingfinal">{k[status]}</div>
-            </BootstrapDialog></div>
-            <div className = "outerbook">
-                  <div className = "topbarbook">
-                  <div className = "titlebook">{a[status]}</div>
-                  <div className = "bookbtn" onClick={sendfirst}>{b[status]}</div>
-                  </div>
-                  <Divider></Divider>
-                  <div className = "inputbook_outercont">
-                  <div className="titlebooksub">{c[status]} </div>
-                  <input
-                      className="inputbook"
-                      type="text"
-                        placeholder={d[status]}
-                        value={date}
-                        maxLength={10}
-                      onChange={(e) => {
-                          setdate(e.target.value)
-                      }}
-                    />
-                  </div>
-                  <Divider></Divider>
-                  <div className = "inputbook_outercont">
-                  <div className="titlebooksub">{e[status]} </div>
-                      <input
-                      className="inputbook"
-                      type="text"
-                        placeholder={f[status]}
-                        value={time}
-                        maxLength={11}
-                      onChange={(e) => {
-                          settime(e.target.value)
-                      }}
-                    />
-                  </div>
-                  <Divider></Divider>
-                  <div className = "inputbook_outercont">
-                  <div className="titlebooksub">{g[status]}</div>
-                  <input
-                      className="inputbook"
-                      type="number"
-                        placeholder={h[status]}
-                        value={duration}
-                      onChange={(e) => {
-                          setduration(e.target.value)
-                      }}
-                    />
-                  </div>
-                  </div>
-                  <div className="outerbook_upcoming">
-          <div className="topbarbook">
-            <div className="titlebook">{l[status]}</div>
-          </div>
-          <Divider></Divider>
-          <div className="bookingoutestwrap">
-            <div className="bookingrow_teacher">
-              <div className="bookingwrapsecond">
-                <div className="bookingwordswrapfirst">
-                  <div className="bookingimageprog">
-                    <FaUser className="bookingprog_avatar" />
-                  </div>
-                  
-                  <div className="bookingrequesttotaltime">
-                    <div className="detailtimeforupcomings">{m[status]}</div>
+        <div className='outestcontainerbook'>
+          {multistyle}  
+                  <div id="dialogcontainer">
+          <BootstrapDialog
+          onClose={handleBook}
+          id="diabook"
+          aria-labelledby="customized-dialog-title"
+          open={bookedwarn}
+          >
+          <div className="bookingprogramdia">{p[status]}</div>
+          </BootstrapDialog></div>
+          
+          <div className = "outerbook">
+              
+                <div className = "topbarbook">
+                <div className = "titlebook">{a[status]}</div>
+                <div className = "bookbtn" onClick = {()=>{setbookedwarn(true)}}>{b[status]}</div>
+                </div>
+                <Divider></Divider>
+                <div className = "inputbook_outercont">
+                <div className="titlebooksub">{c[status]} </div>
+                <input
+                    className="inputbook"
+                    type="text"
+                      placeholder={d[status]}
+                      value={date}
+                      maxLength={10}
+                    onChange={(e) => {
+                        setdate(e.target.value)
+                    }}
+                  />
+                </div>
+                <Divider></Divider>
+                <div className = "inputbook_outercont">
+                <div className="titlebooksub">{e[status]} </div>
+                    <input
+                    className="inputbook"
+                    type="text"
+                      placeholder={f[status]}
+                      value={time}
+                      maxLength={11}
+                    onChange={(e) => {
+                        settime(e.target.value)
+                    }}
+                  />
+                </div>
+                <Divider></Divider>
+                <div className = "inputbook_outercont">
+                <div className="titlebooksub">{g[status]}</div>
+                <input
+                    className="inputbook"
+                    type="number"
+                      placeholder={h[status]}
+                      value={duration}
+                    onChange={(e) => {
+                        setduration(e.target.value)
+                    }}
+                  />
+                </div>
+                </div>
+                <div className="outerbook_upcoming">
+        <div className="topbarbook">
+          <div className="titlebook">{l[status]}</div>
+        </div>
+        <Divider></Divider>
+        <div className="bookingoutestwrap">
+
+          {/* {bookingInfo.map((e) => { */}
+          <div className="bookingrow_teacher">
+            <div className="bookingwrapsecond">
+              <div className="bookingwordswrapfirst">
+                <div className="bookingimageprog">
+                  <FaUser className="bookingprog_avatar" />
+                </div>
+                <div className="bookingrequesttotal">
+                  <div className="bookingrequestsub">{bookingInfo["0"]["studentname"]}</div>
+                  <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
+                </div>
+                <div className="bookingrequesttotaltime">
+                  <div className="detailtimeforupcomings">
+                    {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        </div>
-    )
-  }else{
-    console.log('Booking Info not empty')
-    console.log(bookingInfo);
-    return (
-      <div className='outestcontainerbook'>
-        {multistyle}  
-                <div id="dialogcontainer">
-        <BootstrapDialog
-        onClose={handleBook}
-        id="diabook"
-        aria-labelledby="customized-dialog-title"
-        open={bookedwarn}
-        >
-        <div className="bookingprogramdia">{p[status]}</div>
-        </BootstrapDialog></div>
-        
-        <div className = "outerbook">
-            
-              <div className = "topbarbook">
-              <div className = "titlebook">{a[status]}</div>
-              <div className = "bookbtn" onClick = {()=>{setbookedwarn(true)}}>{b[status]}</div>
-              </div>
-              <Divider></Divider>
-              <div className = "inputbook_outercont">
-              <div className="titlebooksub">{c[status]} </div>
-              <input
-                  className="inputbook"
-                  type="text"
-                    placeholder={d[status]}
-                    value={date}
-                    maxLength={10}
-                  onChange={(e) => {
-                      setdate(e.target.value)
-                  }}
-                />
-              </div>
-              <Divider></Divider>
-              <div className = "inputbook_outercont">
-              <div className="titlebooksub">{e[status]} </div>
-                  <input
-                  className="inputbook"
-                  type="text"
-                    placeholder={f[status]}
-                    value={time}
-                    maxLength={11}
-                  onChange={(e) => {
-                      settime(e.target.value)
-                  }}
-                />
-              </div>
-              <Divider></Divider>
-              <div className = "inputbook_outercont">
-              <div className="titlebooksub">{g[status]}</div>
-              <input
-                  className="inputbook"
-                  type="number"
-                    placeholder={h[status]}
-                    value={duration}
-                  onChange={(e) => {
-                      setduration(e.target.value)
-                  }}
-                />
-              </div>
-              </div>
-              <div className="outerbook_upcoming">
-      <div className="topbarbook">
-        <div className="titlebook">{l[status]}</div>
-      </div>
-      <Divider></Divider>
-      <div className="bookingoutestwrap">
-
-        {/* {bookingInfo.map((e) => { */}
-        <div className="bookingrow_teacher">
-          <div className="bookingwrapsecond">
-            <div className="bookingwordswrapfirst">
-              <div className="bookingimageprog">
-                <FaUser className="bookingprog_avatar" />
-              </div>
-              <div className="bookingrequesttotal">
-                <div className="bookingrequestsub">{bookingInfo["0"]["studentname"]}</div>
-                <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
-              </div>
-              <div className="bookingrequesttotaltime">
-                <div className="detailtimeforupcomings">
-                  {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]}
-                </div>
-              </div>
-            </div>
+          {/* })} */}
           </div>
         </div>
-        {/* })} */}
-
-
-      </div>
-    </div>
-    </div>)
+        </div>
+      )}
+    }
   }
-}}
 }
