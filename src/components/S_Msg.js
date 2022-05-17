@@ -39,13 +39,13 @@ function S_Msg() {
           setMsgRec(msgRec => [msg, ...msgRec]);
         }
         
-        console.log(teacherusername, studentname);
-        setUsernameConst(teacherusername);
-        setStudentnameConst(studentname);
-        setMsgForUpd(msgStr);
-        setHasProcessMsg(true);
       } else setMsgRec(msgRec.slice(0, msgInfo.length-1));
     }
+    console.log(teacherusername, studentname);
+    setUsernameConst(teacherusername);
+    setStudentnameConst(studentname);
+    setMsgForUpd(msgStr);
+    setHasProcessMsg(true);
   }
 
   const updateMsg = () => {

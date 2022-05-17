@@ -42,7 +42,6 @@ function Msg() {
         }
       } else setMsgRec(msgRec.slice(0, msgInfo.length-1));
     }
-    
     console.log(teacherusername, studentname);
     setUsernameConst(username);
     setStudentnameConst(studentname);
