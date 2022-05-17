@@ -74,6 +74,7 @@ export default function Booking() {
   let datearr = [];
 
   function deleteBooking(booking) {
+    console.log(booking);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteBooking', {
       username: booking.username,
       studentname: booking.studentname,
@@ -82,6 +83,7 @@ export default function Booking() {
   }
 
   function checkBookingInfoValidity(bkinfo) {
+    console.log(bkInfo);
     for(let i = 0; i < bkinfo.length; i++) {
       var date = bkinfo[i].date;
       datearr = date.split('/');
@@ -97,22 +99,22 @@ export default function Booking() {
       console.log(d, m, y);
       if(datearr[0] < y) {
         // delete booking
-        bkinfo.splice(i, 1);
         deleteBooking(bkinfo[i]);
+        bkinfo.splice(i, 1);
         setBookingInfoLen(bookingInfoLen-1);
         i--;
       } else if(datearr[0] == y) {
         if(datearr[1] < m) {
           // delete booking
-          bkinfo.splice(i, 1);
           deleteBooking(bkinfo[i]);
+          bkinfo.splice(i, 1);
           setBookingInfoLen(bookingInfoLen-1);
           i--;
         } else if(datearr[1] == m) {
           if(datearr[2] < d) {
             // delete booking
-            bkinfo.splice(i, 1);
             deleteBooking(bkinfo[i]);
+            bkinfo.splice(i, 1);
             setBookingInfoLen(bookingInfoLen-1);
             i--;
           }
