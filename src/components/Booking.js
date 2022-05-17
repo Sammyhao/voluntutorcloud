@@ -98,7 +98,7 @@ export default function Booking() {
     console.log(tempstudentname);
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
-      username: username,
+      username: name,
       studentname: tempstudentname,
       status: "confirmed"
     }).then((response) => {
