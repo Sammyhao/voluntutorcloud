@@ -73,6 +73,14 @@ export default function Booking() {
   const [name, setName] = useState("");
   let datearr = [];
 
+  function deleteBooking(booking) {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteBooking', {
+      username: booking.username,
+      studentname: booking.studentname,
+      status: booking.status
+    }).then((response) => console.log(response));
+  }
+
   function checkBookingInfoValidity(bkinfo) {
     for(let i = 0; i < bkinfo.length; i++) {
       var date = bkinfo[i].date;
@@ -90,16 +98,19 @@ export default function Booking() {
       if(y < datearr[0]) {
         // delete booking
         bkinfo.splice(i, 1);
+        deleteBooking(bkinfo[i]);
         i--;
       } else if(y == datearr[0]) {
         if(m < datearr[1]) {
           // delete booking
           bkinfo.splice(i, 1);
+          deleteBooking(bkinfo[i]);
           i--;
         } else if(m == datearr[1]) {
           if(d < datearr[2]) {
             // delete booking
             bkinfo.splice(i, 1);
+            deleteBooking(bkinfo[i]);
             i--;
           }
         }
