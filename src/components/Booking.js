@@ -322,7 +322,7 @@ export default function Booking() {
         </div>
       )} 
     else {
-      if(bookingInfoLen==0){
+      if(bookingInfo.length == 0){
         return (
             <div className='outestcontainerbook'>
               {multistyle()}  
