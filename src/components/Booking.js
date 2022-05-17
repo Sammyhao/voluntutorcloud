@@ -44,7 +44,37 @@ BootstrapDialogTitle.propTypes = {
 }
 export default function Booking() {
   const [nameclick, setnameclick] = useState(false)
-  const [multistyle, setmultistyle] =useState(<div></div>)
+  const multistyle = () => {
+    if(multistudentname.length == 0){
+      return(<div></div>)
+    }else{
+      return(
+        <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+          <div className="multi">
+            {multistudentname.map((e) => {
+              return <div className="borderstudent" onClick={() => updateMultistudentname(e)}>{e}</div>
+            })}
+          </div>
+          {nameclick ? (
+            <MdArrowBackIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdArrowBackIos>
+          ) : (
+            <MdOutlineArrowForwardIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdOutlineArrowForwardIos>
+          )}
+        </div>
+      )
+    }
+  }
+
   const [multistudentname, setMultistudentname] = useState([]);
 
   const updateMultistudentname = (e) => {
@@ -53,34 +83,7 @@ export default function Booking() {
     else setMultistudentname(contactInfo[1].studentname);
   }
 
-  if(multistudentname.length == 0){
-    setmultistyle(<div></div>)
-  }else{
-    setmultistyle(
-      <div className={nameclick ? 'choosekid active' : 'choosekid'}>
-        <div className="multi">
-          {multistudentname.map((e) => {
-            return <div className="borderstudent" onClick={() => updateMultistudentname(e)}>{e}</div>
-          })}
-        </div>
-        {nameclick ? (
-          <MdArrowBackIos
-            className="kidicon"
-            onClick={() => {
-              setnameclick(!nameclick)
-            }}
-          ></MdArrowBackIos>
-        ) : (
-          <MdOutlineArrowForwardIos
-            className="kidicon"
-            onClick={() => {
-              setnameclick(!nameclick)
-            }}
-          ></MdOutlineArrowForwardIos>
-        )}
-      </div>
-    )
-  }
+  
     const [noneopen, setnoneopen] = useState(false)
     const [bookedwarn, setbookedwarn] = useState(false)
     const [open, setOpen] = useState(false)
@@ -290,7 +293,6 @@ export default function Booking() {
     if(bookingInfoLen==0){
       return (
           <div className='outestcontainerbook'>
-            {multistyle}  
             <div id="dialogcontainer">
             <BootstrapDialog
             onClose={handleClose}
