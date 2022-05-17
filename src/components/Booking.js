@@ -45,9 +45,13 @@ BootstrapDialogTitle.propTypes = {
 
 export default function Booking() {
   const [nameclick, setnameclick] = useState(false)
-  const multistyle = () => {
+  function multistyle() {
+    console.log("into function")
+    console.log(multistudentname);
     if(multistudentname.length == 0){
-      return(<div></div>)
+      return (
+      <div></div>
+      )
     }else{
       return(
         <div className={nameclick ? 'choosekid active' : 'choosekid'}>
@@ -300,7 +304,7 @@ export default function Booking() {
       if(bookingInfoLen==0){
         return (
             <div className='outestcontainerbook'>
-              {multistyle}  
+              {multistyle()}  
               <div id="dialogcontainer">
               <BootstrapDialog
               onClose={handleClose}
@@ -413,7 +417,7 @@ export default function Booking() {
       console.log(bookingInfo);
       return (
         <div className='outestcontainerbook'>
-          {multistyle}  
+          {multistyle()}  
                   <div id="dialogcontainer">
           <BootstrapDialog
           onClose={handleBook}
