@@ -45,13 +45,15 @@ BootstrapDialogTitle.propTypes = {
 export default function Booking() {
   const [nameclick, setnameclick] = useState(false)
   const [multistyle, setmultistyle] =useState(<div></div>)
-  const [multistudentname, setMultistudentname] = ["張巧玲"]
+  const [multistudentname, setMultistudentname] = useState([]);
 
-  const updateMultistudentname = () => {
-    if(e==contactInfo[1].studentname) setMultistudentname(contactInfo[0].studentname);
+  const updateMultistudentname = (e) => {
+    console.log(e);
+    if(e == contactInfo[1].studentname) setMultistudentname(contactInfo[0].studentname);
+    else setMultistudentname(contactInfo[1].studentname);
   }
 
-  if((multistudentname.length+1)==1){
+  if(multistudentname.length == 0){
     setmultistyle(<div></div>)
   }else{
     setmultistyle(
@@ -176,7 +178,7 @@ export default function Booking() {
         }).then((response) => {
           setContactInfo(response.data);
           studentname = response.data[0].studentname;
-          if(response.data.length == 2) setMultistudentname([response.data[1].studentname])
+          if(response.data.length == 2) setMultistudentname(multistudentname => [...multistudentname, response.data[1].studentname])
           console.log(username, studentname);
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
             username: username,
