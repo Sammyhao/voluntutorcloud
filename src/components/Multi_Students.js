@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Multi_Students.css'
 import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 
-export const Multi_Students = ({ num, name}) => {
+export const Multi_Students = ({ num, text}) => {
   const [nameclick, setnameclick] = useState(false)
   let student = [name]
   if(num==1){
