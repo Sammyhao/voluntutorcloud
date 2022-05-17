@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './Portfolio.css'
-import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import Axios from 'axios'
 import { FaUser } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
@@ -51,49 +50,8 @@ export default function Portfolio() {
   let gh = ["The most memorable thing in your life...","最印象深刻的事..."]
   let hi = ["The most precious things in the world...","生命中最重要的人事物..."]
   
-  const [nameclick, setnameclick] = useState(false)
-  function multistyle() {
-    console.log("into function")
-    console.log(multistudentname);
-    if(multistudentname.length == 0){
-      return (
-      <div></div>
-      )
-    }else{
-      return(
-        <div className={nameclick ? 'choosekid active' : 'choosekid'}>
-          <div className="multi">
-            <div className="borderstudent" onClick={() => updateMultistudentname(multistudentname[0])}>{multistudentname[0]}</div>
-          </div>
-          {nameclick ? (
-            <MdArrowBackIos
-              className="kidicon"
-              onClick={() => {
-                setnameclick(!nameclick)
-              }}
-            ></MdArrowBackIos>
-          ) : (
-            <MdOutlineArrowForwardIos
-              className="kidicon"
-              onClick={() => {
-                setnameclick(!nameclick)
-              }}
-            ></MdOutlineArrowForwardIos>
-          )}
-        </div>
-      )
-    }
-  }
-
-  const [multistudentname, setMultistudentname] = useState([]);
-
-  const updateMultistudentname = (e) => {
-    console.log(e);
-    if(e == contactInfo[1].studentname) setMultistudentname([contactInfo[0].studentname]);
-    else setMultistudentname([contactInfo[1].studentname]);
-  }
-
-
+  let studentnum = 2;
+  let studentnamemulti = "name"
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       if (response.data.isLoggedIn) {
@@ -152,7 +110,7 @@ export default function Portfolio() {
     console.log(studentProfolio)
     return (
       <div className="outcontainer_port">
-        {multistyle}
+        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
         <div className="top_bar">
           <div className="image_port">
             <img className="pic_port" src="/images/children_learning.png" />

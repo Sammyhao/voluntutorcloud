@@ -69,6 +69,7 @@ function Appointmentmeet() {
   const [open, setOpen] = useState(false)
   const [open_send, setOpen_send] = useState(false)
   const [openmsgsend, setopenmsgsend] = useState(false)
+  const [chosenContact, setChosenContact] = useState({});
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
   
@@ -106,6 +107,7 @@ function Appointmentmeet() {
           console.log("Student number: ");
           console.log(response.data.length);
           setContactInfo(response.data);
+          setChosenContact(response.data[0]);
           setLoading(false);
         })
       })
@@ -120,7 +122,7 @@ function Appointmentmeet() {
   }
 
   function updateRecord() {
-    console.log(contactInfo[0].username, contactInfo[0].studentname, contactInfo[0].studentmail, classDate, classduration, agenda, task, notes);
+    console.log(chosenContact.username, chosenContact.studentname, chosenContact.studentmail, classDate, classduration, agenda, task, notes);
 
     if(classduration != "" && agenda != "" && task != "") {
       setOpen_send(true)
@@ -132,10 +134,10 @@ function Appointmentmeet() {
   }
 
   const actualsend = () => {
-    console.log(contactInfo[0].username, contactInfo[0].studentname, contactInfo[0].studentmail, classDate, classduration, agenda, task, notes);
+    console.log(chosenContact.username, chosenContact.studentname, chosenContact.studentmail, classDate, classduration, agenda, task, notes);
       var templateParams = {
-        parent_email: contactInfo[0].studentmail,
-        children_name: contactInfo[0].studentname,
+        parent_email: chosenContact.studentmail,
+        children_name: chosenContact.studentname,
         class_date: classDate,
         class_duration: classduration,
         agenda: agenda,
@@ -145,16 +147,16 @@ function Appointmentmeet() {
       console.log(templateParams);
 
       Axios.post("https://voluntutorcloud-server.herokuapp.com/getRecord", {
-        username: contactInfo[0].username,
-        studentname: contactInfo[0].studentname,
-        studentmail: contactInfo[0].studentmail,
+        username: chosenContact.username,
+        studentname: chosenContact.studentname,
+        studentmail: chosenContact.studentmail,
       }).then((response) => {
         if(response.data.length) totalhour = response.data[response.data.length-1].hoursleft;
         else totalhour = 8;
         Axios.post("https://voluntutorcloud-server.herokuapp.com/updateRecord", {
-          username: contactInfo[0].username,
-          studentname: contactInfo[0].studentname,
-          studentmail: contactInfo[0].studentmail,
+          username: chosenContact.username,
+          studentname: chosenContact.studentname,
+          studentmail: chosenContact.studentmail,
           classDate: classDate,
           duration: classduration,
           agenda: agenda,
@@ -192,6 +194,7 @@ function Appointmentmeet() {
   }
 
   const [nameclick, setnameclick] = useState(false)
+  
   function multistyle() {
     console.log("into function")
     console.log(multistudentname);
@@ -200,6 +203,7 @@ function Appointmentmeet() {
       <div></div>
       )
     }else{
+      console.log(multistudentname[0]);
       return(
         <div className={nameclick ? 'choosekid active' : 'choosekid'}>
           <div className="multi">
@@ -229,9 +233,17 @@ function Appointmentmeet() {
 
   const updateMultistudentname = (e) => {
     console.log(e);
-    if(e == contactInfo[1].studentname) setMultistudentname([contactInfo[0].studentname]);
-    else setMultistudentname([contactInfo[1].studentname]);
+    if(e == contactInfo[1].studentname) {
+      console.log("zero change to one");
+      setMultistudentname([contactInfo[0].studentname]);
+      setChosenContact(contactInfo[1]);
+    } else {
+      console.log("one change to zero");
+      setMultistudentname([contactInfo[1].studentname]);
+      setChosenContact(contactInfo[0]);
+    }
   }
+
 
   if(isLoading){
     return(
@@ -247,9 +259,10 @@ function Appointmentmeet() {
     )
   } else {
     console.log(contactInfo);
+    console.log(chosenContact);
     return (
       <div className = "outsidecontainerapp">
-        {multistyle}    
+        {multistyle()}    
       <div id="dialog_reg_wrap">
       <BootstrapDialog
         onClose={handleClose}
@@ -335,7 +348,7 @@ function Appointmentmeet() {
               <FaUser className = "icon_app"/>
               </div>
           <div className='namesection_app'>
-            <div className="app_name">{contactInfo["0"].studentname}</div>
+            <div className="app_name">{chosenContact.studentname}</div>
           </div>
           </div>
           <div className="meet" onClick={meet}

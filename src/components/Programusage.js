@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
 import './Programusage.css'
-import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import '../App.css'
 import { FaUser } from 'react-icons/fa'
 
@@ -30,53 +29,14 @@ const Progress = ({ done }) => {
 }
 
 let username = "";
+
+let studentnum = 2;
+let studentnamemulti = "name"
 function Programusage() {
   const [status, setStatus] = useState(0);
   const [contactInfo, setContactInfo] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [stpair, setStpair] = useState([]);
-
-  const [nameclick, setnameclick] = useState(false)
-  function multistyle() {
-    console.log("into function")
-    console.log(multistudentname);
-    if(multistudentname.length == 0){
-      return (
-      <div></div>
-      )
-    }else{
-      return(
-        <div className={nameclick ? 'choosekid active' : 'choosekid'}>
-          <div className="multi">
-            <div className="borderstudent" onClick={() => updateMultistudentname(multistudentname[0])}>{multistudentname[0]}</div>
-          </div>
-          {nameclick ? (
-            <MdArrowBackIos
-              className="kidicon"
-              onClick={() => {
-                setnameclick(!nameclick)
-              }}
-            ></MdArrowBackIos>
-          ) : (
-            <MdOutlineArrowForwardIos
-              className="kidicon"
-              onClick={() => {
-                setnameclick(!nameclick)
-              }}
-            ></MdOutlineArrowForwardIos>
-          )}
-        </div>
-      )
-    }
-  }
-
-  const [multistudentname, setMultistudentname] = useState([]);
-
-  const updateMultistudentname = (e) => {
-    console.log(e);
-    if(e == contactInfo[1].studentname) setMultistudentname([contactInfo[0].studentname]);
-    else setMultistudentname([contactInfo[1].studentname]);
-  }
 
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
   let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
@@ -146,7 +106,8 @@ function Programusage() {
           Find subjects
           <BiSearchAlt className="searchicon"></BiSearchAlt>
         </div> */}
-        {multistyle}    
+        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
+            
         <div className="subjectlist">
           {stpair.map((st) => {
             return (
