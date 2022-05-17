@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Portfolio.css'
+import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import Axios from 'axios'
 import { FaUser } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
@@ -49,9 +50,37 @@ export default function Portfolio() {
   let fg = ["Dreams and Goals...","夢想和目標..."]
   let gh = ["The most memorable thing in your life...","最印象深刻的事..."]
   let hi = ["The most precious things in the world...","生命中最重要的人事物..."]
-  
-  let studentnum = 2;
-  let studentnamemulti = ["張曉明"]
+  const [multistyle, setmultistyle] =useState(<div></div>)
+  let multistudentname = ["張巧玲"]
+  let multistudentnum =2
+  if(multistudentnum==1){
+    setmultistyle(<div></div>)
+  }else{
+  setmultistyle(
+    <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+      <div className="multi">
+        {multistudentname.map((e) => {
+          return <div className="borderstudent">{e}</div>
+        })}
+      </div>
+      {nameclick ? (
+        <MdArrowBackIos
+          className="kidicon"
+          onClick={() => {
+            setnameclick(!nameclick)
+          }}
+        ></MdArrowBackIos>
+      ) : (
+        <MdOutlineArrowForwardIos
+          className="kidicon"
+          onClick={() => {
+            setnameclick(!nameclick)
+          }}
+        ></MdOutlineArrowForwardIos>
+      )}
+    </div>
+  )
+}
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       if (response.data.isLoggedIn) {
@@ -110,7 +139,7 @@ export default function Portfolio() {
     console.log(studentProfolio)
     return (
       <div className="outcontainer_port">
-        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
+        {multistyle}
         <div className="top_bar">
           <div className="image_port">
             <img className="pic_port" src="/images/children_learning.png" />

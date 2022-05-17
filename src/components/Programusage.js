@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
 import './Programusage.css'
+import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import '../App.css'
 import { FaUser } from 'react-icons/fa'
 
@@ -29,15 +30,43 @@ const Progress = ({ done }) => {
 }
 
 let username = "";
-
-let studentnum = 2;
-let studentnamemulti = ["張曉明"]
 function Programusage() {
   const [status, setStatus] = useState(0);
   const [contactInfo, setContactInfo] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [stpair, setStpair] = useState([]);
 
+  const [multistyle, setmultistyle] =useState(<div></div>)
+  let multistudentname = ["張巧玲"]
+  let multistudentnum =2
+  if(multistudentnum==1){
+    setmultistyle(<div></div>)
+  }else{
+  setmultistyle(
+    <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+      <div className="multi">
+        {multistudentname.map((e) => {
+          return <div className="borderstudent">{e}</div>
+        })}
+      </div>
+      {nameclick ? (
+        <MdArrowBackIos
+          className="kidicon"
+          onClick={() => {
+            setnameclick(!nameclick)
+          }}
+        ></MdArrowBackIos>
+      ) : (
+        <MdOutlineArrowForwardIos
+          className="kidicon"
+          onClick={() => {
+            setnameclick(!nameclick)
+          }}
+        ></MdOutlineArrowForwardIos>
+      )}
+    </div>
+  )
+}
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
   let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
   let c = ["Total hours: ","總小時數："]
@@ -106,8 +135,7 @@ function Programusage() {
           Find subjects
           <BiSearchAlt className="searchicon"></BiSearchAlt>
         </div> */}
-        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
-            
+        {multistyle}    
         <div className="subjectlist">
           {stpair.map((st) => {
             return (

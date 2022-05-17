@@ -11,6 +11,46 @@
   align-items: center;
   justify-content: left;
 }
+.choosekid.active {
+  z-index: 999;
+  left: 0;
+  transition: 350ms;
+  background-color: #c49483;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+}
+.multi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.borderstudent {
+  width: 100%;
+  text-align: center;
+  color: whitesmoke;
+}
+.choosekid {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  align-items: center;
+  flex-direction: row;
+  top: 100px;
+  left: -65px;
+  z-index: 999;
+  transition: 350ms;
+  background-color: #c49483;
+  width: wrap;
+  height: wrap;
+  padding: 5px;
+}
+.kidicon {
+  left: 0;
+  color: whitesmoke;
+}
+
 .lang {
   color: #745140;
   cursor: pointer;

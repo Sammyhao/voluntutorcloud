@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import emailjs from "emailjs-com";
 import './Appointmentmeet.css'
+import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import { Divider } from '@mui/material'
 import Axios from 'axios'
 import { MdSettingsPhone } from 'react-icons/md';
@@ -92,10 +93,6 @@ function Appointmentmeet() {
 
   // var googlemeetlinkalt = "";
 
-  const [studentnum, setStudentnum] = useState(0);
-  //學生數量
-  let studentnamemulti = ["張曉明"]
-  //要放在列表的學生名字 (非螢幕上呈現的學生)
   useEffect(() => {
     if(isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
@@ -194,7 +191,37 @@ function Appointmentmeet() {
       setClassduration("")
 
   }
- 
+  const [multistyle, setmultistyle] =useState(<div></div>)
+  let multistudentname = ["張巧玲"]
+  let multistudentnum =2
+  if(multistudentnum==1){
+    setmultistyle(<div></div>)
+  }else{
+  setmultistyle(
+    <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+      <div className="multi">
+        {multistudentname.map((e) => {
+          return <div className="borderstudent">{e}</div>
+        })}
+      </div>
+      {nameclick ? (
+        <MdArrowBackIos
+          className="kidicon"
+          onClick={() => {
+            setnameclick(!nameclick)
+          }}
+        ></MdArrowBackIos>
+      ) : (
+        <MdOutlineArrowForwardIos
+          className="kidicon"
+          onClick={() => {
+            setnameclick(!nameclick)
+          }}
+        ></MdOutlineArrowForwardIos>
+      )}
+    </div>
+  )
+}
   if(isLoading){
     return(
       <Loading/>
@@ -211,8 +238,7 @@ function Appointmentmeet() {
     console.log(contactInfo);
     return (
       <div className = "outsidecontainerapp">
-        <Multi_Students num={contactInfo.length} text={studentnamemulti}></Multi_Students>
-            
+        {multistyle}    
       <div id="dialog_reg_wrap">
       <BootstrapDialog
         onClose={handleClose}
