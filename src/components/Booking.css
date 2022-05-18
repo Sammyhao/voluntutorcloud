@@ -42,6 +42,23 @@
   height: wrap;
   padding: 5px;
 }
+
+.choosekidsmsg {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  align-items: center;
+  flex-direction: row;
+  bottom: 70px;
+  left: -65px;
+  z-index: 999;
+  transition: 350ms;
+  background-color: #c49483;
+  width: wrap;
+  height: wrap;
+  padding: 5px;
+}
 .kidicon {
   left: 0;
   color: whitesmoke;

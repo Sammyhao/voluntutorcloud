@@ -439,7 +439,7 @@ export default function Booking() {
           </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
-              <div className="titlebook">{q[status]} - {tempstudentname}</div>
+              <div className="titlebook">{q[status]} - {chosenStuname}</div>
             </div>
             <Divider></Divider>
             <div className="bookingoutestwrap">
@@ -555,7 +555,7 @@ export default function Booking() {
         </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
-              <div className="titlebook">{q[status]} - {tempstudentname}</div>
+              <div className="titlebook">{q[status]} - {chosenStuname}</div>
             </div>
             <Divider></Divider>
             <div className="bookingoutestwrap">

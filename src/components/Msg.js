@@ -133,7 +133,7 @@ function Msg() {
     }else{
       console.log(multistudentname[0]);
       return(
-        <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+        <div className={nameclick ? 'choosekid active' : 'choosekidsmsg'}>
           <div className="multi">
             <div className="borderstudent" onClick={() => updateMultistudentname(multistudentname[0])}>{multistudentname[0]}</div>
           </div>
@@ -198,7 +198,6 @@ function Msg() {
     return (
     <div>
       <div className="out">
-        {multistyle()}
         <div className="chathistory">
           <div className="searchpad">
             <div className="search">
@@ -225,7 +224,8 @@ function Msg() {
                 </div>
               )
             })}
-          </div>
+          </div> 
+        {multistyle()}
         </div>
         <div className="chatcontent">
           <div className="chatname">{studentnameConst}</div>
