@@ -530,7 +530,7 @@ export default function Booking() {
         <Divider></Divider>
         <div className="bookingoutestwrap">
 
-            {bookingInfoLen.map((e) => {
+            {bookingInfo.map((e) => {
               <div className="bookingrow_teacher">
                 <div className="bookingwrapsecond">
                   <div className="bookingwordswrapfirst">
@@ -538,12 +538,12 @@ export default function Booking() {
                       <FaUser className="bookingprog_avatar" />
                     </div>
                     <div className="bookingrequesttotal">
-                      <div className="bookingrequestsub">{bookingInfo[e]["studentname"]}</div>
-                      <div className="bookinrequesttime">{bookingInfo[e]["duration"]} hr</div>
+                      <div className="bookingrequestsub">{e.studentname}</div>
+                      <div className="bookinrequesttime">{e.duration} hr</div>
                     </div>
                     <div className="bookingrequesttotaltime">
                       <div className="detailtimeforupcomings">
-                        {bookingInfo[e]["date"]} {bookingInfo[e]["time"]}
+                        {e.date} {e.time}
                       </div>
                     </div>
                   </div>
