@@ -106,7 +106,6 @@ function Programusage() {
           Find subjects
           <BiSearchAlt className="searchicon"></BiSearchAlt>
         </div> */}
-        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
             
         <div className="subjectlist">
           {stpair.map((st) => {
