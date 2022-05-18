@@ -15,7 +15,7 @@ export default function Portfolio() {
   const [studentProfolio, setStudentProfolio] = useState([])
   const [isLoading, setLoading] = useState(true)
   const [status, setStatus] = useState(0);
-  const [chosenContact, setChosenContact] = useState({});
+  const [chosenContactIdx, setChosenContactIdx] = useState(0);
   
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
   let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
@@ -127,11 +127,11 @@ export default function Portfolio() {
     if(e == contactInfo[1].studentname) {
       console.log("zero change to one");
       setMultistudentname([contactInfo[0].studentname]);
-      setChosenContact(contactInfo[1]);
+      setChosenContactIdx(1);
     } else {
       console.log("one change to zero");
       setMultistudentname([contactInfo[1].studentname]);
-      setChosenContact(contactInfo[0]);
+      setChosenContactIdx(0);
     }
   }
 
@@ -178,15 +178,15 @@ export default function Portfolio() {
             <FaUser className="stuprof_icon" />
           </div>
           <div className="basicinfo_student">
-            <div className="name_port">{studentProfolio['0']['0'].name}</div>
+            <div className="name_port">{studentProfolio[chosenContactIdx]['0'].name}</div>
             <div className="others_port">
-            {e[status]} {studentProfolio['0']['0'].school}
+            {e[status]} {studentProfolio[chosenContactIdx]['0'].school}
             </div>
             <div className="others_port">
-            {f[status]}{studentProfolio['0']['0'].grade}
+            {f[status]}{studentProfolio[chosenContactIdx]['0'].grade}
             </div>
             <div className="others_port">
-            {g[status]} {studentProfolio['0']['0'].age}
+            {g[status]} {studentProfolio[chosenContactIdx]['0'].age}
             </div>
           </div>
         </div>
@@ -204,10 +204,10 @@ export default function Portfolio() {
               <div className="title_port">{j[status]}</div>
               <Divider className="primline"></Divider>
               <div className="content_port">
-              {k[status]} {studentProfolio['0']['0'].gender}
+              {k[status]} {studentProfolio[chosenContactIdx]['0'].gender}
               </div>
               <div className="content_port">
-              {l[status]} {studentProfolio['0']['0'].birthday}
+              {l[status]} {studentProfolio[chosenContactIdx]['0'].birthday}
               </div>
             </div>
             <div className="infobox">
@@ -215,14 +215,14 @@ export default function Portfolio() {
               <Divider className="primline"></Divider>
               <div className="subtitle_port">{n[status]}</div>
               <div className="content_port">
-              {o[status]} {studentProfolio['0']['0'].studentmail}
+              {o[status]} {studentProfolio[chosenContactIdx]['0'].studentmail}
               </div>
               <div className="subtitle_port">{q[status]}</div>
               <div className="content_port">
-                {p[status]} {studentProfolio['0']['0'].parentcontactnum}
+                {p[status]} {studentProfolio[chosenContactIdx]['0'].parentcontactnum}
               </div>
               <div className="content_port">
-              {o[status]} {studentProfolio['0']['0'].parentmail}
+              {o[status]} {studentProfolio[chosenContactIdx]['0'].parentmail}
               </div>
             </div>
             <div className="infobox">
@@ -230,7 +230,7 @@ export default function Portfolio() {
               <Divider className="primline"></Divider>
               <div className="subtitle_port">{s[status]}</div>
               <div className="content_port">
-                {studentProfolio['0']['0'].requiredsub}
+                {studentProfolio[chosenContactIdx]['0'].requiredsub}
               </div>
               <div className="subtitle_port">{t[status]}</div>
               <Link className="studymat" to="/studymat">
@@ -238,7 +238,7 @@ export default function Portfolio() {
               </Link>
               <div className="subtitle_port">{u[status]}</div>
               <div className="content_port">
-                {studentProfolio['0']['0'].addinotes}
+                {studentProfolio[chosenContactIdx]['0'].addinotes}
               </div>
             </div>
           </div>
@@ -248,67 +248,67 @@ export default function Portfolio() {
               <Divider className="primline"></Divider>
               <div className="subtitle_port">{w[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].hobbies}
+                {studentProfolio[chosenContactIdx]['0'].hobbies}
               </div>
               <Divider className="subline"></Divider>
 
               <div className="subtitle_port">{x[status]}</div>
               <div className="subtitle_sub_port">{y[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].favsub}
+                {studentProfolio[chosenContactIdx]['0'].favsub}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{z[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].color}
+                {studentProfolio[chosenContactIdx]['0'].color}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{ab[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].animal}
+                {studentProfolio[chosenContactIdx]['0'].animal}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{bc[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].food}
+                {studentProfolio[chosenContactIdx]['0'].food}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{cd[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].idol}
+                {studentProfolio[chosenContactIdx]['0'].idol}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">
               {de[status]}
               </div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].fear}
+                {studentProfolio[chosenContactIdx]['0'].fear}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">
               {ef[status]}
               </div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].accom}
+                {studentProfolio[chosenContactIdx]['0'].accom}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{fg[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].dream}
+                {studentProfolio[chosenContactIdx]['0'].dream}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">
               {gh[status]}
               </div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].memor}
+                {studentProfolio[chosenContactIdx]['0'].memor}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">
               {hi[status]}
               </div>
               <div className="content_port_abt">
-                {studentProfolio['0']['0'].prec}
+                {studentProfolio[chosenContactIdx]['0'].prec}
               </div>
             </div>
           </div>
