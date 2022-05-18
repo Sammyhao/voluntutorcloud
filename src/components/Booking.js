@@ -532,6 +532,7 @@ export default function Booking() {
         <div className="bookingoutestwrap">
 
             {bookingInfo.map((e) => {
+              return (
               <div className="bookingrow_teacher">
                 <div className="bookingwrapsecond">
                   <div className="bookingwordswrapfirst">
@@ -550,6 +551,7 @@ export default function Booking() {
                   </div>
                 </div>
               </div>
+              )
             })}
 
           </div>
