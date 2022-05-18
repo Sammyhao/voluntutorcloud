@@ -59,6 +59,14 @@
   height: wrap;
   padding: 5px;
 }
+.choosekidsmsg.active {
+  z-index: 999;
+  bottom: 70px;
+  left: 0;
+  transition: 350ms;
+  background-color: #c49483;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+}
 .kidicon {
   left: 0;
   color: whitesmoke;

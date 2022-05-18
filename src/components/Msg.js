@@ -44,7 +44,10 @@ function Msg() {
           setMsgRec(msgRec => [msg, ...msgRec]);
         }
       } else setMsgRec(msgRec.slice(0, msgInfo.length-1));
-    } else setMsgRec([]);
+    } else {
+      setMsgRec([]);
+      setLastestMsg('');
+    }
     console.log(teacherusername, studentname);
     setUsernameConst(username);
     setStudentnameConst(studentname);
@@ -133,7 +136,7 @@ function Msg() {
     }else{
       console.log(multistudentname[0]);
       return(
-        <div className={nameclick ? 'choosekid active' : 'choosekidsmsg'}>
+        <div className={nameclick ? 'choosekidsmsg active' : 'choosekidsmsg'}>
           <div className="multi">
             <div className="borderstudent" onClick={() => updateMultistudentname(multistudentname[0])}>{multistudentname[0]}</div>
           </div>
