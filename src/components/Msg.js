@@ -9,7 +9,6 @@ import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
 
 function Msg() {
-  let num = [1]
   const [status, setStatus] = useState(0)
   let username = '', studentname = "", teacherusername = "";
   const [curMsg, setCurMsg] = useState('');
@@ -22,6 +21,8 @@ function Msg() {
   const [usernameConst, setUsernameConst] = useState('');
   const [studentnameConst, setStudentnameConst] = useState('');
   const [lastestMsg, setLastestMsg] = useState('');
+  const [totalMsgRec, setTotalMsgRec] = useState([]);
+  const [stuSize, setStuSize] = useState(0);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -42,6 +43,7 @@ function Msg() {
         }
       } else setMsgRec(msgRec.slice(0, msgInfo.length-1));
     }
+    setTotalMsgRec(totalMsgRec => [...totalMsgRec, msgRec]);
     console.log(teacherusername, studentname);
     setUsernameConst(username);
     setStudentnameConst(studentname);
@@ -89,6 +91,7 @@ function Msg() {
             username: username,
           }).then((response) => {
             console.log(response.data);
+            setStuSize(response.data.length);
             studentname = response.data[0].studentname;
             console.log("username, studentname: ");
             console.log(username, studentname);
@@ -134,7 +137,7 @@ function Msg() {
             </div>
           </div>
           <div className="peoplelist">
-            {num.map((e) => {
+            {stuSize.map((e) => {
               return (
                 <div className="shadowing">
                   <div className="outerbox">

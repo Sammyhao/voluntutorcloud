@@ -82,9 +82,9 @@ export default function Booking() {
 
   const [multistudentname, setMultistudentname] = useState([]);
 
+  let tempstudentname = "";
   const updateMultistudentname = (e) => {
     console.log(e);
-    let tempstudentname = "";
     if(e == contactInfo[1].studentname) {
       console.log("zero change to one");
       setMultistudentname([contactInfo[0].studentname]);
@@ -365,7 +365,7 @@ export default function Booking() {
               </BootstrapDialog></div>
               <div className = "outerbook">
                     <div className = "topbarbook">
-                    <div className = "titlebook">{a[status]}</div>
+                    <div className = "titlebook">{a[status]} - {tempstudentname}</div>
                     <div className = "bookbtn" onClick={sendfirst}>{b[status]}</div>
                     </div>
                     <Divider></Divider>
@@ -412,7 +412,7 @@ export default function Booking() {
                     </div>
                     <div className="outerbook_upcoming">
             <div className="topbarbook">
-              <div className="titlebook">{l[status]}</div>
+              <div className="titlebook">{l[status]} - {tempstudentname}</div>
             </div>
             <Divider></Divider>
             <div className="bookingoutestwrap">

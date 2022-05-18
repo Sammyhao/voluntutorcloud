@@ -163,7 +163,7 @@ export default function Portfolio() {
     console.log(studentProfolio)
     return (
       <div className="outcontainer_port">
-        {multistyle}
+        {multistyle()}
         <div className="top_bar">
           <div className="image_port">
             <img className="pic_port" src="/images/children_learning.png" />
