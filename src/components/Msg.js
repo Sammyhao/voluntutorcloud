@@ -44,8 +44,7 @@ function Msg() {
           setMsgRec(msgRec => [msg, ...msgRec]);
         }
       } else setMsgRec(msgRec.slice(0, msgInfo.length-1));
-    }
-    setMsgRec([]);
+    } else setMsgRec([]);
     console.log(teacherusername, studentname);
     setUsernameConst(username);
     setStudentnameConst(studentname);
