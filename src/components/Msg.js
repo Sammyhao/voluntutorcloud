@@ -171,16 +171,17 @@ function Msg() {
       setMultistudentname([contactInfo[1].studentname]);
       tempstudentname = contactInfo[0].studentname;
     }
+    setStudentnameConst(e);
 
     console.log(tempstudentname);
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
-      username: username,
+      username: usernameConst,
       studentname: tempstudentname
     }).then((response) => {
       if(response.data.length) msgStr = response.data[0].msg;
       console.log(msgStr);
-      processMsg(msgStr, username, tempstudentname);
+      processMsg(msgStr, usernameConst, tempstudentname);
       setLoading(false);
     })
   }
