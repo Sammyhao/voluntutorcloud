@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
+import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import './Msg.css'
 import '../App.css'
 import { Msg_recipient } from './Msg_recipient'
@@ -22,6 +23,8 @@ function Msg() {
   const [usernameConst, setUsernameConst] = useState('');
   const [studentnameConst, setStudentnameConst] = useState('');
   const [lastestMsg, setLastestMsg] = useState('');
+  const [contactInfo, setContactInfo] = useState([]);
+  const [chosenContact, setChosenContact] = useState({});
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -88,6 +91,9 @@ function Msg() {
           Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
             username: username,
           }).then((response) => {
+            setContactInfo(response.data);
+            setChosenContact(response.data[0]);
+            if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
             console.log(response.data);
             studentname = response.data[0].studentname;
             console.log("username, studentname: ");
@@ -114,6 +120,7 @@ function Msg() {
   let b = ["Find friends","尋找朋友"]
   let c = ["Enter your message...","請輸入訊息..."]
   let d = ["send","傳送"]
+  
   const [nameclick, setnameclick] = useState(false)
   
   function multistyle() {
@@ -152,17 +159,30 @@ function Msg() {
 
   const [multistudentname, setMultistudentname] = useState([]);
 
+  let tempstudentname = "";
   const updateMultistudentname = (e) => {
     console.log(e);
     if(e == contactInfo[1].studentname) {
       console.log("zero change to one");
       setMultistudentname([contactInfo[0].studentname]);
-      setChosenContact(contactInfo[1]);
+      tempstudentname = contactInfo[1].studentname;
     } else {
       console.log("one change to zero");
       setMultistudentname([contactInfo[1].studentname]);
-      setChosenContact(contactInfo[0]);
+      tempstudentname = contactInfo[0].studentname;
     }
+
+    console.log(tempstudentname);
+
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
+      username: username,
+      studentname: tempstudentname
+    }).then((response) => {
+      if(response.data.length) msgStr = response.data[0].msg;
+      console.log(msgStr);
+      processMsg(msgStr, username, tempstudentname);
+      setLoading(false);
+    })
   }
 
   if (isLoading) {
