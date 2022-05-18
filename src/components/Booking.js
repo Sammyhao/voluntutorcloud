@@ -107,7 +107,6 @@ export default function Booking() {
       setLoading(false);
     })
   }
-
   
     const [noneopen, setnoneopen] = useState(false)
     const [bookedwarn, setbookedwarn] = useState(false)
@@ -145,7 +144,10 @@ export default function Booking() {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteBooking', {
       username: booking.username,
       studentname: booking.studentname,
-      status: booking.status
+      status: booking.status,
+      date: booking.date,
+      time: booking.time,
+      duration: booking.duration,
     }).then((response) => console.log(response));
   }
 
@@ -239,9 +241,10 @@ export default function Booking() {
   let i = ["Please double check before you send the invitation.","在傳送前請再次確認資料是否有誤。"]
   let j = ["Please fill in all the fields.","請完整填入資訊"]
   let k = ["Booking Invitation sent. Please check the message box if the student is unavailable during the time.","會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議。"]
-  let m = ["There's any upcoming meetings yet :)","目前沒有即將到來的會議 :)"]
-
+  let mm = ["There isn't any upcoming meetings yet :)","目前沒有即將到來的會議 :)"]
+  let nn = ["There isn't any pending meetings.","目前沒有待確認的會議邀請"]
   let l = ['Upcoming Meetings', "即將到來的會議"]
+  let q = ['Pending Requests',"待確認的會議邀請"]
   let p = ["You have already successfully booked a meeting with your student. Please book the next session after the upcoming meeting is over.","您已經和學生成功預約會議，請在下次會議結束後再預約接下來的課程。"]
   
   const sendfirst = () => {
@@ -410,7 +413,7 @@ export default function Booking() {
                       />
                     </div>
                     </div>
-                    <div className="outerbook_upcoming">
+          <div className="outerbook_upcoming">
             <div className="topbarbook">
               <div className="titlebook">{l[status]} - {tempstudentname}</div>
             </div>
@@ -424,7 +427,28 @@ export default function Booking() {
                     </div>
                     
                     <div className="bookingrequesttotaltime">
-                      <div className="detailtimeforupcomings">{m[status]}</div>
+                      <div className="detailtimeforupcomings">{mm[status]}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="outerbook_upcoming">
+            <div className="topbarbook">
+              <div className="titlebook">{q[status]} - {tempstudentname}</div>
+            </div>
+            <Divider></Divider>
+            <div className="bookingoutestwrap">
+              <div className="bookingrow_teacher">
+                <div className="bookingwrapsecond">
+                  <div className="bookingwordswrapfirst">
+                    <div className="bookingimageprog">
+                      <FaUser className="bookingprog_avatar" />
+                    </div>
+                    
+                    <div className="bookingrequesttotaltime">
+                      <div className="detailtimeforupcomings">{nn[status]}</div>
                     </div>
                   </div>
                 </div>
@@ -503,28 +527,50 @@ export default function Booking() {
         <Divider></Divider>
         <div className="bookingoutestwrap">
 
-          {/* {bookingInfo.map((e) => { */}
-          <div className="bookingrow_teacher">
-            <div className="bookingwrapsecond">
-              <div className="bookingwordswrapfirst">
-                <div className="bookingimageprog">
-                  <FaUser className="bookingprog_avatar" />
+            {bookingInfo.map((e) => {
+              <div className="bookingrow_teacher">
+                <div className="bookingwrapsecond">
+                  <div className="bookingwordswrapfirst">
+                    <div className="bookingimageprog">
+                      <FaUser className="bookingprog_avatar" />
+                    </div>
+                    <div className="bookingrequesttotal">
+                      <div className="bookingrequestsub">{e["studentname"]}</div>
+                      <div className="bookinrequesttime">{e["duration"]} hr</div>
+                    </div>
+                    <div className="bookingrequesttotaltime">
+                      <div className="detailtimeforupcomings">
+                        {e["date"]} {e["time"]}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="bookingrequesttotal">
-                  <div className="bookingrequestsub">{bookingInfo["0"]["studentname"]}</div>
-                  <div className="bookinrequesttime">{bookingInfo["0"]["duration"]} hr</div>
-                </div>
-                <div className="bookingrequesttotaltime">
-                  <div className="detailtimeforupcomings">
-                    {bookingInfo["0"]["date"]} {bookingInfo["0"]["time"]}
+              </div>
+            })}
+
+          </div>
+        </div>
+        <div className="outerbook_upcoming">
+            <div className="topbarbook">
+              <div className="titlebook">{q[status]} - {tempstudentname}</div>
+            </div>
+            <Divider></Divider>
+            <div className="bookingoutestwrap">
+              <div className="bookingrow_teacher">
+                <div className="bookingwrapsecond">
+                  <div className="bookingwordswrapfirst">
+                    <div className="bookingimageprog">
+                      <FaUser className="bookingprog_avatar" />
+                    </div>
+                    
+                    <div className="bookingrequesttotaltime">
+                      <div className="detailtimeforupcomings">{nn[status]}</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {/* })} */}
-          </div>
-        </div>
         </div>
       )}
     }

@@ -9,6 +9,7 @@ import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
 
 function Msg() {
+  let num = [1]
   const [status, setStatus] = useState(0)
   let username = '', studentname = "", teacherusername = "";
   const [curMsg, setCurMsg] = useState('');
@@ -21,8 +22,6 @@ function Msg() {
   const [usernameConst, setUsernameConst] = useState('');
   const [studentnameConst, setStudentnameConst] = useState('');
   const [lastestMsg, setLastestMsg] = useState('');
-  const [totalMsgRec, setTotalMsgRec] = useState([]);
-  const [stuSize, setStuSize] = useState(0);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -43,7 +42,6 @@ function Msg() {
         }
       } else setMsgRec(msgRec.slice(0, msgInfo.length-1));
     }
-    setTotalMsgRec(totalMsgRec => [...totalMsgRec, msgRec]);
     console.log(teacherusername, studentname);
     setUsernameConst(username);
     setStudentnameConst(studentname);
@@ -91,7 +89,6 @@ function Msg() {
             username: username,
           }).then((response) => {
             console.log(response.data);
-            setStuSize(response.data.length);
             studentname = response.data[0].studentname;
             console.log("username, studentname: ");
             console.log(username, studentname);
@@ -117,6 +114,57 @@ function Msg() {
   let b = ["Find friends","尋找朋友"]
   let c = ["Enter your message...","請輸入訊息..."]
   let d = ["send","傳送"]
+  const [nameclick, setnameclick] = useState(false)
+  
+  function multistyle() {
+    console.log("into function")
+    console.log(multistudentname);
+    if(multistudentname.length == 0){
+      return (
+      <div></div>
+      )
+    }else{
+      console.log(multistudentname[0]);
+      return(
+        <div className={nameclick ? 'choosekid active' : 'choosekid'}>
+          <div className="multi">
+            <div className="borderstudent" onClick={() => updateMultistudentname(multistudentname[0])}>{multistudentname[0]}</div>
+          </div>
+          {nameclick ? (
+            <MdArrowBackIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdArrowBackIos>
+          ) : (
+            <MdOutlineArrowForwardIos
+              className="kidicon"
+              onClick={() => {
+                setnameclick(!nameclick)
+              }}
+            ></MdOutlineArrowForwardIos>
+          )}
+        </div>
+      )
+    }
+  }
+
+  const [multistudentname, setMultistudentname] = useState([]);
+
+  const updateMultistudentname = (e) => {
+    console.log(e);
+    if(e == contactInfo[1].studentname) {
+      console.log("zero change to one");
+      setMultistudentname([contactInfo[0].studentname]);
+      setChosenContact(contactInfo[1]);
+    } else {
+      console.log("one change to zero");
+      setMultistudentname([contactInfo[1].studentname]);
+      setChosenContact(contactInfo[0]);
+    }
+  }
+
   if (isLoading) {
     return (
       <Loading/>
@@ -129,6 +177,7 @@ function Msg() {
     return (
     <div>
       <div className="out">
+        {multistyle()}
         <div className="chathistory">
           <div className="searchpad">
             <div className="search">
@@ -137,7 +186,7 @@ function Msg() {
             </div>
           </div>
           <div className="peoplelist">
-            {stuSize.map((e) => {
+            {num.map((e) => {
               return (
                 <div className="shadowing">
                   <div className="outerbox">
