@@ -462,6 +462,7 @@ export default function Booking() {
       )
     }else{
       console.log('Booking Info not empty')
+      console.log(bookingInfo);
       return (
         <div className='outestcontainerbook'>
           {multistyle()}  
@@ -538,12 +539,12 @@ export default function Booking() {
                       <FaUser className="bookingprog_avatar" />
                     </div>
                     <div className="bookingrequesttotal">
-                      <div className="bookingrequestsub">{e["studentname"]}</div>
-                      <div className="bookinrequesttime">{e["duration"]} hr</div>
+                      <div className="bookingrequestsub">{e.studentname}</div>
+                      <div className="bookinrequesttime">{e.duration} hr</div>
                     </div>
                     <div className="bookingrequesttotaltime">
                       <div className="detailtimeforupcomings">
-                        {e["date"]} {e["time"]}
+                        {e.date} {e.time}
                       </div>
                     </div>
                   </div>
@@ -553,7 +554,7 @@ export default function Booking() {
 
           </div>
         </div>
-          {/* <div className="outerbook_upcoming">
+          <div className="outerbook_upcoming">
             <div className="topbarbook">
               <div className="titlebook">{q[status]} - {chosenStuname}</div>
             </div>
@@ -573,7 +574,7 @@ export default function Booking() {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       )}
     }
