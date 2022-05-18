@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
-import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import './Programusage.css'
 import '../App.css'
 import { FaUser } from 'react-icons/fa'
@@ -38,7 +37,6 @@ function Programusage() {
   const [contactInfo, setContactInfo] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [stpair, setStpair] = useState([]);
-  const [chosenContact, setChosenContact] = useState({});
 
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
   let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
@@ -108,7 +106,7 @@ function Programusage() {
           Find subjects
           <BiSearchAlt className="searchicon"></BiSearchAlt>
         </div> */}
-        {/* <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students> */}
+        <Multi_Students num={studentnum} text={studentnamemulti}></Multi_Students>
             
         <div className="subjectlist">
           {stpair.map((st) => {
