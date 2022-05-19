@@ -265,7 +265,6 @@ export default function Booking() {
   }  
 
   const updateBooking = () => {
-    if(!bookingInfoLen) {
       console.log(name, contactInfo[0].studentname, date, time, duration)
       Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBooking', {
         username: name,
@@ -298,7 +297,7 @@ export default function Booking() {
         },
       )
       })
-    }
+      
     setdate("")
     settime("")
     setduration("")
@@ -483,7 +482,7 @@ export default function Booking() {
             <div className="bookingprogramdia_sub">
             {g[status]}{duration}</div>
             <div className = "sendbookwrapper">
-            <div className = "sendbookingbtn" onClick={sendsecond}>{b[status]}</div>
+            <div className = "sendbookingbtn" onClick={sendfirst}>{b[status]}</div>
             </div>
               </BootstrapDialog>
               </div>
