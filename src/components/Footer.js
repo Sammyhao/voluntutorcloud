@@ -4,7 +4,7 @@ import { Button } from './Button'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
-function Footer() {
+function Footer(props) {
   const [emailAddress, setEmailAddress] = useState('')
 
   const saveEmailAddress = (e) => {

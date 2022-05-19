@@ -332,7 +332,7 @@ export default function Booking() {
         return (
             <div className='outestcontainerbook'>
               {multistyle()}  
-              <div id="dialogcontainer">
+          <div id="dialogcontainer">
               <BootstrapDialog
               onClose={handleClose}
               id="diabook"
@@ -368,7 +368,9 @@ export default function Booking() {
               open={finalopen}
               >
               <div className="bookingfinal">{k[status]}</div>
-              </BootstrapDialog></div>
+              </BootstrapDialog>
+              
+              </div>
               <div className = "outerbook">
                     <div className = "topbarbook">
                     <div className = "titlebook">{a[status]} - {chosenStuname}</div>
@@ -466,21 +468,51 @@ export default function Booking() {
       return (
         <div className='outestcontainerbook'>
           {multistyle()}  
-                  <div id="dialogcontainer">
-          <BootstrapDialog
-          onClose={handleBook}
-          id="diabook"
-          aria-labelledby="customized-dialog-title"
-          open={bookedwarn}
-          >
-          <div className="bookingprogramdia">{p[status]}</div>
-          </BootstrapDialog></div>
+          <div id="dialogcontainer">
+              <BootstrapDialog
+              onClose={handleClose}
+              id="diabook"
+              aria-labelledby="customized-dialog-title"
+              open={open}
+              >
+            <div className="bookingprogramdia"> {i[status]}</div>
+            <div className="bookingprogramdia_sub">
+            {c[status]}{date}</div>
+            <div className="bookingprogramdia_sub">
+            {e[status]}{time}</div>
+            <div className="bookingprogramdia_sub">
+            {g[status]}{duration}</div>
+            <div className = "sendbookwrapper">
+            <div className = "sendbookingbtn" onClick={sendsecond}>{b[status]}</div>
+            </div>
+              </BootstrapDialog>
+              </div>
+              <div id="dialogcontainer">
+              <BootstrapDialog
+              onClose={handlenoneclose}
+              id="diabook"
+              aria-labelledby="customized-dialog-title"
+              open={noneopen}
+              >
+              <div className="bookingprogramdia">{j[status]}</div>
+              </BootstrapDialog></div>
+              <div id="dialogcontainer">
+              <BootstrapDialog
+              onClose={handlefinalclose}
+              id="diabook"
+              aria-labelledby="customized-dialog-title"
+              open={finalopen}
+              >
+              <div className="bookingfinal">{k[status]}</div>
+              </BootstrapDialog>
+              
+              </div>
           
           <div className = "outerbook">
               
                 <div className = "topbarbook">
                 <div className = "titlebook">{a[status]} - {chosenStuname}</div>
-                <div className = "bookbtn" onClick = {sendfirst}>{b[status]}</div> {/*setbookedwarn(true)*/}
+                <div className = "bookbtn" onClick = {sendfirst}>{b[status]}</div> 
                 </div>
                 <Divider></Divider>
                 <div className = "inputbook_outercont">

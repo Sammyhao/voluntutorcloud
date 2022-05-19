@@ -13,20 +13,11 @@ import Axios from 'axios'
 import '../App.css'
 import { Link, useNavigate, Route } from 'react-router-dom'
 import validator from 'validator'
-
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Button from '@mui/material/Button'
-import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
-import IconButton from '@mui/material/IconButton'
-import { popoverClasses } from '@mui/material'
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -35,6 +26,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }))
+
 function Profile_user() {
 
   const [name, setname] = useState('VolunTutor Cloud')
@@ -476,37 +468,6 @@ function Profile_user() {
 
           <div class="warning_prof">{errormessage}</div>
         </div>
-{/* 
-        <div className="googleMeetLinkTempchanging">
-          <div className="googlemeetfirst">{mn[status]}</div>
-          <div className="linkpersonal">
-              {googlemeetlink}
-          </div>
-          <div className="googlemeetwarning">{kl[status]}</div>
-          <input
-            id="googlemeetlinkchanging"
-            className="googlemeetedit"
-            type="text"
-            placeholder="Google Meet Link"
-            value={googlemeetlink}
-            onChange={(e) => {
-              setGooglemeetlink(e.target.value)
-            }}
-          />
-          <div className="btn-save" onClick={(e) => {
-            console.log(googlemeetlink);
-            Axios.post(
-              'https://voluntutorcloud-server.herokuapp.com/updateGooglemeetlink',
-              {
-                username: name,
-                googlemeetlink: googlemeetlink,
-              },
-            ).then((response) => {
-              console.log(googlemeetlink)
-              console.log(response)
-            })
-          }}>{lm[status]}</div>
-        </div> */}
         <div className="currentprogram">
           <BsFillEmojiSmileFill className="currentprogramicon"></BsFillEmojiSmileFill>
           <div className="currentprogramcontent">{no[status]}</div>

@@ -16,9 +16,10 @@ import Axios from 'axios'
 
 function Home() {
 
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState(""); // role of the user
   const [isLoading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [lang, setLang] = useState(true); // lang of the user
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -29,6 +30,7 @@ function Home() {
           setLoading(false);
         }else {
           setIsLoggedIn(true);
+          setLang(response.data.user[0].lang);
           setRole(response.data.user[0].role);
           setLoading(false);
         }
@@ -53,7 +55,7 @@ function Home() {
     if(isLoggedIn == false) {
       return (
         <>
-          <Navbar></Navbar>
+          <Navbar lang = {lang}></Navbar>
           <HeroSection />
           <Function></Function>
           <Homepageprog></Homepageprog>

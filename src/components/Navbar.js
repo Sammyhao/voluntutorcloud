@@ -14,7 +14,7 @@ import Axios from 'axios'
 import '@progress/kendo-theme-default/dist/all.css'
 import { HashLink } from "react-router-hash-link";
 
-function Navbar() {
+function Navbar(props) {
   // global variable!
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [status, setStatus] = useState(0);
@@ -63,7 +63,7 @@ function Navbar() {
 
   window.addEventListener('resize', showButton)
   if (isLoggedIn) {
-    if(status ==0){
+    if(status ==  0){
       return (
         <>
           <div className="navbar">
