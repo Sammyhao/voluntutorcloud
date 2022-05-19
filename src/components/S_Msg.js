@@ -30,7 +30,7 @@ function S_Msg() {
       console.log(msgInfo);
       if(msgRec.length == 0) {
         for(let i = 0; i < msgInfo.length - 1; i++) {
-          const category = msgInfo[i].split(':');
+          const category = msgInfo[i].split('|');
           if(i == 0) setLastestMsg(category[1]);
           let t = "";
           t = (category[0] == 'S') ? "user" : "recipient"
@@ -52,7 +52,7 @@ function S_Msg() {
     let msg = {type: "user", text: curMsg};
     setCurMsg("")
     setMsgRec(msgRec => [...msgRec, msg]);
-    msgStr += "S:" + curMsg + 'ψ';
+    msgStr += "S|" + curMsg + 'ψ';
     console.log(msgStr);
     let tempMsgForUpd = msgStr + msgForUpd;
     console.log("lastestMsg");

@@ -29,13 +29,14 @@ function Msg() {
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
   function processMsg(msgStr, username, studentname) {
+    console.log(msgStr);
     if(msgStr != "") {
       const msgInfo = msgStr.split('ψ');
       console.log("msgInfo");
       console.log(msgInfo);
       if(msgRec.length == 0) {
         for(let i = 0; i < msgInfo.length - 1; i++) {
-          const category = msgInfo[i].split(':');
+          const category = msgInfo[i].split('|');
           if(i == 0) setLastestMsg(category[1]); 
           let t = "";
           t = (category[0] == 'T') ? "user" : "recipient"
@@ -60,7 +61,7 @@ function Msg() {
     let msg = {type: "user", text: curMsg};
     setCurMsg("")
     setMsgRec(msgRec => [...msgRec, msg]);
-    msgStr += "T:" + curMsg + 'ψ';
+    msgStr += "T|" + curMsg + 'ψ';
     console.log(msgStr);
     let tempMsgForUpd = msgStr + msgForUpd;
     console.log("lastestMsg");
