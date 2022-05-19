@@ -29,12 +29,15 @@ function Msg() {
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
   function processMsg(msgStr, username, studentname) {
+    setMsgRec([]);
+    setLastestMsg('');
     console.log(msgStr);
     if(msgStr != "") {
       const msgInfo = msgStr.split('ψ');
       console.log("msgInfo");
       console.log(msgInfo);
-      if(msgRec.length == 0) {
+      if(msgRec.length != msgInfo.length) {
+        console.log("has entered msgRec construction condition")
         for(let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|');
           if(i == 0) setLastestMsg(category[1]); 
@@ -187,8 +190,6 @@ function Msg() {
     }).then((response) => {
       if(response.data.length) msgStr = response.data[0].msg;
       console.log(msgStr);
-      setMsgRec([]);
-      setLastestMsg('');
       processMsg(msgStr, usernameConst, tempstudentname);
       setLoading(false);
     })
