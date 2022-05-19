@@ -51,16 +51,20 @@ export default function S_Booking() {
     window.location.replace(googlemeetlink);
   }
 
-  const cancelmeeting = () => {
+  const cancelmeeting = (booking) => {
     console.log("cancelled")
     setcancelopen(true)
     console.log(cancelopen)
+    console.log(booking);
     setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
     setPendingBookingInfoLen(pendingBookingInfoLen-1);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
       studentname: studentnameFU,
       username: teacherusernameFU,
-      status: "cancelled"
+      status: "cancelled",
+      date: booking.date,
+      time: booking.time,
+      duration: booking.duration,
     }).then((response) => {
       console.log(response);
     });
@@ -68,11 +72,12 @@ export default function S_Booking() {
   }
 
 
-  const confirmmeeting = () => {
+  const confirmmeeting = (booking) => {
     console.log("confirmed")
     setconfirmopen(true)
     console.log("whethe true")
     console.log(confirmopen)
+    console.log(booking);
     setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen));
     setPendingBookingInfoLen(pendingBookingInfoLen-1);
     setBookingInfo(bookingInfo => [...bookingInfo, pendingBookingInfo[0]]);
@@ -80,7 +85,10 @@ export default function S_Booking() {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBookingStatus', {
       studentname: studentnameFU,
       username: teacherusernameFU,
-      status: "confirmed"
+      status: "confirmed",
+      date: booking.date,
+      time: booking.time,
+      duration: booking.duration,
     }).then((response) => {
       console.log(response);
     });
@@ -428,13 +436,13 @@ console.log(bookingInfoLen)
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
-                        <div className="buttonbookingcheck" onClick={cancelmeeting}>
+                        <div className="buttonbookingcheck" onClick={() => cancelmeeting(e)}>
                           {/* this is where meeting is cancelled */}
                           {p[status]}
                         </div>
                         <div
                           className="buttonbookingcheck"
-                          onClick={confirmmeeting}
+                          onClick={() => confirmmeeting(e)}
                         >
                           {/* this is where meeting is confirmed */}
                           {q[status]}
@@ -528,21 +536,21 @@ console.log(bookingInfoLen)
                         </div>
                       </div>
                       <div className="bookingbuttonswrapping">
-                        <div className="buttonbookingcheck" onClick={cancelmeeting}>
+                        <div className="buttonbookingcheck" onClick={() => cancelmeeting(e)}>
                           {/* this is where meeting is cancelled */}
                           {p[status]}
                         </div>
                         <div
                           className="buttonbookingcheck"
-                          onClick={confirmmeeting}
+                          onClick={() => confirmmeeting(e)}
                         >
                           {/* this is where meeting is confirmed */}
                           {q[status]}
                         </div>
                       </div>
                     </div>
-                  </div>)
-      })}
+                  </div>
+                  )})}
                 </div>
               </div>
             </div>
