@@ -157,16 +157,3 @@ export default function S_Portfolio() {
     </div>
   )
 }
-
-
-  // if (!hasSetStatus) {
-  //   Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {
-  //     username: username,
-  //   }).then((response) => {
-  //     console.log(response.data)
-  //     if (response.data == 'chinese') setStatus(1)
-  //     else setStatus(0)
-  //     setHasSetStatus(1)
-  //     console.log(status)
-  //   })
-  // }

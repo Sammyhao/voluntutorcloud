@@ -161,6 +161,7 @@ export default function Portfolio() {
   } else {
     console.log('finish loading')
     console.log(studentProfolio)
+    console.log(chosenContactIdx);
     return (
       <div className="outcontainer_port">
         {multistyle()}
