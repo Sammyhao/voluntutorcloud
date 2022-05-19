@@ -187,6 +187,8 @@ function Msg() {
     }).then((response) => {
       if(response.data.length) msgStr = response.data[0].msg;
       console.log(msgStr);
+      setMsgRec([]);
+      setLastestMsg('');
       processMsg(msgStr, usernameConst, tempstudentname);
       setLoading(false);
     })
