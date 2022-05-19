@@ -41,6 +41,7 @@ function Msg() {
           t = (category[0] == 'T') ? "user" : "recipient"
           if(category[1] == "") continue;
           let msg = {type: t, text: category[1]};
+          console.log(msg);
           setMsgRec(msgRec => [msg, ...msgRec]);
         }
       } else setMsgRec(msgRec.slice(0, msgInfo.length-1));
@@ -109,6 +110,7 @@ function Msg() {
                 if(response.data.length) msgStr = response.data[0].msg;
                 console.log(msgStr);
                 processMsg(msgStr, username, studentname);
+                console.log(msgRec);
                 setLoading(false);
               })
             }
