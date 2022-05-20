@@ -114,6 +114,8 @@ export default function Booking() {
     const [bookedwarn, setbookedwarn] = useState(false)
     const [open, setOpen] = useState(false)
     const [finalopen, setfinalopen] = useState(false)
+    const [booklayout, setbooklayout] = useState(<div></div>);
+    
     const handleClose = () => {
         setOpen(false)
       }
@@ -137,6 +139,7 @@ export default function Booking() {
   const [bookingInfo, setBookingInfo] = useState([]);
   const [bookingInfoLen, setBookingInfoLen] = useState(0);
   const [chosenEmail, setChosenEmail] = useState("");
+  const [pendingBookingInfo, setPendingBookingInfo] = useState([]);
 
   let username = "", studentname = "";
   const [name, setName] = useState("");
@@ -224,6 +227,14 @@ export default function Booking() {
           }).then((response) => {
             console.log(response);
             setBookingInfo(checkBookingInfoValidity(response.data));
+          })
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+            username: username,
+            studentname: studentname,
+            status: "pending"
+          }).then((response) => {
+            console.log(response);
+            setPendingBookingInfo(checkBookingInfoValidity(response.data));
             setLoading(false);
           })
         })
@@ -308,7 +319,52 @@ export default function Booking() {
     settime("")
     setduration("")
   }
+  if(bookingInfo.length == 0){
+    setbooklayout(<div className="bookingoutestwrap">
+    <div className="bookingrow_teacher">
+      <div className="bookingwrapsecond">
+        <div className="bookingwordswrapfirst">
+          <div className="bookingimageprog">
+            <FaUser className="bookingprog_avatar" />
+          </div>
+          
+          <div className="bookingrequesttotaltime">
+            <div className="detailtimeforupcomings">{mm[status]}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>)
+  }else{
+    setbooklayout(
+    <div className="bookingoutestwrap">
 
+    {bookingInfo.map((e) => {
+      return (
+      <div className="bookingrow_teacher">
+        <div className="bookingwrapsecond">
+          <div className="bookingwordswrapfirst">
+            <div className="bookingimageprog">
+              <FaUser className="bookingprog_avatar" />
+            </div>
+            <div className="bookingrequesttotal">
+              <div className="bookingrequestsub">{e.studentname}</div>
+              <div className="bookinrequesttime">{e.duration} hr</div>
+            </div>
+            <div className="bookingrequesttotaltime">
+              <div className="detailtimeforupcomings">
+                {e.date} {e.time}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      )
+    })}
+
+  </div>
+  )
+  }
   // 這裡true的條件改成是否有學生喔
   if(isLoading){
     console.log("contactinfo length: ", contactInfo.length)
@@ -428,6 +484,8 @@ export default function Booking() {
               <div className="titlebook">{l[status]} - {chosenStuname}</div>
             </div>
             <Divider></Divider>
+            {booklayout}
+
             <div className="bookingoutestwrap">
               <div className="bookingrow_teacher">
                 <div className="bookingwrapsecond">
@@ -443,6 +501,9 @@ export default function Booking() {
                 </div>
               </div>
             </div>
+
+
+            
           </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
@@ -566,33 +627,8 @@ export default function Booking() {
           <div className="titlebook">{l[status]} - {chosenStuname}</div>
         </div>
         <Divider></Divider>
-        <div className="bookingoutestwrap">
-
-            {bookingInfo.map((e) => {
-              return (
-              <div className="bookingrow_teacher">
-                <div className="bookingwrapsecond">
-                  <div className="bookingwordswrapfirst">
-                    <div className="bookingimageprog">
-                      <FaUser className="bookingprog_avatar" />
-                    </div>
-                    <div className="bookingrequesttotal">
-                      <div className="bookingrequestsub">{e.studentname}</div>
-                      <div className="bookinrequesttime">{e.duration} hr</div>
-                    </div>
-                    <div className="bookingrequesttotaltime">
-                      <div className="detailtimeforupcomings">
-                        {e.date} {e.time}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              )
-            })}
-
+        {booklayout}
           </div>
-        </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
               <div className="titlebook">{q[status]} - {chosenStuname}</div>
