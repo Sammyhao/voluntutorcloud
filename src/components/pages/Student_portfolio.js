@@ -39,6 +39,7 @@ export default function Student_portfolio() {
               setContactInfo(response.data);
               if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
               setStudentProfolio([]);
+              let size = response.data.length;
               for (let i = 0; i < response.data.length; i++) {
                 console.log(response.data[i].studentname);
                 Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
@@ -49,9 +50,9 @@ export default function Student_portfolio() {
                     ...studentProfolio,
                     response.data,
                   ])
+                  if(i == size - 1) setLoading(false);
                 })
               }
-              if(studentProfolio.length == response.data.length) setLoading(false)
             })
           }
         }
