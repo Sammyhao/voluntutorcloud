@@ -258,7 +258,8 @@ export default function Booking() {
   let j = ["Please fill in all the fields.","請完整填入資訊"]
   let k = ["Booking Invitation sent. Please check the message box if the student is unavailable during the time.","會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議。"]
   let mm = ["There isn't any upcoming meetings yet :)","目前沒有即將到來的會議 :)"]
-  let nn = ["This function will be unlocked soon!","此功能即將解鎖!!"]
+ 
+  let nn = ["There isn't any pending requests :)", '目前沒有待確認的會議邀請']
   let l = ['Upcoming Meetings', "即將到來的會議"]
   let q = ['Pending Requests',"待確認的會議邀請"]
   let p = ["You have already successfully booked a meeting with your student. Please book the next session after the upcoming meeting is over.","您已經和學生成功預約會議，請在下次會議結束後再預約接下來的課程。"]

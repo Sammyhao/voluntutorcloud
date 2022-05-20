@@ -1,22 +1,23 @@
+// imports
 import React, { useEffect, useState } from 'react'
 import './Portfolio.css'
 import Axios from 'axios'
 import { FaUser } from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
-import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
-
+import {Link} from 'react-router-dom'
+import {MdOutlineArrowForwardIos, MdArrowBackIos} from 'react-icons/md'
 import Loading from './Loading'
 import { Divider } from '@mui/material'
-import {Multi_Students} from './Multi_Students'
-import { CgNametag } from 'react-icons/cg'
-export default function Portfolio() {
+
+export default function Portfolio(props) {
   let username = ''
   const [contactInfo, setContactInfo] = useState([]);
   const [studentProfolio, setStudentProfolio] = useState([])
-  const [isLoading, setLoading] = useState(true)
   const [status, setStatus] = useState(0);
   const [chosenContactIdx, setChosenContactIdx] = useState(0);
+  const [nameclick, setnameclick] = useState(false)
+  const [multistudentname, setMultistudentname] = useState([]);
   
+  // titles
   let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
   let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
   let c = ["Student's Portfolio","學生檔案"]
@@ -52,40 +53,47 @@ export default function Portfolio() {
   let gh = ["The most memorable thing in your life...","最印象深刻的事..."]
   let hi = ["The most precious things in the world...","生命中最重要的人事物..."]
   
-  let studentnum = 2;
-  let studentnamemulti = "name"
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      if (response.data.isLoggedIn) {
-        username = response.data.user[0].username
-        if(response.data.user[0].lang == "chinese") setStatus(1);
-        else setStatus(0);
-      }
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
-        username: username,
-      }).then((response) => {
-        console.log(response.data)
-        setContactInfo(response.data);
-        if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
-        for (let i = 0; i < response.data.length; i++) {
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-            name: response.data[i].studentname,
-          }).then((response) => {
-            if (response.data.length) {
-              setStudentProfolio((studentProfolio) => [
-                ...studentProfolio,
-                response.data,
-              ])
-            }
-          })
+    console.log(props);
+    if(props.lang && props.contactInfo && props.portfolio && props.multistudentname) {
+      if(props.lang == "chinese") setStatus(1);
+      else setStatus(0);
+      setStudentProfolio(props.portfolio);
+      setContactInfo(props.contactInfo);
+      setMultistudentname(props.multistudentname)
+    } else {
+      console.log("props failed")
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        if (response.data.isLoggedIn) {
+          username = response.data.user[0].username
+          if(response.data.user[0].lang == "chinese") setStatus(1);
+          else setStatus(0);
         }
-        setLoading(false)
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+          username: username,
+        }).then((response) => {
+          console.log(response.data)
+          setContactInfo(response.data);
+          if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
+          for (let i = 0; i < response.data.length; i++) {
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+              name: response.data[i].studentname,
+            }).then((response) => {
+              if (response.data.length) {
+                setStudentProfolio((studentProfolio) => [
+                  ...studentProfolio,
+                  response.data,
+                ])
+              }
+            })
+          }
+        })
       })
-    })
+    }
+
   }, [])
 
-  const [nameclick, setnameclick] = useState(false)
-  
+  // multi students
   function multistyle() {
     console.log("into function")
     console.log(multistudentname);
@@ -119,9 +127,7 @@ export default function Portfolio() {
       )
     }
   }
-
-  const [multistudentname, setMultistudentname] = useState([]);
-
+  
   const updateMultistudentname = (e) => {
     console.log(e);
     if(e == contactInfo[1].studentname) {
@@ -135,12 +141,8 @@ export default function Portfolio() {
     }
   }
 
-  if (isLoading){
-    return(
-      <Loading/>
-    )
-  }else{
-    if(studentProfolio.length == 0) {
+  // final renders
+  if(studentProfolio.length == 0) {
     return (
       <div className = "outcontainer_port">
       <div className="top_bar">
@@ -317,5 +319,4 @@ export default function Portfolio() {
       </div>
     )
   }
-}
 }

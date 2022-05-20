@@ -10,9 +10,15 @@ import Loading from '../Loading'
 
 export default function Student_portfolio() {
   const [role, setRole] = useState("");
+  const [lang, setLang] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [contactInfo, setContactInfo] = useState([]);
+  const [studentProfolio, setStudentProfolio] = useState([])
+  const [multistudentname, setMultistudentname] = useState([]);
+  
   let username = "";
+
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
@@ -20,9 +26,29 @@ export default function Student_portfolio() {
         if(!response.data.isLoggedIn) {
           setIsLoggedIn(false);
           setLoading(false);
-        }else {
+        }else{
           setRole(response.data.user[0].role);
-          setLoading(false);
+          setLang(response.data.user[0].lang);
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+            username: username,
+          }).then((response) => {
+            console.log(response.data)
+            setContactInfo(response.data);
+            if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
+            for (let i = 0; i < response.data.length; i++) {
+              Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+                name: response.data[i].studentname,
+              }).then((response) => {
+                if (response.data.length) {
+                  setStudentProfolio((studentProfolio) => [
+                    ...studentProfolio,
+                    response.data,
+                  ])
+                }
+              })
+            }
+            setLoading(false)
+          })
         }
       }
     )
@@ -39,9 +65,9 @@ export default function Student_portfolio() {
     if (role == "teacher") {
       return (
         <>
-        <Navbar></Navbar>
-        <Port></Port>
-        <Footer></Footer>
+        <Navbar lang={lang} isLoggedIn={isLoggedIn}></Navbar>
+        <Port lang={lang} contactInfo={contactInfo} portfolio={studentProfolio} multistudentname={multistudentname}></Port>
+        <Footer lang={lang}></Footer>
       </>
       )
     } else {

@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import './Footer.css'
-import { Button } from './Button'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
 function Footer(props) {
   const [emailAddress, setEmailAddress] = useState('')
+  const [status, setStatus] = useState(0);
+
+  // titles
+  let a = ["Join Voluntutor Cloud to receive the newest information!","加入Voluntutor Cloud以獲取最新資訊！"]
+  let b = ["You can unsubscribe at any time.","你可以隨時取消訂閱。"]
+  let c = ["Your email","你的Email"]
+  let d = ["Subscribe NOW","加入我們"]
 
   const saveEmailAddress = (e) => {
     setEmailAddress(e.target.value)
@@ -19,26 +25,21 @@ function Footer(props) {
     })
     setEmailAddress('')
   }
-
-  const [status, setStatus] = useState(0);
-  const [isLoading, setLoading] = useState(true);
-  let username = "";
   
   useEffect(() => {
-    if(isLoading) {
+    console.log(props);
+    if(props.lang) {
+      if(props.lang == "chinese") setStatus(1);
+      else setStatus(0);
+    } else {
+      console.log("props failed")
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username;
         if(response.data.user[0].lang == "chinese") setStatus(1);
         else setStatus(0);
-        setLoading(false);
       })
     }
   })
-
-  let a = ["Join Voluntutor Cloud to receive the newest information!","加入Voluntutor Cloud以獲取最新資訊！"]
-  let b = ["You can unsubscribe at any time.","你可以隨時取消訂閱。"]
-  let c = ["Your email","你的Email"]
-  let d = ["Subscribe NOW","加入我們"]
   
   return (
     <div className="footer-container">
