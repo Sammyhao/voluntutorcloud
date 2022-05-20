@@ -488,7 +488,7 @@ export default function Booking() {
             <div className="bookingprogramdia_sub">
             {g[status]}{duration}</div>
             <div className = "sendbookwrapper">
-            <div className = "sendbookingbtn" onClick={sendfirst}>{b[status]}</div>
+            <div className = "sendbookingbtn" onClick={sendsecond}>{b[status]}</div>
             </div>
               </BootstrapDialog>
               </div>
