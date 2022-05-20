@@ -17,6 +17,7 @@ import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
+import {Bookingcomp} from './Bookingcomp'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -343,7 +344,6 @@ export default function Booking() {
         </div>
       )} 
     else {
-      if(bookingInfo.length == 0){
         return (
             <div className='outestcontainerbook'>
               {multistyle()}  
@@ -438,21 +438,7 @@ export default function Booking() {
               <div className="titlebook">{l[status]} - {chosenStuname}</div>
             </div>
             <Divider></Divider>
-            <div className="bookingoutestwrap">
-    <div className="bookingrow_teacher">
-      <div className="bookingwrapsecond">
-        <div className="bookingwordswrapfirst">
-          <div className="bookingimageprog">
-            <FaUser className="bookingprog_avatar" />
-          </div>
-          
-          <div className="bookingrequesttotaltime">
-            <div className="detailtimeforupcomings">{mm[status]}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            <Bookingcomp msg = {mm[status]} bookingInfo = {bookingInfo}></Bookingcomp>
            
           </div>
           <div className="outerbook_upcoming">
@@ -460,173 +446,12 @@ export default function Booking() {
               <div className="titlebook">{q[status]} - {chosenStuname}</div>
             </div>
             <Divider></Divider>
-            <div className="bookingoutestwrap">
-              <div className="bookingrow_teacher">
-                <div className="bookingwrapsecond">
-                  <div className="bookingwordswrapfirst">
-                    <div className="bookingimageprog">
-                      <FaUser className="bookingprog_avatar" />
-                    </div>
-                    
-                    <div className="bookingrequesttotaltime">
-                      <div className="detailtimeforupcomings">{nn[status]}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <Bookingcomp msg = {nn[status]} bookingInfo = {pendingBookingInfo}></Bookingcomp>
+           
+          </div>
             </div>
-          </div>
-          </div>
       )
-    }else{
-      console.log('Booking Info not empty')
-      console.log(bookingInfo);
-      return (
-        <div className='outestcontainerbook'>
-          {multistyle()}  
-          <div id="dialogcontainer">
-              <BootstrapDialog
-              onClose={handleClose}
-              id="diabook"
-              aria-labelledby="customized-dialog-title"
-              open={open}
-              >
-            <div className="bookingprogramdia"> {i[status]}</div>
-            <div className="bookingprogramdia_sub">
-            {c[status]}{date}</div>
-            <div className="bookingprogramdia_sub">
-            {e[status]}{time}</div>
-            <div className="bookingprogramdia_sub">
-            {g[status]}{duration}</div>
-            <div className = "sendbookwrapper">
-            <div className = "sendbookingbtn" onClick={sendsecond}>{b[status]}</div>
-            </div>
-              </BootstrapDialog>
-              </div>
-              <div id="dialogcontainer">
-              <BootstrapDialog
-              onClose={handlenoneclose}
-              id="diabook"
-              aria-labelledby="customized-dialog-title"
-              open={noneopen}
-              >
-              <div className="bookingprogramdia">{j[status]}</div>
-              </BootstrapDialog></div>
-              <div id="dialogcontainer">
-              <BootstrapDialog
-              onClose={handlefinalclose}
-              id="diabook"
-              aria-labelledby="customized-dialog-title"
-              open={finalopen}
-              >
-              <div className="bookingfinal">{k[status]}</div>
-              </BootstrapDialog>
-              
-              </div>
-          
-          <div className = "outerbook">
-              
-                <div className = "topbarbook">
-                <div className = "titlebook">{a[status]} - {chosenStuname}</div>
-                <div className = "bookbtn" onClick = {sendfirst}>{b[status]}</div> 
-                </div>
-                <Divider></Divider>
-                <div className = "inputbook_outercont">
-                <div className="titlebooksub">{c[status]} </div>
-                <input
-                    className="inputbook"
-                    type="text"
-                      placeholder={d[status]}
-                      value={date}
-                      maxLength={10}
-                    onChange={(e) => {
-                        setdate(e.target.value)
-                    }}
-                  />
-                </div>
-                <Divider></Divider>
-                <div className = "inputbook_outercont">
-                <div className="titlebooksub">{e[status]} </div>
-                    <input
-                    className="inputbook"
-                    type="text"
-                      placeholder={f[status]}
-                      value={time}
-                      maxLength={11}
-                    onChange={(e) => {
-                        settime(e.target.value)
-                    }}
-                  />
-                </div>
-                <Divider></Divider>
-                <div className = "inputbook_outercont">
-                <div className="titlebooksub">{g[status]}</div>
-                <input
-                    className="inputbook"
-                    type="number"
-                      placeholder={h[status]}
-                      value={duration}
-                    onChange={(e) => {
-                        setduration(e.target.value)
-                    }}
-                  />
-                </div>
-                </div>
-                <div className="outerbook_upcoming">
-        <div className="topbarbook">
-          <div className="titlebook">{l[status]} - {chosenStuname}</div>
-        </div>
-        <Divider></Divider>
-        <div className="bookingoutestwrap">
-
-{bookingInfo.map((e) => {
-  return (
-  <div className="bookingrow_teacher">
-    <div className="bookingwrapsecond">
-      <div className="bookingwordswrapfirst">
-        <div className="bookingimageprog">
-          <FaUser className="bookingprog_avatar" />
-        </div>
-        <div className="bookingrequesttotal">
-          <div className="bookingrequestsub">{e.studentname}</div>
-          <div className="bookinrequesttime">{e.duration} hr</div>
-        </div>
-        <div className="bookingrequesttotaltime">
-          <div className="detailtimeforupcomings">
-            {e.date} {e.time}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  )
-})}
-
-</div>
-          </div>
-          <div className="outerbook_upcoming">
-            <div className="topbarbook">
-              <div className="titlebook">{q[status]} - {chosenStuname}</div>
-            </div>
-            <Divider></Divider>
-            <div className="bookingoutestwrap">
-              <div className="bookingrow_teacher">
-                <div className="bookingwrapsecond">
-                  <div className="bookingwordswrapfirst">
-                    <div className="bookingimageprog">
-                      <FaUser className="bookingprog_avatar" />
-                    </div>
-                    
-                    <div className="bookingrequesttotaltime">
-                      <div className="detailtimeforupcomings">{nn[status]}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     }
-  }
+    }
+  
 }

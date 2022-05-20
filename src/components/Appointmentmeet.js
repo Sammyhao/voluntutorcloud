@@ -58,7 +58,7 @@ function Appointmentmeet() {
   const [studentname, setStudentname] = useState("");
   const [studentmail, setStudentmail] = useState("");
   const [contactInfo, setContactInfo] = useState([]);
-  let totalhour = 0;
+  let totalhour = 8;
   const [classDate, setClassDate] = useState("");
   const [agenda, setAgenda] = useState("");
   const [task, setTask] = useState("");
@@ -152,8 +152,19 @@ function Appointmentmeet() {
         studentname: chosenContact.studentname,
         studentmail: chosenContact.studentmail,
       }).then((response) => {
-        if(response.data.length) totalhour = response.data[response.data.length-1].hoursleft;
-        else totalhour = 8;
+//         if(response.data.length) {
+//           totalhour = response.data[response.data.length-1].hoursleft
+//         }
+//        else totalhour = 8;
+        console.log(totalhour);
+
+        for(let i = 0; i < response.data.length; i++) {
+          totalhour -= response.data[i].duration;
+          console.log(totalhour);
+        }
+
+        console.log(totalhour);
+
         Axios.post("https://voluntutorcloud-server.herokuapp.com/updateRecord", {
           username: chosenContact.username,
           studentname: chosenContact.studentname,
