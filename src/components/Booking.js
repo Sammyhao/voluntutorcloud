@@ -136,6 +136,7 @@ export default function Booking() {
   const [haveSetStatus, setHaveSetStatus] = useState(false);
   const [bookingInfo, setBookingInfo] = useState([]);
   const [bookingInfoLen, setBookingInfoLen] = useState(0);
+  const [chosenEmail, setChosenEmail] = useState("");
 
   let username = "", studentname = "";
   const [name, setName] = useState("");
@@ -212,6 +213,7 @@ export default function Booking() {
           setContactInfo(response.data);
           studentname = response.data[0].studentname;
           setChosenStuname(studentname);
+          setChosenEmail(response.data[0].studentmail)
           console.log(response.data.length);
           if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
           console.log(username, studentname);
@@ -251,16 +253,20 @@ export default function Booking() {
   let p = ["You have already successfully booked a meeting with your student. Please book the next session after the upcoming meeting is over.","您已經和學生成功預約會議，請在下次會議結束後再預約接下來的課程。"]
   
   const sendfirst = () => {
+    console.log("sendfirst");
     if(date== "" || time == "" || duration == ""){
           setnoneopen(true)
     } else{
         setOpen(true)
+        console.log("open first")
     }
   }  
   const sendsecond = () => {
     setOpen(false)
     // save the data here (date,time,duration)
+    console.log("You better come in");
     updateBooking();
+    console.log("bookingdone")
     setfinalopen(true)
   }  
 
@@ -276,9 +282,9 @@ export default function Booking() {
       }).then((response) => {
         console.log(response);
         var templateParams = {
-          parent_email: contactInfo[0].studentmail,
-          student: contactInfo[0].studentname,
-          teacher: contactInfo[0].username
+          parent_email: chosenEmail,
+          student: chosenStuname,
+          teacher: name
         }
         console.log(templateParams)
       emailjs
