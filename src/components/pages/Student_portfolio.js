@@ -19,39 +19,43 @@ export default function Student_portfolio() {
   
   let username = "";
 
+  
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      (response) => {
-        console.log(response.data);
-        if(!response.data.isLoggedIn) {
-          setIsLoggedIn(false);
-          setLoading(false);
-        }else{
-          setRole(response.data.user[0].role);
-          setLang(response.data.user[0].lang);
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
-            username: username,
-          }).then((response) => {
-            console.log(response.data)
-            setContactInfo(response.data);
-            if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
-            for (let i = 0; i < response.data.length; i++) {
-              Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-                name: response.data[i].studentname,
-              }).then((response) => {
-                if (response.data.length) {
-                  setStudentProfolio((studentProfolio) => [
-                    ...studentProfolio,
-                    response.data,
-                  ])
-                }
-              })
-            }
-            setLoading(false)
-          })
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          console.log(response.data);
+          if(!response.data.isLoggedIn) {
+            setIsLoggedIn(false);
+            setLoading(false);
+          }else{
+            username = response.data.user[0].username;
+            setRole(response.data.user[0].role);
+            setLang(response.data.user[0].lang);
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+              username: username,
+            }).then((response) => {
+              console.log(response.data)
+              setContactInfo(response.data);
+              if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
+              for (let i = 0; i < response.data.length; i++) {
+                Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+                  name: response.data[i].studentname,
+                }).then((response) => {
+                  if (response.data.length) {
+                    setStudentProfolio((studentProfolio) => [
+                      ...studentProfolio,
+                      response.data,
+                    ])
+                  }
+                })
+              }
+              setLoading(false)
+            })
+          }
         }
-      }
-    )
+      )
+    }
   })
   
   if(isLoading) {
