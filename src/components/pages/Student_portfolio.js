@@ -38,18 +38,17 @@ export default function Student_portfolio() {
               console.log(response.data)
               setContactInfo(response.data);
               if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
+              setStudentProfolio([]);
               for (let i = 0; i < response.data.length; i++) {
                 console.log(response.data[i].studentname);
                 Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
                   name: response.data[i].studentname,
                 }).then((response) => {
                   console.log(response.data);
-                  if (response.data.length && studentProfolio.length == 0) {
-                    setStudentProfolio((studentProfolio) => [
-                      ...studentProfolio,
-                      response.data,
-                    ])
-                  }
+                  setStudentProfolio((studentProfolio) => [
+                    ...studentProfolio,
+                    response.data,
+                  ])
                   setLoading(false)
                 })
               }
