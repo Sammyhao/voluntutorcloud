@@ -49,9 +49,9 @@ export default function Student_portfolio() {
                     ...studentProfolio,
                     response.data,
                   ])
-                  setLoading(false)
                 })
               }
+              setLoading(false)
             })
           }
         }
