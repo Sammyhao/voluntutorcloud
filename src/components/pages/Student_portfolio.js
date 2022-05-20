@@ -44,15 +44,15 @@ export default function Student_portfolio() {
                   name: response.data[i].studentname,
                 }).then((response) => {
                   console.log(response.data);
-                  if (response.data.length) {
+                  if (response.data.length && studentProfolio.length == 0) {
                     setStudentProfolio((studentProfolio) => [
                       ...studentProfolio,
                       response.data,
                     ])
                   }
+                  setLoading(false)
                 })
               }
-              setLoading(false)
             })
           }
         }

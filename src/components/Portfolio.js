@@ -141,6 +141,7 @@ export default function Portfolio(props) {
   }
 
   // final renders
+  console.log(studentProfolio.length==0)
   if(studentProfolio.length == 0) {
     return (
       <div className = "outcontainer_port">
