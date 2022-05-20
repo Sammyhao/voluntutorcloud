@@ -51,7 +51,7 @@ export default function Student_portfolio() {
                   ])
                 })
               }
-              setLoading(false)
+              if(studentProfolio.length == response.data.length) setLoading(false)
             })
           }
         }
