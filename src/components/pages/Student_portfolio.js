@@ -39,9 +39,11 @@ export default function Student_portfolio() {
               setContactInfo(response.data);
               if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
               for (let i = 0; i < response.data.length; i++) {
+                console.log(response.data[i].studentname);
                 Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
                   name: response.data[i].studentname,
                 }).then((response) => {
+                  console.log(response.data);
                   if (response.data.length) {
                     setStudentProfolio((studentProfolio) => [
                       ...studentProfolio,
@@ -66,6 +68,7 @@ export default function Student_portfolio() {
     )
 
   } else{
+    console.log(studentProfolio);
     if (role == "teacher") {
       return (
         <>
