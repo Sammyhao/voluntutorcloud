@@ -44,7 +44,6 @@ function Navbar(props) {
     console.log("props failed")
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       setIsLoggedIn(response.data.isLoggedIn)
-      username = response.data.user[0].username;
       if(response.data.user[0].lang == "chinese") setStatus(1);
       else setStatus(0);
     })}

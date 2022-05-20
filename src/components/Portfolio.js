@@ -5,7 +5,6 @@ import Axios from 'axios'
 import { FaUser } from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import {MdOutlineArrowForwardIos, MdArrowBackIos} from 'react-icons/md'
-import Loading from './Loading'
 import { Divider } from '@mui/material'
 
 export default function Portfolio(props) {
@@ -161,7 +160,6 @@ export default function Portfolio(props) {
       </div>
     )
   } else {
-    console.log('finish loading')
     console.log(studentProfolio)
     console.log(chosenContactIdx);
     return (

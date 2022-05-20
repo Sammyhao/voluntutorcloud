@@ -34,7 +34,6 @@ function Footer(props) {
     } else {
       console.log("props failed")
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-        username = response.data.user[0].username;
         if(response.data.user[0].lang == "chinese") setStatus(1);
         else setStatus(0);
       })
