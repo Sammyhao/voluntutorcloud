@@ -22,6 +22,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }))
 
 let program = 0
+
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
   
