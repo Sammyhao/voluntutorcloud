@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 
+  // dialog
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -19,6 +20,19 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }))
+  const BootstrapDialogTitle = (props) => {
+    const { children, ...other } = props
+  
+    return (
+      <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+        {children}
+      </DialogTitle>
+    )
+  }
+
+  BootstrapDialogTitle.propTypes = {
+    children: PropTypes.node
+  }
 
 function Function(props) {
   Axios.defaults.withCredentials = true
@@ -68,20 +82,7 @@ function Function(props) {
       '/message',
     ]
 
-  // dialog
-  const BootstrapDialogTitle = (props) => {
-    const { children, ...other } = props
-  
-    return (
-      <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-        {children}
-      </DialogTitle>
-    )
-  }
 
-  BootstrapDialogTitle.propTypes = {
-    children: PropTypes.node
-  }
 
   const handleClose = () => {
     setOpen(false)
