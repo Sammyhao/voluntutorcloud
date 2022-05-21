@@ -20,6 +20,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }))
+
+let program = 0
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
   
