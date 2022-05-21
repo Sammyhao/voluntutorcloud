@@ -1,20 +1,15 @@
+// imports
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { Link } from 'react-router-dom'
 import './Homepg_choose.css'
 
-function Homepg_choose() {
+function Homepg_choose(props) {
+
   const [status, setStatus] = useState(0);
   let username = "";
-  
-  useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      username = response.data.user[0].username;
-      if(response.data.user[0].lang == "chinese") setStatus(1);
-      else setStatus(0);
-    })
-  })
 
+  // titles
   let a = ["CHOOSE A PROGRAM","選擇一個志工計畫！"]
   let b = ["Chinese","國文"]
   let c = ["Math","數學"]
@@ -23,6 +18,21 @@ function Homepg_choose() {
   let f = ["Social Studies","社會"]
   let g = ["Computing","資訊"]
   let h = ["/images/homepagequote.png", "/images/homepagequote_chinese.png"]
+    
+  useEffect(() => {
+    console.log(props)
+    if(props.lang){
+      if(props.lang == "chinese") setStatus(1);
+      else setStatus(0);
+    }else{
+      console.log("props failed")
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+      username = response.data.user[0].username;
+      if(response.data.user[0].lang == "chinese") setStatus(1);
+      else setStatus(0);
+    })}
+  })
+
   return (
     <div className="hpch_outest">
       <div className="hpch_outcont">

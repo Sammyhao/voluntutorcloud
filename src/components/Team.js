@@ -3,18 +3,25 @@ import './Team.css'
 import { Divider } from '@mui/material'
 import Axios from 'axios'
 
-export default function Team() {
+export default function Team(props) {
   const [status, setStatus] = useState(0);
   let username = "";
   
   useEffect(() => {
+    console.log(props);
+    if(props.lang){
+      if(props.lang == "chinese") setStatus(1);
+      else setStatus(0);
+    }else{
+      console.log("props failed")
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       username = response.data.user[0].username;
       if(response.data.user[0].lang == "chinese") setStatus(1);
       else setStatus(0);
-    })
+    })}
   })
   
+  // titles
   let a = ["Team", "團隊介紹"]
   let b = ["Ruby Chang", "張舒晴 Ruby"]
   let c = ["Team Leader", "團隊領導者"]
@@ -26,6 +33,7 @@ export default function Team() {
   let i = ["Public Relation", "公關"]
   let j = ["Zachary Lai","賴元斌 Zachary"]
   let k = ["Daniel Yu","余浩瑋 Daniel"]
+ 
   return (
     <div className="about_uscont">
       <div className="about_ustitle">{a[status]}</div>

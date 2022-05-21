@@ -2,53 +2,30 @@ import React, { useState, useEffect } from 'react'
 import { Button } from './Button'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
-import Dropdown from './Dropdown'
-import { BsFillPersonFill } from 'react-icons/bs'
 import { FaBars } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
 import { S_SidebarData } from './S_SidebarData'
 import { C_S_SidebarData } from './C_S_SidebarData'
-
-import { IconContext } from 'react-icons'
 import Axios from 'axios'
 import '@progress/kendo-theme-default/dist/all.css'
-import { HashLink } from "react-router-hash-link";
 
-function S_Navbar() {
-  // global variable!
+function S_Navbar(props) {
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [status, setStatus] = useState(0);
-  let username = "";
   const [sidebar, setSidebar] = useState(false)
-  const showSidebar = () => setSidebar(!sidebar)
+  const [click, setClick] = useState(false)
+  const [button, setButton] = useState(true)
+
+  // titles
   let a = ["Home","首頁"]
   let b = ["Bookings","會議預約"]
   let c = ["Contact","聯絡我們"]
   let d = ["SIGN IN/UP","登入/註冊"]
-  useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      setIsLoggedIn(response.data.isLoggedIn)
-      username = response.data.user[0].username;
-      if(response.data.user[0].lang == "chinese") setStatus(1);
-      else setStatus(0);
-    })
-  }, [])
-  // global variable!
-  const [dropdown, setDropDown] = useState(false)
-  const [click, setClick] = useState(false)
-  const [button, setButton] = useState(true)
+
+  const showSidebar = () => setSidebar(!sidebar)
   const handleClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
-  const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
-      setDropDown(false)
-    } else {
-      setDropDown(true)
-    }
-  }
-  const onMouseLeave = () => {
-    setDropDown(false)
-  }
   const showButton = () => {
     if (window.innerWidth <= 1080) {
       setButton(false)
@@ -58,12 +35,27 @@ function S_Navbar() {
   }
 
   useEffect(() => {
+    console.log(props);
+    if(props.lang) {
+      if(props.lang == "chinese") setStatus(1);
+      else setStatus(0);
+    } else {
+      console.log("props failed")
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        setIsLoggedIn(response.data.isLoggedIn)
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
+      })
+    }
+  }, [])
+  
+  useEffect(() => {
     showButton()
   }, [])
 
   window.addEventListener('resize', showButton)
   if (isLoggedIn) {
-    if(status ==0){
+    if(status==0){
       return (
         <>
           <div className="navbar">

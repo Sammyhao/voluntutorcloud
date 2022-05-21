@@ -1,44 +1,47 @@
+// imports
 import React, { useEffect, useState } from 'react'
 import '../App.css'
 import './HeroSection.css'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
-
 import Loading from './Loading'
 
-function S_HeroSection() {
+function S_HeroSection(props) {
   Axios.defaults.withCredentials = true
-  let username = "";
+
   const [status, setStatus] = useState(0);
-  
+  const [name, setName] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  // titles
   let a = ["WELCOME","歡迎"]
   let b = ["Let's Learn Together!" ,"和我們一起學習吧！"]
   let c = ["Get Started","註冊帳號"]
   let d = ["LOGIN","登入"]
   
-  const [name, setName] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isLoading, setLoading] = useState(true)
-
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      if (response.data.isLoggedIn) {
-        username = response.data.user[0].username;
-        if(response.data.user[0].lang == "chinese") setStatus(1);
+    console.log(props);
+    if(props.isLoggedIn) {
+      setIsLoggedIn(props.isLoggedIn);
+      if(props.lang && props.name) {
+        setName(props.name);
+        if(props.lang == "chinese") setStatus(1);
         else setStatus(0);
       }
-      setIsLoggedIn(response.data.isLoggedIn)
-      setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
-      setLoading(false);
-    })
+    } else {
+      console.log("props failed")
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        if (response.data.isLoggedIn) {
+          if(response.data.user[0].lang == "chinese") setStatus(1);
+          else setStatus(0);
+        }
+        setIsLoggedIn(response.data.isLoggedIn)
+        setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
+      })
+    }
   }, [])
   
-  if(isLoading){
-    return(
-    <Loading></Loading>
-    )
-  }
-  if (!isLoggedIn || isLoading) {
+  if (!isLoggedIn) {
     return (
       <div className="hero-container">
         <div className="left_hero">

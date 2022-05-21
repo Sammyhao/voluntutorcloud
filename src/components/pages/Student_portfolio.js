@@ -72,7 +72,7 @@ export default function Student_portfolio() {
     if (role == "teacher") {
       return (
         <>
-        <Navbar lang={lang} isLoggedIn={isLoggedIn}></Navbar>
+        <Navbar></Navbar>
         <Port lang={lang} contactInfo={contactInfo} portfolio={studentProfolio} multistudentname={multistudentname}></Port>
         <Footer lang={lang}></Footer>
       </>

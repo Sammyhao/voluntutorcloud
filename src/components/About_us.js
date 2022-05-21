@@ -2,16 +2,24 @@ import React, { useState,useEffect } from 'react'
 import Axios from 'axios'
 import './About_us.css'
 import { Divider } from '@mui/material'
-export default function About_us() {
+export default function About_us(props) {
+  
   const [status, setStatus] = useState(0);
   let username = "";
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      username = response.data.user[0].username;
-      if(response.data.user[0].lang == "chinese") setStatus(1);
+    console.log(props);
+    if(props.lang) {
+      if(props.lang == "chinese") setStatus(1);
       else setStatus(0);
-    })
+    } else {
+      console.log("props failed")
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        username = response.data.user[0].username;
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
+      })
+    }
   });
 
   let a = ["About Us", "關於我們"]

@@ -20,6 +20,7 @@ function Home() {
   const [isLoading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [lang, setLang] = useState(true); // lang of the user
+  const [name, setName] = useState("");
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -28,10 +29,11 @@ function Home() {
         if(!response.data.isLoggedIn) {
           setIsLoggedIn(false);
           setLoading(false);
-        }else {
+        }else{
           setIsLoggedIn(true);
           setLang(response.data.user[0].lang);
           setRole(response.data.user[0].role);
+          setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
           setLoading(false);
         }
       }
@@ -50,39 +52,38 @@ function Home() {
       <Loading/>
       </>
     )
-
-  }else {
+  }else{
     if(isLoggedIn == false) {
       return (
         <>
-          <Navbar lang = {lang}></Navbar>
-          <HeroSection />
-          <Function></Function>
+          <Navbar isLoggedIn = {isLoggedIn}></Navbar>
+          <HeroSection isLoggedIn={isLoggedIn}/>
+          <Function isLoggedIn={isLoggedIn}></Function>
           <Homepageprog></Homepageprog>
           <About_us></About_us>
           <Team></Team>
           <Footer></Footer>
         </>
-    )} else if(role == "teacher"){
+    )}else if(role == "teacher"){
       return (
         <>
-          <Navbar></Navbar>
-          <HeroSection />
-          <Function></Function>
-          <Homepageprog></Homepageprog>
-          <About_us></About_us>
-          <Team></Team>
-          <Footer></Footer>
+          <Navbar lang = {lang} isLoggedIn={isLoggedIn}></Navbar>
+          <HeroSection lang={lang} isLoggedIn={isLoggedIn} name={name}/>
+          <Function lang={lang} isLoggedIn={isLoggedIn}></Function>
+          <Homepageprog lang={lang}></Homepageprog>
+          <About_us lang={lang}></About_us>
+          <Team lang={lang}></Team>
+          <Footer lang={lang}></Footer>
         </>
     )} else {
       return(
         <>
-        <S_Navbar></S_Navbar>
-        <S_hero />
-        <S_Function></S_Function>
-        <About_us></About_us>
-        <Team></Team>
-        <Footer></Footer>
+        <S_Navbar lang={lang} isLoggedIn={isLoggedIn}></S_Navbar>
+        <S_hero lang={lang} isLoggedIn={isLoggedIn} name={name}/>
+        <S_Function lang={lang} isLoggedIn={isLoggedIn}></S_Function>
+        <About_us lang={lang}></About_us>
+        <Team lang={lang}></Team>
+        <Footer lang={lang}></Footer>
       </>
       )
     }

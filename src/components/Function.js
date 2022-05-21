@@ -1,24 +1,16 @@
+// imports
 import React, { useEffect, useState } from 'react'
 import './Function.css'
 import { Link } from 'react-router-dom'
 import { GrFavorite, GrPin } from 'react-icons/gr'
 import { AiOutlineMessage, AiOutlineCalendar } from 'react-icons/ai'
-import { RiFolder3Line } from 'react-icons/ri'
 import { SiGooglemeet } from 'react-icons/si'
 import Axios from 'axios'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Button from '@mui/material/Button'
-import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
-import IconButton from '@mui/material/IconButton'
-import { popoverClasses } from '@mui/material';
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -28,13 +20,16 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }))
 
-function Function() {
+function Function(props) {
   Axios.defaults.withCredentials = true
-  const [username, setUsername] = useState('')
+
+  // usestates
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  
   const [open, setOpen] = useState(false)
+  const [status, setStatus] = useState(0);
   let logged = []
+
+  // titles
   let a = ["BEGIN YOUR JOURNEY","開始你的旅程"]
   let b = ["My List","我的最愛"]
   let c = ["Appointment","會議安排"]
@@ -44,6 +39,36 @@ function Function() {
   let g = ["Sign in to unlock functions!!","登入以解鎖功能！"]
   let h = ["SIGN IN","登入"]
   let i = ["BEGIN YOUR JOURNEY!!","開始你的旅程！"]
+  
+  useEffect(() => {
+    console.log(props);
+    if(props.isLoggedIn) {
+      setIsLoggedIn(props.isLoggedIn);
+      if(props.lang) {
+        if(props.lang == "chinese") setStatus(1);
+        else setStatus(0);
+      }
+    }else{
+    console.log("props failed")
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+      if (response.data.isLoggedIn) {
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
+      }
+      setIsLoggedIn(response.data.isLoggedIn)
+    })}
+  }, [])
+
+  if (isLoggedIn) {
+    logged = [
+      '/mylist',
+      '/appointment',
+      '/program_usage',
+      '/book',
+      '/message',
+    ]
+
+  // dialog
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
   
@@ -53,33 +78,15 @@ function Function() {
       </DialogTitle>
     )
   }
+
   BootstrapDialogTitle.propTypes = {
     children: PropTypes.node
   }
+
   const handleClose = () => {
     setOpen(false)
   }
 
-  const [status, setStatus] = useState(0);
-  
-  useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      if (response.data.isLoggedIn) {
-        setUsername(response.data.user[0].username)
-        if(response.data.user[0].lang == "chinese") setStatus(1);
-        else setStatus(0);
-      }
-      setIsLoggedIn(response.data.isLoggedIn)
-    })
-  }, [])
-  if (isLoggedIn) {
-    logged = [
-      '/mylist',
-      '/appointment',
-      '/program_usage',
-      '/book',
-      '/message',
-    ]
     return (
       <div className="container_func">
         <div className="title_function">{a[status]}</div>
@@ -110,7 +117,6 @@ function Function() {
               </div>
             </Link>
           </div>
-  
           <div className="temprow">
             <Link className="func_link" to={logged[3]}>
             <div className="outcont_function">
@@ -200,8 +206,6 @@ function Function() {
                 </div>
             </div>
           </div>
-        </div>)}
-  
-  
+        </div>)}  
 }
 export default Function

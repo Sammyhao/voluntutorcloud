@@ -28,9 +28,8 @@ function Footer(props) {
   
   useEffect(() => {
     console.log(props);
-    if(props.lang) {
-      if(props.lang == "chinese") setStatus(1);
-      else setStatus(0);
+    if(props.lang == "chinese") {
+      setStatus(1);
     } else {
       console.log("props failed")
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
