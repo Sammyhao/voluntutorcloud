@@ -37,7 +37,7 @@ function S_Navbar(props) {
   useEffect(() => {
     console.log(props);
     if(props.isLoggedIn) {
-      setIsLoggedIn(response.data.isLoggedIn)
+      setIsLoggedIn(props.isLoggedIn)
       if(props.lang) {
         if(props.lang == "chinese") setStatus(1);
         else setStatus(0);
