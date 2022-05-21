@@ -85,12 +85,6 @@ function Function(props) {
       '/message',
     ]
 
-
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-
     return (
       <div className="container_func">
         <div className="title_function">{a[status]}</div>
@@ -148,7 +142,7 @@ function Function(props) {
       <div className="container_func">
         <div id="dialog_reg_wrap">
         <BootstrapDialog
-          onClose={handleClose}
+          onClose={() => {setOpen(false)}}
           id = "dialog_registered"
           aria-labelledby="customized-dialog-title"
           open={open}
