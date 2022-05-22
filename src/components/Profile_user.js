@@ -155,11 +155,11 @@ function Profile_user() {
   ]
   let no = [
     'You are now enrolled in: ',
-    '目前參與的計畫為：大溪國小',
+    '目前參與的計畫為：',
   ]
   let op = [
     ' volunteering program',
-    '志工計畫',
+    ' 志工計畫',
   ]
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
