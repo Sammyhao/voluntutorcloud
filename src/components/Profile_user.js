@@ -42,6 +42,7 @@ function Profile_user() {
   const [studentpers, setstudentpers] = useState('outgoing')
   const [bio, setbio] = useState('For Better Unity, Help Your Community ')
   const [about, setabout] = useState('Join Voluntutor Cloud!')
+  const [curVolProg, setCurVolProg] = useState('');
   const [password, setpassword] = useState('')
   const [errormessage, seterrormessage] = useState('')
   const [contacterror, setcontacterror] = useState('')
@@ -153,8 +154,12 @@ function Profile_user() {
     '以下連結為你當時報名時提供的Google Meet 連結。',
   ]
   let no = [
-    'You are now enrolled in: 大溪國小志工計畫',
-    '目前參與的計畫為：大溪國小志工計畫',
+    'You are now enrolled in: ',
+    '目前參與的計畫為：大溪國小',
+  ]
+  let op = [
+    ' volunteering program',
+    '志工計畫',
   ]
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
@@ -402,6 +407,7 @@ function Profile_user() {
         setbio(response.data.user[0].bio)
         setabout(response.data.user[0].about)
         setGooglemeetlink(response.data.user[0].googlemeetlink)
+        setCurVolProg(response.data.user[0].curvolprog)
         if (response.data.user[0].lang == 'chinese') setStatus(1)
         else setStatus(0)
       },
@@ -470,7 +476,7 @@ function Profile_user() {
         </div>
         <div className="currentprogram">
           <BsFillEmojiSmileFill className="currentprogramicon"></BsFillEmojiSmileFill>
-          <div className="currentprogramcontent">{no[status]}</div>
+          <div className="currentprogramcontent">{no[status]}{curVolProg}{op[status]}</div>
         </div>
         <div className="containerprofile">
           <div className="left">
