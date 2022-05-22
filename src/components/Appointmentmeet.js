@@ -55,8 +55,6 @@ function Appointmentmeet() {
   let r = ["Add additional notes!!","請輸入課堂筆記"]
 
   let username = "";
-  const [studentname, setStudentname] = useState("");
-  const [studentmail, setStudentmail] = useState("");
   const [contactInfo, setContactInfo] = useState([]);
   let totalhour = 8;
   const [classDate, setClassDate] = useState("");

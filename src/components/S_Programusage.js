@@ -61,6 +61,7 @@ function Programusage() {
         Axios.post("https://voluntutorcloud-server.herokuapp.com/findContactbyName", {
           studentname: studentname
         }).then((response) => {
+          if(response.data.length == 0) setLoading(false);
           console.log(response.data[0]);
           let student = response.data[0];
           setStpair(stpair => [...stpair, student]);

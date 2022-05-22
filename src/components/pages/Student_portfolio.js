@@ -32,28 +32,32 @@ export default function Student_portfolio() {
             username = response.data.user[0].username;
             setRole(response.data.user[0].role);
             setLang(response.data.user[0].lang);
-            Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
-              username: username,
-            }).then((response) => {
-              console.log(response.data)
-              setContactInfo(response.data);
-              if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
-              setStudentProfolio([]);
-              let size = response.data.length;
-              for (let i = 0; i < response.data.length; i++) {
-                console.log(response.data[i].studentname);
-                Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-                  name: response.data[i].studentname,
-                }).then((response) => {
-                  console.log(response.data);
-                  setStudentProfolio((studentProfolio) => [
-                    ...studentProfolio,
-                    response.data,
-                  ])
-                  if(i == size - 1) setLoading(false);
-                })
-              }
-            })
+            if(response.data.user[0].role == "teacher") {
+              Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+                username: username,
+              }).then((response) => {
+                console.log(response.data)
+                setContactInfo(response.data);
+                if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
+                setStudentProfolio([]);
+                let size = response.data.length;
+                for (let i = 0; i < response.data.length; i++) {
+                  console.log(response.data[i].studentname);
+                  Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+                    name: response.data[i].studentname,
+                  }).then((response) => {
+                    console.log(response.data);
+                    setStudentProfolio((studentProfolio) => [
+                      ...studentProfolio,
+                      response.data,
+                    ])
+                    if(i == size - 1) setLoading(false);
+                  })
+                }
+              })
+            } else {
+              setLoading(false);
+            }
           }
         }
       )
