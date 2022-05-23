@@ -44,7 +44,7 @@ function Subjects(props) {
   } else {
     return (
       <>
-        <Navbar lang = {lang} isLoggedIn = {isLoggedIn}></Navbar>
+        <Navbar lang = {lang} isLoggedIn={isLoggedIn}></Navbar>
         <Grid sub={subject}></Grid>
         <Footer lang = {lang}></Footer>
       </>

@@ -15,7 +15,6 @@ export default function Study() {
           console.log(response.data);
             setLang(response.data.user[0].lang);
             setLoading(false);
-          
         }
       )
     })

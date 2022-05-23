@@ -17,9 +17,9 @@ export default function Profile() {
 
   useEffect(() => {
 
+    if(isLoading) {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        if(isLoading) {
           console.log(response.data.user[0]);
           setRole(response.data.user[0].role);
           setLang(response.data.user[0].lang);
@@ -32,8 +32,8 @@ export default function Profile() {
             setLoading(false);
           })
         }
-      }
-    )
+      )
+    }
   })
 
   if (isLoading) {
