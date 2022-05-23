@@ -30,16 +30,15 @@ export default function Profile() {
       }
     )
   })
-  
-  if(isLoading) {
-    return(
+
+  if (isLoading) {
+    return (
       <>
-      <Loading/>
+        <Loading />
       </>
     )
-
-  } else{
-    if (role == "teacher") {
+  } else {
+    if (role == 'teacher') {
       return (
         <>
           <Navbar lang={lang} isLoggedIn={true}></Navbar>
