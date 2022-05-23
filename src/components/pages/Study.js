@@ -13,9 +13,7 @@ export default function Study() {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
           console.log(response.data);
-          
             setLang(response.data.user[0].lang);
-            setRole(response.data.user[0].role);
             setLoading(false);
           
         }
