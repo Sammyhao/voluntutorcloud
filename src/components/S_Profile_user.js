@@ -1,31 +1,21 @@
+// imports
 import React, { useState, useEffect } from 'react'
 import { BiEdit } from 'react-icons/bi'
 import { FaUser } from 'react-icons/fa'
 import { AiFillLock } from 'react-icons/ai'
 import { MdModeEdit } from 'react-icons/md'
 import { BsCheckLg } from 'react-icons/bs'
-
-import Loading from './Loading'
 import './Profile_user.css'
 import { Divider } from '@mui/material'
 import Axios from 'axios'
 import '../App.css'
-import { Link, useNavigate, Route } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import validator from 'validator'
-
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Button from '@mui/material/Button'
-import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
-import IconButton from '@mui/material/IconButton'
-import { popoverClasses } from '@mui/material'
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -34,7 +24,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }))
-function Profile_user() {
+
+function S_Profile_user(props) {
   const [name, setname] = useState('VolunTutor Cloud')
   const [phone, setphone] = useState('0912345678')
   const [email, setemail] = useState('vc@gmail.com')
@@ -50,39 +41,28 @@ function Profile_user() {
   const [studentpers, setstudentpers] = useState('outgoing')
   const [bio, setbio] = useState('For Better Unity, Help Your Community ')
   const [about, setabout] = useState('Join Voluntutor Cloud!')
-  const [errormessage, seterrormessage] = useState('')
   const [contacterror, setcontacterror] = useState('')
   const [personerror, setpersonerror] = useState('')
-  const [prefererror, setprefererror] = useState('')
   const [bioerror, setbioerror] = useState('')
   const [abouterror, setabouterror] = useState('')
-  const [priverror, setpriverror] = useState('')
   const [readonlycontact, setreadcontact] = useState('disabled')
   const [readonlypersoninfo, setreadpersoninfo] = useState('disabled')
   const [readonlyprefer, setreadprefer] = useState('disabled')
   const [readonlybio, setreadbio] = useState('disabled')
   const [readonlyabout, setreadabout] = useState('disabled')
-  const [readonlypriv, setreadpriv] = useState('disabled')
   const [click, setClick] = useState(false)
   const [contactclick, setcontactclick] = useState(false)
   const [personinfoclick, setpersoninfoclick] = useState(false)
   const [preferclick, setpreferclick] = useState(false)
   const [bioclick, setbioclick] = useState(false)
   const [aboutclick, setaboutclick] = useState(false)
-  const [privacyclick, setprivacyclick] = useState(false)
-  // const [readonly, setread] = useState('')
-  // contact info declaration
   const [studentemail, setStudentEmail] = useState("");
   const [parentemail, setParentemail] = useState("");
   const [parentcontactnum, setParentcontactnum] = useState("");
-  // contact info declaration
-  const [userInfo, setUserInfo] = useState([])
   const [emailError, setEmailError] = useState('')
-  const [iconstyle, seticonstyle] = useState(
-    <div>
-      <MdModeEdit />
-    </div>,
-  )
+  const navigate = useNavigate()
+  const [open, setOpen] = useState(false)
+  const [status, setStatus] = useState(0)
   const [contactstyle, setcontactstyle] = useState(
     <div>
       <BiEdit />
@@ -93,7 +73,7 @@ function Profile_user() {
       <BiEdit />
     </div>,
   )
-  const [prefstyle, setprefstyle] = useState(
+  const [aboutstyle, setaboutstyle] = useState(
     <div>
       <BiEdit />
     </div>,
@@ -103,15 +83,9 @@ function Profile_user() {
       <BiEdit />
     </div>,
   )
-  const [aboutstyle, setaboutstyle] = useState(
-    <div>
-      <BiEdit />
-    </div>,
-  )
-  const navigate = useNavigate()
-  const [open, setOpen] = useState(false)
+  let username = ''
 
-  // let a = ["Please enter your name.","請輸入你的使用者名稱"]
+  // titles
   let b = ['Please enter a valid email.', '請輸入正確的Email']
   let c = ['Please fill in the blanks.', '請完整填入資訊']
   let d = [
@@ -133,15 +107,6 @@ function Profile_user() {
   let p = ['9th/10th/11th', '九/十/十一']
   let q = ['School: ', '學校：']
   let r = ['Enter school', '輸入學校']
-  let s = ['Preferences', '喜好']
-  let t = ['Subjects: ', '科目：']
-  let u = ['ex: Chinese/Math...', '例如：國/數...']
-  let v = ['Grade: ', '年級：']
-  let w = ['ex: 1th/2th', '例如：一/二...']
-  let x = ['Gender: ', '性別：']
-  let y = ['Female/Male/No pref', '男/女/無偏好']
-  let z = ['Character: ', '性格：']
-  let ab = ['Enter personality', '輸入性格']
   let bc = ['Bio', '自介']
   let cd = ['Add your bio here!', '填入你的自介！']
   let de = ['About me', '關於我']
@@ -156,9 +121,9 @@ function Profile_user() {
   ]
   let kl = ['Subjects ', '輔導科目']
 
+  // dialog
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
-
     return (
       <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
         {children}
@@ -169,25 +134,12 @@ function Profile_user() {
   BootstrapDialogTitle.propTypes = {
     children: PropTypes.node,
   }
+
   const handleClose = () => {
     setOpen(false)
   }
-  // const handleClick = () => {
-  //   if(name==""){
-  //     seterrormessage(a[status])
-  //   }else{
-  //     seterrormessage("")
-  //   setClick(!click)
-  //   seticonstyle(<MdModeEdit/>)
-  //   if(!click){
-  //     setread("")
-  //     seticonstyle(<BsCheckLg/>)
-  //   }else{
-  //     setread("disabled")
 
-  //   }}
-  // }
-
+  // functions
   const validateEmail = (e) => {
     var email = e.target.value
     if (!validator.isEmail(email)) {
@@ -261,17 +213,33 @@ function Profile_user() {
         console.log(response)
       },
     )
-  }
-
-  let username = ''
-  const [status, setStatus] = useState(0)
-  const [isLoading ,setLoading] = useState(true);
+  }  
 
   useEffect(() => {
-    if(isLoading) {
+    console.log(props)
+    if(props.profile && props.portfolio){
+      setname(props.profile.username)
+      setphone(props.profile.phone)
+      setemail(props.profile.email)
+      setgender(props.profile.gender)
+      setbirthday(props.profile.birthday)
+      setgrade(props.profile.grade)
+      setschool(props.profile.schoolname)
+      setstudentage(props.profile.targetStuAge)
+      setstudentgender(props.profile.targetStuGen)
+      setstudentpers(props.profile.targetStuPerso)
+      setbio(props.profile.bio)
+      setabout(props.profile.about)
+      if (props.profile.lang == 'chinese') setStatus(1)
+      else setStatus(0)
+      setStudentEmail(props.portfolio.studentmail);
+      setParentcontactnum(props.portfolio.parentcontactnum);
+      setParentemail(props.portfolio.parentmail);
+      setRequiredsubject(props.portfolio.requiredsub);
+    }else{
+      console.log("props failed")
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
-          console.log("response.data.user[0]")
           console.log(response.data.user[0])
           setname(response.data.user[0].username)
           setphone(response.data.user[0].phone)
@@ -287,7 +255,6 @@ function Profile_user() {
           setabout(response.data.user[0].about)
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
-  
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
             name: response.data.user[0].lastname + response.data.user[0].firstname,
           }).then((response) => {
@@ -295,28 +262,10 @@ function Profile_user() {
             setParentcontactnum(response.data[0].parentcontactnum);
             setParentemail(response.data[0].parentmail);
             setRequiredsubject(response.data[0].requiredsub);
-            setLoading(false);
           })
         },
-      )
-    }
+      )}
   }, [])
-
-  const showUser = () => {
-    console.log(
-      name,
-      phone,
-      email,
-      gender,
-      birthday,
-      grade,
-      school,
-      preferredsubject,
-      studentage,
-      studentgender,
-      studentpers,
-    )
-  }
 
   const changeLang = (lang) => {
     console.log(name)
@@ -329,12 +278,6 @@ function Profile_user() {
     })
   }
 
-  if(isLoading) {
-    return(
-      <>
-      <Loading/>
-      </>
-  )}else{
   return (
     <div className="frame">
       <div id="dialog_reg_wrap">
@@ -708,6 +651,6 @@ function Profile_user() {
         </Link>
       </div>
     </div>
-  )}
+  )
 }
-export default Profile_user
+export default S_Profile_user

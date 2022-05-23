@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { BiEdit } from 'react-icons/bi'
 import { FaUser } from 'react-icons/fa'
 import { AiFillLock } from 'react-icons/ai'
-import { MdModeEdit } from 'react-icons/md'
 import { BsCheckLg } from 'react-icons/bs'
 import './Profile_user.css'
 import { Divider } from '@mui/material'
@@ -353,28 +352,50 @@ function Profile_user(props) {
   }
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      (response) => {
-        console.log(response.data)
-        setname(response.data.user[0].username)
-        setphone(response.data.user[0].phone)
-        setemail(response.data.user[0].email)
-        setgender(response.data.user[0].gender)
-        setbirthday(response.data.user[0].birthday)
-        setgrade(response.data.user[0].grade)
-        setschool(response.data.user[0].schoolname)
-        setpreferredsubject(response.data.user[0].preferredSubjects)
-        setstudentage(response.data.user[0].targetStuAge)
-        setstudentgender(response.data.user[0].targetStuGen)
-        setstudentpers(response.data.user[0].targetStuPerso)
-        setbio(response.data.user[0].bio)
-        setabout(response.data.user[0].about)
-        setGooglemeetlink(response.data.user[0].googlemeetlink)
-        setCurVolProg(response.data.user[0].curvolprog)
-        if (response.data.user[0].lang == 'chinese') setStatus(1)
+    console.log(props.profile);
+    if(props.profile){
+        setname(props.profile.username)
+        setphone(props.profile.phone)
+        setemail(props.profile.email)
+        setgender(props.profile.gender)
+        setbirthday(props.profile.birthday)
+        setgrade(props.profile.grade)
+        setschool(props.profile.schoolname)
+        setpreferredsubject(props.profile.preferredSubjects)
+        setstudentage(props.profile.targetStuAge)
+        setstudentgender(props.profile.targetStuGen)
+        setstudentpers(props.profile.targetStuPerso)
+        setbio(props.profile.bio)
+        setabout(props.profile.about)
+        setGooglemeetlink(props.profile.googlemeetlink)
+        setCurVolProg(props.profile.curvolprog)
+        if (props.profile.lang == 'chinese') setStatus(1)
         else setStatus(0)
-      },
-    )
+    }else{
+      console.log("props failed");
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          console.log(props.profile)
+          setname(response.data.user[0].username)
+          setphone(response.data.user[0].phone)
+          setemail(response.data.user[0].email)
+          setgender(response.data.user[0].gender)
+          setbirthday(response.data.user[0].birthday)
+          setgrade(response.data.user[0].grade)
+          setschool(response.data.user[0].schoolname)
+          setpreferredsubject(response.data.user[0].preferredSubjects)
+          setstudentage(response.data.user[0].targetStuAge)
+          setstudentgender(response.data.user[0].targetStuGen)
+          setstudentpers(response.data.user[0].targetStuPerso)
+          setbio(response.data.user[0].bio)
+          setabout(response.data.user[0].about)
+          setGooglemeetlink(response.data.user[0].googlemeetlink)
+          setCurVolProg(response.data.user[0].curvolprog)
+          if (response.data.user[0].lang == 'chinese') setStatus(1)
+          else setStatus(0)
+        },
+      )
+    }
   }, [])
 
   return (
