@@ -94,7 +94,9 @@
   }
   .nav-m {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: repeat(4, auto); 
     grid-gap: 10px;
     list-style: none;
     text-align: center;
