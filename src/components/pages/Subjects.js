@@ -4,6 +4,7 @@ import Navbar from '../Navbar'
 import Grid from '../Grid'
 import Loading from '../Loading'
 import React, { useState, useEffect } from 'react'
+import Axios from 'axios'
 import { useLocation } from 'react-router-dom';
 
 
