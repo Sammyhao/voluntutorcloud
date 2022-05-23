@@ -19,7 +19,7 @@ function Home() {
   const [role, setRole] = useState(""); // role of the user
   const [isLoading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [lang, setLang] = useState(true); // lang of the user
+  const [lang, setLang] = useState(""); // lang of the user
   const [name, setName] = useState("");
 
   useEffect(() => {
