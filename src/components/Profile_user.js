@@ -132,7 +132,7 @@ function Profile_user(props) {
   let no = ['You are now enrolled in: ', '目前參與的計畫為：']
   let op = [' volunteering program', ' 志工計畫']
 
-  // google meet changing
+  // google meet changing for future uses
   let kl = [
     'Make sure the Google Meet Link is set up with your PERSONAL account, not school account. If your link is incorrect, update the correct link down below.',
     '請確認你的Google Meet連結是用你的私人帳號設定的，而非學校帳號。若你的連結於一開始設定時錯誤，請將正確的連結填入以下欄位。',
