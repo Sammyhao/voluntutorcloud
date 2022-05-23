@@ -22,18 +22,18 @@ function Subjects(props) {
           console.log(response.data);
           if(!response.data.isLoggedIn) {
             setIsLoggedIn(false);
+            setLoading(false);
           }else{
             setIsLoggedIn(true);
             setLang(response.data.user[0].lang);
+            setLoading(false);
           }
-          setLoading(false);
         }
       )
+      if(location.state) {
+        setSubject(location.state.subject);
+      }
     }
-    if(location.state) {
-      setSubject(location.state.subject);
-    }
-    setLoading(false);
   }, [location.state])
 
   if(isLoading) {
