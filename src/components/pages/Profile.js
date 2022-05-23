@@ -9,32 +9,31 @@ import Loading from '../Loading'
 import S_Navbar from '../S_Navbar'
 
 export default function Profile() {
-  const [role, setRole] = useState("");
-  const [isLoading, setLoading] = useState(true);
-  const [profile, setProfile] = useState({});
+  const [role, setRole] = useState('')
+  const [isLoading, setLoading] = useState(true)
+  const [profile, setProfile] = useState({})
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        setRole(response.data.user[0].role);
-        setProfile(response.data.user[0]);
-        setLoading(false);
-      }
+        setRole(response.data.user[0].role)
+        setProfile(response.data.user[0])
+        setLoading(false)
+      },
     )
   })
-  
-  if(isLoading) {
-    return(
+
+  if (isLoading) {
+    return (
       <>
-      <Loading/>
+        <Loading />
       </>
     )
-
-  } else{
-    if (role == "teacher") {
+  } else {
+    if (role == 'teacher') {
       return (
         <>
-          <Navbar></Navbar>
+          <Navbar lang={lang} isLoggedIn={isLoggedIn}></Navbar>
           <Prof></Prof>
           <Footer></Footer>
         </>
