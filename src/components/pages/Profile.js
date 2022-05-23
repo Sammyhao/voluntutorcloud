@@ -16,18 +16,21 @@ export default function Profile() {
   const [portfolio, setPortfolio] = useState()
 
   useEffect(() => {
+
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        console.log(response.data.user[0]);
-        setRole(response.data.user[0].role);
-        setLang(response.data.user[0].lang);
-        setProfile(response.data.user[0]);
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-          name: response.data.user[0].lastname + response.data.user[0].firstname,
-        }).then((response) => {
-          setPortfolio(response.data[0]);
-        })
-        setLoading(false);
+        if(isLoading) {
+          console.log(response.data.user[0]);
+          setRole(response.data.user[0].role);
+          setLang(response.data.user[0].lang);
+          setProfile(response.data.user[0]);
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+            name: response.data.user[0].lastname + response.data.user[0].firstname,
+          }).then((response) => {
+            setPortfolio(response.data[0]);
+          })
+          setLoading(false);
+        }
       }
     )
   })
