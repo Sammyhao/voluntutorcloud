@@ -16,20 +16,20 @@ function Subjects(props) {
   const [lang, setLang] = useState(""); // lang of the user
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      (response) => {
-        console.log(response.data);
-        if(!response.data.isLoggedIn) {
-          setIsLoggedIn(false);
-        }else{
-          setIsLoggedIn(true);
-          setLang(response.data.user[0].lang);
-          console.log("language: ",lang)
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          console.log(response.data);
+          if(!response.data.isLoggedIn) {
+            setIsLoggedIn(false);
+          }else{
+            setIsLoggedIn(true);
+            setLang(response.data.user[0].lang);
+          }
+          setLoading(false);
         }
-        setLoading(false);
-      }
-    )
-
+      )
+    }
     if(location.state) {
       setSubject(location.state.subject);
     }
@@ -43,6 +43,8 @@ function Subjects(props) {
       </>
     )
   } else {
+    console.log("language: ",lang)
+    console.log("isloggedin: ", isLoggedIn)
     return (
       <>
         <Navbar lang = {lang} isLoggedIn={isLoggedIn}></Navbar>
