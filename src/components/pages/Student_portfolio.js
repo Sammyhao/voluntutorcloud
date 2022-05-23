@@ -18,7 +18,6 @@ export default function Student_portfolio() {
   const [multistudentname, setMultistudentname] = useState([]);
   
   let username = "";
-
   
   useEffect(() => {
     if(isLoading) {
@@ -76,7 +75,7 @@ export default function Student_portfolio() {
     if (role == "teacher") {
       return (
         <>
-        <Navbar></Navbar>
+        <Navbar lang={lang}></Navbar>
         <Port lang={lang} contactInfo={contactInfo} portfolio={studentProfolio} multistudentname={multistudentname}></Port>
         <Footer lang={lang}></Footer>
       </>
@@ -84,9 +83,9 @@ export default function Student_portfolio() {
     } else {
       return (
         <>
-        <S_Navbar></S_Navbar>
+        <S_Navbar lang={lang}></S_Navbar>
         <S_Port></S_Port>
-        <Footer></Footer>
+        <Footer lang={lang}></Footer>
       </>
       )
     }

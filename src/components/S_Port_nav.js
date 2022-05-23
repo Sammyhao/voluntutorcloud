@@ -1,40 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from './Button'
 import { Link } from 'react-router-dom'
 import './Port_nav.css'
-import Dropdown from './Dropdown'
-import { BsFillPersonFill } from 'react-icons/bs'
 import { FaBars } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
 import { S_SidebarData } from './S_SidebarData'
 import { C_S_SidebarData } from './C_S_SidebarData'
-
-import { IconContext } from 'react-icons'
-import Axios from 'axios'
 import '@progress/kendo-theme-default/dist/all.css'
 
-function S_Port_nav() {
-  // global variable!
+function S_Port_nav(props) {
+  window.addEventListener('resize', showButton)
   const [sidebar, setSidebar] = useState(false)
   const showSidebar = () => setSidebar(!sidebar)
-  let status = 0;
-  // global variable!
-  const [dropdown, setDropDown] = useState(false)
   const [click, setClick] = useState(false)
   const [button, setButton] = useState(true)
+  const [status, setStatus] = useState(0)
   const handleClick = () => setClick(!click)
-  const closeMobileMenu = () => setClick(false)
   
-  const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
-      setDropDown(false)
-    } else {
-      setDropDown(true)
-    }
-  }
-  const onMouseLeave = () => {
-    setDropDown(false)
-  }
   const showButton = () => {
     if (window.innerWidth <= 1080) {
       setButton(false)
@@ -44,10 +25,11 @@ function S_Port_nav() {
   }
 
   useEffect(() => {
+  if(props.lang == "chinese") setStatus(1)
+  else setStatus(0)
     showButton()
   }, [])
 
-  window.addEventListener('resize', showButton)
   if (status ==0){
   return (
     <>
