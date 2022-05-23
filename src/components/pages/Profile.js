@@ -11,6 +11,7 @@ import S_Navbar from '../S_Navbar'
 export default function Profile() {
   const [role, setRole] = useState("");
   const [isLoading, setLoading] = useState(true);
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
