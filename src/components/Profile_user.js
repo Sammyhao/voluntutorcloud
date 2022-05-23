@@ -354,6 +354,7 @@ function Profile_user(props) {
   useEffect(() => {
     console.log(props.profile);
     if(props.profile){
+      if(name) {
         setname(props.profile.username)
         setphone(props.profile.phone)
         setemail(props.profile.email)
@@ -371,6 +372,7 @@ function Profile_user(props) {
         setCurVolProg(props.profile.curvolprog)
         if (props.profile.lang == 'chinese') setStatus(1)
         else setStatus(0)
+      }
     }else{
       console.log("props failed");
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
