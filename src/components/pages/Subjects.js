@@ -2,7 +2,7 @@ import '../../App.css'
 import Footer from '../Footer'
 import Navbar from '../Navbar'
 import Grid from '../Grid'
-// import C_Grid from '../C_Grid'
+import Loading from '../Loading'
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 
@@ -11,8 +11,23 @@ function Subjects(props) {
   const [subject, setSubject] = useState("")
   const location = useLocation()
   const [isLoading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [lang, setLang] = useState(""); // lang of the user
 
   useEffect(() => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+      (response) => {
+        console.log(response.data);
+        if(!response.data.isLoggedIn) {
+          setIsLoggedIn(false);
+          setLoading(false);
+        }else{
+          setIsLoggedIn(true);
+          setLang(response.data.user[0].lang);
+          setLoading(false);
+        }
+      }
+    )
     if(location.state) {
       setSubject(location.state.subject);
     }
@@ -22,16 +37,15 @@ function Subjects(props) {
   if(isLoading) {
     return (
       <>
-        <Navbar></Navbar>
-        <Footer></Footer>
+        <Loading></Loading>
       </>
     )
   } else {
     return (
       <>
-        <Navbar></Navbar>
+        <Navbar lang = {lang} isLoggedIn = {isLoggedIn}></Navbar>
         <Grid sub={subject}></Grid>
-        <Footer></Footer>
+        <Footer lang = {lang}></Footer>
       </>
     )
   }

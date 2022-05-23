@@ -13,7 +13,7 @@ export default function Profile() {
   const [lang, setLang] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [profile, setProfile] = useState({});
-  const [portfolio, setPortfolio] = useState()
+  const [portfolio, setPortfolio] = useState({});
 
   useEffect(() => {
 
@@ -24,12 +24,13 @@ export default function Profile() {
           setRole(response.data.user[0].role);
           setLang(response.data.user[0].lang);
           setProfile(response.data.user[0]);
+          console.log(response.data.user[0].lastname + response.data.user[0].firstname);
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
             name: response.data.user[0].lastname + response.data.user[0].firstname,
           }).then((response) => {
             setPortfolio(response.data[0]);
+            setLoading(false);
           })
-          setLoading(false);
         }
       }
     )

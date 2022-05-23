@@ -3,14 +3,6 @@ import { Divider } from '@mui/material'
 import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import './Booking.css'
 import emailjs from "emailjs-com";
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Button from '@mui/material/Button'
-import { FaUser } from 'react-icons/fa'
-import Typography from '@material-ui/core/Typography'
 import Loading from './Loading'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
@@ -38,18 +30,70 @@ const BootstrapDialogTitle = (props) => {
   )
 }
 
-let program = 0
-
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
 
 export default function Booking() {
   const [nameclick, setnameclick] = useState(false)
+  const [multistudentname, setMultistudentname] = useState([]);
+  const [chosenStuname, setChosenStuname] = useState('');
+  const [noneopen, setnoneopen] = useState(false)
+  const [bookedwarn, setbookedwarn] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [finalopen, setfinalopen] = useState(false)
+  const [date, setdate] = useState('')
+  const [time, settime] = useState('')
+  const [duration, setduration] = useState('')
+  const [status, setStatus] = useState(0);
+  const [isLoading, setLoading] = useState(true);
+  const [contactInfo, setContactInfo] = useState([]);
+  const [haveSetStatus, setHaveSetStatus] = useState(false);
+  const [bookingInfo, setBookingInfo] = useState([]);
+  const [bookingInfoLen, setBookingInfoLen] = useState(0);
+  const [chosenEmail, setChosenEmail] = useState("");
+  const [pendingBookingInfo, setPendingBookingInfo] = useState([]);
+  const [name, setName] = useState("");
+  let username = ""
+  let studentname = "";
+  let tempstudentname = "";
+  let datearr = [];
   
+  // titles
+  let n = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
+  let o = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
+  let a = ["Book A Meeting", "預約會議"]
+  let b = ["Send Invitation","傳送邀請"]
+  let c = ["Date: ","日期："]
+  let d = ["Enter the Date (Format: 2022/05/01)","請輸入日期 (格式：2022/05/01)"]
+  let e = ["Time: ","時間："]
+  let f = ["Enter the Time (Format: 18:00~19:00)","請輸入時間 (格式：18:00~19:00)"]
+  let g = ["Duration: ","課程時長："]
+  let h = ["Enter the Duration (Numbers only, format: 1.5)","請輸入課程時長 (僅限數字，格式：1.5)"]
+  let i = ["Please double check before you send the invitation.","在傳送前請再次確認資料是否有誤。"]
+  let j = ["Please fill in all the fields.","請完整填入資訊"]
+  let k = ["Booking Invitation sent. Please check the message box if the student is unavailable during the time.","會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議。"]
+  let mm = ["There isn't any upcoming meetings yet :)","目前沒有即將到來的會議 :)"]
+  let nn = ["There isn't any pending requests :)", '目前沒有待確認的會議邀請']
+  let l = ['Upcoming Meetings', "即將到來的會議"]
+  let q = ['Pending Requests',"待確認的會議邀請"]
+
+  // dialog
+  const handleClose = () => {
+    setOpen(false)
+  }
+  const handleBook = () =>{
+    setbookedwarn(false)
+  }
+  const handlenoneclose = () => {
+    setnoneopen(false)
+  }
+  const handlefinalclose = () => {
+    setfinalopen(false)
+  } 
+
+  // multi students
   function multistyle() {
-    console.log("into function")
-    console.log(multistudentname);
     if(multistudentname.length == 0){
       return (
       <div></div>
@@ -81,10 +125,26 @@ export default function Booking() {
     }
   }
 
-  const [multistudentname, setMultistudentname] = useState([]);
-  const [chosenStuname, setChosenStuname] = useState('');
+  // functions
+  const sendfirst = () => {
+    console.log("sendfirst");
+    if(date== "" || time == "" || duration == ""){
+          setnoneopen(true)
+    } else{
+        setOpen(true)
+        console.log("open first")
+    }
+  }  
 
-  let tempstudentname = "";
+  const sendsecond = () => {
+    setOpen(false)
+    // save the data here (date,time,duration)
+    console.log("You better come in");
+    updateBooking();
+    console.log("bookingdone")
+    setfinalopen(true)
+  }  
+
   const updateMultistudentname = (e) => {
     console.log(e);
     if(e == contactInfo[1].studentname) {
@@ -96,10 +156,8 @@ export default function Booking() {
       setMultistudentname([contactInfo[1].studentname]);
       tempstudentname = contactInfo[0].studentname;
     }
-
     setChosenStuname(tempstudentname);
     console.log(tempstudentname);
-
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
       username: name,
       studentname: tempstudentname,
@@ -111,40 +169,6 @@ export default function Booking() {
     })
   }
   
-    const [noneopen, setnoneopen] = useState(false)
-    const [bookedwarn, setbookedwarn] = useState(false)
-    const [open, setOpen] = useState(false)
-    const [finalopen, setfinalopen] = useState(false)
-    
-    const handleClose = () => {
-        setOpen(false)
-      }
-      const handleBook = () =>{
-        setbookedwarn(false)
-      }
-      const handlenoneclose = () => {
-        setnoneopen(false)
-      }
-      const handlefinalclose = () => {
-        setfinalopen(false)
-      }
-
-  const [date, setdate] = useState('')
-  const [time, settime] = useState('')
-  const [duration, setduration] = useState('')
-  const [status, setStatus] = useState(0);
-  const [isLoading, setLoading] = useState(true);
-  const [contactInfo, setContactInfo] = useState([]);
-  const [haveSetStatus, setHaveSetStatus] = useState(false);
-  const [bookingInfo, setBookingInfo] = useState([]);
-  const [bookingInfoLen, setBookingInfoLen] = useState(0);
-  const [chosenEmail, setChosenEmail] = useState("");
-  const [pendingBookingInfo, setPendingBookingInfo] = useState([]);
-
-  let username = "", studentname = "";
-  const [name, setName] = useState("");
-  let datearr = [];
-
   function deleteBooking(booking) {
     console.log(booking);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteBooking', {
@@ -202,85 +226,6 @@ export default function Booking() {
     }
     return bkinfo;
   }
-  
-  useEffect(() => {
-    if(isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-        username = response.data.user[0].username;
-        setName(username);
-        if(response.data.user[0].lang == "chinese") setStatus(1);
-        else setStatus(0);
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
-          username: username
-        }).then((response) => {
-          setContactInfo(response.data);
-          studentname = response.data[0].studentname;
-          setChosenStuname(studentname);
-          setChosenEmail(response.data[0].studentmail)
-          console.log(response.data.length);
-          if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
-          console.log(username, studentname);
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
-            username: username,
-            studentname: studentname,
-            status: "confirmed"
-          }).then((response) => {
-            console.log(response);
-            setBookingInfo(checkBookingInfoValidity(response.data));
-          })
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
-            username: username,
-            studentname: studentname,
-            status: "pending"
-          }).then((response) => {
-            console.log(response);
-            setPendingBookingInfo(checkBookingInfoValidity(response.data));
-            setLoading(false);
-          })
-        })
-      })
-    }
-  }, [])
-
-
-  let space = " "
-  let n = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
-  let o = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
-  let a = ["Book A Meeting", "預約會議"]
-  let b = ["Send Invitation","傳送邀請"]
-  let c = ["Date: ","日期："]
-  let d = ["Enter the Date (Format: 2022/05/01)","請輸入日期 (格式：2022/05/01)"]
-  let e = ["Time: ","時間："]
-  let f = ["Enter the Time (Format: 18:00~19:00)","請輸入時間 (格式：18:00~19:00)"]
-  let g = ["Duration: ","課程時長："]
-  let h = ["Enter the Duration (Numbers only, format: 1.5)","請輸入課程時長 (僅限數字，格式：1.5)"]
-  let i = ["Please double check before you send the invitation.","在傳送前請再次確認資料是否有誤。"]
-  let j = ["Please fill in all the fields.","請完整填入資訊"]
-  let k = ["Booking Invitation sent. Please check the message box if the student is unavailable during the time.","會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議。"]
-  let mm = ["There isn't any upcoming meetings yet :)","目前沒有即將到來的會議 :)"]
- 
-  let nn = ["There isn't any pending requests :)", '目前沒有待確認的會議邀請']
-  let l = ['Upcoming Meetings', "即將到來的會議"]
-  let q = ['Pending Requests',"待確認的會議邀請"]
-  let p = ["You have already successfully booked a meeting with your student. Please book the next session after the upcoming meeting is over.","您已經和學生成功預約會議，請在下次會議結束後再預約接下來的課程。"]
-  
-  const sendfirst = () => {
-    console.log("sendfirst");
-    if(date== "" || time == "" || duration == ""){
-          setnoneopen(true)
-    } else{
-        setOpen(true)
-        console.log("open first")
-    }
-  }  
-  const sendsecond = () => {
-    setOpen(false)
-    // save the data here (date,time,duration)
-    console.log("You better come in");
-    updateBooking();
-    console.log("bookingdone")
-    setfinalopen(true)
-  }  
 
   const updateBooking = () => {
       console.log(name, chosenStuname, date, time, duration)
@@ -320,7 +265,45 @@ export default function Booking() {
     settime("")
     setduration("")
   }
+ 
   
+  useEffect(() => {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        username = response.data.user[0].username;
+        setName(username);
+        if(response.data.user[0].lang == "chinese") setStatus(1);
+        else setStatus(0);
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+          username: username
+        }).then((response) => {
+          setContactInfo(response.data);
+          studentname = response.data[0].studentname;
+          setChosenStuname(studentname);
+          setChosenEmail(response.data[0].studentmail)
+          console.log(response.data.length);
+          if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
+          console.log(username, studentname);
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+            username: username,
+            studentname: studentname,
+            status: "confirmed"
+          }).then((response) => {
+            console.log(response);
+            setBookingInfo(checkBookingInfoValidity(response.data));
+          })
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+            username: username,
+            studentname: studentname,
+            status: "pending"
+          }).then((response) => {
+            console.log(response);
+            setPendingBookingInfo(checkBookingInfoValidity(response.data));
+            setLoading(false);
+          })
+        })
+      })
+  }, [])
+
   // 這裡true的條件改成是否有學生喔
   if(isLoading){
     console.log("contactinfo length: ", contactInfo.length)

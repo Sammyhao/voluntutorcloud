@@ -11,13 +11,17 @@ import S_Navbar from '../S_Navbar'
 export default function Appointment() {
   const [role, setRole] = useState("");
   const [isLoading, setLoading] = useState(true);
-  let username = "";
+ const [lang, setLang] = useState(""); // lang of the user
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        setRole(response.data.user[0].role);
-        setLoading(false);
+        console.log(response.data);
+        
+          setRole(response.data.user[0].role);
+          setLang(response.data.user[0].lang);
+          setLoading(false);
+        
       }
     )
   })
@@ -32,17 +36,18 @@ export default function Appointment() {
     if (role == "teacher") {
       return (
         <>
-          <Navbar></Navbar>
+          <Navbar lang = {lang} isLoggedIn={true}></Navbar>
           <Book></Book>
-          <Footer></Footer>
+          <Footer lang={lang}></Footer>
         </>
       )
     } else {
       return (
         <>
-          <S_Navbar></S_Navbar>
+        <S_Navbar lang={lang} isLoggedIn={true}></S_Navbar>
+        
           <S_Booking></S_Booking>
-          <Footer></Footer>
+          <Footer lang={lang}></Footer>
         </>
       )
     }
