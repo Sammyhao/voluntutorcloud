@@ -25,9 +25,9 @@ function S_Port_nav(props) {
   }
 
   useEffect(() => {
-  if(props.lang == "chinese") setStatus(1)
-  else setStatus(0)
-    showButton()
+    if(props.lang == "chinese") setStatus(1)
+    else setStatus(0)
+      showButton()
   }, [])
 
   if (status ==0){

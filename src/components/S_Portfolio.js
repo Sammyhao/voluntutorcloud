@@ -77,19 +77,7 @@ export default function S_Portfolio() {
               if(response.data[0].about != '') 
               setabout(response.data[0].about) 
               else setabout(about)
-              console.log(
-                "name, phone, email, gender, birthday, grade, school, bio, about")
-              console.log(
-                name,
-                phone,
-                email,
-                gender,
-                birthday,
-                grade,
-                school,
-                bio,
-                about,
-              )
+              
               setLoading(false)
             })
           })
