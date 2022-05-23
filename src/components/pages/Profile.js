@@ -17,6 +17,7 @@ export default function Profile() {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
         setRole(response.data.user[0].role);
+        setProfile(response.data.user[0]);
         setLoading(false);
       }
     )
