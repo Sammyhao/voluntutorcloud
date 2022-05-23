@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { BiEdit } from 'react-icons/bi'
 import { FaUser } from 'react-icons/fa'
 import { AiFillLock } from 'react-icons/ai'
-import { MdModeEdit } from 'react-icons/md'
 import { BsCheckLg } from 'react-icons/bs'
 import './Profile_user.css'
 import { Divider } from '@mui/material'
@@ -107,6 +106,7 @@ function S_Profile_user(props) {
   let p = ['9th/10th/11th', '九/十/十一']
   let q = ['School: ', '學校：']
   let r = ['Enter school', '輸入學校']
+  let u = ['ex: Chinese/Math...', '例如：國/數...']
   let bc = ['Bio', '自介']
   let cd = ['Add your bio here!', '填入你的自介！']
   let de = ['About me', '關於我']
