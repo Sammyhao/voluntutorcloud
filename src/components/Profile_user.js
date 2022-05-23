@@ -1,17 +1,16 @@
+// imports
 import React, { useState, useEffect } from 'react'
 import { BiEdit } from 'react-icons/bi'
-import Loading from './Loading'
 import { FaUser } from 'react-icons/fa'
 import { AiFillLock } from 'react-icons/ai'
 import { MdModeEdit } from 'react-icons/md'
 import { BsCheckLg } from 'react-icons/bs'
-
 import './Profile_user.css'
 import { Divider } from '@mui/material'
 import { BsFillEmojiSmileFill } from 'react-icons/bs'
 import Axios from 'axios'
 import '../App.css'
-import { Link, useNavigate, Route } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import validator from 'validator'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
@@ -27,8 +26,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }))
 
-function Profile_user() {
-
+function Profile_user(props) {
   const [name, setname] = useState('VolunTutor Cloud')
   const [phone, setphone] = useState('0912345678')
   const [email, setemail] = useState('vc@gmail.com')
@@ -42,37 +40,28 @@ function Profile_user() {
   const [studentpers, setstudentpers] = useState('outgoing')
   const [bio, setbio] = useState('For Better Unity, Help Your Community ')
   const [about, setabout] = useState('Join Voluntutor Cloud!')
-  const [curVolProg, setCurVolProg] = useState('');
-  const [password, setpassword] = useState('')
+  const [curVolProg, setCurVolProg] = useState('')
   const [errormessage, seterrormessage] = useState('')
   const [contacterror, setcontacterror] = useState('')
   const [personerror, setpersonerror] = useState('')
   const [prefererror, setprefererror] = useState('')
   const [bioerror, setbioerror] = useState('')
   const [abouterror, setabouterror] = useState('')
-  const [priverror, setpriverror] = useState('')
   const [readonlycontact, setreadcontact] = useState('disabled')
   const [readonlypersoninfo, setreadpersoninfo] = useState('disabled')
   const [readonlyprefer, setreadprefer] = useState('disabled')
   const [readonlybio, setreadbio] = useState('disabled')
   const [readonlyabout, setreadabout] = useState('disabled')
-  const [readonlypriv, setreadpriv] = useState('disabled')
   const [click, setClick] = useState(false)
   const [contactclick, setcontactclick] = useState(false)
   const [personinfoclick, setpersoninfoclick] = useState(false)
   const [preferclick, setpreferclick] = useState(false)
   const [bioclick, setbioclick] = useState(false)
   const [aboutclick, setaboutclick] = useState(false)
-  const [privacyclick, setprivacyclick] = useState(false)
-  // const [readonly, setread] = useState('')
-  const [userInfo, setUserInfo] = useState([])
   const [emailError, setEmailError] = useState('')
-  const [googlemeetlink, setGooglemeetlink] = useState('');
-  const [iconstyle, seticonstyle] = useState(
-    <div>
-      <MdModeEdit />
-    </div>,
-  )
+  const [googlemeetlink, setGooglemeetlink] = useState('')
+  const [open, setOpen] = useState(false)
+  const [status, setStatus] = useState(0)
   const [contactstyle, setcontactstyle] = useState(
     <div>
       <BiEdit />
@@ -99,15 +88,11 @@ function Profile_user() {
     </div>,
   )
   const navigate = useNavigate()
-  const [open, setOpen] = useState(false)
+  let username = ''
 
-  // let a = ["Please enter your name.","請輸入你的使用者名稱"]
+  // titles
   let b = ['Please enter a valid email.', '請輸入正確的Email']
   let c = ['Please fill in the blanks.', '請完整填入資訊']
-  let d = [
-    'Please contact the administrator to change the password.',
-    '請聯絡主辦者以更改密碼。',
-  ]
   let e = ['Enter Your Name', '請輸入你的名字']
   let f = ['Contact Information', '聯絡資訊']
   let g = ['Phone: ', '手機號碼：']
@@ -144,6 +129,10 @@ function Profile_user() {
     'Please contact the administrator to change the password.',
     '請聯絡管理者以更改密碼。',
   ]
+  let no = ['You are now enrolled in: ', '目前參與的計畫為：']
+  let op = [' volunteering program', ' 志工計畫']
+
+  // google meet changing
   let kl = [
     'Make sure the Google Meet Link is set up with your PERSONAL account, not school account. If your link is incorrect, update the correct link down below.',
     '請確認你的Google Meet連結是用你的私人帳號設定的，而非學校帳號。若你的連結於一開始設定時錯誤，請將正確的連結填入以下欄位。',
@@ -153,14 +142,8 @@ function Profile_user() {
     'The following Google Meet Link is the link you provided during registration.',
     '以下連結為你當時報名時提供的Google Meet 連結。',
   ]
-  let no = [
-    'You are now enrolled in: ',
-    '目前參與的計畫為：',
-  ]
-  let op = [
-    ' volunteering program',
-    ' 志工計畫',
-  ]
+
+  // dialog
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
 
@@ -177,8 +160,8 @@ function Profile_user() {
   const handleClose = () => {
     setOpen(false)
   }
- 
 
+  //functions
   const validateEmail = (e) => {
     var email = e.target.value
     if (!validator.isEmail(email)) {
@@ -204,22 +187,16 @@ function Profile_user() {
       }
     }
 
-    Axios.post(
-      'https://voluntutorcloud-server.herokuapp.com/updatePhone',
-      {
-        username: name,
-        phone: phone,
-      },
-    ).then((response) => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updatePhone', {
+      username: name,
+      phone: phone,
+    }).then((response) => {
       console.log(response)
     })
-    Axios.post(
-      'https://voluntutorcloud-server.herokuapp.com/updateEmail',
-      {
-        username: name,
-        email: email,
-      },
-    ).then((response) => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateEmail', {
+      username: name,
+      email: email,
+    }).then((response) => {
       console.log(response)
     })
   }
@@ -240,31 +217,22 @@ function Profile_user() {
       }
     }
 
-    Axios.post(
-      'https://voluntutorcloud-server.herokuapp.com/updateGender',
-      {
-        username: name,
-        gender: gender,
-      },
-    ).then((response) => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateGender', {
+      username: name,
+      gender: gender,
+    }).then((response) => {
       console.log(response)
     })
-    Axios.post(
-      'https://voluntutorcloud-server.herokuapp.com/updateBirthday',
-      {
-        username: name,
-        birthday: birthday,
-      },
-    ).then((response) => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBirthday', {
+      username: name,
+      birthday: birthday,
+    }).then((response) => {
       console.log(response)
     })
-    Axios.post(
-      'https://voluntutorcloud-server.herokuapp.com/updateGrade',
-      {
-        username: name,
-        grade: grade,
-      },
-    ).then((response) => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateGrade', {
+      username: name,
+      grade: grade,
+    }).then((response) => {
       console.log(response)
     })
     Axios.post(
@@ -279,13 +247,6 @@ function Profile_user() {
   }
 
   const handleclick_pref = () => {
-    // console.log("outside")
-    // if(preferredsubject=="" || studentage=="" || studentgender=="" || studentpers==""){
-    //   console.log("blanks there are")
-    //   setprefererror(c[status])
-    //   console.log(prefererror)
-    // }else
-    //    {
     setprefererror('')
     setpreferclick(!preferclick)
     setprefstyle(<BiEdit />)
@@ -344,13 +305,10 @@ function Profile_user() {
     } else {
       setreadbio('disabled')
     }
-    Axios.post(
-      'https://voluntutorcloud-server.herokuapp.com/updateBio',
-      {
-        username: name,
-        bio: bio,
-      },
-    ).then((response) => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBio', {
+      username: name,
+      bio: bio,
+    }).then((response) => {
       console.log(response)
     })
   }
@@ -366,13 +324,10 @@ function Profile_user() {
       setreadabout('disabled')
     }
 
-    Axios.post(
-      'https://voluntutorcloud-server.herokuapp.com/updateAbout',
-      {
-        username: name,
-        about: about,
-      },
-    ).then((response) => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateAbout', {
+      username: name,
+      about: about,
+    }).then((response) => {
       console.log(response)
     })
   }
@@ -385,9 +340,17 @@ function Profile_user() {
     )
   }
 
-  let username = ''
-  const [isLoading, setLoadings] = useState(true)
-  const [status, setStatus] = useState(0)
+  const changeLang = (lang) => {
+    console.log(name)
+    console.log(lang)
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/setLang', {
+      username: name,
+      lang: lang,
+    }).then((response) => {
+      console.log('set language to' + response)
+      navigate('/')
+    })
+  }
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -413,34 +376,6 @@ function Profile_user() {
       },
     )
   }, [])
-
-  const showUser = () => {
-    console.log(
-      name,
-      phone,
-      email,
-      gender,
-      birthday,
-      grade,
-      school,
-      preferredsubject,
-      studentage,
-      studentgender,
-      studentpers,
-    )
-  }
-
-  const changeLang = (lang) => {
-    console.log(name);
-    console.log(lang);
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/setLang', {
-      username: name,
-      lang: lang,
-    }).then((response) => {
-      console.log('set language to' + response)
-      navigate('/')
-    })
-  }
 
   return (
     <div className="frame">
@@ -476,7 +411,11 @@ function Profile_user() {
         </div>
         <div className="currentprogram">
           <BsFillEmojiSmileFill className="currentprogramicon"></BsFillEmojiSmileFill>
-          <div className="currentprogramcontent">{no[status]}{curVolProg}{op[status]}</div>
+          <div className="currentprogramcontent">
+            {no[status]}
+            {curVolProg}
+            {op[status]}
+          </div>
         </div>
         <div className="containerprofile">
           <div className="left">
