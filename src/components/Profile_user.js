@@ -39,6 +39,7 @@ function Profile_user(props) {
   const [studentpers, setstudentpers] = useState('outgoing')
   const [bio, setbio] = useState('For Better Unity, Help Your Community ')
   const [about, setabout] = useState('Join Voluntutor Cloud!')
+  const [hasSetData, setHasSetData] = useState(false);
   const [curVolProg, setCurVolProg] = useState('')
   const [errormessage, seterrormessage] = useState('')
   const [contacterror, setcontacterror] = useState('')
@@ -353,8 +354,9 @@ function Profile_user(props) {
 
   useEffect(() => {
     console.log(props.profile);
-    if(props.profile){
-      if(name) {
+    console.log(hasSetData);
+    if(!hasSetData) {
+      if(props.profile){
         setname(props.profile.username)
         setphone(props.profile.phone)
         setemail(props.profile.email)
@@ -372,31 +374,31 @@ function Profile_user(props) {
         setCurVolProg(props.profile.curvolprog)
         if (props.profile.lang == 'chinese') setStatus(1)
         else setStatus(0)
+      } else{
+        console.log("props failed");
+        Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+          (response) => {
+            console.log(props.profile)
+            setname(response.data.user[0].username)
+            setphone(response.data.user[0].phone)
+            setemail(response.data.user[0].email)
+            setgender(response.data.user[0].gender)
+            setbirthday(response.data.user[0].birthday)
+            setgrade(response.data.user[0].grade)
+            setschool(response.data.user[0].schoolname)
+            setpreferredsubject(response.data.user[0].preferredSubjects)
+            setstudentage(response.data.user[0].targetStuAge)
+            setstudentgender(response.data.user[0].targetStuGen)
+            setstudentpers(response.data.user[0].targetStuPerso)
+            setbio(response.data.user[0].bio)
+            setabout(response.data.user[0].about)
+            setGooglemeetlink(response.data.user[0].googlemeetlink)
+            setCurVolProg(response.data.user[0].curvolprog)
+            if (response.data.user[0].lang == 'chinese') setStatus(1)
+            else setStatus(0)
+          },
+        )
       }
-    }else{
-      console.log("props failed");
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
-          console.log(props.profile)
-          setname(response.data.user[0].username)
-          setphone(response.data.user[0].phone)
-          setemail(response.data.user[0].email)
-          setgender(response.data.user[0].gender)
-          setbirthday(response.data.user[0].birthday)
-          setgrade(response.data.user[0].grade)
-          setschool(response.data.user[0].schoolname)
-          setpreferredsubject(response.data.user[0].preferredSubjects)
-          setstudentage(response.data.user[0].targetStuAge)
-          setstudentgender(response.data.user[0].targetStuGen)
-          setstudentpers(response.data.user[0].targetStuPerso)
-          setbio(response.data.user[0].bio)
-          setabout(response.data.user[0].about)
-          setGooglemeetlink(response.data.user[0].googlemeetlink)
-          setCurVolProg(response.data.user[0].curvolprog)
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-        },
-      )
     }
   }, [])
 
