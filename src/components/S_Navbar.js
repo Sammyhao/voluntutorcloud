@@ -10,6 +10,7 @@ import Axios from 'axios'
 import { FiBell } from 'react-icons/fi'
 import '@progress/kendo-theme-default/dist/all.css'
 import { Divider } from '@material-ui/core'
+import Loading from './Loading'
 
 function S_Navbar(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -52,6 +53,7 @@ function S_Navbar(props) {
       setButton(true)
     }
   }
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     console.log(props)
@@ -82,6 +84,7 @@ function S_Navbar(props) {
         }).then((response) => {
           console.log(response.data);
           setNotif_data(response.data);
+          setLoading(false);
         })
       },
     )
@@ -93,6 +96,12 @@ function S_Navbar(props) {
   }, [])
 
   window.addEventListener('resize', showButton)
+  
+  if(isLoading) {
+    return (
+      <Loading></Loading> 
+    );
+  }
   if (isLoggedIn) {
     if (status == 0) {
       return (

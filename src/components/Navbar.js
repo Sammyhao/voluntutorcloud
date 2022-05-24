@@ -11,6 +11,7 @@ import Axios from 'axios'
 import '@progress/kendo-theme-default/dist/all.css'
 import { FiBell } from 'react-icons/fi'
 import { Divider } from '@material-ui/core'
+import Loading from './Loading'
 
 function Navbar(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -59,37 +60,41 @@ function Navbar(props) {
   //content是notification 內容 (如上，分三種)
 
   const [notif_data, setNotif_data] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     console.log(props)
-    if (props.lang && props.isLoggedIn) {
-      setIsLoggedIn(props.isLoggedIn)
-      if (props.lang == 'chinese') setStatus(1)
-      else setStatus(0)
-    } else {
-      console.log('props failed')
+    if(isLoading) {
+      if (props.lang && props.isLoggedIn) {
+        setIsLoggedIn(props.isLoggedIn)
+        if (props.lang == 'chinese') setStatus(1)
+        else setStatus(0)
+      } else {
+        console.log('props failed')
+        Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+          (response) => {
+            setIsLoggedIn(response.data.isLoggedIn)
+            if (response.data.user[0].lang == 'chinese') setStatus(1)
+            else setStatus(0)
+          },
+        )
+      }
+
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
-          setIsLoggedIn(response.data.isLoggedIn)
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
+          let username = "";
+          if(response.data.isLoggedIn) username = response.data.user[0].username;
+          console.log(username);
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
+            username: username,
+          }).then((response) => {
+            console.log(response.data);
+            setNotif_data(response.data);
+            setLoading(false);
+          })
         },
       )
     }
-
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      (response) => {
-        let username = "";
-        if(response.data.isLoggedIn) username = response.data.user[0].username;
-        console.log(username);
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
-          username: username,
-        }).then((response) => {
-          console.log(response.data);
-          setNotif_data(response.data);
-        })
-      },
-    )
 
   }, [])
 
@@ -97,7 +102,11 @@ function Navbar(props) {
     showButton()
   }, [])
 
-  if (isLoggedIn) {
+  if(isLoading) {
+    return (
+      <Loading></Loading>
+    );
+  } else if (isLoggedIn) {
     if (status == 0) {
       return (
         <>
