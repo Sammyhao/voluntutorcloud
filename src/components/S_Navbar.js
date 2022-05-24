@@ -258,10 +258,10 @@ function S_Navbar(props) {
                 {notif_data.map((e, index) => {
                   return (
                     <div key={index} className="wrap">
-                      <Link className="notif_link" to={e.type}>
+                      <Link className="notif_link" to={e.nottype}>
                         <div className="outsidewrap">
                           <div className="notif_title">{e.title}</div>
-                          <div className="notif_content">{e.content}</div>
+                          <div className="notif_content">{e.notcontent}</div>
                         </div>
                       </Link>
                       <Divider></Divider>
