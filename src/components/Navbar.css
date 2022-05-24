@@ -137,7 +137,7 @@
 .nav-m {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: repeat(4, auto);
+  grid-template-columns: repeat(4, auto);
   grid-gap: 10px;
   list-style: none;
   text-align: center;
