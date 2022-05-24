@@ -40,20 +40,24 @@ function Navbar(props) {
   let notif_data = [
     {
       type: '/message',
-      title: 'Message!',
+      title: 'Message',
       content: 'You received a message from ',
     },
     {
       type: '/book',
-      title: 'Booking!',
+      title: 'Booking',
       content: 'Your Booking Request has been confirmed by ',
     },
     {
       type: '/book',
-      title: 'Booking!',
+      title: 'Booking',
       content: 'Your Booking Request has been rejected by ',
     },
   ]
+  //type是頁面連結 (/message 或是 /book)
+  //title是notification 標題 (Message 或是 Booking)
+  //content是notification 內容 (如上，分三種)
+
   useEffect(() => {
     console.log(props)
     if (props.lang && props.isLoggedIn) {

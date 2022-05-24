@@ -76,7 +76,7 @@ function S_Msg() {
     }
     let content = "Your student " + usernameConst + " has send a message";
     console.log(content, content)
-    Axios.post('http://voluntutorcloud-server.herokuapp.com/addNotif', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: usernameConst,
       type: "/message",
       content: content,
