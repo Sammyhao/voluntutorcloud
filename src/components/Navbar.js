@@ -37,26 +37,28 @@ function Navbar(props) {
   let b = ['Programs', '志工計畫']
   let c = ['Contact', '聯絡我們']
   let d = ['SIGN IN/UP', '登入/註冊']
-  let notif_data = [
-    {
-      type: '/message',
-      title: 'Message',
-      content: 'You received a message from ',
-    },
-    {
-      type: '/book',
-      title: 'Booking',
-      content: 'Your Booking Request has been confirmed by ',
-    },
-    {
-      type: '/book',
-      title: 'Booking',
-      content: 'Your Booking Request has been rejected by ',
-    },
-  ]
+  // let notif_data = [
+  //   {
+  //     type: '/message',
+  //     title: 'Message',
+  //     content: 'You received a message from ',
+  //   },
+  //   {
+  //     type: '/book',
+  //     title: 'Booking',
+  //     content: 'Your Booking Request has been confirmed by ',
+  //   },
+  //   {
+  //     type: '/book',
+  //     title: 'Booking',
+  //     content: 'Your Booking Request has been rejected by ',
+  //   },
+  // ]
   //type是頁面連結 (/message 或是 /book)
   //title是notification 標題 (Message 或是 Booking)
   //content是notification 內容 (如上，分三種)
+
+  const [notif_data, setNotif_data] = useState([]);
 
   useEffect(() => {
     console.log(props)
@@ -74,6 +76,21 @@ function Navbar(props) {
         },
       )
     }
+
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+      (response) => {
+        let username = "";
+        if(response.data.isLoggedIn) username = response.data.user[0].username;
+        console.log(username);
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
+          username: username,
+        }).then((response) => {
+          console.log(response.data);
+          setNotif_data(response.data);
+        })
+      },
+    )
+
   }, [])
 
   useEffect(() => {
