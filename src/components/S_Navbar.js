@@ -18,25 +18,25 @@ function S_Navbar(props) {
   const [click, setClick] = useState(false)
   const [notification, setnotification] = useState(false)
   const [button, setButton] = useState(true)
-  const [notif, setNotif] = useState([]);
+  const [notif_data, setNotif_data] = useState([]);
 
   // titles
   let a = ['Home', '首頁']
   let b = ['Bookings', '會議預約']
   let c = ['Contact', '聯絡我們']
   let d = ['SIGN IN/UP', '登入/註冊']
-  let notif_data = [
-    {
-      type: '/message',
-      title: 'Message!',
-      content: 'You received a message from ',
-    },
-    {
-      type: '/book',
-      title: 'Booking!',
-      content: 'You received a booking request from',
-    },
-  ]
+  // let notif_data = [
+  //   {
+  //     type: '/message',
+  //     title: 'Message!',
+  //     content: 'You received a message from ',
+  //   },
+  //   {
+  //     type: '/book',
+  //     title: 'Booking!',
+  //     content: 'You received a booking request from',
+  //   },
+  // ]
   //type是頁面連結 (/message 或是 /book)
   //title是notification 標題 (Message 或是 Booking)
   //content是notification 內容 (如上，分兩種)
@@ -71,6 +71,19 @@ function S_Navbar(props) {
         },
       )
     }
+
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+      (response) => {
+        let username = "";
+        if(response.data.isLoggedIn) username = response.data.user[0].username;
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
+          username: username,
+        }).then((response) => {
+          setNotif_data(response.data);
+        })
+      },
+    )
+
   }, [])
 
   useEffect(() => {
