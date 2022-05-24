@@ -76,11 +76,11 @@ function S_Navbar(props) {
 
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        let username = "";
-        if(response.data.isLoggedIn) username = response.data.user[0].username;
-        console.log(username);
+        let name = "";
+        if(response.data.isLoggedIn) name = response.data.user[0].lastname + response.data.user[0].firstname;
+        console.log(name);
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
-          username: username,
+          username: name,
         }).then((response) => {
           console.log(response.data);
           setNotif_data(response.data);
