@@ -76,6 +76,7 @@ function S_Navbar(props) {
       (response) => {
         let username = "";
         if(response.data.isLoggedIn) username = response.data.user[0].username;
+        console.log(username);
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
           username: username,
         }).then((response) => {
