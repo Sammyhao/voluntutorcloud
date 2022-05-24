@@ -106,6 +106,7 @@ export default function S_Booking() {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: teacherusernameFU,
       type: "/booking",
+      title: "Booking",
       content: content,
       isnew: true
     }).then((response) => {

@@ -79,6 +79,7 @@ function S_Msg() {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: usernameConst,
       type: "/message",
+      title: "Message",
       content: content,
       isnew: true
     }).then((response) => {

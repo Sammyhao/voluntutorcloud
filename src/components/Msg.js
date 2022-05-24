@@ -91,6 +91,7 @@ function Msg() {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: studentnameConst,
       type: "/message",
+      title: "Booking",
       content: content,
       isnew: true
     }).then((response) => {

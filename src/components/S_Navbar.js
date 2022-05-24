@@ -18,6 +18,7 @@ function S_Navbar(props) {
   const [click, setClick] = useState(false)
   const [notification, setnotification] = useState(false)
   const [button, setButton] = useState(true)
+  const [notif, setNotif] = useState([]);
 
   // titles
   let a = ['Home', '首頁']
