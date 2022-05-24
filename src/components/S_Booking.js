@@ -103,7 +103,7 @@ export default function S_Booking() {
       console.log(response);
     });
     let content = studentnameFU + " has confirmed your booking request of the meeting at " + booking.date + " " + booking.time;
-    Axios.post('http://voluntutorcloud-server.herokuapp.com/addNotif', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: teacherusernameFU,
       type: "/booking",
       content: content,
