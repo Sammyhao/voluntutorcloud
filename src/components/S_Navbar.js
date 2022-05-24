@@ -96,7 +96,7 @@ function S_Navbar(props) {
   }, [])
 
   window.addEventListener('resize', showButton)
-  
+
   if(isLoading) {
     return (
       <Loading></Loading> 
@@ -161,12 +161,13 @@ function S_Navbar(props) {
             <nav className={notification ? 'notif active' : 'notif'}>
               <ul className="nav-menu-items" onClick={shownotification}>
                 {notif_data.map((e, index) => {
+                  console.log(e);
                   return (
                     <div key={index} className="wrap">
-                      <Link className="notif_link" to={e.type}>
+                      <Link className="notif_link" to={e.nottype}>
                         <div className="outsidewrap">
                           <div className="notif_title">{e.title}</div>
-                          <div className="notif_content">{e.content}</div>
+                          <div className="notif_content">{e.notcontent}</div>
                         </div>
                       </Link>
                       <Divider></Divider>
