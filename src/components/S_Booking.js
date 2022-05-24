@@ -68,6 +68,16 @@ export default function S_Booking() {
     }).then((response) => {
       console.log(response);
     });
+    let content = studentnameFU + " has cancelled your booking request of the meeting at " + booking.date + " " + booking.time;
+    console.log(content, content)
+    Axios.post('http://voluntutorcloud-server.herokuapp.com/addNotif', {
+      username: teacherusernameFU,
+      type: "/booking",
+      content: content,
+      isnew: true
+    }).then((response) => {
+      console.log(response);
+    })
     setcancel(false)
   }
 
@@ -92,6 +102,15 @@ export default function S_Booking() {
     }).then((response) => {
       console.log(response);
     });
+    let content = studentnameFU + " has confirmed your booking request of the meeting at " + booking.date + " " + booking.time;
+    Axios.post('http://voluntutorcloud-server.herokuapp.com/addNotif', {
+      username: teacherusernameFU,
+      type: "/booking",
+      content: content,
+      isnew: true
+    }).then((response) => {
+      console.log(response);
+    })
     setcancel(false)
   }
 
@@ -152,7 +171,7 @@ export default function S_Booking() {
             Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
               username: teacherusername, // bug
             }).then((response) => {
-              console.log(response);
+              console.log(response)
               setGoogleMeetLink(response.data[0].googlemeetlink);
               setTeacherRealname(response.data[0].firstname + " " + response.data[0].lastname);
             })

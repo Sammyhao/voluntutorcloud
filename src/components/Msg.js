@@ -86,6 +86,16 @@ function Msg() {
         console.log(response);
       })
     }
+    let content = "Your teacher " + usernameConst + " has send a message";
+    console.log(content, content)
+    Axios.post('http://voluntutorcloud-server.herokuapp.com/addNotif', {
+      username: studentnameConst,
+      type: "/message",
+      content: content,
+      isnew: true
+    }).then((response) => {
+      console.log(response);
+    })
     setMsgForUpd(tempMsgForUpd);
   }
 
