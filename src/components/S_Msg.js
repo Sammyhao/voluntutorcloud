@@ -57,6 +57,7 @@ function S_Msg() {
     let tempMsgForUpd = msgStr + msgForUpd;
     console.log("lastestMsg");
     console.log(lastestMsg);
+    setLastestMsg(curMsg);
     if(msgRec.length == "") {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/createMsg', {
         username: usernameConst,
@@ -74,7 +75,7 @@ function S_Msg() {
         console.log(response);
       })
     }
-    let content = "Your student " + usernameConst + " has send a message";
+    let content = "Your student " + studentnameConst + " has send a message";
     console.log(content, content)
     Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: usernameConst,
