@@ -8,42 +8,47 @@ import { MdAirlineSeatFlatAngled } from 'react-icons/md'
 
 function HeroSection(props) {
   Axios.defaults.withCredentials = true
-  
+
   // usestates
-  const [status, setStatus] = useState(0);
-  const [name, setName] = useState('');
+  const [status, setStatus] = useState(0)
+  const [name, setName] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  let username = "";
-  
+  let username = ''
+
   // titles
-  let a = ["WELCOME","歡迎"]
-  let b = ["Let's Create a Better Community Together!" ,"和我們一起創造一個更美好的社區吧！"]
-  let c = ["Get Started","註冊帳號"]
-  let d = ["LOGIN","登入"]
+  let a = ['WELCOME', '歡迎']
+  let b = [
+    "Let's Create a Better Community Together!",
+    '和我們一起創造一個更美好的社區吧！',
+  ]
+  let c = ['Get Started', '註冊帳號']
+  let d = ['LOGIN', '登入']
 
   useEffect(() => {
     console.log(props)
-    if(props.isLoggedIn) {
-      setIsLoggedIn(props.isLoggedIn);
-      if(props.lang && props.name) {
-        setName(props.name);
-        if(props.lang == "chinese") setStatus(1);
-        else setStatus(0);
+    if (props.isLoggedIn) {
+      setIsLoggedIn(props.isLoggedIn)
+      if (props.lang && props.name) {
+        setName(props.name)
+        if (props.lang == 'chinese') setStatus(1)
+        else setStatus(0)
       }
     } else {
-      console.log("props failed")
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-        if (response.data.isLoggedIn) {
-          setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
-          if(response.data.user[0].lang == "chinese") setStatus(1);
-          else setStatus(0);
-        }
-        setIsLoggedIn(response.data.isLoggedIn)
-      })
+      console.log('not logged in')
+      setIsLoggedIn(false)
+      // console.log("props failed")
+      // Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+      //   if (response.data.isLoggedIn) {
+      //     setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
+      //     if(response.data.user[0].lang == "chinese") setStatus(1);
+      //     else setStatus(0);
+      //   }
+      //   setIsLoggedIn(response.data.isLoggedIn)
+      // })
     }
   }, [])
-  
-  if(!isLoggedIn){
+
+  if (!isLoggedIn) {
     return (
       <div className="hero-container">
         <div className="left_hero">
@@ -63,14 +68,16 @@ function HeroSection(props) {
         </div>
       </div>
     )
-  }else{
+  } else {
     return (
       <div className="hero-container">
         <div className="left_hero">
           <img className="pic_reg" src="/images/vc_logo.png" />
         </div>
         <div className="right_hero">
-          <h1 id="loggedintitle">{a[status]}, {name} </h1>
+          <h1 id="loggedintitle">
+            {a[status]}, {name}{' '}
+          </h1>
           <div id="loggedinsub">{b[status]}</div>
         </div>
       </div>
