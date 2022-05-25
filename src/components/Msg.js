@@ -70,7 +70,7 @@ function Msg() {
     console.log("lastestMsg");
     console.log(lastestMsg);
     setLastestMsg(curMsg);
-    if(msgRec.length == "") {
+    if(msgForUpd == "") {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/createMsg', {
         username: usernameConst,
         studentname: studentnameConst,
