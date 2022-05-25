@@ -39,7 +39,7 @@ function Profile_user(props) {
   const [studentpers, setstudentpers] = useState('outgoing')
   const [bio, setbio] = useState('For Better Unity, Help Your Community ')
   const [about, setabout] = useState('Join Voluntutor Cloud!')
-  const [hasSetData, setHasSetData] = useState(false);
+  const [hasSetData, setHasSetData] = useState(false)
   const [curVolProg, setCurVolProg] = useState('')
   const [errormessage, seterrormessage] = useState('')
   const [contacterror, setcontacterror] = useState('')
@@ -348,15 +348,14 @@ function Profile_user(props) {
       lang: lang,
     }).then((response) => {
       console.log('set language to' + response)
-      navigate('/')
     })
   }
 
   useEffect(() => {
-    console.log(props.profile);
-    console.log(hasSetData);
-    if(!hasSetData) {
-      if(props.profile){
+    console.log(props.profile)
+    console.log(hasSetData)
+    if (!hasSetData) {
+      if (props.profile) {
         setname(props.profile.username)
         setphone(props.profile.phone)
         setemail(props.profile.email)
@@ -374,8 +373,8 @@ function Profile_user(props) {
         setCurVolProg(props.profile.curvolprog)
         if (props.profile.lang == 'chinese') setStatus(1)
         else setStatus(0)
-      } else{
-        console.log("props failed");
+      } else {
+        console.log('props failed')
         Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
           (response) => {
             console.log(props.profile)
@@ -680,11 +679,23 @@ function Profile_user(props) {
               <Divider className="line"></Divider>
               <div className="information">
                 <div className="language">
-                  <div className="lang" onClick={() => changeLang('chinese')}>
+                  <div
+                    className="lang"
+                    onClick={() => {
+                      setStatus(1)
+                      changeLang('chinese')
+                    }}
+                  >
                     中文
                   </div>
                   <div className="slash">/</div>
-                  <div className="lang" onClick={() => changeLang('english')}>
+                  <div
+                    className="lang"
+                    onClick={() => {
+                      setStatus(0)
+                      changeLang('english')
+                    }}
+                  >
                     English
                   </div>
                 </div>

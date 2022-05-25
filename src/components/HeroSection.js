@@ -24,6 +24,17 @@ function HeroSection(props) {
   let c = ['Get Started', '註冊帳號']
   let d = ['LOGIN', '登入']
 
+  const changeLang = (lang) => {
+    console.log(name)
+    console.log(lang)
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/setLang', {
+      username: name,
+      lang: lang,
+    }).then((response) => {
+      console.log('set language to' + response)
+    })
+  }
+
   useEffect(() => {
     if (!props.isLoggedIn) {
       console.log('not logged in')
@@ -88,6 +99,27 @@ function HeroSection(props) {
             {a[status]}, {name}{' '}
           </h1>
           <div id="loggedinsub">{b[status]}</div>
+        </div>
+        <div className="languagelog">
+          <div
+            className="wordslog"
+            onClick={() => {
+              setStatus(1)
+              changeLang('chinese')
+            }}
+          >
+            中
+          </div>
+          <div className="wordslog">/</div>
+          <div
+            className="wordslog"
+            onClick={() => {
+              setStatus(0)
+              changeLang('chinese')
+            }}
+          >
+            English
+          </div>
         </div>
       </div>
     )
