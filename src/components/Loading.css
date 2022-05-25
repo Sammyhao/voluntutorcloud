@@ -1,26 +1,27 @@
 .loading {
-    height: 100vh;
-    width: 100%;
-    background-color: #ebe6e2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #745140;
-    font-size: 30px;
-  }
-  .loadinggif {
-    width: 200px;
-    height: 200px;
-  }
-  .loadingword {
-    color: #b17b67;
-    padding: 50px;
-    letter-spacing: 3px;
-  }
-  .loadingbar {
-    margin-top: 30px;
-    width: 400px;
-  }
-  
+  height: 100vh;
+  overflow: block;
+  width: 100%;
+  background-color: #ebe6e2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  text-align: center;
+  color: #745140;
+  font-size: 30px;
+}
+.loadinggif {
+  width: 200px;
+  height: 200px;
+}
+.loadingword {
+  color: #b17b67;
+  padding: 50px;
+  letter-spacing: 3px;
+}
+.loadingbar {
+  margin-top: 30px;
+  width: 400px;
+}
