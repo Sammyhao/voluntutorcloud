@@ -72,7 +72,7 @@ export default function S_Booking() {
     console.log(content, content)
     Axios.post('http://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: teacherusernameFU,
-      type: "/booking",
+      type: "/book",
       content: content,
       isnew: true
     }).then((response) => {
@@ -105,7 +105,7 @@ export default function S_Booking() {
     let content = studentnameFU + " has confirmed your booking request of the meeting at " + booking.date + " " + booking.time;
     Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: teacherusernameFU,
-      type: "/booking",
+      type: "/book",
       title: "Booking",
       content: content,
       isnew: true
