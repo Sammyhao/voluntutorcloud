@@ -356,7 +356,7 @@ export default function S_Booking() {
               aria-labelledby="customized-dialog-title"
               open={cancelopen}
             >
-              <div className="bookingprogramdia">{j[status]}</div>
+              <div className="bookingcancelleddiatitle">{j[status]}</div>
               <div
                 className="navigateheaderdia"
                 onClick={() => {
@@ -446,7 +446,7 @@ export default function S_Booking() {
               aria-labelledby="customized-dialog-title"
               open={cancelopen}
             >
-              <div className="bookingprogramdia">{j[status]}</div>
+              <div className="bookingcancelleddiatitle">{j[status]}</div>
               <div
                 className="navigateheaderdia"
                 onClick={() => {
@@ -560,7 +560,7 @@ export default function S_Booking() {
               aria-labelledby="customized-dialog-title"
               open={cancelopen}
             >
-              <div className="bookingprogramdia">{j[status]}</div>
+              <div className="bookingcancelleddiatitle">{j[status]}</div>
               <div
                 className="navigateheaderdia"
                 onClick={() => {
