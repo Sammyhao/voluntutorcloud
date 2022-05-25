@@ -66,6 +66,7 @@ function Navbar(props) {
     if (!props.isLoggedIn) {
       console.log('not logged in')
       setIsLoggedIn(false)
+      setLoading(false)
     } else {
       console.log(props)
       if (isLoading) {
