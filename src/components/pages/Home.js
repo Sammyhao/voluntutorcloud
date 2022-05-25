@@ -16,7 +16,7 @@ import Axios from 'axios'
 
 function Home() {
   const [role, setRole] = useState('') // role of the user
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [lang, setLang] = useState('') // lang of the user
   const [name, setName] = useState('')
