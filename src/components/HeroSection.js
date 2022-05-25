@@ -32,7 +32,6 @@ function HeroSection(props) {
       lang: lang,
     }).then((response) => {
       console.log('set language to' + response)
-      navigate('/')
     })
   }
 
