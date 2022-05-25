@@ -348,7 +348,7 @@ function Profile_user(props) {
       lang: lang,
     }).then((response) => {
       console.log('set language to' + response)
-      navigate('/')
+      // navigate('/')
     })
   }
 
