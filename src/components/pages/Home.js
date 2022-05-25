@@ -15,28 +15,31 @@ import Loading from '../Loading'
 import Axios from 'axios'
 
 function Home() {
-
-  const [role, setRole] = useState(""); // role of the user
-  const [isLoading, setLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [lang, setLang] = useState(""); // lang of the user
-  const [name, setName] = useState("");
+  const [role, setRole] = useState('') // role of the user
+  const [isLoading, setLoading] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [lang, setLang] = useState('') // lang of the user
+  const [name, setName] = useState('')
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        console.log(response.data);
-        if(!response.data.isLoggedIn) {
-          setIsLoggedIn(false);
-          setLoading(false);
-        }else{
-          setIsLoggedIn(true);
-          setLang(response.data.user[0].lang);
-          setRole(response.data.user[0].role);
-          setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
-          setLoading(false);
+        console.log(response.data)
+        if (!response.data.isLoggedIn) {
+          setIsLoggedIn(false)
+          setLoading(false)
+        } else {
+          setIsLoggedIn(true)
+          setLang(response.data.user[0].lang)
+          setRole(response.data.user[0].role)
+          setName(
+            response.data.user[0].firstname +
+              ' ' +
+              response.data.user[0].lastname,
+          )
+          setLoading(false)
         }
-      }
+      },
     )
   })
 
@@ -46,49 +49,64 @@ function Home() {
   //   </>
   // )
 
-  if(isLoading) {
-    return(
+  if (isLoggedIn == false) {
+    return (
       <>
-      <Loading/>
+        <Navbar isLoggedIn={isLoggedIn}></Navbar>
+        <HeroSection isLoggedIn={isLoggedIn} />
+        <Function isLoggedIn={isLoggedIn}></Function>
+        <Homepageprog></Homepageprog>
+        <About_us></About_us>
+        <Team></Team>
+        <Footer></Footer>
       </>
     )
-  }else{
-    if(isLoggedIn == false) {
+  } else {
+    if (isLoading) {
       return (
         <>
-          <Navbar isLoggedIn = {isLoggedIn}></Navbar>
-          <HeroSection isLoggedIn={isLoggedIn}/>
-          <Function isLoggedIn={isLoggedIn}></Function>
-          <Homepageprog></Homepageprog>
-          <About_us></About_us>
-          <Team></Team>
-          <Footer></Footer>
+          <Loading />
         </>
-    )}else if(role == "teacher"){
-      return (
-        <>
-          <Navbar lang = {lang} isLoggedIn={isLoggedIn}></Navbar>
-          <HeroSection lang={lang} isLoggedIn={isLoggedIn} name={name}/>
-          <Function lang={lang} isLoggedIn={isLoggedIn}></Function>
-          <Homepageprog lang={lang}></Homepageprog>
-          <About_us lang={lang}></About_us>
-          <Team lang={lang}></Team>
-          <Footer lang={lang}></Footer>
-        </>
-    )} else {
-      return(
-        <>
-        <S_Navbar lang={lang} isLoggedIn={isLoggedIn}></S_Navbar>
-        <S_hero lang={lang} isLoggedIn={isLoggedIn} name={name}/>
-        <S_Function lang={lang} isLoggedIn={isLoggedIn}></S_Function>
-        <About_us lang={lang}></About_us>
-        <Team lang={lang}></Team>
-        <Footer lang={lang}></Footer>
-      </>
       )
+    } else {
+      if (isLoggedIn == false) {
+        return (
+          <>
+            <Navbar isLoggedIn={isLoggedIn}></Navbar>
+            <HeroSection isLoggedIn={isLoggedIn} />
+            <Function isLoggedIn={isLoggedIn}></Function>
+            <Homepageprog></Homepageprog>
+            <About_us></About_us>
+            <Team></Team>
+            <Footer></Footer>
+          </>
+        )
+      } else if (role == 'teacher') {
+        return (
+          <>
+            <Navbar lang={lang} isLoggedIn={isLoggedIn}></Navbar>
+            <HeroSection lang={lang} isLoggedIn={isLoggedIn} name={name} />
+            <Function lang={lang} isLoggedIn={isLoggedIn}></Function>
+            <Homepageprog lang={lang}></Homepageprog>
+            <About_us lang={lang}></About_us>
+            <Team lang={lang}></Team>
+            <Footer lang={lang}></Footer>
+          </>
+        )
+      } else {
+        return (
+          <>
+            <S_Navbar lang={lang} isLoggedIn={isLoggedIn}></S_Navbar>
+            <S_hero lang={lang} isLoggedIn={isLoggedIn} name={name} />
+            <S_Function lang={lang} isLoggedIn={isLoggedIn}></S_Function>
+            <About_us lang={lang}></About_us>
+            <Team lang={lang}></Team>
+            <Footer lang={lang}></Footer>
+          </>
+        )
+      }
     }
-  } 
-  
+  }
 }
 
 export default Home
