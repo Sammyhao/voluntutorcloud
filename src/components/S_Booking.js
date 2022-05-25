@@ -72,13 +72,7 @@ export default function S_Booking() {
     ).then((response) => {
       console.log(response)
     })
-    let content =
-      'Your student ' +
-      studentnameFU +
-      ' has cancelled your booking request of the meeting at ' +
-      booking.date +
-      ' ' +
-      booking.time
+    let content = studentnameFU + ' rejected your booking request'
     console.log(content, content)
     Axios.post('http://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: teacherusernameFU,
@@ -114,13 +108,7 @@ export default function S_Booking() {
     ).then((response) => {
       console.log(response)
     })
-    let content =
-      'Your student ' +
-      studentnameFU +
-      ' has confirmed your booking request of the meeting at ' +
-      booking.date +
-      ' ' +
-      booking.time
+    let content = studentnameFU + ' confirmed your booking request'
     Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: teacherusernameFU,
       type: '/book',
