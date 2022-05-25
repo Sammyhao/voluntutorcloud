@@ -49,62 +49,48 @@ function Home() {
   //   </>
   // )
 
-  if (isLoggedIn == false) {
+  if (isLoading) {
     return (
       <>
-        <Navbar isLoggedIn={isLoggedIn}></Navbar>
-        <HeroSection isLoggedIn={isLoggedIn} />
-        <Function isLoggedIn={isLoggedIn}></Function>
-        <Homepageprog></Homepageprog>
-        <About_us></About_us>
-        <Team></Team>
-        <Footer></Footer>
+        <Loading />
       </>
     )
   } else {
-    if (isLoading) {
+    if (isLoggedIn == false) {
       return (
         <>
-          <Loading />
+          <Navbar isLoggedIn={isLoggedIn}></Navbar>
+          <HeroSection isLoggedIn={isLoggedIn} />
+          <Function isLoggedIn={isLoggedIn}></Function>
+          <Homepageprog isLoggedIn={isLoggedIn}></Homepageprog>
+          <About_us isLoggedIn={isLoggedIn}></About_us>
+          <Team isLoggedIn={isLoggedIn}></Team>
+          <Footer isLoggedIn={isLoggedIn}></Footer>
+        </>
+      )
+    } else if (role == 'teacher') {
+      return (
+        <>
+          <Navbar lang={lang} isLoggedIn={isLoggedIn}></Navbar>
+          <HeroSection lang={lang} isLoggedIn={isLoggedIn} name={name} />
+          <Function lang={lang} isLoggedIn={isLoggedIn}></Function>
+          <Homepageprog lang={lang}></Homepageprog>
+          <About_us lang={lang}></About_us>
+          <Team lang={lang}></Team>
+          <Footer lang={lang}></Footer>
         </>
       )
     } else {
-      if (isLoggedIn == false) {
-        return (
-          <>
-            <Navbar isLoggedIn={isLoggedIn}></Navbar>
-            <HeroSection isLoggedIn={isLoggedIn} />
-            <Function isLoggedIn={isLoggedIn}></Function>
-            <Homepageprog></Homepageprog>
-            <About_us></About_us>
-            <Team></Team>
-            <Footer></Footer>
-          </>
-        )
-      } else if (role == 'teacher') {
-        return (
-          <>
-            <Navbar lang={lang} isLoggedIn={isLoggedIn}></Navbar>
-            <HeroSection lang={lang} isLoggedIn={isLoggedIn} name={name} />
-            <Function lang={lang} isLoggedIn={isLoggedIn}></Function>
-            <Homepageprog lang={lang}></Homepageprog>
-            <About_us lang={lang}></About_us>
-            <Team lang={lang}></Team>
-            <Footer lang={lang}></Footer>
-          </>
-        )
-      } else {
-        return (
-          <>
-            <S_Navbar lang={lang} isLoggedIn={isLoggedIn}></S_Navbar>
-            <S_hero lang={lang} isLoggedIn={isLoggedIn} name={name} />
-            <S_Function lang={lang} isLoggedIn={isLoggedIn}></S_Function>
-            <About_us lang={lang}></About_us>
-            <Team lang={lang}></Team>
-            <Footer lang={lang}></Footer>
-          </>
-        )
-      }
+      return (
+        <>
+          <S_Navbar lang={lang} isLoggedIn={isLoggedIn}></S_Navbar>
+          <S_hero lang={lang} isLoggedIn={isLoggedIn} name={name} />
+          <S_Function lang={lang} isLoggedIn={isLoggedIn}></S_Function>
+          <About_us lang={lang}></About_us>
+          <Team lang={lang}></Team>
+          <Footer lang={lang}></Footer>
+        </>
+      )
     }
   }
 }

@@ -5,49 +5,58 @@ import Axios from 'axios'
 
 function Footer(props) {
   const [emailAddress, setEmailAddress] = useState('')
-  const [status, setStatus] = useState(0);
+  const [status, setStatus] = useState(0)
 
   // titles
-  let a = ["Join Voluntutor Cloud to receive the newest information!","加入Voluntutor Cloud以獲取最新資訊！"]
-  let b = ["You can unsubscribe at any time.","你可以隨時取消訂閱。"]
-  let c = ["Your email","你的Email"]
-  let d = ["Subscribe NOW","加入我們"]
+  let a = [
+    'Join Voluntutor Cloud to receive the newest information!',
+    '加入Voluntutor Cloud以獲取最新資訊！',
+  ]
+  let b = ['You can unsubscribe at any time.', '你可以隨時取消訂閱。']
+  let c = ['Your email', '你的Email']
+  let d = ['Subscribe NOW', '加入我們']
 
   const saveEmailAddress = (e) => {
     setEmailAddress(e.target.value)
   }
 
   function subscribe() {
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/AddToMailingList', {
-      email: emailAddress,
-    }).then((response) => {
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/AddToMailingList',
+      {
+        email: emailAddress,
+      },
+    ).then((response) => {
       console.log(response)
     })
     setEmailAddress('')
   }
-  
+
   useEffect(() => {
-    console.log(props);
-    if(props.lang == "chinese" || props.lang == "english") {
-      if(props.lang == "chinese") setStatus(1);
-      else setStatus(0);
+    if (props.isLoggedIn) {
+      console.log(props)
+      if (props.lang == 'chinese' || props.lang == 'english') {
+        if (props.lang == 'chinese') setStatus(1)
+        else setStatus(0)
+      } else {
+        console.log('props failed')
+        Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+          (response) => {
+            if (response.data.user[0].lang == 'chinese') setStatus(1)
+            else setStatus(0)
+          },
+        )
+      }
     } else {
-      console.log("props failed")
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-        if(response.data.user[0].lang == "chinese") setStatus(1);
-        else setStatus(0);
-      })
+      console.log('not logged in')
     }
   })
-  
+
   return (
     <div className="footer-container">
       <section className="footer-subscription">
-        <p className="footer-subscription-heading">
-        {a[status]}</p>
-        <p className="footer-subscription-text">
-        {b[status]}
-        </p>
+        <p className="footer-subscription-heading">{a[status]}</p>
+        <p className="footer-subscription-text">{b[status]}</p>
         <div className="input-areas">
           <form className="form-email">
             <input
@@ -60,7 +69,7 @@ function Footer(props) {
             />
             <Link to="/" className="btn-foot">
               <div className="footer-btn" onClick={subscribe}>
-              {d[status]}
+                {d[status]}
               </div>
             </Link>
           </form>

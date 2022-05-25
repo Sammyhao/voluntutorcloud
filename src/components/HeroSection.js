@@ -26,25 +26,28 @@ function HeroSection(props) {
 
   useEffect(() => {
     console.log(props)
-    if (props.isLoggedIn) {
-      setIsLoggedIn(props.isLoggedIn)
-      if (props.lang && props.name) {
-        setName(props.name)
-        if (props.lang == 'chinese') setStatus(1)
-        else setStatus(0)
-      }
-    } else {
+    if (!props.isLoggedIn) {
       console.log('not logged in')
       setIsLoggedIn(false)
-      // console.log("props failed")
-      // Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      //   if (response.data.isLoggedIn) {
-      //     setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
-      //     if(response.data.user[0].lang == "chinese") setStatus(1);
-      //     else setStatus(0);
-      //   }
-      //   setIsLoggedIn(response.data.isLoggedIn)
-      // })
+    } else {
+      if (props.isLoggedIn) {
+        setIsLoggedIn(props.isLoggedIn)
+        if (props.lang && props.name) {
+          setName(props.name)
+          if (props.lang == 'chinese') setStatus(1)
+          else setStatus(0)
+        }
+      } else {
+        // console.log("props failed")
+        // Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
+        //   if (response.data.isLoggedIn) {
+        //     setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
+        //     if(response.data.user[0].lang == "chinese") setStatus(1);
+        //     else setStatus(0);
+        //   }
+        //   setIsLoggedIn(response.data.isLoggedIn)
+        // })
+      }
     }
   }, [])
 

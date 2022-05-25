@@ -59,53 +59,59 @@ function Navbar(props) {
   //title是notification 標題 (Message 或是 Booking)
   //content是notification 內容 (如上，分三種)
 
-  const [notif_data, setNotif_data] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [notif_data, setNotif_data] = useState([])
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    console.log(props)
-    if(isLoading) {
-      if (props.lang && props.isLoggedIn) {
-        setIsLoggedIn(props.isLoggedIn)
-        if (props.lang == 'chinese') setStatus(1)
-        else setStatus(0)
-      } else {
-        console.log('props failed')
+    if (!props.isLoggedIn) {
+      console.log('not logged in')
+      setIsLoggedIn(false)
+    } else {
+      console.log(props)
+      if (isLoading) {
+        if (props.lang && props.isLoggedIn) {
+          setIsLoggedIn(props.isLoggedIn)
+          if (props.lang == 'chinese') setStatus(1)
+          else setStatus(0)
+        } else {
+          console.log('props failed')
+          Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+            (response) => {
+              setIsLoggedIn(response.data.isLoggedIn)
+              if (response.data.user[0].lang == 'chinese') setStatus(1)
+              else setStatus(0)
+            },
+          )
+        }
+
         Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
           (response) => {
-            setIsLoggedIn(response.data.isLoggedIn)
-            if (response.data.user[0].lang == 'chinese') setStatus(1)
-            else setStatus(0)
+            let username = ''
+            if (response.data.isLoggedIn)
+              username = response.data.user[0].username
+            console.log(username)
+            Axios.post(
+              'https://voluntutorcloud-server.herokuapp.com/getNotif',
+              {
+                username: username,
+              },
+            ).then((response) => {
+              console.log(response.data)
+              setNotif_data(response.data)
+              setLoading(false)
+            })
           },
         )
       }
-
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
-          let username = "";
-          if(response.data.isLoggedIn) username = response.data.user[0].username;
-          console.log(username);
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
-            username: username,
-          }).then((response) => {
-            console.log(response.data);
-            setNotif_data(response.data);
-            setLoading(false);
-          })
-        },
-      )
     }
-
   }, [])
 
   useEffect(() => {
     showButton()
   }, [])
 
-  if(isLoading) {
-    return (
-      <Loading></Loading>
-    );
+  if (isLoading) {
+    return <Loading></Loading>
   } else if (isLoggedIn) {
     if (status == 0) {
       return (
@@ -164,23 +170,23 @@ function Navbar(props) {
               </Link>
             </div>
             <nav className={notification ? 'notif active' : 'notif'}>
-            <ul className="nav-menu-items" onClick={shownotification}>
-              {notif_data.map((e, index) => {
-                console.log(e);
-                return (
-                  <div key={index} className="wrap">
-                    <Link className="notif_link" to={e.nottype}>
-                      <div className="outsidewrap">
-                        <div className="notif_title">{e.title}</div>
-                        <div className="notif_content">{e.notcontent}</div>
-                      </div>
-                    </Link>
-                    <Divider></Divider>
-                  </div>
-                )
-              })}
-            </ul>
-          </nav>
+              <ul className="nav-menu-items" onClick={shownotification}>
+                {notif_data.map((e, index) => {
+                  console.log(e)
+                  return (
+                    <div key={index} className="wrap">
+                      <Link className="notif_link" to={e.nottype}>
+                        <div className="outsidewrap">
+                          <div className="notif_title">{e.title}</div>
+                          <div className="notif_content">{e.notcontent}</div>
+                        </div>
+                      </Link>
+                      <Divider></Divider>
+                    </div>
+                  )
+                })}
+              </ul>
+            </nav>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
               <ul className="nav-menu-items" onClick={showSidebar}>
                 <li className="navbar-toggle">
@@ -259,22 +265,22 @@ function Navbar(props) {
               </Link>
             </div>
             <nav className={notification ? 'notif active' : 'notif'}>
-            <ul className="nav-menu-items" onClick={shownotification}>
-              {notif_data.map((e, index) => {
-                return (
-                  <div key={index} className="wrap">
-                    <Link className="notif_link" to={e.nottype}>
-                      <div className="outsidewrap">
-                        <div className="notif_title">{e.title}</div>
-                        <div className="notif_content">{e.notcontent}</div>
-                      </div>
-                    </Link>
-                    <Divider></Divider>
-                  </div>
-                )
-              })}
-            </ul>
-          </nav>
+              <ul className="nav-menu-items" onClick={shownotification}>
+                {notif_data.map((e, index) => {
+                  return (
+                    <div key={index} className="wrap">
+                      <Link className="notif_link" to={e.nottype}>
+                        <div className="outsidewrap">
+                          <div className="notif_title">{e.title}</div>
+                          <div className="notif_content">{e.notcontent}</div>
+                        </div>
+                      </Link>
+                      <Divider></Divider>
+                    </div>
+                  )
+                })}
+              </ul>
+            </nav>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
               <ul className="nav-menu-items" onClick={showSidebar}>
                 <li className="navbar-toggle">
