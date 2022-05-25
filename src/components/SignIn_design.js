@@ -22,7 +22,7 @@ function SignIn_design() {
       if (response.data.message) {
         setLoginStatus(response.data.message)
       } else {
-        console.log(response);
+        console.log(response)
         setLoginStatus('Hello, ' + response.data[0].username + '.')
         navigate('/')
         //change the global variable that saves the user's status
@@ -50,12 +50,12 @@ function SignIn_design() {
   const resetInputField = () => {
     setInputValue('')
   }
-  const [status, setStatus] = useState(0);
-  let a = ["Welcome Back!","歡迎回來！"]
-  let b = ["Username" ,"帳號名稱"]
-  let c = ["Password" , '密碼']
-  let d = ["LOGIN" ,"登入"]
-  let e = ["Sign up" ,"註冊帳號"]
+  const [status, setStatus] = useState(0)
+  let a = ['Welcome Back!', '歡迎回來！']
+  let b = ['Username', '帳號名稱']
+  let c = ['Password', '密碼']
+  let d = ['LOGIN', '登入']
+  let e = ['Sign up', '註冊帳號']
   return (
     <div className="log">
       <div className="image_wrap_sign">
@@ -95,15 +95,15 @@ function SignIn_design() {
           </button>
         </div>
         <button className="btn-login" onClick={login}>
-        {d[status]}
+          {d[status]}
         </button>
         <Link to="/register" className="signUp">
-        {e[status]}
+          {e[status]}
         </Link>
         <br />
         <br />
       </div>
-      <div className="languagelog">
+      <div className="signinglanguage">
         <div
           className="wordslog"
           onClick={() => {

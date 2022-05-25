@@ -33,6 +33,16 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+.signinglanguage {
+  margin: 0;
+  top: 95px;
+  right: 15px;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 .pic_sign {
   padding: 30px;
   height: 70%;
