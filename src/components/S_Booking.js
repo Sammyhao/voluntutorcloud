@@ -373,7 +373,15 @@ export default function S_Booking() {
               aria-labelledby="customized-dialog-title"
               open={confirmopen}
             >
-              <div className="bookingconfirmheaders">{k[status]}</div>
+              <div className="bookingcancelleddiatitle">{k[status]}</div>
+              <div
+                className="navigateheaderdia"
+                onClick={() => {
+                  navigate('/')
+                }}
+              >
+                {s[status]}
+              </div>
             </BootstrapDialog>
           </div>
           <div className="bookingwraping">
@@ -463,7 +471,15 @@ export default function S_Booking() {
               aria-labelledby="customized-dialog-title"
               open={confirmopen}
             >
-              <div className="bookingconfirmheaders">{k[status]}</div>
+              <div className="bookingcancelleddiatitle">{k[status]}</div>
+              <div
+                className="navigateheaderdia"
+                onClick={() => {
+                  navigate('/')
+                }}
+              >
+                {s[status]}
+              </div>
             </BootstrapDialog>
           </div>
           <div className="bookingwraping">
@@ -577,7 +593,15 @@ export default function S_Booking() {
               aria-labelledby="customized-dialog-title"
               open={confirmopen}
             >
-              <div className="bookingconfirmheaders">{k[status]}</div>
+              <div className="bookingcancelleddiatitle">{k[status]}</div>
+              <div
+                className="navigateheaderdia"
+                onClick={() => {
+                  navigate('/')
+                }}
+              >
+                {s[status]}
+              </div>
             </BootstrapDialog>
           </div>
           <div className="bookingwraping">

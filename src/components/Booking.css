@@ -383,20 +383,25 @@
 }
 
 .bookingcancelleddiatitle {
-  padding: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 30px;
   background-color: whitesmoke;
-  color: #745140;
+  color: #b25634;
   font-size: 18px;
   font-weight: 700;
   text-align: center;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .navigateheaderdia {
-  padding: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-top: 7px;
+  padding-left: 30px;
   background-color: whitesmoke;
   color: #745140;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 400;
   text-align: center;
   text-decoration: underline;
 }
