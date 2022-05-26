@@ -27,6 +27,7 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
+  const [tmpMsgRec, setTmpMsgRec] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -34,7 +35,6 @@ function Msg() {
     setMsgRec([])
     setLastestMsg('')
     console.log(msgStr)
-    const [tmpMsgRec, setTmpMsgRec] = useState([]);
     if (msgStr != '') {
       const msgInfo = msgStr.split('ψ')
       console.log('msgInfo')
@@ -65,6 +65,7 @@ function Msg() {
     console.log(teacherusername, studentname)
     console.log(tmpMsgRec, msgRec);
     setMsgRec(tmpMsgRec);
+    setTmpMsgRec([]);
     setUsernameConst(username)
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
