@@ -40,7 +40,7 @@ function Msg() {
       console.log('msgInfo')
       console.log(msgInfo)
       console.log(msgInfo, msgRec);
-      if (tmpMsgRec.length != msgInfo.length) {
+      if (tmpMsgRec.length == 0) {
         console.log('has entered msgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|')
@@ -53,7 +53,8 @@ function Msg() {
           setTmpMsgRec((tmpMsgRec) => [msg, ...tmpMsgRec])
           // setMsgRec((msgRec) => [msg, ...msgRec])
         }
-      } else setTmpMsgRec(tmpMsgRec.slice(0, msgInfo.length - 1))
+      }
+      setTmpMsgRec(tmpMsgRec.slice(0, msgInfo.length - 1))
     } else {
       setTmpMsgRec([])
       setLastestMsg('')
