@@ -77,14 +77,13 @@ function Navbar(props) {
   //content是notification 內容 (如上，分三種)
 
   const [notif_data, setNotif_data] = useState([])
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     console.log(props)
     if (!props.isLoggedIn) {
       setIsLoggedIn(false)
     } else {
-      setLoading(true)
       if (isLoading) {
         if (props.lang && props.isLoggedIn) {
           setIsLoggedIn(props.isLoggedIn)
