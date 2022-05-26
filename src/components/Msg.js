@@ -34,12 +34,13 @@ function Msg() {
     setMsgRec([])
     setLastestMsg('')
     console.log(msgStr)
+    const [tmpMsgRec, setTmpMsgRec] = useState([]);
     if (msgStr != '') {
       const msgInfo = msgStr.split('ψ')
       console.log('msgInfo')
       console.log(msgInfo)
-      console.log(msgInfo.length, msgRec.length);
-      if (msgRec.length != msgInfo.length) {
+      console.log(msgInfo.length, msgRec.length, tmpMsgRec);
+      if (tmpMsgRec.length != msgInfo.length) {
         console.log('has entered msgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|')
@@ -49,14 +50,21 @@ function Msg() {
           if (category[1] == '') continue
           let msg = { type: t, text: category[1] }
           console.log(msg)
+          setTmpMsgRec((tmpMsgRec) => [msg, ...tmpMsgRec]);
           setMsgRec((msgRec) => [msg, ...msgRec])
         }
-      } else setMsgRec(msgRec.slice(0, msgInfo.length - 1))
+      } else {
+        setTmpMsgRec(tmpMsgRec.slice(0, msgInfo.length - 1))
+        setMsgRec(msgRec.slice(0, msgInfo.length - 1))
+      }
     } else {
+      setTmpMsgRec([]);
       setMsgRec([])
       setLastestMsg('')
     }
     console.log(teacherusername, studentname)
+    console.log(tmpMsgRec, msgRec);
+    setMsgRec(tmpMsgRec);
     setUsernameConst(username)
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
@@ -217,6 +225,7 @@ function Msg() {
     }).then((response) => {
       if (response.data.length) msgStr = response.data[0].msg
       console.log(msgStr)
+      setMsgRec([]);
       processMsg(msgStr, usernameConst, tempstudentname)
       setLoading(false)
     })
