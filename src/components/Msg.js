@@ -209,6 +209,7 @@ function Msg() {
     setStudentnameConst(e)
 
     console.log(tempstudentname)
+    setMsgRec([]);
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
       username: usernameConst,
