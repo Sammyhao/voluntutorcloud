@@ -35,6 +35,7 @@ function Homepg_choose(props) {
         )
       }
     } else {
+      setStatus(0)
       console.log('not logged in')
     }
   })

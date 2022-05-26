@@ -28,6 +28,7 @@ function HeroSection(props) {
     if (!props.isLoggedIn) {
       console.log('not logged in')
       setIsLoggedIn(false)
+      setStatus(0)
     } else {
       console.log(props)
       if (props.isLoggedIn) {
