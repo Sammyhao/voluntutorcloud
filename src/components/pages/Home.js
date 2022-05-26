@@ -27,7 +27,6 @@ function Home() {
         console.log(response.data)
         if (!response.data.isLoggedIn) {
           setIsLoggedIn(false)
-          setLoading(false)
         } else {
           setIsLoggedIn(true)
           setLang(response.data.user[0].lang)
@@ -37,8 +36,8 @@ function Home() {
               ' ' +
               response.data.user[0].lastname,
           )
-          if(name) setLoading(false)
         }
+        setLoading(false)
       },
     )
   })
