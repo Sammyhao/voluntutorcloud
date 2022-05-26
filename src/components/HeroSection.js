@@ -43,11 +43,7 @@ function HeroSection(props) {
         Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
           (response) => {
             if (response.data.isLoggedIn) {
-              setName(
-                response.data.user[0].firstname +
-                  ' ' +
-                  response.data.user[0].lastname,
-              )
+              if (name.length == 0) setName(response.data.user[0].firstname + ' ' + response.data.user[0].lastname)
               if (response.data.user[0].lang == 'chinese') setStatus(1)
               else setStatus(0)
             }
