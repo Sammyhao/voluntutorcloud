@@ -39,8 +39,8 @@ function Msg() {
       const msgInfo = msgStr.split('ψ')
       console.log('msgInfo')
       console.log(msgInfo)
-      console.log(msgInfo.length, msgRec.length);
-      if (msgRec.length != msgInfo.length) {
+      console.log(msgInfo.length, tmpMsgRec.length);
+      if (tmpMsgRec.length != msgInfo.length) {
         console.log('has entered msgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|')
@@ -50,9 +50,9 @@ function Msg() {
           if (category[1] == '') continue
           let msg = { type: t, text: category[1] }
           console.log(msg)
-          setTmpMsgRec((msgRec) => [msg, ...msgRec])
+          setTmpMsgRec((tmpMsgRec) => [msg, ...tmpMsgRec])
         }
-      } else setTmpMsgRec(msgRec.slice(0, msgInfo.length - 1))
+      } else setTmpMsgRec(tmpMsgRec.slice(0, msgInfo.length - 1))
     } else {
       setLastestMsg('')
       setTmpMsgRec([]);
