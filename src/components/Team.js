@@ -25,6 +25,7 @@ export default function Team(props) {
       }
     } else {
       console.log('not logged in')
+      setStatus(0)
     }
   })
 
