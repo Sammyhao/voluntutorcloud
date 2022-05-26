@@ -30,7 +30,7 @@ function Msg() {
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
   function processMsg(msgStr, username, studentname) {
-    setMsgRec([])
+    useEffect(() => { setMsgRec([]) }, [])
     setLastestMsg('')
     console.log(msgStr)
     if (msgStr != '') {
@@ -52,7 +52,6 @@ function Msg() {
         }
       } else setMsgRec(msgRec.slice(0, msgInfo.length - 1))
     } else {
-      setMsgRec([])
       setLastestMsg('')
     }
     console.log(teacherusername, studentname)
@@ -208,7 +207,7 @@ function Msg() {
     setStudentnameConst(e)
 
     console.log(tempstudentname)
-    setMsgRec([]);
+    // setMsgRec([]);
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
       username: usernameConst,
@@ -216,7 +215,7 @@ function Msg() {
     }).then((response) => {
       if (response.data.length) msgStr = response.data[0].msg
       console.log(msgStr)
-      setMsgRec([]);
+      // setMsgRec([]);
       processMsg(msgStr, usernameConst, tempstudentname)
       setLoading(false)
     })
