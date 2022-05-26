@@ -84,6 +84,7 @@ function Navbar(props) {
     if (isLoading) {
       if (!props.isLoggedIn) {
         setIsLoggedIn(false)
+        setLoading(false)
       } else {
         
           if (props.lang && props.isLoggedIn) {
