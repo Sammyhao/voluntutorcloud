@@ -219,8 +219,8 @@ function Msg() {
       console.log(msgStr)
       console.log(msgRec.length);
       setMsgRec([]);
-      processMsg(msgStr, usernameConst, tempstudentname)
-      setLoading(false)
+      while(msgRec.length) setMsgRec([]); 
+      processMsg(msgStr, usernameConst, tempstudentname);
     })
   }
 
