@@ -27,7 +27,6 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
-  const [tmpMsgRec, setTmpMsgRec] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -39,8 +38,8 @@ function Msg() {
       const msgInfo = msgStr.split('ψ')
       console.log('msgInfo')
       console.log(msgInfo)
-      console.log(msgInfo.length, msgRec.length, tmpMsgRec);
-      if (tmpMsgRec.length != msgInfo.length) {
+      console.log(msgInfo.length, msgRec.length);
+      if (msgRec.length != msgInfo.length) {
         console.log('has entered msgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|')
@@ -50,22 +49,14 @@ function Msg() {
           if (category[1] == '') continue
           let msg = { type: t, text: category[1] }
           console.log(msg)
-          setTmpMsgRec((tmpMsgRec) => [msg, ...tmpMsgRec]);
           setMsgRec((msgRec) => [msg, ...msgRec])
         }
-      } else {
-        setTmpMsgRec(tmpMsgRec.slice(0, msgInfo.length - 1))
-        setMsgRec(msgRec.slice(0, msgInfo.length - 1))
-      }
+      } else setMsgRec(msgRec.slice(0, msgInfo.length - 1))
     } else {
-      setTmpMsgRec([]);
       setMsgRec([])
       setLastestMsg('')
     }
     console.log(teacherusername, studentname)
-    console.log(tmpMsgRec, msgRec);
-    setMsgRec(tmpMsgRec);
-    setTmpMsgRec([]);
     setUsernameConst(username)
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
