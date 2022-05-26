@@ -37,7 +37,7 @@ function Home() {
               ' ' +
               response.data.user[0].lastname,
           )
-          setLoading(false)
+          if(name) setLoading(false)
         }
       },
     )
@@ -56,6 +56,7 @@ function Home() {
       </>
     )
   } else {
+    console.log(name);
     if (isLoggedIn == false) {
       return (
         <>
