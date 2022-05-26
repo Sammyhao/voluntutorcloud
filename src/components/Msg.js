@@ -217,9 +217,9 @@ function Msg() {
     }).then((response) => {
       if (response.data.length) msgStr = response.data[0].msg
       console.log(msgStr)
-      console.log(msgRec.length);
+      console.log(msgRec);
       setMsgRec([]);
-      while(msgRec.length) setMsgRec([]); 
+      while(msgRec) setMsgRec([]); 
       processMsg(msgStr, usernameConst, tempstudentname);
     })
   }
