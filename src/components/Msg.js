@@ -31,7 +31,6 @@ function Msg() {
 
   function processMsg(msgStr, username, studentname) {
     setMsgRec([])
-    console.log(msgRec);
     setLastestMsg('')
     console.log(msgStr)
     if (msgStr != '') {
@@ -53,6 +52,7 @@ function Msg() {
         }
       } else setMsgRec(msgRec.slice(0, msgInfo.length - 1))
     } else {
+      setMsgRec([])
       setLastestMsg('')
     }
     console.log(teacherusername, studentname)
@@ -208,7 +208,7 @@ function Msg() {
     setStudentnameConst(e)
 
     console.log(tempstudentname)
-    // setMsgRec([]);
+    setMsgRec([]);
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
       username: usernameConst,
@@ -216,7 +216,7 @@ function Msg() {
     }).then((response) => {
       if (response.data.length) msgStr = response.data[0].msg
       console.log(msgStr)
-      // setMsgRec([]);
+      setMsgRec([]);
       processMsg(msgStr, usernameConst, tempstudentname)
       setLoading(false)
     })
