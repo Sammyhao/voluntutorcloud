@@ -30,7 +30,7 @@ function Msg() {
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
   function processMsg(msgStr, username, studentname) {
-    setTimeout(() => { setMsgRec([]) }, 2000)
+    setMsgRec([])
     console.log(msgRec);
     setLastestMsg('')
     console.log(msgStr)
