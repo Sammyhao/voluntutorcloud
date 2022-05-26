@@ -30,9 +30,8 @@ function Msg() {
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
-  const [tmpMsgRec, setTmpMsgRec] = useState([]);
-
   function processMsg(msgStr, username, studentname) {
+    setMsgRec([])
     setLastestMsg('')
     console.log(msgStr)
     if (msgStr != '') {
@@ -40,7 +39,8 @@ function Msg() {
       console.log('msgInfo')
       console.log(msgInfo)
       console.log(msgInfo, msgRec);
-      if (tmpMsgRec.length == 0) {
+      if (msgRec.length != msgInfo.length) {
+        setMsgRec([]);
         console.log('has entered msgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|')
@@ -50,18 +50,13 @@ function Msg() {
           if (category[1] == '') continue
           let msg = { type: t, text: category[1] }
           console.log(msg)
-          setTmpMsgRec((tmpMsgRec) => [msg, ...tmpMsgRec])
-          // setMsgRec((msgRec) => [msg, ...msgRec])
+          setMsgRec((msgRec) => [msg, ...msgRec])
         }
-      }
-      setTmpMsgRec(tmpMsgRec.slice(0, msgInfo.length - 1))
+      } else setMsgRec(msgRec.slice(0, msgInfo.length - 1))
     } else {
-      setTmpMsgRec([])
+      setMsgRec([])
       setLastestMsg('')
     }
-    console.log(tmpMsgRec);
-    setMsgRec(tmpMsgRec);
-    setTmpMsgRec([]);
     console.log(teacherusername, studentname)
     setUsernameConst(username)
     setStudentnameConst(studentname)
@@ -215,7 +210,7 @@ function Msg() {
     setStudentnameConst(e)
 
     console.log(tempstudentname)
-    // setMsgRec([]);
+    setMsgRec([]);
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
       username: usernameConst,
@@ -224,7 +219,7 @@ function Msg() {
       if (response.data.length) msgStr = response.data[0].msg
       console.log(msgStr)
       console.log(msgRec);
-      // setMsgRec([]);
+      setMsgRec([]);
       processMsg(msgStr, usernameConst, tempstudentname);
     })
   }
