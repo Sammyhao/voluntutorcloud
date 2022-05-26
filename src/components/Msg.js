@@ -17,12 +17,9 @@ function Msg() {
     teacherusername = ''
   const [curMsg, setCurMsg] = useState('')
   const [msgRec, setMsgRec] = useState([])
-  const [otherMsgRec, setOtherMsgRec] = useState([]);
-  const [tmpMsgRec, setTmpMsgRec] = useState([]);
   let msgStr = ''
   const [msgForUpd, setMsgForUpd] = useState('')
   const [isLoading, setLoading] = useState(true)
-  const [isLoading2, setLoading2] = useState(true)
   const [hasProcessMsg, setHasProcessMsg] = useState(false)
   const [usernameConst, setUsernameConst] = useState('')
   const [studentnameConst, setStudentnameConst] = useState('')
@@ -32,15 +29,16 @@ function Msg() {
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
-  function processMsg(curRecep, msgStr, username, studentname) {
+  function processMsg(msgStr, username, studentname) {
+    setMsgRec([])
     setLastestMsg('')
     console.log(msgStr)
     if (msgStr != '') {
       const msgInfo = msgStr.split('ψ')
       console.log('msgInfo')
       console.log(msgInfo)
-      console.log(msgInfo.length, tmpMsgRec.length);
-      if (tmpMsgRec.length != msgInfo.length) {
+      console.log(msgInfo.length, msgRec.length);
+      if (msgRec.length != msgInfo.length) {
         console.log('has entered msgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|')
@@ -50,24 +48,18 @@ function Msg() {
           if (category[1] == '') continue
           let msg = { type: t, text: category[1] }
           console.log(msg)
-          setTmpMsgRec((tmpMsgRec) => [msg, ...tmpMsgRec])
+          setMsgRec((msgRec) => [msg, ...msgRec])
         }
-      } else setTmpMsgRec(tmpMsgRec.slice(0, msgInfo.length - 1))
+      } else setMsgRec(msgRec.slice(0, msgInfo.length - 1))
     } else {
+      setMsgRec([])
       setLastestMsg('')
-      setTmpMsgRec([]);
     }
-
-    console.log(curRecep, tmpMsgRec);
-    // assign msg data back
-    if(curRecep == "this") setMsgRec(tmpMsgRec);
-    else setOtherMsgRec(tmpMsgRec);
-    setTmpMsgRec([]);
-
     console.log(teacherusername, studentname)
     setUsernameConst(username)
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
+    setHasProcessMsg(true)
   }
 
   const updateMsg = () => {
@@ -143,26 +135,10 @@ function Msg() {
               ).then((response) => {
                 if (response.data.length) msgStr = response.data[0].msg
                 console.log(msgStr)
-                processMsg("this", msgStr, username, studentname)
+                processMsg(msgStr, username, studentname)
                 console.log(msgRec)
                 setLoading(false)
               })
-
-              Axios.post(
-                'https://voluntutorcloud-server.herokuapp.com/getMsg',
-                {
-                  username: username,
-                  studentname: studentname,
-                },
-              ).then((response) => {
-                if (response.data.length) msgStr = response.data[0].msg
-                console.log(msgStr)
-                processMsg("other", msgStr, username, studentname)
-                console.log(msgRec)
-                setLoading2(false)
-              })
-
-              setHasProcessMsg(true)
             }
           })
         },
@@ -231,16 +207,22 @@ function Msg() {
     }
     setStudentnameConst(e)
 
-    console.log(tempstudentname, " is the student chosen")
+    console.log(tempstudentname)
+    setMsgRec([]);
 
-    console.log(otherMsgRec[0].text);
-    setLastestMsg(otherMsgRec[0].text);
-    const tmpMsgRec = msgRec;
-    setMsgRec(otherMsgRec);
-    setOtherMsgRec(tmpMsgRec);
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
+      username: usernameConst,
+      studentname: tempstudentname,
+    }).then((response) => {
+      if (response.data.length) msgStr = response.data[0].msg
+      console.log(msgStr)
+      setMsgRec([]);
+      processMsg(msgStr, usernameConst, tempstudentname)
+      setLoading(false)
+    })
   }
 
-  if (isLoading || isLoading2) {
+  if (isLoading) {
     return <Loading />
   } else {
     console.log('msgRec')
