@@ -58,6 +58,7 @@ function Msg() {
       setTmpMsgRec([]);
     }
 
+    console.log(curRecep, tmpMsgRec);
     // assign msg data back
     if(curRecep == "this") setMsgRec(tmpMsgRec);
     else setOtherMsgRec(tmpMsgRec);
