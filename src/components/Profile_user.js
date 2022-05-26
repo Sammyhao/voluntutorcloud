@@ -332,10 +332,13 @@ function Profile_user(props) {
     })
   }
 
+  const [hasloggedout, sethasloggedout] = useState(false);
+
   const logout = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/logout').then(
       (response) => {
         console.log(response)
+        window.open('/');
       },
     )
   }
@@ -721,7 +724,7 @@ function Profile_user(props) {
           </div>
         </div>
 
-        <Link to="/" className="link">
+        <Link className="link">
           <div className="btn-prof" onClick={logout}>
             {ij[status]}
           </div>
