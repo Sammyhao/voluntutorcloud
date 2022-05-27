@@ -33,7 +33,6 @@ function Footer(props) {
   }
 
   useEffect(() => {
-    if (props.isLoggedIn) {
       console.log(props)
       if (props.lang == 'chinese' || props.lang == 'english') {
         if (props.lang == 'chinese') setStatus(1)
@@ -47,9 +46,6 @@ function Footer(props) {
           },
         )
       }
-    } else {
-      console.log('not logged in')
-    }
   })
 
   return (

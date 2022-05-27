@@ -8,7 +8,6 @@ export default function Team(props) {
   let username = ''
 
   useEffect(() => {
-    if (props.isLoggedIn) {
       console.log(props)
       if (props.lang) {
         if (props.lang == 'chinese') setStatus(1)
@@ -23,10 +22,6 @@ export default function Team(props) {
           },
         )
       }
-    } else {
-      console.log('not logged in')
-      setStatus(0)
-    }
   })
 
   // titles

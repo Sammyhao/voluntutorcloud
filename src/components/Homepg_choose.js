@@ -19,7 +19,6 @@ function Homepg_choose(props) {
   let h = ['/images/homepagequote.png', '/images/homepagequote_chinese.png']
 
   useEffect(() => {
-    if (props.isLoggedIn) {
       console.log(props)
       if (props.lang) {
         if (props.lang == 'chinese') setStatus(1)
@@ -34,10 +33,6 @@ function Homepg_choose(props) {
           },
         )
       }
-    } else {
-      setStatus(0)
-      console.log('not logged in')
-    }
   })
 
   return (
