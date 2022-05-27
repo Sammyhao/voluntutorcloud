@@ -34,7 +34,7 @@ function HeroSection(props) {
       if (props.isLoggedIn) {
         setIsLoggedIn(props.isLoggedIn)
         if (props.lang && props.name) {
-          setName(props.name)
+          if(props.name) setName(props.name)
           if (props.lang == 'chinese') setStatus(1)
           else setStatus(0)
         }
