@@ -115,6 +115,8 @@ function Register_pageall() {
   let yy = ['Select target student gender', '選擇學生性別']
   let wv = ['Taipei Wego Senior High School', '台北市私立薇閣高級中學']
   let ww = ['Taipei Fuhsing Senior High School', '台北市私立復興高級中學']
+  let xx = ['Yilan Daxi Elementary School', '宜蘭縣大溪國民小學']
+  let yyzy = ['Yilan Guangxing Elementary School', '宜蘭縣廣興國小']
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
 
@@ -138,11 +140,17 @@ function Register_pageall() {
     console.log(gradereg)
     console.log(birthdayreg)
     console.log(schoolnamereg)
-    if (schoolnamereg == '台北市私立薇閣高級中學') {
-      setschoolnamereg('Taipei Wego Senior High School')
+    if (
+      schoolnamereg == 'Yilan Daxi Elementary School' ||
+      schoolnamereg == '宜蘭縣大溪國民小學'
+    ) {
+      setschoolnamereg('大溪國小')
     }
-    if (schoolnamereg == '台北市私立復興高級中學') {
-      setschoolnamereg('Taipei Fuhsing Senior High School')
+    if (
+      schoolnamereg == 'Yilan Guangxing Elementary School' ||
+      schoolnamereg == '宜蘭縣廣興國小'
+    ) {
+      setschoolnamereg('廣興國小')
     }
     if (GenderReg == '女') {
       setGenderReg('Female')
@@ -152,15 +160,6 @@ function Register_pageall() {
     }
     if ((GenderReg = '其他')) {
       setGenderReg('Others')
-    }
-    if (stugenderreg == '女') {
-      setGenderReg('Female')
-    }
-    if (stugenderreg == '男') {
-      setGenderReg('Male')
-    }
-    if (stugenderreg == '無') {
-      setGenderReg('No preference')
     }
     // save data here
     Axios.post('https://voluntutorcloud-server.herokuapp.com/registerForStu', {
@@ -203,7 +202,30 @@ function Register_pageall() {
       personalityreg,
       googlemeet,
     )
-
+    if (schoolnamereg == '台北市私立薇閣高級中學') {
+      setschoolnamereg('Taipei Wego Senior High School')
+    }
+    if (schoolnamereg == '台北市私立復興高級中學') {
+      setschoolnamereg('Taipei Fuhsing Senior High School')
+    }
+    if (GenderReg == '女') {
+      setGenderReg('Female')
+    }
+    if (GenderReg == '男') {
+      setGenderReg('Male')
+    }
+    if ((GenderReg = '其他')) {
+      setGenderReg('Others')
+    }
+    if (stugenderreg == '女') {
+      setGenderReg('Female')
+    }
+    if (stugenderreg == '男') {
+      setGenderReg('Male')
+    }
+    if (stugenderreg == '無') {
+      setGenderReg('No preference')
+    }
     Axios.post('https://voluntutorcloud-server.herokuapp.com/register', {
       username: usernameReg,
       password: passwordReg,
@@ -1333,19 +1355,65 @@ function Register_pageall() {
               </div>
               <div className="reg">
                 <div className="reggroup">
-                  <input
-                    className="register_input"
-                    type="text"
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    variant="standard"
+                    id="demo-simple-select-standard"
+                    className="register_selector"
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
                     value={GenderReg}
-                    placeholder={w[status]}
                     onChange={(e) => {
-                      setGenderReg(e.target.value) // genderReg
+                      setGenderReg(e.target.value)
                     }}
-                  />
-                  <button id="reset_reg" onClick={() => setGenderReg('')}>
-                    <ImCross id="clear_reg" />
-                  </button>
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <div className="selectplace">{yy[status]}</div>
+                      }
+
+                      return selected
+                    }}
+                    sx={{
+                      color: '#b25634',
+                      paddingLeft: '10px',
+                      fontFamily: 'Lora',
+                      letterSpacing: '2px',
+                      fontSize: '20px',
+                      '&:hover': {
+                        color: '#b25634',
+                      },
+                      '&:focus': {
+                        backgroundColor: '#00000000',
+                      },
+                      '&:not(.Mui-disabled):hover::before': {
+                        borderBottom: '1.5px solid #b25634',
+                      },
+                      '&:before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '&:after': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root': {
+                        ml: '30px',
+                        fontSize: '30px',
+                        color: '#b25634',
+                        fill: '#b25634',
+                      },
+                      '& .MuiSvgIcon-root::before': {
+                        border: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root::after': {
+                        border: '1.5px solid #D6A796',
+                      },
+                    }}
+                  >
+                    <MenuItem value={pr[status]}>{pr[status]}</MenuItem>
+                    <MenuItem value={sr[status]}>{sr[status]}</MenuItem>
+                    <MenuItem value={st[status]}>{st[status]}</MenuItem>
+                  </Select>
                 </div>
+
                 <div className="reggroup">
                   <input
                     className="register_input"
@@ -1362,33 +1430,124 @@ function Register_pageall() {
                   </button>
                 </div>
                 <div className="reggroup">
-                  <input
-                    className="register_input"
-                    type="text"
-                    maxLength={4}
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    variant="standard"
+                    id="demo-simple-select-standard"
+                    className="register_selector"
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
                     value={gradereg}
-                    placeholder={zz[status]}
                     onChange={(e) => {
-                      setgradereg(e.target.value) // graderreg
+                      setgradereg(e.target.value)
                     }}
-                  />
-                  <button id="reset_reg" onClick={() => setgradereg('')}>
-                    <ImCross id="clear_reg" />
-                  </button>
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <div className="selectplace">{uv[status]}</div>
+                      }
+
+                      return selected
+                    }}
+                    sx={{
+                      color: '#b25634',
+                      paddingLeft: '10px',
+                      fontFamily: 'Lora',
+                      letterSpacing: '2px',
+                      fontSize: '20px',
+                      '&:hover': {
+                        color: '#b25634',
+                      },
+                      '&:focus': {
+                        backgroundColor: '#00000000',
+                      },
+                      '&:not(.Mui-disabled):hover::before': {
+                        borderBottom: '1.5px solid #b25634',
+                      },
+                      '&:before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '&:after': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root': {
+                        ml: '30px',
+                        fontSize: '30px',
+                        color: '#b25634',
+                        fill: '#b25634',
+                      },
+                      '& .MuiSvgIcon-root::before': {
+                        border: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root::after': {
+                        border: '1.5px solid #D6A796',
+                      },
+                    }}
+                  >
+                    <MenuItem value={'1st'}>1st</MenuItem>
+                    <MenuItem value={'2nd'}>2nd</MenuItem>
+                    <MenuItem value={'3rd'}>3rd</MenuItem>
+                    <MenuItem value={'4th'}>4th</MenuItem>
+                    <MenuItem value={'5th'}>5th</MenuItem>
+                    <MenuItem value={'6th'}>6th</MenuItem>
+                  </Select>
                 </div>
                 <div className="reggroup">
-                  <input
-                    className="register_input"
-                    type="text"
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    variant="standard"
+                    id="demo-simple-select-standard"
+                    className="register_selector"
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
                     value={schoolnamereg}
-                    placeholder={cd[status]}
                     onChange={(e) => {
-                      setschoolnamereg(e.target.value) // schoolnamereg
+                      setschoolnamereg(e.target.value)
                     }}
-                  />
-                  <button id="reset_reg" onClick={() => setschoolnamereg('')}>
-                    <ImCross id="clear_reg" />
-                  </button>
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <div className="selectplace">{vv[status]}</div>
+                      }
+
+                      return selected
+                    }}
+                    sx={{
+                      color: '#b25634',
+                      paddingLeft: '10px',
+                      fontFamily: 'Lora',
+                      letterSpacing: '2px',
+                      fontSize: '20px',
+                      '&:hover': {
+                        color: '#b25634',
+                      },
+                      '&:focus': {
+                        backgroundColor: '#00000000',
+                      },
+                      '&:not(.Mui-disabled):hover::before': {
+                        borderBottom: '1.5px solid #b25634',
+                      },
+                      '&:before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '&:after': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root': {
+                        ml: '30px',
+                        fontSize: '30px',
+                        color: '#b25634',
+                        fill: '#b25634',
+                      },
+                      '& .MuiSvgIcon-root::before': {
+                        border: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root::after': {
+                        border: '1.5px solid #D6A796',
+                      },
+                    }}
+                  >
+                    <MenuItem value={xx[status]}>{xx[status]}</MenuItem>
+                    <MenuItem value={yyzy[status]}>{yyzy[status]}</MenuItem>
+                  </Select>
                 </div>
 
                 <div className="reggroup">
