@@ -18,11 +18,11 @@
   display: flex;
   flex: row;
 }
-#registeredsucc{
+#registeredsucc {
   background-color: whitesmoke;
   overflow: block;
   position: relative;
-  display:flex;
+  display: flex;
   color: #b25634;
   flex-direction: row;
   justify-items: center;
@@ -32,10 +32,9 @@
   padding-top: 20px;
   padding-right: 20px;
   padding-left: 20px;
-
 }
 
-#return{
+#return {
   background-color: whitesmoke;
   text-decoration: underline;
   color: #b25634;
@@ -55,7 +54,7 @@
   justify-content: center;
   background-color: #b25634;
 }
-.popup{
+.popup {
   display: none;
 }
 .dot {
@@ -190,7 +189,7 @@
   color: red;
   font-size: 17px;
   font-weight: 100;
-
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 .regwords {
@@ -268,6 +267,25 @@
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
+}
+.register_selector {
+  width: 70vw;
+  color: #b25634;
+  letter-spacing: 2px;
+  font-weight: 400;
+  margin: 10px;
+  font-size: 20px;
+  border-color: rgba(178, 86, 52, 0.3);
+}
+.menu {
+  letter-spacing: 2px;
+}
+.selectplace {
+  color: rgba(178, 86, 52, 0.3);
+  letter-spacing: 2px;
+}
+.select {
+  border-color: rgba(178, 86, 52, 0.3);
 }
 .register_input {
   width: 70vw;
@@ -369,6 +387,10 @@
     padding-right: 100px;
   }
   .register_input {
+    width: 80vw;
+  }
+
+  .register_selector {
     width: 80vw;
   }
   .bar {

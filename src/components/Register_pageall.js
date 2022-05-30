@@ -1,24 +1,20 @@
 import React, { useState } from 'react'
 import './Register_pageall.css'
 import '../App.css'
+import InputLabel from '@mui/material/InputLabel'
+
 import { Link, useNavigate } from 'react-router-dom'
 import validator from 'validator'
 import { BsFillEyeSlashFill } from 'react-icons/bs'
 import { ImCross } from 'react-icons/im'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Button from '@mui/material/Button'
-import Typography from '@material-ui/core/Typography'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
-import IconButton from '@mui/material/IconButton'
-import { popoverClasses } from '@mui/material';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -28,7 +24,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }))
-
 function Register_pageall() {
   const [teacherstyle, setteacherstyle] = useState(true)
   const [studentstyle, setstudentstyle] = useState(true)
@@ -55,55 +50,74 @@ function Register_pageall() {
   const [cpasswordShown, setcPasswordShown] = useState(false)
   const [emailError, setEmailError] = useState('')
   const navigate = useNavigate()
-  const [status, setStatus] = useState(0);
-  const [stu_chinese_name, setchinname] = useState("")
-  const [stu_chinese_name_first, setchinname_first] = useState("")
-  let a = ["Please fill in the blank","請完整填入資料"]
-  let b = ["Please enter a valid email","請填入正確的email帳號"]
-  let c = ["Please fill in all the blanks","請完整填入資料"]
-  let d = ["Password does not match","密碼不相同"]
-  let e = ["Password is too short","密碼長度太短"]
-  let f = ["Wrong Validation Code","驗證碼錯誤"]
-  let g = ["Please choose a role" , "請選擇身分"]
-  let h = ["Sign in", "登入"]
-  let i = ["Getting Started!" ,"告訴我們你是誰！"]
-  let j = ["Student" , "學生"]
-  let k = ["Teacher" ,"老師"]
-  let l = ["Next" ,"下一步"]
-  let m = ["Validation Code" , "驗證碼"]
-  let n = ["Enter the validation code" ,"請輸入驗證碼"]
-  let o = ["Back","前一步"]
-  let p = ["Begin Your Journey","開始你的旅程！"]
-  let q = ["Username", "帳號名稱"]
-  let r = ["Password (required length: 8 characters)", "密碼 (長度需大於8個字元)"]
-  let s = ["Confirm Password","確認密碼"]
-  let t = ["Basic Information" ,"基本資料"]
-  let u = ["First name","名字"]
-  let v = ["Last name" ,"姓氏"]
-  let w = ["Gender (Female/Male/Other)","性別 (女/男/其他)"]
-  let x = ["Contact Number","連絡電話"]
-  let y = ["Email" , "Email帳號"]
-  let z = ["Detailed Information","詳細資訊"]
-  let ab = ["Birthday (Format: 2004/01/01)" ,"生日 (格式：2004/01/01)"]
-  let bc = ["Grade (9th/10th/11th)","年級 (九/十/十一)"]
-  let zz = ["Grade (1th/2th...)","年級 (一/二...)"]
-  let cd = ["School name","學校名稱"]
-  let de = ["Preference", "你的喜好"]
-  let ef = ["Preferred Subjects (Chinese/Math...)","偏好科目 (國文/數學...)"]
-  let fg = ["Target Student's Grade (1th/2th...)","學生年級 (一/二...)"]
-  let gh = ["Target Student's Gender (Female/Male/No Pref)","學生性別 (男/女/無偏好)"]
-  let hi = ["Target Student's Personality (Type Anything)","學生性格"]
-  let ij = ["Registered Successfully!!!" ,"成功註冊"]
-  let jk = ["Return to Login", "回到登入頁面"]
-  let kl = ["Create a Google Meet Link for future meetings!!" ,"創造一個未來會議的Google Meet連結!!"]
-  let lm = ["Create a Google Meet Link","請填入Google Meet連結"]
-  let mn = ["Register","註冊"]
-  let pq = ["Please Enter Your Chinese Name","請輸入你的中文姓名"]
-  let no = ["Please Enter Your Last Name (Chinese)","請輸入你的中文姓氏"]
-  let op = ["Please Enter Your First Name (Chinese)","請輸入你的中文名字"]
+  const [status, setStatus] = useState(0)
+  const [stu_chinese_name, setchinname] = useState('')
+  const [stu_chinese_name_first, setchinname_first] = useState('')
+  let a = ['Please fill in the blank.', '請完整填入資料']
+  let b = ['Please enter a valid email.', '請填入正確的email帳號']
+  let c = ['Please fill in all the blanks.', '請完整填入資料']
+  let d = ['Password does not match.', '密碼不相同']
+  let e = ['Password is too short.', '密碼長度太短']
+  let f = ['Wrong Validation Code.', '驗證碼錯誤']
+  let g = ['Please choose a role.', '請選擇身分']
+  let h = ['Sign in', '登入']
+  let i = ['Getting Started!', '告訴我們你是誰！']
+  let j = ['Student', '學生']
+  let k = ['Teacher', '老師']
+  let l = ['Next', '下一步']
+  let m = ['Validation Code', '驗證碼']
+  let n = ['Enter the validation code', '請輸入驗證碼']
+  let o = ['Back', '前一步']
+  let p = ['Begin Your Journey', '開始你的旅程！']
+  let q = ['Username', '帳號名稱']
+  let r = [
+    'Password (required length: 8 characters)',
+    '密碼 (長度需大於8個字元)',
+  ]
+  let s = ['Confirm Password', '確認密碼']
+  let t = ['Basic Information', '基本資料']
+  let u = ['First name', '名字']
+  let v = ['Last name', '姓氏']
+  let w = ['Gender (Female/Male/Other)', '性別 (女/男/其他)']
+  let x = ['Contact Number', '連絡電話']
+  let y = ['Email', 'Email帳號']
+  let z = ['Detailed Information', '詳細資訊']
+  let ab = ['Birthday (Format: 2004/01/01)', '生日 (格式：2004/01/01)']
+  let bc = ['Grade (9th/10th/11th)', '年級 (九/十/十一)']
+  let zz = ['Grade (1th/2th...)', '年級 (一/二...)']
+  let cd = ['School name', '學校名稱']
+  let de = ['Preference', '你的喜好']
+  let ef = ['Preferred Subjects (Chinese/Math...)', '偏好科目 (國文/數學...)']
+  let fg = ["Target Student's Grade (1th/2th...)", '學生年級 (一/二...)']
+  let gh = [
+    "Target Student's Gender (Female/Male/No Pref)",
+    '學生性別 (男/女/無偏好)',
+  ]
+  let hi = ["Target Student's Personality (Type Anything)", '學生性格']
+  let ij = ['Registered Successfully!!!', '成功註冊']
+  let jk = ['Return to Login', '回到登入頁面']
+  let kl = [
+    'Create a Google Meet Link for future meetings!!',
+    '創造一個未來會議的Google Meet連結!!',
+  ]
+  let lm = ['Create a Google Meet Link', '請填入Google Meet連結']
+  let mn = ['Register', '註冊']
+  let pq = ['Please Enter Your Chinese Name', '請輸入你的中文姓名']
+  let no = ['Please Enter Your Last Name (Chinese)', '請輸入你的中文姓氏']
+  let op = ['Please Enter Your First Name (Chinese)', '請輸入你的中文名字']
+  let pr = ['Female', '女']
+  let sr = ['Male', '男']
+  let st = ['Others', '其他']
+  let ss = ['No preference', '無']
+  let tu = ['Select your gender', '選擇你的性別']
+  let uv = ['Select your grade', '選擇你的年級']
+  let vv = ['Select your school', '選擇你的學校']
+  let yy = ['Select target student gender', '選擇學生性別']
+  let wv = ['Taipei Wego Senior High School', '台北市私立薇閣高級中學']
+  let ww = ['Taipei Fuhsing Senior High School', '台北市私立復興高級中學']
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
-  
+
     return (
       <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
         {children}
@@ -111,7 +125,7 @@ function Register_pageall() {
     )
   }
   BootstrapDialogTitle.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
   }
   const savedatastu = () => {
     console.log(stu_chinese_name)
@@ -124,11 +138,35 @@ function Register_pageall() {
     console.log(gradereg)
     console.log(birthdayreg)
     console.log(schoolnamereg)
+    if (schoolnamereg == '台北市私立薇閣高級中學') {
+      setschoolnamereg('Taipei Wego Senior High School')
+    }
+    if (schoolnamereg == '台北市私立復興高級中學') {
+      setschoolnamereg('Taipei Fuhsing Senior High School')
+    }
+    if (GenderReg == '女') {
+      setGenderReg('Female')
+    }
+    if (GenderReg == '男') {
+      setGenderReg('Male')
+    }
+    if ((GenderReg = '其他')) {
+      setGenderReg('Others')
+    }
+    if (stugenderreg == '女') {
+      setGenderReg('Female')
+    }
+    if (stugenderreg == '男') {
+      setGenderReg('Male')
+    }
+    if (stugenderreg == '無') {
+      setGenderReg('No preference')
+    }
     // save data here
     Axios.post('https://voluntutorcloud-server.herokuapp.com/registerForStu', {
       username: usernameReg,
       password: passwordReg,
-      role: "student",
+      role: 'student',
       firstname: stu_chinese_name_first,
       lastname: stu_chinese_name,
       gender: GenderReg,
@@ -136,17 +174,16 @@ function Register_pageall() {
       email: EmailReg,
       birthday: birthdayreg,
       grade: gradereg,
-      schoolname: schoolnamereg
-    }).then(response => {      
+      schoolname: schoolnamereg,
+    }).then((response) => {
       setOpen(true)
-      console.log(response);
-      console.log("Successful.");
-
+      console.log(response)
+      console.log('Successful.')
     })
   }
 
   const savedata = () => {
-    let temprole = "teacher"
+    let temprole = 'teacher'
 
     console.log(
       usernameReg,
@@ -164,7 +201,7 @@ function Register_pageall() {
       agereg,
       stugenderreg,
       personalityreg,
-      googlemeet
+      googlemeet,
     )
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/register', {
@@ -183,38 +220,41 @@ function Register_pageall() {
       targetStuAge: agereg,
       targetStuGen: stugenderreg,
       targetStuPerso: personalityreg,
-      googleMeetLink: googlemeet
+      googleMeetLink: googlemeet,
     }).then((response) => {
-      setOpen(true);
+      setOpen(true)
       console.log(response.data)
       console.log('Successful post.')
     })
   }
 
   const register = () => {
-    
-    if(teacherstyle == false){
+    if (teacherstyle == false) {
       if (googlemeet == '') {
         console.log('errormessage')
         seterrormessage(a[status])
       } else {
         seterrormessage('')
-        setOpen(true);
+        setOpen(true)
         savedata()
-      }  
+      }
     } else {
-      if (PhoneReg == "" || EmailReg == "" || GenderReg == "" || birthdayreg == '' || gradereg == '' || schoolnamereg == '') {
+      if (
+        PhoneReg == '' ||
+        EmailReg == '' ||
+        GenderReg == '' ||
+        birthdayreg == '' ||
+        gradereg == '' ||
+        schoolnamereg == ''
+      ) {
         console.log('errormessage')
-        seterrormessage(c[status])      
-      } else if(emailError == "") {
+        seterrormessage(c[status])
+      } else if (emailError == '') {
         seterrormessage('')
-        setOpen(true);
-        savedatastu();
-      }    
+        setOpen(true)
+        savedatastu()
+      }
     }
-
-
-
   }
 
   const validateEmail = (e) => {
@@ -252,20 +292,21 @@ function Register_pageall() {
   }
   const pageplus3 = () => {
     console.log(pagenum)
-    if(teacherstyle == false){
-    if (
-      FirstnameReg == '' ||
-      LastnameReg == '' ||
-      GenderReg == '' ||
-      PhoneReg == '' ||
-      EmailReg == ''
-    ) {
-      console.log('errormessage')
-      seterrormessage(c[status])
-    } else if(emailError == "") {
-      setpagenum(pagenum + 1)
-      seterrormessage('')
-    }}else{
+    if (teacherstyle == false) {
+      if (
+        FirstnameReg == '' ||
+        LastnameReg == '' ||
+        GenderReg == '' ||
+        PhoneReg == '' ||
+        EmailReg == ''
+      ) {
+        console.log('errormessage')
+        seterrormessage(c[status])
+      } else if (emailError == '') {
+        setpagenum(pagenum + 1)
+        seterrormessage('')
+      }
+    } else {
       if (usernameReg == '' || passwordReg == '' || cPassword == '') {
         console.log('errormessage')
         seterrormessage(c[status])
@@ -287,27 +328,28 @@ function Register_pageall() {
   }
   const pageplus2 = () => {
     console.log(pagenum)
-    if(teacherstyle == false){
-    if (usernameReg == '' || passwordReg == '' || cPassword == '') {
-      console.log('errormessage')
-      seterrormessage(c[status])
-    } else {
-      if (passwordReg != cPassword) {
+    if (teacherstyle == false) {
+      if (usernameReg == '' || passwordReg == '' || cPassword == '') {
         console.log('errormessage')
-        seterrormessage(d[status])
+        seterrormessage(c[status])
       } else {
-        if (passwordReg.length < 8) {
+        if (passwordReg != cPassword) {
           console.log('errormessage')
-          seterrormessage(e[status])
+          seterrormessage(d[status])
         } else {
-          setpagenum(pagenum + 1)
-          seterrormessage('')
+          if (passwordReg.length < 8) {
+            console.log('errormessage')
+            seterrormessage(e[status])
+          } else {
+            setpagenum(pagenum + 1)
+            seterrormessage('')
+          }
         }
       }
-    }}else{
-      if (stu_chinese_name == '' || stu_chinese_name_first==''){
+    } else {
+      if (stu_chinese_name == '' || stu_chinese_name_first == '') {
         seterrormessage(c[status])
-      }else {
+      } else {
         setpagenum(pagenum + 1)
         seterrormessage('')
       }
@@ -315,19 +357,20 @@ function Register_pageall() {
   }
   const pageplus1_5 = () => {
     console.log(pagenum)
-    if(teacherstyle == false){
+    if (teacherstyle == false) {
       if (validationcode != 'vcwego') {
         seterrormessage(f[status])
+      } else {
+        setpagenum(pagenum + 0.5)
+        seterrormessage('')
+      }
     } else {
-      setpagenum(pagenum + 0.5)
-      seterrormessage('')
-    }}else{
       if (validationcode != 'vcds') {
         seterrormessage(f[status])
-    } else {
-      setpagenum(pagenum + 0.5)
-      seterrormessage('')
-    }
+      } else {
+        setpagenum(pagenum + 0.5)
+        seterrormessage('')
+      }
     }
   }
   const pageplus1 = () => {
@@ -364,18 +407,15 @@ function Register_pageall() {
     setstudentstyle(!studentstyle)
     setteacherstyle(true)
   }
-  
+
   const [open, setOpen] = useState(false)
 
-  
   if (pagenum == 0) {
     return (
       <div className="all">
-        <div className="bar">
-          
-        </div>
+        <div className="bar"></div>
         <div className="role_full">
-        <div className="languagereg">
+          <div className="languagereg">
             <div
               className="wordslog"
               onClick={() => {
@@ -422,855 +462,991 @@ function Register_pageall() {
           </div>
           <div className="reg_next_wrap">
             <button className="next" onClick={pageplus1}>
-            {l[status]}
+              {l[status]}
             </button>
           </div>
         </div>
       </div>
     )
   } else if (pagenum == 0.5) {
-    if(teacherstyle == false){
-    return (
-      <div className="all">
-        <div className="bar">
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </div>
-        <div className="full"><div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
-              中
-            </div>
-            <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
-              English
-            </div>
-          </div>
-          <Link to="/sign-in">
-            <div className="signintext">{h[status]}</div>
-          </Link>
-          <div className="regsub">
-            <div className="regwords">
-              <h1 className="title_reg">{m[status]}</h1>
-              <div class="warning">{errormessage}</div>
-            </div>
-            <div className="reg">
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={validationcode}
-                  placeholder={n[status]}
-                  onChange={(e) => {
-                    setValidationcode(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setValidationcode('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-            </div>
-            <div className="btn_reg">
-              <button className="back" onClick={pageminus1_5}>
-              {o[status]}
-              </button>
-              <button className="next" onClick={pageplus1_5}>
-             {l[status]}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )}else{
-      return(
+    if (teacherstyle == false) {
+      return (
         <div className="all">
-        <div className="bar">
-          <div className="dot">
-            <div className="innerdot"></div>
+          <div className="bar">
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
           </div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </div>
-        <div className="full"><div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
-              中
+          <div className="full">
+            <div className="languagereg">
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(1)
+                }}
+              >
+                中
+              </div>
+              <div className="wordslog">/</div>
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(0)
+                }}
+              >
+                English
+              </div>
             </div>
-            <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
-              English
-            </div>
-          </div>
-          <Link to="/sign-in">
-            <div className="signintext">{h[status]}</div>
-          </Link>
-          <div className="regsub">
-            <div className="regwords">
-              <h1 className="title_reg">{m[status]}</h1>
-              <div class="warning">{errormessage}</div>
-            </div>
-            <div className="reg">
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={validationcode}
-                  placeholder={n[status]}
-                  onChange={(e) => {
-                    setValidationcode(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setValidationcode('')}>
-                  <ImCross id="clear_reg" />
+            <Link to="/sign-in">
+              <div className="signintext">{h[status]}</div>
+            </Link>
+            <div className="regsub">
+              <div className="regwords">
+                <h1 className="title_reg">{m[status]}</h1>
+                <div class="warning">{errormessage}</div>
+              </div>
+              <div className="reg">
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={validationcode}
+                    placeholder={n[status]}
+                    onChange={(e) => {
+                      setValidationcode(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setValidationcode('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+              </div>
+              <div className="btn_reg">
+                <button className="back" onClick={pageminus1_5}>
+                  {o[status]}
+                </button>
+                <button className="next" onClick={pageplus1_5}>
+                  {l[status]}
                 </button>
               </div>
             </div>
-            <div className="btn_reg">
-              <button className="back" onClick={pageminus1_5}>
-              {o[status]}
-              </button>
-              <button className="next" onClick={pageplus1_5}>
-             {l[status]}
-              </button>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="all">
+          <div className="bar">
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+          </div>
+          <div className="full">
+            <div className="languagereg">
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(1)
+                }}
+              >
+                中
+              </div>
+              <div className="wordslog">/</div>
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(0)
+                }}
+              >
+                English
+              </div>
+            </div>
+            <Link to="/sign-in">
+              <div className="signintext">{h[status]}</div>
+            </Link>
+            <div className="regsub">
+              <div className="regwords">
+                <h1 className="title_reg">{m[status]}</h1>
+                <div class="warning">{errormessage}</div>
+              </div>
+              <div className="reg">
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={validationcode}
+                    placeholder={n[status]}
+                    onChange={(e) => {
+                      setValidationcode(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setValidationcode('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+              </div>
+              <div className="btn_reg">
+                <button className="back" onClick={pageminus1_5}>
+                  {o[status]}
+                </button>
+                <button className="next" onClick={pageplus1_5}>
+                  {l[status]}
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       )
     }
   } else if (pagenum == 1) {
-    if(teacherstyle == false){
-    return (
-<div className="all">
-      <div className="bar">
-
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        <div className="dot"></div>
-        <div className="dot"></div>
-        <div className="dot"></div>
-        <div className="dot"></div>
-      </div>
-      <div className="full"><div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
-              中
+    if (teacherstyle == false) {
+      return (
+        <div className="all">
+          <div className="bar">
+            <div className="dot">
+              <div className="innerdot"></div>
             </div>
-            <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
-              English
+            <div className="dot">
+              <div className="innerdot"></div>
             </div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
           </div>
-        <Link to="/sign-in">
-          <div className="signintext">{h[status]}</div>
-        </Link>
-        <div className="regsub">
-          <div className="regwords">
-            <h1 className="title_reg">{p[status]}</h1>
-            <div class="warning">{errormessage}</div>
-          </div>
-          <div className="reg">
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type="text"
-                value={usernameReg}
-                placeholder={q[status]}
-                onChange={(e) => {
-                  setUsernameReg(e.target.value)
+          <div className="full">
+            <div className="languagereg">
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(1)
                 }}
-              />
-              <button id="reset_reg" onClick={() => setUsernameReg('')}>
-                <ImCross id="clear_reg" />
-              </button>
-            </div>
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type={passwordShown ? 'text' : 'password'}
-                placeholder={r[status]}
-                minLength={8}
-                value = {passwordReg}
-                onChange={(e) => {
-                  setPasswordReg(e.target.value)
+              >
+                中
+              </div>
+              <div className="wordslog">/</div>
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(0)
                 }}
-              />
-              <button id="show_reg" onClick={togglePassword}>
-                <BsFillEyeSlashFill id="showpass_reg" />
-              </button>
+              >
+                English
+              </div>
             </div>
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type={cpasswordShown ? 'text' : 'password'}
-                placeholder={s[status]}
-                minLength={8}
-                value = {cPassword}
-                onChange={(e) => {
-                  confirmPassword(e.target.value)
-                }}
-              />
-              <button id="show_reg" onClick={togglecPassword}>
-                <BsFillEyeSlashFill id="showpass_reg" />
-              </button>
+            <Link to="/sign-in">
+              <div className="signintext">{h[status]}</div>
+            </Link>
+            <div className="regsub">
+              <div className="regwords">
+                <h1 className="title_reg">{p[status]}</h1>
+                <div class="warning">{errormessage}</div>
+              </div>
+              <div className="reg">
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={usernameReg}
+                    placeholder={q[status]}
+                    onChange={(e) => {
+                      setUsernameReg(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setUsernameReg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type={passwordShown ? 'text' : 'password'}
+                    placeholder={r[status]}
+                    minLength={8}
+                    value={passwordReg}
+                    onChange={(e) => {
+                      setPasswordReg(e.target.value)
+                    }}
+                  />
+                  <button id="show_reg" onClick={togglePassword}>
+                    <BsFillEyeSlashFill id="showpass_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type={cpasswordShown ? 'text' : 'password'}
+                    placeholder={s[status]}
+                    minLength={8}
+                    value={cPassword}
+                    onChange={(e) => {
+                      confirmPassword(e.target.value)
+                    }}
+                  />
+                  <button id="show_reg" onClick={togglecPassword}>
+                    <BsFillEyeSlashFill id="showpass_reg" />
+                  </button>
+                </div>
+              </div>
+              <div className="btn_reg">
+                <button className="back" onClick={pageminus1_5}>
+                  {o[status]}
+                </button>
+                <button className="next" onClick={pageplus2}>
+                  {l[status]}
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="btn_reg">
-            <button className="back" onClick={pageminus1_5}>
-            {o[status]}
-            </button>
-            <button className="next" onClick={pageplus2}>
-            {l[status]}
-            </button>
           </div>
         </div>
-      </div>
-    </div>
-    )}else{
-      return (<div className="all">
-      <div className="bar">
-
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        <div className="dot"></div>
-          <div className="dot"></div>
-      </div>
-      <div className="full"><div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
-              中
+      )
+    } else {
+      return (
+        <div className="all">
+          <div className="bar">
+            <div className="dot">
+              <div className="innerdot"></div>
             </div>
-            <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
-              English
+            <div className="dot">
+              <div className="innerdot"></div>
             </div>
+            <div className="dot"></div>
+            <div className="dot"></div>
           </div>
-        <Link to="/sign-in">
-          <div className="signintext">{h[status]}</div>
-        </Link>
-        <div className="regsub">
-          <div className="regwords">
-            <h1 className="title_reg">{ pq[status]}</h1>
-            <div class="warning">{errormessage}</div>
-          </div>
-          <div className="reg">
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type="text"
-                value={stu_chinese_name} // stu_chinese_name
-                placeholder={no[status]}
-                onChange={(e) => {
-                  setchinname(e.target.value)
+          <div className="full">
+            <div className="languagereg">
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(1)
                 }}
-              />
-              <button id="reset_reg" onClick={() => setchinname('')}>
-                <ImCross id="clear_reg" />
-              </button>
-            </div>
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type="text"
-                value={stu_chinese_name_first} // stu_chinese_name_first
-                placeholder={op[status]}
-                onChange={(e) => {
-                  setchinname_first(e.target.value)
+              >
+                中
+              </div>
+              <div className="wordslog">/</div>
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(0)
                 }}
-              />
-              <button id="reset_reg" onClick={() => setchinname_first('')}>
-                <ImCross id="clear_reg" />
-              </button>
+              >
+                English
+              </div>
             </div>
-          </div>
-          <div className="btn_reg">
-            <button className="back" onClick={pageminus1_5}>
-            {o[status]}
-            </button>
-            <button className="next" onClick={pageplus2}>
-            {l[status]}
-            </button>
+            <Link to="/sign-in">
+              <div className="signintext">{h[status]}</div>
+            </Link>
+            <div className="regsub">
+              <div className="regwords">
+                <h1 className="title_reg">{pq[status]}</h1>
+                <div class="warning">{errormessage}</div>
+              </div>
+              <div className="reg">
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={stu_chinese_name} // stu_chinese_name
+                    placeholder={no[status]}
+                    onChange={(e) => {
+                      setchinname(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setchinname('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={stu_chinese_name_first} // stu_chinese_name_first
+                    placeholder={op[status]}
+                    onChange={(e) => {
+                      setchinname_first(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setchinname_first('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+              </div>
+              <div className="btn_reg">
+                <button className="back" onClick={pageminus1_5}>
+                  {o[status]}
+                </button>
+                <button className="next" onClick={pageplus2}>
+                  {l[status]}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>)
+      )
     }
   } else if (pagenum == 2) {
-    if(teacherstyle == false){
-    return (
-      <div className="all">
-        <div className="bar">
-
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </div>
-        <div className="full"><div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
-              中
-            </div>
-            <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
-              English
-            </div>
-          </div>
-          <Link to="/sign-in">
-            <div className="signintext">{h[status]}</div>
-          </Link>
-          <div className="regsub">
-            <div className="regwords">
-              <h1 className="title_reg">{t[status]}</h1>
-              <div class="warning">{errormessage}</div>
-            </div>
-            <div className="reg">
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={FirstnameReg}
-                  placeholder={u[status]}
-                  onChange={(e) => {
-                    setFirstnameReg(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setFirstnameReg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={LastnameReg}
-                  placeholder={v[status]}
-                  onChange={(e) => {
-                    setLastnameReg(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setLastnameReg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={GenderReg}
-                  placeholder={w[status]}
-                  onChange={(e) => {
-                    setGenderReg(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setGenderReg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="tel"
-                  maxLength={10}
-                  value={PhoneReg}
-                  placeholder={x[status]}
-                  onChange={(e) => {
-                    setPhoneReg(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setPhoneReg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={EmailReg}
-                  placeholder={y[status]}
-                  onChange={(e) => {
-                    validateEmail(e)
-                    setEmailReg(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setEmailReg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-              <div class="emailwarning">{emailError}</div>
-            </div>
-            <div className="btn_reg">
-              <button className="back" onClick={pageminus}>
-              {o[status]}
-              </button>
-              <button className="next" onClick={pageplus3}>
-              {l[status]}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )}else{
+    if (teacherstyle == false) {
       return (
+        <div className="all">
+          <div className="bar">
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+          </div>
+          <div className="full">
+            <div className="languagereg">
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(1)
+                }}
+              >
+                中
+              </div>
+              <div className="wordslog">/</div>
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(0)
+                }}
+              >
+                English
+              </div>
+            </div>
+            <Link to="/sign-in">
+              <div className="signintext">{h[status]}</div>
+            </Link>
+            <div className="regsub">
+              <div className="regwords">
+                <h1 className="title_reg">{t[status]}</h1>
+                <div class="warning">{errormessage}</div>
+              </div>
+              <div className="reg">
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={FirstnameReg}
+                    placeholder={u[status]}
+                    onChange={(e) => {
+                      setFirstnameReg(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setFirstnameReg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={LastnameReg}
+                    placeholder={v[status]}
+                    onChange={(e) => {
+                      setLastnameReg(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setLastnameReg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
 
-<div className="all">
-      <div className="bar">
+                <div className="reggroup">
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    variant="standard"
+                    id="demo-simple-select-standard"
+                    className="register_selector"
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    value={GenderReg}
+                    onChange={(e) => {
+                      setGenderReg(e.target.value)
+                    }}
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <div className="selectplace">{tu[status]}</div>
+                      }
 
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        
-          <div className="dot"></div>
-      </div>
-      <div className="full"><div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
-              中
-            </div>
-            <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
-              English
+                      return selected
+                    }}
+                    sx={{
+                      color: '#b25634',
+                      paddingLeft: '10px',
+                      fontFamily: 'Lora',
+                      letterSpacing: '2px',
+                      fontSize: '20px',
+                      '&:hover': {
+                        color: '#b25634',
+                      },
+                      '&:focus': {
+                        backgroundColor: '#00000000',
+                      },
+                      '&:not(.Mui-disabled):hover::before': {
+                        borderBottom: '1.5px solid #b25634',
+                      },
+                      '&:before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '&:after': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root': {
+                        ml: '30px',
+                        fontSize: '30px',
+                        color: '#b25634',
+                        fill: '#b25634',
+                      },
+                      '& .MuiSvgIcon-root::before': {
+                        border: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root::after': {
+                        border: '1.5px solid #D6A796',
+                      },
+                    }}
+                  >
+                    <MenuItem value={pr[status]}>{pr[status]}</MenuItem>
+                    <MenuItem value={sr[status]}>{sr[status]}</MenuItem>
+                    <MenuItem value={st[status]}>{st[status]}</MenuItem>
+                  </Select>
+                </div>
+
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="tel"
+                    maxLength={10}
+                    value={PhoneReg}
+                    placeholder={x[status]}
+                    onChange={(e) => {
+                      setPhoneReg(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setPhoneReg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={EmailReg}
+                    placeholder={y[status]}
+                    onChange={(e) => {
+                      validateEmail(e)
+                      setEmailReg(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setEmailReg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div class="emailwarning">{emailError}</div>
+              </div>
+              <div className="btn_reg">
+                <button className="back" onClick={pageminus}>
+                  {o[status]}
+                </button>
+                <button className="next" onClick={pageplus3}>
+                  {l[status]}
+                </button>
+              </div>
             </div>
           </div>
-        <Link to="/sign-in">
-          <div className="signintext">{h[status]}</div>
-        </Link>
-        <div className="regsub">
-          <div className="regwords">
-            <h1 className="title_reg">{p[status]}</h1>
-            <div class="warning">{errormessage}</div>
-          </div>
-          <div className="reg">
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type="text"
-                value={usernameReg}
-                placeholder={q[status]}
-                onChange={(e) => {
-                  setUsernameReg(e.target.value) // usernameReg
-                }}
-              />
-              <button id="reset_reg" onClick={() => setUsernameReg('')}>
-                <ImCross id="clear_reg" />
-              </button>
-            </div>
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type={passwordShown ? 'text' : 'password'}
-                placeholder={r[status]}
-                minLength={8}
-                value={passwordReg}
-                onChange={(e) => {
-                  setPasswordReg(e.target.value) // passwordReg
-                }}
-              />
-              <button id="show_reg" onClick={togglePassword}>
-                <BsFillEyeSlashFill id="showpass_reg" />
-              </button>
-            </div>
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type={cpasswordShown ? 'text' : 'password'}
-                placeholder={s[status]}
-                minLength={8}
-                value = {cPassword}
-                onChange={(e) => {
-                  confirmPassword(e.target.value)
-                }}
-              />
-              <button id="show_reg" onClick={togglecPassword}>
-                <BsFillEyeSlashFill id="showpass_reg" />
-              </button>
-            </div>
-          </div>
-          <div className="btn_reg">
-              <button className="back" onClick={pageminus}>
-              {o[status]}
-              </button>
-              <button className="next" onClick={pageplus3}>
-              {l[status]}
-              </button>
-            </div>
         </div>
-      </div>
-    </div>
+      )
+    } else {
+      return (
+        <div className="all">
+          <div className="bar">
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+
+            <div className="dot"></div>
+          </div>
+          <div className="full">
+            <div className="languagereg">
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(1)
+                }}
+              >
+                中
+              </div>
+              <div className="wordslog">/</div>
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(0)
+                }}
+              >
+                English
+              </div>
+            </div>
+            <Link to="/sign-in">
+              <div className="signintext">{h[status]}</div>
+            </Link>
+            <div className="regsub">
+              <div className="regwords">
+                <h1 className="title_reg">{p[status]}</h1>
+                <div class="warning">{errormessage}</div>
+              </div>
+              <div className="reg">
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={usernameReg}
+                    placeholder={q[status]}
+                    onChange={(e) => {
+                      setUsernameReg(e.target.value) // usernameReg
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setUsernameReg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type={passwordShown ? 'text' : 'password'}
+                    placeholder={r[status]}
+                    minLength={8}
+                    value={passwordReg}
+                    onChange={(e) => {
+                      setPasswordReg(e.target.value) // passwordReg
+                    }}
+                  />
+                  <button id="show_reg" onClick={togglePassword}>
+                    <BsFillEyeSlashFill id="showpass_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type={cpasswordShown ? 'text' : 'password'}
+                    placeholder={s[status]}
+                    minLength={8}
+                    value={cPassword}
+                    onChange={(e) => {
+                      confirmPassword(e.target.value)
+                    }}
+                  />
+                  <button id="show_reg" onClick={togglecPassword}>
+                    <BsFillEyeSlashFill id="showpass_reg" />
+                  </button>
+                </div>
+              </div>
+              <div className="btn_reg">
+                <button className="back" onClick={pageminus}>
+                  {o[status]}
+                </button>
+                <button className="next" onClick={pageplus3}>
+                  {l[status]}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )
     }
   } else if (pagenum == 3) {
-    if(teacherstyle == false){
-    return (
-      <div className="all">
-        <div className="bar">
-
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
-          <div className="dot">
-            <div className="innerdot"></div>
-          </div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </div>
-        <div className="full"><div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
-              中
+    if (teacherstyle == false) {
+      return (
+        <div className="all">
+          <div className="bar">
+            <div className="dot">
+              <div className="innerdot"></div>
             </div>
-            <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
-              English
+            <div className="dot">
+              <div className="innerdot"></div>
             </div>
-          </div>
-          <Link to="/sign-in">
-            <div className="signintext">{h[status]}</div>
-          </Link>
-          <div className="regsub">
-            <div className="regwords">
-              <h1 className="title_reg">{z[status]}</h1>
-
-              <div class="warning">{errormessage}</div>
+            <div className="dot">
+              <div className="innerdot"></div>
             </div>
-            <div className="reg">
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={birthdayreg}
-                  maxLength={20}
-                  placeholder={ab[status]}
-                  onChange={(e) => {
-                    setbirthdayreg(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setbirthdayreg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  maxLength={4}
-                  value={gradereg}
-                  placeholder={bc[status]}
-                  onChange={(e) => {
-                    setgradereg(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setgradereg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={schoolnamereg}
-                  placeholder={cd[status]}
-                  onChange={(e) => {
-                    setschoolnamereg(e.target.value)
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setschoolnamereg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
+            <div className="dot">
+              <div className="innerdot"></div>
             </div>
-            <div className="btn_reg">
-              <button className="back" onClick={pageminus}>
-              {o[status]}
-              </button>
-              <button className="next" onClick={pageplus4}>
-              {l[status]}
-              </button>
-            </div>
+            <div className="dot"></div>
+            <div className="dot"></div>
           </div>
-        </div>
-      </div>
-    )}else{
-      return(<div className="all">
-        <div id="dialog_reg_wrap">
-        <BootstrapDialog
-          id = "dialog_registered"
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
-          <div id="registeredsucc">
-          {ij[status]}
-          </div>
-          <Link to="/sign-in">
-          <div id="return">
-          {jk[status]}
-          </div>
-          </Link>
-
-
-
-
-
-
-          <div>
-          </div>
-        </BootstrapDialog>
-        </div>
-      <div className="bar">
-
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        <div className="dot">
-          <div className="innerdot"></div>
-        </div>
-        
-          <div className="dot">
-          <div className="innerdot"></div></div>
-      </div>
-      <div className="full"><div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
-              中
-            </div>
-            <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
-              English
-            </div>
-          </div>
-        <Link to="/sign-in">
-          <div className="signintext">{h[status]}</div>
-        </Link>
-        <div className="regsub">
-          <div className="regwords">
-            <h1 className="title_reg">{t[status]}</h1>
-
-            <div class="warning">{errormessage}</div>
-          </div>
-          <div className="reg">
-          <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={GenderReg}
-                  placeholder={w[status]}
-                  onChange={(e) => {
-                    setGenderReg(e.target.value) // genderReg
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setGenderReg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type="text"
-                value={birthdayreg}
-                maxLength={20}
-                placeholder={ab[status]}
-                onChange={(e) => {
-                  setbirthdayreg(e.target.value) // birthdayreg
+          <div className="full">
+            <div className="languagereg">
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(1)
                 }}
-              />
-              <button id="reset_reg" onClick={() => setbirthdayreg('')}>
-                <ImCross id="clear_reg" />
-              </button>
-            </div>
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type="text"
-                maxLength={4}
-                value={gradereg}
-                placeholder={zz[status]}
-                onChange={(e) => {
-                  setgradereg(e.target.value) // graderreg
+              >
+                中
+              </div>
+              <div className="wordslog">/</div>
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(0)
                 }}
-              />
-              <button id="reset_reg" onClick={() => setgradereg('')}>
-                <ImCross id="clear_reg" />
-              </button>
+              >
+                English
+              </div>
             </div>
-            <div className="reggroup">
-              <input
-                className="register_input"
-                type="text"
-                value={schoolnamereg}
-                placeholder={cd[status]}
-                onChange={(e) => {
-                  setschoolnamereg(e.target.value) // schoolnamereg
-                }}
-              />
-              <button id="reset_reg" onClick={() => setschoolnamereg('')}>
-                <ImCross id="clear_reg" />
-              </button>
-            </div>
-            
-            <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="tel"
-                  maxLength={10}
-                  value={PhoneReg}
-                  placeholder={x[status]}
-                  onChange={(e) => {
-                    setPhoneReg(e.target.value) // phoneReg
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setPhoneReg('')}>
-                  <ImCross id="clear_reg" />
+            <Link to="/sign-in">
+              <div className="signintext">{h[status]}</div>
+            </Link>
+            <div className="regsub">
+              <div className="regwords">
+                <h1 className="title_reg">{z[status]}</h1>
+
+                <div class="warning">{errormessage}</div>
+              </div>
+              <div className="reg">
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={birthdayreg}
+                    maxLength={20}
+                    placeholder={ab[status]}
+                    onChange={(e) => {
+                      setbirthdayreg(e.target.value)
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setbirthdayreg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    variant="standard"
+                    id="demo-simple-select-standard"
+                    className="register_selector"
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    value={gradereg}
+                    onChange={(e) => {
+                      setgradereg(e.target.value)
+                    }}
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <div className="selectplace">{uv[status]}</div>
+                      }
+
+                      return selected
+                    }}
+                    sx={{
+                      color: '#b25634',
+                      paddingLeft: '10px',
+                      fontFamily: 'Lora',
+                      letterSpacing: '2px',
+                      fontSize: '20px',
+                      '&:hover': {
+                        color: '#b25634',
+                      },
+                      '&:focus': {
+                        backgroundColor: '#00000000',
+                      },
+                      '&:not(.Mui-disabled):hover::before': {
+                        borderBottom: '1.5px solid #b25634',
+                      },
+                      '&:before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '&:after': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root': {
+                        ml: '30px',
+                        fontSize: '30px',
+                        color: '#b25634',
+                        fill: '#b25634',
+                      },
+                      '& .MuiSvgIcon-root::before': {
+                        border: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root::after': {
+                        border: '1.5px solid #D6A796',
+                      },
+                    }}
+                  >
+                    <MenuItem value={'9th'}>9th</MenuItem>
+                    <MenuItem value={'10th'}>10th</MenuItem>
+                    <MenuItem value={'11th'}>11th</MenuItem>
+                  </Select>
+                </div>
+                <div className="reggroup">
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    variant="standard"
+                    id="demo-simple-select-standard"
+                    className="register_selector"
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    value={schoolnamereg}
+                    onChange={(e) => {
+                      setschoolnamereg(e.target.value)
+                    }}
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <div className="selectplace">{vv[status]}</div>
+                      }
+
+                      return selected
+                    }}
+                    sx={{
+                      color: '#b25634',
+                      paddingLeft: '10px',
+                      fontFamily: 'Lora',
+                      letterSpacing: '2px',
+                      fontSize: '20px',
+                      '&:hover': {
+                        color: '#b25634',
+                      },
+                      '&:focus': {
+                        backgroundColor: '#00000000',
+                      },
+                      '&:not(.Mui-disabled):hover::before': {
+                        borderBottom: '1.5px solid #b25634',
+                      },
+                      '&:before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '&:after': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root': {
+                        ml: '30px',
+                        fontSize: '30px',
+                        color: '#b25634',
+                        fill: '#b25634',
+                      },
+                      '& .MuiSvgIcon-root::before': {
+                        border: '1.5px solid #D6A796',
+                      },
+                      '& .MuiSvgIcon-root::after': {
+                        border: '1.5px solid #D6A796',
+                      },
+                    }}
+                  >
+                    <MenuItem value={wv[status]}>{wv[status]}</MenuItem>
+                    <MenuItem value={ww[status]}>{ww[status]}</MenuItem>
+                  </Select>
+                </div>
+              </div>
+              <div className="btn_reg">
+                <button className="back" onClick={pageminus}>
+                  {o[status]}
+                </button>
+                <button className="next" onClick={pageplus4}>
+                  {l[status]}
                 </button>
               </div>
-              <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
-                  value={EmailReg}
-                  placeholder={y[status]}
-                  onChange={(e) => {
-                    validateEmail(e)
-                    setEmailReg(e.target.value) // emailReg
-                  }}
-                />
-                <button id="reset_reg" onClick={() => setEmailReg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
-              </div>
-              <div class="emailwarning">{emailError}</div>
+            </div>
           </div>
-          <div className="btn_reg">
-              <button className="back" onClick={pageminus}>
-              {o[status]}
-              </button>
-              {/* <Link to="/"> */}
-              <button className="next" onClick={() => {
-                        
-                        register();
-                      }}>
-                {mn[status]}
-              </button>
-              {/* </Link> */}
-            </div>
         </div>
-      </div>
-    </div>)
+      )
+    } else {
+      return (
+        <div className="all">
+          <div id="dialog_reg_wrap">
+            <BootstrapDialog
+              id="dialog_registered"
+              aria-labelledby="customized-dialog-title"
+              open={open}
+            >
+              <div id="registeredsucc">{ij[status]}</div>
+              <Link to="/sign-in">
+                <div id="return">{jk[status]}</div>
+              </Link>
+
+              <div></div>
+            </BootstrapDialog>
+          </div>
+          <div className="bar">
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+
+            <div className="dot">
+              <div className="innerdot"></div>
+            </div>
+          </div>
+          <div className="full">
+            <div className="languagereg">
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(1)
+                }}
+              >
+                中
+              </div>
+              <div className="wordslog">/</div>
+              <div
+                className="wordslog"
+                onClick={() => {
+                  setStatus(0)
+                }}
+              >
+                English
+              </div>
+            </div>
+            <Link to="/sign-in">
+              <div className="signintext">{h[status]}</div>
+            </Link>
+            <div className="regsub">
+              <div className="regwords">
+                <h1 className="title_reg">{t[status]}</h1>
+
+                <div class="warning">{errormessage}</div>
+              </div>
+              <div className="reg">
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={GenderReg}
+                    placeholder={w[status]}
+                    onChange={(e) => {
+                      setGenderReg(e.target.value) // genderReg
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setGenderReg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={birthdayreg}
+                    maxLength={20}
+                    placeholder={ab[status]}
+                    onChange={(e) => {
+                      setbirthdayreg(e.target.value) // birthdayreg
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setbirthdayreg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    maxLength={4}
+                    value={gradereg}
+                    placeholder={zz[status]}
+                    onChange={(e) => {
+                      setgradereg(e.target.value) // graderreg
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setgradereg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={schoolnamereg}
+                    placeholder={cd[status]}
+                    onChange={(e) => {
+                      setschoolnamereg(e.target.value) // schoolnamereg
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setschoolnamereg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="tel"
+                    maxLength={10}
+                    value={PhoneReg}
+                    placeholder={x[status]}
+                    onChange={(e) => {
+                      setPhoneReg(e.target.value) // phoneReg
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setPhoneReg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div className="reggroup">
+                  <input
+                    className="register_input"
+                    type="text"
+                    value={EmailReg}
+                    placeholder={y[status]}
+                    onChange={(e) => {
+                      validateEmail(e)
+                      setEmailReg(e.target.value) // emailReg
+                    }}
+                  />
+                  <button id="reset_reg" onClick={() => setEmailReg('')}>
+                    <ImCross id="clear_reg" />
+                  </button>
+                </div>
+                <div class="emailwarning">{emailError}</div>
+              </div>
+              <div className="btn_reg">
+                <button className="back" onClick={pageminus}>
+                  {o[status]}
+                </button>
+                {/* <Link to="/"> */}
+                <button
+                  className="next"
+                  onClick={() => {
+                    register()
+                  }}
+                >
+                  {mn[status]}
+                </button>
+                {/* </Link> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      )
     }
   } else if (pagenum == 4) {
     return (
       <div className="all">
         <div className="bar">
-
           <div className="dot">
             <div className="innerdot"></div>
           </div>
@@ -1289,7 +1465,8 @@ function Register_pageall() {
 
           <div className="dot"></div>
         </div>
-        <div className="full"><div className="languagereg">
+        <div className="full">
+          <div className="languagereg">
             <div
               className="wordslog"
               onClick={() => {
@@ -1346,19 +1523,65 @@ function Register_pageall() {
                 </button>
               </div>
               <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
+                <Select
+                  labelId="demo-simple-select-helper-label"
+                  variant="standard"
+                  id="demo-simple-select-standard"
+                  className="register_selector"
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
                   value={stugenderreg}
-                  placeholder={gh[status]}
                   onChange={(e) => {
                     setstugenderreg(e.target.value)
                   }}
-                />
-                <button id="reset_reg" onClick={() => setstugenderreg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
+                  renderValue={(selected) => {
+                    if (selected.length === 0) {
+                      return <div className="selectplace">{yy[status]}</div>
+                    }
+
+                    return selected
+                  }}
+                  sx={{
+                    color: '#b25634',
+                    paddingLeft: '10px',
+                    fontFamily: 'Lora',
+                    letterSpacing: '2px',
+                    fontSize: '20px',
+                    '&:hover': {
+                      color: '#b25634',
+                    },
+                    '&:focus': {
+                      backgroundColor: '#00000000',
+                    },
+                    '&:not(.Mui-disabled):hover::before': {
+                      borderBottom: '1.5px solid #b25634',
+                    },
+                    '&:before': {
+                      borderBottom: '1.5px solid #D6A796',
+                    },
+                    '&:after': {
+                      borderBottom: '1.5px solid #D6A796',
+                    },
+                    '& .MuiSvgIcon-root': {
+                      ml: '30px',
+                      fontSize: '30px',
+                      color: '#b25634',
+                      fill: '#b25634',
+                    },
+                    '& .MuiSvgIcon-root::before': {
+                      border: '1.5px solid #D6A796',
+                    },
+                    '& .MuiSvgIcon-root::after': {
+                      border: '1.5px solid #D6A796',
+                    },
+                  }}
+                >
+                  <MenuItem value={pr[status]}>{pr[status]}</MenuItem>
+                  <MenuItem value={sr[status]}>{sr[status]}</MenuItem>
+                  <MenuItem value={ss[status]}>{ss[status]}</MenuItem>
+                </Select>
               </div>
+
               <div className="reggroup">
                 <input
                   className="register_input"
@@ -1377,10 +1600,10 @@ function Register_pageall() {
 
             <div className="btn_reg">
               <button className="back" onClick={pageminus}>
-              {o[status]}
+                {o[status]}
               </button>
               <button className="next" onClick={pageplus5}>
-              {l[status]}
+                {l[status]}
               </button>
             </div>
           </div>
@@ -1391,22 +1614,17 @@ function Register_pageall() {
     return (
       <div className="all">
         <div id="dialog_reg_wrap">
-        <BootstrapDialog
-          id = "dialog_registered"
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
-          <div id="registeredsucc">
-          {ij[status]}
-          </div>
-          <Link to="/sign-in">
-          <div id="return">
-          {jk[status]}
-          </div>
-          </Link>
-          <div>
-          </div>
-        </BootstrapDialog>
+          <BootstrapDialog
+            id="dialog_registered"
+            aria-labelledby="customized-dialog-title"
+            open={open}
+          >
+            <div id="registeredsucc">{ij[status]}</div>
+            <Link to="/sign-in">
+              <div id="return">{jk[status]}</div>
+            </Link>
+            <div></div>
+          </BootstrapDialog>
         </div>
         <div className="bar">
           <div className="dot">
@@ -1428,7 +1646,8 @@ function Register_pageall() {
             <div className="innerdot"></div>
           </div>
         </div>
-        <div className="full"><div className="languagereg">
+        <div className="full">
+          <div className="languagereg">
             <div
               className="wordslog"
               onClick={() => {
@@ -1452,8 +1671,7 @@ function Register_pageall() {
           </Link>
           <div className="regsub">
             <div className="regwords">
-              <h1 className="title_reg">
-              {kl[status]}</h1>
+              <h1 className="title_reg">{kl[status]}</h1>
               <div class="warning">{errormessage}</div>
             </div>
             <div className="reg">
@@ -1474,13 +1692,15 @@ function Register_pageall() {
             </div>
             <div className="btn_reg">
               <button className="back" onClick={pageminus}>
-              {o[status]}
+                {o[status]}
               </button>
               {/* <Link to="/"> */}
-              <button className="next" onClick={() => {
-                        
-                        register();
-                      }}>
+              <button
+                className="next"
+                onClick={() => {
+                  register()
+                }}
+              >
                 {mn[status]}
               </button>
               {/* </Link> */}
