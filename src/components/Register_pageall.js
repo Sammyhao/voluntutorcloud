@@ -130,16 +130,6 @@ function Register_pageall() {
     children: PropTypes.node,
   }
   const savedatastu = () => {
-    console.log(stu_chinese_name)
-    console.log(stu_chinese_name_first)
-    console.log(usernameReg)
-    console.log(passwordReg)
-    console.log(PhoneReg)
-    console.log(EmailReg)
-    console.log(GenderReg)
-    console.log(gradereg)
-    console.log(birthdayreg)
-    console.log(schoolnamereg)
     if (
       schoolnamereg == 'Yilan Daxi Elementary School' ||
       schoolnamereg == '宜蘭縣大溪國民小學'
@@ -158,9 +148,20 @@ function Register_pageall() {
     if (GenderReg == '男') {
       setGenderReg('Male')
     }
-    if ((GenderReg = '其他')) {
+    if (GenderReg == '其他') {
       setGenderReg('Others')
     }
+    console.log(stu_chinese_name)
+    console.log(stu_chinese_name_first)
+    console.log(usernameReg)
+    console.log(passwordReg)
+    console.log(PhoneReg)
+    console.log(EmailReg)
+    console.log(GenderReg)
+    console.log(gradereg)
+    console.log(birthdayreg)
+    console.log(schoolnamereg)
+
     // save data here
     Axios.post('https://voluntutorcloud-server.herokuapp.com/registerForStu', {
       username: usernameReg,
@@ -183,7 +184,30 @@ function Register_pageall() {
 
   const savedata = () => {
     let temprole = 'teacher'
-
+    if (schoolnamereg == '台北市私立薇閣高級中學') {
+      setschoolnamereg('Taipei Wego Senior High School')
+    }
+    if (schoolnamereg == '台北市私立復興高級中學') {
+      setschoolnamereg('Taipei Fuhsing Senior High School')
+    }
+    if (GenderReg == '女') {
+      setGenderReg('Female')
+    }
+    if (GenderReg == '男') {
+      setGenderReg('Male')
+    }
+    if (GenderReg == '其他') {
+      setGenderReg('Others')
+    }
+    if (stugenderreg == '女') {
+      setGenderReg('Female')
+    }
+    if (stugenderreg == '男') {
+      setGenderReg('Male')
+    }
+    if (stugenderreg == '無') {
+      setGenderReg('No preference')
+    }
     console.log(
       usernameReg,
       passwordReg,
@@ -202,30 +226,7 @@ function Register_pageall() {
       personalityreg,
       googlemeet,
     )
-    if (schoolnamereg == '台北市私立薇閣高級中學') {
-      setschoolnamereg('Taipei Wego Senior High School')
-    }
-    if (schoolnamereg == '台北市私立復興高級中學') {
-      setschoolnamereg('Taipei Fuhsing Senior High School')
-    }
-    if (GenderReg == '女') {
-      setGenderReg('Female')
-    }
-    if (GenderReg == '男') {
-      setGenderReg('Male')
-    }
-    if ((GenderReg = '其他')) {
-      setGenderReg('Others')
-    }
-    if (stugenderreg == '女') {
-      setGenderReg('Female')
-    }
-    if (stugenderreg == '男') {
-      setGenderReg('Male')
-    }
-    if (stugenderreg == '無') {
-      setGenderReg('No preference')
-    }
+
     Axios.post('https://voluntutorcloud-server.herokuapp.com/register', {
       username: usernameReg,
       password: passwordReg,
