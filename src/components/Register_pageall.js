@@ -349,16 +349,19 @@ function Register_pageall() {
     let personalityregforStr = "";
 
     for(let i = 0; i < subjectReg.length; i++) {
-      subjectRegforStr += subjectReg[i] + '/ ';
+      subjectRegforStr += subjectReg[i];
+      if(i != subjectReg.length - 1) subjectRegforStr += '/ ';
       console.log(subjectRegforStr);
     }
     
     for(let i = 0; i < agereg.length; i++) {
-      ageregforStr += agereg[i] + '/ ';
+      ageregforStr += agereg[i];
+      if(i != agereg.length - 1) ageregforStr += '/ ';
       console.log(ageregforStr);
     }
     for(let i = 0; i < personalityreg.length; i++) {
-      personalityregforStr += personalityreg[i] + '/';
+      personalityregforStr += personalityreg[i];
+      if(i != personalityreg.length - 1) personalityregforStr += '/ ';
       console.log(personalityregforStr);
     }
 
