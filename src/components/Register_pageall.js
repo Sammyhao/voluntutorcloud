@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import './Register_pageall.css'
 import '../App.css'
-import InputLabel from '@mui/material/InputLabel'
-
 import { Link, useNavigate } from 'react-router-dom'
 import validator from 'validator'
 import { BsFillEyeSlashFill } from 'react-icons/bs'
 import { ImCross } from 'react-icons/im'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
-
+import { useTheme } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import MenuItem from '@mui/material/MenuItem'
+import Chip from '@mui/material/Chip'
+import { Input } from '@mui/material'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -24,7 +24,57 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }))
+const ITEM_HEIGHT = 48
+const ITEM_PADDING_TOP = 8
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+}
+const gradelist = ['1st', '2nd', '3rd', '4th', '5th', '6th']
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  }
+}
+
 function Register_pageall() {
+  const theme = useTheme()
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event
+    setsubjectreg(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    )
+  }
+  const handleage = (event) => {
+    const {
+      target: { value },
+    } = event
+    setagereg(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    )
+  }
+
+  const handleperson = (event) => {
+    const {
+      target: { value },
+    } = event
+    setpersonalityreg(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    )
+  }
   const [teacherstyle, setteacherstyle] = useState(true)
   const [studentstyle, setstudentstyle] = useState(true)
   const [errormessage, seterrormessage] = useState('')
@@ -39,18 +89,37 @@ function Register_pageall() {
   const [GenderReg, setGenderReg] = useState('')
   const [PhoneReg, setPhoneReg] = useState('')
   const [EmailReg, setEmailReg] = useState('')
-  const [birthdayreg, setbirthdayreg] = useState('')
+  const [birthdayreg, setbirthdayreg] = useState(new Date())
   const [gradereg, setgradereg] = useState('')
   const [schoolnamereg, setschoolnamereg] = useState('')
-  const [subjectReg, setsubjectreg] = useState('')
-  const [agereg, setagereg] = useState('')
+  const [subjectReg, setsubjectreg] = useState([])
+  const [agereg, setagereg] = useState([])
   const [stugenderreg, setstugenderreg] = useState('')
-  const [personalityreg, setpersonalityreg] = useState('')
+  const [personalityreg, setpersonalityreg] = useState([])
   const [passwordShown, setPasswordShown] = useState(false)
   const [cpasswordShown, setcPasswordShown] = useState(false)
   const [emailError, setEmailError] = useState('')
   const navigate = useNavigate()
   const [status, setStatus] = useState(0)
+  const [charlist, setcharlist] = useState([
+    'open-minded',
+    'outgoing',
+    'reserved',
+    'conscientious',
+    'hard-working',
+    'proactive',
+    'indefatigable',
+    'discreet',
+    'honest',
+    'well-behaved',
+  ])
+  const [subjectlist, setsubjectlist] = useState([
+    'Chinese',
+    'Math',
+    'English',
+    'Social Studies',
+    'Science',
+  ])
   const [stu_chinese_name, setchinname] = useState('')
   const [stu_chinese_name_first, setchinname_first] = useState('')
   let a = ['Please fill in the blank.', '請完整填入資料']
@@ -117,6 +186,9 @@ function Register_pageall() {
   let ww = ['Taipei Fuhsing Senior High School', '台北市私立復興高級中學']
   let xx = ['Yilan Daxi Elementary School', '宜蘭縣大溪國民小學']
   let yyzy = ['Yilan Guangxing Elementary School', '宜蘭縣廣興國民小學']
+  let asdbf = ['Select your preferred subjects', '請選擇你想要教導的科目']
+  let abb = ['Select your preferred student grade', '請選擇學生年級']
+  let bbc = ['Select your preferred student personality', '請選擇學生性格']
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
 
@@ -128,6 +200,46 @@ function Register_pageall() {
   }
   BootstrapDialogTitle.propTypes = {
     children: PropTypes.node,
+  }
+
+  const changestatus = () => {
+    if (status == 0) {
+      setStatus(1)
+      setsubjectlist(['國文', '數學', '英文', '社會', '自然'])
+      setcharlist([
+        'open-minded',
+        'outgoing',
+        'reserved',
+        'conscientious',
+        'hard-working',
+        'proactive',
+        'indefatigable',
+        'discreet',
+        'honest',
+        'well-behaved',
+      ])
+    } else {
+      setStatus(0)
+      setsubjectlist([
+        'Chinese',
+        'Math',
+        'English',
+        'Social Studies',
+        'Science',
+      ])
+      setcharlist([
+        '開朗',
+        '外向',
+        '安靜',
+        '認真',
+        '積極',
+        '好學',
+        '勤奮',
+        '謹慎',
+        '誠實',
+        '守規矩',
+      ])
+    }
   }
   const savedatastu = () => {
     let school = schoolnamereg
@@ -444,21 +556,11 @@ function Register_pageall() {
         <div className="bar"></div>
         <div className="role_full">
           <div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
+            <div className="wordslog" onClick={changestatus}>
               中
             </div>
             <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
+            <div className="wordslog" onClick={changestatus}>
               English
             </div>
           </div>
@@ -512,21 +614,11 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(1)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 中
               </div>
               <div className="wordslog">/</div>
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(0)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 English
               </div>
             </div>
@@ -579,21 +671,11 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(1)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 中
               </div>
               <div className="wordslog">/</div>
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(0)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 English
               </div>
             </div>
@@ -652,21 +734,11 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(1)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 中
               </div>
               <div className="wordslog">/</div>
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(0)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 English
               </div>
             </div>
@@ -751,21 +823,11 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(1)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 中
               </div>
               <div className="wordslog">/</div>
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(0)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 English
               </div>
             </div>
@@ -840,21 +902,11 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(1)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 中
               </div>
               <div className="wordslog">/</div>
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(0)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 English
               </div>
             </div>
@@ -918,6 +970,7 @@ function Register_pageall() {
                     sx={{
                       color: '#b25634',
                       paddingLeft: '10px',
+                      paddingBottom: '5px',
                       fontFamily: 'Lora',
                       letterSpacing: '2px',
                       fontSize: '20px',
@@ -1018,21 +1071,11 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(1)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 中
               </div>
               <div className="wordslog">/</div>
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(0)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 English
               </div>
             </div>
@@ -1125,21 +1168,11 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(1)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 中
               </div>
               <div className="wordslog">/</div>
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(0)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 English
               </div>
             </div>
@@ -1168,6 +1201,7 @@ function Register_pageall() {
                     <ImCross id="clear_reg" />
                   </button>
                 </div>
+
                 <div className="reggroup">
                   <Select
                     labelId="demo-simple-select-helper-label"
@@ -1190,6 +1224,8 @@ function Register_pageall() {
                     sx={{
                       color: '#b25634',
                       paddingLeft: '10px',
+                      paddingBottom: '5px',
+
                       fontFamily: 'Lora',
                       letterSpacing: '2px',
                       fontSize: '20px',
@@ -1249,6 +1285,7 @@ function Register_pageall() {
                     sx={{
                       color: '#b25634',
                       paddingLeft: '10px',
+                      paddingBottom: '5px',
                       fontFamily: 'Lora',
                       letterSpacing: '2px',
                       fontSize: '20px',
@@ -1332,21 +1369,11 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(1)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 中
               </div>
               <div className="wordslog">/</div>
-              <div
-                className="wordslog"
-                onClick={() => {
-                  setStatus(0)
-                }}
-              >
+              <div className="wordslog" onClick={changestatus}>
                 English
               </div>
             </div>
@@ -1382,6 +1409,7 @@ function Register_pageall() {
                     sx={{
                       color: '#b25634',
                       paddingLeft: '10px',
+                      paddingBottom: '5px',
                       fontFamily: 'Lora',
                       letterSpacing: '2px',
                       fontSize: '20px',
@@ -1457,6 +1485,7 @@ function Register_pageall() {
                     sx={{
                       color: '#b25634',
                       paddingLeft: '10px',
+                      paddingBottom: '5px',
                       fontFamily: 'Lora',
                       letterSpacing: '2px',
                       fontSize: '20px',
@@ -1519,6 +1548,7 @@ function Register_pageall() {
                     sx={{
                       color: '#b25634',
                       paddingLeft: '10px',
+                      paddingBottom: '5px',
                       fontFamily: 'Lora',
                       letterSpacing: '2px',
                       fontSize: '20px',
@@ -1632,21 +1662,11 @@ function Register_pageall() {
         </div>
         <div className="full">
           <div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
+            <div className="wordslog" onClick={changestatus}>
               中
             </div>
             <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
+            <div className="wordslog" onClick={changestatus}>
               English
             </div>
           </div>
@@ -1660,32 +1680,196 @@ function Register_pageall() {
             </div>
             <div className="reg">
               <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
+                <Select
+                  className="register_selector"
+                  variant="standard"
+                  multiple
                   value={subjectReg}
-                  placeholder={ef[status]}
-                  onChange={(e) => {
-                    setsubjectreg(e.target.value)
+                  onChange={handleChange}
+                  input={
+                    <Input
+                      id="select-multiple-chip"
+                      label="Chip"
+                      sx={{
+                        underline: {
+                          '&&&:before': {
+                            borderBottom: 'none',
+                          },
+                          '&&:after': {
+                            borderBottom: 'none',
+                          },
+                        },
+                      }}
+                    />
+                  }
+                  sx={{
+                    color: '#b25634',
+                    fontFamily: 'Lora',
+                    letterSpacing: '2px',
+                    paddingBottom: '5px',
+                    paddingLeft: '10px',
+                    fontSize: '20px',
+                    '&:hover': {
+                      color: '#b25634',
+                      border: 'none',
+                    },
+                    '&:focus': {
+                      backgroundColor: '#00000000',
+                    },
+                    '&:not(.Mui-disabled):hover::before': {
+                      borderBottom: '1.5px solid #b25634',
+                    },
+                    '&:before': {
+                      borderBottom: '1.5px solid #D6A796',
+                    },
+                    '&:after': {
+                      borderBottom: '1.5px solid #D6A796',
+                    },
+                    '& .MuiSvgIcon-root': {
+                      ml: '30px',
+                      fontSize: '30px',
+                      color: '#b25634',
+                      fill: '#b25634',
+                    },
+                    '& .MuiSvgIcon-root::before': {
+                      border: '1.5px solid #D6A796',
+                    },
+                    '& .MuiSvgIcon-root::after': {
+                      border: '1.5px solid #D6A796',
+                    },
                   }}
-                />
-                <button id="reset_reg" onClick={() => setsubjectreg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  renderValue={(selected) => {
+                    if (selected.length === 0) {
+                      return <div className="selectplace">{asdbf[status]}</div>
+                    }
+
+                    return (
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {selected.map((value) => (
+                          <Chip
+                            key={value}
+                            label={value}
+                            sx={{
+                              color: '#b25634',
+                              fontFamily: 'Lora',
+                              letterSpacing: '2px',
+                              fontSize: '15px',
+                            }}
+                          />
+                        ))}
+                      </Box>
+                    )
+                  }}
+                  MenuProps={MenuProps}
+                >
+                  {subjectlist.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      style={getStyles(name, subjectReg, theme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
               </div>
               <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
+                <Select
+                  className="register_selector"
+                  variant="standard"
+                  multiple
                   value={agereg}
-                  placeholder={fg[status]}
-                  onChange={(e) => {
-                    setagereg(e.target.value)
+                  onChange={handleage}
+                  input={
+                    <Input
+                      id="select-multiple-chip"
+                      label="Chip"
+                      sx={{
+                        underline: {
+                          '&&&:before': {
+                            borderBottom: 'none',
+                          },
+                          '&&:after': {
+                            borderBottom: 'none',
+                          },
+                        },
+                      }}
+                    />
+                  }
+                  sx={{
+                    color: '#b25634',
+                    fontFamily: 'Lora',
+                    letterSpacing: '2px',
+                    paddingBottom: '5px',
+                    paddingLeft: '10px',
+                    fontSize: '20px',
+                    '&:hover': {
+                      color: '#b25634',
+                      border: 'none',
+                    },
+                    '&:focus': {
+                      backgroundColor: '#00000000',
+                    },
+                    '&:not(.Mui-disabled):hover::before': {
+                      borderBottom: '1.5px solid #b25634',
+                    },
+                    '&:before': {
+                      borderBottom: '1.5px solid #D6A796',
+                    },
+                    '&:after': {
+                      borderBottom: '1.5px solid #D6A796',
+                    },
+                    '& .MuiSvgIcon-root': {
+                      ml: '30px',
+                      fontSize: '30px',
+                      color: '#b25634',
+                      fill: '#b25634',
+                    },
+                    '& .MuiSvgIcon-root::before': {
+                      border: '1.5px solid #D6A796',
+                    },
+                    '& .MuiSvgIcon-root::after': {
+                      border: '1.5px solid #D6A796',
+                    },
                   }}
-                />
-                <button id="reset_reg" onClick={() => setagereg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  renderValue={(selected) => {
+                    if (selected.length === 0) {
+                      return <div className="selectplace">{abb[status]}</div>
+                    }
+
+                    return (
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {selected.map((value) => (
+                          <Chip
+                            key={value}
+                            label={value}
+                            sx={{
+                              color: '#b25634',
+                              fontFamily: 'Lora',
+                              letterSpacing: '2px',
+                              fontSize: '15px',
+                            }}
+                          />
+                        ))}
+                      </Box>
+                    )
+                  }}
+                  MenuProps={MenuProps}
+                >
+                  {gradelist.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      style={getStyles(name, agereg, theme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
               </div>
               <div className="reggroup">
                 <Select
@@ -1709,6 +1893,7 @@ function Register_pageall() {
                   sx={{
                     color: '#b25634',
                     paddingLeft: '10px',
+                    paddingBottom: '5px',
                     fontFamily: 'Lora',
                     letterSpacing: '2px',
                     fontSize: '20px',
@@ -1748,18 +1933,100 @@ function Register_pageall() {
               </div>
 
               <div className="reggroup">
-                <input
-                  className="register_input"
-                  type="text"
+                <Select
+                  className="register_selector"
+                  variant="standard"
+                  multiple
                   value={personalityreg}
-                  placeholder={hi[status]}
-                  onChange={(e) => {
-                    setpersonalityreg(e.target.value)
+                  onChange={handleperson}
+                  input={
+                    <Input
+                      id="select-multiple-chip"
+                      label="Chip"
+                      sx={{
+                        underline: {
+                          '&&&:before': {
+                            borderBottom: 'none',
+                          },
+                          '&&:after': {
+                            borderBottom: 'none',
+                          },
+                        },
+                      }}
+                    />
+                  }
+                  sx={{
+                    color: '#b25634',
+                    fontFamily: 'Lora',
+                    letterSpacing: '2px',
+                    paddingBottom: '5px',
+                    paddingLeft: '10px',
+                    fontSize: '20px',
+                    '&:hover': {
+                      color: '#b25634',
+                      border: 'none',
+                    },
+                    '&:focus': {
+                      backgroundColor: '#00000000',
+                    },
+                    '&:not(.Mui-disabled):hover::before': {
+                      borderBottom: '1.5px solid #b25634',
+                    },
+                    '&:before': {
+                      borderBottom: '1.5px solid #D6A796',
+                    },
+                    '&:after': {
+                      borderBottom: '1.5px solid #D6A796',
+                    },
+                    '& .MuiSvgIcon-root': {
+                      ml: '30px',
+                      fontSize: '30px',
+                      color: '#b25634',
+                      fill: '#b25634',
+                    },
+                    '& .MuiSvgIcon-root::before': {
+                      border: '1.5px solid #D6A796',
+                    },
+                    '& .MuiSvgIcon-root::after': {
+                      border: '1.5px solid #D6A796',
+                    },
                   }}
-                />
-                <button id="reset_reg" onClick={() => setpersonalityreg('')}>
-                  <ImCross id="clear_reg" />
-                </button>
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  renderValue={(selected) => {
+                    if (selected.length === 0) {
+                      return <div className="selectplace">{bbc[status]}</div>
+                    }
+
+                    return (
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {selected.map((value) => (
+                          <Chip
+                            key={value}
+                            label={value}
+                            sx={{
+                              color: '#b25634',
+                              fontFamily: 'Lora',
+                              letterSpacing: '2px',
+                              fontSize: '15px',
+                            }}
+                          />
+                        ))}
+                      </Box>
+                    )
+                  }}
+                  MenuProps={MenuProps}
+                >
+                  {charlist.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      style={getStyles(name, personalityreg, theme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
               </div>
             </div>
 
@@ -1813,21 +2080,11 @@ function Register_pageall() {
         </div>
         <div className="full">
           <div className="languagereg">
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(1)
-              }}
-            >
+            <div className="wordslog" onClick={changestatus}>
               中
             </div>
             <div className="wordslog">/</div>
-            <div
-              className="wordslog"
-              onClick={() => {
-                setStatus(0)
-              }}
-            >
+            <div className="wordslog" onClick={changestatus}>
               English
             </div>
           </div>
