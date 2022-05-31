@@ -77,14 +77,14 @@ function Appointmentmeet() {
   const [studentabsence, setstudentabscene] = useState('')
 
   let tu = [
-    "Please select student's attendence status",
+    "Please select student's attendance status",
     '請選擇學生今日上課出席狀況',
   ]
   let pr = ['On time', '準時上課']
   let sr = ['Late for 5 minutes', '遲到五分鐘']
   let st = ['Late for 10 minutes', '遲到十分鐘']
   let su = ['Late for 30 minutes', '遲到三十分鐘']
-  let us = ['Attendence', '學生出席狀況']
+  let us = ["Student's Attendance", '學生出席狀況']
 
   let username = ''
   const [contactInfo, setContactInfo] = useState([])
@@ -350,6 +350,9 @@ function Appointmentmeet() {
               open={open_send}
             >
               <div id="appointment_sendtitle">{e[status]}</div>
+              <div className="appointment_subtitles">{us[status]}</div>
+              <div className="appointment_content">{studentabsence}</div>
+
               <div className="appointment_subtitles">{f[status]}</div>
               <div className="appointment_content">{classDate}</div>
               <div className="appointment_subtitles">{g[status]}</div>
