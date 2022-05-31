@@ -80,10 +80,11 @@ function Appointmentmeet() {
     "Please select student's attendance status",
     '請選擇學生今日上課出席狀況',
   ]
-  let pr = ['On time', '準時上課']
-  let sr = ['Late for 5 minutes', '遲到五分鐘']
-  let st = ['Late for 10 minutes', '遲到十分鐘']
-  let su = ['Late for 30 minutes', '遲到三十分鐘']
+  let pr = ['On time (online within 5 minutes)', '準時上課（五分鐘內到達）']
+  let sr = ['Late for 6~10 minutes', '遲到六到十分鐘']
+  let st = ['Late for 11~15 minutes', '遲到十一到十五分鐘']
+  let su = ['Late for 16~30 minutes', '遲到十六到三十分鐘']
+  let sv = ['Late for over 30 minutes', '遲到超過三十分鐘']
   let us = ["Student's Attendance", '學生出席狀況']
 
   let username = ''
@@ -194,6 +195,7 @@ function Appointmentmeet() {
       chosenContact.studentmail,
       classDate,
       classduration,
+      studentabsence,
       agenda,
       task,
       notes,
@@ -234,6 +236,7 @@ function Appointmentmeet() {
         studentmail: chosenContact.studentmail,
         classDate: classDate,
         duration: classduration,
+        studentabsence: studentabsence,
         agenda: agenda,
         task: task,
         notes: notes,
@@ -462,6 +465,7 @@ function Appointmentmeet() {
               <MenuItem value={sr[status]}>{sr[status]}</MenuItem>
               <MenuItem value={st[status]}>{st[status]}</MenuItem>
               <MenuItem value={su[status]}>{su[status]}</MenuItem>
+              <MenuItem value={sv[status]}>{sv[status]}</MenuItem>
             </Select>
           </div>
           <div className="classdate">
