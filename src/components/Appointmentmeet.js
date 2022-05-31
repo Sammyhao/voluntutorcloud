@@ -171,9 +171,15 @@ function Appointmentmeet() {
       agenda,
       task,
       notes,
+      studentabsence,
     )
 
-    if (classduration != '' && agenda != '' && task != '') {
+    if (
+      studentabsence != '' &&
+      classduration != '' &&
+      agenda != '' &&
+      task != ''
+    ) {
       setOpen_send(true)
     } else {
       console.log('false')
