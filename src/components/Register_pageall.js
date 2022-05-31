@@ -344,6 +344,24 @@ function Register_pageall() {
       googlemeet,
     )
 
+    let subjectRegforStr = "";
+    let ageregforStr = "";
+    let personalityregforStr = "";
+
+    for(let i = 0; i < subjectReg.length; i++) {
+      subjectRegforStr += subjectReg[i] + '/ ';
+      console.log(subjectRegforStr);
+    }
+    
+    for(let i = 0; i < agereg.length; i++) {
+      ageregforStr += agereg[i] + '/ ';
+      console.log(ageregforStr);
+    }
+    for(let i = 0; i < personalityreg.length; i++) {
+      personalityregforStr += personalityreg[i] + '/';
+      console.log(personalityregforStr);
+    }
+
     Axios.post('https://voluntutorcloud-server.herokuapp.com/register', {
       username: usernameReg,
       password: passwordReg,
@@ -356,10 +374,10 @@ function Register_pageall() {
       birthday: birthdayreg,
       grade: gradereg,
       schoolname: skl,
-      preferredSubjects: subjectReg,
-      targetStuAge: agereg,
+      preferredSubjects: subjectRegforStr,
+      targetStuAge: ageregforStr,
       targetStuGen: stugen,
-      targetStuPerso: personalityreg,
+      targetStuPerso: personalityregforStr,
       googleMeetLink: googlemeet,
     }).then((response) => {
       setOpen(true)
