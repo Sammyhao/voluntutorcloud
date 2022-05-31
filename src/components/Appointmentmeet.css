@@ -56,7 +56,7 @@
   color: whitesmoke;
 }
 
-.nokid{
+.nokid {
   display: flex;
   height: 500px;
   margin-top: 100px;
@@ -85,11 +85,11 @@
   color: #745140;
   font-size: large;
 }
-.noStudentFont2{
-    color: #745140;
-    margin-top: 30px;
-    font-size: 25px;
-    font-weight: 700;
+.noStudentFont2 {
+  color: #745140;
+  margin-top: 30px;
+  font-size: 25px;
+  font-weight: 700;
 }
 #edittodos::placeholder {
   font-size: 15px;
@@ -97,7 +97,7 @@
   color: #745140;
 }
 #edittodos {
-  padding:0;
+  padding: 0;
   color: #745140;
   padding: 7px 0px 7px;
   padding: 10px;
@@ -128,22 +128,22 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.icon_app{
+.icon_app {
   color: #745140;
   height: 30px;
   width: 30px;
 }
-.image_app{
+.image_app {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-#app_succ{
+#app_succ {
   background-color: whitesmoke;
   overflow: block;
   position: relative;
-  display:flex;
+  display: flex;
   text-align: center;
   color: #745140;
   flex-direction: row;
@@ -152,12 +152,13 @@ input::-webkit-inner-spin-button {
   align-items: center;
   height: wrap;
   font-size: 20px;
-  padding: 20px;}
-#app_registeredsucc{
+  padding: 20px;
+}
+#app_registeredsucc {
   background-color: whitesmoke;
   overflow: block;
   position: relative;
-  display:flex;
+  display: flex;
   text-align: center;
   color: #745140;
   flex-direction: row;
@@ -171,11 +172,11 @@ input::-webkit-inner-spin-button {
   padding-right: 20px;
   padding-left: 20px;
 }
-#appointment_sendtitle{
+#appointment_sendtitle {
   background-color: whitesmoke;
   overflow: block;
   position: relative;
-  display:flex;
+  display: flex;
   text-align: center;
   color: darkred;
   flex-direction: row;
@@ -189,11 +190,11 @@ input::-webkit-inner-spin-button {
   padding-right: 20px;
   padding-left: 20px;
 }
-.appointment_content{
+.appointment_content {
   background-color: whitesmoke;
   overflow: block;
   position: relative;
-  display:flex;
+  display: flex;
   text-align: center;
   color: #b25634;
   flex-direction: row;
@@ -206,11 +207,11 @@ input::-webkit-inner-spin-button {
   padding-right: 20px;
   padding-left: 40px;
 }
-.appointment_subtitles{
+.appointment_subtitles {
   background-color: whitesmoke;
   overflow: block;
   position: relative;
-  display:flex;
+  display: flex;
   text-align: center;
   color: #745140;
   flex-direction: row;
@@ -234,16 +235,15 @@ input::-webkit-inner-spin-button {
   color: #b25634;
   border: 1px solid #b25634;
   font-family: 'Lora';
-  width:100px;
+  width: 100px;
 }
-.wrapappointment{
-  background-color:whitesmoke ;
+.wrapappointment {
+  background-color: whitesmoke;
   display: flex;
   flex-direction: row;
   padding-right: 30px;
   justify-content: end;
   align-items: center;
-
 }
 #app_send:hover {
   transition: all 0.3s ease-out;
@@ -253,7 +253,7 @@ input::-webkit-inner-spin-button {
   border: 1px solid #b25634;
   cursor: pointer;
 }
-#app_return{
+#app_return {
   background-color: whitesmoke;
   font-weight: 700;
   color: #b25634;
