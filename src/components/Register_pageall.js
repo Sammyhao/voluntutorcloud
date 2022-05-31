@@ -130,26 +130,28 @@ function Register_pageall() {
     children: PropTypes.node,
   }
   const savedatastu = () => {
+    let school = schoolnamereg
+    let gen = GenderReg
     if (
       schoolnamereg == 'Yilan Daxi Elementary School' ||
       schoolnamereg == '宜蘭縣大溪國民小學'
     ) {
-      setschoolnamereg('大溪國小')
+      school = '大溪國小'
     }
     if (
       schoolnamereg == 'Yilan Guangxing Elementary School' ||
       schoolnamereg == '宜蘭縣廣興國民小學'
     ) {
-      setschoolnamereg('廣興國小')
+      school = '廣興國小'
     }
     if (GenderReg == '女') {
-      setGenderReg('Female')
+      gen = 'Female'
     }
     if (GenderReg == '男') {
-      setGenderReg('Male')
+      gen = 'Male'
     }
     if (GenderReg == '其他') {
-      setGenderReg('Others')
+      gen = 'Others'
     }
     console.log(stu_chinese_name)
     console.log(stu_chinese_name_first)
@@ -157,10 +159,10 @@ function Register_pageall() {
     console.log(passwordReg)
     console.log(PhoneReg)
     console.log(EmailReg)
-    console.log(GenderReg)
+    console.log(gen)
     console.log(gradereg)
     console.log(birthdayreg)
-    console.log(schoolnamereg)
+    console.log(school)
 
     // save data here
     Axios.post('https://voluntutorcloud-server.herokuapp.com/registerForStu', {
@@ -184,29 +186,32 @@ function Register_pageall() {
 
   const savedata = () => {
     let temprole = 'teacher'
+    let skl = schoolnamereg
+    let gend = GenderReg
+    let stugen = stugenderreg
     if (schoolnamereg == '台北市私立薇閣高級中學') {
-      setschoolnamereg('Taipei Wego Senior High School')
+      skl = 'Taipei Wego Senior High School'
     }
     if (schoolnamereg == '台北市私立復興高級中學') {
-      setschoolnamereg('Taipei Fuhsing Senior High School')
+      skl = 'Taipei Fuhsing Senior High School'
     }
     if (GenderReg == '女') {
-      setGenderReg('Female')
+      gend = 'Female'
     }
     if (GenderReg == '男') {
-      setGenderReg('Male')
+      gend = 'Male'
     }
     if (GenderReg == '其他') {
-      setGenderReg('Others')
+      gend = 'Others'
     }
     if (stugenderreg == '女') {
-      setGenderReg('Female')
+      stugen = 'Female'
     }
     if (stugenderreg == '男') {
-      setGenderReg('Male')
+      stugen = 'Male'
     }
     if (stugenderreg == '無') {
-      setGenderReg('No preference')
+      stugen = 'No preference'
     }
     console.log(
       usernameReg,
@@ -214,15 +219,15 @@ function Register_pageall() {
       temprole,
       FirstnameReg,
       LastnameReg,
-      GenderReg,
+      gend,
       PhoneReg,
       EmailReg,
       birthdayreg,
       gradereg,
-      schoolnamereg,
+      skl,
       subjectReg,
       agereg,
-      stugenderreg,
+      stugen,
       personalityreg,
       googlemeet,
     )
