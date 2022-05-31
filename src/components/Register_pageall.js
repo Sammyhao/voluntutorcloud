@@ -116,7 +116,7 @@ function Register_pageall() {
   let wv = ['Taipei Wego Senior High School', '台北市私立薇閣高級中學']
   let ww = ['Taipei Fuhsing Senior High School', '台北市私立復興高級中學']
   let xx = ['Yilan Daxi Elementary School', '宜蘭縣大溪國民小學']
-  let yyzy = ['Yilan Guangxing Elementary School', '宜蘭縣廣興國小']
+  let yyzy = ['Yilan Guangxing Elementary School', '宜蘭縣廣興國民小學']
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
 
@@ -138,7 +138,7 @@ function Register_pageall() {
     }
     if (
       schoolnamereg == 'Yilan Guangxing Elementary School' ||
-      schoolnamereg == '宜蘭縣廣興國小'
+      schoolnamereg == '宜蘭縣廣興國民小學'
     ) {
       setschoolnamereg('廣興國小')
     }
