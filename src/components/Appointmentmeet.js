@@ -197,6 +197,7 @@ function Appointmentmeet() {
       children_name: chosenContact.studentname,
       class_date: classDate,
       class_duration: classduration,
+      attendance: studentabsence,
       agenda: agenda,
       task: task,
       notes: notes,
