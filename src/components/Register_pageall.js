@@ -344,25 +344,25 @@ function Register_pageall() {
       googlemeet,
     )
 
-    let subjectRegforStr = "";
-    let ageregforStr = "";
-    let personalityregforStr = "";
+    let subjectRegforStr = ''
+    let ageregforStr = ''
+    let personalityregforStr = ''
 
-    for(let i = 0; i < subjectReg.length; i++) {
-      subjectRegforStr += subjectReg[i];
-      if(i != subjectReg.length - 1) subjectRegforStr += '/ ';
-      console.log(subjectRegforStr);
+    for (let i = 0; i < subjectReg.length; i++) {
+      subjectRegforStr += subjectReg[i]
+      if (i != subjectReg.length - 1) subjectRegforStr += '/ '
+      console.log(subjectRegforStr)
     }
-    
-    for(let i = 0; i < agereg.length; i++) {
-      ageregforStr += agereg[i];
-      if(i != agereg.length - 1) ageregforStr += '/ ';
-      console.log(ageregforStr);
+
+    for (let i = 0; i < agereg.length; i++) {
+      ageregforStr += agereg[i]
+      if (i != agereg.length - 1) ageregforStr += '/ '
+      console.log(ageregforStr)
     }
-    for(let i = 0; i < personalityreg.length; i++) {
-      personalityregforStr += personalityreg[i];
-      if(i != personalityreg.length - 1) personalityregforStr += '/ ';
-      console.log(personalityregforStr);
+    for (let i = 0; i < personalityreg.length; i++) {
+      personalityregforStr += personalityreg[i]
+      if (i != personalityreg.length - 1) personalityregforStr += '/ '
+      console.log(personalityregforStr)
     }
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/register', {
@@ -1011,7 +1011,7 @@ function Register_pageall() {
                         borderBottom: '1.5px solid #D6A796',
                       },
                       '& .MuiSvgIcon-root': {
-                        ml: '30px',
+                        marginRight: '-15px',
                         fontSize: '30px',
                         color: '#b25634',
                         fill: '#b25634',
@@ -1266,7 +1266,7 @@ function Register_pageall() {
                         borderBottom: '1.5px solid #D6A796',
                       },
                       '& .MuiSvgIcon-root': {
-                        ml: '30px',
+                        marginRight: '-15px',
                         fontSize: '30px',
                         color: '#b25634',
                         fill: '#b25634',
@@ -1326,7 +1326,7 @@ function Register_pageall() {
                         borderBottom: '1.5px solid #D6A796',
                       },
                       '& .MuiSvgIcon-root': {
-                        ml: '30px',
+                        marginRight: '-15px',
                         fontSize: '30px',
                         color: '#b25634',
                         fill: '#b25634',
@@ -1450,7 +1450,7 @@ function Register_pageall() {
                         borderBottom: '1.5px solid #D6A796',
                       },
                       '& .MuiSvgIcon-root': {
-                        ml: '30px',
+                        marginRight: '-15px',
                         fontSize: '30px',
                         color: '#b25634',
                         fill: '#b25634',
@@ -1526,7 +1526,7 @@ function Register_pageall() {
                         borderBottom: '1.5px solid #D6A796',
                       },
                       '& .MuiSvgIcon-root': {
-                        ml: '30px',
+                        marginRight: '-15px',
                         fontSize: '30px',
                         color: '#b25634',
                         fill: '#b25634',
@@ -1589,7 +1589,7 @@ function Register_pageall() {
                         borderBottom: '1.5px solid #D6A796',
                       },
                       '& .MuiSvgIcon-root': {
-                        ml: '30px',
+                        marginRight: '-15px',
                         fontSize: '30px',
                         color: '#b25634',
                         fill: '#b25634',
@@ -1747,7 +1747,7 @@ function Register_pageall() {
                       borderBottom: '1.5px solid #D6A796',
                     },
                     '& .MuiSvgIcon-root': {
-                      ml: '30px',
+                      marginRight: '-15px',
                       fontSize: '30px',
                       color: '#b25634',
                       fill: '#b25634',
@@ -1843,7 +1843,7 @@ function Register_pageall() {
                       borderBottom: '1.5px solid #D6A796',
                     },
                     '& .MuiSvgIcon-root': {
-                      ml: '30px',
+                      marginRight: '-15px',
                       fontSize: '30px',
                       color: '#b25634',
                       fill: '#b25634',
@@ -1934,7 +1934,7 @@ function Register_pageall() {
                       borderBottom: '1.5px solid #D6A796',
                     },
                     '& .MuiSvgIcon-root': {
-                      ml: '30px',
+                      marginRight: '-15px',
                       fontSize: '30px',
                       color: '#b25634',
                       fill: '#b25634',
@@ -2000,7 +2000,7 @@ function Register_pageall() {
                       borderBottom: '1.5px solid #D6A796',
                     },
                     '& .MuiSvgIcon-root': {
-                      ml: '30px',
+                      marginRight: '-15px',
                       fontSize: '30px',
                       color: '#b25634',
                       fill: '#b25634',
