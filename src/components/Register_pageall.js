@@ -171,12 +171,12 @@ function Register_pageall() {
       role: 'student',
       firstname: stu_chinese_name_first,
       lastname: stu_chinese_name,
-      gender: GenderReg,
+      gender: gen,
       phone: PhoneReg,
       email: EmailReg,
       birthday: birthdayreg,
       grade: gradereg,
-      schoolname: schoolnamereg,
+      schoolname: school,
     }).then((response) => {
       setOpen(true)
       console.log(response)
@@ -238,15 +238,15 @@ function Register_pageall() {
       role: temprole,
       firstname: FirstnameReg,
       lastName: LastnameReg,
-      gender: GenderReg,
+      gender: gend,
       phone: PhoneReg,
       email: EmailReg,
       birthday: birthdayreg,
       grade: gradereg,
-      schoolname: schoolnamereg,
+      schoolname: skl,
       preferredSubjects: subjectReg,
       targetStuAge: agereg,
-      targetStuGen: stugenderreg,
+      targetStuGen: stugen,
       targetStuPerso: personalityreg,
       googleMeetLink: googlemeet,
     }).then((response) => {
