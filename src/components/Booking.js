@@ -44,7 +44,7 @@ export default function Booking() {
   const [finalopen, setfinalopen] = useState(false)
   const [date, setdate] = useState('')
   const [time, settime] = useState('')
-  const [duration, setduration] = useState('')
+  const [duration, setduration] = useState(0)
   const [status, setStatus] = useState(0);
   const [isLoading, setLoading] = useState(true);
   const [contactInfo, setContactInfo] = useState([]);

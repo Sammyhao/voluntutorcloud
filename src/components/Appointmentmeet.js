@@ -94,7 +94,7 @@ function Appointmentmeet() {
   const [agenda, setAgenda] = useState('')
   const [task, setTask] = useState('')
   const [notes, setNotes] = useState('')
-  const [classduration, setClassduration] = useState('')
+  const [classduration, setClassduration] = useState(0)
   const [googleMeetLink, setGoogleMeetLink] = useState('')
   const [isLoading, setLoading] = useState(true)
   const [open, setOpen] = useState(false)
