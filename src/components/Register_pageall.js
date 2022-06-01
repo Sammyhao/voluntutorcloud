@@ -82,7 +82,7 @@ function Register_pageall() {
   const [teacherstyle, setteacherstyle] = useState(true)
   const [studentstyle, setstudentstyle] = useState(true)
   const [errormessage, seterrormessage] = useState('')
-  const [pagenum, setpagenum] = useState(3)
+  const [pagenum, setpagenum] = useState(0)
   const [usernameReg, setUsernameReg] = useState('')
   const [validationcode, setValidationcode] = useState('')
   const [googlemeet, setgooglemeet] = useState('')
