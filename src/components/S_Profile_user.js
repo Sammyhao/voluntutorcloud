@@ -211,6 +211,7 @@ function S_Profile_user(props) {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/logout').then(
       (response) => {
         console.log(response)
+        navigate('/');
       },
     )
   }  
@@ -644,11 +645,9 @@ function S_Profile_user(props) {
           </div>
         </div>
 
-        <Link to="/" className="link">
           <div className="btn-prof" onClick={logout}>
             {ij[status]}
           </div>
-        </Link>
       </div>
     </div>
   )
