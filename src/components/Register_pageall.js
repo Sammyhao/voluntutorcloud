@@ -1527,9 +1527,15 @@ function Register_pageall() {
                           className="register_selector"
                           variant="standard"
                           sx={{
+                            '.css-9eb2k9': {
+                              margin: '10px',
+                            },
                             '& .MuiInputLabel-root': { color: '#b25634' },
                             '& .MuiSvgIcon-root': {
                               marginRight: '-4px',
+                            },
+                            '& .css-348fk2.Mui-focused': {
+                              color: '#b25634',
                             },
                             '.css-1wt0ykv::before': {
                               borderBottom: '1.5px solid #D6A796',
