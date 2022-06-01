@@ -1225,7 +1225,7 @@ function Register_pageall() {
                           className="register_selector"
                           variant="standard"
                           sx={{
-                            '.css-9eb2k9': {
+                            '& .css-9eb2k9': {
                               margin: '10px',
                             },
                             '& .MuiInputLabel-root': { color: '#b25634' },
@@ -1533,7 +1533,7 @@ function Register_pageall() {
                           className="register_selector"
                           variant="standard"
                           sx={{
-                            '.css-9eb2k9': {
+                            '& .css-9eb2k9': {
                               margin: '10px',
                             },
                             '& .MuiInputLabel-root': { color: '#b25634' },
