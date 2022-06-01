@@ -48,14 +48,14 @@ function Home() {
   //   </>
   // )
 
-  if (isLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    )
-  } else {
-    console.log(name);
+  // if (isLoading) {
+  //   return (
+  //     <>
+  //       <Loading />
+  //     </>
+  //   )
+  // } else {
+  //   console.log(name);
     if (isLoggedIn == false) {
       return (
         <>
@@ -92,7 +92,7 @@ function Home() {
         </>
       )
     }
-  }
+  // }
 }
 
 export default Home
