@@ -275,7 +275,7 @@
   font-weight: 400;
   margin: 10px;
   font-size: 20px;
-  border-color: rgba(178, 86, 52, 0.3);
+  border: none;
 }
 .menu {
   letter-spacing: 2px;
