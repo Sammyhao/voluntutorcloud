@@ -1212,7 +1212,7 @@ function Register_pageall() {
                 <div class="warning">{errormessage}</div>
               </div>
               <div className="reg">
-                <div className="reggroup">
+                <div className="birthdayreggroup">
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       label="Enter your birthday"
@@ -1520,7 +1520,7 @@ function Register_pageall() {
                   </Select>
                 </div>
 
-                <div className="reggroup">
+                <div className="birthdayreggroup">
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       label="Enter your birthday"
@@ -1533,9 +1533,6 @@ function Register_pageall() {
                           className="register_selector"
                           variant="standard"
                           sx={{
-                            '& .css-9eb2k9': {
-                              margin: '10px',
-                            },
                             '& .MuiInputLabel-root': { color: '#b25634' },
                             '& .MuiSvgIcon-root': {
                               marginRight: '-4px',
