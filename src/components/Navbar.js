@@ -112,6 +112,7 @@ function Navbar(props) {
                 'https://voluntutorcloud-server.herokuapp.com/getNotif',
                 {
                   username: username,
+                  isnew: true,
                 },
               ).then((response) => {
                 console.log(response.data)
