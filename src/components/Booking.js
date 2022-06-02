@@ -401,11 +401,15 @@ export default function Booking() {
               </div>
               <div className="bookingprogramdia_sub">
                 {z[status]}
-                {starttime}
+                {starttime.map((e) => {
+                  return <div>{e}</div>
+                })}
               </div>
               <div className="bookingprogramdia_sub">
                 {x[status]}
-                {endtime}
+                {endtime.map((e) => {
+                  return <div>{e}</div>
+                })}
               </div>
               <div className="bookingprogramdia_sub">
                 {g[status]}
@@ -520,7 +524,6 @@ export default function Booking() {
                         svg: {
                           color: '#b25634',
                         },
-
                         input: {
                           color: '#b25634',
                           fontFamily: 'Lora',
