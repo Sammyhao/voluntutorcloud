@@ -82,7 +82,7 @@ function Register_pageall() {
   const [teacherstyle, setteacherstyle] = useState(true)
   const [studentstyle, setstudentstyle] = useState(true)
   const [errormessage, seterrormessage] = useState('')
-  const [pagenum, setpagenum] = useState(3)
+  const [pagenum, setpagenum] = useState(0)
   const [usernameReg, setUsernameReg] = useState('')
   const [validationcode, setValidationcode] = useState('')
   const [googlemeet, setgooglemeet] = useState('')
@@ -1212,7 +1212,7 @@ function Register_pageall() {
                 <div class="warning">{errormessage}</div>
               </div>
               <div className="reg">
-                <div className="reggroup">
+                <div className="birthdayreggroup">
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       label="Enter your birthday"
@@ -1229,7 +1229,18 @@ function Register_pageall() {
                             '& .MuiSvgIcon-root': {
                               marginRight: '-4px',
                             },
-
+                            '& .css-348fk2.Mui-focused': {
+                              color: '#b25634',
+                            },
+                            '.css-1wt0ykv::before': {
+                              borderBottom: '1.5px solid #D6A796',
+                            },
+                            '.css-1wt0ykv::after': {
+                              borderBottom: '1.5px solid #b25634',
+                            },
+                            '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
+                              borderBottom: '1.5px solid #b25634',
+                            },
                             svg: {
                               marginRight: '-4px',
                               color: '#b25634',
@@ -1506,7 +1517,7 @@ function Register_pageall() {
                   </Select>
                 </div>
 
-                <div className="reggroup">
+                <div className="birthdayreggroup">
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       label="Enter your birthday"
@@ -1523,13 +1534,16 @@ function Register_pageall() {
                             '& .MuiSvgIcon-root': {
                               marginRight: '-4px',
                             },
-                            '& .css-1480iag-MuiInputBase-root-MuiInput-root:before': {
+                            '& .css-348fk2.Mui-focused': {
+                              color: '#b25634',
+                            },
+                            '.css-1wt0ykv::before': {
                               borderBottom: '1.5px solid #D6A796',
                             },
-                            '& .css-1480iag-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before': {
+                            '.css-1wt0ykv::after': {
                               borderBottom: '1.5px solid #b25634',
                             },
-                            '& .css-1480iag-MuiInputBase-root-MuiInput-root:after': {
+                            '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
                               borderBottom: '1.5px solid #b25634',
                             },
                             svg: {

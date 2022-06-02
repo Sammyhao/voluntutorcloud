@@ -367,7 +367,13 @@
 #show_reg:hover {
   opacity: 1;
 }
-
+.birthdayreggroup {
+  padding: 10px;
+}
+.birthdayreggroup:focus-within ::placeholder {
+  color: #b25634;
+  opacity: 0.5;
+}
 @media screen and (max-width: 780px) {
   .regleft {
     margin: 0;
