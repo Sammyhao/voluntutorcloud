@@ -262,13 +262,6 @@
   color: #b25634;
   opacity: 0.5;
 }
-.birthdayreggroup {
-  padding: 10px;
-}
-.birthdayreggroup:focus-within ::placeholder {
-  color: #b25634;
-  opacity: 0.5;
-}
 .btn_reg {
   display: flex;
   width: 100%;
@@ -282,7 +275,7 @@
   font-weight: 400;
   margin: 10px;
   font-size: 20px;
-  border: none;
+  border-color: rgba(178, 86, 52, 0.3);
 }
 .menu {
   letter-spacing: 2px;
