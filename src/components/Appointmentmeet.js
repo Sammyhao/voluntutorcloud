@@ -583,6 +583,11 @@ function Appointmentmeet() {
               <TimePicker
                 id="editdate"
                 value={starting}
+                sx={{
+                  marginLeft: '20px',
+                  marginRight: '20px',
+                  marginTop: '30px',
+                }}
                 onChange={(newValue) => {
                   setstarting(newValue)
                 }}
@@ -592,12 +597,6 @@ function Appointmentmeet() {
                     className="inputbooking"
                     variant="standard"
                     sx={{
-                      color: '#b25634',
-                      paddingLeft: '10px',
-                      paddingBottom: '5px',
-                      fontFamily: 'Lora',
-                      letterSpacing: '2px',
-                      fontSize: '20px',
                       '& .MuiInputLabel-root': { color: '#b25634' },
                       ' .css-1wt0ykv::before': {
                         borderBottom: '1.5px solid #D6A796',
@@ -642,21 +641,19 @@ function Appointmentmeet() {
               <TimePicker
                 id="editdate"
                 value={ending}
+                sx={{
+                  marginLeft: '20px',
+                  marginRight: '20px',
+                  marginTop: '30px',
+                }}
                 onChange={(newValue) => {
                   setending(newValue)
                 }}
                 renderInput={(params) => (
                   <TextField
-                    id="editdate"
                     className="inputbooking"
                     variant="standard"
                     sx={{
-                      color: '#b25634',
-                      paddingLeft: '10px',
-                      paddingBottom: '5px',
-                      fontFamily: 'Lora',
-                      letterSpacing: '2px',
-                      fontSize: '20px',
                       '& .MuiInputLabel-root': { color: '#b25634' },
                       ' .css-1wt0ykv::before': {
                         borderBottom: '1.5px solid #D6A796',
@@ -673,7 +670,6 @@ function Appointmentmeet() {
                       input: {
                         color: '#b25634',
                         fontFamily: 'Lora',
-                        paddingLeft: '10px',
                         letterSpacing: '2px',
                         fontSize: '20px',
                       },
