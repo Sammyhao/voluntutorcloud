@@ -424,7 +424,7 @@ export default function Booking() {
               </div>
               <div className="bookingprogramdia_sub">
                 {g[status]}
-                {formattedduration}
+                {formattedduration} hr
               </div>
               <div className="sendbookwrapper">
                 <div className="sendbookingbtn" onClick={sendsecond}>
