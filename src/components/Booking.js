@@ -187,7 +187,7 @@ export default function Booking() {
         hrs = endtime.getHours() - starttime.getHours() - 1
       } else {
         mins = endtime.getMinutes() - starttime.getMinutes()
-        hrs = endtime.getHours() - starttime.getHours
+        hrs = endtime.getHours() - starttime.getHours()
       }
       setformatteddurationmin(mins)
       setformatteddurationhrs(hrs)
