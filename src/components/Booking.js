@@ -49,7 +49,8 @@ export default function Booking() {
   const [bookedwarn, setbookedwarn] = useState(false)
   const [open, setOpen] = useState(false)
   const [finalopen, setfinalopen] = useState(false)
-  const [date, setdate] = useState('')
+  const [starttime, setstarttime] = useState(new Date())
+  const [endtime, setendtime] = useState(new Date())
   const [time, settime] = useState('')
   const [duration, setduration] = useState(0)
   const [status, setStatus] = useState(0)
@@ -105,7 +106,8 @@ export default function Booking() {
   let nn = ["There isn't any pending requests :)", '目前沒有待確認的會議邀請']
   let l = ['Upcoming Meetings', '即將到來的會議']
   let q = ['Pending Requests', '待確認的會議邀請']
-
+  let x = ['Ending time: ', '課堂結束時間：']
+  let z = ['Starting time: ', '課堂開始時間：']
   // dialog
   const handleClose = () => {
     setOpen(false)
@@ -159,7 +161,7 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     console.log('sendfirst')
-    if (datedate == '' || time == '' || duration == '') {
+    if (datedate == '' || starttime == '' || duration == '') {
       setnoneopen(true)
     } else {
       setOpen(true)
@@ -271,12 +273,12 @@ export default function Booking() {
   }
 
   const updateBooking = () => {
-    console.log(name, chosenStuname, datedate, time, duration)
+    console.log(name, chosenStuname, datedate, starttime, duration)
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBooking', {
       username: name,
       studentname: chosenStuname,
       date: datedate,
-      time: time,
+      time: starttime,
       duration: duration,
       status: 'pending',
     }).then((response) => {
@@ -305,7 +307,7 @@ export default function Booking() {
     })
 
     setdatedate(new Date())
-    settime('')
+    setstarttime(new Date())
     setduration('')
   }
 
@@ -396,8 +398,12 @@ export default function Booking() {
                 {datedate}
               </div>
               <div className="bookingprogramdia_sub">
-                {e[status]}
-                {time}
+                {z[status]}
+                {starttime}
+              </div>
+              <div className="bookingprogramdia_sub">
+                {x[status]}
+                {endtime}
               </div>
               <div className="bookingprogramdia_sub">
                 {g[status]}
@@ -495,17 +501,91 @@ export default function Booking() {
             </div>
             <Divider></Divider>
             <div className="inputbook_outercont">
-              <div className="titlebooksub">{e[status]} </div>
-              <input
-                className="inputbook"
-                type="text"
-                placeholder={f[status]}
-                value={time}
-                maxLength={11}
-                onChange={(e) => {
-                  settime(e.target.value)
-                }}
-              />
+              <div className="titlebooksub">{z[status]} </div>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <TimePicker
+                  value={starttime}
+                  onChange={(newValue) => {
+                    setstarttime(newValue)
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      className="inputbook"
+                      variant="standard"
+                      sx={{
+                        '& .MuiInputLabel-root': { color: '#b25634' },
+
+                        svg: {
+                          color: '#b25634',
+                        },
+
+                        input: {
+                          color: '#b25634',
+                          fontFamily: 'Lora',
+                          paddingLeft: '10px',
+                          letterSpacing: '2px',
+                          fontSize: '20px',
+                        },
+                        label: {
+                          color: '#b25634',
+                          fontFamily: 'Lora',
+                          '&:hover': {
+                            color: '#b25634',
+                          },
+                          '&:focus': {
+                            color: '#b25634',
+                          },
+                        },
+                      }}
+                      {...params}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+            </div>
+            <Divider></Divider>
+            <div className="inputbook_outercont">
+              <div className="titlebooksub">{x[status]} </div>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <TimePicker
+                  value={endtime}
+                  onChange={(newValue) => {
+                    setendtime(newValue)
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      className="inputbook"
+                      variant="standard"
+                      sx={{
+                        '& .MuiInputLabel-root': { color: '#b25634' },
+
+                        svg: {
+                          color: '#b25634',
+                        },
+
+                        input: {
+                          color: '#b25634',
+                          fontFamily: 'Lora',
+                          paddingLeft: '10px',
+                          letterSpacing: '2px',
+                          fontSize: '20px',
+                        },
+                        label: {
+                          color: '#b25634',
+                          fontFamily: 'Lora',
+                          '&:hover': {
+                            color: '#b25634',
+                          },
+                          '&:focus': {
+                            color: '#b25634',
+                          },
+                        },
+                      }}
+                      {...params}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
             </div>
             <Divider></Divider>
             <div className="inputbook_outercont">
