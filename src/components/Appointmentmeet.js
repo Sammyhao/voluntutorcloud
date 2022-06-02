@@ -8,6 +8,7 @@ import { MdSettingsPhone } from 'react-icons/md'
 import { FaUser } from 'react-icons/fa'
 import { BiSearchAlt } from 'react-icons/bi'
 import '../App.css'
+import { format } from 'date-fns'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import Loading from './Loading.js'
@@ -63,10 +64,7 @@ function Appointmentmeet() {
   let k = ['SEND', '傳送']
   let l = ['Report Sent Successfully!', '教學記錄成功傳送！']
   let m = ['Join', '加入會議']
-  let n = [
-    'Enter the Class Date and Time (Format: 2022/05/01 12:00 ~ 13:30)',
-    '請輸入上課日期以及時間 (格式：2022/05/01 12：00~13：30)',
-  ]
+  let n = ['Enter the Class Date', '請輸入上課日期']
   let o = [
     'Enter the class duration (hrs) (numbers only, format: 1.5)',
     '請輸入課程時長 (小時) (僅允許數字，格式：1.5)',
@@ -84,23 +82,30 @@ function Appointmentmeet() {
   let sr = ['Late for 6~10 minutes', '遲到六到十分鐘']
   let st = ['Late for 11~15 minutes', '遲到十一到十五分鐘']
   let su = ['Late for 16~30 minutes', '遲到十六到三十分鐘']
+  let ee = ['The time you entered is invalid', '您輸入的時間不正確']
   let sv = ['Late for over 30 minutes', '遲到超過三十分鐘']
   let us = ["Student's Attendance", '學生出席狀況']
+  let ss = ['Enter the Class Starting Time', '請輸入上課開始時間']
+  let sss = ['Enter the Class Ending Time', '請輸入上課結束時間']
 
   let username = ''
   const [contactInfo, setContactInfo] = useState([])
   let totalhour = 8
-  const [classDate, setClassDate] = useState('')
+  const [timeopen, settimeopen] = useState(false)
+  const [classDate, setClassDate] = useState(new Date())
   const [agenda, setAgenda] = useState('')
   const [task, setTask] = useState('')
   const [notes, setNotes] = useState('')
-  const [classduration, setClassduration] = useState(0)
+  const [classduration, setClassduration] = useState(0.0)
   const [googleMeetLink, setGoogleMeetLink] = useState('')
   const [isLoading, setLoading] = useState(true)
   const [open, setOpen] = useState(false)
   const [open_send, setOpen_send] = useState(false)
   const [openmsgsend, setopenmsgsend] = useState(false)
   const [chosenContact, setChosenContact] = useState({})
+  const [starting, setstarting] = useState(new Date())
+  const [ending, setending] = useState(new Date())
+  const [finalformat, setfinalformat] = useState('')
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
 
@@ -116,6 +121,11 @@ function Appointmentmeet() {
   const handleClose = () => {
     setOpen(false)
   }
+
+  const handletimeclose = () => {
+    settimeopen(false)
+  }
+
   const handlesendclose = () => {
     setOpen_send(false)
   }
@@ -168,20 +178,39 @@ function Appointmentmeet() {
       chosenContact.studentname,
       chosenContact.studentmail,
       classDate,
-      classduration,
+      starting,
+      ending,
       agenda,
       task,
       notes,
       studentabsence,
     )
 
-    if (
-      studentabsence != '' &&
-      classduration != '' &&
-      agenda != '' &&
-      task != ''
-    ) {
-      setOpen_send(true)
+    if (studentabsence != '' && classDate != '' && agenda != '' && task != '') {
+      if (end.getTime() < time.getTime()) {
+        settimeopen(true)
+      } else {
+        setfinalformat(
+          format(classDate, 'yyyy-MM-dd') +
+            ' ' +
+            format(starting, 'HH:mm') +
+            '~' +
+            format(ending, 'HH:mm'),
+        )
+        let hrs = 0
+        let mins = 0
+        if (end.getMinutes() < time.getMinutes()) {
+          mins = end.getMinutes() - time.getMinutes() + 60
+          hrs = end.getHours() - time.getHours() - 1
+        } else {
+          mins = end.getMinutes() - time.getMinutes()
+          hrs = end.getHours() - time.getHours
+        }
+        setClassduration((hrs + mins / 60).toFixed(2))
+        console.log(classduration)
+        console.log(finalformat)
+        setOpen_send(true)
+      }
     } else {
       console.log('false')
       setOpen(true)
@@ -194,7 +223,8 @@ function Appointmentmeet() {
       chosenContact.studentname,
       chosenContact.studentmail,
       classDate,
-      classduration,
+      starting,
+      ending,
       studentabsence,
       agenda,
       task,
@@ -203,7 +233,7 @@ function Appointmentmeet() {
     var templateParams = {
       parent_email: chosenContact.studentmail,
       children_name: chosenContact.studentname,
-      class_date: classDate,
+      class_date: finalformat,
       class_duration: classduration,
       attendance: studentabsence,
       agenda: agenda,
@@ -266,8 +296,9 @@ function Appointmentmeet() {
     setAgenda('')
     setTask('')
     setNotes('')
-    setClassDate('')
-    setClassduration('')
+    setClassDate(new Date())
+    setstarting(new Date())
+    setending(new Date())
   }
 
   const [nameclick, setnameclick] = useState(false)
@@ -364,7 +395,7 @@ function Appointmentmeet() {
               <div className="appointment_content">{studentabsence}</div>
 
               <div className="appointment_subtitles">{f[status]}</div>
-              <div className="appointment_content">{classDate}</div>
+              <div className="appointment_content">{finalformat}</div>
               <div className="appointment_subtitles">{g[status]}</div>
               <div className="appointment_content">{classduration}</div>
               <div className="appointment_subtitles">{h[status]}</div>
@@ -379,6 +410,16 @@ function Appointmentmeet() {
                 </div>
               </div>
               <div id="registeredsucc"></div>
+            </BootstrapDialog>
+          </div>
+          <div id="dialog_reg_wrap">
+            <BootstrapDialog
+              onClose={handletimeclose}
+              id="diabook"
+              aria-labelledby="customized-dialog-title"
+              open={timeopen}
+            >
+              <div id="app_succ">{ee[status]}</div>
             </BootstrapDialog>
           </div>
           <div id="dialog_reg_wrap">
@@ -471,29 +512,159 @@ function Appointmentmeet() {
           <div className="classdate">
             <div className="app_title">{f[status]}</div>
             <Divider className="app_line"></Divider>
-            <input
-              id="editdate"
-              type="tel"
-              maxLength={40}
-              value={classDate}
-              placeholder={n[status]}
-              onChange={(e) => {
-                setClassDate(e.target.value)
-              }}
-            />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                value={classDate}
+                onChange={(newValue) => {
+                  setClassDate(newValue)
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    id="editdate"
+                    variant="standard"
+                    sx={{
+                      '& .MuiInputLabel-root': { color: '#b25634' },
+
+                      ' .css-1wt0ykv::before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      ' .css-1wt0ykv::after': {
+                        borderBottom: '1.5px solid #74514080',
+                      },
+                      '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      svg: {
+                        color: '#b25634',
+                      },
+
+                      input: {
+                        color: '#b25634',
+                        fontFamily: 'Lora',
+                        paddingLeft: '10px',
+                        letterSpacing: '2px',
+                        fontSize: '20px',
+                      },
+                      label: {
+                        color: '#b25634',
+                        fontFamily: 'Lora',
+                        '&:hover': {
+                          color: '#b25634',
+                        },
+                        '&:focus': {
+                          color: '#b25634',
+                        },
+                      },
+                    }}
+                    {...params}
+                  />
+                )}
+              />
+            </LocalizationProvider>
           </div>
-          <div className="classduration">
-            <div className="app_title">{g[status]}</div>
+          <div className="classdate">
+            <div className="app_title">{ss[status]}</div>
             <Divider className="app_line"></Divider>
-            <input
-              id="editdate"
-              type="number"
-              value={classduration}
-              placeholder={o[status]}
-              onChange={(e) => {
-                setClassduration(e.target.value)
-              }}
-            />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <TimePicker
+                value={starting}
+                onChange={(newValue) => {
+                  setstarting(newValue)
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    className="inputbooking"
+                    variant="standard"
+                    sx={{
+                      '& .MuiInputLabel-root': { color: '#b25634' },
+                      ' .css-1wt0ykv::before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      ' .css-1wt0ykv::after': {
+                        borderBottom: '1.5px solid #74514080',
+                      },
+                      '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      svg: {
+                        color: '#b25634',
+                      },
+                      input: {
+                        color: '#b25634',
+                        fontFamily: 'Lora',
+                        paddingLeft: '10px',
+                        letterSpacing: '2px',
+                        fontSize: '20px',
+                      },
+                      label: {
+                        color: '#b25634',
+                        fontFamily: 'Lora',
+                        '&:hover': {
+                          color: '#b25634',
+                        },
+                        '&:focus': {
+                          color: '#b25634',
+                        },
+                      },
+                    }}
+                    {...params}
+                  />
+                )}
+              />
+            </LocalizationProvider>
+          </div>
+          <div className="classdate">
+            <div className="app_title">{sss[status]}</div>
+            <Divider className="app_line"></Divider>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                value={ending}
+                onChange={(newValue) => {
+                  setending(newValue)
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    id="editdate"
+                    variant="standard"
+                    sx={{
+                      '& .MuiInputLabel-root': { color: '#b25634' },
+
+                      ' .css-1wt0ykv::before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      ' .css-1wt0ykv::after': {
+                        borderBottom: '1.5px solid #74514080',
+                      },
+                      '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
+                        borderBottom: '1.5px solid #D6A796',
+                      },
+                      svg: {
+                        color: '#b25634',
+                      },
+
+                      input: {
+                        color: '#b25634',
+                        fontFamily: 'Lora',
+                        paddingLeft: '10px',
+                        letterSpacing: '2px',
+                        fontSize: '20px',
+                      },
+                      label: {
+                        color: '#b25634',
+                        fontFamily: 'Lora',
+                        '&:hover': {
+                          color: '#b25634',
+                        },
+                        '&:focus': {
+                          color: '#b25634',
+                        },
+                      },
+                    }}
+                    {...params}
+                  />
+                )}
+              />
+            </LocalizationProvider>
           </div>
           <div className="agenda">
             <div className="app_title">{h[status]}</div>

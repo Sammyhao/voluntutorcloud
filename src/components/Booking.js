@@ -48,6 +48,7 @@ export default function Booking() {
   const [noneopen, setnoneopen] = useState(false)
   const [bookedwarn, setbookedwarn] = useState(false)
   const [open, setOpen] = useState(false)
+  const [timeopen, settimeopen] = useState(false)
   const [finalopen, setfinalopen] = useState(false)
   const [starttime, setstarttime] = useState(
     new Date('2018-01-01T00:00:00.000Z'),
@@ -66,7 +67,9 @@ export default function Booking() {
   const [formatteddate, setformatteddate] = useState('')
   const [formattedstart, setformattedstart] = useState('')
   const [formattedend, setformattedend] = useState('')
-  const [formattedduration, setformattedduration] = useState('')
+  const [formattedduration, setformattedduration] = useState(0.0)
+  const [formatteddurationmin, setformatteddurationmin] = useState(0)
+  const [formatteddurationhrs, setformatteddurationhrs] = useState(0)
   let username = ''
   let studentname = ''
   let tempstudentname = ''
@@ -86,6 +89,7 @@ export default function Booking() {
     'Enter the Date (Format: 2022/05/01)',
     '請輸入日期 (格式：2022/05/01)',
   ]
+  let ee = ['The time you entered is invalid', '您輸入的時間不正確']
   let e = ['Time: ', '時間：']
   let f = [
     'Enter the Time (Format: 18:00~19:00)',
@@ -127,6 +131,9 @@ export default function Booking() {
   const handlefinalclose = () => {
     setfinalopen(false)
   }
+  const handletimeclose = () => {
+    settimeopen(false)
+  }
 
   // multi students
   function multistyle() {
@@ -167,16 +174,29 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     console.log('Date entered')
-    setformatteddate(format(datedate, 'yyyy-MM-dd'))
-    setformattedstart(format(starttime, 'HH:mm'))
-    setformattedend(format(endtime, 'HH:mm'))
-    let tempvalue = ((endtime - starttime) / (1000 * 60 * 60)) % 24
-    setformattedduration(tempvalue.toString().substring(0, 4))
-    console.log(formatteddate)
-    console.log(formattedstart)
-    console.log(formattedend)
-    console.log('sendfirst')
-    setOpen(true)
+    if (end.getTime() < time.getTime()) {
+      settimeopen(true)
+    } else {
+      setformatteddate(format(datedate, 'yyyy-MM-dd'))
+      setformattedstart(format(starttime, 'HH:mm'))
+      setformattedend(format(endtime, 'HH:mm'))
+      let hrs = 0
+      let mins = 0
+      if (end.getMinutes() < time.getMinutes()) {
+        mins = end.getMinutes() - time.getMinutes() + 60
+        hrs = end.getHours() - time.getHours() - 1
+      } else {
+        mins = end.getMinutes() - time.getMinutes()
+        hrs = end.getHours() - time.getHours
+      }
+      setformatteddurationmin(mins)
+      setformatteddurationhrs(hrs)
+      setformattedduration((hrs + mins / 60).toFixed(2))
+      console.log(formattedduration)
+      console.log(formatteddurationhrs)
+      console.log(formatteddurationmins)
+      setOpen(true)
+    }
   }
 
   const sendsecond = () => {
@@ -424,13 +444,23 @@ export default function Booking() {
               </div>
               <div className="bookingprogramdia_sub">
                 {g[status]}
-                {formattedduration} hr
+                {formatteddurationhrs} hr {formatteddurationmin} mins
               </div>
               <div className="sendbookwrapper">
                 <div className="sendbookingbtn" onClick={sendsecond}>
                   {b[status]}
                 </div>
               </div>
+            </BootstrapDialog>
+          </div>
+          <div id="dialogcontainer">
+            <BootstrapDialog
+              onClose={handletimeclose}
+              id="diabook"
+              aria-labelledby="customized-dialog-title"
+              open={timeopen}
+            >
+              <div className="bookingprogramdia">{ee[status]}</div>
             </BootstrapDialog>
           </div>
           <div id="dialogcontainer">
@@ -474,7 +504,7 @@ export default function Booking() {
                     }}
                     renderInput={(params) => (
                       <TextField
-                        className="inputbook"
+                        className="inputbooking"
                         variant="standard"
                         sx={{
                           '& .MuiInputLabel-root': { color: '#b25634' },
@@ -529,7 +559,7 @@ export default function Booking() {
                     }}
                     renderInput={(params) => (
                       <TextField
-                        className="inputbook"
+                        className="inputbooking"
                         variant="standard"
                         sx={{
                           '& .MuiInputLabel-root': { color: '#b25634' },
@@ -582,7 +612,7 @@ export default function Booking() {
                     }}
                     renderInput={(params) => (
                       <TextField
-                        className="inputbook"
+                        className="inputbooking"
                         variant="standard"
                         sx={{
                           '& .MuiInputLabel-root': { color: '#b25634' },
