@@ -163,6 +163,9 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     console.log('Date entered')
+    console.log(format(datedate, 'yyyy-MM-dd'))
+    console.log(format(starttime, 'HH:mm'))
+    console.log(format(endtime, 'HH:mm'))
     console.log(
       datedate.getMonth() +
         1 +
