@@ -401,15 +401,17 @@ export default function Booking() {
               </div>
               <div className="bookingprogramdia_sub">
                 {z[status]}
-                {starttime.map((e) => {
+                {starttime}
+                {/* {starttime.map((e) => {
                   return <div>{e}</div>
-                })}
+                })} */}
               </div>
               <div className="bookingprogramdia_sub">
                 {x[status]}
-                {endtime.map((e) => {
+                {endtime}
+                {/* {endtime.map((e) => {
                   return <div>{e}</div>
-                })}
+                })} */}
               </div>
               <div className="bookingprogramdia_sub">
                 {g[status]}
@@ -513,6 +515,7 @@ export default function Booking() {
                   value={starttime}
                   onChange={(newValue) => {
                     setstarttime(newValue)
+                    console.log(newValue)
                   }}
                   renderInput={(params) => (
                     <TextField
@@ -556,6 +559,7 @@ export default function Booking() {
                   value={endtime}
                   onChange={(newValue) => {
                     setendtime(newValue)
+                    console.log(newValue)
                   }}
                   renderInput={(params) => (
                     <TextField
