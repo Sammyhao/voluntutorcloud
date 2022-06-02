@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.7.1",
+    "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.6.0",
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
@@ -33,7 +33,7 @@
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0",
     "radium": "^0.26.2",
-    "react": "^15.7.0",
+    "react": "^17.0.2",
     "react-animations": "^1.0.0",
     "react-chat-engine": "^1.8.13",
     "react-dom": "^17.0.2",
