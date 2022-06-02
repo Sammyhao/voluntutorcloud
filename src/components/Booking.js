@@ -455,14 +455,14 @@ export default function Booking() {
                       sx={{
                         '& .MuiInputLabel-root': { color: '#b25634' },
 
-                        '& .css-1wt0ykv::before': {
+                        ' .css-1wt0ykv::before': {
                           borderBottom: '1.5px solid #D6A796',
                         },
-                        '& .css-1wt0ykv::after': {
-                          borderBottom: '1.5px solid rgba(116, 81, 64, 0.5)',
+                        ' .css-1wt0ykv::after': {
+                          borderBottom: '1.5px solid #D6A796',
                         },
                         '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
-                          borderBottom: '1.5px solid rgba(116, 81, 64, 0.5)',
+                          borderBottom: '1.5px solid #b25634',
                         },
                         svg: {
                           color: '#b25634',
