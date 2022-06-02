@@ -459,10 +459,10 @@ export default function Booking() {
                           borderBottom: '1.5px solid #D6A796',
                         },
                         ' .css-1wt0ykv::after': {
-                          borderBottom: '1.5px solid #D6A796',
+                          borderBottom: '1.5px solid #b256344d',
                         },
                         '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
-                          borderBottom: '1.5px solid #b25634',
+                          borderBottom: '1.5px solid #D6A796',
                         },
                         svg: {
                           color: '#b25634',
