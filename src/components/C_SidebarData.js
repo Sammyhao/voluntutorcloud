@@ -6,7 +6,7 @@ import { MdBookmarkBorder, MdOutlineSchool } from 'react-icons/md'
 import { AiOutlineMessage, AiOutlineCalendar } from 'react-icons/ai'
 import { SiGooglemeet } from 'react-icons/si'
 import { RiFolder3Line } from 'react-icons/ri'
-import { FaBook} from 'react-icons/fa'
+import { FaBook } from 'react-icons/fa'
 
 export const C_SidebarData = [
   {
@@ -34,7 +34,7 @@ export const C_SidebarData = [
     icon: <AiOutlineCalendar />,
   },
   {
-    title: '會議安排',
+    title: '會議紀錄',
     path: '/appointment',
     cName: 'nav-text',
     icon: <SiGooglemeet />,
