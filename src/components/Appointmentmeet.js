@@ -63,7 +63,7 @@ function Appointmentmeet() {
     "This form will be sent to student's parents and as records of your volunteering work. Please double check before sending.",
     '此教學紀錄單會傳送給家長以及當作志工計畫的紀錄，請務必確實填寫，也嚴禁謊報。',
   ]
-  let f = ['Class Date and Time', '課堂日期以及時間']
+  let f = ['Class Date', '課堂日期']
   let g = ['Class Duration (hrs)', '課堂時長 (小時)']
   let h = ['Agenda', '課堂進度']
   let i = ['Student Tasks', '學生回家作業']
@@ -521,6 +521,7 @@ function Appointmentmeet() {
             <Divider className="app_line"></Divider>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
+                id="editdate"
                 value={classDate}
                 onChange={(newValue) => {
                   setClassDate(newValue)
@@ -530,6 +531,12 @@ function Appointmentmeet() {
                     id="editdate"
                     variant="standard"
                     sx={{
+                      color: '#b25634',
+                      paddingLeft: '10px',
+                      paddingBottom: '5px',
+                      fontFamily: 'Lora',
+                      letterSpacing: '2px',
+                      fontSize: '20px',
                       '& .MuiInputLabel-root': { color: '#b25634' },
 
                       ' .css-1wt0ykv::before': {
@@ -574,15 +581,23 @@ function Appointmentmeet() {
             <Divider className="app_line"></Divider>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <TimePicker
+                id="editdate"
                 value={starting}
                 onChange={(newValue) => {
                   setstarting(newValue)
                 }}
                 renderInput={(params) => (
                   <TextField
+                    id="editdate"
                     className="inputbooking"
                     variant="standard"
                     sx={{
+                      color: '#b25634',
+                      paddingLeft: '10px',
+                      paddingBottom: '5px',
+                      fontFamily: 'Lora',
+                      letterSpacing: '2px',
+                      fontSize: '20px',
                       '& .MuiInputLabel-root': { color: '#b25634' },
                       ' .css-1wt0ykv::before': {
                         borderBottom: '1.5px solid #D6A796',
@@ -624,7 +639,8 @@ function Appointmentmeet() {
             <div className="app_title">{sss[status]}</div>
             <Divider className="app_line"></Divider>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
+              <TimePicker
+                id="editdate"
                 value={ending}
                 onChange={(newValue) => {
                   setending(newValue)
@@ -632,10 +648,16 @@ function Appointmentmeet() {
                 renderInput={(params) => (
                   <TextField
                     id="editdate"
+                    className="inputbooking"
                     variant="standard"
                     sx={{
+                      color: '#b25634',
+                      paddingLeft: '10px',
+                      paddingBottom: '5px',
+                      fontFamily: 'Lora',
+                      letterSpacing: '2px',
+                      fontSize: '20px',
                       '& .MuiInputLabel-root': { color: '#b25634' },
-
                       ' .css-1wt0ykv::before': {
                         borderBottom: '1.5px solid #D6A796',
                       },
@@ -648,7 +670,6 @@ function Appointmentmeet() {
                       svg: {
                         color: '#b25634',
                       },
-
                       input: {
                         color: '#b25634',
                         fontFamily: 'Lora',
