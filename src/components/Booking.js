@@ -63,6 +63,10 @@ export default function Booking() {
   const [chosenEmail, setChosenEmail] = useState('')
   const [pendingBookingInfo, setPendingBookingInfo] = useState([])
   const [name, setName] = useState('')
+  const [formatteddate, setformatteddate] = useState('')
+  const [formattedstart, setformattedstart] = useState('')
+  const [formattedend, setformattedend] = useState('')
+  const [formattedduration, setformattedduration] = useState('')
   let username = ''
   let studentname = ''
   let tempstudentname = ''
@@ -163,35 +167,16 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     console.log('Date entered')
-    console.log(format(datedate, 'yyyy-MM-dd'))
-    console.log(format(starttime, 'HH:mm'))
-    console.log(format(endtime, 'HH:mm'))
-    console.log(
-      datedate.getMonth() +
-        1 +
-        '/' +
-        datedate.getDate() +
-        '/' +
-        datedate.getFullYear(),
-    )
-    console.log('starting time + ending time')
-    console.log(
-      starttime.getHours() +
-        ':' +
-        starttime.getMinutes() +
-        ' ~ ' +
-        time.getHours() +
-        ':' +
-        time.getMinutes(),
-    )
+    setformatteddate(format(datedate, 'yyyy-MM-dd'))
+    setformattedstart(format(starttime, 'HH:mm'))
+    setformattedend(format(endtime, 'HH:mm'))
+    let tempvalue = ((endtime - starttime) / (1000 * 60 * 60)) % 24
+    setformattedduration(tempvalue.toString().substring(0, 4))
+    console.log(formatteddate)
+    console.log(formattedstart)
+    console.log(formattedend)
     console.log('sendfirst')
-    // if (datedate == '' || starttime == '' || duration == '') {
-    // if (datedate == '') {
-    //   setnoneopen(true)
-    // } else {
-    //   setOpen(true)
-    //   console.log('open first')
-    // }
+    setOpen(true)
   }
 
   const sendsecond = () => {
@@ -298,13 +283,20 @@ export default function Booking() {
   }
 
   const updateBooking = () => {
-    console.log(name, chosenStuname, datedate, starttime, duration)
+    console.log(
+      name,
+      chosenStuname,
+      formatteddate,
+      formattedstart,
+      formattedend,
+      formattedduration,
+    )
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBooking', {
       username: name,
       studentname: chosenStuname,
-      date: datedate,
-      time: starttime,
-      duration: duration,
+      date: formatteddate,
+      time: formattedstart,
+      duration: formattedduration,
       status: 'pending',
     }).then((response) => {
       console.log(response)
@@ -333,7 +325,7 @@ export default function Booking() {
 
     setdatedate(new Date())
     setstarttime(new Date())
-    setduration('')
+    setendtime(new Date())
   }
 
   useEffect(() => {
@@ -420,25 +412,19 @@ export default function Booking() {
               <div className="bookingprogramdia"> {i[status]}</div>
               <div className="bookingprogramdia_sub">
                 {c[status]}
-                {datedate}
+                {formatteddate}
               </div>
               <div className="bookingprogramdia_sub">
                 {z[status]}
-                {starttime}
-                {/* {starttime.map((e) => {
-                  return <div>{e}</div>
-                })} */}
+                {formattedstart}
               </div>
               <div className="bookingprogramdia_sub">
                 {x[status]}
-                {endtime}
-                {/* {endtime.map((e) => {
-                  return <div>{e}</div>
-                })} */}
+                {formattedend}
               </div>
               <div className="bookingprogramdia_sub">
                 {g[status]}
-                {duration}
+                {formattedduration}
               </div>
               <div className="sendbookwrapper">
                 <div className="sendbookingbtn" onClick={sendsecond}>
@@ -616,19 +602,6 @@ export default function Booking() {
                   )}
                 />
               </LocalizationProvider>
-            </div>
-            <Divider></Divider>
-            <div className="inputbook_outercont">
-              <div className="titlebooksub">{g[status]}</div>
-              <input
-                className="inputbook"
-                type="number"
-                placeholder={h[status]}
-                value={duration}
-                onChange={(e) => {
-                  setduration(e.target.value)
-                }}
-              />
             </div>
           </div>
           <div className="outerbook_upcoming">
