@@ -151,6 +151,9 @@
   outline: none;
   border-bottom: 1.5px solid rgba(116, 81, 64, 0.5);
 }
+.css-1wt0ykv::after {
+  border-bottom: 1.5px solid rgba(116, 81, 64, 0.5);
+}
 .inputbook::placeholder {
   font-size: 20px;
   color: #b17b67;
