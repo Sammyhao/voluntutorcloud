@@ -163,7 +163,7 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     console.log('the following are times entered')
-    cnonsole.log(starttime)
+    console.log(starttime)
     console.log('the following is the ending time')
     console.log(endtime)
     console.log('sendfirst')
