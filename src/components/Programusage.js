@@ -46,7 +46,6 @@ function Programusage() {
   let f = ["Agenda", "課堂進度"]
   let g = ["Date" ,"課堂日期"]
   let h = ["Notes" ,"課堂筆記"]
-  
   useLayoutEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
         username = response.data.user[0].username;
@@ -72,7 +71,6 @@ function Programusage() {
         });
     })
   }, [])
-
   const contacttemp = contactInfo.map(item => item).reverse();
 
   const showContactInfo = () => {
@@ -84,10 +82,6 @@ function Programusage() {
 
   const showContact = (contact) => {
     console.log(contact);
-  }
-
-  const hoursleft = () => {
-    
   }
 
   if(isLoading){
