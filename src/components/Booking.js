@@ -163,17 +163,17 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     console.log('the following are times entered')
-    console.log(starttime)
+    console.log(starttime.toString())
     console.log('the following is the ending time')
-    console.log(endtime)
+    console.log(endtime.toString())
     console.log('sendfirst')
     // if (datedate == '' || starttime == '' || duration == '') {
-    if (datedate == '') {
-      setnoneopen(true)
-    } else {
-      setOpen(true)
-      console.log('open first')
-    }
+    // if (datedate == '') {
+    //   setnoneopen(true)
+    // } else {
+    //   setOpen(true)
+    //   console.log('open first')
+    // }
   }
 
   const sendsecond = () => {
@@ -520,7 +520,6 @@ export default function Booking() {
                   value={starttime}
                   onChange={(newValue) => {
                     setstarttime(newValue)
-                    console.log(newValue)
                   }}
                   renderInput={(params) => (
                     <TextField
@@ -564,7 +563,6 @@ export default function Booking() {
                   value={endtime}
                   onChange={(newValue) => {
                     setendtime(newValue)
-                    console.log(newValue)
                   }}
                   renderInput={(params) => (
                     <TextField
