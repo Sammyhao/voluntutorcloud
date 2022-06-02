@@ -522,13 +522,18 @@ function Appointmentmeet() {
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 id="editdate"
+                sx={{
+                  marginLeft: '20px',
+                  marginRight: '20px',
+                  marginTop: '30px',
+                }}
                 value={classDate}
                 onChange={(newValue) => {
                   setClassDate(newValue)
                 }}
                 renderInput={(params) => (
                   <TextField
-                    id="editdate"
+                    id="editrest"
                     variant="standard"
                     sx={{
                       color: '#b25634',
@@ -581,7 +586,6 @@ function Appointmentmeet() {
             <Divider className="app_line"></Divider>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <TimePicker
-                id="editdate"
                 value={starting}
                 sx={{
                   marginLeft: '20px',
@@ -593,7 +597,7 @@ function Appointmentmeet() {
                 }}
                 renderInput={(params) => (
                   <TextField
-                    id="editdate"
+                    id="editrest"
                     className="inputbooking"
                     variant="standard"
                     sx={{
@@ -639,7 +643,6 @@ function Appointmentmeet() {
             <Divider className="app_line"></Divider>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <TimePicker
-                id="editdate"
                 value={ending}
                 sx={{
                   marginLeft: '20px',
@@ -653,6 +656,7 @@ function Appointmentmeet() {
                   <TextField
                     className="inputbooking"
                     variant="standard"
+                    id="editrest"
                     sx={{
                       '& .MuiInputLabel-root': { color: '#b25634' },
                       ' .css-1wt0ykv::before': {

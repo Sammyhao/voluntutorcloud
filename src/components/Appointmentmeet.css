@@ -365,6 +365,15 @@ input::-webkit-inner-spin-button {
   font-size: 15px;
   border-bottom: 1.5px solid rgba(178, 86, 52, 0.3);
 }
+#editrest {
+  color: #745140;
+  height: 30px;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  border: none;
+  font-size: 15px;
+  border-bottom: 1.5px solid rgba(178, 86, 52, 0.3);
+}
 #editdate:focus {
   border: none;
   color: #745140;
