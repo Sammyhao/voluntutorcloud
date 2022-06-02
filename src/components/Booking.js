@@ -270,11 +270,11 @@ export default function Booking() {
   }
 
   const updateBooking = () => {
-    console.log(name, chosenStuname, date, time, duration)
+    console.log(name, chosenStuname, datedate, time, duration)
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBooking', {
       username: name,
       studentname: chosenStuname,
-      date: date,
+      date: datedate,
       time: time,
       duration: duration,
       status: 'pending',
