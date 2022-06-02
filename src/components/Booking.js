@@ -174,7 +174,7 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     console.log('Date entered')
-    if (end.getTime() < time.getTime()) {
+    if (endtime.getTime() < starttime.getTime()) {
       settimeopen(true)
     } else {
       setformatteddate(format(datedate, 'yyyy-MM-dd'))
@@ -182,19 +182,19 @@ export default function Booking() {
       setformattedend(format(endtime, 'HH:mm'))
       let hrs = 0
       let mins = 0
-      if (end.getMinutes() < time.getMinutes()) {
-        mins = end.getMinutes() - time.getMinutes() + 60
-        hrs = end.getHours() - time.getHours() - 1
+      if (endtime.getMinutes() < starttime.getMinutes()) {
+        mins = endtime.getMinutes() - starttime.getMinutes() + 60
+        hrs = endtime.getHours() - starttime.getHours() - 1
       } else {
-        mins = end.getMinutes() - time.getMinutes()
-        hrs = end.getHours() - time.getHours
+        mins = endtime.getMinutes() - starttime.getMinutes()
+        hrs = endtime.getHours() - starttime.getHours
       }
       setformatteddurationmin(mins)
       setformatteddurationhrs(hrs)
       setformattedduration((hrs + mins / 60).toFixed(2))
       console.log(formattedduration)
       console.log(formatteddurationhrs)
-      console.log(formatteddurationmins)
+      console.log(formatteddurationmin)
       setOpen(true)
     }
   }

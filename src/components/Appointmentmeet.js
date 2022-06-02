@@ -25,6 +25,14 @@ import DialogTitle from '@mui/material/DialogTitle'
 import IconButton from '@mui/material/IconButton'
 import { popoverClasses } from '@mui/material'
 
+import { format } from 'date-fns'
+import TextField from '@mui/material/TextField'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+
+import { TimePicker } from '@mui/x-date-pickers/TimePicker'
+
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 
@@ -187,7 +195,7 @@ function Appointmentmeet() {
     )
 
     if (studentabsence != '' && classDate != '' && agenda != '' && task != '') {
-      if (end.getTime() < time.getTime()) {
+      if (ending.getTime() < starting.getTime()) {
         settimeopen(true)
       } else {
         setfinalformat(
@@ -199,12 +207,12 @@ function Appointmentmeet() {
         )
         let hrs = 0
         let mins = 0
-        if (end.getMinutes() < time.getMinutes()) {
-          mins = end.getMinutes() - time.getMinutes() + 60
-          hrs = end.getHours() - time.getHours() - 1
+        if (ending.getMinutes() < starting.getMinutes()) {
+          mins = ending.getMinutes() - starting.getMinutes() + 60
+          hrs = ending.getHours() - starting.getHours() - 1
         } else {
-          mins = end.getMinutes() - time.getMinutes()
-          hrs = end.getHours() - time.getHours
+          mins = ending.getMinutes() - starting.getMinutes()
+          hrs = ending.getHours() - starting.getHours()
         }
         setClassduration((hrs + mins / 60).toFixed(2))
         console.log(classduration)
