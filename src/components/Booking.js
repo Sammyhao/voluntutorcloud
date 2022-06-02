@@ -295,7 +295,7 @@ export default function Booking() {
       username: name,
       studentname: chosenStuname,
       date: formatteddate,
-      time: formattedstart,
+      time: formattedstart + "~" + formattedend,
       duration: formattedduration,
       status: 'pending',
     }).then((response) => {
