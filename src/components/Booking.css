@@ -122,17 +122,21 @@
   display: flex;
   flex-direction: row;
   justify-content: left;
+  flex: 1 1;
   align-items: center;
+  flex-shrink: 0;
   padding: 25px;
 }
 .titlebooksub {
   color: #745140;
   font-size: 22px;
-}
-.titlebookdate {
-  color: #745140;
-  font-size: 22px;
+  flex-basis: 100%;
   margin-right: 10px;
+  flex-grow: 1;
+}
+.enterwrap {
+  flex-basis: 100%;
+  flex-grow: 1;
 }
 .inputbook {
   font-size: 20px;

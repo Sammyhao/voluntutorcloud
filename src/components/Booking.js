@@ -295,7 +295,7 @@ export default function Booking() {
       username: name,
       studentname: chosenStuname,
       date: formatteddate,
-      time: formattedstart + "~" + formattedend,
+      time: formattedstart + '~' + formattedend,
       duration: formattedduration,
       status: 'pending',
     }).then((response) => {
@@ -464,144 +464,165 @@ export default function Booking() {
             </div>
             <Divider></Divider>
             <div className="inputbook_outercont">
-              <div className="titlebookdate">{c[status]} </div>
+              <div className="titlebooksub">{c[status]} </div>
+              <div className="enterwrap">
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    value={datedate}
+                    onChange={(newValue) => {
+                      setdatedate(newValue)
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        className="inputbook"
+                        variant="standard"
+                        sx={{
+                          '& .MuiInputLabel-root': { color: '#b25634' },
 
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={datedate}
-                  onChange={(newValue) => {
-                    setdatedate(newValue)
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      className="inputbook"
-                      variant="standard"
-                      sx={{
-                        '& .MuiInputLabel-root': { color: '#b25634' },
-
-                        ' .css-1wt0ykv::before': {
-                          borderBottom: '1.5px solid #D6A796',
-                        },
-                        ' .css-1wt0ykv::after': {
-                          borderBottom: '1.5px solid #74514080',
-                        },
-                        '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
-                          borderBottom: '1.5px solid #D6A796',
-                        },
-                        svg: {
-                          color: '#b25634',
-                        },
-
-                        input: {
-                          color: '#b25634',
-                          fontFamily: 'Lora',
-                          paddingLeft: '10px',
-                          letterSpacing: '2px',
-                          fontSize: '20px',
-                        },
-                        label: {
-                          color: '#b25634',
-                          fontFamily: 'Lora',
-                          '&:hover': {
+                          ' .css-1wt0ykv::before': {
+                            borderBottom: '1.5px solid #D6A796',
+                          },
+                          ' .css-1wt0ykv::after': {
+                            borderBottom: '1.5px solid #74514080',
+                          },
+                          '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
+                            borderBottom: '1.5px solid #D6A796',
+                          },
+                          svg: {
                             color: '#b25634',
                           },
-                          '&:focus': {
+
+                          input: {
                             color: '#b25634',
+                            fontFamily: 'Lora',
+                            paddingLeft: '10px',
+                            letterSpacing: '2px',
+                            fontSize: '20px',
                           },
-                        },
-                      }}
-                      {...params}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+                          label: {
+                            color: '#b25634',
+                            fontFamily: 'Lora',
+                            '&:hover': {
+                              color: '#b25634',
+                            },
+                            '&:focus': {
+                              color: '#b25634',
+                            },
+                          },
+                        }}
+                        {...params}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+              </div>
             </div>
             <Divider></Divider>
             <div className="inputbook_outercont">
               <div className="titlebooksub">{z[status]} </div>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <TimePicker
-                  value={starttime}
-                  onChange={(newValue) => {
-                    setstarttime(newValue)
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      className="inputbook"
-                      variant="standard"
-                      sx={{
-                        '& .MuiInputLabel-root': { color: '#b25634' },
-
-                        svg: {
-                          color: '#b25634',
-                        },
-                        input: {
-                          color: '#b25634',
-                          fontFamily: 'Lora',
-                          paddingLeft: '10px',
-                          letterSpacing: '2px',
-                          fontSize: '20px',
-                        },
-                        label: {
-                          color: '#b25634',
-                          fontFamily: 'Lora',
-                          '&:hover': {
+              <div className="enterwrap">
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <TimePicker
+                    value={starttime}
+                    onChange={(newValue) => {
+                      setstarttime(newValue)
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        className="inputbook"
+                        variant="standard"
+                        sx={{
+                          '& .MuiInputLabel-root': { color: '#b25634' },
+                          ' .css-1wt0ykv::before': {
+                            borderBottom: '1.5px solid #D6A796',
+                          },
+                          ' .css-1wt0ykv::after': {
+                            borderBottom: '1.5px solid #74514080',
+                          },
+                          '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
+                            borderBottom: '1.5px solid #D6A796',
+                          },
+                          svg: {
                             color: '#b25634',
                           },
-                          '&:focus': {
+                          input: {
                             color: '#b25634',
+                            fontFamily: 'Lora',
+                            paddingLeft: '10px',
+                            letterSpacing: '2px',
+                            fontSize: '20px',
                           },
-                        },
-                      }}
-                      {...params}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+                          label: {
+                            color: '#b25634',
+                            fontFamily: 'Lora',
+                            '&:hover': {
+                              color: '#b25634',
+                            },
+                            '&:focus': {
+                              color: '#b25634',
+                            },
+                          },
+                        }}
+                        {...params}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+              </div>
             </div>
             <Divider></Divider>
             <div className="inputbook_outercont">
               <div className="titlebooksub">{x[status]} </div>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <TimePicker
-                  value={endtime}
-                  onChange={(newValue) => {
-                    setendtime(newValue)
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      className="inputbook"
-                      variant="standard"
-                      sx={{
-                        '& .MuiInputLabel-root': { color: '#b25634' },
-
-                        svg: {
-                          color: '#b25634',
-                        },
-
-                        input: {
-                          color: '#b25634',
-                          fontFamily: 'Lora',
-                          paddingLeft: '10px',
-                          letterSpacing: '2px',
-                          fontSize: '20px',
-                        },
-                        label: {
-                          color: '#b25634',
-                          fontFamily: 'Lora',
-                          '&:hover': {
+              <div className="enterwrap">
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <TimePicker
+                    value={endtime}
+                    onChange={(newValue) => {
+                      setendtime(newValue)
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        className="inputbook"
+                        variant="standard"
+                        sx={{
+                          '& .MuiInputLabel-root': { color: '#b25634' },
+                          ' .css-1wt0ykv::before': {
+                            borderBottom: '1.5px solid #D6A796',
+                          },
+                          ' .css-1wt0ykv::after': {
+                            borderBottom: '1.5px solid #74514080',
+                          },
+                          '& .css-1wt0ykv:hover:not(.Mui-disabled):before': {
+                            borderBottom: '1.5px solid #D6A796',
+                          },
+                          svg: {
                             color: '#b25634',
                           },
-                          '&:focus': {
+
+                          input: {
                             color: '#b25634',
+                            fontFamily: 'Lora',
+                            paddingLeft: '10px',
+                            letterSpacing: '2px',
+                            fontSize: '20px',
                           },
-                        },
-                      }}
-                      {...params}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+                          label: {
+                            color: '#b25634',
+                            fontFamily: 'Lora',
+                            '&:hover': {
+                              color: '#b25634',
+                            },
+                            '&:focus': {
+                              color: '#b25634',
+                            },
+                          },
+                        }}
+                        {...params}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+              </div>
             </div>
           </div>
           <div className="outerbook_upcoming">
