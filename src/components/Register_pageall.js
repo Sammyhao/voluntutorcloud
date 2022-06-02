@@ -16,6 +16,10 @@ import Box from '@mui/material/Box'
 import MenuItem from '@mui/material/MenuItem'
 import Chip from '@mui/material/Chip'
 import { Input } from '@mui/material'
+import TextField from '@mui/material/TextField'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -78,7 +82,7 @@ function Register_pageall() {
   const [teacherstyle, setteacherstyle] = useState(true)
   const [studentstyle, setstudentstyle] = useState(true)
   const [errormessage, seterrormessage] = useState('')
-  const [pagenum, setpagenum] = useState(0)
+  const [pagenum, setpagenum] = useState(3)
   const [usernameReg, setUsernameReg] = useState('')
   const [validationcode, setValidationcode] = useState('')
   const [googlemeet, setgooglemeet] = useState('')
@@ -89,7 +93,7 @@ function Register_pageall() {
   const [GenderReg, setGenderReg] = useState('')
   const [PhoneReg, setPhoneReg] = useState('')
   const [EmailReg, setEmailReg] = useState('')
-  const [birthdayreg, setbirthdayreg] = useState(new Date())
+  // const [birthdayreg, setbirthdayreg] = useState(new Date())
   const [gradereg, setgradereg] = useState('')
   const [schoolnamereg, setschoolnamereg] = useState('')
   const [subjectReg, setsubjectreg] = useState([])
@@ -101,6 +105,7 @@ function Register_pageall() {
   const [emailError, setEmailError] = useState('')
   const navigate = useNavigate()
   const [status, setStatus] = useState(0)
+  const [birthdaydate, setbirthdaydate] = useState(new Date())
   const [charlist, setcharlist] = useState([
     'open-minded',
     'outgoing',
@@ -273,7 +278,7 @@ function Register_pageall() {
     console.log(EmailReg)
     console.log(gen)
     console.log(gradereg)
-    console.log(birthdayreg)
+    console.log(birthdaydate)
     console.log(school)
 
     // save data here
@@ -286,7 +291,7 @@ function Register_pageall() {
       gender: gen,
       phone: PhoneReg,
       email: EmailReg,
-      birthday: birthdayreg,
+      birthday: birthdaydate,
       grade: gradereg,
       schoolname: school,
     }).then((response) => {
@@ -334,7 +339,7 @@ function Register_pageall() {
       gend,
       PhoneReg,
       EmailReg,
-      birthdayreg,
+      birthdaydate,
       gradereg,
       skl,
       subjectReg,
@@ -374,7 +379,7 @@ function Register_pageall() {
       gender: gend,
       phone: PhoneReg,
       email: EmailReg,
-      birthday: birthdayreg,
+      birthday: birthdaydate,
       grade: gradereg,
       schoolname: skl,
       preferredSubjects: subjectRegforStr,
@@ -404,7 +409,7 @@ function Register_pageall() {
         PhoneReg == '' ||
         EmailReg == '' ||
         GenderReg == '' ||
-        birthdayreg == '' ||
+        birthdaydate == '' ||
         gradereg == '' ||
         schoolnamereg == ''
       ) {
@@ -443,7 +448,7 @@ function Register_pageall() {
   }
   const pageplus4 = () => {
     console.log(pagenum)
-    if (birthdayreg == '' || gradereg == '' || schoolnamereg == '') {
+    if (birthdaydate == '' || gradereg == '' || schoolnamereg == '') {
       console.log('errormessage')
       seterrormessage(c[status])
     } else {
@@ -1208,19 +1213,51 @@ function Register_pageall() {
               </div>
               <div className="reg">
                 <div className="reggroup">
-                  <input
-                    className="register_input"
-                    type="text"
-                    value={birthdayreg}
-                    maxLength={20}
-                    placeholder={ab[status]}
-                    onChange={(e) => {
-                      setbirthdayreg(e.target.value)
-                    }}
-                  />
-                  <button id="reset_reg" onClick={() => setbirthdayreg('')}>
-                    <ImCross id="clear_reg" />
-                  </button>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="Enter your birthday"
+                      value={birthdaydate}
+                      onChange={(newValue) => {
+                        setbirthdaydate(newValue)
+                      }}
+                      renderInput={(params) => (
+                        <TextField
+                          className="register_selector"
+                          variant="standard"
+                          sx={{
+                            '& .MuiInputLabel-root': { color: '#b25634' },
+                            '& .MuiSvgIcon-root': {
+                              marginRight: '-4px',
+                            },
+
+                            svg: {
+                              marginRight: '-4px',
+                              color: '#b25634',
+                            },
+
+                            input: {
+                              color: '#b25634',
+                              fontFamily: 'Lora',
+                              paddingLeft: '10px',
+                              letterSpacing: '2px',
+                              fontSize: '20px',
+                            },
+                            label: {
+                              color: '#b25634',
+                              fontFamily: 'Lora',
+                              '&:hover': {
+                                color: '#b25634',
+                              },
+                              '&:focus': {
+                                color: '#b25634',
+                              },
+                            },
+                          }}
+                          {...params}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
                 </div>
 
                 <div className="reggroup">
@@ -1470,19 +1507,59 @@ function Register_pageall() {
                 </div>
 
                 <div className="reggroup">
-                  <input
-                    className="register_input"
-                    type="text"
-                    value={birthdayreg}
-                    maxLength={20}
-                    placeholder={ab[status]}
-                    onChange={(e) => {
-                      setbirthdayreg(e.target.value) // birthdayreg
-                    }}
-                  />
-                  <button id="reset_reg" onClick={() => setbirthdayreg('')}>
-                    <ImCross id="clear_reg" />
-                  </button>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="Enter your birthday"
+                      value={birthdaydate}
+                      onChange={(newValue) => {
+                        setbirthdaydate(newValue)
+                      }}
+                      renderInput={(params) => (
+                        <TextField
+                          className="register_selector"
+                          variant="standard"
+                          sx={{
+                            '& .MuiInputLabel-root': { color: '#b25634' },
+                            '& .MuiSvgIcon-root': {
+                              marginRight: '-4px',
+                            },
+                            '& .css-1480iag-MuiInputBase-root-MuiInput-root:before': {
+                              borderBottom: '1.5px solid #D6A796',
+                            },
+                            '& .css-1480iag-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before': {
+                              borderBottom: '1.5px solid #b25634',
+                            },
+                            '& .css-1480iag-MuiInputBase-root-MuiInput-root:after': {
+                              borderBottom: '1.5px solid #b25634',
+                            },
+                            svg: {
+                              marginRight: '-4px',
+                              color: '#b25634',
+                            },
+
+                            input: {
+                              color: '#b25634',
+                              fontFamily: 'Lora',
+                              paddingLeft: '10px',
+                              letterSpacing: '2px',
+                              fontSize: '20px',
+                            },
+                            label: {
+                              color: '#b25634',
+                              fontFamily: 'Lora',
+                              '&:hover': {
+                                color: '#b25634',
+                              },
+                              '&:focus': {
+                                color: '#b25634',
+                              },
+                            },
+                          }}
+                          {...params}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
                 </div>
                 <div className="reggroup">
                   <Select
