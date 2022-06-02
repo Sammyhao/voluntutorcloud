@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import { Bookingcomp } from './Bookingcomp'
-
+import { format } from 'date-fns'
 import TextField from '@mui/material/TextField'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -162,10 +162,25 @@ export default function Booking() {
 
   // functions
   const sendfirst = () => {
-    console.log('the following are times entered')
-    console.log(starttime.toString())
-    console.log('the following is the ending time')
-    console.log(endtime.toString())
+    console.log('Date entered')
+    console.log(
+      datedate.getMonth() +
+        1 +
+        '/' +
+        datedate.getDate() +
+        '/' +
+        datedate.getFullYear(),
+    )
+    console.log('starting time + ending time')
+    console.log(
+      starttime.getHours() +
+        ':' +
+        starttime.getMinutes() +
+        ' ~ ' +
+        time.getHours() +
+        ':' +
+        time.getMinutes(),
+    )
     console.log('sendfirst')
     // if (datedate == '' || starttime == '' || duration == '') {
     // if (datedate == '') {
