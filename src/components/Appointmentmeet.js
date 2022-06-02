@@ -146,7 +146,7 @@ function Appointmentmeet() {
     if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
-          username = response.data.user[0].username
+          username = response.data.user[0].username;
           setGoogleMeetLink(response.data.user[0].googlemeetlink)
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
@@ -271,7 +271,7 @@ function Appointmentmeet() {
         username: chosenContact.username,
         studentname: chosenContact.studentname,
         studentmail: chosenContact.studentmail,
-        classDate: classDate,
+        classDate: finalformat,
         duration: classduration,
         studentabsence: studentabsence,
         agenda: agenda,
