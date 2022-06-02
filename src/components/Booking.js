@@ -49,8 +49,10 @@ export default function Booking() {
   const [bookedwarn, setbookedwarn] = useState(false)
   const [open, setOpen] = useState(false)
   const [finalopen, setfinalopen] = useState(false)
-  const [starttime, setstarttime] = useState(new Date())
-  const [endtime, setendtime] = useState(new Date())
+  const [starttime, setstarttime] = useState(
+    new Date('2018-01-01T00:00:00.000Z'),
+  )
+  const [endtime, setendtime] = useState(new Date('2018-01-01T00:00:00.000Z'))
   const [time, settime] = useState('')
   const [duration, setduration] = useState(0)
   const [status, setStatus] = useState(0)
