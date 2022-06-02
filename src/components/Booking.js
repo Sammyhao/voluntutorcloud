@@ -16,6 +16,8 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 
+import { TimePicker } from '@mui/x-date-pickers/TimePicker'
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -53,7 +55,6 @@ export default function Booking() {
   const [status, setStatus] = useState(0)
   const [isLoading, setLoading] = useState(true)
   const [contactInfo, setContactInfo] = useState([])
-  const [haveSetStatus, setHaveSetStatus] = useState(false)
   const [bookingInfo, setBookingInfo] = useState([])
   const [bookingInfoLen, setBookingInfoLen] = useState(0)
   const [chosenEmail, setChosenEmail] = useState('')
@@ -303,7 +304,7 @@ export default function Booking() {
         )
     })
 
-    setdate('')
+    setdatedate(new Date())
     settime('')
     setduration('')
   }
@@ -392,7 +393,7 @@ export default function Booking() {
               <div className="bookingprogramdia"> {i[status]}</div>
               <div className="bookingprogramdia_sub">
                 {c[status]}
-                {date}
+                {datedate}
               </div>
               <div className="bookingprogramdia_sub">
                 {e[status]}
