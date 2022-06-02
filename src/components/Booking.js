@@ -158,7 +158,7 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     console.log('sendfirst')
-    if (date == '' || time == '' || duration == '') {
+    if (datedate == '' || time == '' || duration == '') {
       setnoneopen(true)
     } else {
       setOpen(true)
