@@ -473,12 +473,12 @@ function Appointmentmeet() {
                 return selected
               }}
               sx={{
-                color: '#b25634',
-                paddingLeft: '10px',
+                color: '#745140',
+                paddingLeft: '0px',
                 paddingBottom: '5px',
                 fontFamily: 'Lora',
-                letterSpacing: '2px',
-                fontSize: '20px',
+                letterSpacing: '0.8px',
+                fontSize: '15px',
                 '&:hover': {
                   color: '#b25634',
                 },
@@ -545,12 +545,12 @@ function Appointmentmeet() {
                       className="editrest"
                       variant="standard"
                       sx={{
-                        color: '#b25634',
-                        paddingLeft: '10px',
+                        color: '#745140',
+                        paddingLeft: '0px',
                         paddingBottom: '5px',
                         fontFamily: 'Lora',
-                        letterSpacing: '2px',
-                        fontSize: '20px',
+                        letterSpacing: '0.8px',
+                        fontSize: '15px',
                         '& .MuiInputLabel-root': { color: '#b25634' },
 
                         ' .css-1wt0ykv::before': {
@@ -607,12 +607,12 @@ function Appointmentmeet() {
                       className="editrest"
                       variant="standard"
                       sx={{
-                        color: '#b25634',
-                        paddingLeft: '10px',
+                        color: '#745140',
+                        paddingLeft: '0px',
                         paddingBottom: '5px',
                         fontFamily: 'Lora',
-                        letterSpacing: '2px',
-                        fontSize: '20px',
+                        letterSpacing: '0.8px',
+                        fontSize: '15px',
                         '& .MuiInputLabel-root': { color: '#b25634' },
 
                         ' .css-1wt0ykv::before': {
@@ -668,12 +668,12 @@ function Appointmentmeet() {
                       className="editrest"
                       variant="standard"
                       sx={{
-                        color: '#b25634',
-                        paddingLeft: '10px',
+                        color: '#745140',
+                        paddingLeft: '0px',
                         paddingBottom: '5px',
                         fontFamily: 'Lora',
-                        letterSpacing: '2px',
-                        fontSize: '20px',
+                        letterSpacing: '0.8px',
+                        fontSize: '15px',
                         '& .MuiInputLabel-root': { color: '#b25634' },
 
                         ' .css-1wt0ykv::before': {
