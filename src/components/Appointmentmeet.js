@@ -179,6 +179,10 @@ function Appointmentmeet() {
     // else window.location.replace(googlemeetlinkalt);
   }
 
+  const [formatteddate, setformatteddate] = useState('')
+  const [formattedstart, setformattedstart] = useState('')
+  const [formattedend, setformattedend] = useState('')
+
   function updateRecord() {
     console.log(
       chosenContact.username,
@@ -197,13 +201,17 @@ function Appointmentmeet() {
       if (ending.getTime() < starting.getTime()) {
         settimeopen(true)
       } else {
-        setfinalformat(
-          format(classDate, 'yyyy-MM-dd') +
-            ' ' +
-            format(starting, 'HH:mm') +
-            '~' +
-            format(ending, 'HH:mm'),
-        )
+        // setfinalformat(
+        //   format(classDate, 'yyyy-MM-dd') +
+        //     ' ' +
+        //     format(starting, 'HH:mm') +
+        //     '~' +
+        //     format(ending, 'HH:mm'),
+        // )
+        setformatteddate(format(classDate, 'yyyy-MM-dd'))
+        setformattedstart(format(starting, 'HH:mm'))
+        setformattedend(format(ending, 'HH:mm'))
+
         let hrs = 0
         let mins = 0
         if (ending.getMinutes() < starting.getMinutes()) {
@@ -225,13 +233,15 @@ function Appointmentmeet() {
   }
 
   const actualsend = () => {
+    let tempFinalFormat = formatteddate + ' ' + formattedstart + '~' + formattedend;
     console.log(
       chosenContact.username,
       chosenContact.studentname,
       chosenContact.studentmail,
-      classDate,
-      starting,
-      ending,
+      formatteddate,
+      formattedstart,
+      formattedend,
+      tempFinalFormat,
       studentabsence,
       agenda,
       task,
@@ -240,7 +250,7 @@ function Appointmentmeet() {
     var templateParams = {
       parent_email: chosenContact.studentmail,
       children_name: chosenContact.studentname,
-      class_date: finalformat,
+      class_date: tempFinalFormat,
       class_duration: classduration,
       attendance: studentabsence,
       agenda: agenda,
@@ -271,7 +281,7 @@ function Appointmentmeet() {
         username: chosenContact.username,
         studentname: chosenContact.studentname,
         studentmail: chosenContact.studentmail,
-        classDate: finalformat,
+        classDate: tempFinalFormat,
         duration: classduration,
         studentabsence: studentabsence,
         agenda: agenda,
