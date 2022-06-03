@@ -526,6 +526,9 @@ function Appointmentmeet() {
                 dateAdapter={AdapterDateFns}
                 sx={{
                   width: '100%',
+                  ' .css-1luob6x': {
+                    width: '100%',
+                  },
                 }}
               >
                 <DatePicker
