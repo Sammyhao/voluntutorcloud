@@ -567,11 +567,12 @@ function Appointmentmeet() {
                         },
 
                         input: {
-                          color: '#b25634',
+                          color: '#745140',
+                          paddingLeft: '0px',
+                          paddingBottom: '5px',
                           fontFamily: 'Lora',
-                          paddingLeft: '10px',
-                          letterSpacing: '2px',
-                          fontSize: '20px',
+                          letterSpacing: '0.8px',
+                          fontSize: '15px',
                         },
                         label: {
                           color: '#b25634',
@@ -629,11 +630,12 @@ function Appointmentmeet() {
                         },
 
                         input: {
-                          color: '#b25634',
+                          color: '#745140',
+                          paddingLeft: '0px',
+                          paddingBottom: '5px',
                           fontFamily: 'Lora',
-                          paddingLeft: '10px',
-                          letterSpacing: '2px',
-                          fontSize: '20px',
+                          letterSpacing: '0.8px',
+                          fontSize: '15px',
                         },
                         label: {
                           color: '#b25634',
@@ -690,11 +692,12 @@ function Appointmentmeet() {
                         },
 
                         input: {
-                          color: '#b25634',
+                          color: '#745140',
+                          paddingLeft: '0px',
+                          paddingBottom: '5px',
                           fontFamily: 'Lora',
-                          paddingLeft: '10px',
-                          letterSpacing: '2px',
-                          fontSize: '20px',
+                          letterSpacing: '0.8px',
+                          fontSize: '15px',
                         },
                         label: {
                           color: '#b25634',
