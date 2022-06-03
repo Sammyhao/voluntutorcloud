@@ -521,12 +521,21 @@ function Appointmentmeet() {
             <Divider className="app_line"></Divider>
 
             <div className="appwrap">
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <LocalizationProvider
+                className="datedatewrap"
+                dateAdapter={AdapterDateFns}
+                sx={{
+                  width: '100%',
+                }}
+              >
                 <DatePicker
                   value={classDate}
                   className="datedatewrap"
                   onChange={(newValue) => {
                     setClassDate(newValue)
+                  }}
+                  sx={{
+                    width: '100%',
                   }}
                   renderInput={(params) => (
                     <TextField
