@@ -524,6 +524,7 @@ function Appointmentmeet() {
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   value={classDate}
+                  className="datedatewrap"
                   onChange={(newValue) => {
                     setClassDate(newValue)
                   }}

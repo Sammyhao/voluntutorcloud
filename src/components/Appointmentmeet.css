@@ -371,10 +371,14 @@ input::-webkit-inner-spin-button {
   margin-left: 20px;
   margin-right: 20px;
 }
+.datedatewrap {
+  width: 100%;
+}
 #editrest {
   color: #745140;
   height: 30px;
   font-weight: 400;
+  width: 100%;
   letter-spacing: 0.8px;
   border: none;
   font-size: 15px;
