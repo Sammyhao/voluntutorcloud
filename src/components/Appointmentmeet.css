@@ -139,6 +139,7 @@ input::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
 }
+
 #app_succ {
   background-color: whitesmoke;
   overflow: block;
@@ -364,6 +365,11 @@ input::-webkit-inner-spin-button {
   border: none;
   font-size: 15px;
   border-bottom: 1.5px solid rgba(178, 86, 52, 0.3);
+}
+.appwrap {
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 #editrest {
   color: #745140;
