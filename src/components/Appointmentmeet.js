@@ -605,7 +605,6 @@ function Appointmentmeet() {
                   renderInput={(params) => (
                     <TextField
                       className="editrest"
-                      className="inputbooking"
                       variant="standard"
                       sx={{
                         color: '#b25634',
@@ -666,9 +665,8 @@ function Appointmentmeet() {
                   }}
                   renderInput={(params) => (
                     <TextField
-                      className="inputbooking"
-                      variant="standard"
                       className="editrest"
+                      variant="standard"
                       sx={{
                         color: '#b25634',
                         paddingLeft: '10px',
