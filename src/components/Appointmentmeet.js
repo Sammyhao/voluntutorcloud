@@ -50,6 +50,7 @@ function Appointmentmeet() {
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
   ]
+  let space = [' ']
   let b = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
   let c = [
     'Please fill in everything before you submit the form.',
@@ -225,13 +226,8 @@ function Appointmentmeet() {
         setClassduration((hrs + mins / 60).toFixed(2))
         console.log(classduration)
         console.log(finalformat)
-        if (finalformat.equals('~')) {
-          setfinalformat(
-            formatteddate + ' ' + formattedstart + '~' + formattedend,
-          )
-        } else {
-          setOpen_send(true)
-        }
+
+        setOpen_send(true)
       }
     } else {
       console.log('false')
@@ -420,7 +416,11 @@ function Appointmentmeet() {
               <div className="appointment_content">{studentabsence}</div>
 
               <div className="appointment_subtitles">{f[status]}</div>
-              <div className="appointment_content">{finalformat}</div>
+              <div className="appointment_content">
+                {formatteddate}
+                {space}
+                {formattedstart} ~ {formattedend}
+              </div>
               <div className="appointment_subtitles">{g[status]}</div>
               <div className="appointment_content">{classduration}</div>
               <div className="appointment_subtitles">{h[status]}</div>
