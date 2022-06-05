@@ -224,6 +224,9 @@ function Appointmentmeet() {
         setClassduration((hrs + mins / 60).toFixed(2))
         console.log(classduration)
         console.log(finalformat)
+        setfinalformat(
+          formatteddate + ' ' + formattedstart + '~' + formattedend,
+        )
         setOpen_send(true)
       }
     } else {
@@ -233,7 +236,8 @@ function Appointmentmeet() {
   }
 
   const actualsend = () => {
-    let tempFinalFormat = formatteddate + ' ' + formattedstart + '~' + formattedend;
+    let tempFinalFormat =
+      formatteddate + ' ' + formattedstart + '~' + formattedend
     console.log(
       chosenContact.username,
       chosenContact.studentname,
