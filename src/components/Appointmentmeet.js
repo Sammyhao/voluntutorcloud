@@ -178,7 +178,6 @@ function Appointmentmeet() {
       window.open(googleMeetLink, '_blank', 'noopener,noreferrer')
     // else window.location.replace(googlemeetlinkalt);
   }
-
   const [formatteddate, setformatteddate] = useState('')
   const [formattedstart, setformattedstart] = useState('')
   const [formattedend, setformattedend] = useState('')
@@ -226,8 +225,13 @@ function Appointmentmeet() {
         setClassduration((hrs + mins / 60).toFixed(2))
         console.log(classduration)
         console.log(finalformat)
-
-        setOpen_send(true)
+        if (finalformat.equals('~')) {
+          setfinalformat(
+            formatteddate + ' ' + formattedstart + '~' + formattedend,
+          )
+        } else {
+          setOpen_send(true)
+        }
       }
     } else {
       console.log('false')
