@@ -211,7 +211,9 @@ function Appointmentmeet() {
         setformatteddate(format(classDate, 'yyyy-MM-dd'))
         setformattedstart(format(starting, 'HH:mm'))
         setformattedend(format(ending, 'HH:mm'))
-
+        setfinalformat(
+          formatteddate + ' ' + formattedstart + '~' + formattedend,
+        )
         let hrs = 0
         let mins = 0
         if (ending.getMinutes() < starting.getMinutes()) {
@@ -224,9 +226,7 @@ function Appointmentmeet() {
         setClassduration((hrs + mins / 60).toFixed(2))
         console.log(classduration)
         console.log(finalformat)
-        setfinalformat(
-          formatteddate + ' ' + formattedstart + '~' + formattedend,
-        )
+
         setOpen_send(true)
       }
     } else {
