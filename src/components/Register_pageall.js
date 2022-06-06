@@ -20,6 +20,9 @@ import TextField from '@mui/material/TextField'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { format } from 'date-fns'
+import { BiRotateRight } from 'react-icons/bi'
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -291,7 +294,7 @@ function Register_pageall() {
       gender: gen,
       phone: PhoneReg,
       email: EmailReg,
-      birthday: birthdaydate,
+      birthday: format(birthdaydate, 'yyyy-MM-dd'),
       grade: gradereg,
       schoolname: school,
     }).then((response) => {
