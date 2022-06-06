@@ -382,7 +382,7 @@ function Register_pageall() {
       gender: gend,
       phone: PhoneReg,
       email: EmailReg,
-      birthday: birthdaydate,
+      birthday: format(birthdaydate, 'yyyy-MM-dd'),
       grade: gradereg,
       schoolname: skl,
       preferredSubjects: subjectRegforStr,
