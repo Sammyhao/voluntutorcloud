@@ -195,7 +195,7 @@ function Appointmentmeet() {
   function updateRecord() {
     console.log(
       chosenContact.username,
-      chosenContact.studentname,
+      selectedstudentname,
       chosenContact.studentmail,
       classDate,
       starting,
@@ -250,7 +250,7 @@ function Appointmentmeet() {
       formatteddate + ' ' + formattedstart + '~' + formattedend
     console.log(
       chosenContact.username,
-      chosenContact.studentname,
+      selectedstudentname,
       chosenContact.studentmail,
       formatteddate,
       formattedstart,
@@ -263,7 +263,7 @@ function Appointmentmeet() {
     )
     var templateParams = {
       parent_email: chosenContact.studentmail,
-      children_name: chosenContact.studentname,
+      children_name: selectedstudentname,
       class_date: tempFinalFormat,
       class_duration: classduration,
       attendance: studentabsence,
@@ -275,7 +275,7 @@ function Appointmentmeet() {
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
       username: chosenContact.username,
-      studentname: chosenContact.studentname,
+      studentname: selectedstudentname,
       studentmail: chosenContact.studentmail,
     }).then((response) => {
       //         if(response.data.length) {
@@ -293,7 +293,7 @@ function Appointmentmeet() {
 
       Axios.post('https://voluntutorcloud-server.herokuapp.com/updateRecord', {
         username: chosenContact.username,
-        studentname: chosenContact.studentname,
+        studentname: selectedstudentname,
         studentmail: chosenContact.studentmail,
         classDate: tempFinalFormat,
         duration: classduration,
@@ -473,7 +473,7 @@ function Appointmentmeet() {
                 <FaUser className="icon_app" />
               </div>
               <div className="namesection_app">
-                <div className="app_name">{chosenContact.studentname}</div>
+                <div className="app_name">{selectedstudentname}</div>
               </div>
             </div>
             <div className="meet" onClick={meet}>
