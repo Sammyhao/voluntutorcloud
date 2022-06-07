@@ -228,8 +228,8 @@ export default function Booking() {
       status: 'confirmed',
     }).then((response) => {
       console.log(response)
-      // setBookingInfo(checkBookingInfoValidity(response.data));
-      setBookingInfo(response.data)
+      setBookingInfo(checkBookingInfoValidity(response.data));
+      // setBookingInfo(response.data)
     })
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
@@ -238,8 +238,8 @@ export default function Booking() {
       status: 'pending',
     }).then((response) => {
       console.log(response)
-      // setBookingInfo(checkBookingInfoValidity(response.data));
-      setPendingBookingInfo(response.data)
+      setBookingInfo(checkBookingInfoValidity(response.data));
+      // setPendingBookingInfo(response.data)
       setLoading(false)
     })
   }
