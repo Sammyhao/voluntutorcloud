@@ -95,7 +95,9 @@ function Appointmentmeet() {
   let us = ["Student's Attendance", '學生出席狀況']
   let ss = ['Enter the Class Starting Time', '請輸入上課開始時間']
   let sss = ['Enter the Class Ending Time', '請輸入上課結束時間']
-
+  let rr = ["Which student are you teaching today?","請問此次教導哪一位學生？"]
+  let rrr = ["Student's name","學生姓名"]
+  const [studentnamelist, setstudentnamelist] = useState([]);
   let username = ''
   const [contactInfo, setContactInfo] = useState([])
   let totalhour = 8
@@ -114,6 +116,9 @@ function Appointmentmeet() {
   const [starting, setstarting] = useState(new Date())
   const [ending, setending] = useState(new Date())
   const [finalformat, setfinalformat] = useState('')
+  const [selectedstudentname, setstudentname] = useState('')
+
+
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
 
@@ -161,6 +166,10 @@ function Appointmentmeet() {
             console.log(response.data.length)
             if (response.data.length == 2) {
               setMultistudentname([response.data[1].studentname])
+              setstudentname(response.data[0].studentname);
+            }
+            for(let i = 0; i < response.data.length; i++) {
+              setstudentnamelist(studentnameclist => [...studentnamelist, response.data[i].studentname]);
             }
             setContactInfo(response.data)
             setChosenContact(response.data[0])
@@ -195,9 +204,10 @@ function Appointmentmeet() {
       task,
       notes,
       studentabsence,
+      selectedstudentname
     )
 
-    if (studentabsence != '' && classDate != '' && agenda != '' && task != '') {
+    if (selectedstudentname != "" && studentabsence != '' && classDate != '' && agenda != '' && task != '') {
       if (ending.getTime() < starting.getTime()) {
         settimeopen(true)
       } else {
@@ -469,6 +479,71 @@ function Appointmentmeet() {
             <div className="meet" onClick={meet}>
               {m[status]}
             </div>
+          </div>
+          <div className="classdate">
+            <div className="app_title">{rrr[status]}</div>
+            <Divider className="app_line"></Divider>
+            <Select
+              labelId="demo-simple-select-helper-label"
+              variant="standard"
+              id="editdate"
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              value={selectedstudentname}
+              onChange={(e) => {
+                setstudentname(e.target.value)
+              }}
+              renderValue={(selected) => {
+                if (selected.length === 0) {
+                  return <div className="selectplace">{rr[status]}</div>
+                }
+
+                return selected
+              }}
+              sx={{
+                color: '#745140',
+                paddingLeft: '0px',
+                paddingBottom: '5px',
+                fontFamily: 'Lora',
+                letterSpacing: '0.8px',
+                fontSize: '15px',
+                '&:hover': {
+                  color: '#b25634',
+                },
+                '&:focus': {
+                  backgroundColor: '#00000000',
+                },
+                '&:not(.Mui-disabled):hover::before': {
+                  borderBottom: '0px',
+                },
+                '&:before': {
+                  borderBottom: '0px',
+                },
+                '&:after': {
+                  borderBottom: '0px',
+                },
+                '& .MuiSvgIcon-root': {
+                  marginRight: '20px',
+                  marginTop: '10px',
+                  fontSize: '30px',
+                  color: '#b25634',
+                  fill: '#b25634',
+                },
+                '& .MuiSvgIcon-root::before': {
+                  border: '1.5px solid #D6A796',
+                },
+                '& .MuiSvgIcon-root::after': {
+                  border: '1.5px solid #D6A796',
+                },
+              }}
+            >
+             {studentnamelist.map((e) => {
+                return(
+                  <MenuItem value={e}>{e}</MenuItem>
+                )
+             })} 
+              
+            </Select>
           </div>
           <div className="classdate">
             <div className="app_title">{us[status]}</div>
