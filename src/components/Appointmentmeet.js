@@ -152,7 +152,7 @@ function Appointmentmeet() {
     if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
-          username = response.data.user[0].username
+          username = response.data.user[0].username;
           setGoogleMeetLink(response.data.user[0].googlemeetlink)
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
@@ -246,12 +246,16 @@ function Appointmentmeet() {
   }
 
   const actualsend = () => {
+    let emailaddress = "";
+    for(let i = 0; i < contactInfo.length; i++) {
+      if(contactInfo[i].studentname == selectedstudentname) emailaddress = contactInfo[i].studentmail;
+    }
     let tempFinalFormat =
       formatteddate + ' ' + formattedstart + '~' + formattedend
     console.log(
       chosenContact.username,
       selectedstudentname,
-      chosenContact.studentmail,
+      emailaddress,
       formatteddate,
       formattedstart,
       formattedend,
@@ -262,7 +266,7 @@ function Appointmentmeet() {
       notes,
     )
     var templateParams = {
-      parent_email: chosenContact.studentmail,
+      parent_email: emailaddress,
       children_name: selectedstudentname,
       class_date: tempFinalFormat,
       class_duration: classduration,
@@ -276,7 +280,7 @@ function Appointmentmeet() {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
       username: chosenContact.username,
       studentname: selectedstudentname,
-      studentmail: chosenContact.studentmail,
+      studentmail: emailaddress,
     }).then((response) => {
       //         if(response.data.length) {
       //           totalhour = response.data[response.data.length-1].hoursleft
@@ -294,7 +298,7 @@ function Appointmentmeet() {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/updateRecord', {
         username: chosenContact.username,
         studentname: selectedstudentname,
-        studentmail: chosenContact.studentmail,
+        studentmail: emailaddress,
         classDate: tempFinalFormat,
         duration: classduration,
         studentabsence: studentabsence,
