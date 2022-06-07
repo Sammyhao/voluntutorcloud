@@ -261,7 +261,7 @@ export default function Booking() {
     setBookingInfoLen(bkinfo.length)
     for (let i = 0; i < bkinfo.length; i++) {
       var date = bkinfo[i].date
-      datearr = date.split('/')
+      datearr = date.split('-')
       console.log(datearr)
       for (let j = 0; j < date.length; j++) {
         datearr[j] = Number(datearr[j])
@@ -271,14 +271,14 @@ export default function Booking() {
       let d = new Date().getDate()
       let m = new Date().getMonth() + 1
       let y = new Date().getFullYear()
-      console.log(d, m, y)
+      console.log("today's date: ", d, m, y)
       if (datearr[0] < y) {
         console.log(y + ' is greater than ' + datearr[0])
         // delete booking
         deleteBooking(bkinfo[i])
         bkinfo.splice(i, 1)
         setBookingInfoLen(bkinfo.length - 1)
-        i--
+        i--;
       } else if (datearr[0] == y) {
         if (datearr[1] < m) {
           // delete booking
@@ -376,8 +376,8 @@ export default function Booking() {
             },
           ).then((response) => {
             console.log(response)
-            // setBookingInfo(checkBookingInfoValidity(response.data));
-            setBookingInfo(response.data)
+            setBookingInfo(checkBookingInfoValidity(response.data));
+            // setBookingInfo(response.data)
           })
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getBooking',
@@ -388,8 +388,8 @@ export default function Booking() {
             },
           ).then((response) => {
             console.log(response)
-            // setPendingBookingInfo(checkBookingInfoValidity(response.data));
-            setPendingBookingInfo(response.data)
+            setPendingBookingInfo(checkBookingInfoValidity(response.data));
+            // setPendingBookingInfo(response.data)
             setLoading(false)
           })
         })
