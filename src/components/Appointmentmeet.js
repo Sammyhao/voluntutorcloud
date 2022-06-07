@@ -169,7 +169,7 @@ function Appointmentmeet() {
               setstudentname(response.data[0].studentname);
             }
             for(let i = 0; i < response.data.length; i++) {
-              setstudentnamelist(studentnameclist => [...studentnamelist, response.data[i].studentname]);
+              setstudentnamelist(studentnamelist => [...studentnamelist, response.data[i].studentname]);
             }
             setContactInfo(response.data)
             setChosenContact(response.data[0])
