@@ -78,7 +78,7 @@ export default function Booking() {
   let tempstudentname = ''
   let datearr = []
   const [datedate, setdatedate] = useState(new Date())
-  const [selectedstudentname, setstudentname] = useState('???')
+  const [selectedstudentname, setstudentname] = useState('')
   const [selectedstudentid, setstudentid] = useState(0)
   // titles
   let n = [
@@ -152,7 +152,6 @@ export default function Booking() {
     if (multistudentname.length == 0) {
       return <div></div>
     } else {
-      console.log(multistudentname[0])
       return (
         <div className={nameclick ? 'choosekid active' : 'choosekid'}>
           <div className="multi">
@@ -425,15 +424,6 @@ export default function Booking() {
     console.log('contactinfo length: ', contactInfo.length)
     return <Loading></Loading>
   } else {
-    console.log('bookingInfo:')
-    console.log(bookingInfo)
-    console.log('bookingInfoLen:')
-    console.log(bookingInfoLen)
-    console.log('multistudentname')
-    console.log(multistudentname)
-    console.log('multistudentnameLen')
-    console.log(multistudentname.length)
-
     if (contactInfo.length == 0) {
       return (
         <div className="nokid">
@@ -514,9 +504,7 @@ export default function Booking() {
           </div>
           <div className="outerbook">
             <div className="topbarbook">
-              <div className="titlebook">
-                {a[status]} - {selectedstudentname}
-              </div>
+              <div className="titlebook">{a[status]}</div>
               <div className="bookbtn" onClick={sendfirst}>
                 {b[status]}
               </div>
@@ -528,14 +516,13 @@ export default function Booking() {
                 <Select
                   labelId="demo-simple-select-helper-label"
                   variant="standard"
-                  className="inputbooking"
+                  className="inputstudentname"
                   displayEmpty
                   inputProps={{ 'aria-label': 'Without label' }}
                   value={selectedstudentname}
                   onChange={(e, child) => {
                     setstudentname(e.target.value)
                     setstudentid(child.props.id)
-                    console.log(selectedstudentid)
                   }}
                   renderValue={(selected) => {
                     if (selected.length === 0) {
@@ -746,9 +733,7 @@ export default function Booking() {
           </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
-              <div className="titlebook">
-                {l[status]} - {selectedstudentname}
-              </div>
+              <div className="titlebook">{l[status]}</div>
             </div>
             <Divider></Divider>
             <Bookingcomp
@@ -758,9 +743,7 @@ export default function Booking() {
           </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
-              <div className="titlebook">
-                {q[status]} - {selectedstudentname}
-              </div>
+              <div className="titlebook">{q[status]}</div>
             </div>
             <Divider></Divider>
             <Bookingcomp
