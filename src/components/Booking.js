@@ -75,16 +75,24 @@ export default function Booking() {
   let tempstudentname = ''
   let datearr = []
   const [datedate, setdatedate] = useState(new Date())
-
+  const [selectedstudentname, setstudentname] = useState('')
+  const [selectedstudentid, setstudentid] = useState(0)
   // titles
   let n = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
   ]
+
+  const [studentnamelist, setstudentnamelist] = useState(['John', 'Mary'])
+  let rr = [
+    'Which student are you sending the booking to?',
+    '請問要傳送會議邀請給哪一位學生？',
+  ]
   let o = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
   let a = ['Book A Meeting', '預約會議']
   let b = ['Send Invitation', '傳送邀請']
   let c = ['Date: ', '日期：']
+  let cc = ["Student's name: ", '學生姓名：']
   let d = [
     'Enter the Date (Format: 2022/05/01)',
     '請輸入日期 (格式：2022/05/01)',
@@ -100,6 +108,7 @@ export default function Booking() {
     'Enter the Duration (Numbers only, format: 1.5)',
     '請輸入課程時長 (僅限數字，格式：1.5)',
   ]
+  let hh = ["Student's name", '學生姓名']
   let i = [
     'Please double check before you send the invitation.',
     '在傳送前請再次確認資料是否有誤。',
@@ -174,28 +183,32 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     console.log('Date entered')
-    if (endtime.getTime() < starttime.getTime()) {
-      settimeopen(true)
+    if (selectedstudentname == '') {
+      setnoneopen(true)
     } else {
-      setformatteddate(format(datedate, 'yyyy-MM-dd'))
-      setformattedstart(format(starttime, 'HH:mm'))
-      setformattedend(format(endtime, 'HH:mm'))
-      let hrs = 0
-      let mins = 0
-      if (endtime.getMinutes() < starttime.getMinutes()) {
-        mins = endtime.getMinutes() - starttime.getMinutes() + 60
-        hrs = endtime.getHours() - starttime.getHours() - 1
+      if (endtime.getTime() < starttime.getTime()) {
+        settimeopen(true)
       } else {
-        mins = endtime.getMinutes() - starttime.getMinutes()
-        hrs = endtime.getHours() - starttime.getHours()
+        setformatteddate(format(datedate, 'yyyy-MM-dd'))
+        setformattedstart(format(starttime, 'HH:mm'))
+        setformattedend(format(endtime, 'HH:mm'))
+        let hrs = 0
+        let mins = 0
+        if (endtime.getMinutes() < starttime.getMinutes()) {
+          mins = endtime.getMinutes() - starttime.getMinutes() + 60
+          hrs = endtime.getHours() - starttime.getHours() - 1
+        } else {
+          mins = endtime.getMinutes() - starttime.getMinutes()
+          hrs = endtime.getHours() - starttime.getHours()
+        }
+        setformatteddurationmin(mins)
+        setformatteddurationhrs(hrs)
+        setformattedduration((hrs + mins / 60).toFixed(2))
+        console.log(formattedduration)
+        console.log(formatteddurationhrs)
+        console.log(formatteddurationmin)
+        setOpen(true)
       }
-      setformatteddurationmin(mins)
-      setformatteddurationhrs(hrs)
-      setformattedduration((hrs + mins / 60).toFixed(2))
-      console.log(formattedduration)
-      console.log(formatteddurationhrs)
-      console.log(formatteddurationmin)
-      setOpen(true)
     }
   }
 
@@ -228,7 +241,7 @@ export default function Booking() {
       status: 'confirmed',
     }).then((response) => {
       console.log(response)
-      setBookingInfo(checkBookingInfoValidity(response.data));
+      setBookingInfo(checkBookingInfoValidity(response.data))
       // setBookingInfo(response.data)
     })
 
@@ -238,7 +251,7 @@ export default function Booking() {
       status: 'pending',
     }).then((response) => {
       console.log(response)
-      setBookingInfo(checkBookingInfoValidity(response.data));
+      setBookingInfo(checkBookingInfoValidity(response.data))
       // setPendingBookingInfo(response.data)
       setLoading(false)
     })
@@ -278,7 +291,7 @@ export default function Booking() {
         deleteBooking(bkinfo[i])
         bkinfo.splice(i, 1)
         setBookingInfoLen(bkinfo.length - 1)
-        i--;
+        i--
       } else if (datearr[0] == y) {
         if (datearr[1] < m) {
           // delete booking
@@ -376,7 +389,7 @@ export default function Booking() {
             },
           ).then((response) => {
             console.log(response)
-            setBookingInfo(checkBookingInfoValidity(response.data));
+            setBookingInfo(checkBookingInfoValidity(response.data))
             // setBookingInfo(response.data)
           })
           Axios.post(
@@ -388,7 +401,7 @@ export default function Booking() {
             },
           ).then((response) => {
             console.log(response)
-            setPendingBookingInfo(checkBookingInfoValidity(response.data));
+            setPendingBookingInfo(checkBookingInfoValidity(response.data))
             // setPendingBookingInfo(response.data)
             setLoading(false)
           })
@@ -421,7 +434,7 @@ export default function Booking() {
     } else {
       return (
         <div className="outestcontainerbook">
-          {multistyle()}
+          {/* {multistyle()} */}
           <div id="dialogcontainer">
             <BootstrapDialog
               onClose={handleClose}
@@ -430,6 +443,10 @@ export default function Booking() {
               open={open}
             >
               <div className="bookingprogramdia"> {i[status]}</div>
+              <div className="bookingprogramdia_sub">
+                {cc[status]}
+                {selectedstudentname}
+              </div>
               <div className="bookingprogramdia_sub">
                 {c[status]}
                 {formatteddate}
@@ -486,10 +503,80 @@ export default function Booking() {
           <div className="outerbook">
             <div className="topbarbook">
               <div className="titlebook">
-                {a[status]} - {chosenStuname}
+                {a[status]} - {selectedstudentname}
+                {a[status]}
               </div>
               <div className="bookbtn" onClick={sendfirst}>
                 {b[status]}
+              </div>
+            </div>
+            <Divider></Divider>
+            <div className="inputbook_outercont">
+              <div className="titlebooksub">{hh[status]} </div>
+              <div className="enterwrap">
+                <Select
+                  labelId="demo-simple-select-helper-label"
+                  variant="standard"
+                  className="inputbooking"
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  value={selectedstudentname}
+                  onChange={(e, child) => {
+                    setstudentname(e.target.value)
+                    setstudentid(child.props.id)
+                    console.log(selectedstudentid)
+                  }}
+                  renderValue={(selected) => {
+                    if (selected.length === 0) {
+                      return <div className="selectplace">{rr[status]}</div>
+                    }
+                    return selected
+                  }}
+                  sx={{
+                    color: '#745140',
+                    paddingLeft: '0px',
+                    paddingBottom: '5px',
+                    fontFamily: 'Lora',
+                    letterSpacing: '0.8px',
+                    fontSize: '15px',
+                    '&:hover': {
+                      color: '#b25634',
+                    },
+                    '&:focus': {
+                      backgroundColor: '#00000000',
+                    },
+                    '&:not(.Mui-disabled):hover::before': {
+                      borderBottom: '0px',
+                    },
+                    '&:before': {
+                      borderBottom: '0px',
+                    },
+                    '&:after': {
+                      borderBottom: '0px',
+                    },
+                    '& .MuiSvgIcon-root': {
+                      marginRight: '20px',
+                      marginTop: '10px',
+                      fontSize: '30px',
+                      color: '#b25634',
+                      fill: '#b25634',
+                    },
+                    '& .MuiSvgIcon-root::before': {
+                      border: '1.5px solid #D6A796',
+                    },
+                    '& .MuiSvgIcon-root::after': {
+                      border: '1.5px solid #D6A796',
+                    },
+                  }}
+                >
+                  {studentnamelist.map((e, i) => {
+                    return (
+                      <MenuItem id={is} value={e}>
+                        {e}
+                      </MenuItem>
+                    )
+                  })}
+                </Select>
               </div>
             </div>
             <Divider></Divider>
@@ -658,7 +745,7 @@ export default function Booking() {
           <div className="outerbook_upcoming">
             <div className="topbarbook">
               <div className="titlebook">
-                {l[status]} - {chosenStuname}
+                {l[status]} - {selectedstudentname}
               </div>
             </div>
             <Divider></Divider>
@@ -670,7 +757,7 @@ export default function Booking() {
           <div className="outerbook_upcoming">
             <div className="topbarbook">
               <div className="titlebook">
-                {q[status]} - {chosenStuname}
+                {q[status]} - {selectedstudentname}
               </div>
             </div>
             <Divider></Divider>

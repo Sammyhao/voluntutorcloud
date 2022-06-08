@@ -93,11 +93,12 @@ function Appointmentmeet() {
   let ee = ['The time you entered is invalid', '您輸入的時間不正確']
   let sv = ['Late for over 30 minutes', '遲到超過三十分鐘']
   let us = ["Student's Attendance", '學生出席狀況']
+  let usss = ["Student's Name", '學生姓名']
   let ss = ['Enter the Class Starting Time', '請輸入上課開始時間']
   let sss = ['Enter the Class Ending Time', '請輸入上課結束時間']
-  let rr = ["Which student are you teaching today?","請問此次教導哪一位學生？"]
-  let rrr = ["Student's name","學生姓名"]
-  const [studentnamelist, setstudentnamelist] = useState([]);
+  let rr = ['Which student are you teaching today?', '請問此次教導哪一位學生？']
+  let rrr = ["Student's name", '學生姓名']
+  const [studentnamelist, setstudentnamelist] = useState([])
   let username = ''
   const [contactInfo, setContactInfo] = useState([])
   let totalhour = 8
@@ -117,7 +118,6 @@ function Appointmentmeet() {
   const [ending, setending] = useState(new Date())
   const [finalformat, setfinalformat] = useState('')
   const [selectedstudentname, setstudentname] = useState('')
-
 
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
@@ -152,7 +152,7 @@ function Appointmentmeet() {
     if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
-          username = response.data.user[0].username;
+          username = response.data.user[0].username
           setGoogleMeetLink(response.data.user[0].googlemeetlink)
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
@@ -166,10 +166,13 @@ function Appointmentmeet() {
             console.log(response.data.length)
             if (response.data.length == 2) {
               setMultistudentname([response.data[1].studentname])
-              setstudentname(response.data[0].studentname);
+              setstudentname(response.data[0].studentname)
             }
-            for(let i = 0; i < response.data.length; i++) {
-              setstudentnamelist(studentnamelist => [...studentnamelist, response.data[i].studentname]);
+            for (let i = 0; i < response.data.length; i++) {
+              setstudentnamelist((studentnamelist) => [
+                ...studentnamelist,
+                response.data[i].studentname,
+              ])
             }
             setContactInfo(response.data)
             setChosenContact(response.data[0])
@@ -204,10 +207,16 @@ function Appointmentmeet() {
       task,
       notes,
       studentabsence,
-      selectedstudentname
+      selectedstudentname,
     )
 
-    if (selectedstudentname != "" && studentabsence != '' && classDate != '' && agenda != '' && task != '') {
+    if (
+      selectedstudentname != '' &&
+      studentabsence != '' &&
+      classDate != '' &&
+      agenda != '' &&
+      task != ''
+    ) {
       if (ending.getTime() < starting.getTime()) {
         settimeopen(true)
       } else {
@@ -246,9 +255,10 @@ function Appointmentmeet() {
   }
 
   const actualsend = () => {
-    let emailaddress = "";
-    for(let i = 0; i < contactInfo.length; i++) {
-      if(contactInfo[i].studentname == selectedstudentname) emailaddress = contactInfo[i].studentmail;
+    let emailaddress = ''
+    for (let i = 0; i < contactInfo.length; i++) {
+      if (contactInfo[i].studentname == selectedstudentname)
+        emailaddress = contactInfo[i].studentmail
     }
     let tempFinalFormat =
       formatteddate + ' ' + formattedstart + '~' + formattedend
@@ -405,7 +415,6 @@ function Appointmentmeet() {
       console.log(chosenContact)
       return (
         <div className="outsidecontainerapp">
-          {multistyle()}
           <div id="dialog_reg_wrap">
             <BootstrapDialog
               onClose={handleClose}
@@ -426,6 +435,8 @@ function Appointmentmeet() {
               open={open_send}
             >
               <div id="appointment_sendtitle">{e[status]}</div>
+              <div className="appointment_subtitles">{usss[status]}</div>
+              <div className="appointment_content">{selectedstudentname}</div>
               <div className="appointment_subtitles">{us[status]}</div>
               <div className="appointment_content">{studentabsence}</div>
 
@@ -541,12 +552,9 @@ function Appointmentmeet() {
                 },
               }}
             >
-             {studentnamelist.map((e) => {
-                return(
-                  <MenuItem value={e}>{e}</MenuItem>
-                )
-             })} 
-              
+              {studentnamelist.map((e) => {
+                return <MenuItem value={e}>{e}</MenuItem>
+              })}
             </Select>
           </div>
           <div className="classdate">
