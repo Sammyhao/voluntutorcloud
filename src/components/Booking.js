@@ -375,8 +375,11 @@ export default function Booking() {
         }).then((response) => {
           setContactInfo(response.data)
           studentname = response.data[0].studentname
-          for(let i = 0; i < studentnamelist.length; i++) {
-            setstudentnamelist(studentnamelist => [studentnamelist, response.data[i].studentname]);
+          for (let i = 0; i < studentnamelist.length; i++) {
+            setstudentnamelist((studentnamelist) => [
+              studentnamelist,
+              response.data[i].studentname,
+            ])
           }
           setChosenStuname(studentname)
           setChosenEmail(response.data[0].studentmail)
@@ -386,9 +389,7 @@ export default function Booking() {
           }
           console.log(username, studentname)
 
-          for(let i = 0; i < response.data.length; i++) {
-
-          }
+          for (let i = 0; i < response.data.length; i++) {}
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getBooking',
             {
@@ -398,7 +399,10 @@ export default function Booking() {
             },
           ).then((response) => {
             console.log(response)
-            setBookingInfo(bookingInfo => [...bookingInfo, checkBookingInfoValidity(response.data)]);
+            setBookingInfo((bookingInfo) => [
+              ...bookingInfo,
+              checkBookingInfoValidity(response.data),
+            ])
             // setBookingInfo(response.data)
           })
           Axios.post(
@@ -410,7 +414,10 @@ export default function Booking() {
             },
           ).then((response) => {
             console.log(response)
-            setPendingBookingInfo(pendingBookingInfo => [...pendingBookingInfo, checkBookingInfoValidity(response.data)]);
+            setPendingBookingInfo((pendingBookingInfo) => [
+              ...pendingBookingInfo,
+              checkBookingInfoValidity(response.data),
+            ])
             // setPendingBookingInfo(response.data)
             setLoading(false)
           })
@@ -432,8 +439,8 @@ export default function Booking() {
         </div>
       )
     } else {
-      console.log(bookingInfo);
-      console.log(pendingBookingInfo);
+      console.log(bookingInfo)
+      console.log(pendingBookingInfo)
       return (
         <div className="outestcontainerbook">
           {/* {multistyle()} */}
@@ -736,20 +743,22 @@ export default function Booking() {
               <div className="titlebook">{l[status]}</div>
             </div>
             <Divider></Divider>
-            <Bookingcomp
-              msg={mm[status]}
-              bookingInfo={bookingInfo}
-            ></Bookingcomp>
+            {bookingInfo.map((e) => {
+              return (
+                <Bookingcomp msg={mm[status]} bookingInfo={e}></Bookingcomp>
+              )
+            })}
           </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
               <div className="titlebook">{q[status]}</div>
             </div>
             <Divider></Divider>
-            <Bookingcomp
-              msg={nn[status]}
-              bookingInfo={pendingBookingInfo}
-            ></Bookingcomp>
+            {pendingBookingInfo.map((e) => {
+              return (
+                <Bookingcomp msg={nn[status]} bookingInfo={e}></Bookingcomp>
+              )
+            })}
           </div>
         </div>
       )
