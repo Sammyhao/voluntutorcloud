@@ -33,24 +33,30 @@ export const Bookingcomp = ({ msg, bookingInfo }) => {
             <div>
               {f.map((e) => {
                 console.log(e)
-                ;<div className="bookingrow_teacher">
-                  <div className="bookingwrapsecond">
-                    <div className="bookingwordswrapfirst">
-                      <div className="bookingimageprog">
-                        <FaUser className="bookingprog_avatar" />
-                      </div>
-                      <div className="bookingrequesttotal">
-                        <div className="bookingrequestsub">{e.studentname}</div>
-                        <div className="bookinrequesttime">{e.duration} hr</div>
-                      </div>
-                      <div className="bookingrequesttotaltime">
-                        <div className="detailtimeforupcomings">
-                          {e.date} {e.time}
+                return (
+                  <div className="bookingrow_teacher">
+                    <div className="bookingwrapsecond">
+                      <div className="bookingwordswrapfirst">
+                        <div className="bookingimageprog">
+                          <FaUser className="bookingprog_avatar" />
+                        </div>
+                        <div className="bookingrequesttotal">
+                          <div className="bookingrequestsub">
+                            {e.studentname}
+                          </div>
+                          <div className="bookinrequesttime">
+                            {e.duration} hr
+                          </div>
+                        </div>
+                        <div className="bookingrequesttotaltime">
+                          <div className="detailtimeforupcomings">
+                            {e.date} {e.time}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )
               })}
             </div>
           )
