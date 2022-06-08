@@ -5,10 +5,10 @@ import { Divider } from '@mui/material'
 import { FaUser } from 'react-icons/fa'
 export const Bookingcomp = ({ msg, bookingInfo }) => {
   console.log(bookingInfo)
-  const [status, setStatus] = useState(0)
+  let status = 0
   for (let i = 0; i < bookingInfo.length; i++) {
     if (bookingInfo[i].length == 0) {
-      setStatus((status += 1))
+      status += 1
     }
   }
   if (status == bookingInfo.length) {
