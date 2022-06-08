@@ -320,7 +320,7 @@ export default function Booking() {
   const updateBooking = () => {
     console.log(
       name,
-      chosenStuname,
+      selectedstudentname,
       formatteddate,
       formattedstart,
       formattedend,
@@ -328,7 +328,7 @@ export default function Booking() {
     )
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateBooking', {
       username: name,
-      studentname: chosenStuname,
+      studentname: selectedstudentname,
       date: formatteddate,
       time: formattedstart + '~' + formattedend,
       duration: formattedduration,
@@ -337,7 +337,7 @@ export default function Booking() {
       console.log(response)
       var templateParams = {
         parent_email: chosenEmail,
-        student: chosenStuname,
+        student: selectedstudentname,
         teacher: name,
       }
       console.log(templateParams)
@@ -389,7 +389,6 @@ export default function Booking() {
           }
           console.log(username, studentname)
 
-<<<<<<< HEAD
           for(let i = 0; i < response.data.length; i++) {
             Axios.post(
               'https://voluntutorcloud-server.herokuapp.com/getBooking',
@@ -417,40 +416,6 @@ export default function Booking() {
               setLoading(false)
             })
           }
-=======
-          for (let i = 0; i < response.data.length; i++) {}
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getBooking',
-            {
-              username: username,
-              studentname: studentname,
-              status: 'confirmed',
-            },
-          ).then((response) => {
-            console.log(response)
-            setBookingInfo((bookingInfo) => [
-              ...bookingInfo,
-              checkBookingInfoValidity(response.data),
-            ])
-            // setBookingInfo(response.data)
-          })
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getBooking',
-            {
-              username: username,
-              studentname: studentname,
-              status: 'pending',
-            },
-          ).then((response) => {
-            console.log(response)
-            setPendingBookingInfo((pendingBookingInfo) => [
-              ...pendingBookingInfo,
-              checkBookingInfoValidity(response.data),
-            ])
-            // setPendingBookingInfo(response.data)
-            setLoading(false)
-          })
->>>>>>> 788cf60cca963e1e3b6d584decf401186f87dcef
         })
       },
     )
