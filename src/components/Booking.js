@@ -505,9 +505,7 @@ export default function Booking() {
           </div>
           <div className="outerbook">
             <div className="topbarbook">
-              <div className="titlebook">
-                {a[status]} - {selectedstudentname}
-              </div>
+              <div className="titlebook">{a[status]}</div>
               <div className="bookbtn" onClick={sendfirst}>
                 {b[status]}
               </div>
@@ -519,7 +517,7 @@ export default function Booking() {
                 <Select
                   labelId="demo-simple-select-helper-label"
                   variant="standard"
-                  className="inputbooking"
+                  className="inputstudentname"
                   displayEmpty
                   inputProps={{ 'aria-label': 'Without label' }}
                   value={selectedstudentname}
@@ -737,9 +735,7 @@ export default function Booking() {
           </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
-              <div className="titlebook">
-                {l[status]} - {selectedstudentname}
-              </div>
+              <div className="titlebook">{l[status]}</div>
             </div>
             <Divider></Divider>
             <Bookingcomp
@@ -749,9 +745,7 @@ export default function Booking() {
           </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
-              <div className="titlebook">
-                {q[status]} - {selectedstudentname}
-              </div>
+              <div className="titlebook">{q[status]}</div>
             </div>
             <Divider></Divider>
             <Bookingcomp
