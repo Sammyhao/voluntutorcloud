@@ -146,11 +146,12 @@
 }
 .inputstudentname {
   font-size: 20px;
-  width: 95%;
+  width: 100%;
   color: #745140;
   text-align: left;
   border: none;
   padding: 10px;
+  padding-bottom: 0px;
   border-bottom: 1.5px solid rgba(178, 86, 52, 0.3);
 }
 .inputstudentname:focus {

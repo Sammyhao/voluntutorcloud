@@ -78,7 +78,7 @@ export default function Booking() {
   let tempstudentname = ''
   let datearr = []
   const [datedate, setdatedate] = useState(new Date())
-  const [selectedstudentname, setstudentname] = useState('???')
+  const [selectedstudentname, setstudentname] = useState('')
   const [selectedstudentid, setstudentid] = useState(0)
   // titles
   let n = [
