@@ -755,7 +755,10 @@ export default function Booking() {
               <div className="titlebook">{q[status]}</div>
             </div>
             <Divider></Divider>
-            <Bookingcomp msg={nn[status]} bookingInfo={e}></Bookingcomp>
+            <Bookingcomp
+              msg={nn[status]}
+              bookingInfo={bookingInfo}
+            ></Bookingcomp>
           </div>
         </div>
       )
