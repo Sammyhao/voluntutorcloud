@@ -5,7 +5,13 @@ import { Divider } from '@mui/material'
 import { FaUser } from 'react-icons/fa'
 export const Bookingcomp = ({ msg, bookingInfo }) => {
   console.log(bookingInfo)
-  if (bookingInfo.length == 0) {
+  const [status, setStatus] = useState(0)
+  for (let i = 0; i < bookingInfo.length; i++) {
+    if (bookingInfo[i].length == 0) {
+      setStatus((status += 1))
+    }
+  }
+  if (status == bookingInfo.length) {
     console.log('length==0')
     return (
       <div className="bookingoutestwrap">
@@ -31,7 +37,7 @@ export const Bookingcomp = ({ msg, bookingInfo }) => {
         {bookingInfo.map((f) => {
           console.log(f)
           return (
-            <div className="">
+            <div className="outwrappingbook">
               {f.map((e) => {
                 console.log(e)
                 return (
