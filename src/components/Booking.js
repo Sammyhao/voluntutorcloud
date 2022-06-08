@@ -375,8 +375,11 @@ export default function Booking() {
         }).then((response) => {
           setContactInfo(response.data)
           studentname = response.data[0].studentname
-          for(let i = 0; i < studentnamelist.length; i++) {
-            setstudentnamelist(studentnamelist => [studentnamelist, response.data[i].studentname]);
+          for (let i = 0; i < studentnamelist.length; i++) {
+            setstudentnamelist((studentnamelist) => [
+              studentnamelist,
+              response.data[i].studentname,
+            ])
           }
           setChosenStuname(studentname)
           setChosenEmail(response.data[0].studentmail)
@@ -386,6 +389,7 @@ export default function Booking() {
           }
           console.log(username, studentname)
 
+<<<<<<< HEAD
           for(let i = 0; i < response.data.length; i++) {
             Axios.post(
               'https://voluntutorcloud-server.herokuapp.com/getBooking',
@@ -413,6 +417,40 @@ export default function Booking() {
               setLoading(false)
             })
           }
+=======
+          for (let i = 0; i < response.data.length; i++) {}
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getBooking',
+            {
+              username: username,
+              studentname: studentname,
+              status: 'confirmed',
+            },
+          ).then((response) => {
+            console.log(response)
+            setBookingInfo((bookingInfo) => [
+              ...bookingInfo,
+              checkBookingInfoValidity(response.data),
+            ])
+            // setBookingInfo(response.data)
+          })
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getBooking',
+            {
+              username: username,
+              studentname: studentname,
+              status: 'pending',
+            },
+          ).then((response) => {
+            console.log(response)
+            setPendingBookingInfo((pendingBookingInfo) => [
+              ...pendingBookingInfo,
+              checkBookingInfoValidity(response.data),
+            ])
+            // setPendingBookingInfo(response.data)
+            setLoading(false)
+          })
+>>>>>>> 788cf60cca963e1e3b6d584decf401186f87dcef
         })
       },
     )
@@ -431,8 +469,8 @@ export default function Booking() {
         </div>
       )
     } else {
-      console.log(bookingInfo);
-      console.log(pendingBookingInfo);
+      console.log(bookingInfo)
+      console.log(pendingBookingInfo)
       return (
         <div className="outestcontainerbook">
           {/* {multistyle()} */}
@@ -735,20 +773,22 @@ export default function Booking() {
               <div className="titlebook">{l[status]}</div>
             </div>
             <Divider></Divider>
-            <Bookingcomp
-              msg={mm[status]}
-              bookingInfo={bookingInfo}
-            ></Bookingcomp>
+            {bookingInfo.map((e) => {
+              return (
+                <Bookingcomp msg={mm[status]} bookingInfo={e}></Bookingcomp>
+              )
+            })}
           </div>
           <div className="outerbook_upcoming">
             <div className="topbarbook">
               <div className="titlebook">{q[status]}</div>
             </div>
             <Divider></Divider>
-            <Bookingcomp
-              msg={nn[status]}
-              bookingInfo={pendingBookingInfo}
-            ></Bookingcomp>
+            {pendingBookingInfo.map((e) => {
+              return (
+                <Bookingcomp msg={nn[status]} bookingInfo={e}></Bookingcomp>
+              )
+            })}
           </div>
         </div>
       )
