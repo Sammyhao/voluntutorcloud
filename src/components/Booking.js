@@ -86,7 +86,7 @@ export default function Booking() {
     '噢, 看來您還沒有任何學生呢。',
   ]
 
-  const [studentnamelist, setstudentnamelist] = useState(['John', 'Mary'])
+  const [studentnamelist, setstudentnamelist] = useState([])
   let rr = [
     'Which student are you sending the request to?',
     '要傳送會議邀請給誰？',
@@ -376,6 +376,9 @@ export default function Booking() {
         }).then((response) => {
           setContactInfo(response.data)
           studentname = response.data[0].studentname
+          for(let i = 0; i < studentnamelist.length; i++) {
+            setstudentnamelist(studentnamelist => [studentnamelist, response.data[i].studentname]);
+          }
           setChosenStuname(studentname)
           setChosenEmail(response.data[0].studentmail)
           console.log(response.data.length)
@@ -383,6 +386,10 @@ export default function Booking() {
             setMultistudentname([response.data[1].studentname])
           }
           console.log(username, studentname)
+
+          for(let i = 0; i < response.data.length; i++) {
+
+          }
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getBooking',
             {
@@ -392,7 +399,7 @@ export default function Booking() {
             },
           ).then((response) => {
             console.log(response)
-            setBookingInfo(checkBookingInfoValidity(response.data))
+            setBookingInfo(bookingInfo => [...bookingInfo, checkBookingInfoValidity(response.data)]);
             // setBookingInfo(response.data)
           })
           Axios.post(
@@ -404,7 +411,7 @@ export default function Booking() {
             },
           ).then((response) => {
             console.log(response)
-            setPendingBookingInfo(checkBookingInfoValidity(response.data))
+            setPendingBookingInfo(pendingBookingInfo => [...pendingBookingInfo, checkBookingInfoValidity(response.data)]);
             // setPendingBookingInfo(response.data)
             setLoading(false)
           })
@@ -435,6 +442,8 @@ export default function Booking() {
         </div>
       )
     } else {
+      console.log(bookingInfo);
+      console.log(pendingBookingInfo);
       return (
         <div className="outestcontainerbook">
           {/* {multistyle()} */}
