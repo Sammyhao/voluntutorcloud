@@ -574,7 +574,7 @@ export default function Booking() {
                 >
                   {studentnamelist.map((e, i) => {
                     return (
-                      <MenuItem id={is} value={e}>
+                      <MenuItem id={i} value={e}>
                         {e}
                       </MenuItem>
                     )
