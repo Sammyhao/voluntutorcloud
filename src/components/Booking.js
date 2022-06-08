@@ -413,9 +413,10 @@ export default function Booking() {
               console.log(response)
               setPendingBookingInfo(pendingBookingInfo => [...pendingBookingInfo, checkBookingInfoValidity(response.data)]);
               // setPendingBookingInfo(response.data)
-              setLoading(false)
             })
           }
+          
+          setLoading(false)
         })
       },
     )
