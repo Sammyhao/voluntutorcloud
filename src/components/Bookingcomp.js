@@ -3,6 +3,7 @@ import './Bookingcomp.css'
 
 import { FaUser } from 'react-icons/fa'
 export const Bookingcomp = ({ msg, bookingInfo }) => {
+  console.log(bookingInfo)
   if (bookingInfo.length == 0) {
     console.log('length==0')
     return (
@@ -27,9 +28,11 @@ export const Bookingcomp = ({ msg, bookingInfo }) => {
     return (
       <div className="bookingoutestwrap">
         {bookingInfo.map((f) => {
+          console.log(f)
           return (
             <div>
               {f.map((e) => {
+                console.log(e)
                 ;<div className="bookingrow_teacher">
                   <div className="bookingwrapsecond">
                     <div className="bookingwordswrapfirst">
