@@ -111,7 +111,7 @@ export default function Booking() {
     'Enter the Duration (Numbers only, format: 1.5)',
     '請輸入課程時長 (僅限數字，格式：1.5)',
   ]
-  let hh = ["Student's name", '學生姓名']
+  let hh = ["Student's name: ", '學生姓名：']
   let i = [
     'Please double check before you send the invitation.',
     '在傳送前請再次確認資料是否有誤。',
@@ -507,7 +507,6 @@ export default function Booking() {
             <div className="topbarbook">
               <div className="titlebook">
                 {a[status]} - {selectedstudentname}
-                {a[status]}
               </div>
               <div className="bookbtn" onClick={sendfirst}>
                 {b[status]}
@@ -536,15 +535,11 @@ export default function Booking() {
                     return selected
                   }}
                   sx={{
-                    color: '#745140',
-                    paddingLeft: '0px',
-                    paddingBottom: '5px',
+                    color: '#b25634',
                     fontFamily: 'Lora',
-                    letterSpacing: '0.8px',
-                    fontSize: '15px',
-                    '&:hover': {
-                      color: '#b25634',
-                    },
+                    paddingLeft: '10px',
+                    letterSpacing: '2px',
+                    fontSize: '20px',
                     '&:focus': {
                       backgroundColor: '#00000000',
                     },
@@ -558,17 +553,13 @@ export default function Booking() {
                       borderBottom: '0px',
                     },
                     '& .MuiSvgIcon-root': {
-                      marginRight: '20px',
-                      marginTop: '10px',
-                      fontSize: '30px',
                       color: '#b25634',
-                      fill: '#b25634',
                     },
                     '& .MuiSvgIcon-root::before': {
-                      border: '1.5px solid #D6A796',
+                      borderBottom: '1.5px solid #D6A796',
                     },
                     '& .MuiSvgIcon-root::after': {
-                      border: '1.5px solid #D6A796',
+                      borderBottom: '1.5px solid #74514080',
                     },
                   }}
                 >
