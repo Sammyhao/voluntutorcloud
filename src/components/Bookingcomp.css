@@ -14,6 +14,13 @@
   background-color: #c49483;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
 }
+.outwrappingbook {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: start;
+}
 .multi {
   display: flex;
   flex-direction: column;

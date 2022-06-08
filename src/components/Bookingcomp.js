@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Bookingcomp.css'
 
+import { Divider } from '@mui/material'
 import { FaUser } from 'react-icons/fa'
 export const Bookingcomp = ({ msg, bookingInfo }) => {
   console.log(bookingInfo)
@@ -30,7 +31,7 @@ export const Bookingcomp = ({ msg, bookingInfo }) => {
         {bookingInfo.map((f) => {
           console.log(f)
           return (
-            <div>
+            <div className="">
               {f.map((e) => {
                 console.log(e)
                 return (
@@ -58,6 +59,7 @@ export const Bookingcomp = ({ msg, bookingInfo }) => {
                   </div>
                 )
               })}
+              <Divider></Divider>
             </div>
           )
         })}

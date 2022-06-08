@@ -757,7 +757,7 @@ export default function Booking() {
             <Divider></Divider>
             <Bookingcomp
               msg={nn[status]}
-              bookingInfo={bookingInfo}
+              bookingInfo={pendingBookingInfo}
             ></Bookingcomp>
           </div>
         </div>
