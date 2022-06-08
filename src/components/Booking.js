@@ -78,7 +78,7 @@ export default function Booking() {
   let tempstudentname = ''
   let datearr = []
   const [datedate, setdatedate] = useState(new Date())
-  const [selectedstudentname, setstudentname] = useState('')
+  const [selectedstudentname, setstudentname] = useState('???')
   const [selectedstudentid, setstudentid] = useState(0)
   // titles
   let n = [
@@ -88,8 +88,8 @@ export default function Booking() {
 
   const [studentnamelist, setstudentnamelist] = useState(['John', 'Mary'])
   let rr = [
-    'Which student are you sending the booking to?',
-    '請問要傳送會議邀請給哪一位學生？',
+    'Which student are you sending the request to?',
+    '要傳送會議邀請給誰？',
   ]
   let o = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
   let a = ['Book A Meeting', '預約會議']
@@ -537,7 +537,6 @@ export default function Booking() {
                   sx={{
                     color: '#b25634',
                     fontFamily: 'Lora',
-                    paddingLeft: '10px',
                     letterSpacing: '2px',
                     fontSize: '20px',
                     '&:focus': {
