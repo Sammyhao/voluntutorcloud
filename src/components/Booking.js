@@ -152,7 +152,6 @@ export default function Booking() {
     if (multistudentname.length == 0) {
       return <div></div>
     } else {
-      console.log(multistudentname[0])
       return (
         <div className={nameclick ? 'choosekid active' : 'choosekid'}>
           <div className="multi">
@@ -418,15 +417,6 @@ export default function Booking() {
     console.log('contactinfo length: ', contactInfo.length)
     return <Loading></Loading>
   } else {
-    console.log('bookingInfo:')
-    console.log(bookingInfo)
-    console.log('bookingInfoLen:')
-    console.log(bookingInfoLen)
-    console.log('multistudentname')
-    console.log(multistudentname)
-    console.log('multistudentnameLen')
-    console.log(multistudentname.length)
-
     if (contactInfo.length == 0) {
       return (
         <div className="nokid">
@@ -435,6 +425,7 @@ export default function Booking() {
         </div>
       )
     } else {
+      console.log(selectedstudentid)
       return (
         <div className="outestcontainerbook">
           {/* {multistyle()} */}
@@ -524,7 +515,6 @@ export default function Booking() {
                   onChange={(e, child) => {
                     setstudentname(e.target.value)
                     setstudentid(child.props.id)
-                    console.log(selectedstudentid)
                   }}
                   renderValue={(selected) => {
                     if (selected.length === 0) {
