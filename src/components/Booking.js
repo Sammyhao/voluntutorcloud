@@ -374,8 +374,7 @@ export default function Booking() {
           username: username,
         }).then((response) => {
           setContactInfo(response.data)
-          studentname = response.data[0].studentname
-          for (let i = 0; i < studentnamelist.length; i++) {
+          for (let i = 0; i < response.data.length; i++) {
             setstudentnamelist((studentnamelist) => [
               studentnamelist,
               response.data[i].studentname,
@@ -390,6 +389,7 @@ export default function Booking() {
           console.log(username, studentname)
 
           for(let i = 0; i < response.data.length; i++) {
+            studentname = response.data[i].studentname
             Axios.post(
               'https://voluntutorcloud-server.herokuapp.com/getBooking',
               {
