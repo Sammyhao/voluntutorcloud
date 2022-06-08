@@ -387,33 +387,32 @@ export default function Booking() {
           console.log(username, studentname)
 
           for(let i = 0; i < response.data.length; i++) {
-
+            Axios.post(
+              'https://voluntutorcloud-server.herokuapp.com/getBooking',
+              {
+                username: username,
+                studentname: studentname,
+                status: 'confirmed',
+              },
+            ).then((response) => {
+              console.log(response)
+              setBookingInfo(bookingInfo => [...bookingInfo, checkBookingInfoValidity(response.data)]);
+              // setBookingInfo(response.data)
+            })
+            Axios.post(
+              'https://voluntutorcloud-server.herokuapp.com/getBooking',
+              {
+                username: username,
+                studentname: studentname,
+                status: 'pending',
+              },
+            ).then((response) => {
+              console.log(response)
+              setPendingBookingInfo(pendingBookingInfo => [...pendingBookingInfo, checkBookingInfoValidity(response.data)]);
+              // setPendingBookingInfo(response.data)
+              setLoading(false)
+            })
           }
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getBooking',
-            {
-              username: username,
-              studentname: studentname,
-              status: 'confirmed',
-            },
-          ).then((response) => {
-            console.log(response)
-            setBookingInfo(bookingInfo => [...bookingInfo, checkBookingInfoValidity(response.data)]);
-            // setBookingInfo(response.data)
-          })
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getBooking',
-            {
-              username: username,
-              studentname: studentname,
-              status: 'pending',
-            },
-          ).then((response) => {
-            console.log(response)
-            setPendingBookingInfo(pendingBookingInfo => [...pendingBookingInfo, checkBookingInfoValidity(response.data)]);
-            // setPendingBookingInfo(response.data)
-            setLoading(false)
-          })
         })
       },
     )
