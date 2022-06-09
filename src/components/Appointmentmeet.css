@@ -196,7 +196,6 @@ input::-webkit-inner-spin-button {
   overflow: block;
   position: relative;
   display: flex;
-  text-align: center;
   color: #b25634;
   flex-direction: row;
   font-weight: 400;
@@ -207,6 +206,7 @@ input::-webkit-inner-spin-button {
   padding-top: 5px;
   padding-right: 20px;
   padding-left: 40px;
+  text-align: left;
 }
 .appointment_subtitles {
   background-color: whitesmoke;

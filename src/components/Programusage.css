@@ -7,7 +7,7 @@
   padding-top: 40px;
   padding-bottom: 70px;
 }
-.outsidewrapsub{
+.outsidewrapsub {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@
   color: whitesmoke;
 }
 
-.prog_avatar{
+.prog_avatar {
   color: #fdfaf1;
   font-size: 30px;
 }
@@ -106,10 +106,8 @@
   border-top: 1.5px solid #d6b7a8;
   width: 70%;
   color: #745140;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
   font-size: 15px;
-  padding-left: 20px;
   background-color: #efe9e5;
   word-wrap: break-word;
 }
@@ -129,11 +127,9 @@
   color: #fdfaf1;
   border-top: 1.5px solid #d6b7a8;
   width: 30%;
-  padding-top: 20px;
   border-right: 1.5px solid #d6b7a8;
-  padding-bottom: 20px;
-  padding-left: 20px;
   background-color: #efe9e5;
+  padding: 20px;
 }
 .searchicon {
   font-size: 150%;
@@ -238,7 +234,7 @@
   margin: 0;
   display: flex;
   padding: 0px;
-  width: 90%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -247,16 +243,16 @@
   margin: 0;
   display: flex;
   padding: 0px;
-  width: 90%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.programusagewr{
+.programusagewr {
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 @media screen and (max-width: 820px) {
   .progressbar {
@@ -308,8 +304,8 @@
     margin-right: 0px;
     margin-left: 0px;
   }
-  .outsidewrapsub{
-    width:100%;
+  .outsidewrapsub {
+    width: 100%;
   }
   /* .content_not; */
 }
