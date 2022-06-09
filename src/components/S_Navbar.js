@@ -81,6 +81,7 @@ function S_Navbar(props) {
         console.log(name);
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
           username: name,
+          isnew: true
         }).then((response) => {
           console.log(response.data);
           setNotif_data(response.data);
