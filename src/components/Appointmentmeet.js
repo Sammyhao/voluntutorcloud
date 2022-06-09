@@ -487,9 +487,9 @@ function Appointmentmeet() {
               <div className="image_app">
                 <FaUser className="icon_app" />
               </div>
-              {/* <div className="namesection_app">
+              <div className="namesection_app">
                 <div className="app_name">{selectedstudentname}</div>
-              </div> */}
+              </div>
             </div>
             <div className="meet" onClick={meet}>
               {m[status]}
