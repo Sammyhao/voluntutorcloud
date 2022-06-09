@@ -37,7 +37,7 @@ function Msg() {
       const msgInfo = msgStr.split('ψ')
       console.log('msgInfo')
       console.log(msgInfo)
-      console.log(msgInfo.length, msgRec.length);
+      console.log(msgInfo.length, msgRec.length)
       if (msgRec.length != msgInfo.length) {
         console.log('has entered msgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
@@ -208,7 +208,7 @@ function Msg() {
     setStudentnameConst(e)
 
     console.log(tempstudentname)
-    setMsgRec([]);
+    setMsgRec([])
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
       username: usernameConst,
@@ -216,7 +216,7 @@ function Msg() {
     }).then((response) => {
       if (response.data.length) msgStr = response.data[0].msg
       console.log(msgStr)
-      setMsgRec([]);
+      setMsgRec([])
       processMsg(msgStr, usernameConst, tempstudentname)
       setLoading(false)
     })
