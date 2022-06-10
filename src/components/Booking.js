@@ -358,7 +358,7 @@ export default function Booking() {
         )
     })
 
-    let content = selectedstudentname + ' have sent your a booking request'
+    let content = name + ' have sent your a booking request'
     Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: selectedstudentname,
       type: '/book',
