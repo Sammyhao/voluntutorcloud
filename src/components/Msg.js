@@ -26,6 +26,7 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
+  const [allMsgRec, setAllMsgRec] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -125,21 +126,25 @@ function Msg() {
             studentname = response.data[0].studentname
             console.log('username, studentname: ')
             console.log(username, studentname)
-            if (!hasProcessMsg) {
-              Axios.post(
-                'https://voluntutorcloud-server.herokuapp.com/getMsg',
-                {
-                  username: username,
-                  studentname: studentname,
-                },
-              ).then((response) => {
-                if (response.data.length) msgStr = response.data[0].msg
-                console.log(msgStr)
-                processMsg(msgStr, username, studentname)
-                console.log(msgRec)
-                setLoading(false)
-              })
+            for(let i = 0; i < response.data.length; i++) {
+              studentname = response.data[0].studentname;
+              if (!hasProcessMsg) {
+                Axios.post(
+                  'https://voluntutorcloud-server.herokuapp.com/getMsg',
+                  {
+                    username: username,
+                    studentname: studentname,
+                  },
+                ).then((response) => {
+                  if (response.data.length) msgStr = response.data[0].msg
+                  console.log(msgStr)
+                  processMsg(msgStr, username, studentname)
+                  console.log(msgRec)
+                })
+              }
+              setAllMsgRec(allMsgRec => [...allMsgRec, msgRec]);
             }
+            setLoading(false)
           })
         },
       )
@@ -225,8 +230,8 @@ function Msg() {
   if (isLoading) {
     return <Loading />
   } else {
-    console.log('msgRec')
-    console.log(msgRec)
+    console.log('allMsgRec')
+    console.log(allMsgRec)
     console.log(usernameConst, studentname)
 
     return (
