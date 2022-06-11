@@ -33,7 +33,7 @@ function Msg() {
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
   const [selectedstudent, setselectedstudent] = useState(0)
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(100);
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
   var tempmsgRec = [];
 
@@ -148,6 +148,7 @@ function Msg() {
             console.log('username, studentname: ')
             console.log(username, studentname)
             for(let i = 0; i < response.data.length; i++) {
+              console.log(count);
               console.log("into loop")
               console.log(i, " ", studentname)
               setnum(num => [...num, i]);
