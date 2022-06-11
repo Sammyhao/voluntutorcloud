@@ -12,8 +12,8 @@ import Axios from 'axios'
 function Msg() {
   // 4 main variables
   const [num, setnum] = useState([]);
-  const [studentnamelist, setstudentnamelist] = useState();
-  const [latestmsglist, setlatestmsglist] = useState();
+  const [studentnamelist, setstudentnamelist] = useState([]);
+  const [latestmsglist, setlatestmsglist] = useState([]);
   const [allMsgRec, setAllMsgRec] = useState([]);
   // 4 main variables
   
