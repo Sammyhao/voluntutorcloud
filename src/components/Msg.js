@@ -253,6 +253,7 @@ function Msg() {
   }
 
   let displaymsgRec = [];
+  let tempallmsgRec = [];
 
   if (isLoading) {
     return <Loading />
@@ -262,6 +263,8 @@ function Msg() {
     console.log(allMsgRec);
     console.log(studentnamelist);
     console.log(latestmsglist);
+    if(allMsgRec) tempallmsgRec = allMsgRec.slice(0, num.length);
+    console.log(tempallmsgRec);
     // here
 
     console.log(usernameConst, studentname)
@@ -282,7 +285,7 @@ function Msg() {
                 return (
                   <div className="shadowing" onClick={() => {
                     setselectedstudent(e)
-                    if(allMsgRec.length >= num.length) displaymsgRec = allMsgRec[selectedstudent]
+                    if(tempallmsgRec.length >= num.length) displaymsgRec = tempallmsgRec[selectedstudent]
                   }}>
                     <div className="outerbox">
                       <div className="imagemsg">
