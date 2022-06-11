@@ -29,6 +29,7 @@ function Msg() {
   const [allMsgRec, setAllMsgRec] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
+  var tempmsgRec = [];
 
   function processMsg(msgStr, username, studentname) {
     setMsgRec([])
@@ -38,9 +39,9 @@ function Msg() {
       const msgInfo = msgStr.split('ψ')
       console.log('msgInfo')
       console.log(msgInfo)
-      console.log(msgInfo.length, msgRec.length)
-      if (msgRec.length != msgInfo.length) {
-        console.log('has entered msgRec construction condition')
+      console.log(msgInfo.length, tempmsgRec.length)
+      if (tempmsgRec.length != msgInfo.length) {
+        console.log('has entered tempmsgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|')
           if (i == 0) setLastestMsg(category[1])
@@ -50,12 +51,21 @@ function Msg() {
           let msg = { type: t, text: category[1] }
           console.log(msg)
           setMsgRec((msgRec) => [msg, ...msgRec])
+          tempmsgRec.unshift(msg);
         }
-      } else setMsgRec(msgRec.slice(0, msgInfo.length - 1))
+      } else {
+        setMsgRec(msgRec.slice(0, msgInfo.length - 1))
+        tempmsgRec = tempmsgRec.slice(0, msgInfo.length - 1);
+      }
     } else {
       setMsgRec([])
+      tempmsgRec = [];
       setLastestMsg('')
     }
+    setAllMsgRec(allMsgRec => [...allMsgRec, tempmsgRec]);
+    console.log("has added ", tempmsgRec, " to allMsgRec");
+    setMsgRec([])
+    tempmsgRec = [];
     console.log(teacherusername, studentname)
     setUsernameConst(username)
     setStudentnameConst(studentname)
@@ -139,10 +149,9 @@ function Msg() {
                   if (response.data.length) msgStr = response.data[0].msg
                   console.log(msgStr)
                   processMsg(msgStr, username, studentname)
-                  console.log(msgRec)
+                  // console.log(tempmsgRec)
                 })
               }
-              setAllMsgRec(allMsgRec => [...allMsgRec, msgRec]);
             }
             setLoading(false)
           })
