@@ -146,9 +146,13 @@ function Msg() {
             console.log('username, studentname: ')
             console.log(username, studentname)
             for(let i = 0; i < response.data.length; i++) {
+              console.log("into loop")
+              console.log(i, " ", studentname)
               setnum(num => [...num, i]);
-              setstudentnamelist(studentnamelist => [...studentnamelist, response.data[i].studentname]);
+              console.log("after setting number")
               studentname = response.data[i].studentname;
+              console.log("after setting student name")
+              setstudentnamelist(studentnamelist => [...studentnamelist, studentname]);
               console.log("studentname: ", studentname);
               if (!hasProcessMsg) {
                 Axios.post(
@@ -164,10 +168,10 @@ function Msg() {
                   // console.log(tempmsgRec)
                 })
               }
+              if(i == response.data.length - 1) setLoading(false);
             }
 
             setAllMsgRec(allMsgRec.slice(0, response.data.length));
-            setLoading(false)
           })
         },
       )
@@ -323,7 +327,3 @@ function Msg() {
 }
 
 export default Msg
-
-{
-  /* onclick: <div className="sendword">send</div> */
-}
