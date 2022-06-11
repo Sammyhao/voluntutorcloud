@@ -33,6 +33,7 @@ function Msg() {
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
   const [selectedstudent, setselectedstudent] = useState(0)
+  const [count, setCount] = useState(0);
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
   var tempmsgRec = [];
 
@@ -80,6 +81,7 @@ function Msg() {
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
     setHasProcessMsg(true)
+    setCount(count - 1);
   }
 
   const updateMsg = () => {
@@ -136,6 +138,7 @@ function Msg() {
             },
           ).then((response) => {
             setContactInfo(response.data)
+            setCount(response.data.length);
             setChosenContact(response.data[0])
             if (response.data.length == 2) {
               setMultistudentname([response.data[1].studentname])
@@ -145,7 +148,6 @@ function Msg() {
             console.log('username, studentname: ')
             console.log(username, studentname)
             for(let i = 0; i < response.data.length; i++) {
-              let len = response.data.length;
               console.log("into loop")
               console.log(i, " ", studentname)
               setnum(num => [...num, i]);
@@ -166,7 +168,6 @@ function Msg() {
                   console.log(msgStr)
                   processMsg(msgStr, username, studentname)
                   // console.log(tempmsgRec)
-                  if(i == len - 1) setLoading(false);
                 })
               }
             }
@@ -251,7 +252,7 @@ function Msg() {
     })
   }
 
-  if (isLoading) {
+  if (count != 0) {
     return <Loading />
   } else {
     // here
