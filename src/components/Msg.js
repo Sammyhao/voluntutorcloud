@@ -33,7 +33,6 @@ function Msg() {
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
   const [selectedstudent, setselectedstudent] = useState(0)
-  const [count, setCount] = useState(100);
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
   var tempmsgRec = [];
 
@@ -81,7 +80,6 @@ function Msg() {
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
     setHasProcessMsg(true)
-    setCount(count - 1);
   }
 
   const updateMsg = () => {
@@ -138,7 +136,6 @@ function Msg() {
             },
           ).then((response) => {
             setContactInfo(response.data)
-            setCount(response.data.length-1);
             setChosenContact(response.data[0])
             if (response.data.length == 2) {
               setMultistudentname([response.data[1].studentname])
@@ -148,7 +145,7 @@ function Msg() {
             console.log('username, studentname: ')
             console.log(username, studentname)
             for(let i = 0; i < response.data.length; i++) {
-              console.log(count);
+              let len = response.data.length;
               console.log("into loop")
               console.log(i, " ", studentname)
               setnum(num => [...num, i]);
@@ -169,9 +166,11 @@ function Msg() {
                   console.log(msgStr)
                   processMsg(msgStr, username, studentname)
                   // console.log(tempmsgRec)
+                  if(i == len - 1) setLoading(false);
                 })
               }
             }
+            
           })
         },
       )
@@ -253,7 +252,9 @@ function Msg() {
     })
   }
 
-  if (count != 0) {
+  let displaymsgRec = [];
+
+  if (isLoading) {
     return <Loading />
   } else {
     // here
@@ -264,7 +265,7 @@ function Msg() {
     // here
 
     console.log(usernameConst, studentname)
-    console.log()
+    if(allMsgRec.length) displaymsgRec = allMsgRec[0];
 
     return (
       <div>
@@ -279,7 +280,10 @@ function Msg() {
             <div className="peoplelist">
               {num.map((e) => {
                 return (
-                  <div className="shadowing" onClick={setselectedstudent(e)}>
+                  <div className="shadowing" onClick={() => {
+                    setselectedstudent(e)
+                    if(allMsgRec.length >= num.length) displaymsgRec = allMsgRec[selectedstudent]
+                  }}>
                     <div className="outerbox">
                       <div className="imagemsg">
                         <FaUser className="msg_icon" />
@@ -301,7 +305,7 @@ function Msg() {
           <div className="chatcontent">
             <div className="chatname">{studentnamelist[selectedstudent]}</div>
             <div className="chat">
-              {allMsgRec[selectedstudent].map((r) => {
+              {displaymsgRec.map((r) => {
                 return <Msg_user type={r.type} text={r.text}></Msg_user>
               })}
             </div>
