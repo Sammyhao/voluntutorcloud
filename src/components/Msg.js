@@ -254,7 +254,7 @@ function Msg() {
     })
   }
 
-  if (isLoading) {
+  if (isLoading && allMsgRec.length != num.length) {
     return <Loading />
   } else {
     // here
