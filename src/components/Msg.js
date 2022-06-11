@@ -154,6 +154,7 @@ function Msg() {
                 })
               }
             }
+            setAllMsgRec(allMsgRec.slice(0, response.data.length));
             setLoading(false)
           })
         },
