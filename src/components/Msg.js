@@ -137,7 +137,8 @@ function Msg() {
             console.log('username, studentname: ')
             console.log(username, studentname)
             for(let i = 0; i < response.data.length; i++) {
-              studentname = response.data[0].studentname;
+              studentname = response.data[i].studentname;
+              console.log("studentname: ", studentname);
               if (!hasProcessMsg) {
                 Axios.post(
                   'https://voluntutorcloud-server.herokuapp.com/getMsg',
