@@ -10,13 +10,7 @@ import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
 
 function Msg() {
-  // 4 main variables
-  const [num, setnum] = useState([]);
-  const [studentnamelist, setstudentnamelist] = useState([]);
-  const [latestmsglist, setlatestmsglist] = useState([]);
-  const [allMsgRec, setAllMsgRec] = useState([]);
-  // 4 main variables
-  
+  let num = [1]
   const [status, setStatus] = useState(0)
   let username = '',
     studentname = '',
@@ -32,9 +26,8 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
-  const [selectedstudent, setselectedstudent] = useState(0)
+
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
-  var tempmsgRec = [];
 
   function processMsg(msgStr, username, studentname) {
     setMsgRec([])
@@ -44,37 +37,24 @@ function Msg() {
       const msgInfo = msgStr.split('ψ')
       console.log('msgInfo')
       console.log(msgInfo)
-      console.log(msgInfo.length, tempmsgRec.length)
-      if (tempmsgRec.length != msgInfo.length) {
-        console.log('has entered tempmsgRec construction condition')
+      console.log(msgInfo.length, msgRec.length)
+      if (msgRec.length != msgInfo.length) {
+        console.log('has entered msgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|')
-          if (i == 0) {
-            setLastestMsg(category[1])
-            setlatestmsglist(latestmsglist => [...latestmsglist, category[1]]);
-          }
+          if (i == 0) setLastestMsg(category[1])
           let t = ''
           t = category[0] == 'T' ? 'user' : 'recipient'
           if (category[1] == '') continue
           let msg = { type: t, text: category[1] }
           console.log(msg)
           setMsgRec((msgRec) => [msg, ...msgRec])
-          tempmsgRec.unshift(msg);
         }
-      } else {
-        setMsgRec(msgRec.slice(0, msgInfo.length - 1))
-        tempmsgRec = tempmsgRec.slice(0, msgInfo.length - 1);
-      }
+      } else setMsgRec(msgRec.slice(0, msgInfo.length - 1))
     } else {
       setMsgRec([])
-      tempmsgRec = [];
       setLastestMsg('')
-      setlatestmsglist(latestmsglist => [...latestmsglist, '']);
     }
-    setAllMsgRec(allMsgRec => [...allMsgRec, tempmsgRec]);
-    console.log("has added ", tempmsgRec, " to allMsgRec");
-    setMsgRec([])
-    tempmsgRec = [];
     console.log(teacherusername, studentname)
     setUsernameConst(username)
     setStudentnameConst(studentname)
@@ -123,8 +103,8 @@ function Msg() {
     setMsgForUpd(tempMsgForUpd)
   }
 
-  let length = 0;
   useEffect(() => {
+    if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
           username = response.data.user[0].username
@@ -145,45 +125,25 @@ function Msg() {
             studentname = response.data[0].studentname
             console.log('username, studentname: ')
             console.log(username, studentname)
-            let len = response.data.length;
-            if(len == 1) {
-              setnum([0]);
-            } else if(len == 2) {
-              setnum([0, 1]);
-            } else if(len == 3) {
-              setnum([0, 1, 2]);
+            if (!hasProcessMsg) {
+              Axios.post(
+                'https://voluntutorcloud-server.herokuapp.com/getMsg',
+                {
+                  username: username,
+                  studentname: studentname,
+                },
+              ).then((response) => {
+                if (response.data.length) msgStr = response.data[0].msg
+                console.log(msgStr)
+                processMsg(msgStr, username, studentname)
+                console.log(msgRec)
+                setLoading(false)
+              })
             }
-            for(let i = 0; i < response.data.length; i++) {
-              console.log("into loop")
-              console.log(i, " ", studentname)
-              setnum(num => [...num, i]);
-              console.log("after setting number")
-              studentname = response.data[i].studentname;
-              console.log("after setting student name")
-              setstudentnamelist(studentnamelist => [...studentnamelist, studentname]);
-              console.log("studentname: ", studentname);
-              if (!hasProcessMsg) {
-                Axios.post(
-                  'https://voluntutorcloud-server.herokuapp.com/getMsg',
-                  {
-                    username: username,
-                    studentname: studentname,
-                  },
-                ).then((response) => {
-                  if (response.data.length) msgStr = response.data[0].msg
-                  console.log(msgStr)
-                  processMsg(msgStr, username, studentname)
-                  // console.log(tempmsgRec)
-                  if(i == len - 1) setLoading(false);
-                })
-              }
-            }
-            setAllMsgRec(allMsgRec.slice(0, response.data.length));
-            setstudentnamelist(studentnamelist.slice(0, response.data.length))
-            setlatestmsglist(latestmsglist.slice(0, response.data.length))
           })
         },
       )
+    }
   })
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
@@ -262,23 +222,12 @@ function Msg() {
     })
   }
 
-  let displaymsgRec = [];
-  let tempallmsgRec = [];
-
   if (isLoading) {
     return <Loading />
   } else {
-    // here
-    console.log(num);
-    console.log(allMsgRec);
-    console.log(studentnamelist);
-    console.log(latestmsglist);
-    if(allMsgRec) tempallmsgRec = allMsgRec.slice(0, num.length);
-    console.log(tempallmsgRec);
-    // here
-
+    console.log('msgRec')
+    console.log(msgRec)
     console.log(usernameConst, studentname)
-    if(allMsgRec.length) displaymsgRec = allMsgRec[0];
 
     return (
       <div>
@@ -293,17 +242,14 @@ function Msg() {
             <div className="peoplelist">
               {num.map((e) => {
                 return (
-                  <div className="shadowing" onClick={() => {
-                    setselectedstudent(e)
-                    if(tempallmsgRec.length >= num.length) displaymsgRec = tempallmsgRec[selectedstudent]
-                  }}>
+                  <div className="shadowing">
                     <div className="outerbox">
                       <div className="imagemsg">
                         <FaUser className="msg_icon" />
                       </div>
                       <div className="infoboxmsg">
-                        <div className="namemsg">{studentnamelist[e]}</div>
-                        <div className="latestmsg">{latestmsglist[e]}</div>
+                        <div className="namemsg">{studentnameConst}</div>
+                        <div className="latestmsg">{lastestMsg}</div>
                       </div>
                       {/* <div className="align">
                       <div className="numbermsg">1</div>
@@ -316,10 +262,10 @@ function Msg() {
             {multistyle()}
           </div>
           <div className="chatcontent">
-            <div className="chatname">{studentnamelist[selectedstudent]}</div>
+            <div className="chatname">{studentnameConst}</div>
             <div className="chat">
-              {displaymsgRec.map((r) => {
-                return <Msg_user type={r.type} text={r.text}></Msg_user>
+              {msgRec.map((e) => {
+                return <Msg_user type={e.type} text={e.text}></Msg_user>
               })}
             </div>
             <div className="send">
@@ -344,3 +290,7 @@ function Msg() {
 }
 
 export default Msg
+
+{
+  /* onclick: <div className="sendword">send</div> */
+}
