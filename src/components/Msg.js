@@ -10,7 +10,13 @@ import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
 
 function Msg() {
-  let num = [1]
+  // 4 main variables
+  const [num, setnum] = useState();
+  const [studentnamelist, setstudentnamelist] = useState();
+  const [latestmsglist, setlatestmsglist] = useState();
+  const [allMsgRec, setAllMsgRec] = useState([]);
+  // 4 main variables
+  
   const [status, setStatus] = useState(0)
   let username = '',
     studentname = '',
@@ -26,8 +32,7 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
-  const [allMsgRec, setAllMsgRec] = useState([]);
-
+  const [selectedstudent, setselectedstudent] = useState(0)
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
   var tempmsgRec = [];
 
@@ -44,7 +49,10 @@ function Msg() {
         console.log('has entered tempmsgRec construction condition')
         for (let i = 0; i < msgInfo.length - 1; i++) {
           const category = msgInfo[i].split('|')
-          if (i == 0) setLastestMsg(category[1])
+          if (i == 0) {
+            setLastestMsg(category[1])
+            setlatestmsglist(latestmsglist => [...latestmsglist, category[1]]);
+          }
           let t = ''
           t = category[0] == 'T' ? 'user' : 'recipient'
           if (category[1] == '') continue
@@ -61,6 +69,7 @@ function Msg() {
       setMsgRec([])
       tempmsgRec = [];
       setLastestMsg('')
+      setlatestmsglist(latestmsglist => [...latestmsglist, '']);
     }
     setAllMsgRec(allMsgRec => [...allMsgRec, tempmsgRec]);
     console.log("has added ", tempmsgRec, " to allMsgRec");
@@ -137,6 +146,8 @@ function Msg() {
             console.log('username, studentname: ')
             console.log(username, studentname)
             for(let i = 0; i < response.data.length; i++) {
+              setnum(num => [...num, i]);
+              setstudentnamelist(studentnamelist => [...studentnamelist, response.data[i].studentname]);
               studentname = response.data[i].studentname;
               console.log("studentname: ", studentname);
               if (!hasProcessMsg) {
@@ -154,6 +165,7 @@ function Msg() {
                 })
               }
             }
+
             setAllMsgRec(allMsgRec.slice(0, response.data.length));
             setLoading(false)
           })
@@ -241,8 +253,13 @@ function Msg() {
   if (isLoading) {
     return <Loading />
   } else {
-    console.log('allMsgRec')
-    console.log(allMsgRec)
+    // here
+    console.log(num);
+    console.log(allMsgRec);
+    console.log(studentnamelist);
+    console.log(latestmsglist);
+    // here
+
     console.log(usernameConst, studentname)
 
     return (
@@ -258,14 +275,14 @@ function Msg() {
             <div className="peoplelist">
               {num.map((e) => {
                 return (
-                  <div className="shadowing">
+                  <div className="shadowing" onClick={setselectedstudent(e)}>
                     <div className="outerbox">
                       <div className="imagemsg">
                         <FaUser className="msg_icon" />
                       </div>
                       <div className="infoboxmsg">
-                        <div className="namemsg">{studentnameConst}</div>
-                        <div className="latestmsg">{lastestMsg}</div>
+                        <div className="namemsg">{studentnamelist[e]}</div>
+                        <div className="latestmsg">{latestmsglist[e]}</div>
                       </div>
                       {/* <div className="align">
                       <div className="numbermsg">1</div>
