@@ -123,6 +123,7 @@ function Msg() {
     setMsgForUpd(tempMsgForUpd)
   }
 
+  let length = 0;
   useEffect(() => {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
@@ -148,7 +149,7 @@ function Msg() {
               let len = response.data.length;
               console.log("into loop")
               console.log(i, " ", studentname)
-              setnum(num => [...num, i]);
+              if(num.length == 0) setnum(num => [...num, i]);
               console.log("after setting number")
               studentname = response.data[i].studentname;
               console.log("after setting student name")
@@ -170,7 +171,9 @@ function Msg() {
                 })
               }
             }
-            
+            setnum(num.slice(0, response.data.length));
+            setstudentnamelist(studentnamelist.slice(0, response.data.length))
+            setlatestmsglist(latestmsglist.slice(0, response.data.length))
           })
         },
       )
