@@ -124,7 +124,6 @@ function Msg() {
   }
 
   useEffect(() => {
-    if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
           username = response.data.user[0].username
@@ -146,6 +145,7 @@ function Msg() {
             console.log('username, studentname: ')
             console.log(username, studentname)
             for(let i = 0; i < response.data.length; i++) {
+              let len = response.data.length;
               console.log("into loop")
               console.log(i, " ", studentname)
               setnum(num => [...num, i]);
@@ -166,16 +166,13 @@ function Msg() {
                   console.log(msgStr)
                   processMsg(msgStr, username, studentname)
                   // console.log(tempmsgRec)
+                  if(i == len - 1) setLoading(false);
                 })
               }
             }
-
-            setAllMsgRec(allMsgRec.slice(0, response.data.length));
-            setLoading(false);
           })
         },
       )
-    }
   })
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
