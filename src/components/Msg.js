@@ -265,6 +265,7 @@ function Msg() {
     // here
 
     console.log(usernameConst, studentname)
+    console.log()
 
     return (
       <div>
@@ -301,7 +302,7 @@ function Msg() {
           <div className="chatcontent">
             <div className="chatname">{studentnamelist[selectedstudent]}</div>
             <div className="chat">
-              {msgRec[selectedstudent].map((r) => {
+              {allMsgRec[selectedstudent].map((r) => {
                 return <Msg_user type={r.type} text={r.text}></Msg_user>
               })}
             </div>
