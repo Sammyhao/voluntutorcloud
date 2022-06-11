@@ -145,11 +145,18 @@ function Msg() {
             studentname = response.data[0].studentname
             console.log('username, studentname: ')
             console.log(username, studentname)
+            let len = response.data.length;
+            if(len == 1) {
+              setnum([0]);
+            } else if(len == 2) {
+              setnum([0, 1]);
+            } else if(len == 3) {
+              setnum([0, 1, 2]);
+            }
             for(let i = 0; i < response.data.length; i++) {
-              let len = response.data.length;
               console.log("into loop")
               console.log(i, " ", studentname)
-              if(num.length == 0) setnum(num => [...num, i]);
+              setnum(num => [...num, i]);
               console.log("after setting number")
               studentname = response.data[i].studentname;
               console.log("after setting student name")
@@ -171,7 +178,7 @@ function Msg() {
                 })
               }
             }
-            setnum(num.slice(0, response.data.length));
+            setAllMsgRec(allMsgRec.slice(0, response.data.length));
             setstudentnamelist(studentnamelist.slice(0, response.data.length))
             setlatestmsglist(latestmsglist.slice(0, response.data.length))
           })
