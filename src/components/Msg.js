@@ -295,10 +295,10 @@ function Msg() {
             {multistyle()}
           </div>
           <div className="chatcontent">
-            <div className="chatname">{studentnameConst}</div>
+            <div className="chatname">{studentnamelist[selectedstudent]}</div>
             <div className="chat">
-              {msgRec.map((e) => {
-                return <Msg_user type={e.type} text={e.text}></Msg_user>
+              {msgRec[selectedstudent].map((r) => {
+                return <Msg_user type={r.type} text={r.text}></Msg_user>
               })}
             </div>
             <div className="send">
