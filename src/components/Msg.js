@@ -168,10 +168,10 @@ function Msg() {
                   // console.log(tempmsgRec)
                 })
               }
-              if(i == response.data.length - 1) setLoading(false);
             }
 
             setAllMsgRec(allMsgRec.slice(0, response.data.length));
+            setLoading(false);
           })
         },
       )
@@ -254,7 +254,7 @@ function Msg() {
     })
   }
 
-  if (isLoading && allMsgRec.length != num.length) {
+  if (isLoading) {
     return <Loading />
   } else {
     // here
