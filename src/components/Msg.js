@@ -138,7 +138,7 @@ function Msg() {
             },
           ).then((response) => {
             setContactInfo(response.data)
-            setCount(response.data.length);
+            setCount(response.data.length-1);
             setChosenContact(response.data[0])
             if (response.data.length == 2) {
               setMultistudentname([response.data[1].studentname])
