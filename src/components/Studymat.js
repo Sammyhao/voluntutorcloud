@@ -152,7 +152,9 @@ export default function Studymat() {
           }).then((response) => {
             console.log(response.data)
             submat = response.data;
+            console.log(submat);
             for(let i = 0; i < submat.length; i++) {
+              console.log(submat[i]);
               // subject
               submat[i].subject = subtrans[submat[i].subject]
               // grade
