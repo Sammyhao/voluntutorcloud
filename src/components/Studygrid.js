@@ -12,7 +12,7 @@ export const Studygrid = ({ studymt }) => {
   }
 
   return (
-    <Grid item xs={12} sm={6} md={6} lg={4}>
+    <Grid item xs={12} sm={6} md={4} lg={4}>
       <Card className="studymatbox" justify="space-between">
         <CardContent>
           <div className="publisher">
@@ -24,7 +24,9 @@ export const Studygrid = ({ studymt }) => {
             <div className="tagsstudy">{studymt.grade}</div>
             <div className="tagsstudy">{studymt.chapterDesc}</div>
           </div>
-          <div className="openfilestudy" onClick={() => openlink(studymt.link)}>Open File</div>
+          <div className="openfilestudy" onClick={() => openlink(studymt.link)}>
+            Open File
+          </div>
         </CardContent>
       </Card>
     </Grid>

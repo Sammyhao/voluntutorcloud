@@ -79,55 +79,30 @@ export default function Studymat() {
   let h = ['Grade 4', '四年級']
   let i = ['Grade 5', '五年級']
   let j = ['Grade 6', '六年級']
-  let k = ['Chinese', '中文']
+  let k = ['Chinese', '國文']
   let l = ['Math', '數學']
   let m = ['English', '英文']
   let n = ['Social Studies', '社會']
   let o = ['Science', '自然']
 
-  const [studyarray, setstudyarray] = useState([
-    {
-      publisher: '翰林',
-      subject: '國文',
-      grade: '一年級',
-      school: '大溪國小',
-      chapterDesc: 'Ch1-5',
-      link: '',
-    },
-    {
-      publisher: '翰林',
-      subject: '數學',
-      grade: '二年級',
-      school: '大溪國小',
-      chapterDesc: 'Ch1-5',
-      link: '',
-    },
-    {
-      publisher: '翰林',
-      subject: '英文',
-      grade: '二年級',
-      school: '大溪國小',
-      chapterDesc: 'Ch1-5',
-      link: '',
-    },
-  ])
+  const [studyarray, setstudyarray] = useState([])
 
   const subtrans = {
-    Chinese: "國語",
-    Math: "數學",
-    English: "英文",
-    Science: "自然",
-    Social_Studies: "社會",
-    Life_Curriculum: "生活"
+    Chinese: '國文',
+    Math: '數學',
+    English: '英文',
+    Science: '自然',
+    Social_Studies: '社會',
+    Life_Curriculum: '生活',
   }
-  
+
   const gratrans = {
-    1: "一年級",
-    2: "二年級",
-    3: "三年級",
-    4: "四年級",
-    5: "五年級",
-    6: "六年級"
+    1: '一年級',
+    2: '二年級',
+    3: '三年級',
+    4: '四年級',
+    5: '五年級',
+    6: '六年級',
   }
 
   const [filteredarray, setfiltered] = useState([])
@@ -148,22 +123,24 @@ export default function Studymat() {
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getallSubMat', {
-          }).then((response) => {
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getallSubMat',
+            {},
+          ).then((response) => {
             console.log(response.data)
-            submat = response.data;
-            console.log(submat);
-            for(let i = 1; i < submat.length; i++) {
-              console.log(submat[i]);
+            submat = response.data
+            console.log(submat)
+            for (let i = 1; i < submat.length; i++) {
+              console.log(submat[i])
               // subject
               submat[i].subject = subtrans[submat[i].subject]
               // grade
               submat[i].grade = gratrans[submat[i].grade]
               // school
-              const schoollist = submat[i].school.split('|');
-              submat[i].school = schoollist;
+              const schoollist = submat[i].school.split('|')
+              submat[i].school = schoollist
               console.log(submat)
-              setstudyarray(submat);
+              setstudyarray(submat)
             }
             setopen(true)
           })
@@ -226,7 +203,7 @@ export default function Studymat() {
     console.log(gradearr)
     console.log(schoolarr)
     console.log(subjectarr)
-    for (let ind = 0; ind < studyarray.length; ind++) {
+    for (let ind = 1; ind < studyarray.length; ind++) {
       let obj = studyarray[ind]
       let gradeflag = false
       let schoolflag = false
