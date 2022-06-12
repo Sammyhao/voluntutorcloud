@@ -3,7 +3,17 @@
   height: wrap;
   width: wrap;
   background-color: #efe9e5;
-  padding: 70px;
+  display: flex;
+  flex-direction: row;
+  padding: 40px;
+  padding-top: 70px;
+}
+.filter {
+  width: 30%;
+  padding-right: 30px;
+}
+.studymatsecondwrap {
+  width: 70%;
 }
 .studysubject {
   height: 100px;
@@ -176,6 +186,10 @@
     color: #745140;
     font-size: 25px;
   }
+  .filter {
+    display: none;
+    width: 0;
+  }
 }
 
 @media screen and (max-width: 560px) {
@@ -249,4 +263,20 @@
 
 .linkstudy {
   text-decoration: none;
+}
+.filtersub {
+  color: #b25634;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.filterline {
+  color: #dbbfb1;
+  margin-bottom: 20px;
+}
+.spacing {
+  height: 20px;
+}
+.filtertitle {
+  color: #745140;
+  font-size: 20px;
 }

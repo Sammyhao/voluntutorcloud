@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import * as React from 'react'
+import { useState, useEffect, ChangeEvent, ChangeEventHandler } from 'react'
 import './Studymat.css'
 import PropTypes from 'prop-types'
+import { Divider } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
+import Grid from '@mui/material/Grid'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import Axios from 'axios'
-import Grid from '@mui/material/Grid'
 import { Studygrid } from './Studygrid'
+
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -33,223 +39,79 @@ BootstrapDialogTitle.propTypes = {
 
 export default function Studymat() {
   const [open, setopen] = useState(false)
-  const handleclose = () => {
-    setopen(false)
-  }
-  let a = ['grade', '年級']
-  let b = ['Detailed Materials', '教學教材']
+  const [grade, setgradestate] = useState({
+    一年級: false,
+    二年級: false,
+    三年級: false,
+    四年級: false,
+    五年級: false,
+    六年級: false,
+  })
+  const [subject, setsubjectstate] = useState({
+    國文: false,
+    數學: false,
+    英文: false,
+    社會: false,
+    自然: false,
+  })
+  const [school, setschoolstate] = useState({
+    大溪國小: false,
+    廣興國小: false,
+  })
+  const { 一年級, 二年級, 三年級, 四年級, 五年級, 六年級 } = grade
+
+  const { 國文, 數學, 英文, 社會, 自然 } = subject
+
+  const { 大溪國小, 廣興國小 } = school
+
+  let aa = ['Filter Study Materials', '分類課堂教材']
+  let a = ['By Grades', '依年級分類']
+  let b = ['By Subjects', '依科目分類']
+  let bb = ['By Schools', '依學校分類']
   let c = ['Study Materials', '志工教學教材']
   let d = [
     'Study Materials can only be used for volunteering session purposes.',
     '教學教材只限使用於志工教學，請勿濫用。',
   ]
-  let gradearr_eng = [
-    {
-      id: 'Grade 1',
-      index: ['0', '1', '2', '3'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_life.png',
-      ],
-      subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
-    },
-    {
-      id: 'Grade 2',
-      index: ['0', '1', '2', '3'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_life.png',
-      ],
-      subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
-    },
-    {
-      id: 'Grade 3',
-      index: ['0', '1', '2', '3', '4'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_socia.png',
-        '/images/home_science.png',
-      ],
-      subjects_name: [
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ],
-    },
-    {
-      id: 'Grade 4',
-      index: ['0', '1', '2', '3', '4'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_socia.png',
-        '/images/home_science.png',
-      ],
-      subjects_name: [
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ],
-    },
-    {
-      id: 'Grade 5',
-      index: ['0', '1', '2', '3', '4'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_socia.png',
-        '/images/home_science.png',
-      ],
-      subjects_name: [
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ],
-    },
-    {
-      id: 'Grade 6',
-      index: ['0', '1', '2', '3', '4'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_socia.png',
-        '/images/home_science.png',
-      ],
-      subjects_name: [
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ],
-    },
-  ]
+  let e = ['Grade 1', '一年級']
+  let f = ['Grade 2', '二年級']
+  let g = ['Grade 3', '三年級']
+  let h = ['Grade 4', '四年級']
+  let i = ['Grade 5', '五年級']
+  let j = ['Grade 6', '六年級']
+  let k = ['Chinese', '中文']
+  let l = ['Math', '數學']
+  let m = ['English', '英文']
+  let n = ['Social Studies', '社會']
+  let o = ['Science', '自然']
 
-  let gradearr_ch = [
+  const [studyarray, setstudyarray] = useState([
     {
-      id: 'Grade 1',
-      grade_title: '一年級',
-      index: ['0', '1', '2', '3'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_life.png',
-      ],
-
-      subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
-      subjects_name_title: ['國文', '數學', '英文', '生活'],
+      publisher: '翰林',
+      subject: '國文',
+      grade: '一年級',
+      school: '大溪國小',
+      chapterDesc: 'Ch1-5',
+      link: '',
     },
     {
-      id: 'Grade 2',
-      grade_title: '二年級',
-      index: ['0', '1', '2', '3'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_life.png',
-      ],
-      subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
-      subjects_name_title: ['國文', '數學', '英文', '生活'],
+      publisher: '翰林',
+      subject: '數學',
+      grade: '二年級',
+      school: '大溪國小',
+      chapterDesc: 'Ch1-5',
+      link: '',
     },
     {
-      id: 'Grade 3',
-      grade_title: '三年級',
-      index: ['0', '1', '2', '3', '4'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_socia.png',
-        '/images/home_science.png',
-      ],
-      subjects_name: [
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ],
-      subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
+      publisher: '翰林',
+      subject: '英文',
+      grade: '二年級',
+      school: '大溪國小',
+      chapterDesc: 'Ch1-5',
+      link: '',
     },
-    {
-      id: 'Grade 4',
-      grade_title: '四年級',
-      index: ['0', '1', '2', '3', '4'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_socia.png',
-        '/images/home_science.png',
-      ],
-      subjects_name: [
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ],
-      subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
-    },
-    {
-      id: 'Grade 5',
-      grade_title: '五年級',
-      index: ['0', '1', '2', '3', '4'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_socia.png',
-        '/images/home_science.png',
-      ],
-      subjects_name: [
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ],
-      subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
-    },
-    {
-      id: 'Grade 6',
-      grade_title: '六年級',
-      index: ['0', '1', '2', '3', '4'],
-      subjects: [
-        '/images/home_chine.png',
-        '/images/home_math.png',
-        '/images/home_eng.png',
-        '/images/home_socia.png',
-        '/images/home_science.png',
-      ],
-      subjects_name: [
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ],
-      subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
-    },
-  ]
-
+  ])
+  const [filteredarray, setfiltered] = useState([])
   const [subMat, setSubMat] = useState([])
   const [sub, setsub] = useState('')
   const [chinsub, setchinsub] = useState('')
@@ -257,8 +119,8 @@ export default function Studymat() {
   let username = ''
   const [isLoading, setLoading] = useState(true)
   const [status, setStatus] = useState(0)
-
   useEffect(() => {
+    console.log('filtered', filteredarray)
     if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
         (response) => {
@@ -270,6 +132,7 @@ export default function Studymat() {
         },
       )
     }
+    setfiltered(studyarray)
   }, [])
 
   function fetchSubMat(grade, subject) {
@@ -285,141 +148,411 @@ export default function Studymat() {
       setopen(true)
     })
   }
+  useEffect(() => {
+    let gradearr = []
+    let schoolarr = []
+    let subjectarr = []
+    setfiltered([])
+    for (const [key, value] of Object.entries(grade)) {
+      if (value == true) {
+        gradearr[gradearr.length] = key
+      }
+    }
+    for (const [key, value] of Object.entries(school)) {
+      if (value == true) {
+        schoolarr[schoolarr.length] = key
+      }
+    }
+    for (const [key, value] of Object.entries(subject)) {
+      if (value == true) {
+        subjectarr[subjectarr.length] = key
+      }
+    }
+    if (gradearr.length == 0) {
+      for (const [key, value] of Object.entries(grade)) {
+        gradearr[gradearr.length] = key
+      }
+    }
+    if (schoolarr.length == 0) {
+      for (const [key, value] of Object.entries(school)) {
+        schoolarr[schoolarr.length] = key
+      }
+    }
+    if (subjectarr.length == 0) {
+      for (const [key, value] of Object.entries(subject)) {
+        subjectarr[subjectarr.length] = key
+      }
+    }
+    console.log(gradearr)
+    console.log(schoolarr)
+    console.log(subjectarr)
+    for (let ind = 0; ind < studyarray.length; ind++) {
+      let obj = studyarray[ind]
+      let gradeflag = false
+      let schoolflag = false
+      let subflag = false
+      for (let s = 0; s < gradearr.length; s++) {
+        if (obj.grade == gradearr[s]) {
+          gradeflag = true
+        }
+      }
+      for (let s = 0; s < schoolarr.length; s++) {
+        if (obj.school == schoolarr[s]) {
+          schoolflag = true
+        }
+      }
+      for (let s = 0; s < subjectarr.length; s++) {
+        if (obj.subject == subjectarr[s]) {
+          subflag = true
+        }
+      }
+      console.log(schoolflag)
+      console.log(gradeflag)
+      console.log(subflag)
+      if (gradeflag && schoolflag && subflag) {
+        setfiltered((filteredarray) => [...filteredarray, obj])
+      }
+    }
+
+    console.log('filteredarray', filteredarray)
+  }, [grade, subject, school])
 
   if (isLoading) {
-    console.log('isLoading')
     return <Loading />
   } else {
-    if (status == 0) {
-      return (
-        <div className="outerwrapstudy">
-          <div id="dialog_reg_wrap">
-            <BootstrapDialog
-              onClose={handleclose}
-              id="dialog_registered"
-              aria-labelledby="customized-dialog-title"
-              open={open}
-            >
-              <div id="studydialog">
-                {gra} {a[status]} / {sub} {b[status]}
-              </div>
-              <div id="warningdialogstudy">{d[status]}</div>
-              <div className="wrapperlinks">
-                {subMat.map((mat) => {
-                  console.log('mat')
-                  console.log(mat)
-                  return (
-                    <div className="wordlinkwrapping">
-                      <div className="dotforstudy">• </div>
-                      <a id="links" href={mat.link} target="_blank">
-                        {mat.chapterDesc}
-                      </a>
-                    </div>
-                  )
-                })}
-              </div>
-            </BootstrapDialog>
+    return (
+      <div className="outerwrapstudy">
+        <div className="filter">
+          <div className="filtertitle">{aa[status]}</div>
+          <div className="filterunit">
+            <div className="filtersub">{a[status]}</div>
+            <Divider className="filterline"></Divider>
+            <div className="spacing"></div>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={一年級}
+                    name="一年級"
+                    onChange={(e) => {
+                      setgradestate({
+                        ...grade,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={e[status]}
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={二年級}
+                    name="二年級"
+                    onChange={(e) => {
+                      setgradestate({
+                        ...grade,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={f[status]}
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={三年級}
+                    name="三年級"
+                    onChange={(e) => {
+                      setgradestate({
+                        ...grade,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={g[status]}
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={四年級}
+                    name="四年級"
+                    onChange={(e) => {
+                      setgradestate({
+                        ...grade,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={h[status]}
+                sx={{
+                  color: '#745140',
+                  fontFamily: 'Lora',
+                  height: '30px',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={五年級}
+                    name="五年級"
+                    onChange={(e) => {
+                      setgradestate({
+                        ...grade,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={i[status]}
+                sx={{
+                  color: '#745140',
+                  fontFamily: 'Lora',
+                  height: '30px',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={六年級}
+                    name="六年級"
+                    onChange={(e) => {
+                      setgradestate({
+                        ...grade,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={j[status]}
+                sx={{
+                  color: '#745140',
+                  fontFamily: 'Lora',
+                  height: '30px',
+                }}
+              />
+            </FormGroup>
           </div>
-          <div className="titlestudytotal">{c[status]}</div>
-          <div className="studymatsecondwrap">
-            {gradearr_eng.map((e) => {
-              return (
-                <div className="studymatwrap">
-                  <div className="studymattitle">{e.id}</div>
-                  <div className="titleandimg">
-                    <div className="studysubjectwrap">
-                      {e.index.map((i) => (
-                        <div>
-                          <img
-                            className="studysubject"
-                            src={e.subjects[i]}
-                            onClick={() => {
-                              let grade = e.id.substring(e.id.length - 1)
-                              setgra(grade)
-                              setsub(e.subjects_name[i])
-                              console.log(grade, e.subjects_name[i])
-                              fetchSubMat(grade, e.subjects_name[i])
-                            }}
-                          ></img>
-                          <div className="subjectwords">
-                            {e.subjects_name[i]}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
+          <div className="filterunit">
+            <div className="filtersub">{b[status]}</div>
+            <Divider className="filterline"></Divider>
+            <div className="spacing"></div>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={國文}
+                    name="國文"
+                    onChange={(e) => {
+                      setsubjectstate({
+                        ...subject,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={k[status]}
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={數學}
+                    name="數學"
+                    onChange={(e) => {
+                      setsubjectstate({
+                        ...subject,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={l[status]}
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={英文}
+                    name="英文"
+                    onChange={(e) => {
+                      setsubjectstate({
+                        ...subject,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={m[status]}
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={社會}
+                    name="社會"
+                    onChange={(e) => {
+                      setsubjectstate({
+                        ...subject,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={n[status]}
+                sx={{
+                  color: '#745140',
+                  fontFamily: 'Lora',
+                  height: '30px',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={自然}
+                    name="自然"
+                    onChange={(e) => {
+                      setsubjectstate({
+                        ...subject,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={o[status]}
+                sx={{
+                  color: '#745140',
+                  fontFamily: 'Lora',
+                  height: '30px',
+                }}
+              />
+            </FormGroup>
+          </div>
+          <div className="filterunit">
+            <div className="filtersub">{bb[status]}</div>
+            <Divider className="filterline"></Divider>
+            <div className="spacing"></div>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={大溪國小}
+                    name="大溪國小"
+                    onChange={(e) => {
+                      setschoolstate({
+                        ...school,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label="大溪國小"
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={廣興國小}
+                    name="廣興國小"
+                    onChange={(e) => {
+                      setschoolstate({
+                        ...school,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label="廣興國小"
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+            </FormGroup>
           </div>
         </div>
-      )
-    } else {
-      return (
-        <div className="outerwrapstudy">
-          <div id="dialog_reg_wrap">
-            <BootstrapDialog
-              onClose={handleclose}
-              id="dialog_registered"
-              aria-labelledby="customized-dialog-title"
-              open={open}
-            >
-              <div id="studydialog">
-                {gra} {a[status]} / {chinsub} {b[status]}
-              </div>
-              <div id="warningdialogstudy">{d[status]}</div>
-              <div className="wrapperlinks">
-                {subMat.map((mat) => {
-                  console.log('mat')
-                  console.log(mat)
-                  return (
-                    <div className="wordlinkwrapping">
-                      <div className="dotforstudy">• </div>
-                      <a id="links" href={mat.link} target="_blank">
-                        {mat.chapterDesc}
-                      </a>
-                    </div>
-                  )
-                })}
-              </div>
-            </BootstrapDialog>
-          </div>
-          <div className="titlestudytotal">{c[status]}</div>
-          <div className="studymatsecondwrap">
-            {gradearr_ch.map((e) => {
-              return (
-                <div className="studymatwrap">
-                  <div className="studymattitle">{e.grade_title}</div>
-                  <div className="titleandimg">
-                    <div className="studysubjectwrap">
-                      {e.index.map((i) => (
-                        <div>
-                          <img
-                            className="studysubject"
-                            src={e.subjects[i]}
-                            onClick={() => {
-                              let g = e.grade_title.substring(0, 1)
-                              setgra(g)
-                              setchinsub(e.subjects_name_title[i])
-                              console.log(chinsub)
-                              let grade = e.id.substring(e.id.length - 1)
-                              console.log(grade, e.subjects_name[i])
-                              fetchSubMat(grade, e.subjects_name[i])
-                            }}
-                          ></img>
-                          <div className="subjectwords">
-                            {e.subjects_name_title[i]}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )
+        <div className="studymatsecondwrap">
+          <Grid container spacing={4}>
+            {filteredarray.map((e) => {
+              return <Studygrid studymt={e}></Studygrid>
             })}
-          </div>
+          </Grid>
         </div>
-      )
-    }
+      </div>
+    )
   }
 }
