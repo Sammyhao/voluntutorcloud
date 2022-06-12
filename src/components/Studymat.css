@@ -153,6 +153,9 @@
 }
 
 @media screen and (max-width: 960px) {
+  .studymatsecondwrap {
+    width: 100%;
+  }
   .studymattitle {
     margin-top: 30px;
     color: #b25634;

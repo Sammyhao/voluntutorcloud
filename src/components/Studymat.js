@@ -203,7 +203,7 @@ export default function Studymat() {
     console.log(gradearr)
     console.log(schoolarr)
     console.log(subjectarr)
-    for (let ind = 1; ind < studyarray.length; ind++) {
+    for (let ind = 0; ind < studyarray.length; ind++) {
       let obj = studyarray[ind]
       let gradeflag = false
       let schoolflag = false
