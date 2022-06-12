@@ -6,6 +6,11 @@ import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 export const Studygrid = ({ studymt }) => {
   console.log(studymt)
+
+  const openlink = (link) => {
+    window.open(link, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <Grid item xs={12} sm={6} md={6} lg={4}>
       <Card className="studymatbox" justify="space-between">
@@ -19,9 +24,7 @@ export const Studygrid = ({ studymt }) => {
             <div className="tagsstudy">{studymt.grade}</div>
             <div className="tagsstudy">{studymt.chapterDesc}</div>
           </div>
-          <a className="linkstudy" href={studymt.link}>
-            <div className="openfilestudy">Open File</div>
-          </a>
+          <div className="openfilestudy" onClick={() => openlink(studymt.link)}>Open File</div>
         </CardContent>
       </Card>
     </Grid>
