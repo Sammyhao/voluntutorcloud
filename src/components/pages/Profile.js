@@ -25,14 +25,12 @@ export default function Profile() {
           setLang(response.data.user[0].lang);
           setProfile(response.data.user[0]);
           console.log(response.data.user[0].lastname + response.data.user[0].firstname);
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-            name: response.data.user[0].lastname + response.data.user[0].firstname,
-          }).then((response) => {
-            setPortfolio(response.data[0]);
-            setLoading(false);
-          })
-        }
-      )
+
+          return Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {name: response.data.user[0].lastname + response.data.user[0].firstname})
+      }).then((response) => {
+        setPortfolio(response.data[0]);
+        setLoading(false);
+      })
     }
   })
 
