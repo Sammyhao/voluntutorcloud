@@ -119,6 +119,7 @@ export default function Studymat() {
   let username = ''
   const [isLoading, setLoading] = useState(true)
   const [status, setStatus] = useState(0)
+
   useEffect(() => {
     console.log('filtered', filteredarray)
     if (isLoading) {
@@ -128,6 +129,12 @@ export default function Studymat() {
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getallSubMat', {
+          }).then((response) => {
+            console.log(response.data)
+            setSubMat(response.data)
+            setopen(true)
+          })
           setLoading(false)
         },
       )
@@ -139,7 +146,7 @@ export default function Studymat() {
     console.log(grade, subject)
     setsub(subject)
     setgra(grade)
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/getSubMat', {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/getallSubMat', {
       grade: grade,
       subject: subject,
     }).then((response) => {
@@ -148,6 +155,7 @@ export default function Studymat() {
       setopen(true)
     })
   }
+
   useEffect(() => {
     let gradearr = []
     let schoolarr = []
