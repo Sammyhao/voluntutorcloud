@@ -158,9 +158,8 @@ export default function Studymat() {
               // grade
               submat[i].grade = gratrans[submat[i].grade]
               // school
-              let schoollist = submat[i].school;
-              submat[i].school = schoollist.split('|');
-              
+              const schoollist = submat[i].school.split('|');
+              submat[i].school = schoollist;
               console.log(submat)
               setstudyarray(submat);
             }
