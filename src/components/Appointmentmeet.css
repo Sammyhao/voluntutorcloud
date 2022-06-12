@@ -245,6 +245,7 @@ input::-webkit-inner-spin-button {
   padding-right: 30px;
   justify-content: end;
   align-items: center;
+  padding-top: 50px;
 }
 #app_send:hover {
   transition: all 0.3s ease-out;
