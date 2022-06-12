@@ -111,8 +111,27 @@ export default function Studymat() {
       link: '',
     },
   ])
+
+  const subtrans = {
+    Chinese: "國語",
+    Math: "數學",
+    English: "英文",
+    Science: "自然",
+    Social_Studies: "社會",
+    Life_Curriculum: "生活"
+  }
+  
+  const gratrans = {
+    1: "一年級",
+    2: "二年級",
+    3: "三年級",
+    4: "四年級",
+    5: "五年級",
+    6: "六年級"
+  }
+
   const [filteredarray, setfiltered] = useState([])
-  const [subMat, setSubMat] = useState([])
+  let submat = []
   const [sub, setsub] = useState('')
   const [chinsub, setchinsub] = useState('')
   const [gra, setgra] = useState('')
@@ -132,7 +151,18 @@ export default function Studymat() {
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getallSubMat', {
           }).then((response) => {
             console.log(response.data)
-            setSubMat(response.data)
+            submat = response.data;
+            for(let i = 0; i < submat.length; i++) {
+              // subject
+              submat[i].subject = subtrans[submat[i].subject]
+              // grade
+              submat[i].grade = gratrans[submat[i].grade]
+              // school
+              submat[i].school = submat[i].school.split('|');
+              
+              console.log(submat)
+              setstudyarray(submat);
+            }
             setopen(true)
           })
           setLoading(false)
@@ -140,7 +170,7 @@ export default function Studymat() {
       )
     }
     setfiltered(studyarray)
-  }, [])
+  }, [studyarray])
 
   function fetchSubMat(grade, subject) {
     console.log(grade, subject)
@@ -151,7 +181,7 @@ export default function Studymat() {
       subject: subject,
     }).then((response) => {
       console.log(response)
-      setSubMat(response.data)
+      // setSubMat(response.data)
       setopen(true)
     })
   }
