@@ -33,7 +33,7 @@
   padding-right: 30px;
   padding-left: 30px;
 }
-#warningdialogstudy{
+#warningdialogstudy {
   background-color: whitesmoke;
   overflow: block;
   position: relative;
@@ -68,7 +68,7 @@
   text-decoration: underline;
   margin-left: 5px;
 }
-.dotforstudy{
+.dotforstudy {
   background-color: whitesmoke;
   overflow: block;
   position: relative;
@@ -80,18 +80,16 @@
   height: wrap;
   padding-top: 10px;
   text-decoration: none;
-
 }
-.wrapperlinks{
+.wrapperlinks {
   background-color: whitesmoke;
   overflow: block;
   height: wrap;
   width: wrap;
   padding: 30px;
   padding-top: 5px;
-
 }
-.wordlinkwrapping{
+.wordlinkwrapping {
   display: flex;
   flex-direction: row;
 }
@@ -187,4 +185,68 @@
     color: #745140;
     font-size: 40px;
   }
+}
+
+.publisher {
+  color: #745140;
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.schoolstudy {
+  color: #b25634;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 17px;
+}
+.tagswrap {
+  width: wrap;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: left;
+  margin-bottom: 40px;
+}
+.tagsstudy {
+  background-color: #efe9e5;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 3px;
+  font-size: 13px;
+  color: #b17b67;
+  margin-right: 10px;
+}
+.studymatbox {
+  /* height: wrap;
+  width: 250px; */
+  padding: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.openfilestudy {
+  font-family: 'Lora';
+  width: wrap;
+  height: wrap;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  background-color: #00000000;
+  color: #b17b67;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #b17b67;
+  transition: 250ms;
+}
+
+.openfilestudy:hover {
+  background: #b17b67;
+  border: 1px solid #b17b67;
+  color: white;
+}
+
+.linkstudy {
+  text-decoration: none;
 }

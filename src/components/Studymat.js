@@ -7,6 +7,8 @@ import Loading from './Loading'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import Axios from 'axios'
+import Grid from '@mui/material/Grid'
+import { Studygrid } from './Studygrid'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -34,10 +36,13 @@ export default function Studymat() {
   const handleclose = () => {
     setopen(false)
   }
-  let a = ["grade","年級"]
-  let b = ["Detailed Materials","教學教材"]
-  let c = ["Study Materials","志工教學教材"]
-  let d = ["Study Materials can only be used for volunteering session purposes.","教學教材只限使用於志工教學，請勿濫用。"]
+  let a = ['grade', '年級']
+  let b = ['Detailed Materials', '教學教材']
+  let c = ['Study Materials', '志工教學教材']
+  let d = [
+    'Study Materials can only be used for volunteering session purposes.',
+    '教學教材只限使用於志工教學，請勿濫用。',
+  ]
   let gradearr_eng = [
     {
       id: 'Grade 1',
@@ -135,157 +140,156 @@ export default function Studymat() {
     },
   ]
 
-  
-let gradearr_ch = [
-  {
-    id: 'Grade 1',
-    grade_title: '一年級',
-    index: ['0', '1', '2', '3'],
-    subjects: [
-      '/images/home_chine.png',
-      '/images/home_math.png',
-      '/images/home_eng.png',
-      '/images/home_life.png',
-    ],
-    
-    subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
-    subjects_name_title: ['國文', '數學', '英文', '生活'],
-  },
-  {
-    id: 'Grade 2',
-    grade_title: '二年級',
-    index: ['0', '1', '2', '3'],
-    subjects: [
-      '/images/home_chine.png',
-      '/images/home_math.png',
-      '/images/home_eng.png',
-      '/images/home_life.png',
-    ],
-    subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
-    subjects_name_title: ['國文', '數學', '英文', '生活'],
-  },
-  {
-    id: 'Grade 3',
-    grade_title: '三年級',
-    index: ['0', '1', '2', '3', '4'],
-    subjects: [
-      '/images/home_chine.png',
-      '/images/home_math.png',
-      '/images/home_eng.png',
-      '/images/home_socia.png',
-      '/images/home_science.png',
-    ],
-    subjects_name: [
-      'Chinese',
-      'Math',
-      'English',
-      'Social Studies',
-      'Science',
-    ],
-    subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
-  },
-  {
-    id: 'Grade 4',
-    grade_title: '四年級',
-    index: ['0', '1', '2', '3', '4'],
-    subjects: [
-      '/images/home_chine.png',
-      '/images/home_math.png',
-      '/images/home_eng.png',
-      '/images/home_socia.png',
-      '/images/home_science.png',
-    ],
-    subjects_name: [
-      'Chinese',
-      'Math',
-      'English',
-      'Social Studies',
-      'Science',
-    ],
-    subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
-  },
-  {
-    id: 'Grade 5',
-    grade_title: '五年級',
-    index: ['0', '1', '2', '3', '4'],
-    subjects: [
-      '/images/home_chine.png',
-      '/images/home_math.png',
-      '/images/home_eng.png',
-      '/images/home_socia.png',
-      '/images/home_science.png',
-    ],
-    subjects_name: [
-      'Chinese',
-      'Math',
-      'English',
-      'Social Studies',
-      'Science',
-    ],
-    subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
-  },
-  {
-    id: 'Grade 6',
-    grade_title: '六年級',
-    index: ['0', '1', '2', '3', '4'],
-    subjects: [
-      '/images/home_chine.png',
-      '/images/home_math.png',
-      '/images/home_eng.png',
-      '/images/home_socia.png',
-      '/images/home_science.png',
-    ],
-    subjects_name: [
-      'Chinese',
-      'Math',
-      'English',
-      'Social Studies',
-      'Science',
-    ],
-    subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
-  },
-]
+  let gradearr_ch = [
+    {
+      id: 'Grade 1',
+      grade_title: '一年級',
+      index: ['0', '1', '2', '3'],
+      subjects: [
+        '/images/home_chine.png',
+        '/images/home_math.png',
+        '/images/home_eng.png',
+        '/images/home_life.png',
+      ],
 
-  const [subMat, setSubMat] = useState([]);
-  const [sub, setsub] = useState("");
-  const [chinsub,setchinsub] = useState("");
-  const [gra, setgra] = useState("");
-  let username = "";
-  const [isLoading, setLoading] = useState(true);
-  const [status, setStatus] = useState(0);
+      subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
+      subjects_name_title: ['國文', '數學', '英文', '生活'],
+    },
+    {
+      id: 'Grade 2',
+      grade_title: '二年級',
+      index: ['0', '1', '2', '3'],
+      subjects: [
+        '/images/home_chine.png',
+        '/images/home_math.png',
+        '/images/home_eng.png',
+        '/images/home_life.png',
+      ],
+      subjects_name: ['Chinese', 'Math', 'English', 'Life curriculum'],
+      subjects_name_title: ['國文', '數學', '英文', '生活'],
+    },
+    {
+      id: 'Grade 3',
+      grade_title: '三年級',
+      index: ['0', '1', '2', '3', '4'],
+      subjects: [
+        '/images/home_chine.png',
+        '/images/home_math.png',
+        '/images/home_eng.png',
+        '/images/home_socia.png',
+        '/images/home_science.png',
+      ],
+      subjects_name: [
+        'Chinese',
+        'Math',
+        'English',
+        'Social Studies',
+        'Science',
+      ],
+      subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
+    },
+    {
+      id: 'Grade 4',
+      grade_title: '四年級',
+      index: ['0', '1', '2', '3', '4'],
+      subjects: [
+        '/images/home_chine.png',
+        '/images/home_math.png',
+        '/images/home_eng.png',
+        '/images/home_socia.png',
+        '/images/home_science.png',
+      ],
+      subjects_name: [
+        'Chinese',
+        'Math',
+        'English',
+        'Social Studies',
+        'Science',
+      ],
+      subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
+    },
+    {
+      id: 'Grade 5',
+      grade_title: '五年級',
+      index: ['0', '1', '2', '3', '4'],
+      subjects: [
+        '/images/home_chine.png',
+        '/images/home_math.png',
+        '/images/home_eng.png',
+        '/images/home_socia.png',
+        '/images/home_science.png',
+      ],
+      subjects_name: [
+        'Chinese',
+        'Math',
+        'English',
+        'Social Studies',
+        'Science',
+      ],
+      subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
+    },
+    {
+      id: 'Grade 6',
+      grade_title: '六年級',
+      index: ['0', '1', '2', '3', '4'],
+      subjects: [
+        '/images/home_chine.png',
+        '/images/home_math.png',
+        '/images/home_eng.png',
+        '/images/home_socia.png',
+        '/images/home_science.png',
+      ],
+      subjects_name: [
+        'Chinese',
+        'Math',
+        'English',
+        'Social Studies',
+        'Science',
+      ],
+      subjects_name_title: ['國文', '數學', '英文', '社會', '自然'],
+    },
+  ]
+
+  const [subMat, setSubMat] = useState([])
+  const [sub, setsub] = useState('')
+  const [chinsub, setchinsub] = useState('')
+  const [gra, setgra] = useState('')
+  let username = ''
+  const [isLoading, setLoading] = useState(true)
+  const [status, setStatus] = useState(0)
 
   useEffect(() => {
-    if(isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-        console.log(response.data);
-        username = response.data.user[0].username;
-        if(response.data.user[0].lang == "chinese") setStatus(1);
-        else setStatus(0);
-        setLoading(false);
-      })
+    if (isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          console.log(response.data)
+          username = response.data.user[0].username
+          if (response.data.user[0].lang == 'chinese') setStatus(1)
+          else setStatus(0)
+          setLoading(false)
+        },
+      )
     }
   }, [])
 
   function fetchSubMat(grade, subject) {
-    console.log(grade, subject);
-    setsub(subject);
-    setgra(grade);
-    Axios.post("https://voluntutorcloud-server.herokuapp.com/getSubMat", {
+    console.log(grade, subject)
+    setsub(subject)
+    setgra(grade)
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/getSubMat', {
       grade: grade,
-      subject: subject
+      subject: subject,
     }).then((response) => {
-      console.log(response);
-      setSubMat(response.data);
+      console.log(response)
+      setSubMat(response.data)
       setopen(true)
     })
   }
 
-  if (isLoading){
-    console.log("isLoading");
-    return(
-      <Loading/>
-    )
-  }else{
+  if (isLoading) {
+    console.log('isLoading')
+    return <Loading />
+  } else {
     if (status == 0) {
       return (
         <div className="outerwrapstudy">
@@ -296,23 +300,24 @@ let gradearr_ch = [
               aria-labelledby="customized-dialog-title"
               open={open}
             >
-              <div id="studydialog">{gra} {a[status]} / {sub} {b[status]}</div>
+              <div id="studydialog">
+                {gra} {a[status]} / {sub} {b[status]}
+              </div>
               <div id="warningdialogstudy">{d[status]}</div>
-              <div className = "wrapperlinks">
+              <div className="wrapperlinks">
                 {subMat.map((mat) => {
-                  console.log("mat");
-                  console.log(mat);
+                  console.log('mat')
+                  console.log(mat)
                   return (
-                    <div className='wordlinkwrapping'>
-                      <div className = "dotforstudy">• </div>
-                      <a id="links"
-                      href={mat.link}
-                      target="_blank">{mat.chapterDesc}</a>
+                    <div className="wordlinkwrapping">
+                      <div className="dotforstudy">• </div>
+                      <a id="links" href={mat.link} target="_blank">
+                        {mat.chapterDesc}
+                      </a>
                     </div>
                   )
                 })}
               </div>
-              
             </BootstrapDialog>
           </div>
           <div className="titlestudytotal">{c[status]}</div>
@@ -329,15 +334,16 @@ let gradearr_ch = [
                             className="studysubject"
                             src={e.subjects[i]}
                             onClick={() => {
-                              
-                              let grade = e.id.substring(e.id.length - 1);
+                              let grade = e.id.substring(e.id.length - 1)
                               setgra(grade)
-                              setsub(e.subjects_name[i]);
-                              console.log(grade, e.subjects_name[i]);
-                              fetchSubMat(grade, e.subjects_name[i]);
+                              setsub(e.subjects_name[i])
+                              console.log(grade, e.subjects_name[i])
+                              fetchSubMat(grade, e.subjects_name[i])
                             }}
                           ></img>
-                          <div className="subjectwords">{e.subjects_name[i]}</div>
+                          <div className="subjectwords">
+                            {e.subjects_name[i]}
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -348,7 +354,7 @@ let gradearr_ch = [
           </div>
         </div>
       )
-    }else{
+    } else {
       return (
         <div className="outerwrapstudy">
           <div id="dialog_reg_wrap">
@@ -358,23 +364,24 @@ let gradearr_ch = [
               aria-labelledby="customized-dialog-title"
               open={open}
             >
-              <div id="studydialog">{gra} {a[status]} / {chinsub} {b[status]}</div>
+              <div id="studydialog">
+                {gra} {a[status]} / {chinsub} {b[status]}
+              </div>
               <div id="warningdialogstudy">{d[status]}</div>
-              <div className = "wrapperlinks">
+              <div className="wrapperlinks">
                 {subMat.map((mat) => {
-                  console.log("mat");
-                  console.log(mat);
+                  console.log('mat')
+                  console.log(mat)
                   return (
-                    <div className='wordlinkwrapping'>
-                      <div className = "dotforstudy">• </div>
-                      <a id="links"
-                      href={mat.link}
-                      target="_blank">{mat.chapterDesc}</a>
+                    <div className="wordlinkwrapping">
+                      <div className="dotforstudy">• </div>
+                      <a id="links" href={mat.link} target="_blank">
+                        {mat.chapterDesc}
+                      </a>
                     </div>
                   )
                 })}
               </div>
-              
             </BootstrapDialog>
           </div>
           <div className="titlestudytotal">{c[status]}</div>
@@ -391,16 +398,18 @@ let gradearr_ch = [
                             className="studysubject"
                             src={e.subjects[i]}
                             onClick={() => {
-                              let g = e.grade_title.substring(0,1);
+                              let g = e.grade_title.substring(0, 1)
                               setgra(g)
-                              setchinsub(e.subjects_name_title[i]);
+                              setchinsub(e.subjects_name_title[i])
                               console.log(chinsub)
-                              let grade = e.id.substring(e.id.length - 1);
-                              console.log(grade, e.subjects_name[i]);
-                              fetchSubMat(grade, e.subjects_name[i]);
+                              let grade = e.id.substring(e.id.length - 1)
+                              console.log(grade, e.subjects_name[i])
+                              fetchSubMat(grade, e.subjects_name[i])
                             }}
                           ></img>
-                          <div className="subjectwords">{e.subjects_name_title[i]}</div>
+                          <div className="subjectwords">
+                            {e.subjects_name_title[i]}
+                          </div>
                         </div>
                       ))}
                     </div>
