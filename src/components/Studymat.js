@@ -153,16 +153,14 @@ export default function Studymat() {
             console.log(response.data)
             submat = response.data;
             console.log(submat);
-            for(let i = 0; i < response.data.length; i++) {
-              submat[i] = response.data[i];
-              console.log(response.data[i]);
+            for(let i = 1; i < submat.length; i++) {
               console.log(submat[i]);
               // subject
-              submat[i].subject = subtrans[response.data[i].subject]
+              submat[i].subject = subtrans[submat[i].subject]
               // grade
-              submat[i].grade = gratrans[response.data[i].grade]
+              submat[i].grade = gratrans[submat[i].grade]
               // school
-              const schoollist = response.data[i].school.split('|');
+              const schoollist = submat[i].school.split('|');
               submat[i].school = schoollist;
               console.log(submat)
               setstudyarray(submat);
