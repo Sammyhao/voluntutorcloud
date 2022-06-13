@@ -157,18 +157,18 @@ function Grid_sub(props) {
   const updateFavList = (program) => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
       console.log(response)
+      setFavOpen(true)
       if (response.data.isLoggedIn) {
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavList', {
+        return Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavList', {
           username: username,
           program: program,
           isBooked: false,
-        }).then((response) => {
-          console.log(response)
         })
-        setFavOpen(true)
       } else {
         console.log('user not logged in')
       }
+    }).then((response) => {
+      console.log(response)
     })
   }
   const [status, setStatus] = useState(0);
