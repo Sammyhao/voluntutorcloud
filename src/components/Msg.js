@@ -61,6 +61,8 @@ function Msg() {
       setLastestMsg('')
     }
     console.log(teacherusername, studentname)
+    setAllMsgRec(allMsgRec => [...allMsgRec, msgRec]);
+    setlatestmsglist(latestmsglist => [...latestmsglist, lastestMsg]);
     setUsernameConst(username)
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
@@ -134,8 +136,6 @@ function Msg() {
             console.log(msgStr)
             processMsg(msgStr, username, studentname)
             console.log(msgRec)
-            setAllMsgRec(allMsgRec => [...allMsgRec, msgRec]);
-            setlatestmsglist(latestmsglist => [...latestmsglist, lastestMsg]);
             if(i == response.data.length - 1) setLoading2(false);
           })
         }
