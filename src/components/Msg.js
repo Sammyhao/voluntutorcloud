@@ -26,11 +26,7 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
-  // new four lists
   const [num, setnum] = useState([]);
-  const [studentnamelist, setstudentnamelist] = useState([]);
-  const [latestmsglist, setlatestmsglist] = useState([]);
-  const [allMsgRec, setAllMsgRec] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -61,8 +57,6 @@ function Msg() {
       setLastestMsg('')
     }
     console.log(teacherusername, studentname)
-    setAllMsgRec(allMsgRec => [...allMsgRec, msgRec]);
-    setlatestmsglist(latestmsglist => [...latestmsglist, lastestMsg]);
     setUsernameConst(username)
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
@@ -110,8 +104,6 @@ function Msg() {
     setMsgForUpd(tempMsgForUpd)
   }
 
-  const [isLoading2, setLoading2] = useState(true);
-
   useEffect(() => {
     if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -124,26 +116,7 @@ function Msg() {
         setnum([]);
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
-          setstudentnamelist(studentnamelist => [...studentnamelist, response.data[i].studentname]);
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getMsg',
-            {
-              username: username,
-              studentname: studentname,
-            },
-          ).then((response) => {
-            if (response.data.length) msgStr = response.data[0].msg
-            console.log(msgStr)
-            processMsg(msgStr, username, studentname)
-            console.log(msgRec)
-            if(i == response.data.length - 1) setLoading2(false);
-          })
         }
-        setstudentnamelist(studentnamelist.slice(0, response.data.length));
-        setAllMsgRec(allMsgRec.slice(0, response.data.length));
-        setLastestMsg(lastestMsg.slice(0, response.data.length));
-
-
         setContactInfo(response.data)
         setChosenContact(response.data[0])
         if (response.data.length == 2) {
@@ -153,9 +126,21 @@ function Msg() {
         studentname = response.data[0].studentname
         console.log('username, studentname: ')
         console.log(username, studentname)
-        // if (!hasProcessMsg) {
-        // }
-        setLoading(false);
+        if (!hasProcessMsg) {
+          return Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getMsg',
+            {
+              username: username,
+              studentname: studentname,
+            },
+          )
+        }
+      }).then((response) => {
+        if (response.data.length) msgStr = response.data[0].msg
+        console.log(msgStr)
+        processMsg(msgStr, username, studentname)
+        console.log(msgRec)
+        setLoading(false)
       })
     }
   })
@@ -236,16 +221,13 @@ function Msg() {
     })
   }
 
-  if (isLoading && isLoading2) {
+  if (isLoading) {
     return <Loading />
   } else {
     console.log('msgRec')
     console.log(msgRec)
     console.log(usernameConst, studentname)
     console.log(num);
-    console.log(studentnamelist);
-    console.log(allMsgRec);
-    console.log(latestmsglist);
 
     return (
       <div>
