@@ -156,30 +156,24 @@ function Appointmentmeet() {
           setGoogleMeetLink(response.data.user[0].googlemeetlink)
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/findContact',
-            {
-              username: username,
-            },
-          ).then((response) => {
-            console.log('Student number: ')
-            console.log(response.data.length)
-            if (response.data.length == 2) {
-              setMultistudentname([response.data[1].studentname])
-              setstudentname(response.data[0].studentname)
-            }
-            for (let i = 0; i < response.data.length; i++) {
-              setstudentnamelist((studentnamelist) => [
-                ...studentnamelist,
-                response.data[i].studentname,
-              ])
-            }
-            setContactInfo(response.data)
-            setChosenContact(response.data[0])
-            setLoading(false)
-          })
-        },
-      )
+          return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
+        }).then((response) => {
+          console.log('Student number: ')
+          console.log(response.data.length)
+          if (response.data.length == 2) {
+            setMultistudentname([response.data[1].studentname])
+            setstudentname(response.data[0].studentname)
+          }
+          for (let i = 0; i < response.data.length; i++) {
+            setstudentnamelist((studentnamelist) => [
+              ...studentnamelist,
+              response.data[i].studentname,
+            ])
+          }
+          setContactInfo(response.data)
+          setChosenContact(response.data[0])
+          setLoading(false)
+        })
     }
   }, [])
 
