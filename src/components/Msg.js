@@ -10,7 +10,7 @@ import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
 
 function Msg() {
-  let num = [1]
+  // let num = [1]
   const [status, setStatus] = useState(0)
   let username = '',
     studentname = '',
@@ -26,6 +26,7 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
+  const [num, setnum] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -112,6 +113,10 @@ function Msg() {
           else setStatus(0)
           return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
       }).then((response) => {
+        setnum([]);
+        for(let i = 0; i < num.size(); i++) {
+          setnum(num => [...num, i]);
+        }
         setContactInfo(response.data)
         setChosenContact(response.data[0])
         if (response.data.length == 2) {
