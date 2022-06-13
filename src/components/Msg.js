@@ -120,9 +120,6 @@ function Msg() {
           return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
       }).then((response) => {
         setnum([]);
-        setstudentnamelist([])
-        setAllMsgRec([]);
-        setLastestMsg([]);
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
           setstudentnamelist(studentnamelist => [...studentnamelist, response.data[i].studentname]);
