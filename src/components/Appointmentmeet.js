@@ -157,23 +157,23 @@ function Appointmentmeet() {
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
           return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
-        }).then((response) => {
-          console.log('Student number: ')
-          console.log(response.data.length)
-          if (response.data.length == 2) {
-            setMultistudentname([response.data[1].studentname])
-            setstudentname(response.data[0].studentname)
-          }
-          for (let i = 0; i < response.data.length; i++) {
-            setstudentnamelist((studentnamelist) => [
-              ...studentnamelist,
-              response.data[i].studentname,
-            ])
-          }
-          setContactInfo(response.data)
-          setChosenContact(response.data[0])
-          setLoading(false)
-        })
+      }).then((response) => {
+        console.log('Student number: ')
+        console.log(response.data.length)
+        if (response.data.length == 2) {
+          setMultistudentname([response.data[1].studentname])
+          setstudentname(response.data[0].studentname)
+        }
+        for (let i = 0; i < response.data.length; i++) {
+          setstudentnamelist((studentnamelist) => [
+            ...studentnamelist,
+            response.data[i].studentname,
+          ])
+        }
+        setContactInfo(response.data)
+        setChosenContact(response.data[0])
+        setLoading(false)
+      })
     }
   }, [])
 
@@ -299,7 +299,7 @@ function Appointmentmeet() {
 
       console.log(totalhour)
 
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/updateRecord', {
+      return Axios.post('https://voluntutorcloud-server.herokuapp.com/updateRecord', {
         username: chosenContact.username,
         studentname: selectedstudentname,
         studentmail: emailaddress,
@@ -310,9 +310,9 @@ function Appointmentmeet() {
         task: task,
         notes: notes,
         hoursleft: totalhour - classduration,
-      }).then((response) => {
-        console.log(response)
       })
+    }).then((response) => {
+      console.log(response)
     })
 
     emailjs

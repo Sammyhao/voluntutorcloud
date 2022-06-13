@@ -93,23 +93,20 @@ function Myfav() {
         username = response.data.user[0].username;
         if (response.data.user[0].lang == 'chinese') setStatus(1)
         else setStatus(0)
-        
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getFavList', {
-          username: username,
-        }).then((response) => {
-          console.log(response.data);
-          setFavProgramListLen(response.data.length);
-          if (response.data.length) {
-            for (let i = 0; i < response.data.length; i++) {
-              if (response.data[i].isBooked == false)
-                setFavProgramList((favProgramList) => [
-                  ...favProgramList,
-                  response.data[i],
-                ])
-            }
+        return Axios.post('https://voluntutorcloud-server.herokuapp.com/getFavList', {username: username})
+      }).then((response) => {
+        console.log(response.data);
+        setFavProgramListLen(response.data.length);
+        if (response.data.length) {
+          for (let i = 0; i < response.data.length; i++) {
+            if (response.data[i].isBooked == false)
+              setFavProgramList((favProgramList) => [
+                ...favProgramList,
+                response.data[i],
+              ])
           }
-          setLoading(false);
-        })
+        }
+        setLoading(false);
       })
     }
   }, [])
@@ -121,23 +118,21 @@ function Myfav() {
       (response) => {
         console.log(response)
         if (response.data.isLoggedIn) {
-          Axios.post(
+          setcheckopen(true)
+          return Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/updateFavListinMyFav',
             {
               username: program.username,
               program: program,
               isBooked: true,
             },
-          ).then((response) => {
-            console.log(response)
-          })
-
-          setcheckopen(true)
+          )
         } else {
           console.log('user not logged in')
         }
-      },
-    )
+    }).then((response) => {
+      console.log(response)
+    })
   }
 
   const showFavProgramList = () => {
