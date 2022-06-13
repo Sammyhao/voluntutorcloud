@@ -26,7 +26,11 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
+  // new four lists
   const [num, setnum] = useState([]);
+  const [studentnamelist, setstudentnamelist] = useState([]);
+  const [latestmsglist, setlatestmsglist] = useState([]);
+  const [allMsgRec, setAllMsgRec] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -116,6 +120,7 @@ function Msg() {
         setnum([]);
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
+          setstudentnamelist(studentnamelist => [...studentnamelist, response.data[i].studentname]);
         }
         setContactInfo(response.data)
         setChosenContact(response.data[0])
@@ -227,7 +232,7 @@ function Msg() {
     console.log('msgRec')
     console.log(msgRec)
     console.log(usernameConst, studentname)
-    console.log(num);
+    console.log(num, studentnamelist);
 
     return (
       <div>
