@@ -114,7 +114,7 @@ function Msg() {
           return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
       }).then((response) => {
         setnum([]);
-        for(let i = 0; i < num.size(); i++) {
+        for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
         }
         setContactInfo(response.data)
