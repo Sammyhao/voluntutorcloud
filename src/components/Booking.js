@@ -381,61 +381,64 @@ export default function Booking() {
         setName(username)
         if (response.data.user[0].lang == 'chinese') setStatus(1)
         else setStatus(0)
-        return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
-    }).then((response) => {
-      setContactInfo(response.data)
-      for (let i = 0; i < response.data.length; i++) {
-        setstudentnamelist((studentnamelist) => [
-          ...studentnamelist,
-          response.data[i].studentname,
-        ])
-      }
-      setstudentname(response.data[0].studentname);
-      setChosenStuname(studentname)
-      setChosenEmail(response.data[0].studentmail)
-      console.log(response.data.length)
-      if (response.data.length == 2) {
-        setMultistudentname([response.data[1].studentname])
-      }
-      console.log(username, studentname)
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+          username: username,
+        }).then((response) => {
+          setContactInfo(response.data)
+          for (let i = 0; i < response.data.length; i++) {
+            setstudentnamelist((studentnamelist) => [
+              ...studentnamelist,
+              response.data[i].studentname,
+            ])
+          }
+          setstudentname(response.data[0].studentname);
+          setChosenStuname(studentname)
+          setChosenEmail(response.data[0].studentmail)
+          console.log(response.data.length)
+          if (response.data.length == 2) {
+            setMultistudentname([response.data[1].studentname])
+          }
+          console.log(username, studentname)
 
-      for (let i = 0; i < response.data.length; i++) {
-        studentname = response.data[i].studentname
-        console.log(username, studentname);
-        Axios.post(
-          'https://voluntutorcloud-server.herokuapp.com/getBooking',
-          {
-            username: username,
-            studentname: studentname,
-            status: 'confirmed',
-          },
-        ).then((response) => {
-          console.log(response)
-          setBookingInfo((bookingInfo) => [
-            ...bookingInfo,
-            checkBookingInfoValidity(response.data),
-          ])
-          // setBookingInfo(response.data)
-        })
-        Axios.post(
-          'https://voluntutorcloud-server.herokuapp.com/getBooking',
-          {
-            username: username,
-            studentname: studentname,
-            status: 'pending',
-          },
-        ).then((response) => {
-          console.log(response)
-          setPendingBookingInfo((pendingBookingInfo) => [
-            ...pendingBookingInfo,
-            checkBookingInfoValidity(response.data),
-          ])
-          // setPendingBookingInfo(response.data)
-        })
-      }
+          for (let i = 0; i < response.data.length; i++) {
+            studentname = response.data[i].studentname
+            console.log(username, studentname);
+            Axios.post(
+              'https://voluntutorcloud-server.herokuapp.com/getBooking',
+              {
+                username: username,
+                studentname: studentname,
+                status: 'confirmed',
+              },
+            ).then((response) => {
+              console.log(response)
+              setBookingInfo((bookingInfo) => [
+                ...bookingInfo,
+                checkBookingInfoValidity(response.data),
+              ])
+              // setBookingInfo(response.data)
+            })
+            Axios.post(
+              'https://voluntutorcloud-server.herokuapp.com/getBooking',
+              {
+                username: username,
+                studentname: studentname,
+                status: 'pending',
+              },
+            ).then((response) => {
+              console.log(response)
+              setPendingBookingInfo((pendingBookingInfo) => [
+                ...pendingBookingInfo,
+                checkBookingInfoValidity(response.data),
+              ])
+              // setPendingBookingInfo(response.data)
+            })
+          }
 
-      setLoading(false)
-    })
+          setLoading(false)
+        })
+      },
+    )
   }, [])
 
   // 這裡true的條件改成是否有學生喔
