@@ -108,6 +108,8 @@ function Msg() {
     setMsgForUpd(tempMsgForUpd)
   }
 
+  const [isLoading2, setLoading2] = useState(true);
+
   useEffect(() => {
     if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -118,9 +120,27 @@ function Msg() {
           return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
       }).then((response) => {
         setnum([]);
+        setstudentnamelist([]);
+        setAllMsgRec([]);
+        setLastestMsg([]);
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
           setstudentnamelist(studentnamelist => [...studentnamelist, response.data[i].studentname]);
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getMsg',
+            {
+              username: username,
+              studentname: studentname,
+            },
+          ).then((response) => {
+            if (response.data.length) msgStr = response.data[0].msg
+            console.log(msgStr)
+            processMsg(msgStr, username, studentname)
+            console.log(msgRec)
+            setAllMsgRec(allMsgRec => [...allMsgRec, msgRec]);
+            setlatestmsglist(latestmsglist => [...latestmsglist, lastestMsg]);
+            if(i == response.data.length - 1) setLoading2(false);
+          })
         }
         setContactInfo(response.data)
         setChosenContact(response.data[0])
@@ -131,21 +151,9 @@ function Msg() {
         studentname = response.data[0].studentname
         console.log('username, studentname: ')
         console.log(username, studentname)
-        if (!hasProcessMsg) {
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getMsg',
-            {
-              username: username,
-              studentname: studentname,
-            },
-          )
-        }
-      }).then((response) => {
-        if (response.data.length) msgStr = response.data[0].msg
-        console.log(msgStr)
-        processMsg(msgStr, username, studentname)
-        console.log(msgRec)
-        setLoading(false)
+        // if (!hasProcessMsg) {
+        // }
+        setLoading(false);
       })
     }
   })
@@ -226,7 +234,7 @@ function Msg() {
     })
   }
 
-  if (isLoading) {
+  if (isLoading && isLoading2) {
     return <Loading />
   } else {
     console.log('msgRec')
