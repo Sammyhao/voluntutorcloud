@@ -227,6 +227,7 @@ function Msg() {
     console.log('msgRec')
     console.log(msgRec)
     console.log(usernameConst, studentname)
+    console.log(num);
 
     return (
       <div>
