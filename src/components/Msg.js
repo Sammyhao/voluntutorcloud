@@ -135,7 +135,6 @@ function Msg() {
             }
           })
         }
-        setMsgStrList(msgStrList.slice(0, response.data.length))
         setLoading(false)
 
         // setContactInfo(response.data)
@@ -158,7 +157,7 @@ function Msg() {
         // }
       })
     }
-  })
+  }, [msgStrList])
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
 
