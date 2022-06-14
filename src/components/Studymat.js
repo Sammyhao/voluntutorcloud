@@ -123,30 +123,29 @@ export default function Studymat() {
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
-          Axios.post(
+          return Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getallSubMat',
             {},
-          ).then((response) => {
-            console.log(response.data)
-            submat = response.data
+          )
+        }).then((response) => {
+          console.log(response.data)
+          submat = response.data
+          console.log(submat)
+          for (let i = 1; i < submat.length; i++) {
+            console.log(submat[i])
+            // subject
+            submat[i].subject = subtrans[submat[i].subject]
+            // grade
+            submat[i].grade = gratrans[submat[i].grade]
+            // school
+            const schoollist = submat[i].school.split('|')
+            submat[i].school = schoollist
             console.log(submat)
-            for (let i = 1; i < submat.length; i++) {
-              console.log(submat[i])
-              // subject
-              submat[i].subject = subtrans[submat[i].subject]
-              // grade
-              submat[i].grade = gratrans[submat[i].grade]
-              // school
-              const schoollist = submat[i].school.split('|')
-              submat[i].school = schoollist
-              console.log(submat)
-              setstudyarray(submat)
-            }
-            setopen(true)
-          })
+            setstudyarray(submat)
+          }
+          setopen(true)
           setLoading(false)
-        },
-      )
+        })
     }
     setfiltered(studyarray)
   }, [studyarray])

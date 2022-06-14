@@ -97,26 +97,25 @@ function S_Msg() {
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0);
           studentname = response.data.user[0].lastname + response.data.user[0].firstname;
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
+          return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
             studentname: studentname,
-          }).then((response) => {
-            console.log(response.data);
-            teacherusername = response.data[0].username;
-            console.log("username, studentname: ");
-            console.log(teacherusername, studentname);
-            if(!hasProcessMsg) {
-              Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
-                username: teacherusername,
-                studentname: studentname
-              }).then((response) => {
-                if(response.data.length) msgStr = response.data[0].msg;
-                processMsg(msgStr, teacherusername, studentname);
-                setLoading(false);
-              })
-            }
           })
-        },
-      )
+        }).then((response) => {
+          console.log(response.data);
+          teacherusername = response.data[0].username;
+          console.log("username, studentname: ");
+          console.log(teacherusername, studentname);
+          if(!hasProcessMsg) {
+            return Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
+              username: teacherusername,
+              studentname: studentname
+            })
+          }
+        }).then((response) => {
+          if(response.data.length) msgStr = response.data[0].msg;
+          processMsg(msgStr, teacherusername, studentname);
+          setLoading(false);
+        })
     }
   })
 

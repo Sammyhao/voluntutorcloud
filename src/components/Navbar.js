@@ -108,19 +108,19 @@ function Navbar(props) {
               if (response.data.isLoggedIn)
                 username = response.data.user[0].username
               console.log(username)
-              Axios.post(
+              return Axios.post(
                 'https://voluntutorcloud-server.herokuapp.com/getNotif',
                 {
                   username: username,
                   isnew: true,
                 },
-              ).then((response) => {
-                console.log(response.data)
-                setNotif_data(response.data)
-                setLoading(false)
-              })
+              )
             },
-          )
+          ).then((response) => {
+            console.log(response.data)
+            setNotif_data(response.data)
+            setLoading(false)
+          })
       }
     }
   }, [])

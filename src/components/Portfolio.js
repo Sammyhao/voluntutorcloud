@@ -68,25 +68,25 @@ export default function Portfolio(props) {
           if(response.data.user[0].lang == "chinese") setStatus(1);
           else setStatus(0);
         }
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+        return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
           username: username,
-        }).then((response) => {
-          console.log(response.data)
-          setContactInfo(response.data);
-          if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
-          for (let i = 0; i < response.data.length; i++) {
-            Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-              name: response.data[i].studentname,
-            }).then((response) => {
-              if (response.data.length) {
-                setStudentProfolio((studentProfolio) => [
-                  ...studentProfolio,
-                  response.data,
-                ])
-              }
-            })
-          }
         })
+      }).then((response) => {
+        console.log(response.data)
+        setContactInfo(response.data);
+        if(response.data.length == 2) { setMultistudentname([response.data[1].studentname]) }
+        for (let i = 0; i < response.data.length; i++) {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+            name: response.data[i].studentname,
+          }).then((response) => {
+            if (response.data.length) {
+              setStudentProfolio((studentProfolio) => [
+                ...studentProfolio,
+                response.data,
+              ])
+            }
+          })
+        }
       })
     }
 

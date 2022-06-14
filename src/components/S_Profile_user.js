@@ -256,16 +256,16 @@ function S_Profile_user(props) {
           setabout(response.data.user[0].about)
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+          return Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
             name: response.data.user[0].lastname + response.data.user[0].firstname,
-          }).then((response) => {
-            setStudentEmail(response.data[0].studentmail);
-            setParentcontactnum(response.data[0].parentcontactnum);
-            setParentemail(response.data[0].parentmail);
-            setRequiredsubject(response.data[0].requiredsub);
           })
-        },
-      )}
+        }).then((response) => {
+          setStudentEmail(response.data[0].studentmail);
+          setParentcontactnum(response.data[0].parentcontactnum);
+          setParentemail(response.data[0].parentmail);
+          setRequiredsubject(response.data[0].requiredsub);
+        })
+      }
   }, [])
 
   const changeLang = (lang) => {

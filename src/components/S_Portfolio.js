@@ -56,33 +56,32 @@ export default function S_Portfolio() {
           console.log("studentname")
           console.log(studentname)
           // delete point
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
+          return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
             studentname: studentname
-          }).then((response) => {
-            teacherusername = response.data[0].username;
-            console.log("teacherusername")
-            console.log(teacherusername)
-            Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
-              username: teacherusername,
-            }).then((response) => {
-              setname(response.data[0].firstname + ' ' + response.data[0].lastname)
-              setphone(response.data[0].phone)
-              setemail(response.data[0].email)
-              setgender(response.data[0].gender)
-              setbirthday(response.data[0].birthday)
-              setgrade(response.data[0].grade)
-              setschool(response.data[0].schoolname)
-              if(response.data[0].bio != '') setbio(response.data[0].bio) 
-              else setbio(bio)
-              if(response.data[0].about != '') 
-              setabout(response.data[0].about) 
-              else setabout(about)
-              
-              setLoading(false)
-            })
           })
-        },
-      )
+        }).then((response) => {
+          teacherusername = response.data[0].username;
+          console.log("teacherusername")
+          console.log(teacherusername)
+          return Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+            username: teacherusername,
+          })
+        }).then((response) => {
+          setname(response.data[0].firstname + ' ' + response.data[0].lastname)
+          setphone(response.data[0].phone)
+          setemail(response.data[0].email)
+          setgender(response.data[0].gender)
+          setbirthday(response.data[0].birthday)
+          setgrade(response.data[0].grade)
+          setschool(response.data[0].schoolname)
+          if(response.data[0].bio != '') setbio(response.data[0].bio) 
+          else setbio(bio)
+          if(response.data[0].about != '') 
+          setabout(response.data[0].about) 
+          else setabout(about)
+          
+          setLoading(false)
+        })
     }
   }, [])
 

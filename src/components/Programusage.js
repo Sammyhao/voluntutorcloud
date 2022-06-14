@@ -57,29 +57,28 @@ function Programusage() {
         if (response.data.user[0].lang == 'chinese') setStatus(1)
         else setStatus(0)
 
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+        return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
           username: username,
-        }).then((response) => {
-          for (let i = 0; i < response.data.length; i++) {
-            const student = response.data[i]
-            setStpair((stpair) => [...stpair, student])
-            console.log(student)
-            Axios.post(
-              'https://voluntutorcloud-server.herokuapp.com/getRecord',
-              {
-                username: student.username,
-                studentname: student.studentname,
-                studentmail: student.studentmail,
-              },
-            ).then((response) => {
-              if (response.data.length)
-                setContactInfo((contactInfo) => [...contactInfo, response.data])
-            })
-          }
-          setLoading(false)
         })
-      },
-    )
+      }).then((response) => {
+        for (let i = 0; i < response.data.length; i++) {
+          const student = response.data[i]
+          setStpair((stpair) => [...stpair, student])
+          console.log(student)
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getRecord',
+            {
+              username: student.username,
+              studentname: student.studentname,
+              studentmail: student.studentmail,
+            },
+          ).then((response) => {
+            if (response.data.length)
+              setContactInfo((contactInfo) => [...contactInfo, response.data])
+          })
+        }
+        setLoading(false)
+      })
   }, [])
 
   const contacttemp = contactInfo.map((item) => item).reverse()

@@ -152,57 +152,56 @@ export default function S_Booking() {
           studentname =
             response.data.user[0].lastname + response.data.user[0].firstname
           setStudentnameFU(studentname)
-          Axios.post(
+          return Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getTeacher',
             {
               studentname: studentname,
             },
+          )
+        }).then((response) => {
+          console.log('response from findTeacher:')
+          console.log(response)
+          teacherusername = response.data[0].username
+          setTeacherusernameFU(teacherusername)
+          setTeachername(teacherusername)
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getBooking',
+            {
+              studentname: studentname,
+              username: teacherusername,
+              status: 'pending',
+            },
           ).then((response) => {
-            console.log('response from findTeacher:')
             console.log(response)
-            teacherusername = response.data[0].username
-            setTeacherusernameFU(teacherusername)
-            setTeachername(teacherusername)
-            Axios.post(
-              'https://voluntutorcloud-server.herokuapp.com/getBooking',
-              {
-                studentname: studentname,
-                username: teacherusername,
-                status: 'pending',
-              },
-            ).then((response) => {
-              console.log(response)
-              setPendingBookingInfo(response.data)
-              setPendingBookingInfoLen(response.data.length)
-            })
-            Axios.post(
-              'https://voluntutorcloud-server.herokuapp.com/getBooking',
-              {
-                studentname: studentname,
-                username: teacherusername,
-                status: 'confirmed',
-              },
-            ).then((response) => {
-              console.log(response)
-              setBookingInfo(response.data)
-              setBookingInfoLen(response.data.length)
-            })
-            Axios.post(
-              'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
-              {
-                username: teacherusername, // bug
-              },
-            ).then((response) => {
-              console.log(response)
-              setGoogleMeetLink(response.data[0].googlemeetlink)
-              setTeacherRealname(
-                response.data[0].firstname + ' ' + response.data[0].lastname,
-              )
-            })
-            setLoading(false)
+            setPendingBookingInfo(response.data)
+            setPendingBookingInfoLen(response.data.length)
           })
-        },
-      )
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getBooking',
+            {
+              studentname: studentname,
+              username: teacherusername,
+              status: 'confirmed',
+            },
+          ).then((response) => {
+            console.log(response)
+            setBookingInfo(response.data)
+            setBookingInfoLen(response.data.length)
+          })
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
+            {
+              username: teacherusername, // bug
+            },
+          ).then((response) => {
+            console.log(response)
+            setGoogleMeetLink(response.data[0].googlemeetlink)
+            setTeacherRealname(
+              response.data[0].firstname + ' ' + response.data[0].lastname,
+            )
+          })
+          setLoading(false)
+        })
     }
   })
   console.log('booking info length:::')

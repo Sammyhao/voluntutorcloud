@@ -60,32 +60,30 @@ function Programusage() {
           studentname =
             response.data.user[0].lastname + response.data.user[0].firstname
 
-          Axios.post(
+          return Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/findContactbyName',
             {
               studentname: studentname,
             },
-          ).then((response) => {
-            if (response.data.length == 0) setLoading(false)
-            console.log(response.data[0])
-            let student = response.data[0]
-            setStpair((stpair) => [...stpair, student])
+          )
+        }).then((response) => {
+          if (response.data.length == 0) setLoading(false)
+          console.log(response.data[0])
+          let student = response.data[0]
+          setStpair((stpair) => [...stpair, student])
 
-            Axios.post(
-              'https://voluntutorcloud-server.herokuapp.com/getRecord',
-              {
-                username: student.username,
-                studentname: student.studentname,
-                studentmail: student.studentmail,
-              },
-            ).then((response) => {
-              if (response.data.length)
-                setContactInfo((contactInfo) => [...contactInfo, response.data])
-              setLoading(false)
-            })
-          })
-        },
-      )
+          return Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getRecord',
+            {
+              username: student.username,
+              studentname: student.studentname,
+              studentmail: student.studentmail,
+            },
+          )
+        }).then((response) => {
+          if (response.data.length) setContactInfo((contactInfo) => [...contactInfo, response.data])
+          setLoading(false)
+        })
     }
   }, [])
   const contacttemp = contactInfo.map((item) => item).reverse()
