@@ -134,6 +134,7 @@ function Msg() {
               // processMsg(response.data[0].msg, username, response.data[i].studentname)
             }
           })
+          setMsgStrList(msgStrList.slice(0, response.data.length));
         }
         setLoading(false)
 
