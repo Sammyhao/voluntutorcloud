@@ -263,6 +263,7 @@ function Msg() {
     console.log(num);
     console.log(msgStrList);
     console.log(allMsgRec);
+    console.log(latestMsgList);
 
     return (
       <div>
