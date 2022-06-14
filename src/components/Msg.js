@@ -134,7 +134,20 @@ function Msg() {
             if(response.data.length) {
               console.log(response.data[0].msg, " ", username, " ", studentname);
               setMsgStrList(msgStrList => [...msgStrList, response.data[0].msg]);
-              setAllMsgRec(allMsgRec => [...allMsgRec, processMsg(response.data[0].msg, username, response.data[i].studentname)]);
+              let msgStr = response.data[0].msg;
+              const msgInfo = msgStr.split('ψ')
+              console.log(msgInfo);
+              let tmpMsgRec = [];
+              for(let i = 0; i < msgInfo.length; i++) {
+                const category = msgInfo[i].split('|')
+                let t = ''
+                t = category[0] == 'T' ? 'user' : 'recipient'
+                if (category[1] == '') continue
+                let msg = { type: t, text: category[1] }
+                console.log(msg)
+                tmpMsgRec.push(msg);
+              }
+              setAllMsgRec(allMsgRec => [...allMsgRec, tmpMsgRec])
             }
           })
         }
@@ -160,7 +173,7 @@ function Msg() {
         // }
       })
     }
-  }, [msgStrList])
+  }, [msgStrList, allMsgRec])
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
 
