@@ -123,6 +123,7 @@ function Msg() {
         setnum([]);
         setMsgStrList([]);
         setAllMsgRec([]);
+        setLatestMsgList([]);
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
           let studentname = response.data[i].studentname;
