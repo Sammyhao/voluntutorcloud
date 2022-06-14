@@ -26,7 +26,9 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
+
   const [num, setnum] = useState([]);
+  const [msgStrList, setMsgStrList] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -113,34 +115,46 @@ function Msg() {
           else setStatus(0)
           return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
       }).then((response) => {
+        console.log(response.data)
         setnum([]);
+        setMsgStrList([]);
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
-        }
-        setContactInfo(response.data)
-        setChosenContact(response.data[0])
-        if (response.data.length == 2) {
-          setMultistudentname([response.data[1].studentname])
-        }
-        console.log(response.data)
-        studentname = response.data[0].studentname
-        console.log('username, studentname: ')
-        console.log(username, studentname)
-        if (!hasProcessMsg) {
-          return Axios.post(
+          let studentname = response.data[i].studentname;
+          Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getMsg',
             {
               username: username,
-              studentname: studentname,
+              studentname: response.data[i].studentname,
             },
-          )
+          ).then((response) => {
+            if(response.data.length) {
+              console.log(response.data[0].msg, " ", username, " ", studentname);
+              setMsgStrList(msgStrList => [...msgStrList, response.data[0].msg]);
+              // processMsg(response.data[0].msg, username, response.data[i].studentname)
+            }
+          })
         }
-      }).then((response) => {
-        if (response.data.length) msgStr = response.data[0].msg
-        console.log(msgStr)
-        processMsg(msgStr, username, studentname)
-        console.log(msgRec)
         setLoading(false)
+
+        // setContactInfo(response.data)
+        // setChosenContact(response.data[0])
+        // if (response.data.length == 2) {
+        //   setMultistudentname([response.data[1].studentname])
+        // }
+        
+        // studentname = response.data[0].studentname
+        // console.log('username, studentname: ')
+        // console.log(username, studentname)
+        // if (!hasProcessMsg) {
+        //   return Axios.post(
+        //     'https://voluntutorcloud-server.herokuapp.com/getMsg',
+        //     {
+        //       username: username,
+        //       studentname: studentname,
+        //     },
+        //   )
+        // }
       })
     }
   })
