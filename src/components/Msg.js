@@ -120,6 +120,7 @@ function Msg() {
         console.log(response.data)
         setnum([]);
         setMsgStrList([]);
+        setAllMsgRec([]);
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
           let studentname = response.data[i].studentname;
@@ -245,6 +246,7 @@ function Msg() {
     // console.log(usernameConst, studentname)
     console.log(num);
     console.log(msgStrList);
+    console.log(allMsgRec);
 
     return (
       <div>
