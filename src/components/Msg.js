@@ -267,6 +267,7 @@ function Msg() {
     console.log(allMsgRec);
     console.log(latestMsgList);
 
+    let selectedid = 0;
     return (
       <div>
         <div className="out">
@@ -280,14 +281,16 @@ function Msg() {
             <div className="peoplelist">
               {num.map((e) => {
                 return (
-                  <div className="shadowing">
+                  <div className="shadowing" onClick={() => {
+                    selectedid = e;
+                  }}>
                     <div className="outerbox">
                       <div className="imagemsg">
                         <FaUser className="msg_icon" />
                       </div>
                       <div className="infoboxmsg">
-                        <div className="namemsg">{studentnameConst}</div>
-                        <div className="latestmsg">{lastestMsg}</div>
+                        <div className="namemsg">{studentnamelist[e]}</div>
+                        <div className="latestmsg">{latestMsgList[e]}</div>
                       </div>
                       {/* <div className="align">
                       <div className="numbermsg">1</div>
@@ -300,9 +303,9 @@ function Msg() {
             {multistyle()}
           </div>
           <div className="chatcontent">
-            <div className="chatname">{studentnameConst}</div>
+            <div className="chatname">{studentnamelist[selectedid]}</div>
             <div className="chat">
-              {msgRec.map((e) => {
+              {allMsgRec[selectedid].map((e) => {
                 return <Msg_user type={e.type} text={e.text}></Msg_user>
               })}
             </div>
