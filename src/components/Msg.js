@@ -29,6 +29,7 @@ function Msg() {
 
   const [num, setnum] = useState([]);
   const [msgStrList, setMsgStrList] = useState([]);
+  const [allMsgRec, setAllMsgRec] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -63,6 +64,7 @@ function Msg() {
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
     setHasProcessMsg(true)
+    return msgRec;
   }
 
   const updateMsg = () => {
@@ -131,7 +133,7 @@ function Msg() {
             if(response.data.length) {
               console.log(response.data[0].msg, " ", username, " ", studentname);
               setMsgStrList(msgStrList => [...msgStrList, response.data[0].msg]);
-              // processMsg(response.data[0].msg, username, response.data[i].studentname)
+              setAllMsgRec(allMsgRec => [...allMsgRec, processMsg(response.data[0].msg, username, response.data[i].studentname)]);
             }
           })
         }
