@@ -28,6 +28,7 @@ function Msg() {
   const [chosenContact, setChosenContact] = useState({})
 
   const [num, setnum] = useState([]);
+  const [studentnamelist, setstudentnamelist] = useState([]);
   const [msgStrList, setMsgStrList] = useState([]);
   const [allMsgRec, setAllMsgRec] = useState([]);
   const [latestMsgList, setLatestMsgList] = useState([]);
@@ -125,6 +126,7 @@ function Msg() {
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
           let studentname = response.data[i].studentname;
+          setstudentnamelist(studentnamelist => [...studentnamelist, studentname]);
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getMsg',
             {
@@ -150,7 +152,6 @@ function Msg() {
                 tmpMsgRec.push(msg);
               }
               setAllMsgRec(allMsgRec => [...allMsgRec, tmpMsgRec])
-              
             }
           })
         }
@@ -176,7 +177,7 @@ function Msg() {
         // }
       })
     }
-  }, [msgStrList, allMsgRec])
+  }, [msgStrList, allMsgRec, latestMsgList])
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
 
@@ -261,6 +262,7 @@ function Msg() {
     // console.log(msgRec)
     // console.log(usernameConst, studentname)
     console.log(num);
+    console.log(studentnamelist);
     console.log(msgStrList);
     console.log(allMsgRec);
     console.log(latestMsgList);
