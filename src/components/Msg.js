@@ -255,7 +255,7 @@ function Msg() {
     })
   }
 
-  if (isLoading) {
+  if (allMsgRec.length == 0) {
     return <Loading />
   } else {
     // console.log('msgRec')
