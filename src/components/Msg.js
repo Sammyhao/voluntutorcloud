@@ -150,7 +150,7 @@ function Msg() {
                 if (category[1] == '') continue
                 let msg = { type: t, text: category[1] }
                 console.log(msg)
-                tmpMsgRec.push(msg);
+                tmpMsgRec.unshift(msg);
               }
               setAllMsgRec(allMsgRec => [...allMsgRec, tmpMsgRec])
             }
@@ -284,6 +284,7 @@ function Msg() {
                 return (
                   <div className="shadowing" onClick={() => {
                     selectedid = e;
+                    console.log(selectedid);
                   }}>
                     <div className="outerbox">
                       <div className="imagemsg">
