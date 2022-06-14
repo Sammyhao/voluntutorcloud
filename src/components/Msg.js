@@ -30,6 +30,7 @@ function Msg() {
   const [num, setnum] = useState([]);
   const [msgStrList, setMsgStrList] = useState([]);
   const [allMsgRec, setAllMsgRec] = useState([]);
+  const [latestMsgList, setLatestMsgList] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -140,6 +141,7 @@ function Msg() {
               let tmpMsgRec = [];
               for(let i = 0; i < msgInfo.length; i++) {
                 const category = msgInfo[i].split('|')
+                if(i == 0) setLatestMsgList(latestMsgList => [...latestMsgList, category[1]]);
                 let t = ''
                 t = category[0] == 'T' ? 'user' : 'recipient'
                 if (category[1] == '') continue
@@ -148,6 +150,7 @@ function Msg() {
                 tmpMsgRec.push(msg);
               }
               setAllMsgRec(allMsgRec => [...allMsgRec, tmpMsgRec])
+              
             }
           })
         }
