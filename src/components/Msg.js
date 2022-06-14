@@ -238,10 +238,11 @@ function Msg() {
   if (isLoading) {
     return <Loading />
   } else {
-    console.log('msgRec')
-    console.log(msgRec)
-    console.log(usernameConst, studentname)
+    // console.log('msgRec')
+    // console.log(msgRec)
+    // console.log(usernameConst, studentname)
     console.log(num);
+    console.log(msgStrList);
 
     return (
       <div>
