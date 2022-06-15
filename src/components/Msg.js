@@ -125,10 +125,12 @@ function Msg() {
         setAllMsgRec([]);
         setLatestMsgList([]);
         let tmpAllMsgRec = [];
+        let tmpStunameList = [];
+        let tmpLatestMsgList = [];
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
           let studentname = response.data[i].studentname;
-          setstudentnamelist(studentnamelist => [...studentnamelist, studentname]);
+          tmpStunameList.push(studentname);
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getMsg',
             {
@@ -145,7 +147,7 @@ function Msg() {
               let tmpMsgRec = [];
               for(let i = 0; i < msgInfo.length; i++) {
                 const category = msgInfo[i].split('|')
-                if(i == 0) setLatestMsgList(latestMsgList => [...latestMsgList, category[1]]);
+                if(i == 0) tmpLatestMsgList.push(category[1]);
                 let t = ''
                 t = category[0] == 'T' ? 'user' : 'recipient'
                 if (category[1] == '') continue
@@ -157,11 +159,12 @@ function Msg() {
             }
             if(i == response.data.length - 1) {
               setAllMsgRec(tmpAllMsgRec);
+              setLatestMsgList(tmpLatestMsgList)
               setLoading(false);
             }
           })
         }
-
+        setstudentnamelist(tmpStunameList);
         // setContactInfo(response.data)
         // setChosenContact(response.data[0])
         // if (response.data.length == 2) {
