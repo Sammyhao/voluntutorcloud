@@ -159,7 +159,9 @@ function Msg() {
             }
             if(i == response.data.length - 1) {
               setAllMsgRec(tmpAllMsgRec);
+              tmpAllMsgRec = [];
               setLatestMsgList(tmpLatestMsgList)
+              tmpLatestMsgList = [];
               setLoading(false);
             }
           })
