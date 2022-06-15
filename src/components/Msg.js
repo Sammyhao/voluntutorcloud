@@ -124,6 +124,7 @@ function Msg() {
         setMsgStrList([]);
         setAllMsgRec([]);
         setLatestMsgList([]);
+        let tmpAllMsgRec = [];
         for(let i = 0; i < response.data.length; i++) {
           setnum(num => [...num, i]);
           let studentname = response.data[i].studentname;
@@ -152,9 +153,12 @@ function Msg() {
                 console.log(msg)
                 tmpMsgRec.unshift(msg);
               }
-              setAllMsgRec(allMsgRec => [...allMsgRec, tmpMsgRec])
+              tmpAllMsgRec.push(tmpMsgRec);
             }
-            if(i == response.data.length - 1) setLoading(false);
+            if(i == response.data.length - 1) {
+              setAllMsgRec(tmpAllMsgRec);
+              setLoading(false);
+            }
           })
         }
 
