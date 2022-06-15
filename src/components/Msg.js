@@ -157,7 +157,7 @@ function Msg() {
               }
               tmpAllMsgRec.push(tmpMsgRec);
             }
-            if(i == response.data.length - 1) {
+            if(i == response.data.length - 1 && isLoading) {
               setAllMsgRec(tmpAllMsgRec);
               tmpAllMsgRec = [];
               setLatestMsgList(tmpLatestMsgList)
