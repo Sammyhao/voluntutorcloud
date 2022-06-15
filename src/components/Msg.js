@@ -142,14 +142,12 @@ function Msg() {
           ).then((response) => {
             if(response.data.length) {
               console.log(response.data[0].msg, " ", username, " ", studentname);
-              setMsgStrList(msgStrList => [...msgStrList, response.data[0].msg]);
-              let msgStr = response.data[0].msg;
-              const msgInfo = msgStr.split('ψ')
+              const msgInfo = response.data[0].msg.split('ψ')
               console.log(msgInfo);
               let tmpMsgRec = [];
               for(let j = 0; j < msgInfo.length; j++) {
                 const category = msgInfo[j].split('|')
-                if(i == 0) tmpLatestMsgList.push(category[1]);
+                if(j == 0) tmpLatestMsgList.push(category[1]);
                 let t = ''
                 t = category[0] == 'T' ? 'user' : 'recipient'
                 if (category[1] == '') continue
@@ -166,25 +164,9 @@ function Msg() {
             }
           })
         }
+
+
         setstudentnamelist(tmpStunameList);
-        // setContactInfo(response.data)
-        // setChosenContact(response.data[0])
-        // if (response.data.length == 2) {
-        //   setMultistudentname([response.data[1].studentname])
-        // }
-        
-        // studentname = response.data[0].studentname
-        // console.log('username, studentname: ')
-        // console.log(username, studentname)
-        // if (!hasProcessMsg) {
-        //   return Axios.post(
-        //     'https://voluntutorcloud-server.herokuapp.com/getMsg',
-        //     {
-        //       username: username,
-        //       studentname: studentname,
-        //     },
-        //   )
-        // }
       })
     }
   }, [msgStrList, allMsgRec, latestMsgList])
