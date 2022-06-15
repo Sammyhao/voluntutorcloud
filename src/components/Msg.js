@@ -148,7 +148,7 @@ function Msg() {
               console.log(msgInfo);
               let tmpMsgRec = [];
               for(let j = 0; j < msgInfo.length; j++) {
-                const category = msgInfo[i].split('|')
+                const category = msgInfo[j].split('|')
                 if(i == 0) tmpLatestMsgList.push(category[1]);
                 let t = ''
                 t = category[0] == 'T' ? 'user' : 'recipient'
