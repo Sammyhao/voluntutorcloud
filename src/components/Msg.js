@@ -10,7 +10,7 @@ import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
 
 function Msg() {
-  // let num = [1]
+  let num = [1]
   const [status, setStatus] = useState(0)
   let username = '',
     studentname = '',
@@ -26,12 +26,6 @@ function Msg() {
   const [lastestMsg, setLastestMsg] = useState('')
   const [contactInfo, setContactInfo] = useState([])
   const [chosenContact, setChosenContact] = useState({})
-
-  const [num, setnum] = useState([]);
-  const [studentnamelist, setstudentnamelist] = useState([]);
-  const [msgStrList, setMsgStrList] = useState([]);
-  const [allMsgRec, setAllMsgRec] = useState([]);
-  const [latestMsgList, setLatestMsgList] = useState([]);
 
   // T:asdfasfasdfψS:Let's book a meetψT:omg hi long time no seeψT:HiψT:Sure!!!ψT:See you then!ψT:Sure!!ψS:I am okay with the timeψS:Yes, can we have a meeting then?ψT:Are you available next Tuesday?
 
@@ -66,7 +60,6 @@ function Msg() {
     setStudentnameConst(studentname)
     setMsgForUpd(msgStr)
     setHasProcessMsg(true)
-    return msgRec;
   }
 
   const updateMsg = () => {
@@ -117,61 +110,41 @@ function Msg() {
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
-          return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
-      }).then((response) => {
-        console.log(response.data)
-        setnum([]);
-        setMsgStrList([]);
-        setAllMsgRec([]);
-        setLatestMsgList([]);
-        let tmpAllMsgRec = [];
-        let tmpStunameList = [];
-        let tmpLatestMsgList = [];
-        for(let i = 0; i < response.data.length; i++) {
-          setnum(num => [...num, i]);
-          let studentname = response.data[i].studentname;
-          tmpStunameList.push(studentname);
-        }
-        for(let i = 0; i < response.data.length; i++) {
           Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getMsg',
+            'https://voluntutorcloud-server.herokuapp.com/findContact',
             {
               username: username,
-              studentname: response.data[i].studentname,
             },
           ).then((response) => {
-            if(response.data.length) {
-              console.log(response.data[0].msg, " ", username, " ", studentname);
-              const msgInfo = response.data[0].msg.split('ψ')
-              console.log(msgInfo);
-              let tmpMsgRec = [];
-              for(let j = 0; j < msgInfo.length; j++) {
-                const category = msgInfo[j].split('|')
-                if(j == 0) tmpLatestMsgList.push(category[1]);
-                let t = ''
-                t = category[0] == 'T' ? 'user' : 'recipient'
-                if (category[1] == '') continue
-                let msg = { type: t, text: category[1] }
-                console.log(msg)
-                tmpMsgRec.unshift(msg);
-              }
-              tmpAllMsgRec.push(tmpMsgRec);
+            setContactInfo(response.data)
+            setChosenContact(response.data[0])
+            if (response.data.length == 2) {
+              setMultistudentname([response.data[1].studentname])
             }
-            if(i == response.data.length - 1 && isLoading) {
-              setAllMsgRec(tmpAllMsgRec);
-              tmpAllMsgRec = [];
-              setLatestMsgList(tmpLatestMsgList)
-              tmpLatestMsgList = [];
-              setLoading(false);
+            console.log(response.data)
+            studentname = response.data[0].studentname
+            console.log('username, studentname: ')
+            console.log(username, studentname)
+            if (!hasProcessMsg) {
+              Axios.post(
+                'https://voluntutorcloud-server.herokuapp.com/getMsg',
+                {
+                  username: username,
+                  studentname: studentname,
+                },
+              ).then((response) => {
+                if (response.data.length) msgStr = response.data[0].msg
+                console.log(msgStr)
+                processMsg(msgStr, username, studentname)
+                console.log(msgRec)
+                setLoading(false)
+              })
             }
           })
-        }
-
-
-        setstudentnamelist(tmpStunameList);
-      })
+        },
+      )
     }
-  }, [msgStrList, allMsgRec, latestMsgList])
+  })
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
 
@@ -249,19 +222,13 @@ function Msg() {
     })
   }
 
-  if (allMsgRec.length == 0) {
+  if (isLoading) {
     return <Loading />
   } else {
-    // console.log('msgRec')
-    // console.log(msgRec)
-    // console.log(usernameConst, studentname)
-    console.log(num);
-    console.log(studentnamelist);
-    console.log(msgStrList);
-    console.log(allMsgRec);
-    console.log(latestMsgList);
+    console.log('msgRec')
+    console.log(msgRec)
+    console.log(usernameConst, studentname)
 
-    let selectedid = 0;
     return (
       <div>
         <div className="out">
@@ -275,17 +242,14 @@ function Msg() {
             <div className="peoplelist">
               {num.map((e) => {
                 return (
-                  <div className="shadowing" onClick={() => {
-                    selectedid = e;
-                    console.log(selectedid);
-                  }}>
+                  <div className="shadowing">
                     <div className="outerbox">
                       <div className="imagemsg">
                         <FaUser className="msg_icon" />
                       </div>
                       <div className="infoboxmsg">
-                        <div className="namemsg">{studentnamelist[e]}</div>
-                        <div className="latestmsg">{latestMsgList[e]}</div>
+                        <div className="namemsg">{studentnameConst}</div>
+                        <div className="latestmsg">{lastestMsg}</div>
                       </div>
                       {/* <div className="align">
                       <div className="numbermsg">1</div>
@@ -298,9 +262,9 @@ function Msg() {
             {multistyle()}
           </div>
           <div className="chatcontent">
-            <div className="chatname">{studentnamelist[selectedid]}</div>
+            <div className="chatname">{studentnameConst}</div>
             <div className="chat">
-              {allMsgRec[selectedid].map((e) => {
+              {msgRec.map((e) => {
                 return <Msg_user type={e.type} text={e.text}></Msg_user>
               })}
             </div>
