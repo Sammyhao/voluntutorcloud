@@ -131,6 +131,8 @@ function Msg() {
           setnum(num => [...num, i]);
           let studentname = response.data[i].studentname;
           tmpStunameList.push(studentname);
+        }
+        for(let i = 0; i < response.data.length; i++) {
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getMsg',
             {
@@ -145,7 +147,7 @@ function Msg() {
               const msgInfo = msgStr.split('ψ')
               console.log(msgInfo);
               let tmpMsgRec = [];
-              for(let i = 0; i < msgInfo.length; i++) {
+              for(let j = 0; j < msgInfo.length; j++) {
                 const category = msgInfo[i].split('|')
                 if(i == 0) tmpLatestMsgList.push(category[1]);
                 let t = ''
