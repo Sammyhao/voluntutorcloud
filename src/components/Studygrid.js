@@ -8,7 +8,7 @@ export const Studygrid = ({ studymt, status }) => {
   console.log(studymt)
   let a = ['Open File', '打開檔案']
   let b = ['Materials', '教材']
-  let space = '. '
+  let space = ' • '
   let schoollist = studymt.school
   console.log(schoollist)
   const openlink = (link) => {
@@ -26,11 +26,16 @@ export const Studygrid = ({ studymt, status }) => {
           </div>
           <div className="schoolstudy">
             {schoollist.map((e) => {
-              return (
-                <div className="schoollist">
-                  {e} {space}
-                </div>
-              )
+              if (schoollist.length == 1) {
+                return <div className="schoollist">{e}</div>
+              } else {
+                return (
+                  <div className="schoollist">
+                    {e}
+                    {space}
+                  </div>
+                )
+              }
             })}
           </div>
           <div className="tagswrap">
