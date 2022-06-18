@@ -93,7 +93,7 @@ export default function Studymat() {
     Chinese: '國文',
     Math: '數學',
     English: '英文',
-    Life_Curriculum: '生活',
+    Life_curriculum: '生活',
     Science: '自然',
     Social_Studies: '社會',
   }
