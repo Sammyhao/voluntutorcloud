@@ -196,12 +196,16 @@ export default function Studymat() {
       let gradeflag = false
       let schoolflag = false
       let subflag = false
+      console.log(obj.school)
       for (let s = 0; s < gradearr.length; s++) {
         if (obj.grade == gradearr[s]) {
           gradeflag = true
         }
       }
       for (let s = 0; s < schoolarr.length; s++) {
+        if (obj.school.length == 2) {
+          schoolflag = true
+        }
         if (obj.school == schoolarr[s]) {
           schoolflag = true
         }
