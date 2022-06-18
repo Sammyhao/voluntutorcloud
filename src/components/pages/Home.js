@@ -20,6 +20,8 @@ function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [lang, setLang] = useState('') // lang of the user
   const [name, setName] = useState('')
+  const [notif_data, setNotif_data] = useState([])
+
 
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -37,9 +39,18 @@ function Home() {
               response.data.user[0].lastname,
           )
         }
+        return Axios.post(
+          'https://voluntutorcloud-server.herokuapp.com/getNotif',
+          {
+            username: response.data.user[0].username,
+            isnew: true,
+          }
+        )
+      }).then((response) => {
+        console.log(response.data)
+        setNotif_data(response.data)
         setLoading(false)
-      },
-    )
+      })
   })
 
   // return (
@@ -71,7 +82,7 @@ function Home() {
     } else if (role == 'teacher') {
       return (
         <>
-          <Navbar lang={lang} isLoggedIn={isLoggedIn}></Navbar>
+          <Navbar lang={lang} isLoggedIn={isLoggedIn} notifdata={notif_data}></Navbar>
           <HeroSection lang={lang} isLoggedIn={isLoggedIn} name={name} />
           <Function lang={lang} isLoggedIn={isLoggedIn}></Function>
           <Homepageprog lang={lang}></Homepageprog>
