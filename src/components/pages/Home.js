@@ -29,6 +29,7 @@ function Home() {
         console.log(response.data)
         if (!response.data.isLoggedIn) {
           setIsLoggedIn(false)
+          setLoading(false)
         } else {
           setIsLoggedIn(true)
           setLang(response.data.user[0].lang)
@@ -38,14 +39,14 @@ function Home() {
               ' ' +
               response.data.user[0].lastname,
           )
+          return Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getNotif',
+            {
+              username: response.data.user[0].username,
+              isnew: true,
+            }
+          )
         }
-        return Axios.post(
-          'https://voluntutorcloud-server.herokuapp.com/getNotif',
-          {
-            username: response.data.user[0].username,
-            isnew: true,
-          }
-        )
       }).then((response) => {
         console.log(response.data)
         setNotif_data(response.data)
