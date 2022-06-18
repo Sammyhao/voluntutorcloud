@@ -134,7 +134,7 @@ export default function Studymat() {
           console.log(response.data)
           submat = response.data
           console.log(submat)
-          for (let i = 0; i < submat.length; i++) {
+          for (let i = 1; i < submat.length; i++) {
             console.log(submat[i])
             // subject
             submat[i].subject = subtrans[submat[i].subject]
@@ -151,7 +151,7 @@ export default function Studymat() {
         })
     }
     setfiltered(studyarray)
-  }, [studyarray])
+  })
 
   useEffect(() => {
     let gradearr = []
@@ -577,8 +577,7 @@ export default function Studymat() {
         <div className="studymatsecondwrap">
           <Grid container spacing={4}>
             {filteredarray.map((e) => {
-              console.log(e);
-              if(e) return <Studygrid studymt={e} status={status}></Studygrid>
+              return <Studygrid studymt={e} status={status}></Studygrid>
             })}
           </Grid>
         </div>
