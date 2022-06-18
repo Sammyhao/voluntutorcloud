@@ -171,10 +171,16 @@
   margin-bottom: 10px;
 }
 .schoolstudy {
+  margin-bottom: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: left;
+}
+.schoollist {
   color: #b25634;
   font-size: 20px;
   font-weight: 400;
-  margin-bottom: 17px;
 }
 .tagswrap {
   width: wrap;

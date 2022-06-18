@@ -51,6 +51,7 @@ export default function Studymat() {
     國文: false,
     數學: false,
     英文: false,
+    生活: false,
     社會: false,
     自然: false,
   })
@@ -60,7 +61,7 @@ export default function Studymat() {
   })
   const { 一年級, 二年級, 三年級, 四年級, 五年級, 六年級 } = grade
 
-  const { 國文, 數學, 英文, 社會, 自然 } = subject
+  const { 國文, 數學, 英文, 生活, 社會, 自然 } = subject
 
   const { 大溪國小, 廣興國小 } = school
 
@@ -84,6 +85,7 @@ export default function Studymat() {
   let m = ['English', '英文']
   let n = ['Social Studies', '社會']
   let o = ['Science', '自然']
+  let p = ['Life Curriculum', '生活']
 
   const [studyarray, setstudyarray] = useState([])
 
@@ -117,8 +119,8 @@ export default function Studymat() {
   useEffect(() => {
     console.log('filtered', filteredarray)
     if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+        .then((response) => {
           console.log(response.data)
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
@@ -127,7 +129,8 @@ export default function Studymat() {
             'https://voluntutorcloud-server.herokuapp.com/getallSubMat',
             {},
           )
-        }).then((response) => {
+        })
+        .then((response) => {
           console.log(response.data)
           submat = response.data
           console.log(submat)
@@ -148,21 +151,7 @@ export default function Studymat() {
         })
     }
     setfiltered(studyarray)
-  }, [studyarray])
-
-  function fetchSubMat(grade, subject) {
-    console.log(grade, subject)
-    setsub(subject)
-    setgra(grade)
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/getallSubMat', {
-      grade: grade,
-      subject: subject,
-    }).then((response) => {
-      console.log(response)
-      // setSubMat(response.data)
-      setopen(true)
-    })
-  }
+  })
 
   useEffect(() => {
     let gradearr = []
@@ -436,6 +425,7 @@ export default function Studymat() {
                   fontFamily: 'Lora',
                 }}
               />
+
               <FormControlLabel
                 control={
                   <Checkbox
@@ -453,6 +443,29 @@ export default function Studymat() {
                   />
                 }
                 label={m[status]}
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={生活}
+                    name="生活"
+                    onChange={(e) => {
+                      setsubjectstate({
+                        ...subject,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label={p[status]}
                 sx={{
                   color: '#745140',
                   height: '30px',
@@ -564,7 +577,7 @@ export default function Studymat() {
         <div className="studymatsecondwrap">
           <Grid container spacing={4}>
             {filteredarray.map((e) => {
-              return <Studygrid studymt={e}></Studygrid>
+              return <Studygrid studymt={e} status={status}></Studygrid>
             })}
           </Grid>
         </div>

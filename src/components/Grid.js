@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Grid.css'
 import { RiHeart3Line, RiHeart3Fill, RiMapPin2Fill } from 'react-icons/ri'
 import '../App.css'
-import emailjs from "emailjs-com";
+import emailjs from 'emailjs-com'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -71,7 +71,7 @@ function Grid_sub(props) {
   const [check_open_book, setcheckopen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
-  let p;
+  let p
   const handleClose = () => {
     setOpen(false)
   }
@@ -84,9 +84,9 @@ function Grid_sub(props) {
   const handlefinalclose = () => {
     setcheckopen(false)
   }
-  const bookingprogram = (program) =>{
+  const bookingprogram = (program) => {
     setcheckopen(true)
-    p = program;
+    p = program
   }
   // const [subject, setSubject] = useState('Math') // change the subject from here
   const [subject, setSubject] = useState(props.sub)
@@ -95,13 +95,13 @@ function Grid_sub(props) {
   const [address, setAddress] = useState('')
 
   useEffect(() => {
-    let subjectFF = "";
-    console.log("subject");
-    console.log(subject);
-    if (subject == '') subjectFF = "chinese";
-    else subjectFF = subject;
-    console.log(subjectFF);
-    
+    let subjectFF = ''
+    console.log('subject')
+    console.log(subject)
+    if (subject == '') subjectFF = 'chinese'
+    else subjectFF = subject
+    console.log(subjectFF)
+
     Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
       subject: subjectFF,
     }).then((response) => {
@@ -110,24 +110,26 @@ function Grid_sub(props) {
       }
     })
 
-    let name = "";
+    let name = ''
 
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      console.log(response)
-      if (response.data.isLoggedIn) {
-        setUsername(response.data.user[0].username)
-        name = response.data.user[0].username;
-        if(response.data.user[0].lang == "chinese") setStatus(1);
-        else setStatus(0);
-      }
-    })
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+      (response) => {
+        console.log(response)
+        if (response.data.isLoggedIn) {
+          setUsername(response.data.user[0].username)
+          name = response.data.user[0].username
+          if (response.data.user[0].lang == 'chinese') setStatus(1)
+          else setStatus(0)
+        }
+      },
+    )
   }, [])
 
   const [username, setUsername] = useState('')
 
   const updateBookList = () => {
     // Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      setBookOpen(true)
+    setBookOpen(true)
     //   if (response.data.isLoggedIn) {
     //     var templateParams = {
     //       vc_program: p ,
@@ -155,63 +157,78 @@ function Grid_sub(props) {
   }
 
   const updateFavList = (program) => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      console.log(response)
-      setFavOpen(true)
-      if (response.data.isLoggedIn) {
-        return Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavList', {
-          username: username,
-          program: program,
-          isBooked: false,
-        })
-      } else {
-        console.log('user not logged in')
-      }
-    }).then((response) => {
-      console.log(response)
-    })
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+      .then((response) => {
+        console.log(response)
+        setFavOpen(true)
+        if (response.data.isLoggedIn) {
+          return Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/updateFavList',
+            {
+              username: username,
+              program: program,
+              isBooked: false,
+            },
+          )
+        } else {
+          console.log('user not logged in')
+        }
+      })
+      .then((response) => {
+        console.log(response)
+      })
   }
-  const [status, setStatus] = useState(0);
-  let a = ["Oops, seems like you don't have any student yet.","噢, 看來您還沒有任何學生呢。"]
-  let b = ["Go and Join a Volunteering Program!!", "趕快去報名志工活動吧！！"]
-  let c = ["My List","我的最愛"]
-  let e = ["You cannot enroll in two programs at the same time." ,"目前不得同時報名多個志工計畫"]
-  let d = ["You are already enrolled in a program.","你已經在志工計畫當中囉~"]
-  let f = ["BOOK NOW!","現在報名！"]
-  let g = ["Add to list","加入最愛"]
-  let h = ["Dates/Service hours","日期/服務時間"]
-  let i = ["Coordinator","聯絡窗口"]
-  let j = ["Target Student","學生年段"]
-  let k = ["View School","查看學校"]
-  let l = ["Learn more...","了解更多..."] 
+  const [status, setStatus] = useState(0)
+  let a = [
+    "Oops, seems like you don't have any student yet.",
+    '噢, 看來您還沒有任何學生呢。',
+  ]
+  let b = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
+  let c = ['My List', '我的最愛']
+  let e = [
+    'You cannot enroll in two programs at the same time.',
+    '目前不得同時報名多個志工計畫',
+  ]
+  let d = ['You are already enrolled in a program.', '你已經在志工計畫當中囉~']
+  let f = ['BOOK NOW!', '現在報名！']
+  let g = ['Add to list', '加入最愛']
+  let h = ['Dates/Service hours', '日期/服務時間']
+  let i = ['Coordinator', '聯絡窗口']
+  let j = ['Target Student', '學生年段']
+  let k = ['View School', '查看學校']
+  let l = ['Learn more...', '了解更多...']
   let n = [
     'Are you sure you want to book this program?',
     '你確定你要報名此志工計畫？按下送出後即無法收回。',
   ]
   let m = ['Yes', '確定送出']
-  let o = ["There is no volunteering programs yet.","目前沒有進行中的志工計畫。"]
-  let q = ["Stay tuned!","敬請期待！"]
-  let z = ['Added to favorite list.', "已加入最愛"]
+  let o = [
+    'There is no volunteering programs yet.',
+    '目前沒有進行中的志工計畫。',
+  ]
+  let q = ['Stay tuned!', '敬請期待！']
+  let z = ['Added to favorite list.', '已加入最愛']
 
-  if(programInfo.length==0) {
-    return(<div className = "nokid">
-    <div className="noStudentFont">{o[status]}</div>
-    <div className="noStudentFont2">{q[status]}</div>
-  </div>)
+  if (programInfo.length == 0) {
+    return (
+      <div className="nokid">
+        <div className="noStudentFont">{o[status]}</div>
+        <div className="noStudentFont2">{q[status]}</div>
+      </div>
+    )
   } else {
     return (
       <div id="outcontainer">
         <div id="dialog_reg_wrap">
-        <BootstrapDialog
-          onClose={handlefav}
-          id="dialog_registered"
-          aria-labelledby="customized-dialog-title"
-          open={open_fav}
-        >
-          <div id="favoritetitle">{z[status]}</div>
-          
-        </BootstrapDialog>
-      </div>
+          <BootstrapDialog
+            onClose={handlefav}
+            id="dialog_registered"
+            aria-labelledby="customized-dialog-title"
+            open={open_fav}
+          >
+            <div id="favoritetitle">{z[status]}</div>
+          </BootstrapDialog>
+        </div>
         <div id="dialog_reg_wrap">
           <BootstrapDialog
             onClose={handlebookclose}
@@ -245,7 +262,8 @@ function Grid_sub(props) {
             <div
               id="wrap"
               style={{
-                background: program.schoolpic + ' center center/cover no-repeat',
+                background:
+                  program.schoolpic + ' center center/cover no-repeat',
                 width: '600px',
               }}
             >
@@ -266,7 +284,7 @@ function Grid_sub(props) {
                     size="small"
                     onClick={() => updateBookList(program)}
                   >
-                  {f[status]}
+                    {f[status]}
                   </Button>
                   <Button
                     id="dialog_add"
@@ -291,7 +309,7 @@ function Grid_sub(props) {
                 <div id="content">
                   <div id="school_content">{program.content}</div>
                   <div id="misc">
-                    <div className="basicinfo" id="date_topic">
+                    {/* <div className="basicinfo" id="date_topic">
                     {h[status]}
                     </div>
                     <div className="basicinfo" id="day">
@@ -299,9 +317,9 @@ function Grid_sub(props) {
                     </div>
                     <div className="basicinfo" id="time">
                       {program.sttime}
-                    </div>
+                    </div> */}
                     <div className="basicinfo" id="coordinator_topic">
-                    {i[status]}
+                      {i[status]}
                     </div>
                     <div className="basicinfo" id="phone">
                       {program.contactnum}
@@ -310,7 +328,7 @@ function Grid_sub(props) {
                       {program.email}
                     </div>
                     <div className="basicinfo" id="target_topic">
-                    {j[status]}
+                      {j[status]}
                     </div>
                     <div className="basicinfo" id="target">
                       {program.targetstudent}
