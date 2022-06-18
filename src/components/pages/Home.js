@@ -24,34 +24,36 @@ function Home() {
 
 
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      (response) => {
-        console.log(response.data)
-        if (!response.data.isLoggedIn) {
-          setIsLoggedIn(false)
+    if(isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          console.log(response.data)
+          if (!response.data.isLoggedIn) {
+            setIsLoggedIn(false)
+            setLoading(false)
+          } else {
+            setIsLoggedIn(true)
+            setLang(response.data.user[0].lang)
+            setRole(response.data.user[0].role)
+            setName(
+              response.data.user[0].firstname +
+                ' ' +
+                response.data.user[0].lastname,
+            )
+            return Axios.post(
+              'https://voluntutorcloud-server.herokuapp.com/getNotif',
+              {
+                username: response.data.user[0].username,
+                isnew: true,
+              }
+            )
+          }
+        }).then((response) => {
+          console.log(response.data)
+          setNotif_data(response.data)
           setLoading(false)
-        } else {
-          setIsLoggedIn(true)
-          setLang(response.data.user[0].lang)
-          setRole(response.data.user[0].role)
-          setName(
-            response.data.user[0].firstname +
-              ' ' +
-              response.data.user[0].lastname,
-          )
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getNotif',
-            {
-              username: response.data.user[0].username,
-              isnew: true,
-            }
-          )
-        }
-      }).then((response) => {
-        console.log(response.data)
-        setNotif_data(response.data)
-        setLoading(false)
-      })
+        })
+    }
   })
 
   // return (
