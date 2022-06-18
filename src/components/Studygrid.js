@@ -9,6 +9,7 @@ export const Studygrid = ({ studymt, status }) => {
   console.log(studymt.school)
   let a = ['Open File', '打開檔案']
   let b = ['Materials', '教材']
+  let schoollist = studymt.school
   const openlink = (link) => {
     window.open(link, '_blank', 'noopener,noreferrer')
   }
@@ -23,7 +24,7 @@ export const Studygrid = ({ studymt, status }) => {
             {b[status]}
           </div>
           <div className="schoolstudy">
-            {studymt.school.map((e) => {
+            {schoollist.map((e) => {
               return <div className="schoollist">{e}</div>
             })}
           </div>
