@@ -146,6 +146,12 @@ export default function Studymat() {
             console.log(submat)
             setstudyarray(submat)
           }
+          for (let i = 0; i < submat.length - 1; i++) {
+            submat[i] = submat[i+1];
+            console.log(submat[i])
+            setstudyarray(submat)
+          }
+          submat = submat.slice(0, submat.length - 1);
           setopen(true)
           setLoading(false)
         })
