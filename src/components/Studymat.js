@@ -578,7 +578,7 @@ export default function Studymat() {
           <Grid container spacing={4}>
             {filteredarray.map((e) => {
               console.log(e);
-              return <Studygrid studymt={e} status={status}></Studygrid>
+              if(e) return <Studygrid studymt={e} status={status}></Studygrid>
             })}
           </Grid>
         </div>
