@@ -25,32 +25,55 @@ function HeroSection(props) {
   let d = ['LOGIN', '登入']
 
   useEffect(() => {
-    if (!props.isLoggedIn) {
-      console.log('not logged in')
-      setIsLoggedIn(false)
-      setStatus(0)
-    } else {
-      console.log(props)
-      if (props) {
-        setIsLoggedIn(props.isLoggedIn)
-        if (props.lang && props.name) {
-          if(props.name) setName(props.name)
-          if (props.lang == 'chinese') setStatus(1)
-          else setStatus(0)
-        }
-      } else {
-        console.log('props failed')
-        Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-          (response) => {
-            if (response.data.isLoggedIn) {
-              if (name.length == 0) setName(response.data.user[0].firstname + ' ' + response.data.user[0].lastname)
-              if (response.data.user[0].lang == 'chinese') setStatus(1)
-              else setStatus(0)
-            }
-            setIsLoggedIn(response.data.isLoggedIn)
-          },
-        )
+    // if (!props.isLoggedIn) {
+    //   console.log('not logged in')
+    //   setIsLoggedIn(false)
+    //   setStatus(0)
+    // } else {
+    //   console.log(props)
+    //   if (props) {
+    //     setIsLoggedIn(props.isLoggedIn)
+    //     if (props.lang && props.name) {
+    //       if(props.name) setName(props.name)
+    //       if (props.lang == 'chinese') setStatus(1)
+    //       else setStatus(0)
+    //     }
+    //   } else {
+        // console.log('props failed')
+        // Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        //   (response) => {
+        //     if (response.data.isLoggedIn) {
+        //       if (name.length == 0) setName(response.data.user[0].firstname + ' ' + response.data.user[0].lastname)
+        //       if (response.data.user[0].lang == 'chinese') setStatus(1)
+        //       else setStatus(0)
+        //     }
+        //     setIsLoggedIn(response.data.isLoggedIn)
+        //   },
+        // )
+    //   }
+    // }
+    if(props) {
+      if (!props.isLoggedIn) { // not logged in
+        console.log('not logged in')
+        setIsLoggedIn(false)
+        setStatus(0)
+      } else { // logged in
+        if(props.name) setName(props.name)
+        if (props.lang == 'chinese') setStatus(1)
+        else setStatus(0)
       }
+    } else {
+      console.log('props failed')
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          if (response.data.isLoggedIn) {
+            if (name.length == 0) setName(response.data.user[0].firstname + ' ' + response.data.user[0].lastname)
+            if (response.data.user[0].lang == 'chinese') setStatus(1)
+            else setStatus(0)
+          }
+          setIsLoggedIn(response.data.isLoggedIn)
+        },
+      )
     }
   }, [])
 
