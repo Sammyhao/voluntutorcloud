@@ -26,7 +26,11 @@ export const Studygrid = ({ studymt, status }) => {
           </div>
           <div className="schoolstudy">
             {schoollist.map((e) => {
-              return <div className="schoollist">{e} </div>
+              return (
+                <div className="schoollist">
+                  {e} {space}
+                </div>
+              )
             })}
           </div>
           <div className="tagswrap">
