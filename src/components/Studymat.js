@@ -151,7 +151,7 @@ export default function Studymat() {
         })
     }
     setfiltered(studyarray)
-  })
+  }, [studyarray])
 
   useEffect(() => {
     let gradearr = []
@@ -577,6 +577,7 @@ export default function Studymat() {
         <div className="studymatsecondwrap">
           <Grid container spacing={4}>
             {filteredarray.map((e) => {
+              console.log(e);
               return <Studygrid studymt={e} status={status}></Studygrid>
             })}
           </Grid>
