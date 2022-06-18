@@ -31,7 +31,7 @@ function HeroSection(props) {
       setStatus(0)
     } else {
       console.log(props)
-      if (props.isLoggedIn) {
+      if (props) {
         setIsLoggedIn(props.isLoggedIn)
         if (props.lang && props.name) {
           if(props.name) setName(props.name)

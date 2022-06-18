@@ -130,7 +130,50 @@ function Navbar(props) {
   }, [])
 
   if (isLoading) {
-    return <Loading></Loading>
+    // return <Loading></Loading>
+    return (
+      <>
+        <div className="navbar">
+          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+            Voluntutor Cloud
+            {/* <i class="fab fa-typo3" /> */}
+          </Link>
+          <div className="navbar-container">
+            <div className="menu-icon" onClick={handleClick}>
+              <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+            </div>
+            <ul className={click ? 'nav-m active' : 'nav-m'}>
+              <li className="nav-item">
+                <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                  {a[status]}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/subjects"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  {b[status]}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                  {c[status]}
+                </Link>
+              </li>
+              <li className="nav-buttonsign">
+                <Link to="/sign-in">
+                  {button && (
+                    <Button buttonStyle="btn--outline">{d[status]}</Button>
+                  )}
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </>
+    )
   } else if (isLoggedIn) {
     if (status == 0) {
       return (
