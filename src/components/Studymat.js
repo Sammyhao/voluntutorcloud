@@ -144,8 +144,8 @@ export default function Studymat() {
             const schoollist = submat[i].school.split('|')
             submat[i].school = schoollist
             console.log(submat)
-            setstudyarray(submat)
           }
+          if(studyarray.length == 0) setstudyarray(submat)
           setopen(true)
           setLoading(false)
         })
