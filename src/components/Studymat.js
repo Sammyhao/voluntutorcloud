@@ -145,13 +145,13 @@ export default function Studymat() {
             submat[i].school = schoollist
             console.log(submat)
           }
-          if(studyarray.length == 0) setstudyarray(submat)
+          if (studyarray.length == 0) setstudyarray(submat)
           setopen(true)
           setLoading(false)
         })
     }
     setfiltered(studyarray)
-  })
+  }, [studyarray])
 
   useEffect(() => {
     let gradearr = []
