@@ -117,7 +117,7 @@ function Navbar(props) {
       //       },
       //     )
       // }
-      if(props) {
+      if(props.lang && props.isLoggedIn && props.notifdata) {
         if(!props.isLoggedIn) { // not logged in
           setIsLoggedIn(false)
           setLoading(false)
