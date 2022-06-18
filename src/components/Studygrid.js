@@ -6,10 +6,10 @@ import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 export const Studygrid = ({ studymt, status }) => {
   console.log(studymt)
-  console.log(studymt.school)
   let a = ['Open File', '打開檔案']
   let b = ['Materials', '教材']
   let schoollist = studymt.school
+  console.log(schoollist)
   const openlink = (link) => {
     window.open(link, '_blank', 'noopener,noreferrer')
   }
