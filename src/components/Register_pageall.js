@@ -107,7 +107,7 @@ function Register_pageall() {
   const [cpasswordShown, setcPasswordShown] = useState(false)
   const [emailError, setEmailError] = useState('')
   const navigate = useNavigate()
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [birthdaydate, setbirthdaydate] = useState(new Date())
   const [charlist, setcharlist] = useState([
     'open-minded',
@@ -189,11 +189,13 @@ function Register_pageall() {
   let tu = ['Select your gender', '選擇你的性別']
   let uv = ['Select your grade', '選擇你的年級']
   let vv = ['Select your school', '選擇你的學校']
-  let yy = ['Select target student gender', '選擇學生性別']
+  let yy = ['Select your gender', '選擇你的性別']
   let wv = ['Taipei Wego Senior High School', '台北市私立薇閣高級中學']
   let ww = ['Taipei Fuhsing Senior High School', '台北市私立復興高級中學']
   let xx = ['Yilan Daxi Elementary School', '宜蘭縣大溪國民小學']
   let yyzy = ['Yilan Guangxing Elementary School', '宜蘭縣廣興國民小學']
+  let zzz = ['Taitung Hotspring Elementary School', '臺東縣溫泉國民小學']
+  let yyzz = ['Taitung Kanding Elementary School', '臺東縣崁頂國民小學']
   let asdbf = ['Select your preferred subjects', '請選擇你想要教導的科目']
   let abb = ['Select your preferred student grade', '請選擇學生年級']
   let bbc = ['Select your preferred student personality', '請選擇學生性格']
@@ -1698,6 +1700,8 @@ function Register_pageall() {
                   >
                     <MenuItem value={xx[status]}>{xx[status]}</MenuItem>
                     <MenuItem value={yyzy[status]}>{yyzy[status]}</MenuItem>
+                    <MenuItem value={zzz[status]}>{zzz[status]}</MenuItem>
+                    <MenuItem value={yyzz[status]}>{yyzz[status]}</MenuItem>
                   </Select>
                 </div>
 
