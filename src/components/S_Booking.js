@@ -49,7 +49,7 @@ export default function S_Booking() {
 
   const opengoogle = () => {
     console.log(googlemeetlink)
-    window.location.replace(googlemeetlink)
+    if (googlemeetlink) window.open(googlemeetlink, '_blank', 'noopener,noreferrer')
   }
 
   const cancelmeeting = (booking) => {
