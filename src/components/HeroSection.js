@@ -13,6 +13,7 @@ function HeroSection(props) {
   const [status, setStatus] = useState(0)
   const [name, setName] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [haveSetFilt, setHaveSetFilt] = useState(false);
   let username = ''
 
   // titles
@@ -111,13 +112,13 @@ function HeroSection(props) {
       </div>
     )
   } else {
-    if(record.length > 0 && filteredrec.size == 0) {
+    if(!haveSetFilt) {
       console.log(record);
-      for(let i = record.length - 1; i >= 0; i--) {
+      for(let i = 0; i < record.length; i++) {
         console.log(record[i]);
-        if(filteredrec.get(record[i].username)) continue;
-        else filteredrec.set(record[i].username, record[i].hoursleft);
+        filteredrec.set(record[i].username, record[i].hoursleft);
       }
+      setHaveSetFilt(true);
     }
     console.log(filteredrec);
     return (
