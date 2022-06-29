@@ -111,7 +111,7 @@ function HeroSection(props) {
       </div>
     )
   } else {
-    if(record.length > 0) {
+    if(record.length > 0 && filteredrec.size == 0) {
       console.log(record);
       for(let i = record.length - 1; i >= 0; i--) {
         console.log(record[i]);
