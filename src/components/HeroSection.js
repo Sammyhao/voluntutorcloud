@@ -65,6 +65,7 @@ function HeroSection(props) {
         if(props.name) {
           if(props.name == "Sam Hao") {
             Axios.get('https://voluntutorcloud-server.herokuapp.com/getallrecord').then((response) => {
+              console.log(response.data);
               setrecord(response.data);
             })
           }
@@ -79,6 +80,7 @@ function HeroSection(props) {
         (response) => {
           if (response.data.isLoggedIn) {
             if (name.length == 0) setName(response.data.user[0].firstname + ' ' + response.data.user[0].lastname)
+            // if(response.data.user[0].firstname + ' ' + response.data.user[0].lastname == "Sam Hao")
             if (response.data.user[0].lang == 'chinese') setStatus(1)
             else setStatus(0)
           }
