@@ -113,7 +113,7 @@ function HeroSection(props) {
     )
   } else {
     console.log(haveSetFilt);
-    if(haveSetFilt == false) {
+    if(record.length > 0 && haveSetFilt == false) {
       console.log(record);
       for(let i = 0; i < record.length; i++) {
         console.log(record[i]);
