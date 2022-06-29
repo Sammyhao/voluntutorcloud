@@ -113,7 +113,7 @@ function HeroSection(props) {
   } else {
     if(record.length > 0) {
       console.log(record);
-      for(let i = record.length - 1; i >= 0; i++) {
+      for(let i = record.length - 1; i >= 0; i--) {
         console.log(record[i]);
         if(filteredrec.get(record[i].username)) continue;
         else filteredrec.set(record[i].username, record[i].hoursleft);
