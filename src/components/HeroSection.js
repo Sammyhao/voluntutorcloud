@@ -23,6 +23,9 @@ function HeroSection(props) {
   ]
   let c = ['Get Started', '註冊帳號']
   let d = ['LOGIN', '登入']
+  
+  const [record, setrecord] = useState([]);
+  const filteredrec = new Map();
 
   useEffect(() => {
     // if (!props.isLoggedIn) {
@@ -59,7 +62,14 @@ function HeroSection(props) {
         setStatus(0)
       } else { // logged in
         setIsLoggedIn(true)
-        if(props.name) setName(props.name)
+        if(props.name) {
+          if(props.name == "Sam Hao") {
+            Axios.get('https://voluntutorcloud-server.herokuapp.com/getallrecord').then((response) => {
+              setrecord(response.data);
+            })
+          }
+          setName(props.name)
+        }
         if (props.lang == 'chinese') setStatus(1)
         else setStatus(0)
       }
@@ -76,7 +86,7 @@ function HeroSection(props) {
         },
       )
     }
-  }, [])
+  }, [record])
 
   if (!isLoggedIn) {
     return (
@@ -99,6 +109,13 @@ function HeroSection(props) {
       </div>
     )
   } else {
+    if(record.length > 0) {
+      for(let i = record.length - 1; i >= 0; i++) {
+        if(filteredrec.get(record[i].username)) continue;
+        else filteredrec.set(record[i].username, record[i].hoursleft);
+      }
+    }
+    console.log(filteredrec);
     return (
       <div className="hero-container">
         <div className="left_hero">
