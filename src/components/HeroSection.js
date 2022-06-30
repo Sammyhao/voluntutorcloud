@@ -117,7 +117,7 @@ function HeroSection(props) {
       console.log(record);
       for(let i = 0; i < record.length; i++) {
         console.log(record[i]);
-        filteredrec.set(record[i].username, record[i].hoursleft);
+        filteredrec.set({username: record[i].username, studentname: record[i].studentname, service_hours_left: record[i].hoursleft});
       }
       setHaveSetFilt(true);
     }
