@@ -182,13 +182,13 @@ function Programusage() {
                         </div>
                         <div className="time">
                           {c[status]}
-                          {contact[contact.length - 1].hoursleft}
+                          {(contact[contact.length - 1].hoursleft) % 8}
                           {d[status]}
                         </div>
                       </div>
                     </div>
                     <div className="progressbar">
-                      <Progress done={contact[contact.length - 1].hoursleft} />
+                      <Progress done={(contact[contact.length - 1].hoursleft) % 8} />
                     </div>
                   </div>
                 </div>
