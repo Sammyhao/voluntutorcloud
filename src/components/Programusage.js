@@ -71,6 +71,7 @@ function Programusage() {
               username: student.username,
               studentname: student.studentname,
               studentmail: student.studentmail,
+              echelon: 2
             },
           ).then((response) => {
             if (response.data.length)
@@ -182,13 +183,13 @@ function Programusage() {
                         </div>
                         <div className="time">
                           {c[status]}
-                          {(contact[contact.length - 1].hoursleft) % 8}
+                          {contact[contact.length - 1].hoursleft}
                           {d[status]}
                         </div>
                       </div>
                     </div>
                     <div className="progressbar">
-                      <Progress done={(contact[contact.length - 1].hoursleft) % 8} />
+                      <Progress done={contact[contact.length - 1].hoursleft} />
                     </div>
                   </div>
                 </div>
