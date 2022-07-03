@@ -58,12 +58,14 @@ export default function Studymat() {
   const [school, setschoolstate] = useState({
     大溪國小: false,
     廣興國小: false,
+    崁頂國小: false,
+    溫泉國小: false,
   })
   const { 一年級, 二年級, 三年級, 四年級, 五年級, 六年級 } = grade
 
   const { 國文, 數學, 英文, 生活, 社會, 自然 } = subject
 
-  const { 大溪國小, 廣興國小 } = school
+  const { 大溪國小, 廣興國小, 崁頂國小, 溫泉國小 } = school
 
   let aa = ['Filter Study Materials', '分類課堂教材']
   let a = ['By Grades', '依年級分類']
@@ -569,6 +571,52 @@ export default function Studymat() {
                   />
                 }
                 label="廣興國小"
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={崁頂國小}
+                    name="崁頂國小"
+                    onChange={(e) => {
+                      setschoolstate({
+                        ...school,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label="崁頂國小"
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={溫泉國小}
+                    name="溫泉國小"
+                    onChange={(e) => {
+                      setschoolstate({
+                        ...school,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label="溫泉國小"
                 sx={{
                   color: '#745140',
                   height: '30px',
