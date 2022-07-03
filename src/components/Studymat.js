@@ -198,6 +198,7 @@ export default function Studymat() {
       let gradeflag = false
       let schoolflag = false
       let subflag = false
+      let count = 0
       console.log(obj.school)
       for (let s = 0; s < gradearr.length; s++) {
         if (obj.grade == gradearr[s]) {
@@ -205,7 +206,6 @@ export default function Studymat() {
         }
       }
       for (let s = 0; s < schoolarr.length; s++) {
-        let count = 0
         if (obj.school.length == 4) {
           schoolflag = true
         }
@@ -216,9 +216,10 @@ export default function Studymat() {
           }
         }
         console.log(count)
-        if (count >= schoolarr.length) {
-          schoolflag = true
-        }
+      }
+
+      if (count >= schoolarr.length) {
+        schoolflag = true
       }
       for (let s = 0; s < subjectarr.length; s++) {
         if (obj.subject == subjectarr[s]) {
