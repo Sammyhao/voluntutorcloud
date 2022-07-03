@@ -208,8 +208,10 @@ export default function Studymat() {
         if (obj.school.length == 4) {
           schoolflag = true
         }
-        if (obj.school == schoolarr[s]) {
-          schoolflag = true
+        for (let x = 0; x < obj.school.length; x++) {
+          if (obj.school[x] == schoolarr[s]) {
+            schoolflag = true
+          }
         }
       }
       for (let s = 0; s < subjectarr.length; s++) {
