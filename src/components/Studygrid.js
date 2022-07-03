@@ -25,11 +25,13 @@ export const Studygrid = ({ studymt, status }) => {
             {b[status]}
           </div>
           <div className="schoolstudy">
-            <Grid item xs={12} sm={6} md={4} lg={4}>
-              {schoollist.map((e, index) => {
-                return <div className="schoollist">{e}</div>
-              })}
-            </Grid>
+            {schoollist.map((e, index) => {
+              return (
+                <Grid item xs={12} sm={6} md={4} lg={4}>
+                  <div className="schoollist">{e}</div>
+                </Grid>
+              )
+            })}
           </div>
           <div className="tagswrap">
             <div className="tagsstudy">{studymt.grade}</div>
