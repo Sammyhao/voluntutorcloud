@@ -212,9 +212,11 @@ export default function Studymat() {
         for (let x = 0; x < obj.school.length; x++) {
           if (obj.school[x] == schoolarr[s]) {
             count++
+            console.log('count added')
           }
         }
-        if (count == schoolarr.length) {
+        console.log(count)
+        if (count >= schoolarr.length) {
           schoolflag = true
         }
       }
