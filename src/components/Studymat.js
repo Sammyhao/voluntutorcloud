@@ -211,7 +211,7 @@ export default function Studymat() {
         }
         for (let x = 0; x < obj.school.length; x++) {
           if (obj.school[x] == schoolarr[s]) {
-            count++
+            count = count + 1
             console.log('count added')
           }
         }
