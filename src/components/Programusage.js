@@ -51,29 +51,30 @@ function Programusage() {
   let h = ['Notes', '課堂筆記']
 
   useLayoutEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      (response) => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+      .then((response) => {
         username = response.data.user[0].username
         if (response.data.user[0].lang == 'chinese') setStatus(1)
         else setStatus(0)
 
-        return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
-          username: username,
-        })
-      }).then((response) => {
+        return Axios.post(
+          'https://voluntutorcloud-server.herokuapp.com/findContact',
+          {
+            username: username,
+          },
+        )
+      })
+      .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
           const student = response.data[i]
           setStpair((stpair) => [...stpair, student])
           console.log(student)
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getRecord',
-            {
-              username: student.username,
-              studentname: student.studentname,
-              studentmail: student.studentmail,
-              echelon: 2
-            },
-          ).then((response) => {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
+            username: student.username,
+            studentname: student.studentname,
+            studentmail: student.studentmail,
+            echelon: 2,
+          }).then((response) => {
             if (response.data.length)
               setContactInfo((contactInfo) => [...contactInfo, response.data])
           })
@@ -142,10 +143,12 @@ function Programusage() {
                     </div>
                   </div>
                 </div>
-                <div className="rowwrap">
-                  <div className="row1">
-                    <div className="title_rec">{e[status]}</div>
-                    <div className="title_not">{f[status]}</div>
+                <div className="outestwrapprogram">
+                  <div className="rowwrap">
+                    <div className="row1">
+                      <div className="title_rec">{e[status]}</div>
+                      <div className="title_not">{f[status]}</div>
+                    </div>
                   </div>
                 </div>
               </div>
