@@ -191,14 +191,14 @@ export default function Studymat() {
       }
     }
     // console.log(gradearr)
-    // console.log(schoolarr)
+    console.log(schoolarr)
     // console.log(subjectarr)
     for (let ind = 0; ind < studyarray.length; ind++) {
       let obj = studyarray[ind]
       let gradeflag = false
       let schoolflag = false
       let subflag = false
-      // console.log(obj.school)
+      console.log(obj.school)
       for (let s = 0; s < gradearr.length; s++) {
         if (obj.grade == gradearr[s]) {
           gradeflag = true
@@ -217,7 +217,7 @@ export default function Studymat() {
           subflag = true
         }
       }
-      // console.log(schoolflag)
+      console.log(schoolflag)
       // console.log(gradeflag)
       // console.log(subflag)
       if (gradeflag && schoolflag && subflag) {
