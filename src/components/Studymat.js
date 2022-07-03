@@ -205,13 +205,17 @@ export default function Studymat() {
         }
       }
       for (let s = 0; s < schoolarr.length; s++) {
+        let count = 0
         if (obj.school.length == 4) {
           schoolflag = true
         }
         for (let x = 0; x < obj.school.length; x++) {
           if (obj.school[x] == schoolarr[s]) {
-            schoolflag = true
+            count++
           }
+        }
+        if (count == schoolarr.length) {
+          schoolflag = true
         }
       }
       for (let s = 0; s < subjectarr.length; s++) {
