@@ -119,11 +119,11 @@ export default function Studymat() {
   const [status, setStatus] = useState(0)
 
   useEffect(() => {
-    console.log('filtered', filteredarray)
+    // console.log('filtered', filteredarray)
     if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
         .then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
@@ -133,11 +133,11 @@ export default function Studymat() {
           )
         })
         .then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
           submat = response.data
-          console.log(submat)
+          // console.log(submat)
           for (let i = 0; i < submat.length; i++) {
-            console.log(submat[i])
+            // console.log(submat[i])
             // subject
             submat[i].subject = subtrans[submat[i].subject]
             // grade
@@ -190,22 +190,22 @@ export default function Studymat() {
         subjectarr[subjectarr.length] = key
       }
     }
-    console.log(gradearr)
-    console.log(schoolarr)
-    console.log(subjectarr)
+    // console.log(gradearr)
+    // console.log(schoolarr)
+    // console.log(subjectarr)
     for (let ind = 0; ind < studyarray.length; ind++) {
       let obj = studyarray[ind]
       let gradeflag = false
       let schoolflag = false
       let subflag = false
-      console.log(obj.school)
+      // console.log(obj.school)
       for (let s = 0; s < gradearr.length; s++) {
         if (obj.grade == gradearr[s]) {
           gradeflag = true
         }
       }
       for (let s = 0; s < schoolarr.length; s++) {
-        if (obj.school.length == 2) {
+        if (obj.school.length == 4) {
           schoolflag = true
         }
         if (obj.school == schoolarr[s]) {
@@ -217,9 +217,9 @@ export default function Studymat() {
           subflag = true
         }
       }
-      console.log(schoolflag)
-      console.log(gradeflag)
-      console.log(subflag)
+      // console.log(schoolflag)
+      // console.log(gradeflag)
+      // console.log(subflag)
       if (gradeflag && schoolflag && subflag) {
         setfiltered((filteredarray) => [...filteredarray, obj])
       }
