@@ -64,12 +64,12 @@ function HeroSection(props) {
       } else { // logged in
         setIsLoggedIn(true)
         if(props.name) {
-          if(props.name == "Sam Hao") {
-            Axios.get('https://voluntutorcloud-server.herokuapp.com/getallrecord').then((response) => {
-              console.log(response.data);
-              setrecord(response.data);
-            })
-          }
+          // if(props.name == "Sam Hao") {
+          //   Axios.get('https://voluntutorcloud-server.herokuapp.com/getallrecord').then((response) => {
+          //     console.log(response.data);
+          //     setrecord(response.data);
+          //   })
+          // }
           setName(props.name)
         }
         if (props.lang == 'chinese') setStatus(1)
@@ -112,16 +112,16 @@ function HeroSection(props) {
       </div>
     )
   } else {
-    console.log(haveSetFilt);
-    if(record.length > 0 && haveSetFilt == false) {
-      console.log(record);
-      for(let i = 0; i < record.length; i++) {
-        console.log(record[i]);
-        filteredrec.set(record[i].studentname, 8 - record[i].hoursleft);
-      }
-      setHaveSetFilt(true);
-    }
-    console.log(filteredrec);
+    // console.log(haveSetFilt);
+    // if(record.length > 0 && haveSetFilt == false) {
+    //   console.log(record);
+    //   for(let i = 0; i < record.length; i++) {
+    //     console.log(record[i]);
+    //     filteredrec.set(record[i].studentname, 8 - record[i].hoursleft);
+    //   }
+    //   setHaveSetFilt(true);
+    // }
+    // console.log(filteredrec);
     return (
       <div className="hero-container">
         <div className="left_hero">
