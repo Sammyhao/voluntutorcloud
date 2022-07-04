@@ -178,9 +178,13 @@
   justify-content: left;
 }
 .schoollist {
-  color: #b25634;
-  font-size: 20px;
   font-weight: 400;
+  background-color: #b17b67;
+  border-radius: 3px;
+  color: #efe9e5;
+  font-size: 15px;
+  margin-right: 10px;
+  padding: 5px 10px;
 }
 .tagswrap {
   width: wrap;

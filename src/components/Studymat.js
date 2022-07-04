@@ -58,12 +58,14 @@ export default function Studymat() {
   const [school, setschoolstate] = useState({
     大溪國小: false,
     廣興國小: false,
+    崁頂國小: false,
+    溫泉國小: false,
   })
   const { 一年級, 二年級, 三年級, 四年級, 五年級, 六年級 } = grade
 
   const { 國文, 數學, 英文, 生活, 社會, 自然 } = subject
 
-  const { 大溪國小, 廣興國小 } = school
+  const { 大溪國小, 廣興國小, 崁頂國小, 溫泉國小 } = school
 
   let aa = ['Filter Study Materials', '分類課堂教材']
   let a = ['By Grades', '依年級分類']
@@ -117,11 +119,11 @@ export default function Studymat() {
   const [status, setStatus] = useState(0)
 
   useEffect(() => {
-    console.log('filtered', filteredarray)
+    // console.log('filtered', filteredarray)
     if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
         .then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
@@ -131,11 +133,11 @@ export default function Studymat() {
           )
         })
         .then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
           submat = response.data
-          console.log(submat)
+          // console.log(submat)
           for (let i = 0; i < submat.length; i++) {
-            console.log(submat[i])
+            // console.log(submat[i])
             // subject
             submat[i].subject = subtrans[submat[i].subject]
             // grade
@@ -188,14 +190,15 @@ export default function Studymat() {
         subjectarr[subjectarr.length] = key
       }
     }
-    console.log(gradearr)
+    // console.log(gradearr)
     console.log(schoolarr)
-    console.log(subjectarr)
+    // console.log(subjectarr)
     for (let ind = 0; ind < studyarray.length; ind++) {
       let obj = studyarray[ind]
       let gradeflag = false
       let schoolflag = false
       let subflag = false
+      let count = 0
       console.log(obj.school)
       for (let s = 0; s < gradearr.length; s++) {
         if (obj.grade == gradearr[s]) {
@@ -203,12 +206,20 @@ export default function Studymat() {
         }
       }
       for (let s = 0; s < schoolarr.length; s++) {
-        if (obj.school.length == 2) {
+        if (obj.school.length == 4) {
           schoolflag = true
         }
-        if (obj.school == schoolarr[s]) {
-          schoolflag = true
+        for (let x = 0; x < obj.school.length; x++) {
+          if (obj.school[x] == schoolarr[s]) {
+            count = count + 1
+            console.log('count added')
+          }
         }
+        console.log(count)
+      }
+
+      if (count >= schoolarr.length) {
+        schoolflag = true
       }
       for (let s = 0; s < subjectarr.length; s++) {
         if (obj.subject == subjectarr[s]) {
@@ -216,8 +227,8 @@ export default function Studymat() {
         }
       }
       console.log(schoolflag)
-      console.log(gradeflag)
-      console.log(subflag)
+      // console.log(gradeflag)
+      // console.log(subflag)
       if (gradeflag && schoolflag && subflag) {
         setfiltered((filteredarray) => [...filteredarray, obj])
       }
@@ -569,6 +580,52 @@ export default function Studymat() {
                   />
                 }
                 label="廣興國小"
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={崁頂國小}
+                    name="崁頂國小"
+                    onChange={(e) => {
+                      setschoolstate({
+                        ...school,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label="崁頂國小"
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={溫泉國小}
+                    name="溫泉國小"
+                    onChange={(e) => {
+                      setschoolstate({
+                        ...school,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label="溫泉國小"
                 sx={{
                   color: '#745140',
                   height: '30px',

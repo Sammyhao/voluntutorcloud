@@ -26,20 +26,7 @@ export const Studygrid = ({ studymt, status }) => {
           </div>
           <div className="schoolstudy">
             {schoollist.map((e, index) => {
-              if (schoollist.length == 1) {
-                return <div className="schoollist">{e}</div>
-              } else {
-                if (index != schoollist.length - 1) {
-                  return (
-                    <div className="schoollist">
-                      {e}
-                      {space}
-                    </div>
-                  )
-                } else {
-                  return <div className="schoollist">{e}</div>
-                }
-              }
+              return <div className="schoollist">{e.substring(0, 2)}</div>
             })}
           </div>
           <div className="tagswrap">
