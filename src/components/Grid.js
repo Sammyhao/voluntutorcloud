@@ -78,7 +78,8 @@ function Grid_sub(props) {
   const kangchiao = 'https://forms.gle/WnfLGfhUhaXgLNsx6'
 
   const movelink = (link) => {
-    window.open(link, '_blank', 'noopener,noreferrer')
+    const linktomove = link
+    window.open(linktomove, '_blank', 'noopener,noreferrer')
   }
 
   const handleClose = () => {
@@ -140,6 +141,7 @@ function Grid_sub(props) {
     if (islogged) {
       setBookOpen(true)
     } else {
+      setnotlogged(true)
     }
   }
 
