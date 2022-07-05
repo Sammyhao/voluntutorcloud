@@ -22,7 +22,6 @@
   justify-content: center;
 }
 
-
 #bookingprogramdia_sub {
   background-color: whitesmoke;
   overflow: block;
@@ -41,39 +40,21 @@
   justify-content: center;
 }
 
-#fav_outcontainer{
+#fav_outcontainer {
   margin-top: 80px;
-  height: 100vh;
+  height: fit-content;
 }
 
 #outcontainer {
   margin-top: 80px;
-  height: 100vh;
+  height: fit-content;
 }
 
-@media screen and (max-width: 900px) {
-  #outcontainer {
-    height: 1000px;
-  }
-  #fav_outcontainer{
-    height: 1200px;
-  }
+#gridcontainer,
+#fav_gridcontainer {
+  height: fit-content;
+  padding-bottom: 100px;
 }
-
-@media screen and (max-width: 600px) {
-  #outcontainer {
-    height: 1200px;
-  }
-  #fav_outcontainer{
-    height: 1600px;
-  }
-}
-
-
-
-
-
-
 #nofav {
   margin-top: 80px;
   display: flex;
