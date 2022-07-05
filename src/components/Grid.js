@@ -83,10 +83,10 @@ function Grid_sub(props) {
   const handlefinalclose = () => {
     setcheckopen(false)
   }
-  const bookingprogram = (program) => {
-    setcheckopen(true)
-    p = program
-  }
+  // const bookingprogram = (program) => {
+  //   setcheckopen(true)
+  //   p = program
+  // }
   // const [subject, setSubject] = useState('Math') // change the subject from here
   const [subject, setSubject] = useState(props.sub)
   const [programInfo, setProgramInfo] = useState([])
