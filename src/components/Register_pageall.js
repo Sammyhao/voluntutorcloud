@@ -200,6 +200,7 @@ function Register_pageall() {
   let abb = ['Select your preferred student grade', '請選擇學生年級']
   let abc = ['Select your preferred student gender', '請選擇學生性別']
   let bbc = ['Select your preferred student personality', '請選擇學生性格']
+  let abcd = ['Enter your birthday', '請填選你的生日']
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
 
@@ -1222,7 +1223,7 @@ function Register_pageall() {
                 <div className="birthdayreggroup">
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
-                      label="Enter your birthday"
+                      label={abcd[status]}
                       value={birthdaydate}
                       onChange={(newValue) => {
                         setbirthdaydate(newValue)
@@ -1527,7 +1528,7 @@ function Register_pageall() {
                 <div className="birthdayreggroup">
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
-                      label="Enter your birthday"
+                      label={abcd[status]}
                       value={birthdaydate}
                       onChange={(newValue) => {
                         setbirthdaydate(newValue)

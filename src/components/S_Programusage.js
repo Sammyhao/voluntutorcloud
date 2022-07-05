@@ -52,8 +52,8 @@ function Programusage() {
 
   useLayoutEffect(() => {
     if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+        .then((response) => {
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
@@ -66,7 +66,8 @@ function Programusage() {
               studentname: studentname,
             },
           )
-        }).then((response) => {
+        })
+        .then((response) => {
           if (response.data.length == 0) setLoading(false)
           console.log(response.data[0])
           let student = response.data[0]
@@ -81,8 +82,10 @@ function Programusage() {
               echelon: 2,
             },
           )
-        }).then((response) => {
-          if (response.data.length) setContactInfo((contactInfo) => [...contactInfo, response.data])
+        })
+        .then((response) => {
+          if (response.data.length)
+            setContactInfo((contactInfo) => [...contactInfo, response.data])
           setLoading(false)
         })
     }
@@ -136,10 +139,12 @@ function Programusage() {
                     </div>
                   </div>
                 </div>
-                <div className="rowwrap">
-                  <div className="row1">
-                    <div className="title_rec">{e[status]}</div>
-                    <div className="title_not">{f[status]}</div>
+                <div className="outestwrapprogram">
+                  <div className="rowwrap">
+                    <div className="row1">
+                      <div className="title_rec">{e[status]}</div>
+                      <div className="title_not">{f[status]}</div>
+                    </div>
                   </div>
                 </div>
               </div>
