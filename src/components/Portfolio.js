@@ -214,17 +214,19 @@ export default function Portfolio(props) {
           </div>
           <div className="basicinfo_student">
             <div className="name_port">
-              {studentProfolio[chosenContactIdx]['0'].name}
+              {checkblank(studentProfolio[chosenContactIdx]['0'].name)}
             </div>
             <div className="others_port">
-              {e[status]} {studentProfolio[chosenContactIdx]['0'].school}
+              {e[status]}{' '}
+              {checkblank(studentProfolio[chosenContactIdx]['0'].school)}
             </div>
             <div className="others_port">
               {f[status]}
-              {studentProfolio[chosenContactIdx]['0'].grade}
+              {checkblank(studentProfolio[chosenContactIdx]['0'].grade)}
             </div>
             <div className="others_port">
-              {g[status]} {studentProfolio[chosenContactIdx]['0'].age}
+              {g[status]}{' '}
+              {checkblank(studentProfolio[chosenContactIdx]['0'].age)}
             </div>
           </div>
         </div>
@@ -242,10 +244,12 @@ export default function Portfolio(props) {
               <div className="title_port">{j[status]}</div>
               <Divider className="primline"></Divider>
               <div className="content_port">
-                {k[status]} {studentProfolio[chosenContactIdx]['0'].gender}
+                {k[status]}{' '}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].gender)}
               </div>
               <div className="content_port">
-                {l[status]} {studentProfolio[chosenContactIdx]['0'].birthday}
+                {l[status]}{' '}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].birthday)}
               </div>
             </div>
             <div className="infobox">
@@ -253,12 +257,15 @@ export default function Portfolio(props) {
               <Divider className="primline"></Divider>
               <div className="subtitle_port">{n[status]}</div>
               <div className="content_port">
-                {o[status]} {studentProfolio[chosenContactIdx]['0'].studentmail}
+                {o[status]}{' '}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].studentmail)}
               </div>
               <div className="subtitle_port">{q[status]}</div>
               <div className="content_port">
                 {p[status]}{' '}
-                {studentProfolio[chosenContactIdx]['0'].parentcontactnum}
+                {checkblank(
+                  studentProfolio[chosenContactIdx]['0'].parentcontactnum,
+                )}
               </div>
               <div className="content_port">
                 {o[status]}{' '}
@@ -270,16 +277,14 @@ export default function Portfolio(props) {
               <Divider className="primline"></Divider>
               <div className="subtitle_port">{s[status]}</div>
               <div className="content_port">
-                {studentProfolio[chosenContactIdx]['0'].requiredsub}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].requiredsub)}
               </div>
               <div className="subtitle_port">{t[status]}</div>
               <Link className="studymat" to="/studymat">
                 <div className="learn_more_second">{i[status]}</div>
               </Link>
               <div className="subtitle_port">{u[status]}</div>
-              <div className="content_port">
-                {studentProfolio[chosenContactIdx]['0'].addinotes}
-              </div>
+              <div className="content_port">{zzz[status]}</div>
             </div>
           </div>
           <div className="second_port">
@@ -288,59 +293,59 @@ export default function Portfolio(props) {
               <Divider className="primline"></Divider>
               <div className="subtitle_port">{w[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].hobbies}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].hobbies)}
               </div>
               <Divider className="subline"></Divider>
 
               <div className="subtitle_port">{x[status]}</div>
               <div className="subtitle_sub_port">{y[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].favsub}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].favsub)}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{z[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].color}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].color)}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{ab[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].animal}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].animal)}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{bc[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].food}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].food)}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{cd[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].idol}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].idol)}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{de[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].fear}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].fear)}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{ef[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].accom}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].accom)}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{fg[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].dream}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].dream)}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{gh[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].memor}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].memor)}
               </div>
               <Divider className="subline"></Divider>
               <div className="subtitle_sub_port">{hi[status]}</div>
               <div className="content_port_abt">
-                {studentProfolio[chosenContactIdx]['0'].prec}
+                {checkblank(studentProfolio[chosenContactIdx]['0'].prec)}
               </div>
             </div>
           </div>
