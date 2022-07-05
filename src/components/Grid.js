@@ -71,7 +71,6 @@ function Grid_sub(props) {
   const [check_open_book, setcheckopen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
-  let p
   const handleClose = () => {
     setOpen(false)
   }
@@ -103,7 +102,7 @@ function Grid_sub(props) {
     console.log(subjectFF)
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
-      subject: subjectFF,
+      // subject: subjectFF,
     }).then((response) => {
       if (response.data.length) {
         setProgramInfo(response.data)
