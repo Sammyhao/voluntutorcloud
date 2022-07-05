@@ -72,14 +72,19 @@ function Grid_sub(props) {
   const [open_book, setBookOpen] = useState(false)
   const [open_notlogged, setnotlogged] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
-  const student = 'https://forms.gle/6BaZovfFSLwtSGkF8'
-  const wego = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
-  const fuhsing = 'https://forms.gle/gT91p6xLSNExWYmh7'
-  const kangchiao = 'https://forms.gle/WnfLGfhUhaXgLNsx6'
 
-  const movelink = (link) => {
-    const linktomove = link
-    window.open(linktomove, '_blank', 'noopener,noreferrer')
+  const movelink = (num) => {
+    const link = ''
+    if (num == 0) {
+      link = 'https://forms.gle/6BaZovfFSLwtSGkF8'
+    } else if (num == 1) {
+      link = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
+    } else if (num == 2) {
+      link = 'https://forms.gle/gT91p6xLSNExWYmh7'
+    } else {
+      link = 'https://forms.gle/WnfLGfhUhaXgLNsx6'
+    }
+    window.open(link, '_blank', 'noopener,noreferrer')
   }
 
   const handleClose = () => {
@@ -236,25 +241,27 @@ function Grid_sub(props) {
             aria-labelledby="customized-dialog-title"
             open={open_notlogged}
           >
-            <div id="book_title">請問你是學生還是老師？</div>
-            <div className="book_button_wrap">
-              <div className="book_button" onClick={movelink(student)}>
-                學生
+            <div className="book_title">請問你是學生還是老師？</div>
+            <div className="book_outside_wrap">
+              <div className="book_button_wrap">
+                <div className="book_button" onClick={movelink(1)}>
+                  學生
+                </div>
               </div>
-            </div>
-            <div className="book_button_wrap">
-              <div className="book_button" onClick={movelink(wego)}>
-                薇閣志工老師
+              <div className="book_button_wrap">
+                <div className="book_button" onClick={movelink(2)}>
+                  薇閣志工老師
+                </div>
               </div>
-            </div>
-            <div className="book_button_wrap">
-              <div className="book_button" onClick={movelink(fuhsing)}>
-                復興志工老師
+              <div className="book_button_wrap">
+                <div className="book_button" onClick={movelink(3)}>
+                  復興志工老師
+                </div>
               </div>
-            </div>
-            <div className="book_button_wrap">
-              <div className="book_button" onClick={movelink(kangchiao)}>
-                康橋志工老師
+              <div className="book_button_wrap">
+                <div className="book_button" onClick={movelink(4)}>
+                  康橋志工老師
+                </div>
               </div>
             </div>
           </BootstrapDialog>
