@@ -7,10 +7,10 @@ import Navbar from '../Navbar'
 import Homepageprog from '../Homepg_choose'
 import About_us from '../About_us'
 import Team from '../Team'
-import Function from '../Function'
+// import Function from '../Function'
 import S_Navbar from '../S_Navbar'
 import S_hero from '../S_HeroSection'
-import S_Function from '../S_Function'
+// import S_Function from '../S_Function'
 import Loading from '../Loading'
 import Axios from 'axios'
 
@@ -22,11 +22,10 @@ function Home() {
   const [name, setName] = useState('')
   const [notif_data, setNotif_data] = useState([])
 
-
   useEffect(() => {
-    if(isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
+    if (isLoading) {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+        .then((response) => {
           console.log(response.data)
           if (!response.data.isLoggedIn) {
             setIsLoggedIn(false)
@@ -45,10 +44,11 @@ function Home() {
               {
                 username: response.data.user[0].username,
                 isnew: true,
-              }
+              },
             )
           }
-        }).then((response) => {
+        })
+        .then((response) => {
           console.log(response.data)
           setNotif_data(response.data)
           setLoading(false)
@@ -69,13 +69,13 @@ function Home() {
       </>
     )
   } else {
-    console.log(name);
+    console.log(name)
     if (isLoggedIn == false) {
       return (
         <>
           <Navbar isLoggedIn={isLoggedIn}></Navbar>
           <HeroSection isLoggedIn={isLoggedIn} />
-          <Function isLoggedIn={isLoggedIn}></Function>
+          {/* <Function isLoggedIn={isLoggedIn}></Function> */}
           <Homepageprog isLoggedIn={isLoggedIn}></Homepageprog>
           <About_us isLoggedIn={isLoggedIn}></About_us>
           <Team isLoggedIn={isLoggedIn}></Team>
@@ -85,9 +85,13 @@ function Home() {
     } else if (role == 'teacher') {
       return (
         <>
-          <Navbar lang={lang} isLoggedIn={isLoggedIn} notifdata={notif_data}></Navbar>
+          <Navbar
+            lang={lang}
+            isLoggedIn={isLoggedIn}
+            notifdata={notif_data}
+          ></Navbar>
           <HeroSection lang={lang} isLoggedIn={isLoggedIn} name={name} />
-          <Function lang={lang} isLoggedIn={isLoggedIn}></Function>
+          {/* <Function lang={lang} isLoggedIn={isLoggedIn}></Function> */}
           <Homepageprog lang={lang}></Homepageprog>
           <About_us lang={lang}></About_us>
           <Team lang={lang}></Team>
@@ -99,7 +103,7 @@ function Home() {
         <>
           <S_Navbar lang={lang} isLoggedIn={isLoggedIn}></S_Navbar>
           <S_hero lang={lang} isLoggedIn={isLoggedIn} name={name} />
-          <S_Function lang={lang} isLoggedIn={isLoggedIn}></S_Function>
+          {/* <S_Function lang={lang} isLoggedIn={isLoggedIn}></S_Function> */}
           <About_us lang={lang}></About_us>
           <Team lang={lang}></Team>
           <Footer lang={lang}></Footer>

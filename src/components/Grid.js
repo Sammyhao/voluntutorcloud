@@ -83,10 +83,6 @@ function Grid_sub(props) {
   const handlefinalclose = () => {
     setcheckopen(false)
   }
-  // const bookingprogram = (program) => {
-  //   setcheckopen(true)
-  //   p = program
-  // }
   // const [subject, setSubject] = useState('Math') // change the subject from here
   const [subject, setSubject] = useState(props.sub)
   const [programInfo, setProgramInfo] = useState([])
@@ -101,8 +97,8 @@ function Grid_sub(props) {
     else subjectFF = subject
     console.log(subjectFF)
 
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/program', {
-      // subject: subjectFF,
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
+      subject: subjectFF,
     }).then((response) => {
       if (response.data.length) {
         setProgramInfo(response.data)
@@ -127,32 +123,7 @@ function Grid_sub(props) {
   const [username, setUsername] = useState('')
 
   const updateBookList = () => {
-    // Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
     setBookOpen(true)
-    //   if (response.data.isLoggedIn) {
-    //     var templateParams = {
-    //       vc_program: p ,
-    //       username: program.username
-    //     }
-    //     emailjs
-    //     .send(
-    //       'service_z12yzef',
-    //       'template_zg8ezog',
-    //       templateParams,
-    //       'QZBU3bIops8KtosSX',
-    //     )
-    //     .then(
-    //       function (response) {
-    //         console.log('SUCCESS!', response.status, response.text)
-    //       },
-    //       function (error) {
-    //         console.log('FAILED...', error)
-    //       },
-    //     )
-    //   } else {
-    //     console.log('user not logged in')
-    //   }
-    // })
   }
 
   const updateFavList = (program) => {
