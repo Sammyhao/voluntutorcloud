@@ -78,6 +78,7 @@ function Programusage() {
               username: student.username,
               studentname: student.studentname,
               studentmail: student.studentmail,
+              echelon: 2,
             },
           )
         }).then((response) => {
