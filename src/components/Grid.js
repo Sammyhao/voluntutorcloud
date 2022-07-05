@@ -72,29 +72,35 @@ function Grid_sub(props) {
   const [open_book, setBookOpen] = useState(false)
   const [open_notlogged, setnotlogged] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
-  const [studentlink, setstulink] = useState(
-    'https://forms.gle/6BaZovfFSLwtSGkF8',
-  )
-  const [wegolink, setwegolink] = useState(
-    'https://forms.gle/qvM9eLJZiAjUvhEN7',
-  )
-  const [fuhlink, setfuhlink] = useState('https://forms.gle/gT91p6xLSNExWYmh7')
-  const [kanglink, setkanglink] = useState(
-    'https://forms.gle/WnfLGfhUhaXgLNsx6',
-  )
 
   const movestudent = () => {
-    window.open(studentlink, '_blank', 'noopener,noreferrer')
+    window.open(
+      "'https://forms.gle/6BaZovfFSLwtSGkF8'",
+      '_blank',
+      'noopener,noreferrer',
+    )
   }
   const movewego = () => {
     const link = ''
-    window.open(wegolink, '_blank', 'noopener,noreferrer')
+    window.open(
+      'https://forms.gle/qvM9eLJZiAjUvhEN7',
+      '_blank',
+      'noopener,noreferrer',
+    )
   }
   const movefuh = () => {
-    window.open(fuhlink, '_blank', 'noopener,noreferrer')
+    window.open(
+      'https://forms.gle/gT91p6xLSNExWYmh7',
+      '_blank',
+      'noopener,noreferrer',
+    )
   }
   const movekang = () => {
-    window.open(kanglink, '_blank', 'noopener,noreferrer')
+    window.open(
+      'https://forms.gle/WnfLGfhUhaXgLNsx6',
+      '_blank',
+      'noopener,noreferrer',
+    )
   }
 
   const handleClose = () => {
