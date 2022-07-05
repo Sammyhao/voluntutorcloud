@@ -64,13 +64,23 @@ let program = 0
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
-
 function Grid_sub(props) {
   const numberOfCards = 200
   const [open, setOpen] = useState(false)
+  const [islogged, setislogged] = useState(false)
   const [check_open_book, setcheckopen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
+  const [open_notlogged, setnotlogged] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
+  const student = 'https://forms.gle/6BaZovfFSLwtSGkF8'
+  const wego = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
+  const fuhsing = 'https://forms.gle/gT91p6xLSNExWYmh7'
+  const kangchiao = 'https://forms.gle/WnfLGfhUhaXgLNsx6'
+
+  const movelink = (link) => {
+    window.open(link, '_blank', 'noopener,noreferrer')
+  }
+
   const handleClose = () => {
     setOpen(false)
   }
@@ -79,6 +89,9 @@ function Grid_sub(props) {
   }
   const handlebookclose = () => {
     setBookOpen(false)
+  }
+  const handlenotlogged = () => {
+    setnotlogged(false)
   }
   const handlefinalclose = () => {
     setcheckopen(false)
@@ -110,6 +123,7 @@ function Grid_sub(props) {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
         console.log(response)
+        setislogged(response.data.isLoggedIn)
         if (response.data.isLoggedIn) {
           setUsername(response.data.user[0].username)
           name = response.data.user[0].username
@@ -123,7 +137,10 @@ function Grid_sub(props) {
   const [username, setUsername] = useState('')
 
   const updateBookList = () => {
-    setBookOpen(true)
+    if (islogged) {
+      setBookOpen(true)
+    } else {
+    }
   }
 
   const updateFavList = (program) => {
@@ -208,6 +225,36 @@ function Grid_sub(props) {
           >
             <div id="bookingprogramdia">{d[status]}</div>
             <div id="bookingprogramdia_sub">{e[status]}</div>
+          </BootstrapDialog>
+        </div>
+        <div id="dialog_reg_wrap">
+          <BootstrapDialog
+            onClose={handlenotlogged}
+            id="dialog_registered"
+            aria-labelledby="customized-dialog-title"
+            open={open_notlogged}
+          >
+            <div id="book_title">請問你是學生還是老師？</div>
+            <div className="book_button_wrap">
+              <div className="book_button" onClick={movelink(student)}>
+                學生
+              </div>
+            </div>
+            <div className="book_button_wrap">
+              <div className="book_button" onClick={movelink(wego)}>
+                薇閣志工老師
+              </div>
+            </div>
+            <div className="book_button_wrap">
+              <div className="book_button" onClick={movelink(fuhsing)}>
+                復興志工老師
+              </div>
+            </div>
+            <div className="book_button_wrap">
+              <div className="book_button" onClick={movelink(kangchiao)}>
+                康橋志工老師
+              </div>
+            </div>
           </BootstrapDialog>
         </div>
         <div id="dialog_reg_wrap">

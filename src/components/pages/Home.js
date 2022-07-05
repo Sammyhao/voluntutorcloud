@@ -4,13 +4,13 @@ import HeroSection from '../HeroSection'
 import Footer from '../Footer'
 import Maintainance from '../Maintainance'
 import Navbar from '../Navbar'
-import Homepageprog from '../Homepg_choose'
+// import Homepageprog from '../Homepg_choose'
 import About_us from '../About_us'
 import Team from '../Team'
-// import Function from '../Function'
+import Function from '../Function'
 import S_Navbar from '../S_Navbar'
 import S_hero from '../S_HeroSection'
-// import S_Function from '../S_Function'
+import S_Function from '../S_Function'
 import Loading from '../Loading'
 import Axios from 'axios'
 
@@ -76,7 +76,7 @@ function Home() {
           <Navbar isLoggedIn={isLoggedIn}></Navbar>
           <HeroSection isLoggedIn={isLoggedIn} />
           {/* <Function isLoggedIn={isLoggedIn}></Function> */}
-          <Homepageprog isLoggedIn={isLoggedIn}></Homepageprog>
+          {/* <Homepageprog isLoggedIn={isLoggedIn}></Homepageprog> */}
           <About_us isLoggedIn={isLoggedIn}></About_us>
           <Team isLoggedIn={isLoggedIn}></Team>
           <Footer isLoggedIn={isLoggedIn}></Footer>
@@ -92,7 +92,7 @@ function Home() {
           ></Navbar>
           <HeroSection lang={lang} isLoggedIn={isLoggedIn} name={name} />
           {/* <Function lang={lang} isLoggedIn={isLoggedIn}></Function> */}
-          <Homepageprog lang={lang}></Homepageprog>
+          {/* <Homepageprog lang={lang}></Homepageprog> */}
           <About_us lang={lang}></About_us>
           <Team lang={lang}></Team>
           <Footer lang={lang}></Footer>

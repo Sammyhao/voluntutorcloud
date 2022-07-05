@@ -37,6 +37,45 @@
   padding: 15px;
   text-align: center;
 }
+.book_button_wrap {
+  background-color: #f5f5f5;
+}
+.book_title {
+  align-items: center;
+  background-color: #f5f5f5;
+  color: #b25634;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 20px;
+}
+.book_button {
+  align-items: center;
+  background-color: #f5f5f5;
+  color: #b25634;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #b25634;
+  height: wrap;
+  justify-content: center;
+  border-radius: 10px;
+  overflow: block;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 15px;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  transition: 150ms;
+}
+.book_button:hover {
+  background-color: #b25634;
+  color: #f5f5f5;
+}
 #bookingprogramdia_sub {
   background-color: whitesmoke;
   overflow: block;
