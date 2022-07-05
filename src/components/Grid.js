@@ -72,37 +72,16 @@ function Grid_sub(props) {
   const [open_book, setBookOpen] = useState(false)
   const [open_notlogged, setnotlogged] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
-
-  const movestudent = () => {
-    window.open(
-      "'https://forms.gle/6BaZovfFSLwtSGkF8'",
-      '_blank',
-      'noopener,noreferrer',
-    )
-  }
-  const movewego = () => {
-    const link = ''
-    window.open(
-      'https://forms.gle/qvM9eLJZiAjUvhEN7',
-      '_blank',
-      'noopener,noreferrer',
-    )
-  }
-  const movefuh = () => {
-    window.open(
-      'https://forms.gle/gT91p6xLSNExWYmh7',
-      '_blank',
-      'noopener,noreferrer',
-    )
-  }
-  const movekang = () => {
-    window.open(
-      'https://forms.gle/WnfLGfhUhaXgLNsx6',
-      '_blank',
-      'noopener,noreferrer',
-    )
-  }
-
+  const [studentlink, setstulink] = useState(
+    'https://forms.gle/6BaZovfFSLwtSGkF8',
+  )
+  const [wegolink, setwegolink] = useState(
+    'https://forms.gle/qvM9eLJZiAjUvhEN7',
+  )
+  const [fuhlink, setfuhlink] = useState('https://forms.gle/gT91p6xLSNExWYmh7')
+  const [kanglink, setkanglink] = useState(
+    'https://forms.gle/WnfLGfhUhaXgLNsx6',
+  )
   const handleClose = () => {
     setOpen(false)
   }
@@ -260,22 +239,50 @@ function Grid_sub(props) {
             <div className="book_title">請問你是學生還是老師？</div>
             <div className="book_outside_wrap">
               <div className="book_button_wrap">
-                <div className="book_button" onClick={movestudent()}>
+                <div
+                  className="book_button"
+                  onClick={window.open(
+                    studentlink,
+                    '_blank',
+                    'noopener,noreferrer',
+                  )}
+                >
                   學生
                 </div>
               </div>
               <div className="book_button_wrap">
-                <div className="book_button" onClick={movewego()}>
+                <div
+                  className="book_button"
+                  onClick={window.open(
+                    wegolink,
+                    '_blank',
+                    'noopener,noreferrer',
+                  )}
+                >
                   薇閣志工老師
                 </div>
               </div>
               <div className="book_button_wrap">
-                <div className="book_button" onClick={movefuh()}>
+                <div
+                  className="book_button"
+                  onClick={window.open(
+                    fuhlink,
+                    '_blank',
+                    'noopener,noreferrer',
+                  )}
+                >
                   復興志工老師
                 </div>
               </div>
               <div className="book_button_wrap">
-                <div className="book_button" onClick={movekang()}>
+                <div
+                  className="book_button"
+                  onClick={window.open(
+                    kanglink,
+                    '_blank',
+                    'noopener,noreferrer',
+                  )}
+                >
                   康橋志工老師
                 </div>
               </div>

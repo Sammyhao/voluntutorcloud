@@ -70,11 +70,12 @@ function Myfav() {
   ]
   let b = ['Go and check out some new programs!', '去看看我們的志工計畫吧！！']
   let c = ['My List', '我的最愛']
-  let d = ['Program Booked!', '志工計畫已報名！']
   let e = [
-    'Please wait for notification from the administrator.',
-    '主辦者將盡快與你聯絡~',
+    'You cannot enroll in two programs at the same time.',
+    '目前不得同時報名多個志工計畫',
   ]
+  let d = ['You are already enrolled in a program.', '你已經在志工計畫當中囉~']
+
   let f = ['BOOK NOW!', '現在報名！']
   let g = ['Remove from list', '移除最愛']
   let h = ['Dates/Service hours', '日期/服務時間']
@@ -118,27 +119,8 @@ function Myfav() {
 
   let username = ''
 
-  const updateBookList = (program) => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
-      .then((response) => {
-        console.log(response)
-        if (response.data.isLoggedIn) {
-          setcheckopen(true)
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/updateFavListinMyFav',
-            {
-              username: program.username,
-              program: program,
-              isBooked: true,
-            },
-          )
-        } else {
-          console.log('user not logged in')
-        }
-      })
-      .then((response) => {
-        console.log(response)
-      })
+  const updateBookList = () => {
+    setBookOpen(true)
   }
 
   const showFavProgramList = () => {
@@ -184,19 +166,7 @@ function Myfav() {
               <div id="bookingprogramdia_sub">{e[status]}</div>
             </BootstrapDialog>
           </div>
-          <div id="dialog_reg_wrap">
-            <BootstrapDialog
-              onClose={handlefinalclose}
-              id="dialog_registered"
-              aria-labelledby="customized-dialog-title"
-              open={check_open_book}
-            >
-              <div id="bookingprogramdia"> {l[status]}</div>
-              <div id="bookingyet" onClick={() => open_book(true)}>
-                {m[status]}
-              </div>
-            </BootstrapDialog>
-          </div>
+
           <div id="dialogcontainer">
             <BootstrapDialog
               onClose={handleClose}
