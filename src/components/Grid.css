@@ -23,6 +23,9 @@
   padding-right: 15px;
   padding-left: 15px;
 }
+.book_button_wrap {
+  width: 100%;
+}
 #favoritetitle {
   background-color: whitesmoke;
   overflow: block;
