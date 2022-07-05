@@ -73,17 +73,20 @@ function Grid_sub(props) {
   const [open_notlogged, setnotlogged] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
 
-  const movelink = (num) => {
-    const link = ''
-    if (num == 0) {
-      link = 'https://forms.gle/6BaZovfFSLwtSGkF8'
-    } else if (num == 1) {
-      link = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
-    } else if (num == 2) {
-      link = 'https://forms.gle/gT91p6xLSNExWYmh7'
-    } else {
-      link = 'https://forms.gle/WnfLGfhUhaXgLNsx6'
-    }
+  const movestudent = () => {
+    const link = 'https://forms.gle/6BaZovfFSLwtSGkF8'
+    window.open(link, '_blank', 'noopener,noreferrer')
+  }
+  const movewego = () => {
+    const link = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
+    window.open(link, '_blank', 'noopener,noreferrer')
+  }
+  const movefuh = () => {
+    const link = 'https://forms.gle/gT91p6xLSNExWYmh7'
+    window.open(link, '_blank', 'noopener,noreferrer')
+  }
+  const movekang = () => {
+    const link = 'https://forms.gle/WnfLGfhUhaXgLNsx6'
     window.open(link, '_blank', 'noopener,noreferrer')
   }
 
@@ -244,22 +247,22 @@ function Grid_sub(props) {
             <div className="book_title">請問你是學生還是老師？</div>
             <div className="book_outside_wrap">
               <div className="book_button_wrap">
-                <div className="book_button" onClick={movelink(1)}>
+                <div className="book_button" onClick={movestudent()}>
                   學生
                 </div>
               </div>
               <div className="book_button_wrap">
-                <div className="book_button" onClick={movelink(2)}>
+                <div className="book_button" onClick={movewego()}>
                   薇閣志工老師
                 </div>
               </div>
               <div className="book_button_wrap">
-                <div className="book_button" onClick={movelink(3)}>
+                <div className="book_button" onClick={movefuh()}>
                   復興志工老師
                 </div>
               </div>
               <div className="book_button_wrap">
-                <div className="book_button" onClick={movelink(4)}>
+                <div className="book_button" onClick={movekang()}>
                   康橋志工老師
                 </div>
               </div>
