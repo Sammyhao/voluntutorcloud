@@ -107,7 +107,7 @@ function Register_pageall() {
   const [cpasswordShown, setcPasswordShown] = useState(false)
   const [emailError, setEmailError] = useState('')
   const navigate = useNavigate()
-  const [status, setStatus] = useState(1)
+  const [status, setStatus] = useState(0)
   const [birthdaydate, setbirthdaydate] = useState(new Date())
   const [charlist, setcharlist] = useState([
     'open-minded',
@@ -177,7 +177,7 @@ function Register_pageall() {
     'Create a Google Meet Link for future meetings!!',
     '創造一個未來會議的Google Meet連結!!',
   ]
-  let lm = ['Create a Google Meet Link', '請填入Google Meet連結']
+  let lm = ['https://meet.google.com/...', 'https://meet.google.com/...']
   let mn = ['Register', '註冊']
   let pq = ['Please Enter Your Chinese Name', '請輸入你的中文姓名']
   let no = ['Please Enter Your Last Name (Chinese)', '請輸入你的中文姓氏']
@@ -198,6 +198,7 @@ function Register_pageall() {
   let yyzz = ['Taitung Kanding Elementary School', '臺東縣崁頂國民小學']
   let asdbf = ['Select your preferred subjects', '請選擇你想要教導的科目']
   let abb = ['Select your preferred student grade', '請選擇學生年級']
+  let abc = ['Select your preferred student gender', '請選擇學生性別']
   let bbc = ['Select your preferred student personality', '請選擇學生性格']
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
@@ -216,27 +217,7 @@ function Register_pageall() {
     if (status == 0) {
       setStatus(1)
       setsubjectlist(['國文', '數學', '英文', '社會', '自然'])
-      setcharlist([
-        'open-minded',
-        'outgoing',
-        'reserved',
-        'conscientious',
-        'hard-working',
-        'proactive',
-        'indefatigable',
-        'discreet',
-        'honest',
-        'well-behaved',
-      ])
-    } else {
-      setStatus(0)
-      setsubjectlist([
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ])
+
       setcharlist([
         '開朗',
         '外向',
@@ -248,6 +229,27 @@ function Register_pageall() {
         '謹慎',
         '誠實',
         '守規矩',
+      ])
+    } else {
+      setStatus(0)
+      setsubjectlist([
+        'Chinese',
+        'Math',
+        'English',
+        'Social Studies',
+        'Science',
+      ])
+      setcharlist([
+        'open-minded',
+        'outgoing',
+        'reserved',
+        'conscientious',
+        'hard-working',
+        'proactive',
+        'indefatigable',
+        'discreet',
+        'honest',
+        'well-behaved',
       ])
     }
   }
@@ -2004,7 +2006,7 @@ function Register_pageall() {
                   }}
                   renderValue={(selected) => {
                     if (selected.length === 0) {
-                      return <div className="selectplace">{yy[status]}</div>
+                      return <div className="selectplace">{abc[status]}</div>
                     }
 
                     return selected
