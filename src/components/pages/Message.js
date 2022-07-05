@@ -18,7 +18,7 @@ export default function Messages() {
         console.log(response.data);
           setLang(response.data.user[0].lang);
           setRole(response.data.user[0].role);
-          setLoading(false);
+          setLoading(false);   
         
       }
     )
