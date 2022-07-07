@@ -169,7 +169,7 @@ function Grid_sub(props) {
     window.open(
       kanglink,
       '_blank',
-      'noopener,noreferrer',
+      'noopener,noreferrer', 
     )
   };
 
