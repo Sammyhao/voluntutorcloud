@@ -72,16 +72,12 @@ function Grid_sub(props) {
   const [open_book, setBookOpen] = useState(false)
   const [open_notlogged, setnotlogged] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
-  const [studentlink, setstulink] = useState(
-    'https://forms.gle/6BaZovfFSLwtSGkF8',
-  )
-  const [wegolink, setwegolink] = useState(
-    'https://forms.gle/qvM9eLJZiAjUvhEN7',
-  )
-  const [fuhlink, setfuhlink] = useState('https://forms.gle/gT91p6xLSNExWYmh7')
-  const [kanglink, setkanglink] = useState(
-    'https://forms.gle/WnfLGfhUhaXgLNsx6',
-  )
+  
+  const studentlink = 'https://forms.gle/6BaZovfFSLwtSGkF8';
+  const wegolink = 'https://forms.gle/qvM9eLJZiAjUvhEN7';
+  const fuhlink = 'https://forms.gle/gT91p6xLSNExWYmh7';
+  const kanglink = 'https://forms.gle/WnfLGfhUhaXgLNsx6';
+
   const handleClose = () => {
     setOpen(false)
   }
@@ -144,6 +140,38 @@ function Grid_sub(props) {
       setnotlogged(true)
     }
   }
+
+  const openstudentlink = () => {
+    window.open(
+      studentlink,
+      '_blank',
+      'noopener,noreferrer',
+    )
+  };
+
+  const openwegolink = () => {
+    window.open(
+      wegolink,
+      '_blank',
+      'noopener,noreferrer',
+    )
+  };
+
+  const openfuhlink = () => {
+    window.open(
+      fuhlink,
+      '_blank',
+      'noopener,noreferrer',
+    )
+  };
+
+  const openkanglink = () => {
+    window.open(
+      kanglink,
+      '_blank',
+      'noopener,noreferrer',
+    )
+  };
 
   const updateFavList = (program) => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
@@ -241,11 +269,7 @@ function Grid_sub(props) {
               <div className="book_button_wrap">
                 <div
                   className="book_button"
-                  onClick={window.open(
-                    studentlink,
-                    '_blank',
-                    'noopener,noreferrer',
-                  )}
+                  onClick={openstudentlink}
                 >
                   學生
                 </div>
@@ -253,11 +277,7 @@ function Grid_sub(props) {
               <div className="book_button_wrap">
                 <div
                   className="book_button"
-                  onClick={window.open(
-                    wegolink,
-                    '_blank',
-                    'noopener,noreferrer',
-                  )}
+                  onClick={openwegolink}
                 >
                   薇閣志工老師
                 </div>
@@ -265,11 +285,7 @@ function Grid_sub(props) {
               <div className="book_button_wrap">
                 <div
                   className="book_button"
-                  onClick={window.open(
-                    fuhlink,
-                    '_blank',
-                    'noopener,noreferrer',
-                  )}
+                  onClick={openfuhlink}
                 >
                   復興志工老師
                 </div>
@@ -277,11 +293,7 @@ function Grid_sub(props) {
               <div className="book_button_wrap">
                 <div
                   className="book_button"
-                  onClick={window.open(
-                    kanglink,
-                    '_blank',
-                    'noopener,noreferrer',
-                  )}
+                  onClick={openkanglink}
                 >
                   康橋志工老師
                 </div>
