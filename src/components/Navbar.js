@@ -20,9 +20,24 @@ function Navbar(props) {
   const [click, setClick] = useState(false)
   const [button, setButton] = useState(true)
   const [notification, setnotification] = useState(false)
+  const [name, setName] = useState("");
+
   const showSidebar = () => setSidebar(!sidebar)
   const shownotification = () => {
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/getNotif',
+      {
+        username: name,
+        isnew: true,
+      },
+    ).then((response) => {
+      console.log(response.data)
+      setNotif_data(response.data)
+      setLoading(false)
+    })
+
     setnotification(!notification)
+
     for (let i = 0; i < notif_data.length; i++) {
       console.log(notif_data[i])
       Axios.post(
@@ -133,21 +148,24 @@ function Navbar(props) {
         Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
           (response) => {
             let username = response.data.user[0].username
+            setName(response.data.user[0].username)
             setIsLoggedIn(response.data.isLoggedIn)
             if (response.data.user[0].lang == 'chinese') setStatus(1)
             else setStatus(0)
-            return Axios.post(
-              'https://voluntutorcloud-server.herokuapp.com/getNotif',
-              {
-                username: username,
-                isnew: true,
-              },
-            )
-          }).then((response) => {
-            console.log(response.data)
-            setNotif_data(response.data)
-            setLoading(false)
-          })
+            // return Axios.post(
+            //   'https://voluntutorcloud-server.herokuapp.com/getNotif',
+            //   {
+            //     username: username,
+            //     isnew: true,
+            //   },
+            // )
+          }
+          // ).then((response) => {
+          //   console.log(response.data)
+          //   setNotif_data(response.data)
+          //   setLoading(false)
+          // }
+        )
       }
     }
   }, [])
