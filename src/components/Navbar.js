@@ -147,10 +147,9 @@ function Navbar(props) {
         console.log('props failed')
         Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
           (response) => {
-            let username = response.data.user[0].username
             setName(response.data.user[0].username)
             setIsLoggedIn(response.data.isLoggedIn)
-            if (response.data.user[0].lang == 'chinese') setStatus(1)
+            if (response.data.user[0].lang === 'chinese') setStatus(1)
             else setStatus(0)
             // return Axios.post(
             //   'https://voluntutorcloud-server.herokuapp.com/getNotif',
@@ -168,7 +167,7 @@ function Navbar(props) {
         )
       }
     }
-  }, [])
+  })
 
   useEffect(() => {
     showButton()
