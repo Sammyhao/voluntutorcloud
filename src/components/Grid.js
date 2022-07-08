@@ -107,9 +107,7 @@ function Grid_sub(props) {
     else subjectFF = subject
     console.log(subjectFF)
 
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/program', {
-      subject: subjectFF,
-    }).then((response) => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/programWithoutSub').then((response) => {
       if (response.data.length) {
         setProgramInfo(response.data)
       }
