@@ -74,6 +74,7 @@ function Myfav() {
     'You cannot enroll in two programs at the same time.',
     '目前不得同時報名多個志工計畫',
   ]
+  let nn = ['Subject', '科目']
   let d = ['You are already enrolled in a program.', '你已經在志工計畫當中囉~']
 
   let f = ['BOOK NOW!', '現在報名！']
@@ -218,7 +219,6 @@ function Myfav() {
                       <RiMapPin2Fill className="loc_dialog" />
                       <div id="position">{program.address}</div>
                     </div>
-                    <div id="subject">{program.subject}</div>
                   </div>
                   <div id="content">
                     <div id="school_content">{program.content}</div>
@@ -232,6 +232,12 @@ function Myfav() {
                     <div className="basicinfo" id="time">
                       {program.sttime}
                     </div> */}
+                      <div className="basicinfo" id="target_topic">
+                        {nn[status]}
+                      </div>
+                      <div className="basicinfo" id="target">
+                        {program.subject}
+                      </div>
                       <div className="basicinfo" id="coordinator_topic">
                         {i[status]}
                       </div>

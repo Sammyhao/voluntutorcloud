@@ -72,11 +72,11 @@ function Grid_sub(props) {
   const [open_book, setBookOpen] = useState(false)
   const [open_notlogged, setnotlogged] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
-  
-  const studentlink = 'https://forms.gle/6BaZovfFSLwtSGkF8';
-  const wegolink = 'https://forms.gle/qvM9eLJZiAjUvhEN7';
-  const fuhlink = 'https://forms.gle/gT91p6xLSNExWYmh7';
-  const kanglink = 'https://forms.gle/WnfLGfhUhaXgLNsx6';
+
+  const studentlink = 'https://forms.gle/6BaZovfFSLwtSGkF8'
+  const wegolink = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
+  const fuhlink = 'https://forms.gle/gT91p6xLSNExWYmh7'
+  const kanglink = 'https://forms.gle/WnfLGfhUhaXgLNsx6'
 
   const handleClose = () => {
     setOpen(false)
@@ -107,7 +107,9 @@ function Grid_sub(props) {
     // else subjectFF = subject
     // console.log(subjectFF)
 
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/programWithoutSub').then((response) => {
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/programWithoutSub',
+    ).then((response) => {
       if (response.data.length) {
         setProgramInfo(response.data)
       }
@@ -140,36 +142,20 @@ function Grid_sub(props) {
   }
 
   const openstudentlink = () => {
-    window.open(
-      studentlink,
-      '_blank',
-      'noopener,noreferrer',
-    )
-  };
+    window.open(studentlink, '_blank', 'noopener,noreferrer')
+  }
 
   const openwegolink = () => {
-    window.open(
-      wegolink,
-      '_blank',
-      'noopener,noreferrer',
-    )
-  };
+    window.open(wegolink, '_blank', 'noopener,noreferrer')
+  }
 
   const openfuhlink = () => {
-    window.open(
-      fuhlink,
-      '_blank',
-      'noopener,noreferrer',
-    )
-  };
+    window.open(fuhlink, '_blank', 'noopener,noreferrer')
+  }
 
   const openkanglink = () => {
-    window.open(
-      kanglink,
-      '_blank',
-      'noopener,noreferrer', 
-    )
-  };
+    window.open(kanglink, '_blank', 'noopener,noreferrer')
+  }
 
   const updateFavList = (program) => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
@@ -216,6 +202,7 @@ function Grid_sub(props) {
     'Are you sure you want to book this program?',
     '你確定你要報名此志工計畫？按下送出後即無法收回。',
   ]
+  let nn = ['Subject', '科目']
   let m = ['Yes', '確定送出']
   let o = [
     'There is no volunteering programs yet.',
@@ -265,34 +252,22 @@ function Grid_sub(props) {
             <div className="book_title">請問你是學生還是老師？</div>
             <div className="book_outside_wrap">
               <div className="book_button_wrap">
-                <div
-                  className="book_button"
-                  onClick={openstudentlink}
-                >
+                <div className="book_button" onClick={openstudentlink}>
                   學生
                 </div>
               </div>
               <div className="book_button_wrap">
-                <div
-                  className="book_button"
-                  onClick={openwegolink}
-                >
+                <div className="book_button" onClick={openwegolink}>
                   薇閣志工老師
                 </div>
               </div>
               <div className="book_button_wrap">
-                <div
-                  className="book_button"
-                  onClick={openfuhlink}
-                >
+                <div className="book_button" onClick={openfuhlink}>
                   復興志工老師
                 </div>
               </div>
               <div className="book_button_wrap">
-                <div
-                  className="book_button"
-                  onClick={openkanglink}
-                >
+                <div className="book_button" onClick={openkanglink}>
                   康橋志工老師
                 </div>
               </div>
@@ -338,11 +313,7 @@ function Grid_sub(props) {
                   {program.schoolintro}
                 </Typography>
                 <div id="buttonwrap">
-                  <Button
-                    id="book"
-                    size="small"
-                    onClick={openwegolink}
-                  >
+                  <Button id="book" size="small" onClick={updateBookList}>
                     {f[status]}
                   </Button>
                   <Button
@@ -363,7 +334,6 @@ function Grid_sub(props) {
                     <RiMapPin2Fill className="loc_dialog" />
                     <div id="position">{program.address}</div>
                   </div>
-                  <div id="subject">{program.subject}</div>
                 </div>
                 <div id="content">
                   <div id="school_content">{program.content}</div>
@@ -377,6 +347,12 @@ function Grid_sub(props) {
                     <div className="basicinfo" id="time">
                       {program.sttime}
                     </div> */}
+                    <div className="basicinfo" id="target_topic">
+                      {nn[status]}
+                    </div>
+                    <div className="basicinfo" id="target">
+                      {program.subject}
+                    </div>
                     <div className="basicinfo" id="coordinator_topic">
                       {i[status]}
                     </div>
