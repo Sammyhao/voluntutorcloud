@@ -1,0 +1,36 @@
+.admin_wrap {
+    width: 100%;
+    height: wrap;
+    padding: 50px;
+  }
+  .title {
+    text-align: center;
+    color: black;
+    font-size: 30px;
+  }
+  .content {
+    border: 1.5px solid lightgray;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  .admin_chart {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 10px;
+  }
+  .chart {
+    margin-top: 30px;
+  }
+  .subtitle {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    margin-top: 30px;
+  }
+  @media (max-width: 600px) {
+    .admin_chart {
+      grid-template-columns: repeat(6, 100px);
+    }
+  }
+  
