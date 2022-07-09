@@ -100,12 +100,12 @@ function Grid_sub(props) {
   const [address, setAddress] = useState('')
 
   useEffect(() => {
-    let subjectFF = ''
-    console.log('subject')
-    console.log(subject)
-    if (subject == '') subjectFF = 'chinese'
-    else subjectFF = subject
-    console.log(subjectFF)
+    // let subjectFF = ''
+    // console.log('subject')
+    // console.log(subject)
+    // if (subject == '') subjectFF = 'chinese'
+    // else subjectFF = subject
+    // console.log(subjectFF)
 
     Axios.post('https://voluntutorcloud-server.herokuapp.com/programWithoutSub').then((response) => {
       if (response.data.length) {

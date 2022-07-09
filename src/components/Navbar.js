@@ -24,20 +24,7 @@ function Navbar(props) {
 
   const showSidebar = () => setSidebar(!sidebar)
   const shownotification = () => {
-    Axios.post(
-      'https://voluntutorcloud-server.herokuapp.com/getNotif',
-      {
-        username: name,
-        isnew: true,
-      },
-    ).then((response) => {
-      console.log(response.data)
-      setNotif_data(response.data)
-      setLoading(false)
-    })
-
     setnotification(!notification)
-
     for (let i = 0; i < notif_data.length; i++) {
       console.log(notif_data[i])
       Axios.post(
@@ -97,42 +84,7 @@ function Navbar(props) {
   useEffect(() => {
     console.log(props)
     if (isLoading) {
-      // if (!props.isLoggedIn) {
-      //   setIsLoggedIn(false)
-      //   setLoading(false)
-      // } else {
-      //     if (props) {
-            // setIsLoggedIn(props.isLoggedIn)
-            // if (props.lang == 'chinese') setStatus(1)
-            // else setStatus(0)
-      //     } else {
-            // console.log('props failed')
-            // Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-            //   (response) => {
-            //     setIsLoggedIn(response.data.isLoggedIn)
-            //     if (response.data.user[0].lang == 'chinese') setStatus(1)
-            //     else setStatus(0)
-            //   },
-            // )
-      //     }
-  
-      //     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      //       (response) => {
-      //         let username = ''
-      //         if (response.data.isLoggedIn)
-      //           username = response.data.user[0].username
-      //         console.log(username)
-              // return Axios.post(
-              //   'https://voluntutorcloud-server.herokuapp.com/getNotif',
-              //   {
-              //     username: username,
-              //     isnew: true,
-              //   },
-      //         )
-      //       },
-      //     )
-      // }
-      if(props.lang && props.isLoggedIn && props.notifdata) {
+      if(props.lang && props.isLoggedIn) {
         if(!props.isLoggedIn) { // not logged in
           setIsLoggedIn(false)
           setLoading(false)
@@ -140,7 +92,6 @@ function Navbar(props) {
           setIsLoggedIn(true) // logged in
           if (props.lang == 'chinese') setStatus(1)
           else setStatus(0)
-          setNotif_data(props.notifdata);
           setLoading(false)
         }
       } else {
@@ -151,23 +102,25 @@ function Navbar(props) {
             setIsLoggedIn(response.data.isLoggedIn)
             if (response.data.user[0].lang === 'chinese') setStatus(1)
             else setStatus(0)
-            // return Axios.post(
-            //   'https://voluntutorcloud-server.herokuapp.com/getNotif',
-            //   {
-            //     username: username,
-            //     isnew: true,
-            //   },
-            // )
           }
-          // ).then((response) => {
-          //   console.log(response.data)
-          //   setNotif_data(response.data)
-          //   setLoading(false)
-          // }
         )
       }
     }
-  })
+  }, [])
+
+  useEffect(() => {
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/getNotif',
+      {
+        username: name,
+        isnew: true,
+      },
+    ).then((response) => {
+      console.log(response.data)
+      setNotif_data(response.data)
+      setLoading(false)
+    })
+  }, [])
 
   useEffect(() => {
     showButton()
