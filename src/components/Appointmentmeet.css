@@ -23,16 +23,17 @@
 }
 #editlink {
   color: #745140;
-  width: 100%;
   line-height: 20px;
   padding: 7px 0px 7px;
   font-size: 15px;
   border-radius: 0px;
   padding: 10px;
   border: none;
+  flex-grow: 1;
   border-bottom: 1.5px solid rgba(178, 86, 52, 0.3);
 }
 #editlink:focus {
+  outline: none;
   border: none;
   border-bottom: 1.5px solid rgba(178, 86, 52, 0.3);
 }
@@ -122,6 +123,7 @@
   color: #745140;
 }
 #edittodos:focus {
+  outline: none;
   color: #745140;
   border: 1.5px solid rgba(178, 86, 52, 0.3);
 }
