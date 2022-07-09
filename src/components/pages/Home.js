@@ -29,7 +29,7 @@ function Home() {
           console.log(response.data)
           if (!response.data.isLoggedIn) {
             setIsLoggedIn(false)
-            setLang("chinese");
+            setLang('chinese')
             setLoading(false)
           } else {
             setIsLoggedIn(true)
@@ -76,7 +76,7 @@ function Home() {
         <>
           <Navbar lang={lang} isLoggedIn={isLoggedIn}></Navbar>
           <HeroSection isLoggedIn={isLoggedIn} />
-          {/* <Function isLoggedIn={isLoggedIn}></Function> */}
+          <Function isLoggedIn={isLoggedIn}></Function>
           {/* <Homepageprog isLoggedIn={isLoggedIn}></Homepageprog> */}
           <About_us isLoggedIn={isLoggedIn}></About_us>
           <Team isLoggedIn={isLoggedIn}></Team>
@@ -92,7 +92,7 @@ function Home() {
             notifdata={notif_data}
           ></Navbar>
           <HeroSection lang={lang} isLoggedIn={isLoggedIn} name={name} />
-          {/* <Function lang={lang} isLoggedIn={isLoggedIn}></Function> */}
+          <Function lang={lang} isLoggedIn={isLoggedIn}></Function>
           {/* <Homepageprog lang={lang}></Homepageprog> */}
           <About_us lang={lang}></About_us>
           <Team lang={lang}></Team>
@@ -104,7 +104,7 @@ function Home() {
         <>
           <S_Navbar lang={lang} isLoggedIn={isLoggedIn}></S_Navbar>
           <S_hero lang={lang} isLoggedIn={isLoggedIn} name={name} />
-          {/* <S_Function lang={lang} isLoggedIn={isLoggedIn}></S_Function> */}
+          <S_Function lang={lang} isLoggedIn={isLoggedIn}></S_Function>
           <About_us lang={lang}></About_us>
           <Team lang={lang}></Team>
           <Footer lang={lang}></Footer>

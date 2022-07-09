@@ -16,6 +16,30 @@
   padding: 10px;
   border: 1.5px solid rgba(178, 86, 52, 0.3);
 }
+#edittask {
+  color: #745140;
+  width: 95%;
+  line-height: 20px;
+  padding: 7px 0px 7px;
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1.5px solid rgba(178, 86, 52, 0.3);
+}
+.submissionlinkwrap {
+  margin-top: 20px;
+}
+#editlink {
+  color: #745140;
+  width: 100%;
+  line-height: 20px;
+  padding: 7px 0px 7px;
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  border-bottom: 1.5px solid rgba(178, 86, 52, 0.3);
+}
 .choosekid.active {
   z-index: 999;
   left: 0;
@@ -95,17 +119,6 @@
   font-size: 15px;
   opacity: 0.5;
   color: #745140;
-}
-#edittodos {
-  padding: 0;
-  color: #745140;
-  padding: 7px 0px 7px;
-  padding: 10px;
-  line-height: 20px;
-  font-size: 15px;
-  text-align: start;
-  outline: none;
-  border-bottom: 1.5px solid rgba(178, 86, 52, 0.3);
 }
 .con {
   display: flex;
@@ -348,7 +361,9 @@ input::-webkit-inner-spin-button {
   padding-bottom: 20px;
   padding-left: 20px;
 }
-
+.submissiontitle {
+  color: #745140;
+}
 .app_line {
   width: 80vw;
   background-color: #c49483;

@@ -50,6 +50,7 @@ function Appointmentmeet() {
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
   ]
+  let zzz = ['None', '無']
   let space = [' ']
   let b = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
   let c = [
@@ -69,6 +70,9 @@ function Appointmentmeet() {
   let h = ['Agenda', '課堂進度']
   let i = ['Student Tasks', '學生回家作業']
   let j = ['Notes', '課堂筆記']
+  let jj = ['Course Material Links', '課堂教材連結']
+  let jjjjj = ['Student task submission link', '學生回家作業繳交處']
+  let jjrr = ['Student task submission link: ', '學生回家作業繳交處：']
   let k = ['SEND', '傳送']
   let l = ['Report Sent Successfully!', '教學記錄成功傳送！']
   let m = ['Join', '加入會議']
@@ -80,6 +84,14 @@ function Appointmentmeet() {
   let p = ['1. Review math final exam.', '1. 複習數學段考']
   let q = ['1. Read one English book.', '1. 閱讀一本英文繪本']
   let r = ['Add additional notes!!', '請輸入課堂筆記']
+  let rrrxx = [
+    "Put the links to your course materials here! If it's a local file, please upload it onto your personal Google Drive and paste the sharing link here :)",
+    '請輸入課堂教材連結，若課堂教材為本機檔案 (例如：word檔案)，請上傳至私人的Google Drive並且將共用連結貼在這裡喔！',
+  ]
+  let ras = [
+    'Please paste the sharing link to your personal Google Drive here for homework submission.',
+    '請將您雲端硬碟共用連結貼於此，這裡會是學生作業繳交處！',
+  ]
   const [studentabsence, setstudentabscene] = useState('')
 
   let tu = [
@@ -107,6 +119,8 @@ function Appointmentmeet() {
   const [agenda, setAgenda] = useState('')
   const [task, setTask] = useState('')
   const [notes, setNotes] = useState('')
+  const [links, setLinks] = useState('')
+  const [submissionlink, setsubmissionlink] = useState('')
   const [classduration, setClassduration] = useState(0.0)
   const [googleMeetLink, setGoogleMeetLink] = useState('')
   const [isLoading, setLoading] = useState(true)
@@ -146,34 +160,45 @@ function Appointmentmeet() {
     setopenmsgsend(false)
   }
 
+  const checkblank = (content) => {
+    if (content == '') {
+      return zzz[status]
+    } else {
+      return content
+    }
+  }
   // var googlemeetlinkalt = "";
 
   useEffect(() => {
     if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+        .then((response) => {
           username = response.data.user[0].username
           setGoogleMeetLink(response.data.user[0].googlemeetlink)
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
-          return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {username: username})
-      }).then((response) => {
-        console.log('Student number: ')
-        console.log(response.data.length)
-        if (response.data.length == 2) {
-          setMultistudentname([response.data[1].studentname])
-          setstudentname(response.data[0].studentname)
-        }
-        for (let i = 0; i < response.data.length; i++) {
-          setstudentnamelist((studentnamelist) => [
-            ...studentnamelist,
-            response.data[i].studentname,
-          ])
-        }
-        setContactInfo(response.data)
-        setChosenContact(response.data[0])
-        setLoading(false)
-      })
+          return Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/findContact',
+            { username: username },
+          )
+        })
+        .then((response) => {
+          console.log('Student number: ')
+          console.log(response.data.length)
+          if (response.data.length == 2) {
+            setMultistudentname([response.data[1].studentname])
+            setstudentname(response.data[0].studentname)
+          }
+          for (let i = 0; i < response.data.length; i++) {
+            setstudentnamelist((studentnamelist) => [
+              ...studentnamelist,
+              response.data[i].studentname,
+            ])
+          }
+          setContactInfo(response.data)
+          setChosenContact(response.data[0])
+          setLoading(false)
+        })
     }
   }, [])
 
@@ -202,6 +227,8 @@ function Appointmentmeet() {
       notes,
       studentabsence,
       selectedstudentname,
+      links,
+      submissionlink,
     )
 
     if (
@@ -278,6 +305,8 @@ function Appointmentmeet() {
       agenda: agenda,
       task: task,
       notes: notes,
+      sublink: checkblank(submissionlink),
+      link: checkblank(links),
     }
     console.log(templateParams)
 
@@ -285,37 +314,42 @@ function Appointmentmeet() {
       username: chosenContact.username,
       studentname: selectedstudentname,
       studentmail: emailaddress,
-      echelon: 2
-    }).then((response) => {
-      //         if(response.data.length) {
-      //           totalhour = response.data[response.data.length-1].hoursleft
-      //         }
-      //        else totalhour = 8;
-      console.log(totalhour)
-
-      for (let i = 0; i < response.data.length; i++) {
-        totalhour -= response.data[i].duration
-        console.log(totalhour)
-      }
-
-      console.log(totalhour)
-
-      return Axios.post('https://voluntutorcloud-server.herokuapp.com/updateRecord', {
-        username: chosenContact.username,
-        studentname: selectedstudentname,
-        studentmail: emailaddress,
-        classDate: tempFinalFormat,
-        duration: classduration,
-        studentabsence: studentabsence,
-        agenda: agenda,
-        task: task,
-        notes: notes,
-        hoursleft: totalhour - classduration,
-        echelon: 2
-      })
-    }).then((response) => {
-      console.log(response)
+      echelon: 2,
     })
+      .then((response) => {
+        //         if(response.data.length) {
+        //           totalhour = response.data[response.data.length-1].hoursleft
+        //         }
+        //        else totalhour = 8;
+        console.log(totalhour)
+
+        for (let i = 0; i < response.data.length; i++) {
+          totalhour -= response.data[i].duration
+          console.log(totalhour)
+        }
+
+        console.log(totalhour)
+
+        return Axios.post(
+          'https://voluntutorcloud-server.herokuapp.com/updateRecord',
+          {
+            username: chosenContact.username,
+            studentname: selectedstudentname,
+            studentmail: emailaddress,
+            classDate: tempFinalFormat,
+            duration: classduration,
+            studentabsence: studentabsence,
+            agenda: agenda,
+            task: task,
+            notes: notes,
+            hoursleft: totalhour - classduration,
+            echelon: 2,
+          },
+        )
+      })
+      .then((response) => {
+        console.log(response)
+      })
 
     emailjs
       .send(
@@ -337,6 +371,8 @@ function Appointmentmeet() {
     setAgenda('')
     setTask('')
     setNotes('')
+    setsubmissionlink('')
+    setLinks('')
     setClassDate(new Date())
     setstarting(new Date())
     setending(new Date())
@@ -446,8 +482,14 @@ function Appointmentmeet() {
               <div className="appointment_content">{classduration}</div>
               <div className="appointment_subtitles">{h[status]}</div>
               <div className="appointment_content">{agenda}</div>
+              <div className="appointment_subtitles">{jjjjj[status]}</div>
+              <div className="appointment_content">
+                {checkblank(submissionlink)}
+              </div>
               <div className="appointment_subtitles">{i[status]}</div>
               <div className="appointment_content">{task}</div>
+              <div className="appointment_subtitles">{jj[status]}</div>
+              <div className="appointment_content">{checkblank(links)}</div>
               <div className="appointment_subtitles">{j[status]}</div>
               <div className="appointment_content">{notes}</div>
               <div className="wrapappointment">
@@ -837,13 +879,40 @@ function Appointmentmeet() {
             <div className="app_title">{i[status]}</div>
             <Divider className="app_line"></Divider>
             <div className="wraptodos">
+              <div className="submissionlinkwrap">
+                <div className="submissiontitle">{jjrr[status]}</div>
+                <input
+                  id="editlink"
+                  type="text"
+                  value={submissionlink}
+                  placeholder={ras[status]}
+                  onChange={(e) => {
+                    setsubmissionlink(e.target.value)
+                  }}
+                />
+              </div>
               <textarea
-                id="edittodos"
+                id="edittask"
                 type="text"
                 value={task}
                 placeholder={q[status]}
                 onChange={(e) => {
                   setTask(e.target.value)
+                }}
+              />
+            </div>
+          </div>
+          <div className="notes">
+            <div className="app_title">{jj[status]}</div>
+            <Divider className="app_line"></Divider>
+            <div className="wraptodos">
+              <textarea
+                id="edittodos"
+                type="text"
+                value={links}
+                placeholder={rrrxx[status]}
+                onChange={(e) => {
+                  setLinks(e.target.value)
                 }}
               />
             </div>
