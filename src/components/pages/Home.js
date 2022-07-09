@@ -29,6 +29,7 @@ function Home() {
           console.log(response.data)
           if (!response.data.isLoggedIn) {
             setIsLoggedIn(false)
+            setLang("chinese");
             setLoading(false)
           } else {
             setIsLoggedIn(true)
@@ -73,7 +74,7 @@ function Home() {
     if (isLoggedIn == false) {
       return (
         <>
-          <Navbar isLoggedIn={isLoggedIn}></Navbar>
+          <Navbar lang={lang} isLoggedIn={isLoggedIn}></Navbar>
           <HeroSection isLoggedIn={isLoggedIn} />
           {/* <Function isLoggedIn={isLoggedIn}></Function> */}
           {/* <Homepageprog isLoggedIn={isLoggedIn}></Homepageprog> */}
