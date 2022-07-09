@@ -3,6 +3,27 @@ import './Admin_appointment.css'
 import { useNavigate } from 'react-router-dom'
 export default function Admin_appointment() {
   const navigate = useNavigate()
+  const date = [
+    '9/1',
+    '9/4',
+    '9/5',
+    '9/11',
+    '9/12',
+    '9/18',
+    '9/19',
+    '9/25',
+    '9/26',
+    '10/2',
+    '10/3',
+    '10/9',
+    '10/10',
+    '10/16',
+    '10/17',
+    '10/23',
+    '10/24',
+    '10/30',
+    '10/31',
+  ]
   const [student1, setstudent1] = useState([
     {
       pair: '老師1 - 學生1',
@@ -182,11 +203,21 @@ export default function Admin_appointment() {
       <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
-          <div className="content">9/1~9/4</div>
-          <div className="content">9/5~9/11</div>
-          <div className="content">9/12~9/18</div>
-          <div className="content">9/19~9/25</div>
-          <div className="content">9/26~10/2</div>
+          <div className="content">
+            {date[0]}~{date[1]}
+          </div>
+          <div className="content">
+            {date[2]}~{date[3]}
+          </div>
+          <div className="content">
+            {date[4]}~{date[5]}
+          </div>
+          <div className="content">
+            {date[6]}~{date[7]}
+          </div>
+          <div className="content">
+            {date[8]}~{date[9]}
+          </div>
         </div>
         {student1.map((e, ind) => {
           return (
@@ -204,11 +235,19 @@ export default function Admin_appointment() {
       <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
-          <div className="content">10/3~10/9</div>
-          <div className="content">10/10~10/16</div>
-          <div className="content">10/17~10/23</div>
-          <div className="content">10/24~10/30</div>
-          <div className="content">10/31</div>
+          <div className="content">
+            {date[10]}~{date[11]}
+          </div>
+          <div className="content">
+            {date[12]}~{date[13]}
+          </div>
+          <div className="content">
+            {date[14]}~{date[15]}
+          </div>
+          <div className="content">
+            {date[16]}~{date[17]}
+          </div>
+          <div className="content">{date[18]}</div>
         </div>
         {student1.map((e, ind) => {
           return (
@@ -227,13 +266,23 @@ export default function Admin_appointment() {
       <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
-          <div className="content">9/1~9/4</div>
-          <div className="content">9/5~9/11</div>
-          <div className="content">9/12~9/18</div>
-          <div className="content">9/19~9/25</div>
-          <div className="content">9/26~10/2</div>
+          <div className="content">
+            {date[0]}~{date[1]}
+          </div>
+          <div className="content">
+            {date[2]}~{date[3]}
+          </div>
+          <div className="content">
+            {date[4]}~{date[5]}
+          </div>
+          <div className="content">
+            {date[6]}~{date[7]}
+          </div>
+          <div className="content">
+            {date[8]}~{date[9]}
+          </div>
         </div>
-        {student2.map((e, ind) => {
+        {student1.map((e, ind) => {
           return (
             <div className="admin_chart">
               <div className="content">{e.pair}</div>
@@ -249,11 +298,19 @@ export default function Admin_appointment() {
       <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
-          <div className="content">10/3~10/9</div>
-          <div className="content">10/10~10/16</div>
-          <div className="content">10/17~10/23</div>
-          <div className="content">10/24~10/30</div>
-          <div className="content">10/31</div>
+          <div className="content">
+            {date[10]}~{date[11]}
+          </div>
+          <div className="content">
+            {date[12]}~{date[13]}
+          </div>
+          <div className="content">
+            {date[14]}~{date[15]}
+          </div>
+          <div className="content">
+            {date[16]}~{date[17]}
+          </div>
+          <div className="content">{date[18]}</div>
         </div>
         {student2.map((e, ind) => {
           return (
@@ -272,13 +329,23 @@ export default function Admin_appointment() {
       <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
-          <div className="content">9/1~9/4</div>
-          <div className="content">9/5~9/11</div>
-          <div className="content">9/12~9/18</div>
-          <div className="content">9/19~9/25</div>
-          <div className="content">9/26~10/2</div>
+          <div className="content">
+            {date[0]}~{date[1]}
+          </div>
+          <div className="content">
+            {date[2]}~{date[3]}
+          </div>
+          <div className="content">
+            {date[4]}~{date[5]}
+          </div>
+          <div className="content">
+            {date[6]}~{date[7]}
+          </div>
+          <div className="content">
+            {date[8]}~{date[9]}
+          </div>
         </div>
-        {student3.map((e, ind) => {
+        {student1.map((e, ind) => {
           return (
             <div className="admin_chart">
               <div className="content">{e.pair}</div>
@@ -294,11 +361,19 @@ export default function Admin_appointment() {
       <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
-          <div className="content">10/3~10/9</div>
-          <div className="content">10/10~10/16</div>
-          <div className="content">10/17~10/23</div>
-          <div className="content">10/24~10/30</div>
-          <div className="content">10/31</div>
+          <div className="content">
+            {date[10]}~{date[11]}
+          </div>
+          <div className="content">
+            {date[12]}~{date[13]}
+          </div>
+          <div className="content">
+            {date[14]}~{date[15]}
+          </div>
+          <div className="content">
+            {date[16]}~{date[17]}
+          </div>
+          <div className="content">{date[18]}</div>
         </div>
         {student3.map((e, ind) => {
           return (
@@ -317,13 +392,23 @@ export default function Admin_appointment() {
       <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
-          <div className="content">9/1~9/4</div>
-          <div className="content">9/5~9/11</div>
-          <div className="content">9/12~9/18</div>
-          <div className="content">9/19~9/25</div>
-          <div className="content">9/26~10/2</div>
+          <div className="content">
+            {date[0]}~{date[1]}
+          </div>
+          <div className="content">
+            {date[2]}~{date[3]}
+          </div>
+          <div className="content">
+            {date[4]}~{date[5]}
+          </div>
+          <div className="content">
+            {date[6]}~{date[7]}
+          </div>
+          <div className="content">
+            {date[8]}~{date[9]}
+          </div>
         </div>
-        {student4.map((e, ind) => {
+        {student1.map((e, ind) => {
           return (
             <div className="admin_chart">
               <div className="content">{e.pair}</div>
@@ -339,11 +424,19 @@ export default function Admin_appointment() {
       <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
-          <div className="content">10/3~10/9</div>
-          <div className="content">10/10~10/16</div>
-          <div className="content">10/17~10/23</div>
-          <div className="content">10/24~10/30</div>
-          <div className="content">10/31</div>
+          <div className="content">
+            {date[10]}~{date[11]}
+          </div>
+          <div className="content">
+            {date[12]}~{date[13]}
+          </div>
+          <div className="content">
+            {date[14]}~{date[15]}
+          </div>
+          <div className="content">
+            {date[16]}~{date[17]}
+          </div>
+          <div className="content">{date[18]}</div>
         </div>
         {student4.map((e, ind) => {
           return (
