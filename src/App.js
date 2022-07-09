@@ -9,6 +9,7 @@ import Subjects from './components/pages/Subjects'
 import MyList from './components/pages/MyFavList'
 import Profile from './components/pages/Profile'
 import Appointment from './components/pages/Appointment'
+import Admin from './components/pages/Admin'
 import Program_usage from './components/pages/Program_usage'
 import Book from './components/pages/Book'
 import Student_portfolio from './components/pages/Student_portfolio'
@@ -18,7 +19,7 @@ import 'font-awesome/css/font-awesome.min.css'
 
 function App() {
   useEffect(() => {
-    document.title = "VolunTutor Cloud";
+    document.title = 'VolunTutor Cloud'
   })
 
   return (
@@ -33,8 +34,9 @@ function App() {
           <Route exact path="/profile" element={<Profile />}></Route>
           <Route exact path="/appointment" element={<Appointment />}></Route>
           <Route exact path="/book" element={<Book />}></Route>
+          <Route exact path="/admin" element={<Admin />}></Route>
           <Route exact path="/studymat" element={<Studymat />}></Route>
-          
+
           <Route
             exact
             path="/program_usage"
@@ -46,7 +48,7 @@ function App() {
             element={<Student_portfolio />}
           ></Route>
           <Route exact path="/message" element={<Message />}></Route>
-          </Routes>
+        </Routes>
 
         {/* <Footer></Footer> */}
       </Router>
