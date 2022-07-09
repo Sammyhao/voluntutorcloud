@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './Admin_appointment.css'
-import Grid from '@mui/material/Grid'
+import { useNavigate } from 'react-router-dom'
 export default function Admin_appointment() {
-  const [chartlength, setchartlength] = useState(10)
+  const navigate = useNavigate()
   const [student1, setstudent1] = useState([
     {
       pair: '老師1 - 學生1',
@@ -169,6 +169,14 @@ export default function Admin_appointment() {
   ])
   return (
     <div className="admin_wrap">
+      <div
+        className="backtosignin"
+        onClick={() => {
+          navigate('/sign-in')
+        }}
+      >
+        回到登入頁面
+      </div>
       <div className="title">會議記錄表</div>
       <div className="subtitle">大溪國小</div>
       <div className="chart">
