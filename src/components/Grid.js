@@ -341,7 +341,7 @@ function Grid_sub(props) {
                   <Button
                     id="book"
                     size="small"
-                    onClick={() => updateBookList(program)}
+                    onClick={openwegolink}
                   >
                     {f[status]}
                   </Button>
