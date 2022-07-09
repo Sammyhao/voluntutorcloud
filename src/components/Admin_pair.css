@@ -40,13 +40,13 @@
 .content:hover {
   background-color: lightgray;
 }
-.admin_chart {
+.admin_chart_pair {
   margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 10px;
 }
-.chart {
+.chart_pair {
   margin-top: 30px;
 }
 .admin_notif {

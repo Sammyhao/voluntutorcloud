@@ -146,15 +146,15 @@ export default function Admin_pair() {
       <div className="admin_title">學生老師配對</div>
       <div className="admin_notif">點擊老師或學生帳號以查看帳號密碼</div>
       <div className="subtitle">大溪國小</div>
-      <div className="chart">
-        <div className="admin_chart">
+      <div className="chart_pair">
+        <div className="admin_chart_pair">
           <div className="content_admin">老師</div>
           <div className="content_admin">學生</div>
           <div className="content_admin">Google meet</div>
         </div>
         {student1.map((e, ind) => {
           return (
-            <div className="admin_chart">
+            <div className="admin_chart_pair">
               <div
                 className="content"
                 onClick={() => {
@@ -181,15 +181,15 @@ export default function Admin_pair() {
         })}
       </div>
       <div className="subtitle">廣興國小</div>
-      <div className="chart">
-        <div className="admin_chart">
+      <div className="chart_pair">
+        <div className="admin_chart_pair">
           <div className="content_admin">老師</div>
           <div className="content_admin">學生</div>
           <div className="content_admin">Google meet</div>
         </div>
         {student1.map((e, ind) => {
           return (
-            <div className="admin_chart">
+            <div className="admin_chart_pair">
               <div
                 className="content"
                 onClick={() => {
@@ -216,15 +216,15 @@ export default function Admin_pair() {
         })}
       </div>
       <div className="subtitle">溫泉國小</div>
-      <div className="chart">
-        <div className="admin_chart">
+      <div className="chart_pair">
+        <div className="admin_chart_pair">
           <div className="content_admin">老師</div>
           <div className="content_admin">學生</div>
           <div className="content_admin">Google meet</div>
         </div>
         {student1.map((e, ind) => {
           return (
-            <div className="admin_chart">
+            <div className="admin_chart_pair">
               <div
                 className="content"
                 onClick={() => {
@@ -251,15 +251,15 @@ export default function Admin_pair() {
         })}
       </div>
       <div className="subtitle">崁頂國小</div>
-      <div className="chart">
-        <div className="admin_chart">
+      <div className="chart_pair">
+        <div className="admin_chart_pair">
           <div className="content_admin">老師</div>
           <div className="content_admin">學生</div>
           <div className="content_admin">Google meet</div>
         </div>
         {student1.map((e, ind) => {
           return (
-            <div className="admin_chart">
+            <div className="admin_chart_pair">
               <div
                 className="content"
                 onClick={() => {
