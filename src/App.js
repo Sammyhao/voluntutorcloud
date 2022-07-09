@@ -7,6 +7,7 @@ import SignIn from './components/pages/SignIn'
 import Register from './components/pages/Register'
 import Subjects from './components/pages/Subjects'
 import MyList from './components/pages/MyFavList'
+import Admin_pair from './components/pages/Admin_pairing'
 import Profile from './components/pages/Profile'
 import Appointment from './components/pages/Appointment'
 import Admin from './components/pages/Admin'
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/appointment" element={<Appointment />}></Route>
           <Route exact path="/book" element={<Book />}></Route>
           <Route exact path="/admin" element={<Admin />}></Route>
+          <Route exact path="/pair" element={<Admin_pair />}></Route>
           <Route exact path="/studymat" element={<Studymat />}></Route>
 
           <Route
