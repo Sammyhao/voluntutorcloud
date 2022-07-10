@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import PropTypes from 'prop-types'
 import DialogTitle from '@mui/material/DialogTitle'
-import { Axios } from 'axios'
+import Axios from 'axios'
 import Loading from './Loading'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
