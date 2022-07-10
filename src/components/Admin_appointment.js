@@ -210,6 +210,8 @@ export default function Admin_appointment() {
             echelon: 1,
           }).then((response) => {
             console.log(response.data);
+            let data = response.data;
+            data.sort((a, b) => {return a.classDate - b.classDate})
             setContactInfo((contactInfo) => [...contactInfo, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}])
           })
         }
@@ -243,7 +245,7 @@ export default function Admin_appointment() {
         查看學生老師配對
       </div>
       <div className="admin_title">會議記錄表</div>
-      <div className="subtitle">大溪國小</div>
+      {/* <div className="subtitle">大溪國小</div> */}
       <div className="chart">
         {/* <div className="admin_chart">
           <div className="content">老師 - 學生</div>
@@ -269,13 +271,13 @@ export default function Admin_appointment() {
             <div className="admin_chart">
               <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
               {data.map((rec, i) => {
-                return (<div className="content" key={i}>{rec.studentabsence}</div>)
+                return (<div className="content" key={i}>{rec.classDate} : {rec.studentabsence}</div>)
               })}
             </div>
           )
         })}
       </div>
-      <div className="chart">
+      {/* <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
           <div className="content">
@@ -493,7 +495,7 @@ export default function Admin_appointment() {
             </div>
           )
         })}
-      </div>
+      </div> */}
     </div>
   )
 }
