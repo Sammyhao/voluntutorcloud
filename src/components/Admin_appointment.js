@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Admin_appointment.css'
 import { useNavigate } from 'react-router-dom'
+import Axios from 'axios'
+import Loading from './Loading'
+
 export default function Admin_appointment() {
   const navigate = useNavigate()
   const date = [
@@ -24,6 +27,7 @@ export default function Admin_appointment() {
     '10/30',
     '10/31',
   ]
+
   const [student1, setstudent1] = useState([
     {
       pair: '老師1 - 學生1',
@@ -188,6 +192,38 @@ export default function Admin_appointment() {
       tenth: '準時',
     },
   ])
+
+  const [contactInfo, setContactInfo] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const [stpair, setStpair] = useState([]);
+
+  useEffect(() => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/findAllContact').then((response) => {
+        for (let i = 0; i < response.data.length; i++) {
+          const student = response.data[i]
+          setStpair((stpair) => [...stpair, student])
+          console.log(student)
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
+            username: student.username,
+            studentname: student.studentname,
+            studentmail: student.studentmail,
+            echelon: 1,
+          }).then((response) => {
+            if (response.data.length)
+              setContactInfo((contactInfo) => [...contactInfo, response.data])
+          })
+        }
+        setLoading(false)
+    })
+  }, [])
+
+
+  if(isLoading) {
+    return (
+      <Loading/>
+    )
+  }
+
   return (
     <div className="admin_wrap">
       <div
