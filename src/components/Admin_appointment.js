@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Admin_appointment.css'
 import { useNavigate } from 'react-router-dom'
-import {Axios} from 'axios'
+import { Axios } from 'axios'
 import Loading from './Loading'
 
 export default function Admin_appointment() {
