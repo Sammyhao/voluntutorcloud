@@ -5,6 +5,8 @@ import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import PropTypes from 'prop-types'
 import DialogTitle from '@mui/material/DialogTitle'
+import { Axios } from 'axios'
+import Loading from './Loading'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -38,6 +40,25 @@ export default function Admin_pair() {
   const closeopen = () => {
     setopen(false)
   }
+
+  const [stpair, setStpair] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/findAllContact').then((response) => {
+      for (let i = 0; i < response.data.length; i++) {
+        let tempStpair = response.data[i]
+        console.log(tempStpair)
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+          username: tempStpair.username,
+        }).then((response) => {
+          setStpair(stpair => [...stpair, {teacher: tempStpair.username, student: tempStpair.studentname, meetlink: response.data[0].googlemeetlink}])
+        })
+      }
+      setLoading(false)
+  })
+  }, [])
+
   const [student1, setstudent1] = useState([
     {
       teacher: '老師1',
@@ -112,6 +133,8 @@ export default function Admin_pair() {
     //fetch data here
   }, [clickednum])
 
+  if(isLoading) return (<Loading/>)
+
   return (
     <div className="admin_wrap">
       <div id="dialogcontainer">
@@ -145,14 +168,14 @@ export default function Admin_pair() {
       </div>
       <div className="admin_title">學生老師配對</div>
       <div className="admin_notif">點擊老師或學生帳號以查看帳號密碼</div>
-      <div className="subtitle">大溪國小</div>
+      {/* <div className="subtitle">大溪國小</div> */}
       <div className="chart_pair">
         <div className="admin_chart_pair">
           <div className="content_admin">老師</div>
           <div className="content_admin">學生</div>
           <div className="content_admin">Google meet</div>
         </div>
-        {student1.map((e, ind) => {
+        {stpair.map((e, ind) => {
           return (
             <div className="admin_chart_pair">
               <div
@@ -173,14 +196,14 @@ export default function Admin_pair() {
               >
                 {e.student}
               </div>
-              <a className="content" href={e.link} target="_blank">
+              <a className="content" href={e.meetlink} target="_blank">
                 打開會議
               </a>
             </div>
           )
         })}
       </div>
-      <div className="subtitle">廣興國小</div>
+      {/* <div className="subtitle">廣興國小</div>
       <div className="chart_pair">
         <div className="admin_chart_pair">
           <div className="content_admin">老師</div>
@@ -284,7 +307,7 @@ export default function Admin_pair() {
             </div>
           )
         })}
-      </div>
+      </div> */}
     </div>
   )
 }
