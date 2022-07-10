@@ -234,6 +234,14 @@ export default function Admin_appointment() {
       >
         回到登入頁面
       </div>
+      <div
+        className="backtosignin"
+        onClick={() => {
+          navigate('/pair')
+        }}
+      >
+        查看學生老師配對
+      </div>
       <div className="admin_title">會議記錄表</div>
       <div className="subtitle">大溪國小</div>
       <div className="chart">
