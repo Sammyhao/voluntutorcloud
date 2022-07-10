@@ -211,7 +211,7 @@ export default function Admin_appointment() {
           }).then((response) => {
             console.log(response.data);
             let data = response.data;
-            data.sort((a, b) => {return a.classDate - b.classDate})
+            data.sort((a, b) => {return a.classdate - b.classdate})
             setContactInfo((contactInfo) => [...contactInfo, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}])
           })
         }
@@ -271,7 +271,7 @@ export default function Admin_appointment() {
             <div className="admin_chart">
               <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
               {data.map((rec, i) => {
-                return (<div className="content" key={i}>{rec.classDate} : {rec.studentabsence}</div>)
+                return (<div className="content" key={i}>{rec.classdate} : {rec.studentabsence}</div>)
               })}
             </div>
           )
