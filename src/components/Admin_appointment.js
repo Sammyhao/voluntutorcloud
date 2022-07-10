@@ -200,17 +200,17 @@ export default function Admin_appointment() {
   useEffect(() => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/findAllContact').then((response) => {
         for (let i = 0; i < response.data.length; i++) {
-          const student = response.data[i]
-          setStpair((stpair) => [...stpair, student])
-          console.log(student)
+          let tempStpair = response.data[i]
+          setStpair((stpair) => [...stpair, tempStpair])
+          console.log(tempStpair)
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
-            username: student.username,
-            studentname: student.studentname,
-            studentmail: student.studentmail,
+            username: tempStpair.username,
+            studentname: tempStpair.studentname,
+            studentmail: tempStpair.studentmail,
             echelon: 1,
           }).then((response) => {
-            if (response.data.length)
-              setContactInfo((contactInfo) => [...contactInfo, response.data])
+            console.log(response.data);
+            setContactInfo((contactInfo) => [...contactInfo, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}])
           })
         }
         setLoading(false)
@@ -245,7 +245,7 @@ export default function Admin_appointment() {
       <div className="admin_title">會議記錄表</div>
       <div className="subtitle">大溪國小</div>
       <div className="chart">
-        <div className="admin_chart">
+        {/* <div className="admin_chart">
           <div className="content">老師 - 學生</div>
           <div className="content">
             {date[0]}~{date[1]}
@@ -262,16 +262,15 @@ export default function Admin_appointment() {
           <div className="content">
             {date[8]}~{date[9]}
           </div>
-        </div>
-        {student1.map((e, ind) => {
+        </div> */}
+        {contactInfo.map((e, ind) => {
+          let data = e.data;
           return (
             <div className="admin_chart">
-              <div className="content">{e.pair}</div>
-              <div className="content">{e.first}</div>
-              <div className="content">{e.second}</div>
-              <div className="content">{e.third}</div>
-              <div className="content">{e.fourth}</div>
-              <div className="content">{e.fifth}</div>
+              <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
+              {data.map((rec, i) => {
+                return (<div className="content" key={i}>{rec.studentabsence}</div>)
+              })}
             </div>
           )
         })}
