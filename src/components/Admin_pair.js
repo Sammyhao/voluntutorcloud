@@ -56,7 +56,7 @@ export default function Admin_pair() {
         })
       }
       setLoading(false)
-  })
+    })
   }, [])
 
   const [student1, setstudent1] = useState([
