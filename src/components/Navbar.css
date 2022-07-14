@@ -187,14 +187,18 @@
     border-radius: 0;
   }
 
-  /* .navbar-logo {
+  .navbar-logo {
     position: absolute;
+    margin-left: 20px;
+    top: 0;
     text-align: start;
-  } */
+    align-self: flex-start;
+    transform: translate(20%, 50%);
+  }
 
   .navbar-logo-notlogged {
     position: absolute;
-    margin-left: 0;
+    margin-left: 20px;
     top: 0;
     text-align: start;
     align-self: flex-start;
@@ -266,7 +270,6 @@ path {
   text-align: start;
   left: 0;
   cursor: pointer;
-  align-self: flex-start;
   text-decoration: none;
   font-size: 2rem;
 }
@@ -279,7 +282,7 @@ path {
 }
 .navbar-logo-notlogged {
   color: #e6dcd7;
-  margin-left: 10px;
+  margin-left: 20px;
   top: 0;
   text-align: start;
   left: 0;

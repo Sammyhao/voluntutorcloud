@@ -175,10 +175,12 @@ function Navbar(props) {
       return (
         <>
           <div className="navbar">
-            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-              Voluntutor Cloud
-              {/* <i class="fab fa-typo3" /> */}
-            </Link>
+            <div>
+              <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+                Voluntutor Cloud
+                {/* <i class="fab fa-typo3" /> */}
+              </Link>
+            </div>
             <div className="navbar-container-logged">
               <div>
                 <div className="menu-icon" onClick={handleClick}>
@@ -269,10 +271,12 @@ function Navbar(props) {
       return (
         <>
           <div className="navbar">
-            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-              Voluntutor Cloud
-              {/* <i class="fab fa-typo3" /> */}
-            </Link>
+            <div>
+              <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+                Voluntutor Cloud
+                {/* <i class="fab fa-typo3" /> */}
+              </Link>
+            </div>
             <div className="navbar-container-logged">
               <div>
                 <div className="menu-icon" onClick={handleClick}>
