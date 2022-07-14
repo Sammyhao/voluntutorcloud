@@ -1,5 +1,5 @@
 .admin_wrap {
-  width: max-content;
+  width: auto;
   height: wrap;
   padding: 50px;
   background: white;
@@ -21,6 +21,7 @@
   border: 1.5px solid lightgray;
   border-radius: 5px;
   padding: 5px;
+  overflow: hidden;
 }
 .admin_chart {
   margin-top: 40px;
@@ -40,6 +41,7 @@
 }
 @media (max-width: 800px) {
   .admin_chart {
+    width: max-content;
     grid-template-columns: repeat(6, 100px);
   }
 }
