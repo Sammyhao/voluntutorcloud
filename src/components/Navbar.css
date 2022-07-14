@@ -4,13 +4,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  align-self: center;
   font-size: 1.2rem;
   position: fixed;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   top: 0;
   z-index: 100;
   width: 100%;
+}
+.logwrap {
+  width: wrap;
+  left: 0;
 }
 .nav-buttonsign {
   display: flex;
@@ -250,8 +253,8 @@
   justify-content: end;
   align-items: center;
   height: 80px;
-  width: 73vw;
   padding-right: 30px;
+  width: wrap;
 }
 path {
   stroke: #f5f5f5;
@@ -261,7 +264,7 @@ path {
   justify-content: end;
   align-items: center;
   height: 80px;
-  width: 67vw;
+  width: wrap;
 }
 .navbar-logo {
   color: #e6dcd7;

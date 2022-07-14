@@ -130,10 +130,12 @@ function Navbar(props) {
     return (
       <>
         <div className="navbar">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            Voluntutor Cloud
-            {/* <i class="fab fa-typo3" /> */}
-          </Link>
+          <div className="logwrap">
+            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+              Voluntutor Cloud
+              {/* <i class="fab fa-typo3" /> */}
+            </Link>
+          </div>
           <div className="navbar-container">
             <div className="menu-icon" onClick={handleClick}>
               <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -175,7 +177,7 @@ function Navbar(props) {
       return (
         <>
           <div className="navbar">
-            <div>
+            <div className="logwrap">
               <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                 Voluntutor Cloud
                 {/* <i class="fab fa-typo3" /> */}
@@ -271,7 +273,7 @@ function Navbar(props) {
       return (
         <>
           <div className="navbar">
-            <div>
+            <div className="logwrap">
               <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                 Voluntutor Cloud
                 {/* <i class="fab fa-typo3" /> */}
@@ -366,10 +368,12 @@ function Navbar(props) {
     return (
       <>
         <div className="navbar">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            Voluntutor Cloud
-            {/* <i class="fab fa-typo3" /> */}
-          </Link>
+          <div className="logwrap">
+            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+              Voluntutor Cloud
+              {/* <i class="fab fa-typo3" /> */}
+            </Link>
+          </div>
           <div className="navbar-container">
             <div className="menu-icon" onClick={handleClick}>
               <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
