@@ -30,14 +30,14 @@
   border-radius: 5px;
   padding: 5px;
 }
-.content {
+.content_pair {
   cursor: pointer;
   border: 1.5px solid lightgray;
   border-radius: 5px;
   padding: 5px;
   transition: 150ms;
 }
-.content:hover {
+.content_pair:hover {
   background-color: lightgray;
 }
 .admin_chart_pair {

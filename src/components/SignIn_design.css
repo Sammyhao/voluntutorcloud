@@ -172,6 +172,7 @@
   color: #b25634;
   border: 1px solid #b25634;
   font-family: 'Lora';
+  cursor: pointer;
 }
 
 .btn-login:hover {
