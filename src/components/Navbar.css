@@ -194,12 +194,14 @@
     margin-left: 20px;
     top: 0;
     text-align: start;
+    position: relative;
     align-self: flex-start;
     transform: translate(20%, 50%);
   }
 
   .navbar-logo-notlogged {
     margin-left: 20px;
+    position: relative;
     top: 0;
     text-align: start;
     align-self: flex-start;
@@ -270,6 +272,7 @@ path {
   top: 0;
   text-align: start;
   left: 0;
+  position: relative;
   cursor: pointer;
   text-decoration: none;
   font-size: 2rem;
@@ -287,6 +290,7 @@ path {
   top: 0;
   text-align: start;
   left: 0;
+  position: relative;
   cursor: pointer;
   text-decoration: none;
   font-size: 2rem;
