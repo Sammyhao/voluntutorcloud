@@ -162,6 +162,17 @@
   border: 1px solid transparent;
   font-family: 'Lora';
 }
+.btn-loginpressed {
+  width: 170px;
+  margin-top: 70px;
+  border-radius: 3px;
+  background: #e6dcd7;
+  padding: 8px 20px;
+  font-size: 20px;
+  background: #e6dcd7;
+  border: 1px solid #b25634;
+  font-family: 'Lora';
+}
 
 .btn-login:hover {
   transition: all 0.3s ease-out;

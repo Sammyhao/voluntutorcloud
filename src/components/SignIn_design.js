@@ -12,6 +12,7 @@ function SignIn_design() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loginStatus, setLoginStatus] = useState('')
+  const [btnstyle, setbtnstyle] = useState(false)
   const [passwordShown, setPasswordShown] = useState(false)
   const navigate = useNavigate()
   const login = () => {
@@ -36,7 +37,7 @@ function SignIn_design() {
     if (event.key === 'Enter') {
       event.preventDefault()
       console.log('pressed enter')
-      // 👇️ your logic here
+      setbtnstyle(true)
       login()
     }
   }
@@ -105,7 +106,10 @@ function SignIn_design() {
             <BsFillEyeSlashFill id="showpass" />
           </button>
         </div>
-        <button className="btn-login" onClick={login}>
+        <button
+          className={btnstyle ? 'btn-login' : 'btn-loginpressed'}
+          onClick={login}
+        >
           {d[status]}
         </button>
         <Link to="/register" className="signUp">
