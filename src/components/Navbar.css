@@ -191,7 +191,6 @@
   }
 
   .navbar-logo {
-    position: absolute;
     margin-left: 20px;
     top: 0;
     text-align: start;
@@ -200,7 +199,6 @@
   }
 
   .navbar-logo-notlogged {
-    position: absolute;
     margin-left: 20px;
     top: 0;
     text-align: start;
