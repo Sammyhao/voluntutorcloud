@@ -216,19 +216,23 @@ export default function Admin_appointment() {
             echelon: 1,
           }).then((response) => {
             console.log(response.data);
-            let data = response.data;
-            data.sort((a, b) => {return a.classdate - b.classdate})
+            let recData = response.data;
+            // recData.sort((a, b) => {return a.classdate - b.classdate})
             Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
               name: tempStpair.studentname,
             }).then((response) => {
               let school = response.data[0].school;
               console.log(school);
-              if(school == "大溪國小") setDs((ds) => [...ds, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}]);
-              else if(school == "廣興國小") setGx((gx) => [...gx, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}]);
-              else if(school == "溫泉國小") setWc((wc) => [...wc, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}]);
-              else if(school == "崁頂國小") setCd((cd) => [...cd, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}]);
+              Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+                username: tempStpair.username,
+              }).then((response) => {
+                console.log(response.data);
+                if(school == "大溪國小") setDs((ds) => [...ds, {teacher: response.data[0].lastname + response.data[0].firstname, studentname: tempStpair.studentname, data: recData}]);
+                else if(school == "廣興國小") setGx((gx) => [...gx, {teacher: response.data[0].lastname + response.data[0].firstname, studentname: tempStpair.studentname, data: recData}]);
+                else if(school == "溫泉國小") setWc((wc) => [...wc, {teacher: response.data[0].lastname + response.data[0].firstname, studentname: tempStpair.studentname, data: recData}]);
+                else if(school == "崁頂國小") setCd((cd) => [...cd, {teacher: response.data[0].lastname + response.data[0].firstname, studentname: tempStpair.studentname, data: recData}]);
+              })
             })
-
           })
         }
         setLoading(false)
