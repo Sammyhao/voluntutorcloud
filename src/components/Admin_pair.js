@@ -44,7 +44,7 @@ export default function Admin_pair() {
   const [stpair, setStpair] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
-  let curPair = "";
+  let curPair = 0;
 
   useEffect(() => {
     Axios.post(
