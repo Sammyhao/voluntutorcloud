@@ -20,7 +20,7 @@ function Navbar(props) {
   const [click, setClick] = useState(false)
   const [button, setButton] = useState(true)
   const [notification, setnotification] = useState(false)
-  const [name, setName] = useState("");
+  const [name, setName] = useState('')
 
   const showSidebar = () => setSidebar(!sidebar)
   const shownotification = () => {
@@ -84,39 +84,37 @@ function Navbar(props) {
   useEffect(() => {
     console.log(props)
     if (isLoading) {
-      if(props.lang && props.isLoggedIn) {
-        if(!props.isLoggedIn) { // not logged in
+      if (props.lang && props.isLoggedIn) {
+        if (!props.isLoggedIn) {
+          // not logged in
           setIsLoggedIn(false)
           setLoading(false)
         } else {
           setIsLoggedIn(true) // logged in
-          if (props.lang == 'chinese') setStatus(1);
-          else setStatus(0);
+          if (props.lang == 'chinese') setStatus(1)
+          else setStatus(0)
           setLoading(false)
         }
       } else {
         console.log('props failed')
         Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
           (response) => {
-            console.log(response.data);
+            console.log(response.data)
             setName(response.data.user[0].username)
             setIsLoggedIn(response.data.isLoggedIn)
             if (response.data.user[0].lang === 'chinese') setStatus(1)
             else setStatus(0)
-          }
+          },
         )
       }
     }
   }, [])
 
   useEffect(() => {
-    Axios.post(
-      'https://voluntutorcloud-server.herokuapp.com/getNotif',
-      {
-        username: name,
-        isnew: true,
-      },
-    ).then((response) => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
+      username: name,
+      isnew: true,
+    }).then((response) => {
       console.log(response.data)
       setNotif_data(response.data)
       setLoading(false)
@@ -132,10 +130,12 @@ function Navbar(props) {
     return (
       <>
         <div className="navbar">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            Voluntutor Cloud
-            {/* <i class="fab fa-typo3" /> */}
-          </Link>
+          <div className="logwrap">
+            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+              Voluntutor Cloud
+              {/* <i class="fab fa-typo3" /> */}
+            </Link>
+          </div>
           <div className="navbar-container">
             <div className="menu-icon" onClick={handleClick}>
               <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -177,7 +177,7 @@ function Navbar(props) {
       return (
         <>
           <div className="navbar">
-            <div>
+            <div className="logwrap">
               <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                 Voluntutor Cloud
                 {/* <i class="fab fa-typo3" /> */}
@@ -273,7 +273,7 @@ function Navbar(props) {
       return (
         <>
           <div className="navbar">
-            <div>
+            <div className="logwrap">
               <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                 Voluntutor Cloud
                 {/* <i class="fab fa-typo3" /> */}
@@ -368,10 +368,12 @@ function Navbar(props) {
     return (
       <>
         <div className="navbar">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            Voluntutor Cloud
-            {/* <i class="fab fa-typo3" /> */}
-          </Link>
+          <div className="logwrap">
+            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+              Voluntutor Cloud
+              {/* <i class="fab fa-typo3" /> */}
+            </Link>
+          </div>
           <div className="navbar-container">
             <div className="menu-icon" onClick={handleClick}>
               <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

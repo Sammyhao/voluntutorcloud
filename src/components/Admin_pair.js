@@ -42,13 +42,14 @@ export default function Admin_pair() {
   }
 
   const [stpair, setStpair] = useState([]);
-  const [teacherAcc, setTeacherAcc] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   let curPair = "";
 
   useEffect(() => {
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/findAllContact').then((response) => {
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/findAllContact',
+    ).then((response) => {
       for (let i = 0; i < response.data.length; i++) {
         let tempStpair = response.data[i]
         console.log(tempStpair)
@@ -136,7 +137,7 @@ export default function Admin_pair() {
     //fetch data here
   }, [clickednum])
 
-  if(isLoading) return (<Loading/>)
+  if (isLoading) return <Loading />
 
   return (
     <div className="admin_wrap">
@@ -184,7 +185,7 @@ export default function Admin_pair() {
           return (
             <div className="admin_chart_pair">
               <div
-                className="content"
+                className="content_pair"
                 onClick={() => {
                   setclickednum(ind)
                   setopen(true)
@@ -193,7 +194,7 @@ export default function Admin_pair() {
                 {e.teacherRN}
               </div>
               <div
-                className="content"
+                className="content_pair"
                 onClick={() => {
                   setclickednum(ind)
                   setopen(true)
@@ -201,7 +202,7 @@ export default function Admin_pair() {
               >
                 {e.student}
               </div>
-              <a className="content" href={e.meetlink} target="_blank">
+              <a className="content_pair" href={e.meetlink} target="_blank">
                 打開會議
               </a>
             </div>
@@ -219,7 +220,7 @@ export default function Admin_pair() {
           return (
             <div className="admin_chart_pair">
               <div
-                className="content"
+                className="content_pair"
                 onClick={() => {
                   setclickednum(ind)
                   setopen(true)
@@ -228,7 +229,7 @@ export default function Admin_pair() {
                 {e.teacher}
               </div>
               <div
-                className="content"
+                className="content_pair"
                 onClick={() => {
                   setclickednum(ind)
                   setopen(true)
@@ -236,7 +237,7 @@ export default function Admin_pair() {
               >
                 {e.student}
               </div>
-              <a className="content" href={e.link} target="_blank">
+              <a className="content_pair" href={e.link} target="_blank">
                 打開會議
               </a>
             </div>
@@ -254,7 +255,7 @@ export default function Admin_pair() {
           return (
             <div className="admin_chart_pair">
               <div
-                className="content"
+                className="content_pair"
                 onClick={() => {
                   setclickednum(ind)
                   setopen(true)
@@ -263,7 +264,7 @@ export default function Admin_pair() {
                 {e.teacher}
               </div>
               <div
-                className="content"
+                className="content_pair"
                 onClick={() => {
                   setclickednum(ind)
                   setopen(true)
@@ -271,7 +272,7 @@ export default function Admin_pair() {
               >
                 {e.student}
               </div>
-              <a className="content" href={e.link} target="_blank">
+              <a className="content_pair" href={e.link} target="_blank">
                 打開會議
               </a>
             </div>
@@ -289,7 +290,7 @@ export default function Admin_pair() {
           return (
             <div className="admin_chart_pair">
               <div
-                className="content"
+                className="content_pair"
                 onClick={() => {
                   setclickednum(ind)
                   setopen(true)
@@ -298,7 +299,7 @@ export default function Admin_pair() {
                 {e.teacher}
               </div>
               <div
-                className="content"
+                className="content_pair"
                 onClick={() => {
                   setclickednum(ind)
                   setopen(true)
@@ -306,7 +307,7 @@ export default function Admin_pair() {
               >
                 {e.student}
               </div>
-              <a className="content" href={e.link} target="_blank">
+              <a className="content_pair" href={e.link} target="_blank">
                 打開會議
               </a>
             </div>

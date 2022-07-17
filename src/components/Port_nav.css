@@ -147,7 +147,7 @@
   }
 
   .navbar-logo {
-    position: absolute;
+    position: relative;
     margin-left: 0;
     top: 0;
     text-align: start;
@@ -156,7 +156,7 @@
   }
 
   .navbar-logo-notlogged {
-    position: absolute;
+    position: relative;
     margin-left: 0;
     top: 0;
     text-align: start;
@@ -225,6 +225,7 @@ path {
 .navbar-logo {
   color: #e6dcd7;
   margin-left: 20px;
+  position: relative;
   top: 0;
   text-align: start;
   left: 0;
@@ -234,6 +235,7 @@ path {
 }
 .navbar-logo-notlogged {
   color: #e6dcd7;
+  position: relative;
   margin-left: 10px;
   top: 0;
   text-align: start;

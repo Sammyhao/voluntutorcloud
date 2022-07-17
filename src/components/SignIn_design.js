@@ -12,6 +12,7 @@ function SignIn_design() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loginStatus, setLoginStatus] = useState('')
+  const [btnstyle, setbtnstyle] = useState(false)
   const [passwordShown, setPasswordShown] = useState(false)
   const navigate = useNavigate()
   const login = () => {
@@ -25,11 +26,20 @@ function SignIn_design() {
         console.log(response)
         setLoginStatus('Hello, ' + response.data[0].username + '.')
         navigate('/')
-        if(username === "admin") navigate('/admin'); // here
+        if (username === 'admin') navigate('/admin') // here
         //change the global variable that saves the user's status
         changeStatus()
       }
     })
+  }
+  const keyDownHandler = (event) => {
+    console.log('into function')
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      console.log('pressed enter')
+      setbtnstyle(true)
+      login()
+    }
   }
 
   function changeStatus() {
@@ -87,6 +97,7 @@ function SignIn_design() {
             id="sigin_input_pass"
             type={passwordShown ? 'text' : 'password'}
             placeholder={c[status]}
+            onKeyPress={keyDownHandler}
             onChange={(e) => {
               setPassword(e.target.value)
             }}
@@ -95,7 +106,10 @@ function SignIn_design() {
             <BsFillEyeSlashFill id="showpass" />
           </button>
         </div>
-        <button className="btn-login" onClick={login}>
+        <button
+          className={btnstyle ? 'btn-loginpressed' : 'btn-login'}
+          onClick={login}
+        >
           {d[status]}
         </button>
         <Link to="/register" className="signUp">

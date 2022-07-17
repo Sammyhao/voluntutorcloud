@@ -1,11 +1,11 @@
 .admin_wrap {
-  width: 100%;
+  width: auto;
   height: wrap;
   padding: 50px;
   background: white;
 }
 .admin_title {
-  text-align: center;
+  text-align: left;
   color: black;
   font-size: 30px;
   margin-top: 30px;
@@ -21,12 +21,14 @@
   border: 1.5px solid lightgray;
   border-radius: 5px;
   padding: 5px;
+  overflow: hidden;
 }
 .admin_chart {
-  margin-top: 10px;
+  margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   column-gap: 10px;
+  row-gap: 10px;
 }
 .chart {
   margin-top: 30px;
@@ -37,8 +39,9 @@
   font-size: 20px;
   margin-top: 30px;
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .admin_chart {
+    width: max-content;
     grid-template-columns: repeat(6, 100px);
   }
 }
