@@ -195,6 +195,17 @@ export default function Admin_appointment() {
 
   const [contactInfo, setContactInfo] = useState([]);
 
+  var trans = {};
+  trans["On time (online within 5 minutes)"] = "準時";
+  trans["準時上課（五分鐘內到達）"] = "準時";
+  trans["Late for 6~10 minutes"] = "遲到六到十分鐘";
+  trans["Late for 11~15 minutes"] = "遲到十一到十五分鐘";
+  trans["Late for 16~30 minutes"] = "遲到十六到三十分鐘";
+  trans["Late for over 30 minutes"] = "未上課";
+  trans["遲到超過三十分鐘"] = "未上課";
+
+
+
   const [ds, setDs] = useState([]);
   const [gx, setGx] = useState([]);
   const [wc, setWc] = useState([]);
@@ -291,7 +302,7 @@ export default function Admin_appointment() {
             <div className="admin_chart">
               <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
               {data.map((rec, i) => {
-                return (<div className="content" key={i}>{rec.classdate} : {rec.studentabsence}</div>)
+                return (<div className="content" key={i}>{rec.classdate} : {(trans[rec.studentabsence]) ? trans[rec.studentabsence] : rec.studentabsence}</div>)
               })}
             </div>
           )
@@ -353,7 +364,7 @@ export default function Admin_appointment() {
             <div className="admin_chart">
               <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
               {data.map((rec, i) => {
-                return (<div className="content" key={i}>{rec.classdate} : {rec.studentabsence}</div>)
+                return (<div className="content" key={i}>{rec.classdate} : {(trans[rec.studentabsence]) ? trans[rec.studentabsence] : rec.studentabsence}</div>)
               })}
             </div>
           )
@@ -415,7 +426,7 @@ export default function Admin_appointment() {
             <div className="admin_chart">
               <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
               {data.map((rec, i) => {
-                return (<div className="content" key={i}>{rec.classdate} : {rec.studentabsence}</div>)
+                return (<div className="content" key={i}>{rec.classdate} : {(trans[rec.studentabsence]) ? trans[rec.studentabsence] : rec.studentabsence}</div>)
               })}
             </div>
           )
@@ -477,7 +488,7 @@ export default function Admin_appointment() {
             <div className="admin_chart">
               <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
               {data.map((rec, i) => {
-                return (<div className="content" key={i}>{rec.classdate} : {rec.studentabsence}</div>)
+                return (<div className="content" key={i}>{rec.classdate} : {(trans[rec.studentabsence]) ? trans[rec.studentabsence] : rec.studentabsence}</div>)
               })}
             </div>
           )
