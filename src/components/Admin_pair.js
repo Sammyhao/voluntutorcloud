@@ -180,13 +180,13 @@ export default function Admin_pair() {
           <div className="content_admin">Google meet</div>
         </div>
         {stpair.map((e, ind) => {
-          curPair = e;
-          console.log(curPair);
           return (
             <div className="admin_chart_pair">
               <div
                 className="content_pair"
                 onClick={() => {
+                  curPair = e;
+                  console.log(curPair);
                   setclickednum(ind)
                   setopen(true)
                 }}
@@ -196,6 +196,8 @@ export default function Admin_pair() {
               <div
                 className="content_pair"
                 onClick={() => {
+                  curPair = e;
+                  console.log(curPair);
                   setclickednum(ind)
                   setopen(true)
                 }}
