@@ -31,6 +31,8 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
 
+let curPair = 0;
+
 export default function Admin_pair() {
   const navigate = useNavigate()
   const [opendialog, setopen] = useState()
@@ -43,8 +45,6 @@ export default function Admin_pair() {
 
   const [stpair, setStpair] = useState([]);
   const [isLoading, setLoading] = useState(true);
-
-  let curPair = 0;
 
   useEffect(() => {
     Axios.post(
@@ -149,7 +149,7 @@ export default function Admin_pair() {
           onClose={closeopen}
         >
           <div className="admin_dialog_wrap">
-            <div className="admin_dialog_text">帳號：{curPair.teacher}</div>
+            <div className="admin_dialog_text" onClick={() => console.log(curPair)}>帳號：{curPair.teacher}</div>
             <div className="admin_dialog_text">密碼：{curPair.teacherPW}</div>
           </div>
         </BootstrapDialog>
