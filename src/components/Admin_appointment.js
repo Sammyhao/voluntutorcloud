@@ -194,6 +194,12 @@ export default function Admin_appointment() {
   ])
 
   const [contactInfo, setContactInfo] = useState([]);
+
+  const [ds, setDs] = useState([]);
+  const [gx, setGx] = useState([]);
+  const [wc, setWc] = useState([]);
+  const [cd, setCd] = useState([]);
+
   const [isLoading, setLoading] = useState(true);
   const [stpair, setStpair] = useState([]);
 
@@ -212,7 +218,17 @@ export default function Admin_appointment() {
             console.log(response.data);
             let data = response.data;
             data.sort((a, b) => {return a.classdate - b.classdate})
-            setContactInfo((contactInfo) => [...contactInfo, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}])
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
+              username: tempStpair.username,
+            }).then((response) => {
+              let school = response.data[0].school;
+              console.log(school);
+              if(school == "大溪國小") setDs((ds) => [...ds, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}]);
+              else if(school == "廣興國小") setGx((gx) => [...gx, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}]);
+              else if(school == "溫泉國小") setWc((wc) => [...wc, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}]);
+              else if(school == "崁頂國小") setCd((cd) => [...cd, {teacher: tempStpair.username, studentname: tempStpair.studentname, data: response.data}]);
+            })
+
           })
         }
         setLoading(false)
@@ -245,7 +261,7 @@ export default function Admin_appointment() {
         查看學生老師配對
       </div>
       <div className="admin_title">會議記錄表</div>
-      {/* <div className="subtitle">大溪國小</div> */}
+      <div className="subtitle">大溪國小</div>
       <div className="chart">
         {/* <div className="admin_chart">
           <div className="content">老師 - 學生</div>
@@ -265,7 +281,7 @@ export default function Admin_appointment() {
             {date[8]}~{date[9]}
           </div>
         </div> */}
-        {contactInfo.map((e, ind) => {
+        {ds.map((e, ind) => {
           let data = e.data;
           return (
             <div className="admin_chart">
@@ -306,10 +322,10 @@ export default function Admin_appointment() {
             </div>
           )
         })}
-      </div>
-      <div className="subtitle">廣興國小</div>
+      </div> */}
+       <div className="subtitle">廣興國小</div>
       <div className="chart">
-        <div className="admin_chart">
+        {/* <div className="admin_chart">
           <div className="content">老師 - 學生</div>
           <div className="content">
             {date[0]}~{date[1]}
@@ -326,21 +342,20 @@ export default function Admin_appointment() {
           <div className="content">
             {date[8]}~{date[9]}
           </div>
-        </div>
-        {student1.map((e, ind) => {
+        </div> */}
+        {gx.map((e, ind) => {
+          let data = e.data;
           return (
             <div className="admin_chart">
-              <div className="content">{e.pair}</div>
-              <div className="content">{e.first}</div>
-              <div className="content">{e.second}</div>
-              <div className="content">{e.third}</div>
-              <div className="content">{e.fourth}</div>
-              <div className="content">{e.fifth}</div>
+              <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
+              {data.map((rec, i) => {
+                return (<div className="content" key={i}>{rec.classdate} : {rec.studentabsence}</div>)
+              })}
             </div>
           )
         })}
       </div>
-      <div className="chart">
+      {/* <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
           <div className="content">
@@ -357,7 +372,7 @@ export default function Admin_appointment() {
           </div>
           <div className="content">{date[18]}</div>
         </div>
-        {student2.map((e, ind) => {
+        {student1.map((e, ind) => {
           return (
             <div className="admin_chart">
               <div className="content">{e.pair}</div>
@@ -369,10 +384,10 @@ export default function Admin_appointment() {
             </div>
           )
         })}
-      </div>
+      </div> */}
       <div className="subtitle">溫泉國小</div>
       <div className="chart">
-        <div className="admin_chart">
+        {/* <div className="admin_chart">
           <div className="content">老師 - 學生</div>
           <div className="content">
             {date[0]}~{date[1]}
@@ -389,21 +404,20 @@ export default function Admin_appointment() {
           <div className="content">
             {date[8]}~{date[9]}
           </div>
-        </div>
-        {student1.map((e, ind) => {
+        </div> */}
+        {wc.map((e, ind) => {
+          let data = e.data;
           return (
             <div className="admin_chart">
-              <div className="content">{e.pair}</div>
-              <div className="content">{e.first}</div>
-              <div className="content">{e.second}</div>
-              <div className="content">{e.third}</div>
-              <div className="content">{e.fourth}</div>
-              <div className="content">{e.fifth}</div>
+              <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
+              {data.map((rec, i) => {
+                return (<div className="content" key={i}>{rec.classdate} : {rec.studentabsence}</div>)
+              })}
             </div>
           )
         })}
       </div>
-      <div className="chart">
+      {/* <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
           <div className="content">
@@ -420,7 +434,7 @@ export default function Admin_appointment() {
           </div>
           <div className="content">{date[18]}</div>
         </div>
-        {student3.map((e, ind) => {
+        {student1.map((e, ind) => {
           return (
             <div className="admin_chart">
               <div className="content">{e.pair}</div>
@@ -432,10 +446,10 @@ export default function Admin_appointment() {
             </div>
           )
         })}
-      </div>
+      </div> */}
       <div className="subtitle">崁頂國小</div>
       <div className="chart">
-        <div className="admin_chart">
+        {/* <div className="admin_chart">
           <div className="content">老師 - 學生</div>
           <div className="content">
             {date[0]}~{date[1]}
@@ -452,21 +466,20 @@ export default function Admin_appointment() {
           <div className="content">
             {date[8]}~{date[9]}
           </div>
-        </div>
-        {student1.map((e, ind) => {
+        </div> */}
+        {cd.map((e, ind) => {
+          let data = e.data;
           return (
             <div className="admin_chart">
-              <div className="content">{e.pair}</div>
-              <div className="content">{e.first}</div>
-              <div className="content">{e.second}</div>
-              <div className="content">{e.third}</div>
-              <div className="content">{e.fourth}</div>
-              <div className="content">{e.fifth}</div>
+              <div className="content" key={ind}>{e.teacher} - {e.studentname}</div>
+              {data.map((rec, i) => {
+                return (<div className="content" key={i}>{rec.classdate} : {rec.studentabsence}</div>)
+              })}
             </div>
           )
         })}
       </div>
-      <div className="chart">
+      {/* <div className="chart">
         <div className="admin_chart">
           <div className="content">老師 - 學生</div>
           <div className="content">
@@ -483,7 +496,7 @@ export default function Admin_appointment() {
           </div>
           <div className="content">{date[18]}</div>
         </div>
-        {student4.map((e, ind) => {
+        {student1.map((e, ind) => {
           return (
             <div className="admin_chart">
               <div className="content">{e.pair}</div>
