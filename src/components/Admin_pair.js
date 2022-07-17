@@ -42,7 +42,10 @@ export default function Admin_pair() {
   }
 
   const [stpair, setStpair] = useState([]);
+  const [teacherAcc, setTeacherAcc] = useState([]);
   const [isLoading, setLoading] = useState(true);
+
+  let curPair = "";
 
   useEffect(() => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/findAllContact').then((response) => {
@@ -52,7 +55,7 @@ export default function Admin_pair() {
         Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
           username: tempStpair.username,
         }).then((response) => {
-          setStpair(stpair => [...stpair, {teacher: tempStpair.username, student: tempStpair.studentname, meetlink: response.data[0].googlemeetlink}])
+          setStpair(stpair => [...stpair, {teacher: tempStpair.username, teacherRN: response.data[0].lastname + response.data[0].firstname, teacherPW: response.data[0].password, student: tempStpair.studentname, meetlink: response.data[0].googlemeetlink}])
         })
       }
       setLoading(false)
@@ -145,8 +148,8 @@ export default function Admin_pair() {
           onClose={closeopen}
         >
           <div className="admin_dialog_wrap">
-            <div className="admin_dialog_text">帳號：{account}</div>
-            <div className="admin_dialog_text">密碼：{password}</div>
+            <div className="admin_dialog_text">帳號：{curPair.teacher}</div>
+            <div className="admin_dialog_text">密碼：{curPair.teacherPW}</div>
           </div>
         </BootstrapDialog>
       </div>
@@ -176,6 +179,8 @@ export default function Admin_pair() {
           <div className="content_admin">Google meet</div>
         </div>
         {stpair.map((e, ind) => {
+          curPair = e;
+          console.log(curPair);
           return (
             <div className="admin_chart_pair">
               <div
@@ -185,7 +190,7 @@ export default function Admin_pair() {
                   setopen(true)
                 }}
               >
-                {e.teacher}
+                {e.teacherRN}
               </div>
               <div
                 className="content"
