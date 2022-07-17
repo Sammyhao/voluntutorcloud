@@ -219,7 +219,7 @@ export default function Admin_appointment() {
             let data = response.data;
             data.sort((a, b) => {return a.classdate - b.classdate})
             Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-              username: tempStpair.username,
+              name: tempStpair.studentname,
             }).then((response) => {
               let school = response.data[0].school;
               console.log(school);
