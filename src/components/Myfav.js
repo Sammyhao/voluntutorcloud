@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Myfav.css'
-import { RiHeart3Line, RiMapPin2Fill } from 'react-icons/ri'
+import { RiHeart3Fill, RiHeart3Line, RiMapPin2Fill } from 'react-icons/ri'
 import '../App.css'
 import Loading from './Loading'
 import Grid from '@mui/material/Grid'
@@ -46,6 +46,10 @@ function Myfav() {
   const [open, setOpen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
   const [check_open_book, setcheckopen] = useState(false)
+  const [heart, setheart] = useState([
+    true,
+    <RiHeart3Fill className="heart_dialog"></RiHeart3Fill>,
+  ])
   const [myfavLen, setMyfavlen] = useState([])
   const handleClose = () => {
     setOpen(false)
@@ -204,9 +208,23 @@ function Myfav() {
                     <Button
                       id="dialog_add"
                       size="small"
-                      onClick={() => deleteProgram(program)}
+                      onClick={() => {
+                        if (heart[0] == true) {
+                          setheart([
+                            false,
+                            <RiHeart3Line className="heart_dialog"></RiHeart3Line>,
+                          ])
+                        } else {
+                          setheart([
+                            true,
+                            <RiHeart3Fill className="heart_dialog"></RiHeart3Fill>,
+                          ])
+                        }
+                        setOpen(false)
+                        deleteProgram(program)
+                      }}
                     >
-                      <RiHeart3Line className="heart_dialog" />
+                      <div onClick={() => {}}>{heart[1]}</div>
                       {g[status]}
                     </Button>
                   </div>
