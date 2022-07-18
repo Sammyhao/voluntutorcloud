@@ -45,6 +45,7 @@ BootstrapDialogTitle.propTypes = {
 function Myfav() {
   const [open, setOpen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
+  const [open_delete, setdelete] = useState(false)
   const [check_open_book, setcheckopen] = useState(false)
   const [heart, setheart] = useState([
     true,
@@ -92,7 +93,10 @@ function Myfav() {
     '你確定你要報名此志工計畫？按下送出後即無法收回。',
   ]
   let m = ['Yes', '確定送出']
-
+  let zz = [
+    'Please refresh the page to update the changes',
+    '請重整頁面以更新我的最愛',
+  ]
   useEffect(() => {
     if (isLoading) {
       Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
@@ -172,6 +176,16 @@ function Myfav() {
             </BootstrapDialog>
           </div>
 
+          <div id="dialog_reg_wrap">
+            <BootstrapDialog
+              id="dialog_registered"
+              aria-labelledby="customized-dialog-title"
+              open={open_delete}
+            >
+              <div id="bookingdelete">{zz[status]}</div>
+            </BootstrapDialog>
+          </div>
+
           <div id="dialogcontainer">
             <BootstrapDialog
               onClose={handleClose}
@@ -222,6 +236,7 @@ function Myfav() {
                         }
                         setOpen(false)
                         deleteProgram(program)
+                        setdelete(true)
                       }}
                     >
                       <div onClick={() => {}}>{heart[1]}</div>
