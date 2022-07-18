@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Myfav.css'
 import { RiHeart3Fill, RiHeart3Line, RiMapPin2Fill } from 'react-icons/ri'
 import '../App.css'
+import { Link, useNavigate } from 'react-router-dom'
 import Loading from './Loading'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
@@ -47,6 +48,7 @@ function Myfav() {
   const [open_book, setBookOpen] = useState(false)
   const [open_delete, setdelete] = useState(false)
   const [check_open_book, setcheckopen] = useState(false)
+  const navigate = useNavigate()
   const [heart, setheart] = useState([
     true,
     <RiHeart3Fill className="heart_dialog"></RiHeart3Fill>,
@@ -94,8 +96,8 @@ function Myfav() {
   ]
   let m = ['Yes', '確定送出']
   let zz = [
-    'Please refresh the page to update the changes',
-    '請重整頁面以更新我的最愛',
+    'Please click me and return to homepage to update the information',
+    '請點我回到主頁以更新資訊',
   ]
   useEffect(() => {
     if (isLoading) {
@@ -182,7 +184,14 @@ function Myfav() {
               aria-labelledby="customized-dialog-title"
               open={open_delete}
             >
-              <div id="bookingdelete">{zz[status]}</div>
+              <div
+                id="bookingdelete"
+                onClick={() => {
+                  navigate('/')
+                }}
+              >
+                {zz[status]}
+              </div>
             </BootstrapDialog>
           </div>
 

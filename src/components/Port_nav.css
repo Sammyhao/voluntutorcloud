@@ -209,7 +209,7 @@
   justify-content: end;
   align-items: center;
   height: 80px;
-  width: 73vw;
+  width: wrap;
   padding-right: 30px;
 }
 path {
@@ -220,7 +220,7 @@ path {
   justify-content: end;
   align-items: center;
   height: 80px;
-  width: 67vw;
+  width: wrap;
 }
 .navbar-logo {
   color: #e6dcd7;
