@@ -677,7 +677,7 @@ function Profile_user(props) {
                         </div>
                         <div>{rrr[status]}</div>
                         <div>{e.hours}</div>
-                        <div>{jjjj[status]}</div>
+                        <div className="margin2">{jjjj[status]}</div>
                       </div>
                     )
                   })}
