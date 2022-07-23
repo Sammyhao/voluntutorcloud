@@ -11,6 +11,10 @@
   align-items: center;
   justify-content: left;
 }
+.hours {
+  color: #745140;
+  font-size: 17px;
+}
 #historywrap {
   display: flex;
   flex-direction: row;
@@ -24,6 +28,16 @@
 }
 .expanded {
   width: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.expandedwrap {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  color: #b25634;
 }
 .hours {
   color: #745140;

@@ -136,8 +136,10 @@ function Profile_user(props) {
   let fg = ['Language Setting', '語言設定']
   let gh = ['Privacy & Security', '隱私以及安全性']
   let jj = ['Volunteer History', '服務時數歷史紀錄']
-  let jjj = ['Total volunteer hours: ', '總服務小時數']
+  let jjj = ['Total volunteer hours: ', '總服務小時數：']
   let jjjj = ['hours', '小時']
+  let rr = ['Session ', '梯次']
+  let rrr = [': ', '：']
   let hi = ['Change Password', '更改密碼']
   let ij = ['Log Out', '登出']
   let jk = [
@@ -663,11 +665,19 @@ function Profile_user(props) {
                   </div>
                 </div>
                 <div className={expanse[0] ? 'none' : 'expanded'}>
-                  {detailedhours.map((e) => {
+                  {detailedhours.map((e, ind) => {
                     return (
-                      <div>
-                        <div>{e.date}</div>
+                      <div className="expandedwrap">
+                        <div>{rr[status]}</div>
+                        <div>{ind}</div>
+                        <div>
+                          {' ('}
+                          {e.date}
+                          {')'}
+                        </div>
+                        <div>{rrr[status]}</div>
                         <div>{e.hours}</div>
+                        <div>{jjjj[status]}</div>
                       </div>
                     )
                   })}
