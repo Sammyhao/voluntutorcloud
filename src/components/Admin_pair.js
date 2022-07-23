@@ -47,6 +47,10 @@ export default function Admin_pair() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/addFullName').then((response) => {
+      console.log(response.data);
+    })
+
     Axios.post(
       'https://voluntutorcloud-server.herokuapp.com/findAllContact',
     ).then((response) => {
@@ -60,12 +64,6 @@ export default function Admin_pair() {
         })
       }
       setLoading(false)
-    })
-  }, [])
-
-  useEffect(() => {
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/addFullName').then((response) => {
-      console.log(response.data);
     })
   }, [])
 
