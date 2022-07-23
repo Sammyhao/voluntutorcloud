@@ -62,11 +62,23 @@ function Profile_user(props) {
   const [googlemeetlink, setGooglemeetlink] = useState('')
   const [open, setOpen] = useState(false)
   const [status, setStatus] = useState(0)
+  const [totalhours, settotalhours] = useState(23)
+  const [detailedhours, setdetailedhours] = useState([
+    {
+      date: '5/1 ~ 6/30',
+      hours: 8,
+    },
+    {
+      date: '7/1 ~ 8/31',
+      hours: 4,
+    },
+  ])
   const [contactstyle, setcontactstyle] = useState(
     <div>
       <BiEdit />
     </div>,
   )
+  const [expanse, setexpanse] = useState([true, '⏷'])
   const [persostyle, setpersostyle] = useState(
     <div>
       <BiEdit />
@@ -123,6 +135,9 @@ function Profile_user(props) {
   let ef = ['Tell us more about you!', '讓我們更了解你吧！']
   let fg = ['Language Setting', '語言設定']
   let gh = ['Privacy & Security', '隱私以及安全性']
+  let jj = ['Volunteer History', '服務時數歷史紀錄']
+  let jjj = ['Total volunteer hours: ', '總服務小時數']
+  let jjjj = ['hours', '小時']
   let hi = ['Change Password', '更改密碼']
   let ij = ['Log Out', '登出']
   let jk = [
@@ -336,7 +351,7 @@ function Profile_user(props) {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/logout').then(
       (response) => {
         console.log(response)
-        navigate('/');
+        navigate('/')
       },
     )
   }
@@ -702,6 +717,45 @@ function Profile_user(props) {
                 </div>
               </div>
             </div>
+
+            <div className="contact">
+              <div className="titleprofile">
+                <div className="titlepro">{jj[status]}</div>
+              </div>
+              <Divider className="line"></Divider>
+              <div className="information">
+                <div id="historywrap">
+                  <div className="hours">
+                    {jjj[status]}
+                    {totalhours}
+                    {jjjj[status]}
+                  </div>
+                  <div
+                    className="expand"
+                    onClick={() => {
+                      if (expanse[0]) {
+                        setexpanse('⏶')
+                      } else {
+                        setexpanse('⏷')
+                      }
+                    }}
+                  >
+                    {expanse[1]}
+                  </div>
+                </div>
+                <div className={expanse ? 'none' : 'expanded'}>
+                  {detailedhours.map((e) => {
+                    return (
+                      <div>
+                        <div>{e.date}</div>
+                        <div>{e.hours}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+
             <div className="contact">
               <div className="titleprofile">
                 <div className="titlepro">{gh[status]}</div>

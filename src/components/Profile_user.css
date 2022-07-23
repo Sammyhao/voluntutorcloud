@@ -11,6 +11,28 @@
   align-items: center;
   justify-content: left;
 }
+#historywrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.none {
+  display: none;
+  height: 0px;
+  width: 0px;
+}
+.expanded {
+  width: 100%;
+}
+.hours {
+  color: #745140;
+  text-align: left;
+}
+.expand {
+  color: #d6b7ab;
+  cursor: pointer;
+}
 .choosekid.active {
   z-index: 999;
   left: 0;
