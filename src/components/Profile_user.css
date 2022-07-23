@@ -11,10 +11,6 @@
   align-items: center;
   justify-content: left;
 }
-.hours {
-  color: #745140;
-  font-size: 17px;
-}
 #historywrap {
   display: flex;
   flex-direction: row;
@@ -39,9 +35,16 @@
   font-size: 16px;
   color: #b25634;
 }
-.hours {
+.margin {
+  margin-left: 10px;
+}
+.margin1 {
+  margin-left: 5px;
+}
+.hrs {
   color: #745140;
   text-align: left;
+  font-size: 17px;
 }
 .expand {
   color: #d6b7ab;

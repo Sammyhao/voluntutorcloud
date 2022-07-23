@@ -645,7 +645,7 @@ function Profile_user(props) {
               <Divider className="line"></Divider>
               <div className="information">
                 <div id="historywrap">
-                  <div className="hours">
+                  <div className="hrs">
                     {jjj[status]}
                     {totalhours}
                     {jjjj[status]}
@@ -669,8 +669,8 @@ function Profile_user(props) {
                     return (
                       <div className="expandedwrap">
                         <div>{rr[status]}</div>
-                        <div>{ind}</div>
-                        <div>
+                        <div className="margin1">{ind + 1}</div>
+                        <div className="margin">
                           {' ('}
                           {e.date}
                           {')'}
