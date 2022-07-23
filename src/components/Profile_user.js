@@ -635,6 +635,45 @@ function Profile_user(props) {
                 </div>
               </div>
             </div>
+
+            <div className="contact">
+              <div className="titleprofile">
+                <div className="titlepro">{jj[status]}</div>
+              </div>
+              <Divider className="line"></Divider>
+              <div className="information">
+                <div id="historywrap">
+                  <div className="hours">
+                    {jjj[status]}
+                    {totalhours}
+                    {jjjj[status]}
+                  </div>
+                  <div
+                    className="expand"
+                    onClick={() => {
+                      if (expanse[0]) {
+                        setexpanse([false, '⏶'])
+                        console.log(expanse)
+                      } else {
+                        setexpanse([true, '⏷'])
+                      }
+                    }}
+                  >
+                    {expanse[1]}
+                  </div>
+                </div>
+                <div className={expanse ? 'none' : 'expanded'}>
+                  {detailedhours.map((e) => {
+                    return (
+                      <div>
+                        <div>{e.date}</div>
+                        <div>{e.hours}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
           <div className="right">
             <div className="contact" id="bio_contact">
@@ -714,44 +753,6 @@ function Profile_user(props) {
                   >
                     English
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="contact">
-              <div className="titleprofile">
-                <div className="titlepro">{jj[status]}</div>
-              </div>
-              <Divider className="line"></Divider>
-              <div className="information">
-                <div id="historywrap">
-                  <div className="hours">
-                    {jjj[status]}
-                    {totalhours}
-                    {jjjj[status]}
-                  </div>
-                  <div
-                    className="expand"
-                    onClick={() => {
-                      if (expanse[0]) {
-                        setexpanse(false, '⏶')
-                      } else {
-                        setexpanse(true, '⏷')
-                      }
-                    }}
-                  >
-                    {expanse[1]}
-                  </div>
-                </div>
-                <div className={expanse ? 'none' : 'expanded'}>
-                  {detailedhours.map((e) => {
-                    return (
-                      <div>
-                        <div>{e.date}</div>
-                        <div>{e.hours}</div>
-                      </div>
-                    )
-                  })}
                 </div>
               </div>
             </div>
