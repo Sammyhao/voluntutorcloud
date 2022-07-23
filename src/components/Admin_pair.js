@@ -46,10 +46,12 @@ export default function Admin_pair() {
   const [stpair, setStpair] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
+  let role = "";
+
   useEffect(() => {
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/addFullName').then((response) => {
-      console.log(response.data);
-    })
+    // Axios.post('https://voluntutorcloud-server.herokuapp.com/addFullName').then((response) => {
+    //   console.log(response.data);
+    // })
 
     Axios.post(
       'https://voluntutorcloud-server.herokuapp.com/findAllContact',
@@ -57,11 +59,14 @@ export default function Admin_pair() {
       for (let i = 0; i < response.data.length; i++) {
         let tempStpair = response.data[i]
         console.log(tempStpair)
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+        Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
           username: tempStpair.username,
-        }).then((response) => {
-          setStpair(stpair => [...stpair, {teacher: tempStpair.username, teacherRN: response.data[0].lastname + response.data[0].firstname, teacherPW: response.data[0].password, student: tempStpair.studentname, meetlink: response.data[0].googlemeetlink}])
-        })
+        }), Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+          username: tempStpair.studentname,
+        })]).then(Axios.spread((response1, response2) => {
+          console.log({teacher: tempStpair.username, teacherRN: response1.data[0].lastname + response1.data[0].firstname, teacherPW: response1.data[0].password, studentRN: tempStpair.studentname, meetlink: response1.data[0].googlemeetlink, student: response2.data[0].username, studentPW: response2.data[0].password});
+          setStpair(stpair => [...stpair, {teacher: tempStpair.username, teacherRN: response1.data[0].lastname + response1.data[0].firstname, teacherPW: response1.data[0].password, studentRN: tempStpair.studentname, meetlink: response1.data[0].googlemeetlink, student: response2.data[0].username, studentPW: response2.data[0].password}])
+        }))
       }
       setLoading(false)
     })
@@ -153,8 +158,17 @@ export default function Admin_pair() {
           onClose={closeopen}
         >
           <div className="admin_dialog_wrap">
-            <div className="admin_dialog_text" onClick={() => console.log(curPair)}>帳號：{curPair.teacher}</div>
-            <div className="admin_dialog_text">密碼：{curPair.teacherPW}</div>
+            {(role === "teacher") ? 
+              <>
+                <div className="admin_dialog_text" onClick={() => console.log(curPair)}>帳號：{curPair.teacher}</div> 
+                <div className="admin_dialog_text">密碼：{curPair.teacherPW}</div>
+              </> 
+              : 
+              <>
+                <div className="admin_dialog_text" onClick={() => console.log(curPair)}>帳號：{curPair.student}</div> 
+                <div className="admin_dialog_text">密碼：{curPair.studentPW}</div>
+              </>
+            }
           </div>
         </BootstrapDialog>
       </div>
@@ -190,6 +204,7 @@ export default function Admin_pair() {
                 className="content_pair"
                 onClick={() => {
                   curPair = e;
+                  role = "teacher";
                   console.log(curPair);
                   setclickednum(ind)
                   setopen(true)
@@ -201,12 +216,13 @@ export default function Admin_pair() {
                 className="content_pair"
                 onClick={() => {
                   curPair = e;
+                  role = "student";
                   console.log(curPair);
                   setclickednum(ind)
                   setopen(true)
                 }}
               >
-                {e.student}
+                {e.studentRN}
               </div>
               <a className="content_pair" href={e.meetlink} target="_blank">
                 打開會議
