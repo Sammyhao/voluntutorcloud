@@ -63,6 +63,12 @@ export default function Admin_pair() {
     })
   }, [])
 
+  useEffect(() => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/addFullName').then((response) => {
+      console.log(response.data);
+    })
+  }, [])
+
   const [student1, setstudent1] = useState([
     {
       teacher: '老師1',
