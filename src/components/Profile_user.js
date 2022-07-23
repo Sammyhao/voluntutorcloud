@@ -419,6 +419,33 @@ function Profile_user(props) {
     }
   }, [])
 
+  let ech1total = 0, ech2total = 0;
+
+  useEffect(() => {
+    Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
+      username: name,
+      echelon: 1,
+    }), Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
+      username: name,
+      echelon: 2,
+    })]).then(Axios.spread((response1, response2) => {
+      console.log(response1.data);
+      console.log(response2.data);
+      if(response1.data.length > 0) {
+        for(let i = 0; i < response1.data.length; i++) {
+          ech1total += response1.data[i].duration;
+        }
+      }
+      if(response2.data.length > 0) {
+        for(let i = 0; i < response2.data.length; i++) {
+          ech2total += response2.data[i].duration;
+        }
+      }
+      console.log(ech1total, ' ', ech2total);
+      setdetailedhours({date: "5/1 ~ 6/30", hours: ech1total}, {date: "7/1 ~ 8/31", hours: ech2total});
+    }))
+  }, [name])
+
   return (
     <div className="frame">
       <div id="dialog_reg_wrap">

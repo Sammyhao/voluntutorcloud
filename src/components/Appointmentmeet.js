@@ -293,7 +293,9 @@ function Appointmentmeet() {
       tempFinalFormat,
       studentabsence,
       agenda,
+      submissionlink,
       task,
+      links,
       notes,
     )
     var templateParams = {
@@ -340,7 +342,9 @@ function Appointmentmeet() {
             duration: classduration,
             studentabsence: studentabsence,
             agenda: agenda,
+            sublink: submissionlink,
             task: task,
+            link: links,
             notes: notes,
             hoursleft: totalhour - classduration,
             echelon: 2,
