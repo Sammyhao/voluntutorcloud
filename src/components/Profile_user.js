@@ -662,7 +662,7 @@ function Profile_user(props) {
                     {expanse[1]}
                   </div>
                 </div>
-                <div className={expanse ? 'none' : 'expanded'}>
+                <div className={expanse[0] ? 'none' : 'expanded'}>
                   {detailedhours.map((e) => {
                     return (
                       <div>
