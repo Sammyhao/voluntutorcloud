@@ -734,9 +734,9 @@ function Profile_user(props) {
                     className="expand"
                     onClick={() => {
                       if (expanse[0]) {
-                        setexpanse('⏶')
+                        setexpanse(false, '⏶')
                       } else {
-                        setexpanse('⏷')
+                        setexpanse(true, '⏷')
                       }
                     }}
                   >
