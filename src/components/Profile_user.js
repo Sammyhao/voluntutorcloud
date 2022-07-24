@@ -370,6 +370,7 @@ function Profile_user(props) {
   }
 
   function addHis(name) {
+    console.log(name)
     Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
       username: name,
       echelon: 1,
