@@ -371,10 +371,10 @@ function Profile_user(props) {
 
   function addHis(name) {
     console.log(name)
-    Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
+    Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecordByUsername', {
       username: name,
       echelon: 1,
-    }), Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
+    }), Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecordByUsername', {
       username: name,
       echelon: 2,
     })]).then(Axios.spread((response1, response2) => {
