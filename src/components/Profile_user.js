@@ -369,59 +369,7 @@ function Profile_user(props) {
     })
   }
 
-  useEffect(() => {
-    console.log(props.profile)
-    console.log(hasSetData)
-    if (!hasSetData) {
-      if (props.profile) {
-        setname(props.profile.username)
-        setphone(props.profile.phone)
-        setemail(props.profile.email)
-        setgender(props.profile.gender)
-        setbirthday(props.profile.birthday)
-        setgrade(props.profile.grade)
-        setschool(props.profile.schoolname)
-        setpreferredsubject(props.profile.preferredSubjects)
-        setstudentage(props.profile.targetStuAge)
-        setstudentgender(props.profile.targetStuGen)
-        setstudentpers(props.profile.targetStuPerso)
-        setbio(props.profile.bio)
-        setabout(props.profile.about)
-        setGooglemeetlink(props.profile.googlemeetlink)
-        setCurVolProg(props.profile.curvolprog)
-        if (props.profile.lang == 'chinese') setStatus(1)
-        else setStatus(0)
-      } else {
-        console.log('props failed')
-        Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-          (response) => {
-            console.log(props.profile)
-            setname(response.data.user[0].username)
-            setphone(response.data.user[0].phone)
-            setemail(response.data.user[0].email)
-            setgender(response.data.user[0].gender)
-            setbirthday(response.data.user[0].birthday)
-            setgrade(response.data.user[0].grade)
-            setschool(response.data.user[0].schoolname)
-            setpreferredsubject(response.data.user[0].preferredSubjects)
-            setstudentage(response.data.user[0].targetStuAge)
-            setstudentgender(response.data.user[0].targetStuGen)
-            setstudentpers(response.data.user[0].targetStuPerso)
-            setbio(response.data.user[0].bio)
-            setabout(response.data.user[0].about)
-            setGooglemeetlink(response.data.user[0].googlemeetlink)
-            setCurVolProg(response.data.user[0].curvolprog)
-            if (response.data.user[0].lang == 'chinese') setStatus(1)
-            else setStatus(0)
-          },
-        )
-      }
-    }
-  }, [])
-
-  let ech1total = 0, ech2total = 0;
-
-  useEffect(() => {
+  function addHis(name) {
     Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
       username: name,
       echelon: 1,
@@ -444,7 +392,61 @@ function Profile_user(props) {
       console.log(ech1total, ' ', ech2total);
       setdetailedhours({date: "5/1 ~ 6/30", hours: ech1total}, {date: "7/1 ~ 8/31", hours: ech2total});
     }))
-  }, [name])
+  }
+
+  useEffect(() => {
+    console.log(props.profile)
+    console.log(hasSetData)
+    if (!hasSetData) {
+      if (props.profile) {
+        setname(props.profile.username)
+        setphone(props.profile.phone)
+        setemail(props.profile.email)
+        setgender(props.profile.gender)
+        setbirthday(props.profile.birthday)
+        setgrade(props.profile.grade)
+        setschool(props.profile.schoolname)
+        setpreferredsubject(props.profile.preferredSubjects)
+        setstudentage(props.profile.targetStuAge)
+        setstudentgender(props.profile.targetStuGen)
+        setstudentpers(props.profile.targetStuPerso)
+        setbio(props.profile.bio)
+        setabout(props.profile.about)
+        setGooglemeetlink(props.profile.googlemeetlink)
+        setCurVolProg(props.profile.curvolprog)
+        if (props.profile.lang == 'chinese') setStatus(1)
+        else setStatus(0)
+        addHis(props.profile.username);
+      } else {
+        console.log('props failed')
+        Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+          (response) => {
+            console.log(props.profile)
+            setname(response.data.user[0].username)
+            setphone(response.data.user[0].phone)
+            setemail(response.data.user[0].email)
+            setgender(response.data.user[0].gender)
+            setbirthday(response.data.user[0].birthday)
+            setgrade(response.data.user[0].grade)
+            setschool(response.data.user[0].schoolname)
+            setpreferredsubject(response.data.user[0].preferredSubjects)
+            setstudentage(response.data.user[0].targetStuAge)
+            setstudentgender(response.data.user[0].targetStuGen)
+            setstudentpers(response.data.user[0].targetStuPerso)
+            setbio(response.data.user[0].bio)
+            setabout(response.data.user[0].about)
+            setGooglemeetlink(response.data.user[0].googlemeetlink)
+            setCurVolProg(response.data.user[0].curvolprog)
+            if (response.data.user[0].lang == 'chinese') setStatus(1)
+            else setStatus(0)
+            addHis(response.data.user[0].username);
+          },
+        )
+      }
+    }
+  }, [props.profile])
+
+  let ech1total = 0, ech2total = 0;
 
   return (
     <div className="frame">
