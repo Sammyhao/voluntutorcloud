@@ -391,7 +391,7 @@ function Profile_user(props) {
         }
       }
       console.log(ech1total, ' ', ech2total);
-      setdetailedhours({date: "5/1 ~ 6/30", hours: ech1total}, {date: "7/1 ~ 8/31", hours: ech2total});
+      setdetailedhours([{date: "5/1 ~ 6/30", hours: ech1total}, {date: "7/1 ~ 8/31", hours: ech2total}]);
     }))
   }
 
