@@ -33,7 +33,7 @@ function SignIn_design() {
         if (username === 'admin') navigate('/admin') // here
         //change the global variable that saves the user's status
         changeStatus()
-        store()
+        // store()
       }
     })
   }
