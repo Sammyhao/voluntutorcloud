@@ -15,6 +15,8 @@ import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
+import { useDispatch } from 'react-redux'
+import { logout } from '../features/user'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -26,6 +28,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }))
 
 function Profile_user(props) {
+  const dispatch = useDispatch()
+
   const [name, setname] = useState('VolunTutor Cloud')
   const [phone, setphone] = useState('0912345678')
   const [email, setemail] = useState('vc@gmail.com')
@@ -354,6 +358,8 @@ function Profile_user(props) {
       (response) => {
         console.log(response)
         navigate('/')
+        dispatch(logout())
+        console.log('logged out')
       },
     )
   }

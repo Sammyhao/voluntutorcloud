@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import './SignIn_design.css'
 import '../App.css'
+import { useDispatch } from 'react-redux'
+import { login } from '../features/user'
 import { Link, useNavigate, Route } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { BsFillEyeSlashFill } from 'react-icons/bs'
 import { ImCross } from 'react-icons/im'
 function SignIn_design() {
+  const dispatch = useDispatch()
+
   const [inputValue, setInputValue] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -29,8 +33,26 @@ function SignIn_design() {
         if (username === 'admin') navigate('/admin') // here
         //change the global variable that saves the user's status
         changeStatus()
+        store()
       }
     })
+  }
+
+  const store = () => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+      (response) => {
+        let langstat = 0
+        let role = false
+        if (response.data.user[0].lang == 'chinese') {
+          langstat = 1
+        }
+        if (response.data.user[0].role == 'teacher') {
+          role = true
+        }
+        dispatch(login({ language: langstat, role: role, login: true }))
+        console.log('logged in')
+      },
+    )
   }
   const keyDownHandler = (event) => {
     console.log('into function')

@@ -11,9 +11,11 @@ import Axios from 'axios'
 import '@progress/kendo-theme-default/dist/all.css'
 import { FiBell } from 'react-icons/fi'
 import { Divider } from '@material-ui/core'
-import Loading from './Loading'
+import { useSelector } from 'react-redux'
 
 function Navbar(props) {
+  const user = useSelector((state) => state.user.value)
+  console.log(user)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [status, setStatus] = useState(1)
   const [sidebar, setSidebar] = useState(false)
@@ -26,7 +28,7 @@ function Navbar(props) {
   const shownotification = () => {
     setnotification(!notification)
     for (let i = 0; i < notif_data.length; i++) {
-      console.log(notif_data[i])
+      // console.log(notif_data[i])
       Axios.post(
         'https://voluntutorcloud-server.herokuapp.com/updateNotifStatus',
         {
@@ -37,7 +39,7 @@ function Navbar(props) {
           isnew: false,
         },
       ).then((response) => {
-        console.log(response)
+        // console.log(response)
       })
     }
   }
@@ -57,32 +59,12 @@ function Navbar(props) {
   let b = ['Programs', '志工計畫']
   let c = ['Contact', '聯絡我們']
   let d = ['SIGN IN/UP', '登入/註冊']
-  // let notif_data = [
-  //   {
-  //     type: '/message',
-  //     title: 'Message',
-  //     content: 'You received a message from ',
-  //   },
-  //   {
-  //     type: '/book',
-  //     title: 'Booking',
-  //     content: 'Your Booking Request has been confirmed by ',
-  //   },
-  //   {
-  //     type: '/book',
-  //     title: 'Booking',
-  //     content: 'Your Booking Request has been rejected by ',
-  //   },
-  // ]
-  //type是頁面連結 (/message 或是 /book)
-  //title是notification 標題 (Message 或是 Booking)
-  //content是notification 內容 (如上，分三種)
 
   const [notif_data, setNotif_data] = useState([])
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    console.log(props)
+    // console.log(props)
     if (isLoading) {
       if (props.lang && props.isLoggedIn) {
         if (!props.isLoggedIn) {
@@ -96,10 +78,10 @@ function Navbar(props) {
           setLoading(false)
         }
       } else {
-        console.log('props failed')
+        // console.log('props failed')
         Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
           (response) => {
-            console.log(response.data)
+            // console.log(response.data)
             setName(response.data.user[0].username)
             setIsLoggedIn(response.data.isLoggedIn)
             if (response.data.user[0].lang === 'chinese') setStatus(1)
@@ -115,7 +97,7 @@ function Navbar(props) {
       username: name,
       isnew: true,
     }).then((response) => {
-      console.log(response.data)
+      // console.log(response.data)
       setNotif_data(response.data)
       setLoading(false)
     })
@@ -232,7 +214,7 @@ function Navbar(props) {
             <nav className={notification ? 'notif active' : 'notif'}>
               <ul className="nav-menu-items" onClick={shownotification}>
                 {notif_data.map((e, index) => {
-                  console.log(e)
+                  // console.log(e)
                   return (
                     <div key={index} className="wrap">
                       <Link className="notif_link" to={e.nottype}>
