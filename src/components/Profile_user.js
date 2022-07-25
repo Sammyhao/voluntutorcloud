@@ -358,7 +358,7 @@ function Profile_user(props) {
       (response) => {
         console.log(response)
         navigate('/')
-        dispatch(logout())
+        // dispatch(logout())
         console.log('logged out')
       },
     )
