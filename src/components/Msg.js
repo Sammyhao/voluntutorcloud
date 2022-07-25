@@ -11,7 +11,7 @@ import Axios from 'axios'
 
 function Msg() {
   let num = [1]
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   let username = '',
     studentname = '',
     teacherusername = ''

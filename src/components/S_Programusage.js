@@ -30,7 +30,7 @@ const Progress = ({ done }) => {
 let username = ''
 
 function Programusage() {
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [hasSetStatus, setHasSetStatus] = useState(false)
   const [contactInfo, setContactInfo] = useState([])
   const [isLoading, setLoading] = useState(true)

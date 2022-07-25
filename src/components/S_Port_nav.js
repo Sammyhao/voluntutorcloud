@@ -13,9 +13,9 @@ function S_Port_nav(props) {
   const showSidebar = () => setSidebar(!sidebar)
   const [click, setClick] = useState(false)
   const [button, setButton] = useState(true)
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const handleClick = () => setClick(!click)
-  
+
   const showButton = () => {
     if (window.innerWidth <= 1080) {
       setButton(false)
@@ -25,45 +25,46 @@ function S_Port_nav(props) {
   }
 
   useEffect(() => {
-    if(props.lang == "chinese") setStatus(1)
+    if (props.lang == 'chinese') setStatus(1)
     else setStatus(0)
-      showButton()
+    showButton()
   }, [])
 
-  if (status ==0){
-  return (
-    <>
-      <div className="navbar_port">
-        <div className="navbar-container-logged">
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+  if (status == 0) {
+    return (
+      <>
+        <div className="navbar_port">
+          <div className="navbar-container-logged">
+            <div className="menu-icon" onClick={handleClick}>
+              <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+            </div>
           </div>
+          <Link to="#" className="menu-bars">
+            <FaBars className="icons_nav" onClick={showSidebar}></FaBars>
+          </Link>
         </div>
-        <Link to="#" className="menu-bars">
-          <FaBars className="icons_nav" onClick={showSidebar}></FaBars>
-        </Link>
-      </div>
-      <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-        <ul className="nav-menu-items" onClick={showSidebar}>
-          <li className="navbar-toggle">
-            <Link className="menu-bars" to="#">
-              <CgClose className="icons_cross"></CgClose>
-            </Link>
-          </li>
-          {S_SidebarData.map((item, index) => {
-            return (
-              <li key={index} className={item.cName}>
-                <Link to={item.path}>
-                  {item.icon}
-                  <span className="navwords">{item.title}</span>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      </nav>
-    </>
-  )}else{
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            <li className="navbar-toggle">
+              <Link className="menu-bars" to="#">
+                <CgClose className="icons_cross"></CgClose>
+              </Link>
+            </li>
+            {S_SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span className="navwords">{item.title}</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+      </>
+    )
+  } else {
     return (
       <>
         <div className="navbar_port">

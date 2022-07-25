@@ -61,7 +61,7 @@ function Profile_user(props) {
   const [emailError, setEmailError] = useState('')
   const [googlemeetlink, setGooglemeetlink] = useState('')
   const [open, setOpen] = useState(false)
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [totalhours, settotalhours] = useState(23)
   const [detailedhours, setdetailedhours] = useState([
     {
@@ -371,29 +371,43 @@ function Profile_user(props) {
 
   function addHis(name) {
     console.log(name)
-    Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecordByUsername', {
-      username: name,
-      echelon: 1,
-    }), Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecordByUsername', {
-      username: name,
-      echelon: 2,
-    })]).then(Axios.spread((response1, response2) => {
-      console.log(response1.data);
-      console.log(response2.data);
-      if(response1.data.length > 0) {
-        for(let i = 0; i < response1.data.length; i++) {
-          ech1total += response1.data[i].duration;
+    Axios.all([
+      Axios.post(
+        'https://voluntutorcloud-server.herokuapp.com/getRecordByUsername',
+        {
+          username: name,
+          echelon: 1,
+        },
+      ),
+      Axios.post(
+        'https://voluntutorcloud-server.herokuapp.com/getRecordByUsername',
+        {
+          username: name,
+          echelon: 2,
+        },
+      ),
+    ]).then(
+      Axios.spread((response1, response2) => {
+        console.log(response1.data)
+        console.log(response2.data)
+        if (response1.data.length > 0) {
+          for (let i = 0; i < response1.data.length; i++) {
+            ech1total += response1.data[i].duration
+          }
         }
-      }
-      if(response2.data.length > 0) {
-        for(let i = 0; i < response2.data.length; i++) {
-          ech2total += response2.data[i].duration;
+        if (response2.data.length > 0) {
+          for (let i = 0; i < response2.data.length; i++) {
+            ech2total += response2.data[i].duration
+          }
         }
-      }
-      console.log(ech1total, ' ', ech2total);
-      settotalhours(ech1total + ech2total);
-      setdetailedhours([{date: "5/1 ~ 6/30", hours: ech1total}, {date: "7/1 ~ 8/31", hours: ech2total}]);
-    }))
+        console.log(ech1total, ' ', ech2total)
+        settotalhours(ech1total + ech2total)
+        setdetailedhours([
+          { date: '5/1 ~ 6/30', hours: ech1total },
+          { date: '7/1 ~ 8/31', hours: ech2total },
+        ])
+      }),
+    )
   }
 
   useEffect(() => {
@@ -418,7 +432,7 @@ function Profile_user(props) {
         setCurVolProg(props.profile.curvolprog)
         if (props.profile.lang == 'chinese') setStatus(1)
         else setStatus(0)
-        addHis(props.profile.username);
+        addHis(props.profile.username)
       } else {
         console.log('props failed')
         Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
@@ -441,14 +455,15 @@ function Profile_user(props) {
             setCurVolProg(response.data.user[0].curvolprog)
             if (response.data.user[0].lang == 'chinese') setStatus(1)
             else setStatus(0)
-            addHis(response.data.user[0].username);
+            addHis(response.data.user[0].username)
           },
         )
       }
     }
   }, [props.profile])
 
-  let ech1total = 0, ech2total = 0;
+  let ech1total = 0,
+    ech2total = 0
 
   return (
     <div className="frame">

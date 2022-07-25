@@ -5,23 +5,27 @@ import CardItemTutor from './CardItem_tutor'
 import CardItem from './CardItem'
 
 function Cards() {
-  const [status, setStatus] = useState(0);
-  let username = "";
+  const [status, setStatus] = useState(1)
+  let username = ''
   useEffect(() => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-      username = response.data.user[0].username;
-      return Axios.post('https://voluntutorcloud-server.herokuapp.com/getLang', {username: username})
-    }).then((response) => {
-      console.log(response.data);
-      if(response.data == "chinese") setStatus(1);
-      else setStatus(0);
-      console.log(status);
-    })
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+      .then((response) => {
+        username = response.data.user[0].username
+        return Axios.post(
+          'https://voluntutorcloud-server.herokuapp.com/getLang',
+          { username: username },
+        )
+      })
+      .then((response) => {
+        console.log(response.data)
+        if (response.data == 'chinese') setStatus(1)
+        else setStatus(0)
+        console.log(status)
+      })
   })
-  let a = ["Choose A Program!","選擇一個志工計畫！"]
+  let a = ['Choose A Program!', '選擇一個志工計畫！']
   return (
     <div className="cards">
-      
       <h1 className="cardsTitle">{a[status]}</h1>
       <div className="cards__container_tutor">
         <div className="cards__wrapper_tutor">
@@ -66,4 +70,3 @@ function Cards() {
 }
 
 export default Cards
-

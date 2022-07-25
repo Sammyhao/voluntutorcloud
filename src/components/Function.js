@@ -43,7 +43,7 @@ function Function(props) {
   // usestates
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [open, setOpen] = useState(false)
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   let logged = []
 
   // titles

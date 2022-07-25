@@ -107,7 +107,7 @@ function Register_pageall() {
   const [cpasswordShown, setcPasswordShown] = useState(false)
   const [emailError, setEmailError] = useState('')
   const navigate = useNavigate()
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [birthdaydate, setbirthdaydate] = useState(new Date())
   const [charlist, setcharlist] = useState([
     'open-minded',

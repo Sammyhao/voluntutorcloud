@@ -33,7 +33,7 @@ let username = ''
 let studentnum = 2
 let studentnamemulti = 'name'
 function Programusage() {
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [contactInfo, setContactInfo] = useState([])
   const [isLoading, setLoading] = useState(true)
   const [stpair, setStpair] = useState([])

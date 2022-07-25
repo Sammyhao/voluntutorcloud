@@ -116,7 +116,7 @@ export default function Studymat() {
   const [gra, setgra] = useState('')
   let username = ''
   const [isLoading, setLoading] = useState(true)
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
 
   useEffect(() => {
     // console.log('filtered', filteredarray)

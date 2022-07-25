@@ -5,7 +5,7 @@ import Axios from 'axios'
 
 function Footer(props) {
   const [emailAddress, setEmailAddress] = useState('')
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
 
   // titles
   let a = [
@@ -33,19 +33,19 @@ function Footer(props) {
   }
 
   useEffect(() => {
-      console.log(props)
-      if (props.lang == 'chinese' || props.lang == 'english') {
-        if (props.lang == 'chinese') setStatus(1)
-        else setStatus(0)
-      } else {
-        console.log('props failed')
-        Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-          (response) => {
-            if (response.data.user[0].lang == 'chinese') setStatus(1)
-            else setStatus(0)
-          },
-        )
-      }
+    console.log(props)
+    if (props.lang == 'chinese' || props.lang == 'english') {
+      if (props.lang == 'chinese') setStatus(1)
+      else setStatus(0)
+    } else {
+      console.log('props failed')
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          if (response.data.user[0].lang == 'chinese') setStatus(1)
+          else setStatus(0)
+        },
+      )
+    }
   })
 
   return (

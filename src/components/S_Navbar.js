@@ -14,12 +14,12 @@ import Loading from './Loading'
 
 function S_Navbar(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [sidebar, setSidebar] = useState(false)
   const [click, setClick] = useState(false)
   const [notification, setnotification] = useState(false)
   const [button, setButton] = useState(true)
-  const [notif_data, setNotif_data] = useState([]);
+  const [notif_data, setNotif_data] = useState([])
 
   // titles
   let a = ['Home', '首頁']
@@ -53,7 +53,7 @@ function S_Navbar(props) {
       setButton(true)
     }
   }
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     console.log(props)
@@ -74,21 +74,26 @@ function S_Navbar(props) {
       )
     }
 
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      (response) => {
-        let name = "";
-        if(response.data.isLoggedIn) name = response.data.user[0].lastname + response.data.user[0].firstname;
-        console.log(name);
-        return Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
-          username: name,
-          isnew: true
-        })
-      }).then((response) => {
-        console.log(response.data);
-        setNotif_data(response.data);
-        setLoading(false);
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+      .then((response) => {
+        let name = ''
+        if (response.data.isLoggedIn)
+          name =
+            response.data.user[0].lastname + response.data.user[0].firstname
+        console.log(name)
+        return Axios.post(
+          'https://voluntutorcloud-server.herokuapp.com/getNotif',
+          {
+            username: name,
+            isnew: true,
+          },
+        )
       })
-
+      .then((response) => {
+        console.log(response.data)
+        setNotif_data(response.data)
+        setLoading(false)
+      })
   }, [])
 
   useEffect(() => {
@@ -97,10 +102,8 @@ function S_Navbar(props) {
 
   window.addEventListener('resize', showButton)
 
-  if(isLoading) {
-    return (
-      <Loading></Loading> 
-    );
+  if (isLoading) {
+    return <Loading></Loading>
   }
   if (isLoggedIn) {
     if (status == 0) {
@@ -161,7 +164,7 @@ function S_Navbar(props) {
             <nav className={notification ? 'notif active' : 'notif'}>
               <ul className="nav-menu-items" onClick={shownotification}>
                 {notif_data.map((e, index) => {
-                  console.log(e);
+                  console.log(e)
                   return (
                     <div key={index} className="wrap">
                       <Link className="notif_link" to={e.nottype}>

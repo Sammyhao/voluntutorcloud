@@ -9,38 +9,44 @@ import Loading from './Loading'
 function S_HeroSection(props) {
   Axios.defaults.withCredentials = true
 
-  const [status, setStatus] = useState(0);
-  const [name, setName] = useState('');
+  const [status, setStatus] = useState(1)
+  const [name, setName] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // titles
-  let a = ["WELCOME","歡迎"]
-  let b = ["Let's Learn Together!" ,"和我們一起學習吧！"]
-  let c = ["Get Started","註冊帳號"]
-  let d = ["LOGIN","登入"]
-  
+  let a = ['WELCOME', '歡迎']
+  let b = ["Let's Learn Together!", '和我們一起學習吧！']
+  let c = ['Get Started', '註冊帳號']
+  let d = ['LOGIN', '登入']
+
   useEffect(() => {
-    console.log(props);
-    if(props.isLoggedIn) {
-      setIsLoggedIn(props.isLoggedIn);
-      if(props.lang && props.name) {
-        setName(props.name);
-        if(props.lang == "chinese") setStatus(1);
-        else setStatus(0);
+    console.log(props)
+    if (props.isLoggedIn) {
+      setIsLoggedIn(props.isLoggedIn)
+      if (props.lang && props.name) {
+        setName(props.name)
+        if (props.lang == 'chinese') setStatus(1)
+        else setStatus(0)
       }
     } else {
-      console.log("props failed")
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then((response) => {
-        if (response.data.isLoggedIn) {
-          if(response.data.user[0].lang == "chinese") setStatus(1);
-          else setStatus(0);
-        }
-        setIsLoggedIn(response.data.isLoggedIn)
-        setName(response.data.user[0].firstname + " " + response.data.user[0].lastname);
-      })
+      console.log('props failed')
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          if (response.data.isLoggedIn) {
+            if (response.data.user[0].lang == 'chinese') setStatus(1)
+            else setStatus(0)
+          }
+          setIsLoggedIn(response.data.isLoggedIn)
+          setName(
+            response.data.user[0].firstname +
+              ' ' +
+              response.data.user[0].lastname,
+          )
+        },
+      )
     }
   }, [])
-  
+
   if (!isLoggedIn) {
     return (
       <div className="hero-container">
@@ -68,7 +74,9 @@ function S_HeroSection(props) {
           <img className="pic_reg" src="/images/vc_logo.png" />
         </div>
         <div className="right_hero">
-          <h1 id="loggedintitle">{a[status]}, {name} </h1>
+          <h1 id="loggedintitle">
+            {a[status]}, {name}{' '}
+          </h1>
           <div id="loggedinsub">{b[status]}</div>
         </div>
       </div>

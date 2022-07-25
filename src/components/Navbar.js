@@ -15,7 +15,7 @@ import Loading from './Loading'
 
 function Navbar(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [sidebar, setSidebar] = useState(false)
   const [click, setClick] = useState(false)
   const [button, setButton] = useState(true)

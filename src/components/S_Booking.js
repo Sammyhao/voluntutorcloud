@@ -49,7 +49,8 @@ export default function S_Booking() {
 
   const opengoogle = () => {
     console.log(googlemeetlink)
-    if (googlemeetlink) window.open(googlemeetlink, '_blank', 'noopener,noreferrer')
+    if (googlemeetlink)
+      window.open(googlemeetlink, '_blank', 'noopener,noreferrer')
   }
 
   const cancelmeeting = (booking) => {
@@ -121,7 +122,7 @@ export default function S_Booking() {
     setcancel(false)
   }
 
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [isLoading, setLoading] = useState(true)
   const [bookingInfo, setBookingInfo] = useState([]) /*{}*/
   const [pendingBookingInfo, setPendingBookingInfo] = useState([]) /*{}*/
@@ -143,8 +144,8 @@ export default function S_Booking() {
 
   useEffect(() => {
     if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+        .then((response) => {
           username = response.data.user[0].username
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
@@ -158,7 +159,8 @@ export default function S_Booking() {
               studentname: studentname,
             },
           )
-        }).then((response) => {
+        })
+        .then((response) => {
           console.log('response from findTeacher:')
           console.log(response)
           teacherusername = response.data[0].username

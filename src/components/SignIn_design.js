@@ -61,7 +61,7 @@ function SignIn_design() {
   const resetInputField = () => {
     setInputValue('')
   }
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   let a = ['Welcome Back!', '歡迎回來！']
   let b = ['Username', '帳號名稱']
   let c = ['Password', '密碼']

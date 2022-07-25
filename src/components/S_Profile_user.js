@@ -33,7 +33,7 @@ function S_Profile_user(props) {
   const [grade, setgrade] = useState('11th')
   const [school, setschool] = useState('Wego Private High School')
   const [preferredsubject, setpreferredsubject] = useState('Chinese')
-  const [requiredsubject, setRequiredsubject] = useState("No Subject");
+  const [requiredsubject, setRequiredsubject] = useState('No Subject')
   const [studentage, setstudentage] = useState('3th')
   const [studentgender, setstudentgender] = useState('No preference')
   const [studentphone, setstudentphone] = useState('0912345673')
@@ -55,13 +55,13 @@ function S_Profile_user(props) {
   const [preferclick, setpreferclick] = useState(false)
   const [bioclick, setbioclick] = useState(false)
   const [aboutclick, setaboutclick] = useState(false)
-  const [studentemail, setStudentEmail] = useState("");
-  const [parentemail, setParentemail] = useState("");
-  const [parentcontactnum, setParentcontactnum] = useState("");
+  const [studentemail, setStudentEmail] = useState('')
+  const [parentemail, setParentemail] = useState('')
+  const [parentcontactnum, setParentcontactnum] = useState('')
   const [emailError, setEmailError] = useState('')
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [contactstyle, setcontactstyle] = useState(
     <div>
       <BiEdit />
@@ -211,14 +211,14 @@ function S_Profile_user(props) {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/logout').then(
       (response) => {
         console.log(response)
-        navigate('/');
+        navigate('/')
       },
     )
-  }  
+  }
 
   useEffect(() => {
     console.log(props)
-    if(props.profile && props.portfolio){
+    if (props.profile && props.portfolio) {
       setname(props.profile.username)
       setphone(props.profile.phone)
       setemail(props.profile.email)
@@ -233,14 +233,14 @@ function S_Profile_user(props) {
       setabout(props.profile.about)
       if (props.profile.lang == 'chinese') setStatus(1)
       else setStatus(0)
-      setStudentEmail(props.portfolio.studentmail);
-      setParentcontactnum(props.portfolio.parentcontactnum);
-      setParentemail(props.portfolio.parentmail);
-      setRequiredsubject(props.portfolio.requiredsub);
-    }else{
-      console.log("props failed")
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
+      setStudentEmail(props.portfolio.studentmail)
+      setParentcontactnum(props.portfolio.parentcontactnum)
+      setParentemail(props.portfolio.parentmail)
+      setRequiredsubject(props.portfolio.requiredsub)
+    } else {
+      console.log('props failed')
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+        .then((response) => {
           console.log(response.data.user[0])
           setname(response.data.user[0].username)
           setphone(response.data.user[0].phone)
@@ -256,16 +256,22 @@ function S_Profile_user(props) {
           setabout(response.data.user[0].about)
           if (response.data.user[0].lang == 'chinese') setStatus(1)
           else setStatus(0)
-          return Axios.post('https://voluntutorcloud-server.herokuapp.com/getProfolio', {
-            name: response.data.user[0].lastname + response.data.user[0].firstname,
-          })
-        }).then((response) => {
-          setStudentEmail(response.data[0].studentmail);
-          setParentcontactnum(response.data[0].parentcontactnum);
-          setParentemail(response.data[0].parentmail);
-          setRequiredsubject(response.data[0].requiredsub);
+          return Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getProfolio',
+            {
+              name:
+                response.data.user[0].lastname +
+                response.data.user[0].firstname,
+            },
+          )
         })
-      }
+        .then((response) => {
+          setStudentEmail(response.data[0].studentmail)
+          setParentcontactnum(response.data[0].parentcontactnum)
+          setParentemail(response.data[0].parentmail)
+          setRequiredsubject(response.data[0].requiredsub)
+        })
+    }
   }, [])
 
   const changeLang = (lang) => {
@@ -645,9 +651,9 @@ function S_Profile_user(props) {
           </div>
         </div>
 
-          <div className="btn-prof" onClick={logout}>
-            {ij[status]}
-          </div>
+        <div className="btn-prof" onClick={logout}>
+          {ij[status]}
+        </div>
       </div>
     </div>
   )

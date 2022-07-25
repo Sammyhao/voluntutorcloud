@@ -179,7 +179,7 @@ function Grid_sub(props) {
         console.log(response)
       })
   }
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',

@@ -11,7 +11,7 @@ export default function Portfolio(props) {
   let username = ''
   const [contactInfo, setContactInfo] = useState([])
   const [studentProfolio, setStudentProfolio] = useState([])
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [chosenContactIdx, setChosenContactIdx] = useState(0)
   const [nameclick, setnameclick] = useState(false)
   const [multistudentname, setMultistudentname] = useState([])

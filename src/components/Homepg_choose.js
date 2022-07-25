@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import './Homepg_choose.css'
 
 function Homepg_choose(props) {
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   let username = ''
 
   // titles
@@ -19,20 +19,20 @@ function Homepg_choose(props) {
   let h = ['/images/homepagequote.png', '/images/homepagequote_chinese.png']
 
   useEffect(() => {
-      console.log(props)
-      if (props.lang) {
-        if (props.lang == 'chinese') setStatus(1)
-        else setStatus(0)
-      } else {
-        console.log('props failed')
-        Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-          (response) => {
-            username = response.data.user[0].username
-            if (response.data.user[0].lang == 'chinese') setStatus(1)
-            else setStatus(0)
-          },
-        )
-      }
+    console.log(props)
+    if (props.lang) {
+      if (props.lang == 'chinese') setStatus(1)
+      else setStatus(0)
+    } else {
+      console.log('props failed')
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+        (response) => {
+          username = response.data.user[0].username
+          if (response.data.user[0].lang == 'chinese') setStatus(1)
+          else setStatus(0)
+        },
+      )
+    }
   })
 
   return (

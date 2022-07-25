@@ -12,7 +12,7 @@ export default function S_Portfolio() {
   const [studentProfolio, setStudentProfolio] = useState([])
   const [isLoading, setLoading] = useState(true)
   const [hasSetStatus, setHasSetStatus] = useState(false)
-  const [status, setStatus] = useState(0)
+  const [status, setStatus] = useState(1)
   const [name, setname] = useState('VolunTutor Cloud')
   const [phone, setphone] = useState('0912345678')
   const [email, setemail] = useState('vc@gmail.com')
@@ -45,28 +45,38 @@ export default function S_Portfolio() {
 
   useEffect(() => {
     if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
+      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+        .then((response) => {
           username = response.data.user[0].username
-          console.log("session response.data.user[0]");
-          console.log(response.data.user[0]);
-          if (response.data.user[0].lang == 'chinese') {setStatus(1)}
-          else setStatus(0)
-          studentname = response.data.user[0].lastname + response.data.user[0].firstname
-          console.log("studentname")
+          console.log('session response.data.user[0]')
+          console.log(response.data.user[0])
+          if (response.data.user[0].lang == 'chinese') {
+            setStatus(1)
+          } else setStatus(0)
+          studentname =
+            response.data.user[0].lastname + response.data.user[0].firstname
+          console.log('studentname')
           console.log(studentname)
           // delete point
-          return Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
-            studentname: studentname
-          })
-        }).then((response) => {
-          teacherusername = response.data[0].username;
-          console.log("teacherusername")
+          return Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/findContactbyName',
+            {
+              studentname: studentname,
+            },
+          )
+        })
+        .then((response) => {
+          teacherusername = response.data[0].username
+          console.log('teacherusername')
           console.log(teacherusername)
-          return Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
-            username: teacherusername,
-          })
-        }).then((response) => {
+          return Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
+            {
+              username: teacherusername,
+            },
+          )
+        })
+        .then((response) => {
           setname(response.data[0].firstname + ' ' + response.data[0].lastname)
           setphone(response.data[0].phone)
           setemail(response.data[0].email)
@@ -74,12 +84,11 @@ export default function S_Portfolio() {
           setbirthday(response.data[0].birthday)
           setgrade(response.data[0].grade)
           setschool(response.data[0].schoolname)
-          if(response.data[0].bio != '') setbio(response.data[0].bio) 
+          if (response.data[0].bio != '') setbio(response.data[0].bio)
           else setbio(bio)
-          if(response.data[0].about != '') 
-          setabout(response.data[0].about) 
+          if (response.data[0].about != '') setabout(response.data[0].about)
           else setabout(about)
-          
+
           setLoading(false)
         })
     }
