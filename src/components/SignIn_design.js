@@ -39,7 +39,7 @@ function SignIn_design() {
   const userdata = useSelector((state) => state.user.value)
 
   const store = () => {
-    dispatch({ type: 'FETCH_DATA_SUCCESS' })
+    dispatch({ type: 'FETCH_DATA' })
     console.log(userdata)
   }
   const keyDownHandler = (event) => {
