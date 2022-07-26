@@ -6,7 +6,9 @@ const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
 const FETCH_DATA = 'FETCH_DATA'
 
 async function getProcesses() {
-  return axios.get(`https://voluntutorcloud-server.herokuapp.com/login`)
+  let temp = axios.get(`https://voluntutorcloud-server.herokuapp.com/login`)
+  console.log(temp)
+  return temp
 }
 
 function* fetchData() {
