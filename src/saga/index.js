@@ -34,6 +34,7 @@ function* fetchData() {
   }
   console.log('action', action)
   yield put({ type: FETCH_DATA_SUCCESS, payload: action })
+  console.log('complete')
 }
 
 function* mySaga() {
