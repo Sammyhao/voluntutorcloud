@@ -16,7 +16,7 @@ import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import { useDispatch } from 'react-redux'
-import { logout } from '../features/user'
+import { logout } from '../reducer/user'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
