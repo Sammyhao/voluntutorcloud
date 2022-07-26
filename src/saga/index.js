@@ -10,6 +10,7 @@ async function getProcesses() {
 }
 
 function* fetchData() {
+  console.log('into function')
   const data = yield call(getProcesses())
   console.log('data', data)
   const action = yield data.json()
@@ -18,6 +19,7 @@ function* fetchData() {
 }
 
 function* mySaga() {
+  console.log('into saga function')
   yield takeEvery(FETCH_DATA, fetchData)
 }
 
