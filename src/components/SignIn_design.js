@@ -119,7 +119,7 @@ function SignIn_design() {
         </div>
         <button
           className={btnstyle ? 'btn-loginpressed' : 'btn-login'}
-          onClick={login}
+          onClick={loginfunc}
         >
           {d[status]}
         </button>
