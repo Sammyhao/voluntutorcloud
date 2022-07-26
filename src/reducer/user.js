@@ -16,6 +16,7 @@ export const userSlice = createSlice({
       switch (action.type) {
         case FETCH_DATA_SUCCESS:
           state.value = action.payload
+          console.log('into userslice and completed')
         default:
           state.value = Initialstate
       }
