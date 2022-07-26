@@ -9,7 +9,7 @@ function* fetchData() {
   const data = yield call(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        response.json()
+        response
       },
     )
   })
