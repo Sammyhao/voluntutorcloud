@@ -12,7 +12,6 @@ import { ImCross } from 'react-icons/im'
 
 function SignIn_design() {
   const dispatch = useDispatch()
-  const userdata = useSelector((state) => state.user.value)
   const [inputValue, setInputValue] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -40,6 +39,7 @@ function SignIn_design() {
 
   const store = () => {
     dispatch(login())
+    const userdata = useSelector((state) => state.user.value)
     console.log(userdata)
   }
   const keyDownHandler = (event) => {
