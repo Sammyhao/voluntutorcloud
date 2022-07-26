@@ -1,8 +1,9 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
+import Axios from 'axios'
 import { login } from '../reducer/user'
+
 const LOGIN = 'user/login'
 const LOGOUT = 'user/logout'
-import Axios from 'axios'
 
 function* fetchData() {
   const data = yield call(() => {
