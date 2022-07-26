@@ -36,10 +36,10 @@ function SignIn_design() {
       }
     })
   }
+  const userdata = useSelector((state) => state.user.value)
 
   const store = () => {
     dispatch(login())
-    const userdata = useSelector((state) => state.user.value)
     console.log(userdata)
   }
   const keyDownHandler = (event) => {
