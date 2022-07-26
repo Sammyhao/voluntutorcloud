@@ -1,5 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { login } from '../reducer/user'
+import axios from 'axios'
+
 const LOGIN = 'user/login'
 const LOGOUT = 'user/logout'
 
