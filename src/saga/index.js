@@ -15,7 +15,7 @@ function* fetchData() {
   console.log('into function')
   const data = yield call(getProcesses)
   console.log('data', data)
-  let language = data.data[0].lang
+  let language = data.data[0].language
   if (language == 'chinese') {
     language = 1
   } else {
@@ -32,6 +32,7 @@ function* fetchData() {
     role: role,
     login: true,
   }
+  console.log('action', action)
   yield put({ type: FETCH_DATA_SUCCESS, payload: action })
 }
 
