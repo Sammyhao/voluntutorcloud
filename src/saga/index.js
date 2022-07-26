@@ -7,7 +7,7 @@ function* fetchData() {
   const data = yield call(() =>
     fetch('https://voluntutorcloud-server.herokuapp.com/login'),
   )
-  const action = yield (data.data.user[0].lang, data.data.user[0].role, true)
+  const action = yield data.json()
   yield put(login(action))
 }
 
