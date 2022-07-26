@@ -15,9 +15,24 @@ function* fetchData() {
   console.log('into function')
   const data = yield call(getProcesses)
   console.log('data', data)
-  const action = yield data.json()
-  console.log('action json', action)
-  yield put({ type: FETCH_DATA_SUCCESS, payload: data })
+  let language = data.data[0].lang
+  if (language == 'chinese') {
+    language = 1
+  } else {
+    language = 0
+  }
+  let role = data.data[0].role
+  if (role == 'teacher') {
+    role = true
+  } else {
+    role = false
+  }
+  const action = {
+    language: language,
+    role: role,
+    login: true,
+  }
+  yield put({ type: FETCH_DATA_SUCCESS, payload: action })
 }
 
 function* mySaga() {

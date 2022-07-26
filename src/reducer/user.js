@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// const Initialstate = { language: 1, role: true, login: false }
-const Initialstate = {}
+const Initialstate = { language: 1, role: true, login: false }
 const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
 const FETCH_DATA = 'FETCH_DATA'
 
