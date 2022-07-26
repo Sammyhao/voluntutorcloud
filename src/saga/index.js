@@ -4,9 +4,13 @@ const LOGIN = 'user/login'
 const LOGOUT = 'user/logout'
 
 function* fetchData() {
-  const data = yield call(() =>
-    fetch('https://voluntutorcloud-server.herokuapp.com/login'),
-  )
+  const data = yield call(() => {
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+      (response) => {
+        response.json()
+      },
+    )
+  })
   console.log('data', data)
   const action = yield data.json()
   console.log('action json', action)

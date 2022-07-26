@@ -118,7 +118,7 @@ function SignIn_design() {
         </div>
         <button
           className={btnstyle ? 'btn-loginpressed' : 'btn-login'}
-          onClick={loginfunc}
+          onClick={store}
         >
           {d[status]}
         </button>
