@@ -1,15 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 // const Initialstate = { language: 1, role: true, login: false }
-const Initialstate = []
+const Initialstate = {}
 const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
 const FETCH_DATA = 'FETCH_DATA'
+
+const initState = {
+  data: {},
+}
 
 export const userSlice = createSlice({
   name: 'user',
   initialState: { value: Initialstate },
   reducers: {
-    login: (state, action) => {
+    login: (state = initState, action) => {
       switch (action.type) {
         case FETCH_DATA_SUCCESS:
           state.value = action.payload
