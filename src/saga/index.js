@@ -15,13 +15,13 @@ function* fetchData() {
   console.log('into function')
   const data = yield call(getProcesses)
   console.log('data', data)
-  let language = data.data[0].language
+  let language = data.data.user[0].language
   if (language == 'chinese') {
     language = 1
   } else {
     language = 0
   }
-  let role = data.data[0].role
+  let role = data.data.user[0].role
   if (role == 'teacher') {
     role = true
   } else {
