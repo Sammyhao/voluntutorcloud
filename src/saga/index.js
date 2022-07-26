@@ -15,7 +15,7 @@ function* fetchData() {
   console.log('into function')
   const data = yield call(getProcesses)
   console.log('data', data)
-  let language = data.data.user[0].language
+  let language = data.data.user[0].lang
   if (language == 'chinese') {
     language = 1
   } else {

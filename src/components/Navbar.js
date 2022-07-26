@@ -14,8 +14,8 @@ import { Divider } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 
 function Navbar(props) {
-  // const user = useSelector((state) => state.user.value)
-  // console.log(user)
+  const user = useSelector((state) => state.user.value)
+  console.log(user)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [status, setStatus] = useState(1)
   const [sidebar, setSidebar] = useState(false)
