@@ -13,11 +13,11 @@ async function getProcesses() {
 
 function* fetchData() {
   console.log('into function')
-  const data = yield call(getProcesses())
+  const data = yield call(getProcesses)
   console.log('data', data)
   const action = yield data.json()
   console.log('action json', action)
-  yield put({ type: FETCH_DATA_SUCCESS, payload: { action } })
+  yield put({ type: FETCH_DATA_SUCCESS, payload: data })
 }
 
 function* mySaga() {
