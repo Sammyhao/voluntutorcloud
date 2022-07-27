@@ -13,13 +13,13 @@ export const userSlice = createSlice({
   initialState: { value: Initialstate },
   reducers: {
     login: (state = initState, action) => {
-      switch (action.type) {
-        case FETCH_DATA_SUCCESS:
-          state.value = action.payload
-          console.log('into userslice and completed')
-        default:
-          state.value = Initialstate
-      }
+      // switch (action.type) {
+      //   case FETCH_DATA_SUCCESS:
+      state.value = action.payload
+      console.log('into userslice and completed')
+      // default:
+      //   state.value = Initialstate
+      // }
     },
     logout: (state) => {
       state.value = Initialstate
