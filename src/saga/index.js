@@ -11,8 +11,7 @@ async function getProcesses() {
   return temp
 }
 
-function* fetchData() {
-  const data = yield call(getProcesses)
+function* transform(data) {
   let language = data.data.user[0].lang
   if (language == 'chinese') {
     language = 1
@@ -30,6 +29,11 @@ function* fetchData() {
     role: role,
     login: true,
   }
+  return action
+}
+function* fetchData() {
+  const data = yield call(getProcesses)
+  const action = yield call(transform, data)
   //   yield put({ type: FETCH_DATA_SUCCESS, payload: action })
   yield put(login(action))
   console.log('action: ', action)
