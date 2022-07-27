@@ -160,7 +160,7 @@ function Register_pageall() {
   let y = ['Email', 'Email帳號']
   let z = ['Detailed Information', '詳細資訊']
   let ab = ['Birthday (Format: 2004/01/01)', '生日 (格式：2004/01/01)']
-  let bc = ['Grade (9th/10th/11th)', '年級 (九/十/十一)']
+  let bc = ['Grade (9th/10th/11th/12th)', '年級 (九/十/十一/十二)']
   let zz = ['Grade (1th/2th...)', '年級 (一/二...)']
   let cd = ['School name', '學校名稱']
   let de = ['Preference', '你的喜好']
@@ -192,6 +192,8 @@ function Register_pageall() {
   let yy = ['Select your gender', '選擇你的性別']
   let wv = ['Taipei Wego Senior High School', '台北市私立薇閣高級中學']
   let ww = ['Taipei Fuhsing Senior High School', '台北市私立復興高級中學']
+  let www = ['Kang Chiao International School', '康橋國際學校']
+  let wwww = ['Taipei Kuei Shan School', '台北市私立奎山實驗高級中學']
   let xx = ['Yilan Daxi Elementary School', '宜蘭縣大溪國民小學']
   let yyzy = ['Yilan Guangxing Elementary School', '宜蘭縣廣興國民小學']
   let zzz = ['Taitung Hotspring Elementary School', '臺東縣溫泉國民小學']
@@ -319,6 +321,12 @@ function Register_pageall() {
     }
     if (schoolnamereg == '台北市私立復興高級中學') {
       skl = 'Taipei Fuhsing Senior High School'
+    }
+    if (schoolnamereg == '康橋國際學校') {
+      skl = 'Kang Chiao International School'
+    }
+    if (schoolnamereg == '台北市私立奎山實驗高級中學') {
+      skl = 'Taipei Kuei Shan School'
     }
     if (GenderReg == '女') {
       gend = 'Female'
@@ -1338,6 +1346,7 @@ function Register_pageall() {
                     <MenuItem value={'9th'}>9th</MenuItem>
                     <MenuItem value={'10th'}>10th</MenuItem>
                     <MenuItem value={'11th'}>11th</MenuItem>
+                    <MenuItem value={'12th'}>12th</MenuItem>
                   </Select>
                 </div>
                 <div className="reggroup">
@@ -1397,6 +1406,8 @@ function Register_pageall() {
                   >
                     <MenuItem value={wv[status]}>{wv[status]}</MenuItem>
                     <MenuItem value={ww[status]}>{ww[status]}</MenuItem>
+                    <MenuItem value={www[status]}>{www[status]}</MenuItem>
+                    <MenuItem value={wwww[status]}>{wwww[status]}</MenuItem>
                   </Select>
                 </div>
               </div>
