@@ -4,22 +4,13 @@ const Initialstate = { language: 1, role: true, login: false }
 const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
 const FETCH_DATA = 'FETCH_DATA'
 
-const initState = {
-  data: {},
-}
-
 export const userSlice = createSlice({
   name: 'user',
   initialState: { value: Initialstate },
   reducers: {
-    login: (state = initState, action) => {
-      // switch (action.type) {
-      //   case FETCH_DATA_SUCCESS:
+    login: (state, action) => {
       state.value = action.payload
       console.log('into userslice and completed')
-      // default:
-      //   state.value = Initialstate
-      // }
     },
     logout: (state) => {
       state.value = Initialstate

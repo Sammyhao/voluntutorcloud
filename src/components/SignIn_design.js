@@ -39,7 +39,8 @@ function SignIn_design() {
   }
 
   const store = () => {
-    dispatch({ type: 'FETCH_DATA' })
+    dispatch(login())
+    console.log('dispatched')
   }
   const keyDownHandler = (event) => {
     console.log('into function')

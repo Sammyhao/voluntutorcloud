@@ -12,9 +12,7 @@ async function getProcesses() {
 }
 
 function* fetchData() {
-  console.log('into function')
   const data = yield call(getProcesses)
-  console.log('data', data)
   let language = data.data.user[0].lang
   if (language == 'chinese') {
     language = 1
@@ -32,14 +30,16 @@ function* fetchData() {
     role: role,
     login: true,
   }
-  console.log('action', action)
-  yield put({ type: FETCH_DATA_SUCCESS, payload: action })
+  //   yield put({ type: FETCH_DATA_SUCCESS, payload: action })
+  yield put(login(action))
+  console.log('action: ', action)
   console.log('complete')
 }
 
 function* mySaga() {
   console.log('into saga function')
-  yield takeEvery(FETCH_DATA, fetchData)
+  //   yield takeEvery(FETCH_DATA, fetchData)
+  yield takeEvery('user/login', fetchData)
 }
 
 export default mySaga
