@@ -9,6 +9,7 @@ export const userSlice = createSlice({
     login: (state, action) => {
       state.value = action.payload
       console.log('into userslice and completed')
+      return state
     },
     logout: (state) => {
       state.value = Initialstate

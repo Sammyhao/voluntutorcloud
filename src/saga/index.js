@@ -2,13 +2,8 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import { login } from '../reducer/user'
 import axios from 'axios'
 
-const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
-const FETCH_DATA = 'FETCH_DATA'
-
 async function getProcesses() {
-  let temp = axios.get(`https://voluntutorcloud-server.herokuapp.com/login`)
-  console.log(temp)
-  return temp
+  return axios.get(`https://voluntutorcloud-server.herokuapp.com/login`)
 }
 
 function* transform(data) {
@@ -42,7 +37,6 @@ function* fetchData() {
 
 function* mySaga() {
   console.log('into saga function')
-  //   yield takeEvery(FETCH_DATA, fetchData)
   yield takeEvery('user/login', fetchData)
 }
 
