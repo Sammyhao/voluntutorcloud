@@ -215,12 +215,12 @@ function S_Profile_user(props) {
       (response) => {
         navigate('/')
         dispatch(getloggedout())
-        console.log('logged out')
+        // console.log('logged out')
       },
     )
   }
   const user = useSelector((state) => state.user.value)
-  console.log('store data: ', user)
+  // console.log('store data: ', user)
   useEffect(() => {
     setStatus(user.language)
   }, [])

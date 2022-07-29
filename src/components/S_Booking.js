@@ -16,6 +16,7 @@ import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import { FaUser } from 'react-icons/fa'
 import DialogTitle from '@mui/material/DialogTitle'
+import { useSelector } from 'react-redux'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -48,16 +49,16 @@ export default function S_Booking() {
   const navigate = useNavigate()
 
   const opengoogle = () => {
-    console.log(googlemeetlink)
+    //console.log(googlemeetlink)
     if (googlemeetlink)
       window.open(googlemeetlink, '_blank', 'noopener,noreferrer')
   }
 
   const cancelmeeting = (booking) => {
-    console.log('cancelled')
+    //console.log('cancelled')
     setcancelopen(true)
-    console.log(cancelopen)
-    console.log(booking)
+    //console.log(cancelopen)
+    //console.log(booking)
     setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen))
     setPendingBookingInfoLen(pendingBookingInfoLen - 1)
     Axios.post(
@@ -71,27 +72,27 @@ export default function S_Booking() {
         duration: booking.duration,
       },
     ).then((response) => {
-      console.log(response)
+      //console.log(response)
     })
     let content = studentnameFU + ' rejected your booking request'
-    console.log(content, content)
+    //console.log(content, content)
     Axios.post('http://voluntutorcloud-server.herokuapp.com/addNotif', {
       username: teacherusernameFU,
       type: '/book',
       content: content,
       isnew: true,
     }).then((response) => {
-      console.log(response)
+      //console.log(response)
     })
     setcancel(false)
   }
 
   const confirmmeeting = (booking) => {
-    console.log('confirmed')
+    //console.log('confirmed')
     setconfirmopen(true)
-    console.log('whethe true')
-    console.log(confirmopen)
-    console.log(booking)
+    //console.log('whethe true')
+    //console.log(confirmopen)
+    //console.log(booking)
     setPendingBookingInfo(pendingBookingInfo.slice(1, pendingBookingInfoLen))
     setPendingBookingInfoLen(pendingBookingInfoLen - 1)
     setBookingInfo((bookingInfo) => [...bookingInfo, pendingBookingInfo[0]])
@@ -107,7 +108,7 @@ export default function S_Booking() {
         duration: booking.duration,
       },
     ).then((response) => {
-      console.log(response)
+      //console.log(response)
     })
     let content = studentnameFU + ' confirmed your booking request'
     Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
@@ -117,7 +118,7 @@ export default function S_Booking() {
       content: content,
       isnew: true,
     }).then((response) => {
-      console.log(response)
+      //console.log(response)
     })
     setcancel(false)
   }
@@ -140,99 +141,56 @@ export default function S_Booking() {
 
   const [googlemeetlink, setGoogleMeetLink] = useState('')
   const [teacherRealname, setTeacherRealname] = useState('')
-  const [role, setRole] = useState('')
+  const user = useSelector((state) => state.user.value)
+  ////console.log('store data: ', user)
+  useEffect(() => {
+    setStatus(user.language)
+    setName(user.username)
+    setStudentnameFU(user.name)
+  })
 
   useEffect(() => {
     if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
-        .then((response) => {
-          username = response.data.user[0].username
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-          setRole(response.data.user[0].role)
-          studentname =
-            response.data.user[0].lastname + response.data.user[0].firstname
-          setStudentnameFU(studentname)
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getTeacher',
-            {
-              studentname: studentname,
-            },
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
+        studentname: studentname,
+      }).then((response) => {
+        teacherusername = response.data[0].username
+        setTeacherusernameFU(teacherusername)
+        setTeachername(teacherusername)
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+          studentname: studentname,
+          username: teacherusername,
+          status: 'pending',
+        }).then((response) => {
+          //console.log(response)
+          setPendingBookingInfo(response.data)
+          setPendingBookingInfoLen(response.data.length)
+        })
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+          studentname: studentname,
+          username: teacherusername,
+          status: 'confirmed',
+        }).then((response) => {
+          //console.log(response)
+          setBookingInfo(response.data)
+          setBookingInfoLen(response.data.length)
+        })
+        Axios.post(
+          'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
+          {
+            username: teacherusername, // bug
+          },
+        ).then((response) => {
+          //console.log(response)
+          setGoogleMeetLink(response.data[0].googlemeetlink)
+          setTeacherRealname(
+            response.data[0].firstname + ' ' + response.data[0].lastname,
           )
         })
-        .then((response) => {
-          console.log('response from findTeacher:')
-          console.log(response)
-          teacherusername = response.data[0].username
-          setTeacherusernameFU(teacherusername)
-          setTeachername(teacherusername)
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getBooking',
-            {
-              studentname: studentname,
-              username: teacherusername,
-              status: 'pending',
-            },
-          ).then((response) => {
-            console.log(response)
-            setPendingBookingInfo(response.data)
-            setPendingBookingInfoLen(response.data.length)
-          })
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getBooking',
-            {
-              studentname: studentname,
-              username: teacherusername,
-              status: 'confirmed',
-            },
-          ).then((response) => {
-            console.log(response)
-            setBookingInfo(response.data)
-            setBookingInfoLen(response.data.length)
-          })
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
-            {
-              username: teacherusername, // bug
-            },
-          ).then((response) => {
-            console.log(response)
-            setGoogleMeetLink(response.data[0].googlemeetlink)
-            setTeacherRealname(
-              response.data[0].firstname + ' ' + response.data[0].lastname,
-            )
-          })
-          setLoading(false)
-        })
+        setLoading(false)
+      })
     }
   })
-  console.log('booking info length:::')
-  console.log(bookingInfoLen)
-  /*
-{id: 534, username: 'admin_stu', password: 'admin', role: 'student', firstname: 'admin', …}
-  about: "No Pref"
-  bio: "No Pref"
-  birthday: "0000-00-00"
-  email: "admin@gmail.com"
-  firstname: "admin"
-  gender: "No Pref"
-  googlemeetlink: "No Pref"
-  grade: "No Pref"
-  id: 534
-  lang: "english"
-  lastname: "admin"
-  password: "admin"
-  phone: "No Pref"
-  preferredSubjects: "No Pref"
-  role: "student"
-  schoolname: "No Pref"
-  targetStuAge: 0
-  targetStuGen: "No Pref"
-  targetStuPerso: "No Pref"
-  username: "admin_stu"
-  [[Prototype]]: Object 
-*/
-  // meetlinktemp: https://meet.google.com/ddk-cuae-bnn
 
   let a = ['Upcoming Meetings', '即將到來的會議']
   let c = [
@@ -271,12 +229,12 @@ export default function S_Booking() {
   if (isLoading) {
     return <Loading />
   } else {
-    console.log('bookingInfo:')
-    console.log(bookingInfo)
-    console.log(bookingInfoLen)
-    console.log('pendingBookingInfo:')
-    console.log(pendingBookingInfo)
-    console.log(pendingBookingInfoLen)
+    //console.log('bookingInfo:')
+    //console.log(bookingInfo)
+    //console.log(bookingInfoLen)
+    //console.log('pendingBookingInfo:')
+    //console.log(pendingBookingInfo)
+    //console.log(pendingBookingInfoLen)
 
     if (teachername == '') {
       return (

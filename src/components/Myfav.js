@@ -132,10 +132,6 @@ function Myfav() {
     setBookOpen(true)
   }
 
-  const showFavProgramList = () => {
-    favProgramList.forEach((element) => console.log(element))
-  }
-
   const deleteProgram = (program) => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteFavList', {
       username: program.username,
@@ -160,9 +156,7 @@ function Myfav() {
     } else {
       return (
         <div id="fav_outcontainer">
-          <h1 className="titlefav" onClick={showFavProgramList}>
-            {c[status]}
-          </h1>
+          <h1 className="titlefav">{c[status]}</h1>
 
           <div id="dialog_reg_wrap">
             <BootstrapDialog
