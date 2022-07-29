@@ -59,9 +59,10 @@ function Function(props) {
 
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
-  setIsLoggedIn(user.login)
-  setStatus(user.language)
-
+  useEffect(() => {
+    setIsLoggedIn(user.login)
+    setStatus(user.language)
+  })
   // useEffect(() => {
   //   if (!props.isLoggedIn) {
   //     console.log('not logged in')

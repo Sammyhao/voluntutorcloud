@@ -7,7 +7,9 @@ export default function About_us(props) {
   const [status, setStatus] = useState(1)
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
-  setStatus(user.language)
+  useEffect(() => {
+    setStatus(user.language)
+  })
 
   // useEffect(() => {
   //   console.log(props)

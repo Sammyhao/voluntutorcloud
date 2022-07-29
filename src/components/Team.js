@@ -9,7 +9,9 @@ export default function Team(props) {
   let username = ''
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
-  setStatus(user.language)
+  useEffect(() => {
+    setStatus(user.language)
+  })
   // useEffect(() => {
   //   console.log(props)
   //   if (props.lang) {

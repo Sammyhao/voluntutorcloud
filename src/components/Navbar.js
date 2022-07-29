@@ -25,10 +25,12 @@ function Navbar() {
 
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
-  setIsLoggedIn(user.login)
-  setStatus(user.language)
-  setName(user.name)
-  setRole(user.role)
+  useEffect(() => {
+    setIsLoggedIn(user.login)
+    setStatus(user.language)
+    setName(user.name)
+    setRole(user.role)
+  })
 
   const showSidebar = () => setSidebar(!sidebar)
   const shownotification = () => {
