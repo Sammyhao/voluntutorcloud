@@ -16,7 +16,7 @@ import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
-import { faV } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -70,6 +70,7 @@ function Myfav() {
   const [isLoading, setLoading] = useState(true)
   const [favProgramListLen, setFavProgramListLen] = useState(0)
   const [favProgramList, setFavProgramList] = useState([])
+  const [username, setUsername] = useState('')
 
   let a = [
     "There's nothing in your favorite list!",
@@ -99,36 +100,33 @@ function Myfav() {
     'Please click me and return to homepage to update the information',
     '請點我回到主頁以更新資訊',
   ]
+  const user = useSelector((state) => state.user.value)
+  //console.log('store data: ', user)
   useEffect(() => {
-    if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
-        .then((response) => {
-          username = response.data.user[0].username
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getFavList',
-            { username: username },
-          )
-        })
-        .then((response) => {
-          console.log(response.data)
-          setFavProgramListLen(response.data.length)
-          if (response.data.length) {
-            for (let i = 0; i < response.data.length; i++) {
-              if (response.data[i].isBooked == false)
-                setFavProgramList((favProgramList) => [
-                  ...favProgramList,
-                  response.data[i],
-                ])
-            }
-          }
-          setLoading(false)
-        })
-    }
+    setStatus(user.language)
+    setUsername(user.username)
   }, [])
 
-  let username = ''
+  useEffect(() => {
+    if (isLoading) {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/getFavList', {
+        username: username,
+      }).then((response) => {
+        //console.log(response.data)
+        setFavProgramListLen(response.data.length)
+        if (response.data.length) {
+          for (let i = 0; i < response.data.length; i++) {
+            if (response.data[i].isBooked == false)
+              setFavProgramList((favProgramList) => [
+                ...favProgramList,
+                response.data[i],
+              ])
+          }
+        }
+        setLoading(false)
+      })
+    }
+  }, [])
 
   const updateBookList = () => {
     setBookOpen(true)
@@ -143,13 +141,13 @@ function Myfav() {
       username: program.username,
       programId: program.programId,
     }).then((response) => {
-      console.log(response)
+      //console.log(response)
     })
   }
 
   if (isLoading) {
-    console.log(favProgramList)
-    console.log('favProgramList null')
+    //console.log(favProgramList)
+    //console.log('favProgramList null')
     return <Loading></Loading>
   } else {
     if (favProgramList.length == 0) {
@@ -346,7 +344,7 @@ function Myfav() {
                           onClick={() => {
                             program = e
                             setOpen(true)
-                            // console.log(program)
+                            // //console.log(program)
                           }}
                         >
                           {k[status]}

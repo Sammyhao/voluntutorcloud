@@ -213,8 +213,9 @@ function S_Profile_user(props) {
   const logout = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/logout').then(
       (response) => {
-        //console.log(response)
         navigate('/')
+        dispatch(getloggedout())
+        console.log('logged out')
       },
     )
   }

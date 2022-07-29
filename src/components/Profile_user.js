@@ -673,7 +673,7 @@ function Profile_user() {
                   <div className="hrs">
                     {jjj[status]}
                     {totalhours}
-                    {jjjj[status]}
+                    <div className="margin2">{jjjj[status]}</div>
                   </div>
                   <div
                     className="expand"
@@ -701,7 +701,7 @@ function Profile_user() {
                           {')'}
                         </div>
                         <div>{rrr[status]}</div>
-                        <div>{e.hours}</div>
+                        <div className="margin2">{e.hours}</div>
                         <div className="margin2">{jjjj[status]}</div>
                       </div>
                     )
