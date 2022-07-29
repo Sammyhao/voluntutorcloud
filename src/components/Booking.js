@@ -296,16 +296,14 @@ export default function Booking() {
     setendtime(new Date())
   }
   const user = useSelector((state) => state.user.value)
-  //console.log('store data: ', user)
+
   useEffect(() => {
     setStatus(user.language)
     setName(user.username)
-  })
-
-  useEffect(() => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
       username: name,
     }).then((response) => {
+      console.log(response.data[0])
       setContactInfo(response.data)
       for (let i = 0; i < response.data.length; i++) {
         setstudentnamelist((studentnamelist) => [
