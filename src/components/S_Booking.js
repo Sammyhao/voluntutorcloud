@@ -135,20 +135,18 @@ export default function S_Booking() {
     teacherusername = ''
   const [teacherusernameFU, setTeacherusernameFU] = useState('')
   const [studentnameFU, setStudentnameFU] = useState('')
-  const [studentname, setstudentname] = useState('')
+  const [stuname, setstudentname] = useState('')
   const [teachername, setTeachername] = useState()
 
   const [googlemeetlink, setGoogleMeetLink] = useState('')
   const [teacherRealname, setTeacherRealname] = useState('')
   const user = useSelector((state) => state.user.value)
-  ////console.log('store data: ', user)
+
   useEffect(() => {
     setStatus(user.language)
     setstudentname(user.username)
     setStudentnameFU(user.name)
-  })
-
-  useEffect(() => {
+    let studentname = user.username
     if (isLoading) {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
         studentname: studentname,
