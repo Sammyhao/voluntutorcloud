@@ -132,11 +132,10 @@ export default function S_Booking() {
   const [haveSetStatus, setHaveSetStatus] = useState(false)
 
   let username = '',
-    studentname = '',
     teacherusername = ''
   const [teacherusernameFU, setTeacherusernameFU] = useState('')
   const [studentnameFU, setStudentnameFU] = useState('')
-
+  const [studentname, setstudentname] = useState('')
   const [teachername, setTeachername] = useState()
 
   const [googlemeetlink, setGoogleMeetLink] = useState('')
@@ -145,7 +144,7 @@ export default function S_Booking() {
   ////console.log('store data: ', user)
   useEffect(() => {
     setStatus(user.language)
-    setName(user.username)
+    setstudentname(user.username)
     setStudentnameFU(user.name)
   })
 
