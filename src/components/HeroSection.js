@@ -121,7 +121,7 @@ function HeroSection() {
           </div>
         ) : (
           <div>
-            {/* <h1 id="homePageTitle">{a[status]}</h1>
+            <h1 id="homePageTitle">{a[status]}</h1>
             <p id="homePageSubTitle">
               {role ? <div>{b[status]}</div> : <div>{e[status]}</div>}
             </p>
@@ -132,7 +132,7 @@ function HeroSection() {
               <Link to="/sign-in" className="btn-mobile">
                 <div className="btn-hero">{d[status]}</div>
               </Link>
-            </div> */}
+            </div>
           </div>
         )}
       </div>

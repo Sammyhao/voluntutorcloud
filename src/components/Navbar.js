@@ -83,7 +83,7 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      {/* <div className="logwrap">
+      <div className="logwrap">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           Voluntutor Cloud
         </Link>
@@ -182,7 +182,7 @@ function Navbar() {
         </div>
       ) : (
         <div></div>
-      )} */}
+      )}
     </div>
   )
 }
