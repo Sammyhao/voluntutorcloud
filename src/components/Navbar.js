@@ -107,7 +107,7 @@ function Navbar() {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                {role ? <div>[b[status]]</div> : <div>[bb[status]]</div>}
+                {role ? <div>{b[status]}</div> : <div>{bb[status]}</div>}
               </Link>
             </li>
             <li className="nav-item">
