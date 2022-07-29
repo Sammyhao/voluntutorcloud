@@ -3,10 +3,13 @@ import { login } from '../reducer/user'
 import axios from 'axios'
 
 async function getProcesses() {
+  console.log('into api')
   return axios.get(`https://voluntutorcloud-server.herokuapp.com/login`)
 }
 
 function* transform(data) {
+  console.log('transforming')
+  console.log('data:', data)
   let language = data.data.user[0].lang
   if (language == 'chinese') {
     language = 1
