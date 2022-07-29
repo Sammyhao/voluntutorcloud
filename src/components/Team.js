@@ -6,23 +6,27 @@ import Axios from 'axios'
 export default function Team(props) {
   const [status, setStatus] = useState(1)
   let username = ''
-
   useEffect(() => {
-    console.log(props)
-    if (props.lang) {
-      if (props.lang == 'chinese') setStatus(1)
-      else setStatus(0)
-    } else {
-      console.log('props failed')
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
-          username = response.data.user[0].username
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-        },
-      )
-    }
-  })
+    const user = useSelector((state) => state.user.value)
+    console.log('store data: ', user)
+    setStatus(user.language)
+  }, [])
+  // useEffect(() => {
+  //   console.log(props)
+  //   if (props.lang) {
+  //     if (props.lang == 'chinese') setStatus(1)
+  //     else setStatus(0)
+  //   } else {
+  //     console.log('props failed')
+  //     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+  //       (response) => {
+  //         username = response.data.user[0].username
+  //         if (response.data.user[0].lang == 'chinese') setStatus(1)
+  //         else setStatus(0)
+  //       },
+  //     )
+  //   }
+  // })
 
   // titles
   let a = ['Team', '團隊介紹']

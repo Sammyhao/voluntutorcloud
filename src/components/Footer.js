@@ -16,6 +16,12 @@ function Footer(props) {
   let c = ['Your email', '你的Email']
   let d = ['Subscribe NOW', '加入我們']
 
+  useEffect(() => {
+    const user = useSelector((state) => state.user.value)
+    console.log('store data: ', user)
+    setStatus(user.language)
+  }, [])
+
   const saveEmailAddress = (e) => {
     setEmailAddress(e.target.value)
   }
@@ -32,21 +38,21 @@ function Footer(props) {
     setEmailAddress('')
   }
 
-  useEffect(() => {
-    console.log(props)
-    if (props.lang == 'chinese' || props.lang == 'english') {
-      if (props.lang == 'chinese') setStatus(1)
-      else setStatus(0)
-    } else {
-      console.log('props failed')
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-        },
-      )
-    }
-  })
+  // useEffect(() => {
+  //   console.log(props)
+  //   if (props.lang == 'chinese' || props.lang == 'english') {
+  //     if (props.lang == 'chinese') setStatus(1)
+  //     else setStatus(0)
+  //   } else {
+  //     console.log('props failed')
+  //     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
+  //       (response) => {
+  //         if (response.data.user[0].lang == 'chinese') setStatus(1)
+  //         else setStatus(0)
+  //       },
+  //     )
+  //   }
+  // })
 
   return (
     <div className="footer-container">
