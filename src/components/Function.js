@@ -38,7 +38,7 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
 
-function Function(props) {
+function Function() {
   Axios.defaults.withCredentials = true
 
   // usestates

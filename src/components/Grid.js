@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Grid.css'
 import { RiHeart3Line, RiHeart3Fill, RiMapPin2Fill } from 'react-icons/ri'
 import '../App.css'
-import emailjs from 'emailjs-com'
+import { useSelector } from 'react-redux'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -15,8 +15,6 @@ import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
-import IconButton from '@mui/material/IconButton'
-import { popoverClasses } from '@mui/material'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -26,8 +24,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }))
-
-let subject = ''
 
 const BootstrapDialogTitle = (props) => {
   const { children, ...other } = props
@@ -39,44 +35,34 @@ const BootstrapDialogTitle = (props) => {
   )
 }
 
-function Heart(props) {
-  const addedToList = props.addedToList
-
-  function HeartOnClick(e) {
-    e.preventDefault()
-    addedToList = true
-    console.log(addedToList)
-  }
-  function HeartUndoClick(e) {
-    e.preventDefault()
-    addedToList = false
-    console.log(addedToList)
-  }
-
-  if (addedToList) {
-    return <RiHeart3Fill className="heart_dialog" onClick={HeartOnClick} />
-  }
-  return <RiHeart3Line className="heart_dialog" onClick={HeartUndoClick} />
-}
-
 let program = 0
 
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
-function Grid_sub(props) {
-  const numberOfCards = 200
+function Grid_sub() {
   const [open, setOpen] = useState(false)
   const [islogged, setislogged] = useState(false)
   const [check_open_book, setcheckopen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
   const [open_notlogged, setnotlogged] = useState(false)
   const [open_fav, setFavOpen] = useState(false)
+  const [status, setStatus] = useState(1)
+  const [programInfo, setProgramInfo] = useState([])
+  const [username, setUsername] = useState('')
 
   const studentlink = 'https://forms.gle/6BaZovfFSLwtSGkF8'
   const wegolink = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
   const fuhlink = 'https://forms.gle/gT91p6xLSNExWYmh7'
   const kanglink = 'https://forms.gle/WnfLGfhUhaXgLNsx6'
+
+  const user = useSelector((state) => state.user.value)
+  console.log('store data: ', user)
+  useEffect(() => {
+    setislogged(user.login)
+    setStatus(user.language)
+    setUsername(user.username)
+  })
 
   const handleClose = () => {
     setOpen(false)
@@ -93,20 +79,8 @@ function Grid_sub(props) {
   const handlefinalclose = () => {
     setcheckopen(false)
   }
-  // const [subject, setSubject] = useState('Math') // change the subject from here
-  const [subject, setSubject] = useState(props.sub)
-  const [programInfo, setProgramInfo] = useState([])
-  const [schoolname, setSchoolname] = useState('')
-  const [address, setAddress] = useState('')
 
   useEffect(() => {
-    // let subjectFF = ''
-    // console.log('subject')
-    // console.log(subject)
-    // if (subject == '') subjectFF = 'chinese'
-    // else subjectFF = subject
-    // console.log(subjectFF)
-
     Axios.post(
       'https://voluntutorcloud-server.herokuapp.com/programWithoutSub',
     ).then((response) => {
@@ -114,25 +88,7 @@ function Grid_sub(props) {
         setProgramInfo(response.data)
       }
     })
-
-    let name = ''
-
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-      (response) => {
-        console.log(response)
-        setislogged(response.data.isLoggedIn)
-        if (response.data.isLoggedIn) {
-          setUsername(response.data.user[0].username)
-          name = response.data.user[0].username
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-        }
-      },
-    )
-  }, [])
-
-  const [username, setUsername] = useState('')
-
+  })
   const updateBookList = () => {
     if (islogged) {
       setBookOpen(true)
@@ -179,13 +135,7 @@ function Grid_sub(props) {
         console.log(response)
       })
   }
-  const [status, setStatus] = useState(1)
-  let a = [
-    "Oops, seems like you don't have any student yet.",
-    '噢, 看來您還沒有任何學生呢。',
-  ]
-  let b = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
-  let c = ['My List', '我的最愛']
+
   let e = [
     'You cannot enroll in two programs at the same time.',
     '目前不得同時報名多個志工計畫',
@@ -196,7 +146,6 @@ function Grid_sub(props) {
   let h = ['Dates/Service hours', '日期/服務時間']
   let i = ['Coordinator', '聯絡窗口']
   let j = ['Target Student', '學生年段']
-  let k = ['View School', '查看學校']
   let l = ['Learn more...', '了解更多...']
   let n = [
     'Are you sure you want to book this program?',
@@ -338,15 +287,6 @@ function Grid_sub(props) {
                 <div id="content">
                   <div id="school_content">{program.content}</div>
                   <div id="misc">
-                    {/* <div className="basicinfo" id="date_topic">
-                    {h[status]}
-                    </div>
-                    <div className="basicinfo" id="day">
-                      {program.day}
-                    </div>
-                    <div className="basicinfo" id="time">
-                      {program.sttime}
-                    </div> */}
                     <div className="basicinfo" id="target_topic">
                       {nn[status]}
                     </div>
@@ -374,7 +314,6 @@ function Grid_sub(props) {
             </div>
           </BootstrapDialog>
         </div>
-        {/* inMap */}
         <div id="gridcontainer">
           <Grid container id="container" spacing={4}>
             {programInfo.map((e) => {

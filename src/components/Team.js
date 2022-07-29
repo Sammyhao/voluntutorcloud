@@ -4,7 +4,7 @@ import { Divider } from '@mui/material'
 import { useSelector } from 'react-redux'
 import Axios from 'axios'
 
-export default function Team(props) {
+export default function Team() {
   const [status, setStatus] = useState(1)
   let username = ''
   const user = useSelector((state) => state.user.value)

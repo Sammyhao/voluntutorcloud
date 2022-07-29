@@ -3,7 +3,7 @@ import Axios from 'axios'
 import './About_us.css'
 import { useSelector } from 'react-redux'
 import { Divider } from '@mui/material'
-export default function About_us(props) {
+export default function About_us() {
   const [status, setStatus] = useState(1)
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)

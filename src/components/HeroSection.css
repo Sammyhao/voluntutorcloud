@@ -97,6 +97,7 @@
 .hero-btns {
   margin-top: 25px;
   display: flex;
+  align-items: center;
   flex-direction: row;
 }
 
@@ -128,6 +129,7 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .hero-btns .btn-hero {
@@ -166,6 +168,7 @@
   .hero-btns {
     margin-top: 10px;
     display: flex;
+    align-items: center;
     flex-direction: column;
   }
   .hero-btns .btn-hero {

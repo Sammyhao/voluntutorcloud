@@ -13,6 +13,7 @@ function* transform(data) {
   let language = data.data.user[0].lang
   let role = data.data.user[0].role
   let name = data.data.user[0].fullname
+  let username = data.data.user[0].username
   if (language == 'chinese') {
     language = 1
   } else {
@@ -28,6 +29,7 @@ function* transform(data) {
     role: role,
     login: true,
     name: name,
+    username: username,
   }
   return action
 }
@@ -35,12 +37,9 @@ function* fetchData() {
   const data = yield call(getProcesses)
   const action = yield call(transform, data)
   yield put(login(action))
-  console.log('action: ', action)
-  console.log('complete')
 }
 
 function* mySaga() {
-  console.log('into saga function')
   yield takeLatest('user/getloggedin', fetchData)
 }
 
