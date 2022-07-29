@@ -19,7 +19,9 @@ function Footer(props) {
 
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
-  setStatus(user.language)
+  useEffect(() => {
+    setStatus(user.language)
+  }, [])
 
   const saveEmailAddress = (e) => {
     setEmailAddress(e.target.value)
