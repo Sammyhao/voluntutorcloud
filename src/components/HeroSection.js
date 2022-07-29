@@ -24,14 +24,12 @@ function HeroSection() {
   let d = ['LOGIN', '登入']
   let e = ["Let's Learn Together!", '和我們一起學習吧！']
 
-  useEffect(() => {
-    const user = useSelector((state) => state.user.value)
-    console.log('store data: ', user)
-    setIsLoggedIn(user.login)
-    setStatus(user.language)
-    setName(user.name)
-    setRole(user.role)
-  }, [])
+  const user = useSelector((state) => state.user.value)
+  console.log('store data: ', user)
+  setIsLoggedIn(user.login)
+  setStatus(user.language)
+  setName(user.name)
+  setRole(user.role)
 
   // const [record, setrecord] = useState([])
   // const filteredrec = new Map()

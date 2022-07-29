@@ -7,11 +7,9 @@ import Axios from 'axios'
 export default function Team(props) {
   const [status, setStatus] = useState(1)
   let username = ''
-  useEffect(() => {
-    const user = useSelector((state) => state.user.value)
-    console.log('store data: ', user)
-    setStatus(user.language)
-  }, [])
+  const user = useSelector((state) => state.user.value)
+  console.log('store data: ', user)
+  setStatus(user.language)
   // useEffect(() => {
   //   console.log(props)
   //   if (props.lang) {

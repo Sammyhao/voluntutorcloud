@@ -5,11 +5,9 @@ import { useSelector } from 'react-redux'
 import { Divider } from '@mui/material'
 export default function About_us(props) {
   const [status, setStatus] = useState(1)
-  useEffect(() => {
-    const user = useSelector((state) => state.user.value)
-    console.log('store data: ', user)
-    setStatus(user.language)
-  }, [])
+  const user = useSelector((state) => state.user.value)
+  console.log('store data: ', user)
+  setStatus(user.language)
 
   // useEffect(() => {
   //   console.log(props)

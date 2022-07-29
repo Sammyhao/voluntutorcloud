@@ -57,12 +57,10 @@ function Function(props) {
   let g = ['Sign in to unlock functions!!', '登入以解鎖功能！']
   let h = ['SIGN IN', '登入']
 
-  useEffect(() => {
-    const user = useSelector((state) => state.user.value)
-    console.log('store data: ', user)
-    setIsLoggedIn(user.login)
-    setStatus(user.language)
-  }, [])
+  const user = useSelector((state) => state.user.value)
+  console.log('store data: ', user)
+  setIsLoggedIn(user.login)
+  setStatus(user.language)
 
   // useEffect(() => {
   //   if (!props.isLoggedIn) {
