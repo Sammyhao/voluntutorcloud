@@ -21,6 +21,8 @@
   font-size: 2rem;
   background: none;
   z-index: 10;
+  position: absolute;
+  right: 0px;
 }
 .icons_nav {
   color: #e6dcd7;
