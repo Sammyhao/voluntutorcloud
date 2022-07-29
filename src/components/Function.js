@@ -1,6 +1,7 @@
 // imports
 import React, { useEffect, useState } from 'react'
 import './Function.css'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { GrFavorite, GrPin } from 'react-icons/gr'
 import { AiOutlineMessage, AiOutlineCalendar } from 'react-icons/ai'

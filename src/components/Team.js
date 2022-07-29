@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Team.css'
 import { Divider } from '@mui/material'
+import { useSelector } from 'react-redux'
 import Axios from 'axios'
 
 export default function Team(props) {

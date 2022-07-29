@@ -4,6 +4,7 @@ import '../App.css'
 import './HeroSection.css'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
+import { useSelector } from 'react-redux'
 
 function HeroSection() {
   Axios.defaults.withCredentials = true
