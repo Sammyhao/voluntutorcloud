@@ -17,11 +17,9 @@ function Footer(props) {
   let c = ['Your email', '你的Email']
   let d = ['Subscribe NOW', '加入我們']
 
-  useEffect(() => {
-    const user = useSelector((state) => state.user.value)
-    console.log('store data: ', user)
-    setStatus(user.language)
-  }, [])
+  const user = useSelector((state) => state.user.value)
+  console.log('store data: ', user)
+  setStatus(user.language)
 
   const saveEmailAddress = (e) => {
     setEmailAddress(e.target.value)
