@@ -6,6 +6,8 @@ import './Navbar.css'
 import { FaBars } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
 import { SidebarData } from './SidebarData'
+import { C_S_SidebarData } from './C_S_SidebarData'
+import { S_SidebarData } from './S_SidebarData'
 import { C_SidebarData } from './C_SidebarData'
 import Axios from 'axios'
 import '@progress/kendo-theme-default/dist/all.css'
@@ -22,7 +24,7 @@ function Navbar() {
   const [button, setButton] = useState(true)
   const [notification, setnotification] = useState(false)
   const [name, setName] = useState('')
-
+  const [data, setdata] = useState(SidebarData)
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
   useEffect(() => {
@@ -30,6 +32,19 @@ function Navbar() {
     setStatus(user.language)
     setName(user.name)
     setRole(user.role)
+    if (role) {
+      if (status == 0) {
+        setdata(SidebarData)
+      } else {
+        setdata(C_SidebarData)
+      }
+    } else {
+      if (status == 0) {
+        setdata(S_SidebarData)
+      } else {
+        setdata(C_S_SidebarData)
+      }
+    }
   })
 
   const showSidebar = () => setSidebar(!sidebar)
@@ -167,7 +182,7 @@ function Navbar() {
                   <CgClose className="icons_cross"></CgClose>
                 </Link>
               </li>
-              {SidebarData.map((item, index) => {
+              {data.map((item, index) => {
                 return (
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
