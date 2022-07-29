@@ -113,11 +113,11 @@ function Home() {
   // }
   return (
     <>
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar>
       <HeroSection />
       <Function></Function>
       <About_us></About_us>
-      <Team></Team>
+      <Team></Team> */}
       <Footer></Footer>
     </>
   )
