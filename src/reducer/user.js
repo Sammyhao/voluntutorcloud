@@ -6,10 +6,12 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: { value: Initialstate },
   reducers: {
+    getloggedin: (state) => {
+      return state
+    },
     login: (state = Initialstate, action) => {
       state.value = action.payload
       console.log('into userslice and completed')
-      return state
     },
     logout: (state) => {
       state.value = Initialstate
