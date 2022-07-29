@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import { useSelector } from 'react-redux'
 
-function Footer(props) {
+function Footer() {
   const [emailAddress, setEmailAddress] = useState('')
   const [status, setStatus] = useState(1)
 

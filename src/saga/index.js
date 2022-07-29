@@ -1,5 +1,5 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
-import { login } from '../reducer/user'
+import { call, put, takeLatest, all } from 'redux-saga/effects'
+import { login, logout } from '../reducer/user'
 import axios from 'axios'
 
 async function getProcesses() {
@@ -39,8 +39,15 @@ function* fetchData() {
   yield put(login(action))
 }
 
+function* logout_saga() {
+  yield put(logout())
+}
+
 function* mySaga() {
-  yield takeLatest('user/getloggedin', fetchData)
+  yield all([
+    takeLatest('user/getloggedin', fetchData),
+    takeLatest('user/getloggedout', logout_saga),
+  ])
 }
 
 export default mySaga
