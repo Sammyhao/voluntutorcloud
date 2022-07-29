@@ -12,23 +12,6 @@ export default function Team(props) {
   useEffect(() => {
     setStatus(user.language)
   })
-  // useEffect(() => {
-  //   console.log(props)
-  //   if (props.lang) {
-  //     if (props.lang == 'chinese') setStatus(1)
-  //     else setStatus(0)
-  //   } else {
-  //     console.log('props failed')
-  //     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-  //       (response) => {
-  //         username = response.data.user[0].username
-  //         if (response.data.user[0].lang == 'chinese') setStatus(1)
-  //         else setStatus(0)
-  //       },
-  //     )
-  //   }
-  // })
-
   // titles
   let a = ['Team', '團隊介紹']
   let b = ['Ruby Chang', '張舒晴 Ruby']

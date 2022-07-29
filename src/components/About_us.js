@@ -11,23 +11,6 @@ export default function About_us(props) {
     setStatus(user.language)
   })
 
-  // useEffect(() => {
-  //   console.log(props)
-  //   if (props.lang) {
-  //     if (props.lang == 'chinese') setStatus(1)
-  //     else setStatus(0)
-  //   } else {
-  //     console.log('props failed')
-  //     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-  //       (response) => {
-  //         username = response.data.user[0].username
-  //         if (response.data.user[0].lang == 'chinese') setStatus(1)
-  //         else setStatus(0)
-  //       },
-  //     )
-  //   }
-  // })
-
   let a = ['About Us', '關於我們']
   let b = ['Global Connections', '教育橋梁']
   let c = [

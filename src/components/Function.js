@@ -63,35 +63,7 @@ function Function(props) {
     setIsLoggedIn(user.login)
     setStatus(user.language)
   })
-  // useEffect(() => {
-  //   if (!props.isLoggedIn) {
-  //     console.log('not logged in')
-  //     setIsLoggedIn(false)
-  //     setStatus(0)
-  //   } else {
-  //     console.log(props)
-  //     if (props.isLoggedIn) {
-  //       setIsLoggedIn(props.isLoggedIn)
-  //       if (props.lang) {
-  //         if (props.lang == 'chinese') setStatus(1)
-  //         else setStatus(0)
-  //       }
-  //     } else {
-  //       console.log('props failed')
-  //       Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-  //         (response) => {
-  //           if (response.data.isLoggedIn) {
-  //             if (response.data.user[0].lang == 'chinese') setStatus(1)
-  //             else setStatus(0)
-  //           }
-  //           setIsLoggedIn(response.data.isLoggedIn)
-  //         },
-  //       )
-  //     }
-  //   }
-  // }, [])
 
-  // if (isLoggedIn) {
   logged = ['/mylist', '/appointment', '/program_usage', '/book', '/message']
 
   return (
@@ -195,89 +167,5 @@ function Function(props) {
       </div>
     </div>
   )
-  // } else {
-  //   return (
-  //     <div className="container_func">
-  //       <div id="dialog_reg_wrap">
-  //         <BootstrapDialog
-  //           onClose={() => {
-  //             setOpen(false)
-  //           }}
-  //           id="dialog_registered"
-  //           aria-labelledby="customized-dialog-title"
-  //           open={open}
-  //         >
-  //           <div id="registeredsucc">{g[status]}</div>
-  //           <Link to="/sign-in">
-  //             <div id="return">{h[status]}</div>
-  //           </Link>
-  //         </BootstrapDialog>
-  //       </div>
-  //       <div className="title_function">{i[status]}</div>
-  //       <div className="list_function">
-  //         <div className="temprow">
-  //           <div
-  //             className="outcont_function"
-  //             onClick={() => {
-  //               setOpen(true)
-  //             }}
-  //           >
-  //             <div className="icon_func_odd">
-  //               <GrFavorite className="icon_func"></GrFavorite>
-  //             </div>
-  //             <div className="subtitle_func">{b[status]}</div>
-  //           </div>
-  //           <div
-  //             className="outcont_function"
-  //             onClick={() => {
-  //               setOpen(true)
-  //             }}
-  //           >
-  //             <div className="icon_func_even">
-  //               <SiGooglemeet className="icon_func"></SiGooglemeet>
-  //             </div>
-  //             <div className="subtitle_func">{c[status]}</div>
-  //           </div>
-  //           <div
-  //             className="outcont_function"
-  //             onClick={() => {
-  //               setOpen(true)
-  //             }}
-  //           >
-  //             <div className="icon_func_odd">
-  //               <GrPin className="icon_func"></GrPin>
-  //             </div>
-  //             <div className="subtitle_func">{d[status]}</div>
-  //           </div>
-  //         </div>
-
-  //         <div className="temprow">
-  //           <div
-  //             className="outcont_function"
-  //             onClick={() => {
-  //               setOpen(true)
-  //             }}
-  //           >
-  //             <div className="icon_func_even">
-  //               <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
-  //             </div>
-  //             <div className="subtitle_func">{f[status]}</div>
-  //           </div>
-  //           <div
-  //             className="outcont_function"
-  //             onClick={() => {
-  //               setOpen(true)
-  //             }}
-  //           >
-  //             <div className="icon_func_odd">
-  //               <AiOutlineMessage className="icon_func"></AiOutlineMessage>
-  //             </div>
-  //             <div className="subtitle_func">{e[status]}</div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   )
-  // }
 }
 export default Function

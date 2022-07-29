@@ -39,22 +39,6 @@ function Footer(props) {
     setEmailAddress('')
   }
 
-  // useEffect(() => {
-  //   console.log(props)
-  //   if (props.lang == 'chinese' || props.lang == 'english') {
-  //     if (props.lang == 'chinese') setStatus(1)
-  //     else setStatus(0)
-  //   } else {
-  //     console.log('props failed')
-  //     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-  //       (response) => {
-  //         if (response.data.user[0].lang == 'chinese') setStatus(1)
-  //         else setStatus(0)
-  //       },
-  //     )
-  //   }
-  // })
-
   return (
     <div className="footer-container">
       <section className="footer-subscription">
