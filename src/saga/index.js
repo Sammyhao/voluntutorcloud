@@ -37,7 +37,7 @@ function* fetchData() {
 
 function* mySaga() {
   console.log('into saga function')
-  yield takeEvery(login, fetchData)
+  yield takeEvery(login(), fetchData)
 }
 
 export default mySaga

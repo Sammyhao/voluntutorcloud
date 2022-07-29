@@ -6,7 +6,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: { value: Initialstate },
   reducers: {
-    login: (state, action) => {
+    login: (state = Initialstate, action) => {
       state.value = action.payload
       console.log('into userslice and completed')
       return state
