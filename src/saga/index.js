@@ -30,14 +30,14 @@ function* fetchData() {
   const data = yield call(getProcesses)
   const action = yield call(transform, data)
   //   yield put({ type: FETCH_DATA_SUCCESS, payload: action })
-  //   yield put(login(action))
+  yield put(login(action))
   console.log('action: ', action)
   console.log('complete')
 }
 
 function* mySaga() {
   console.log('into saga function')
-  yield takeEvery('user/login', fetchData)
+  yield takeEvery(login, fetchData)
 }
 
 export default mySaga
