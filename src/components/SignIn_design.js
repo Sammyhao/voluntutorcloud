@@ -3,7 +3,7 @@ import Axios from 'axios'
 import './SignIn_design.css'
 import '../App.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../reducer/user'
+import { getloggedin } from '../reducer/user'
 import { Link, useNavigate, Route } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -39,7 +39,7 @@ function SignIn_design() {
   }
 
   const store = () => {
-    dispatch(login())
+    dispatch(getloggedin())
     console.log('dispatched')
   }
 
