@@ -365,13 +365,9 @@ function Profile_user() {
   }
 
   const changeLang = (lang) => {
-    //console.log(name)
-    //console.log(lang)
     Axios.post('https://voluntutorcloud-server.herokuapp.com/setLang', {
       username: name,
       lang: lang,
-    }).then((response) => {
-      //console.log('set language to' + response)
     })
   }
 

@@ -13,6 +13,8 @@ import validator from 'validator'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
+import { useDispatch, useSelector } from 'react-redux'
+import { getloggedout } from '../reducer/user'
 import DialogTitle from '@mui/material/DialogTitle'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -25,6 +27,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }))
 
 function S_Profile_user(props) {
+  const dispatch = useDispatch()
   const [name, setname] = useState('VolunTutor Cloud')
   const [phone, setphone] = useState('0912345678')
   const [email, setemail] = useState('vc@gmail.com')
@@ -149,11 +152,11 @@ function S_Profile_user(props) {
     }
   }
   const handleclick_contact = () => {
-    console.log(contactclick)
+    //console.log(contactclick)
     if (phone == '' || email == '') {
       setcontacterror(c[status])
     } else {
-      console.log('cc')
+      //console.log('cc')
       setcontacterror('')
       setcontactclick(!contactclick)
       setcontactstyle(<BiEdit />)
@@ -167,7 +170,7 @@ function S_Profile_user(props) {
   }
 
   const handleclick_pers = () => {
-    console.log('dd')
+    //console.log('dd')
     if (gender == '' || birthday == '' || grade == '' || school == '') {
       setpersonerror(d[status])
     } else {
@@ -210,78 +213,54 @@ function S_Profile_user(props) {
   const logout = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/logout').then(
       (response) => {
-        console.log(response)
+        //console.log(response)
         navigate('/')
       },
     )
   }
+  const user = useSelector((state) => state.user.value)
+  console.log('store data: ', user)
+  useEffect(() => {
+    setStatus(user.language)
+  }, [])
 
   useEffect(() => {
-    console.log(props)
-    if (props.profile && props.portfolio) {
-      setname(props.profile.username)
-      setphone(props.profile.phone)
-      setemail(props.profile.email)
-      setgender(props.profile.gender)
-      setbirthday(props.profile.birthday)
-      setgrade(props.profile.grade)
-      setschool(props.profile.schoolname)
-      setstudentage(props.profile.targetStuAge)
-      setstudentgender(props.profile.targetStuGen)
-      setstudentpers(props.profile.targetStuPerso)
-      setbio(props.profile.bio)
-      setabout(props.profile.about)
-      if (props.profile.lang == 'chinese') setStatus(1)
-      else setStatus(0)
-      setStudentEmail(props.portfolio.studentmail)
-      setParentcontactnum(props.portfolio.parentcontactnum)
-      setParentemail(props.portfolio.parentmail)
-      setRequiredsubject(props.portfolio.requiredsub)
-    } else {
-      console.log('props failed')
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
-        .then((response) => {
-          console.log(response.data.user[0])
-          setname(response.data.user[0].username)
-          setphone(response.data.user[0].phone)
-          setemail(response.data.user[0].email)
-          setgender(response.data.user[0].gender)
-          setbirthday(response.data.user[0].birthday)
-          setgrade(response.data.user[0].grade)
-          setschool(response.data.user[0].schoolname)
-          setstudentage(response.data.user[0].targetStuAge)
-          setstudentgender(response.data.user[0].targetStuGen)
-          setstudentpers(response.data.user[0].targetStuPerso)
-          setbio(response.data.user[0].bio)
-          setabout(response.data.user[0].about)
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getProfolio',
-            {
-              name:
-                response.data.user[0].lastname +
-                response.data.user[0].firstname,
-            },
-          )
-        })
-        .then((response) => {
-          setStudentEmail(response.data[0].studentmail)
-          setParentcontactnum(response.data[0].parentcontactnum)
-          setParentemail(response.data[0].parentmail)
-          setRequiredsubject(response.data[0].requiredsub)
-        })
-    }
+    //console.log('props failed')
+    Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+      .then((response) => {
+        //console.log(response.data.user[0])
+        setname(response.data.user[0].username)
+        setphone(response.data.user[0].phone)
+        setemail(response.data.user[0].email)
+        setgender(response.data.user[0].gender)
+        setbirthday(response.data.user[0].birthday)
+        setgrade(response.data.user[0].grade)
+        setschool(response.data.user[0].schoolname)
+        setstudentage(response.data.user[0].targetStuAge)
+        setstudentgender(response.data.user[0].targetStuGen)
+        setstudentpers(response.data.user[0].targetStuPerso)
+        setbio(response.data.user[0].bio)
+        setabout(response.data.user[0].about)
+        return Axios.post(
+          'https://voluntutorcloud-server.herokuapp.com/getProfolio',
+          {
+            name:
+              response.data.user[0].lastname + response.data.user[0].firstname,
+          },
+        )
+      })
+      .then((response) => {
+        setStudentEmail(response.data[0].studentmail)
+        setParentcontactnum(response.data[0].parentcontactnum)
+        setParentemail(response.data[0].parentmail)
+        setRequiredsubject(response.data[0].requiredsub)
+      })
   }, [])
 
   const changeLang = (lang) => {
-    console.log(name)
     Axios.post('https://voluntutorcloud-server.herokuapp.com/setLang', {
       username: name,
       lang: lang,
-    }).then((response) => {
-      console.log('set language to' + response)
-      navigate('/')
     })
   }
 
@@ -349,7 +328,7 @@ function S_Profile_user(props) {
                           phone: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setstudentphone(e.target.value)
                     }}
@@ -374,7 +353,7 @@ function S_Profile_user(props) {
                           phone: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setphone(e.target.value)
                     }}
@@ -397,7 +376,7 @@ function S_Profile_user(props) {
                           email: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setemail(e.target.value)
                     }}
@@ -433,7 +412,7 @@ function S_Profile_user(props) {
                           gender: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setgender(e.target.value)
                     }}
@@ -449,7 +428,7 @@ function S_Profile_user(props) {
                     value={birthday}
                     maxLength={20}
                     onChange={(e) => {
-                      console.log(birthday)
+                      //console.log(birthday)
                       Axios.post(
                         'https://voluntutorcloud-server.herokuapp.com/updateBirthday',
                         {
@@ -457,7 +436,7 @@ function S_Profile_user(props) {
                           birthday: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setbirthday(e.target.value)
                     }}
@@ -480,7 +459,7 @@ function S_Profile_user(props) {
                           grade: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setgrade(e.target.value)
                     }}
@@ -502,7 +481,7 @@ function S_Profile_user(props) {
                           schoolname: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setschool(e.target.value)
                     }}
@@ -535,7 +514,7 @@ function S_Profile_user(props) {
                           requiredsub: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setRequiredsubject(e.target.value)
                     }}
@@ -572,7 +551,7 @@ function S_Profile_user(props) {
                           bio: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setbio(e.target.value)
                     }}
@@ -606,7 +585,7 @@ function S_Profile_user(props) {
                           about: e.target.value,
                         },
                       ).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                       })
                       setabout(e.target.value)
                     }}
