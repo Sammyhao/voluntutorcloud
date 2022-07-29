@@ -300,6 +300,7 @@ export default function Booking() {
   useEffect(() => {
     setStatus(user.language)
     setName(user.username)
+    console.log(name)
     Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
       username: name,
     }).then((response) => {
