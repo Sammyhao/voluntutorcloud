@@ -146,7 +146,7 @@ export default function S_Booking() {
     setStatus(user.language)
     setstudentname(user.username)
     setStudentnameFU(user.name)
-    let studentname = user.username
+    let studentname = user.name
     if (isLoading) {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/getTeacher', {
         studentname: studentname,
