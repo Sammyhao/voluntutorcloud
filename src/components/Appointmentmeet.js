@@ -284,19 +284,21 @@ function Appointmentmeet() {
     let tempFinalFormat =
       formatteddate + ' ' + formattedstart + '~' + formattedend
     console.log(
-      chosenContact.username,
-      selectedstudentname,
-      emailaddress,
-      formatteddate,
-      formattedstart,
-      formattedend,
-      tempFinalFormat,
-      studentabsence,
-      agenda,
-      submissionlink,
-      task,
-      links,
-      notes,
+      {
+        username: chosenContact.username,
+        studentname: selectedstudentname,
+        studentmail: emailaddress,
+        classDate: tempFinalFormat,
+        duration: classduration,
+        studentabsence: studentabsence,
+        agenda: agenda,
+        sublink: submissionlink,
+        task: task,
+        link: links,
+        notes: notes,
+        hoursleft: totalhour - classduration,
+        echelon: 2,
+      },
     )
     var templateParams = {
       parent_email: emailaddress,
