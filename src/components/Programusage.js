@@ -126,7 +126,8 @@ function Programusage() {
       <div className="outcontainerprog">
         <div className="subjectlist">
           {contacttemp.map((st) => {
-            let time = st[st.length - 1].hoursleft
+            let time
+            if (!contactlength) time = st[st.length - 1].hoursleft
             return (
               <div className="outsidewrapsub">
                 <div className="wrapsubj">
