@@ -126,14 +126,13 @@ function Programusage() {
       <div className="outcontainerprog">
         <div className="subjectlist">
           {contacttemp.map((st) => {
-            console.log(contacttemp, contactlength)
             let time
             if (contactlength) {
               time = st[st.length - 1].hoursleft
             } else {
               time = 8
             }
-            console.log(time)
+            console.log(st)
             return (
               <div className="outsidewrapsub">
                 <div className="wrapsubj">
@@ -158,7 +157,7 @@ function Programusage() {
                       </div>
                     </div>
                     <div className="progressbar">
-                      <Progress done={contactlength ? { time } : '8'} />
+                      <Progress done={time} />
                     </div>
                   </div>
                 </div>
