@@ -129,7 +129,8 @@ function Programusage() {
             console.log(contacttemp, contactlength)
             let time
             if (!contactlength) time = st[st.length - 1].hoursleft
-
+            else time = 8
+            console.log(time)
             return (
               <div className="outsidewrapsub">
                 <div className="wrapsubj">
@@ -148,11 +149,7 @@ function Programusage() {
                         </div>
                         <div className="time">
                           {c[status]}
-                          {contactlength ? (
-                            <>{st[st.length - 1].hoursleft}</>
-                          ) : (
-                            <>8</>
-                          )}
+                          {time}
                           {d[status]}
                         </div>
                       </div>
