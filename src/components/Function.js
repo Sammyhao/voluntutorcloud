@@ -1,6 +1,7 @@
 // imports
 import React, { useEffect, useState } from 'react'
 import './Function.css'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { GrFavorite, GrPin } from 'react-icons/gr'
@@ -45,8 +46,8 @@ function Function() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [open, setOpen] = useState(false)
   const [status, setStatus] = useState(1)
-  let logged = []
 
+  const navigate = useNavigate()
   // titles
   let a = ['BEGIN YOUR JOURNEY!', '開始你的旅程！']
   let b = ['My List', '我的最愛']
@@ -63,8 +64,6 @@ function Function() {
     setIsLoggedIn(user.login)
     setStatus(user.language)
   })
-
-  logged = ['/mylist', '/appointment', '/program_usage', '/book', '/message']
 
   return (
     <div className="container_func">
@@ -86,83 +85,83 @@ function Function() {
       <div className="title_function">{a[status]}</div>
       <div className="list_function">
         <div className="temprow">
-          <Link className="func_link" to={logged[0]}>
-            <div
-              className="outcont_function"
-              onClick={() => {
-                if (!isLoggedIn) {
-                  setOpen(true)
-                }
-              }}
-            >
-              <div className="icon_func_odd">
-                <GrFavorite className="icon_func"></GrFavorite>
-              </div>
-              <div className="subtitle_func">{b[status]}</div>
+          <div
+            className="outcont_function"
+            onClick={() => {
+              if (!isLoggedIn) {
+                setOpen(true)
+              } else {
+                navigate('/mylist')
+              }
+            }}
+          >
+            <div className="icon_func_odd">
+              <GrFavorite className="icon_func"></GrFavorite>
             </div>
-          </Link>
-          <Link className="func_link" to={logged[1]}>
-            <div
-              className="outcont_function"
-              onClick={() => {
-                if (!isLoggedIn) {
-                  setOpen(true)
-                }
-              }}
-            >
-              <div className="icon_func_even">
-                <SiGooglemeet className="icon_func"></SiGooglemeet>
-              </div>
-              <div className="subtitle_func">{c[status]}</div>
+            <div className="subtitle_func">{b[status]}</div>
+          </div>
+          <div
+            className="outcont_function"
+            onClick={() => {
+              if (!isLoggedIn) {
+                setOpen(true)
+              } else {
+                navigate('/appointment')
+              }
+            }}
+          >
+            <div className="icon_func_even">
+              <SiGooglemeet className="icon_func"></SiGooglemeet>
             </div>
-          </Link>
-          <Link className="func_link" to={logged[2]}>
-            <div
-              className="outcont_function"
-              onClick={() => {
-                if (!isLoggedIn) {
-                  setOpen(true)
-                }
-              }}
-            >
-              <div className="icon_func_odd">
-                <GrPin className="icon_func"></GrPin>
-              </div>
-              <div className="subtitle_func">{d[status]}</div>
+            <div className="subtitle_func">{c[status]}</div>
+          </div>
+          <div
+            className="outcont_function"
+            onClick={() => {
+              if (!isLoggedIn) {
+                setOpen(true)
+              } else {
+                navigate('/program_usage')
+              }
+            }}
+          >
+            <div className="icon_func_odd">
+              <GrPin className="icon_func"></GrPin>
             </div>
-          </Link>
+            <div className="subtitle_func">{d[status]}</div>
+          </div>
         </div>
         <div className="temprow">
-          <Link className="func_link" to={logged[3]}>
-            <div
-              className="outcont_function"
-              onClick={() => {
-                if (!isLoggedIn) {
-                  setOpen(true)
-                }
-              }}
-            >
-              <div className="icon_func_even">
-                <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
-              </div>
-              <div className="subtitle_func">{f[status]}</div>
+          <div
+            className="outcont_function"
+            onClick={() => {
+              if (!isLoggedIn) {
+                setOpen(true)
+              } else {
+                navigate('/book')
+              }
+            }}
+          >
+            <div className="icon_func_even">
+              <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
             </div>
-          </Link>
-          <Link className="func_link" to={logged[4]}>
-            <div
-              className="outcont_function"
-              onClick={() => {
-                if (!isLoggedIn) {
-                  setOpen(true)
-                }
-              }}
-            >
-              <div className="icon_func_odd">
-                <AiOutlineMessage className="icon_func"></AiOutlineMessage>
-              </div>
-              <div className="subtitle_func">{e[status]}</div>
+            <div className="subtitle_func">{f[status]}</div>
+          </div>
+          <div
+            className="outcont_function"
+            onClick={() => {
+              if (!isLoggedIn) {
+                setOpen(true)
+              } else {
+                navigate('/message')
+              }
+            }}
+          >
+            <div className="icon_func_odd">
+              <AiOutlineMessage className="icon_func"></AiOutlineMessage>
             </div>
-          </Link>
+            <div className="subtitle_func">{e[status]}</div>
+          </div>
         </div>
       </div>
     </div>
