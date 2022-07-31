@@ -112,11 +112,6 @@ function Programusage() {
   }, [])
 
   let contacttemp
-  if (contactlength) {
-    contacttemp = contactInfo.map((item) => item).reverse()
-  } else {
-    contacttemp = stpair
-  }
 
   if (isLoading) {
     return <Loading />
@@ -128,6 +123,11 @@ function Programusage() {
       </div>
     )
   } else {
+    if (contactlength) {
+      contacttemp = contactInfo.map((item) => item).reverse()
+    } else {
+      contacttemp = stpair
+    }
     return (
       <div className="outcontainerprog">
         <div className="subjectlist">
