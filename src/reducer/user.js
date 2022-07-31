@@ -6,6 +6,7 @@ const Initialstate = {
   login: false,
   name: '',
   username: '',
+  googlemeetlink: '',
 }
 
 export const userSlice = createSlice({

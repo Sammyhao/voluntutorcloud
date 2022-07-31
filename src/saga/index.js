@@ -14,6 +14,7 @@ function* transform(data) {
   let role = data.data.user[0].role
   let name = data.data.user[0].fullname
   let username = data.data.user[0].username
+  let googlemeetlink = data.data.user[0].googlemeetlink
   if (language == 'chinese') {
     language = 1
   } else {
@@ -30,6 +31,7 @@ function* transform(data) {
     login: true,
     name: name,
     username: username,
+    googlemeetlink: googlemeetlink,
   }
   return action
 }

@@ -8,6 +8,7 @@ import { MdSettingsPhone } from 'react-icons/md'
 import { FaUser } from 'react-icons/fa'
 import { BiSearchAlt } from 'react-icons/bi'
 import '../App.css'
+import { useSelector } from 'react-redux'
 import { format } from 'date-fns'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
@@ -20,7 +21,6 @@ import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
-import { Multi_Students } from './Multi_Students'
 import DialogTitle from '@mui/material/DialogTitle'
 import IconButton from '@mui/material/IconButton'
 import { popoverClasses } from '@mui/material'
@@ -167,39 +167,24 @@ function Appointmentmeet() {
       return content
     }
   }
-  // var googlemeetlinkalt = "";
-
+  const user = useSelector((state) => state.user.value)
   useEffect(() => {
-    if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
-        .then((response) => {
-          username = response.data.user[0].username
-          setGoogleMeetLink(response.data.user[0].googlemeetlink)
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/findContact',
-            { username: username },
-          )
-        })
-        .then((response) => {
-          console.log('Student number: ')
-          console.log(response.data.length)
-          if (response.data.length == 2) {
-            setMultistudentname([response.data[1].studentname])
-            setstudentname(response.data[0].studentname)
-          }
-          for (let i = 0; i < response.data.length; i++) {
-            setstudentnamelist((studentnamelist) => [
-              ...studentnamelist,
-              response.data[i].studentname,
-            ])
-          }
-          setContactInfo(response.data)
-          setChosenContact(response.data[0])
-          setLoading(false)
-        })
-    }
+    setStatus(user.language)
+    setGoogleMeetLink(user.googlemeetlink)
+    username = user.username
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+      username: username,
+    }).then((response) => {
+      for (let i = 0; i < response.data.length; i++) {
+        setstudentnamelist((studentnamelist) => [
+          ...studentnamelist,
+          response.data[i].studentname,
+        ])
+      }
+      setContactInfo(response.data)
+      setChosenContact(response.data[0])
+      setLoading(false)
+    })
   }, [])
 
   const meet = () => {
@@ -283,23 +268,21 @@ function Appointmentmeet() {
     }
     let tempFinalFormat =
       formatteddate + ' ' + formattedstart + '~' + formattedend
-    console.log(
-      {
-        username: chosenContact.username,
-        studentname: selectedstudentname,
-        studentmail: emailaddress,
-        classDate: tempFinalFormat,
-        duration: classduration,
-        studentabsence: studentabsence,
-        agenda: agenda,
-        sublink: submissionlink,
-        task: task,
-        link: links,
-        notes: notes,
-        hoursleft: totalhour - classduration,
-        echelon: 2,
-      },
-    )
+    console.log({
+      username: chosenContact.username,
+      studentname: selectedstudentname,
+      studentmail: emailaddress,
+      classDate: tempFinalFormat,
+      duration: classduration,
+      studentabsence: studentabsence,
+      agenda: agenda,
+      sublink: submissionlink,
+      task: task,
+      link: links,
+      notes: notes,
+      hoursleft: totalhour - classduration,
+      echelon: 2,
+    })
     var templateParams = {
       parent_email: emailaddress,
       children_name: selectedstudentname,
@@ -385,58 +368,6 @@ function Appointmentmeet() {
   }
 
   const [nameclick, setnameclick] = useState(false)
-
-  function multistyle() {
-    console.log('into function')
-    console.log(multistudentname)
-    if (multistudentname.length == 0) {
-      return <div></div>
-    } else {
-      console.log(multistudentname[0])
-      return (
-        <div className={nameclick ? 'choosekid active' : 'choosekid'}>
-          <div className="multi">
-            <div
-              className="borderstudent"
-              onClick={() => updateMultistudentname(multistudentname[0])}
-            >
-              {multistudentname[0]}
-            </div>
-          </div>
-          {nameclick ? (
-            <MdArrowBackIos
-              className="kidicon"
-              onClick={() => {
-                setnameclick(!nameclick)
-              }}
-            ></MdArrowBackIos>
-          ) : (
-            <MdOutlineArrowForwardIos
-              className="kidicon"
-              onClick={() => {
-                setnameclick(!nameclick)
-              }}
-            ></MdOutlineArrowForwardIos>
-          )}
-        </div>
-      )
-    }
-  }
-
-  const [multistudentname, setMultistudentname] = useState([])
-
-  const updateMultistudentname = (e) => {
-    console.log(e)
-    if (e == contactInfo[1].studentname) {
-      console.log('zero change to one')
-      setMultistudentname([contactInfo[0].studentname])
-      setChosenContact(contactInfo[1])
-    } else {
-      console.log('one change to zero')
-      setMultistudentname([contactInfo[1].studentname])
-      setChosenContact(contactInfo[0])
-    }
-  }
 
   if (isLoading) {
     return <Loading />
