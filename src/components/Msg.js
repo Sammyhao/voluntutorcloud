@@ -8,6 +8,7 @@ import Loading from './Loading'
 import { Msg_user } from './Msg_user'
 import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
+import { useSelector } from 'react-redux'
 
 function Msg() {
   let num = [1]
@@ -102,48 +103,33 @@ function Msg() {
     })
     setMsgForUpd(tempMsgForUpd)
   }
+  const user = useSelector((state) => state.user.value)
 
   useEffect(() => {
-    if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
-        (response) => {
-          username = response.data.user[0].username
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/findContact',
-            {
-              username: username,
-            },
-          ).then((response) => {
-            setContactInfo(response.data)
-            setChosenContact(response.data[0])
-            if (response.data.length == 2) {
-              setMultistudentname([response.data[1].studentname])
-            }
-            console.log(response.data)
-            studentname = response.data[0].studentname
-            console.log('username, studentname: ')
-            console.log(username, studentname)
-            if (!hasProcessMsg) {
-              Axios.post(
-                'https://voluntutorcloud-server.herokuapp.com/getMsg',
-                {
-                  username: username,
-                  studentname: studentname,
-                },
-              ).then((response) => {
-                if (response.data.length) msgStr = response.data[0].msg
-                console.log(msgStr)
-                processMsg(msgStr, username, studentname)
-                console.log(msgRec)
-                setLoading(false)
-              })
-            }
-          })
-        },
-      )
-    }
+    setStatus(user.language)
+    username = user.username
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
+      username: username,
+    }).then((response) => {
+      setContactInfo(response.data)
+      setChosenContact(response.data[0])
+      if (response.data.length == 2) {
+        setMultistudentname([response.data[1].studentname])
+      }
+      studentname = response.data[0].studentname
+      if (!hasProcessMsg) {
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
+          username: username,
+          studentname: studentname,
+        }).then((response) => {
+          if (response.data.length) msgStr = response.data[0].msg
+          console.log(msgStr)
+          processMsg(msgStr, username, studentname)
+          console.log(msgRec)
+          setLoading(false)
+        })
+      }
+    })
   })
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']

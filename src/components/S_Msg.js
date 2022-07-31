@@ -7,6 +7,7 @@ import { Msg_recipient } from './Msg_recipient'
 import { Msg_user } from './Msg_user'
 import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
+import { useSelector } from 'react-redux'
 
 function S_Msg() {
   let num = [1]
@@ -89,28 +90,21 @@ function S_Msg() {
     })
     setMsgForUpd(tempMsgForUpd)
   }
+  const user = useSelector((state) => state.user.value)
 
   useEffect(() => {
     if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
+      username = user.username
+      studentname = user.name
+      setStatus(user.language)
+      Axios.post(
+        'https://voluntutorcloud-server.herokuapp.com/findContactbyName',
+        {
+          studentname: studentname,
+        },
+      )
         .then((response) => {
-          username = response.data.user[0].username
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-          studentname =
-            response.data.user[0].lastname + response.data.user[0].firstname
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/findContactbyName',
-            {
-              studentname: studentname,
-            },
-          )
-        })
-        .then((response) => {
-          console.log(response.data)
           teacherusername = response.data[0].username
-          console.log('username, studentname: ')
-          console.log(teacherusername, studentname)
           if (!hasProcessMsg) {
             return Axios.post(
               'https://voluntutorcloud-server.herokuapp.com/getMsg',
