@@ -27,6 +27,7 @@ const Progress = ({ done }) => {
 }
 
 let username = ''
+let studentname = ''
 function Programusage() {
   const [status, setStatus] = useState(1)
   const [contactInfo, setContactInfo] = useState([])
@@ -76,7 +77,7 @@ function Programusage() {
         setLoading(false)
       })
     } else {
-      let studentname = user.name
+      studentname = user.name
       Axios.post(
         'https://voluntutorcloud-server.herokuapp.com/findContactbyName',
         {
@@ -98,8 +99,11 @@ function Programusage() {
           )
         })
         .then((response) => {
-          if (response.data.length)
+          if (response.data.length) {
             setContactInfo((contactInfo) => [...contactInfo, response.data])
+            setlength(true)
+          }
+
           setLoading(false)
         })
     }
