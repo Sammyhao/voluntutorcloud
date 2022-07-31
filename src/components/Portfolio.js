@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import './Portfolio.css'
 import Axios from 'axios'
+import Loading from './Loading'
 import { FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
@@ -19,6 +20,7 @@ export default function Portfolio() {
   const [nameclick, setnameclick] = useState(false)
   const [multistudentname, setMultistudentname] = useState([])
   const [role, setrole] = useState(true)
+  const [isLoading, setLoading] = useState(true)
 
   const [name, setname] = useState('VolunTutor Cloud')
   const [phone, setphone] = useState('0912345678')
@@ -209,7 +211,9 @@ export default function Portfolio() {
     }
   }
   // final renders
-  if (studentProfolio.length == 0) {
+  if (isLoading) {
+    return <Loading />
+  } else if (studentProfolio.length == 0) {
     return (
       <div className="outcontainer_port">
         <div className="top_bar">
