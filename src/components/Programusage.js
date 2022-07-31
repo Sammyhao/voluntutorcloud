@@ -76,7 +76,7 @@ function Programusage() {
         setLoading(false)
       })
     } else {
-      studentname = user.name
+      let studentname = user.name
       Axios.post(
         'https://voluntutorcloud-server.herokuapp.com/findContactbyName',
         {
