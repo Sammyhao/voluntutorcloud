@@ -69,7 +69,9 @@ function Programusage() {
             echelon: 2,
           }).then((response) => {
             if (response.data.length) {
+              console.log('length == true')
               setContactInfo((contactInfo) => [...contactInfo, response.data])
+              console.log(contactInfo)
               setlength(true)
             }
           })
