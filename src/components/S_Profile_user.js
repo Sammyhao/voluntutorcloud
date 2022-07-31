@@ -601,11 +601,23 @@ function S_Profile_user(props) {
               <Divider className="line"></Divider>
               <div className="information">
                 <div className="language">
-                  <div className="lang" onClick={() => changeLang('chinese')}>
+                  <div
+                    className="lang"
+                    onClick={() => {
+                      setStatus(1)
+                      changeLang('chinese')
+                    }}
+                  >
                     中文
                   </div>
                   <div className="slash">/</div>
-                  <div className="lang" onClick={() => changeLang('english')}>
+                  <div
+                    className="lang"
+                    onClick={() => {
+                      setStatus(0)
+                      changeLang('english')
+                    }}
+                  >
                     English
                   </div>
                 </div>

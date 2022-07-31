@@ -4,17 +4,20 @@ import './Port_nav.css'
 import { FaBars } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
 import { SidebarData } from './SidebarData'
+import { C_S_SidebarData } from './C_S_SidebarData'
+import { S_SidebarData } from './S_SidebarData'
 import { C_SidebarData } from './C_SidebarData'
 import { useSelector } from 'react-redux'
 import '@progress/kendo-theme-default/dist/all.css'
 
-function Port_nav(props) {
+function Port_nav() {
   window.addEventListener('resize', showButton)
   const [sidebar, setSidebar] = useState(false)
   const showSidebar = () => setSidebar(!sidebar)
   const [click, setClick] = useState(false)
   const [button, setButton] = useState(true)
   const [status, setStatus] = useState(1)
+  const [role, setRole] = useState(true)
   const [data, setdata] = useState(SidebarData)
   const handleClick = () => setClick(!click)
 
@@ -29,7 +32,18 @@ function Port_nav(props) {
 
   useEffect(() => {
     setStatus(user.language)
-    if (status == 1) setdata(C_SidebarData)
+    setRole(user.role)
+    if (role) {
+      if (status == 1) {
+        setdata(C_SidebarData)
+      }
+    } else {
+      if (status == 0) {
+        setdata(S_SidebarData)
+      } else {
+        setdata(C_S_SidebarData)
+      }
+    }
     showButton()
   })
 
