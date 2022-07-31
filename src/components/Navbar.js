@@ -44,7 +44,7 @@ function Navbar() {
         setdata(C_S_SidebarData)
       }
     }
-  }, [])
+  })
 
   const showSidebar = () => setSidebar(!sidebar)
   const shownotification = () => {
