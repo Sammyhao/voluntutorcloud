@@ -172,6 +172,7 @@ function Programusage() {
                   {contactlength ? (
                     <div className="programusagewr">
                       {st.map((record) => {
+                        console.log(st)
                         return (
                           <div className="wrapwrap">
                             <div className="gridwrapprog">
