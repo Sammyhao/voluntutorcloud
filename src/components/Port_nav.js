@@ -34,11 +34,11 @@ function Port_nav() {
     setStatus(user.language)
     setRole(user.role)
     if (role) {
-      if (status == 1) {
+      if (user.language == 1) {
         setdata(C_SidebarData)
       }
     } else {
-      if (status == 0) {
+      if (user.language == 0) {
         setdata(S_SidebarData)
       } else {
         setdata(C_S_SidebarData)
