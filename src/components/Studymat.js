@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
 import Grid from '@mui/material/Grid'
+import { useSelector } from 'react-redux'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import Axios from 'axios'
@@ -118,39 +119,34 @@ export default function Studymat() {
   const [isLoading, setLoading] = useState(true)
   const [status, setStatus] = useState(1)
 
+  const user = useSelector((state) => state.user.value)
+
   useEffect(() => {
     // console.log('filtered', filteredarray)
     if (isLoading) {
-      Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
-        .then((response) => {
-          // console.log(response.data)
-          username = response.data.user[0].username
-          if (response.data.user[0].lang == 'chinese') setStatus(1)
-          else setStatus(0)
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getallSubMat',
-            {},
-          )
-        })
-        .then((response) => {
-          // console.log(response.data)
-          submat = response.data
-          // console.log(submat)
-          for (let i = 0; i < submat.length; i++) {
-            // console.log(submat[i])
-            // subject
-            submat[i].subject = subtrans[submat[i].subject]
-            // grade
-            submat[i].grade = gratrans[submat[i].grade]
-            // school
-            const schoollist = submat[i].school.split('|')
-            submat[i].school = schoollist
-            console.log(submat)
-          }
-          if (studyarray.length == 0) setstudyarray(submat)
-          setopen(true)
-          setLoading(false)
-        })
+      setStatus(user.language)
+      Axios.post(
+        'https://voluntutorcloud-server.herokuapp.com/getallSubMat',
+        {},
+      ).then((response) => {
+        // console.log(response.data)
+        submat = response.data
+        // console.log(submat)
+        for (let i = 0; i < submat.length; i++) {
+          // console.log(submat[i])
+          // subject
+          submat[i].subject = subtrans[submat[i].subject]
+          // grade
+          submat[i].grade = gratrans[submat[i].grade]
+          // school
+          const schoollist = submat[i].school.split('|')
+          submat[i].school = schoollist
+          console.log(submat)
+        }
+        if (studyarray.length == 0) setstudyarray(submat)
+        setopen(true)
+        setLoading(false)
+      })
     }
     setfiltered(studyarray)
   }, [studyarray])
