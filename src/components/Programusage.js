@@ -128,6 +128,7 @@ function Programusage() {
           {contacttemp.map((st) => {
             let time
             if (!contactlength) time = st[st.length - 1].hoursleft
+            console.log(contacttemp, time, contactlength)
             return (
               <div className="outsidewrapsub">
                 <div className="wrapsubj">
