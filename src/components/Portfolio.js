@@ -115,6 +115,7 @@ export default function Portfolio() {
                 ...studentProfolio,
                 response.data,
               ])
+              setLoading(false)
             }
           })
         }
@@ -148,9 +149,9 @@ export default function Portfolio() {
           else setbio(bio)
           if (response.data[0].about != '') setabout(response.data[0].about)
           else setabout(about)
+          setLoading(false)
         })
     }
-    setLoading(false)
   }, [])
 
   // multi students

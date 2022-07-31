@@ -45,6 +45,9 @@
   color: #745140;
   text-align: left;
   font-size: 15px;
+
+  display: flex;
+  flex-direction: row;
 }
 .margin2 {
   margin-left: 3px;
