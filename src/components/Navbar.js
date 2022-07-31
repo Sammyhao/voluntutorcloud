@@ -26,7 +26,6 @@ function Navbar() {
   const [name, setName] = useState('')
   const [data, setdata] = useState(SidebarData)
   const user = useSelector((state) => state.user.value)
-  console.log('store data: ', user)
   useEffect(() => {
     setIsLoggedIn(user.login)
     setStatus(user.language)
@@ -45,7 +44,7 @@ function Navbar() {
         setdata(C_S_SidebarData)
       }
     }
-  })
+  }, [])
 
   const showSidebar = () => setSidebar(!sidebar)
   const shownotification = () => {
