@@ -112,6 +112,13 @@ function Programusage() {
   }, [])
 
   let contacttemp
+  if (contactlength) {
+    contacttemp = contactInfo.map((item) => item).reverse()
+    console.log('contactinfo', contacttemp)
+  } else {
+    contacttemp = stpair
+    console.log('stpair', contacttemp)
+  }
 
   if (isLoading) {
     return <Loading />
@@ -123,16 +130,10 @@ function Programusage() {
       </div>
     )
   } else {
-    if (contactlength) {
-      contacttemp = contactInfo.map((item) => item).reverse()
-    } else {
-      contacttemp = stpair
-    }
     return (
       <div className="outcontainerprog">
         <div className="subjectlist">
           {contacttemp.map((st) => {
-            console.log(contacttemp)
             let time
             if (contactlength) {
               time = st[st.length - 1].hoursleft
