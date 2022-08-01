@@ -130,6 +130,7 @@ function Programusage() {
       </div>
     )
   } else {
+    console.log(contactInfo);
     return (
       <div className="outcontainerprog">
         <div className="subjectlist">
