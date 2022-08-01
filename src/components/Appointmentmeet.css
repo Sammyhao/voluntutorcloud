@@ -217,6 +217,7 @@ input::-webkit-inner-spin-button {
   position: relative;
   display: flex;
   color: #b25634;
+  white-space: pre-line;
   flex-direction: row;
   font-weight: 400;
   justify-items: center;

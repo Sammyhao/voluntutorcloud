@@ -35,7 +35,7 @@ function Programusage() {
   const [stpair, setStpair] = useState([])
   const [role, setRole] = useState(true)
   const [contactlength, setlength] = useState(false)
-
+  let flag = false
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
@@ -73,6 +73,7 @@ function Programusage() {
               setContactInfo((contactInfo) => [...contactInfo, response.data])
               console.log(contactInfo)
               setlength(true)
+              flag = true
             }
           })
         }
@@ -104,29 +105,61 @@ function Programusage() {
           if (response.data.length) {
             setContactInfo((contactInfo) => [...contactInfo, response.data])
             setlength(true)
+            flag = true
           }
 
           setLoading(false)
         })
     }
   }, [])
-
-  let contacttemp
-  if (contactlength) {
-    contacttemp = contactInfo.map((item) => item).reverse()
-    console.log('contactinfo', contacttemp)
-  } else {
-    contacttemp = stpair
-    console.log('stpair', contacttemp)
-  }
+  const contacttemp = contactInfo.map((item) => item).reverse()
 
   if (isLoading) {
     return <Loading />
-  } else if (contacttemp.length == 0) {
+  } else if (stpair.length == 0) {
     return (
       <div className="nokid">
         <div className="noStudentFont">{a[status]}</div>
         <div className="noStudentFont2">{b[status]}</div>
+      </div>
+    )
+  } else if (contactInfo.length == 0) {
+    return (
+      <div className="outcontainerprog">
+        <div className="subjectlist">
+          {stpair.map((st) => {
+            return (
+              <div className="outsidewrapsub">
+                <div className="wrapsubj">
+                  <div className="subject">
+                    <div className="second">
+                      <div className="imageprog">
+                        <FaUser className="prog_avatar" />
+                      </div>
+                      <div className="total">
+                        <div className="sub">{st.studentname}</div>
+                        <div className="time">
+                          {c[status]}8{d[status]}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="progressbar">
+                      <Progress done="8" />
+                    </div>
+                  </div>
+                </div>
+                <div className="outestwrapprogram">
+                  <div className="rowwrap">
+                    <div className="row1">
+                      <div className="title_rec">{e[status]}</div>
+                      <div className="title_not">{f[status]}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   } else {
@@ -135,13 +168,8 @@ function Programusage() {
       <div className="outcontainerprog">
         <div className="subjectlist">
           {contacttemp.map((st) => {
-            let time
-            if (contactlength) {
-              time = st[st.length - 1].hoursleft
-            } else {
-              time = 8
-            }
-            console.log(st)
+            let time = st[st.length - 1].hoursleft
+
             return (
               <div className="outsidewrapsub">
                 <div className="wrapsubj">

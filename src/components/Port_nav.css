@@ -17,12 +17,10 @@
   align-items: center;
 }
 .menu-bars {
-  margin-right: 30px;
   font-size: 2rem;
   background: none;
   z-index: 10;
-  position: absolute;
-  right: 0px;
+  margin-right: 30px;
 }
 .icons_nav {
   color: #e6dcd7;
@@ -212,6 +210,8 @@
   align-items: center;
   height: 80px;
   width: wrap;
+  flex-grow: 1;
+  margin-right: 30px;
 }
 path {
   stroke: #f5f5f5;
@@ -222,6 +222,7 @@ path {
   align-items: center;
   height: 80px;
   width: wrap;
+  flex-grow: 1;
 }
 .navbar-logo {
   color: #e6dcd7;
