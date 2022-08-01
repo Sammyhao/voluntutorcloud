@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Programusage.css'
 import '../App.css'
 import { FaUser } from 'react-icons/fa'
@@ -34,8 +34,8 @@ function Programusage() {
   const [isLoading, setLoading] = useState(true)
   const [stpair, setStpair] = useState([])
   const [role, setRole] = useState(true)
-  const [contactlength, setlength] = useState(false)
-  let flag = false
+  // const [contactlength, setlength] = useState(false)
+  // let flag = false
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
@@ -68,14 +68,12 @@ function Programusage() {
             studentmail: student.studentmail,
             echelon: 2,
           }).then((response) => {
+            console.log(response.data);
             if (response.data.length) {
-              console.log('length == true')
               setContactInfo((contactInfo) => [...contactInfo, response.data])
-              console.log(contactInfo)
-              setlength(true)
-              flag = true
+              // setlength(true)
             } else {
-              setContactInfo((contactInfo) => [...contactInfo, [{hoursleft: 8, studentname: "吳呈祥", username: "ruby931109"}]])
+              setContactInfo((contactInfo) => [...contactInfo, {hoursleft: 8, studentname: student.studentname, username: student.username}])
             }
           })
         }
@@ -90,10 +88,10 @@ function Programusage() {
         },
       )
         .then((response) => {
-          if (response.data.length == 0) setLoading(false)
+          if (response.data.length === 0) setLoading(false)
           let student = response.data[0]
           setStpair((stpair) => [...stpair, student])
-          return Axios.post(
+          Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getRecord',
             {
               username: student.username,
@@ -101,116 +99,108 @@ function Programusage() {
               studentmail: student.studentmail,
               echelon: 2,
             },
-          )
-        })
-        .then((response) => {
-          if (response.data.length) {
-            setContactInfo((contactInfo) => [...contactInfo, response.data])
-            setlength(true)
-            flag = true
-          }
-
-          setLoading(false)
+          ).then((response) => {
+            if (response.data.length) {
+              setContactInfo((contactInfo) => [...contactInfo, response.data])
+              // setlength(true)
+            } else {
+              setContactInfo((contactInfo) => [...contactInfo, [{classdate: "no class", hoursleft: 8, studentname: student.studentname, username: student.username}]])
+            }
+            setLoading(false)
+          })
         })
     }
-  }, [])
+  }, [user])
   const contacttemp = contactInfo.map((item) => item).reverse()
+
+  const noRecord = (stname) => {
+    return (
+      <div className="outsidewrapsub">
+        <div className="wrapsubj">
+          <div className="subject">
+            <div className="second">
+              <div className="imageprog">
+                <FaUser className="prog_avatar" />
+              </div>
+              <div className="total">
+                <div className="sub">{stname}</div>
+                <div className="time">
+                  {c[status]}8{d[status]}
+                </div>
+              </div>
+            </div>
+            <div className="progressbar">
+              <Progress done="8" />
+            </div>
+          </div>
+        </div>
+        <div className="outestwrapprogram">
+          <div className="rowwrap">
+            <div className="row1">
+              <div className="title_rec">{e[status]}</div>
+              <div className="title_not">{f[status]}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   if (isLoading) {
     return <Loading />
-  } else if (stpair.length == 0) {
+  } else if (stpair.length === 0) {
     return (
       <div className="nokid">
         <div className="noStudentFont">{a[status]}</div>
         <div className="noStudentFont2">{b[status]}</div>
       </div>
     )
-  } else if (contactInfo.length == 0) {
-    return (
-      <div className="outcontainerprog">
-        <div className="subjectlist">
-          {stpair.map((st) => {
-            return (
-              <div className="outsidewrapsub">
-                <div className="wrapsubj">
-                  <div className="subject">
-                    <div className="second">
-                      <div className="imageprog">
-                        <FaUser className="prog_avatar" />
-                      </div>
-                      <div className="total">
-                        <div className="sub">{st.studentname}</div>
-                        <div className="time">
-                          {c[status]}8{d[status]}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="progressbar">
-                      <Progress done="8" />
-                    </div>
-                  </div>
-                </div>
-                <div className="outestwrapprogram">
-                  <div className="rowwrap">
-                    <div className="row1">
-                      <div className="title_rec">{e[status]}</div>
-                      <div className="title_not">{f[status]}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    )
   } else {
     console.log(contactInfo);
+    console.log(contacttemp);
     return (
       <div className="outcontainerprog">
         <div className="subjectlist">
           {contacttemp.map((st) => {
             let time = st[st.length - 1].hoursleft
-
-            return (
-              <div className="outsidewrapsub">
-                <div className="wrapsubj">
-                  <div className="subject">
-                    <div className="second">
-                      <div className="imageprog">
-                        <FaUser className="prog_avatar" />
-                      </div>
-                      <div className="total">
-                        <div className="sub">
-                          {contactlength ? (
-                            <>{st['0'].studentname}</>
-                          ) : (
-                            <>{st.studentname}</>
-                          )}
+            console.log(time);
+            if(st[0].classdate === "no class") {
+              return noRecord(st[0].studentname)
+            } else {
+              return (
+                <div className="outsidewrapsub">
+                  <div className="wrapsubj">
+                    <div className="subject">
+                      <div className="second">
+                        <div className="imageprog">
+                          <FaUser className="prog_avatar" />
                         </div>
-                        <div className="time">
-                          {c[status]}
-                          {time}
-                          {d[status]}
+                        <div className="total">
+                          <div className="sub">
+                              {st[0].studentname}
+                          </div>
+                          <div className="time">
+                            {c[status]}
+                            {time}
+                            {d[status]}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="progressbar">
-                      <Progress done={time} />
+                      <div className="progressbar">
+                        <Progress done={time} />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="outestwrapprogram">
-                  <div className="rowwrap">
-                    <div className="row1">
-                      <div className="title_rec">{e[status]}</div>
-                      <div className="title_not">{f[status]}</div>
+                  <div className="outestwrapprogram">
+                    <div className="rowwrap">
+                      <div className="row1">
+                        <div className="title_rec">{e[status]}</div>
+                        <div className="title_not">{f[status]}</div>
+                      </div>
                     </div>
-                  </div>
-                  {contactlength ? (
                     <div className="programusagewr">
                       {st.map((record) => {
-                        console.log(record)
+                        console.log(record);
                         return (
                           <div className="wrapwrap">
                             <div className="gridwrapprog">
@@ -242,12 +232,10 @@ function Programusage() {
                         )
                       })}
                     </div>
-                  ) : (
-                    <></>
-                  )}
+                  </div>
                 </div>
-              </div>
-            )
+              )
+            }
           })}
         </div>
       </div>
