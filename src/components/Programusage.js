@@ -73,7 +73,7 @@ function Programusage() {
               setContactInfo((contactInfo) => [...contactInfo, response.data])
               // setlength(true)
             } else {
-              setContactInfo((contactInfo) => [...contactInfo, {hoursleft: 8, studentname: student.studentname, username: student.username}])
+              setContactInfo((contactInfo) => [...contactInfo, [{classdate: "no class", hoursleft: 8, studentname: student.studentname, username: student.username}]])
             }
           })
         }
