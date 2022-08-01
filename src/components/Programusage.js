@@ -74,6 +74,8 @@ function Programusage() {
               console.log(contactInfo)
               setlength(true)
               flag = true
+            } else {
+              setContactInfo((contactInfo) => [...contactInfo, [{hoursleft: 8, studentname: "吳呈祥", username: "ruby931109"}]])
             }
           })
         }
