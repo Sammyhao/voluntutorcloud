@@ -61,7 +61,7 @@ function Programusage() {
         for (let i = 0; i < response.data.length; i++) {
           const student = response.data[i]
           setStpair((stpair) => [...stpair, student])
-          console.log(student)
+          contacttemp = (stpair) => [...stpair, student]
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
             username: student.username,
             studentname: student.studentname,
@@ -71,7 +71,10 @@ function Programusage() {
             if (response.data.length) {
               console.log('length == true')
               setContactInfo((contactInfo) => [...contactInfo, response.data])
-              console.log(contactInfo)
+
+              contacttemp = (contactInfo) =>
+                [...contactInfo, response.data].map((item) => item).reverse()
+
               setlength(true)
             }
           })
@@ -90,6 +93,7 @@ function Programusage() {
           if (response.data.length == 0) setLoading(false)
           let student = response.data[0]
           setStpair((stpair) => [...stpair, student])
+          contacttemp = (stpair) => [...stpair, student]
           return Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getRecord',
             {
@@ -103,6 +107,9 @@ function Programusage() {
         .then((response) => {
           if (response.data.length) {
             setContactInfo((contactInfo) => [...contactInfo, response.data])
+
+            contacttemp = (contactInfo) =>
+              [...contactInfo, response.data].map((item) => item).reverse()
             setlength(true)
           }
 
@@ -123,13 +130,6 @@ function Programusage() {
       </div>
     )
   } else {
-    if (contactlength) {
-      contacttemp = contactInfo.map((item) => item).reverse()
-      console.log('contactinfo', contacttemp)
-    } else {
-      contacttemp = stpair
-      console.log('stpair', contacttemp)
-    }
     return (
       <div className="outcontainerprog">
         <div className="subjectlist">
