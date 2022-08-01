@@ -36,7 +36,6 @@ function Programusage() {
   const [role, setRole] = useState(true)
   const [contactlength, setlength] = useState(false)
 
-  let contacttemp
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
@@ -72,12 +71,8 @@ function Programusage() {
             if (response.data.length) {
               console.log('length == true')
               setContactInfo((contactInfo) => [...contactInfo, response.data])
+              console.log(contactInfo)
               setlength(true)
-              contacttemp = contactInfo.map((item) => item).reverse()
-              console.log('contactinfo', contacttemp)
-            } else {
-              contacttemp = stpair
-              console.log('stpair', contacttemp)
             }
           })
         }
@@ -109,16 +104,23 @@ function Programusage() {
           if (response.data.length) {
             setContactInfo((contactInfo) => [...contactInfo, response.data])
             setlength(true)
-            contacttemp = contactInfo.map((item) => item).reverse()
-            console.log('contactinfo', contacttemp)
-          } else {
-            contacttemp = stpair
-            console.log('stpair', contacttemp)
           }
+
           setLoading(false)
         })
     }
   }, [])
+
+  let contacttemp
+  useEffect(() => {
+    if (contactlength) {
+      contacttemp = contactInfo.map((item) => item).reverse()
+      console.log('contactinfo', contacttemp)
+    } else {
+      contacttemp = stpair
+      console.log('stpair', contacttemp)
+    }
+  }, [contactlength])
 
   if (isLoading) {
     return <Loading />
