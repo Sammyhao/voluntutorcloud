@@ -35,7 +35,7 @@ function Programusage() {
   const [stpair, setStpair] = useState([])
   const [role, setRole] = useState(true)
   const [contactlength, setlength] = useState(false)
-
+  let flag = false
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
@@ -61,7 +61,7 @@ function Programusage() {
         for (let i = 0; i < response.data.length; i++) {
           const student = response.data[i]
           setStpair((stpair) => [...stpair, student])
-          contacttemp = (stpair) => [...stpair, student]
+          console.log(student)
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
             username: student.username,
             studentname: student.studentname,
@@ -71,11 +71,9 @@ function Programusage() {
             if (response.data.length) {
               console.log('length == true')
               setContactInfo((contactInfo) => [...contactInfo, response.data])
-
-              contacttemp = (contactInfo) =>
-                [...contactInfo, response.data].map((item) => item).reverse()
-
+              console.log(contactInfo)
               setlength(true)
+              flag = true
             }
           })
         }
@@ -93,7 +91,6 @@ function Programusage() {
           if (response.data.length == 0) setLoading(false)
           let student = response.data[0]
           setStpair((stpair) => [...stpair, student])
-          contacttemp = (stpair) => [...stpair, student]
           return Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getRecord',
             {
@@ -107,10 +104,8 @@ function Programusage() {
         .then((response) => {
           if (response.data.length) {
             setContactInfo((contactInfo) => [...contactInfo, response.data])
-
-            contacttemp = (contactInfo) =>
-              [...contactInfo, response.data].map((item) => item).reverse()
             setlength(true)
+            flag = true
           }
 
           setLoading(false)
@@ -130,6 +125,13 @@ function Programusage() {
       </div>
     )
   } else {
+    if (flag) {
+      contacttemp = contactInfo.map((item) => item).reverse()
+      console.log('contactinfo', contacttemp)
+    } else {
+      contacttemp = stpair
+      console.log('stpair', contacttemp)
+    }
     return (
       <div className="outcontainerprog">
         <div className="subjectlist">
