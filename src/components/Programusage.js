@@ -112,19 +112,10 @@ function Programusage() {
   }, [])
 
   let contacttemp
-  useEffect(() => {
-    if (contactlength) {
-      contacttemp = contactInfo.map((item) => item).reverse()
-      console.log('contactinfo', contacttemp)
-    } else {
-      contacttemp = stpair
-      console.log('stpair', contacttemp)
-    }
-  }, [contactlength])
 
   if (isLoading) {
     return <Loading />
-  } else if (contacttemp.length == 0) {
+  } else if (stpair.length == 0) {
     return (
       <div className="nokid">
         <div className="noStudentFont">{a[status]}</div>
@@ -132,6 +123,13 @@ function Programusage() {
       </div>
     )
   } else {
+    if (contactlength) {
+      contacttemp = contactInfo.map((item) => item).reverse()
+      console.log('contactinfo', contacttemp)
+    } else {
+      contacttemp = stpair
+      console.log('stpair', contacttemp)
+    }
     return (
       <div className="outcontainerprog">
         <div className="subjectlist">
