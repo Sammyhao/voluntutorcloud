@@ -112,8 +112,7 @@ function Programusage() {
         })
     }
   }, [])
-
-  let contacttemp
+  const contacttemp = contactInfo.map((item) => item).reverse()
 
   if (isLoading) {
     return <Loading />
@@ -124,25 +123,54 @@ function Programusage() {
         <div className="noStudentFont2">{b[status]}</div>
       </div>
     )
+  } else if (contactInfo.length == 0) {
+    return (
+      <div className="outcontainerprog">
+        <div className="subjectlist">
+          {stpair.map((st) => {
+            return (
+              <div className="outsidewrapsub">
+                <div className="wrapsubj">
+                  <div className="subject">
+                    <div className="second">
+                      <div className="imageprog">
+                        <FaUser className="prog_avatar" />
+                      </div>
+                      <div className="total">
+                        <div className="sub" onClick={() => showContact(st)}>
+                          {st.studentname}
+                        </div>
+                        <div className="time">
+                          {c[status]}8{d[status]}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="progressbar">
+                      <Progress done="8" />
+                    </div>
+                  </div>
+                </div>
+                <div className="outestwrapprogram">
+                  <div className="rowwrap">
+                    <div className="row1">
+                      <div className="title_rec">{e[status]}</div>
+                      <div className="title_not">{f[status]}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
   } else {
-    if (flag) {
-      contacttemp = contactInfo.map((item) => item).reverse()
-      console.log('contactinfo', contacttemp)
-    } else {
-      contacttemp = stpair
-      console.log('stpair', contacttemp)
-    }
     return (
       <div className="outcontainerprog">
         <div className="subjectlist">
           {contacttemp.map((st) => {
-            let time
-            if (contactlength) {
-              time = st[st.length - 1].hoursleft
-            } else {
-              time = 8
-            }
-            console.log(st)
+            let time = st[st.length - 1].hoursleft
+
             return (
               <div className="outsidewrapsub">
                 <div className="wrapsubj">
