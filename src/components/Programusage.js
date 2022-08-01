@@ -162,11 +162,12 @@ function Programusage() {
       <div className="outcontainerprog">
         <div className="subjectlist">
           {contacttemp.map((st) => {
-            let time = st[st.length - 1].hoursleft
-            console.log(time);
+            console.log(st);
             if(st[0].classdate === "no class") {
               return noRecord(st[0].studentname)
             } else {
+              let time = st[st.length - 1].hoursleft
+              console.log(time);
               return (
                 <div className="outsidewrapsub">
                   <div className="wrapsubj">
