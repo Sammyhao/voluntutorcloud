@@ -137,9 +137,7 @@ function Programusage() {
                         <FaUser className="prog_avatar" />
                       </div>
                       <div className="total">
-                        <div className="sub" onClick={() => showContact(st)}>
-                          {st.studentname}
-                        </div>
+                        <div className="sub">{st.studentname}</div>
                         <div className="time">
                           {c[status]}8{d[status]}
                         </div>
