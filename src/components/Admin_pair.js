@@ -32,6 +32,7 @@ BootstrapDialogTitle.propTypes = {
 }
 
 let curPair = 0;
+let role = "";
 
 export default function Admin_pair() {
   const navigate = useNavigate()
@@ -45,8 +46,6 @@ export default function Admin_pair() {
 
   const [stpair, setStpair] = useState([]);
   const [isLoading, setLoading] = useState(true);
-
-  let role = "";
 
   useEffect(() => {
     // Axios.post('https://voluntutorcloud-server.herokuapp.com/addFullName').then((response) => {
@@ -160,12 +159,12 @@ export default function Admin_pair() {
           <div className="admin_dialog_wrap">
             {(role === "teacher") ? 
               <>
-                <div className="admin_dialog_text" onClick={() => console.log(curPair)}>帳號：{curPair.teacher}</div> 
+                <div className="admin_dialog_text" onClick={() => console.log(curPair, ' ', role)}>帳號：{curPair.teacher}</div> 
                 <div className="admin_dialog_text">密碼：{curPair.teacherPW}</div>
               </> 
               : 
               <>
-                <div className="admin_dialog_text" onClick={() => console.log(curPair)}>帳號：{curPair.student}</div> 
+                <div className="admin_dialog_text" onClick={() => console.log(curPair, ' ', role)}>帳號：{curPair.student}</div> 
                 <div className="admin_dialog_text">密碼：{curPair.studentPW}</div>
               </>
             }
