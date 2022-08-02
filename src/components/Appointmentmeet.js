@@ -302,8 +302,7 @@ function Appointmentmeet() {
       studentname: selectedstudentname,
       studentmail: emailaddress,
       echelon: 2,
-    })
-      .then((response) => {
+    }).then((response) => {
         //         if(response.data.length) {
         //           totalhour = response.data[response.data.length-1].hoursleft
         //         }

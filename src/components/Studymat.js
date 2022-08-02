@@ -143,7 +143,7 @@ export default function Studymat() {
           submat[i].school = schoollist
           console.log(submat)
         }
-        if (studyarray.length == 0) setstudyarray(submat)
+        if (studyarray.length === 0) setstudyarray(submat)
         setopen(true)
         setLoading(false)
       })
@@ -218,7 +218,7 @@ export default function Studymat() {
         schoolflag = true
       }
       for (let s = 0; s < subjectarr.length; s++) {
-        if (obj.subject == subjectarr[s]) {
+        if (obj.subject === subjectarr[s]) {
           subflag = true
         }
       }

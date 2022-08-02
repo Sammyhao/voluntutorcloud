@@ -26,25 +26,32 @@ function Navbar() {
   const [name, setName] = useState('')
   const [data, setdata] = useState(SidebarData)
   const user = useSelector((state) => state.user.value)
+
   useEffect(() => {
     setIsLoggedIn(user.login)
     setStatus(user.language)
     setName(user.name)
     setRole(user.role)
     if (role) {
-      if (status == 0) {
+      if (status === 0) {
         setdata(SidebarData)
       } else {
         setdata(C_SidebarData)
       }
     } else {
-      if (status == 0) {
+      if (status === 0) {
         setdata(S_SidebarData)
       } else {
         setdata(C_S_SidebarData)
       }
     }
-  })
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
+      username: name,
+      isnew: true,
+    }).then((response) => {
+      setNotif_data(response.data)
+    })
+  }, [user])
 
   const showSidebar = () => setSidebar(!sidebar)
   const shownotification = () => {
@@ -60,7 +67,7 @@ function Navbar() {
           content: notif_data[i].notcontent,
           isnew: false,
         },
-      ).then((response) => {})
+      ).then((response) => {console.log(response)})
     }
   }
   const handleClick = () => setClick(!click)
@@ -81,15 +88,6 @@ function Navbar() {
   let bb = ['Bookings', '會議預約']
   let c = ['Contact', '聯絡我們']
   let d = ['SIGN IN/UP', '登入/註冊']
-
-  useEffect(() => {
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
-      username: name,
-      isnew: true,
-    }).then((response) => {
-      setNotif_data(response.data)
-    })
-  }, [])
 
   useEffect(() => {
     showButton()

@@ -5,6 +5,7 @@ import './HeroSection.css'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import { useSelector } from 'react-redux'
+import Loading from './Loading'
 
 function HeroSection() {
   Axios.defaults.withCredentials = true
@@ -14,6 +15,7 @@ function HeroSection() {
   const [name, setName] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [role, setRole] = useState(true)
+  // const [isLoading, setLoading] = useState(true);
   // titles
   let a = ['WELCOME', '歡迎']
   let b = [
@@ -26,17 +28,19 @@ function HeroSection() {
 
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
+
   useEffect(() => {
     setIsLoggedIn(user.login)
     setStatus(user.language)
     setName(user.name)
     setRole(user.role)
-  })
+    // setLoading(false);
+  }, [user])
 
   return (
     <div className="hero-container">
       <div className="left_hero">
-        <img className="pic_hero" src="/images/vc_logo.png" />
+        <img className="pic_hero" src="/images/vc_logo.png" alt='VC Logo'/>
       </div>
       <div className="right_hero">
         {isLoggedIn ? (

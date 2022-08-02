@@ -11,7 +11,7 @@ function Home() {
   return (
     <>
       <Navbar></Navbar>
-      <HeroSection />
+      <HeroSection/>
       <Function></Function>
       <About_us></About_us>
       <Team></Team>
