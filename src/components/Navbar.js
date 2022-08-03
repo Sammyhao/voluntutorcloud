@@ -32,14 +32,14 @@ function Navbar() {
     setStatus(user.language)
     setName(user.name)
     setRole(user.role)
-    if (role) {
-      if (status === 0) {
+    if (user.role) {
+      if (user.language === 0) {
         setdata(SidebarData)
       } else {
         setdata(C_SidebarData)
       }
     } else {
-      if (status === 0) {
+      if (user.language === 0) {
         setdata(S_SidebarData)
       } else {
         setdata(C_S_SidebarData)
@@ -67,7 +67,9 @@ function Navbar() {
           content: notif_data[i].notcontent,
           isnew: false,
         },
-      ).then((response) => {console.log(response)})
+      ).then((response) => {
+        console.log(response)
+      })
     }
   }
   const handleClick = () => setClick(!click)
