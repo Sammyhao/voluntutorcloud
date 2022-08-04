@@ -10,33 +10,21 @@ import Axios from 'axios'
 import { useSelector } from 'react-redux'
 
 function Msg() {
-  let num = [1]
+
+  const user = useSelector((state) => state.user.value)
   const [status, setStatus] = useState(1)
-  let username = '',
-    studentname = '',
-    teacherusername = ''
-    let tempstudentname = ''
   const [curMsg, setCurMsg] = useState('')
-  const [msgRec, setMsgRec] = useState([])
-  let msgStr = ''
-  const [msgForUpd, setMsgForUpd] = useState('')
   const [isLoading, setLoading] = useState(true)
-  const [hasProcessMsg, setHasProcessMsg] = useState(false)
-  const [usernameConst, setUsernameConst] = useState('')
-  const [studentnameConst, setStudentnameConst] = useState('')
-  const [lastestMsg, setLastestMsg] = useState('')
-  const [contactInfo, setContactInfo] = useState([])
-  const [chosenContact, setChosenContact] = useState({})
-  const [multistudentname, setMultistudentname] = useState([])
-  const [nameclick, setnameclick] = useState(false)
+  const [allMsg, setAllMsg] = useState([]);
+
+  let username = '',
+      studentname = '';
+  let tmpChtRm = [];
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
-
   let b = ['Find friends', '尋找朋友']
   let c = ['Enter your message...', '請輸入訊息...']
   let d = ['send', '傳送']
-
-  const [allMsg, setAllMsg] = useState([]);
 
   useEffect(() => {
     console.log("user: ", user);
@@ -64,9 +52,6 @@ function Msg() {
     })
   }, [])
 
-  const [rerender, setRerender] = useState(false);
-
-  let tmpChtRm = [];
 
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
@@ -91,8 +76,6 @@ function Msg() {
     })
     setTimeout(()=>setCurMsg(""),1)
   }
-
-  const user = useSelector((state) => state.user.value)
 
   if (isLoading) {
     return <Loading />
