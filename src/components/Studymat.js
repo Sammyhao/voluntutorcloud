@@ -186,9 +186,9 @@ export default function Studymat() {
         subjectarr[subjectarr.length] = key
       }
     }
-    // console.log(gradearr)
+    console.log(gradearr)
     console.log(schoolarr)
-    // console.log(subjectarr)
+    console.log(subjectarr)
     for (let ind = 0; ind < studyarray.length; ind++) {
       let obj = studyarray[ind]
       let gradeflag = false
