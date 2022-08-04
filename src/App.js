@@ -21,7 +21,7 @@ import 'font-awesome/css/font-awesome.min.css'
 function App() {
   useEffect(() => {
     document.title = 'VolunTutor Cloud'
-  })
+  }, [])
 
   return (
     <div className="App">

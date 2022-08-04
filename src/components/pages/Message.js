@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../../App.css'
 import S_Message from '../S_Msg'
-import Message from '../Msg'
+import Message from '../Msg_new'
 import Navbar from '../Navbar'
 import { useSelector } from 'react-redux'
 
@@ -11,7 +11,7 @@ export default function Messages() {
 
   useEffect(() => {
     setRole(user.role)
-  })
+  }, [])
 
   return (
     <>
