@@ -76,7 +76,7 @@ export default function Booking() {
   let username = ''
   let studentname = ''
   let datearr = []
-  
+
   // titles
   let n = [
     "Oops, seems like you don't have any student yet.",
@@ -186,7 +186,6 @@ export default function Booking() {
   }
 
   function deleteBooking(booking) {
-    //console.log(booking)
     Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteBooking', {
       username: booking.username,
       studentname: booking.studentname,
@@ -198,12 +197,10 @@ export default function Booking() {
   }
 
   function checkBookingInfoValidity(bkinfo) {
-    //console.log(bkinfo)
     setBookingInfoLen(bkinfo.length)
     for (let i = 0; i < bkinfo.length; i++) {
       var date = bkinfo[i].date
       datearr = date.split('-')
-      //console.log(datearr)
       for (let j = 0; j < date.length; j++) {
         datearr[j] = Number(datearr[j])
       }
