@@ -67,7 +67,45 @@ function Msg() {
         // console.log(error)
       })
   }, [])
-
+  useEffect(() => {
+    updatelayout()
+  }, [tmpChtRm])
+  const updatelayout = () => {
+    return (
+      <div className="chatcontent">
+        <div className="chatname">{tmpChtRm[0].studentname}</div>
+        <div className="chat">
+          {tmpChtRm.map((msg) => {
+            return (
+              <Msg_user
+                type={msg.sender === 'T' ? 'user' : 'recipient'}
+                text={msg.msg}
+              ></Msg_user>
+            )
+          })}
+        </div>
+        <div className="send">
+          <textarea
+            className="messagesend"
+            type="text"
+            placeholder={c[status]}
+            value={curMsg}
+            onChange={(e) => {
+              setCurMsg(e.target.value)
+            }}
+          />
+          <div
+            className="sendword"
+            onClick={() => {
+              updateMsg()
+            }}
+          >
+            {d[status]}
+          </div>
+        </div>
+      </div>
+    )
+  }
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: tmpChtRm[0].username,
@@ -139,38 +177,7 @@ function Msg() {
               })}
             </div>
           </div>
-          <div className="chatcontent">
-            <div className="chatname">{tmpChtRm[0].studentname}</div>
-            <div className="chat">
-              {tmpChtRm.map((msg) => {
-                return (
-                  <Msg_user
-                    type={msg.sender === 'T' ? 'user' : 'recipient'}
-                    text={msg.msg}
-                  ></Msg_user>
-                )
-              })}
-            </div>
-            <div className="send">
-              <textarea
-                className="messagesend"
-                type="text"
-                placeholder={c[status]}
-                value={curMsg}
-                onChange={(e) => {
-                  setCurMsg(e.target.value)
-                }}
-              />
-              <div
-                className="sendword"
-                onClick={() => {
-                  updateMsg()
-                }}
-              >
-                {d[status]}
-              </div>
-            </div>
-          </div>
+          {updatelayout}
         </div>
       </div>
     )
