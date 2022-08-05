@@ -17,6 +17,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import { useDispatch, useSelector } from 'react-redux'
 import { getloggedout } from '../reducer/user'
+import Loading from './Loading'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -413,7 +414,9 @@ function Profile_user() {
   }
 
   const user = useSelector((state) => state.user.value)
+  const [isLoading, setLoading] = useState(true);
   console.log('store data: ', user)
+
   useEffect(() => {
     setStatus(user.language)
   }, [])
@@ -437,12 +440,15 @@ function Profile_user() {
         setGooglemeetlink(response.data.user[0].googlemeetlink)
         setCurVolProg(response.data.user[0].curvolprog)
         addHis(response.data.user[0].username)
+        setLoading(false);
       },
     )
   }, [])
 
   let ech1total = 0,
     ech2total = 0
+
+  if(isLoading) return <Loading/>
 
   return (
     <div className="frame">
