@@ -119,6 +119,7 @@ function Msg() {
                     onClick={() => {
                       index.current = ind
                       console.log(index.current)
+                      tmpChtRm = allMsg[index.current]
                     }}
                   >
                     <div className="outerbox">
