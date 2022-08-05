@@ -140,7 +140,7 @@ function Msg() {
           <div className="chatcontent">
             <div className="chatname">{tmpChtRm[0].studentname}</div>
             <div className="chat">
-              {allMsg[index].map((msg) => {
+              {tmpChtRm.map((msg) => {
                 return (
                   <Msg_user
                     type={msg.sender === 'T' ? 'user' : 'recipient'}
