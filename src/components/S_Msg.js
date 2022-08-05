@@ -9,131 +9,76 @@ import Axios from 'axios'
 import { useSelector } from 'react-redux'
 
 function S_Msg() {
-  let num = [1]
-
-  const [status, setStatus] = useState(1)
-  let username = '',
-    studentname = '',
-    teacherusername = ''
-  const [curMsg, setCurMsg] = useState('')
-  const [msgRec, setMsgRec] = useState([])
-  let msgStr = ''
-  const [msgForUpd, setMsgForUpd] = useState('')
-  const [isLoading, setLoading] = useState(true)
-  const [hasProcessMsg, setHasProcessMsg] = useState(false)
-  const [usernameConst, setUsernameConst] = useState('')
-  const [studentnameConst, setStudentnameConst] = useState('')
-  const [lastestMsg, setLastestMsg] = useState('')
-
-  function processMsg(msgStr, teacherusername, studentname) {
-    if (msgStr != '') {
-      const msgInfo = msgStr.split('ψ')
-      console.log('msgInfo')
-      console.log(msgInfo)
-      if (msgRec.length == 0) {
-        for (let i = 0; i < msgInfo.length - 1; i++) {
-          const category = msgInfo[i].split('|')
-          if (i == 0) setLastestMsg(category[1])
-          let t = ''
-          t = category[0] == 'S' ? 'user' : 'recipient'
-          if (category[1] == '') continue
-          let msg = { type: t, text: category[1] }
-          setMsgRec((msgRec) => [msg, ...msgRec])
-        }
-      } else setMsgRec(msgRec.slice(0, msgInfo.length - 1))
-    }
-    console.log(teacherusername, studentname)
-    setUsernameConst(teacherusername)
-    setStudentnameConst(studentname)
-    setMsgForUpd(msgStr)
-    setHasProcessMsg(true)
-  }
-
-  const updateMsg = () => {
-    let msg = { type: 'user', text: curMsg }
-    setCurMsg('')
-    setMsgRec((msgRec) => [...msgRec, msg])
-    msgStr += 'S|' + curMsg + 'ψ'
-    console.log(msgStr)
-    let tempMsgForUpd = msgStr + msgForUpd
-    console.log('lastestMsg')
-    console.log(lastestMsg)
-    setLastestMsg(curMsg)
-    if (msgRec.length == '') {
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/createMsg', {
-        username: usernameConst,
-        studentname: studentnameConst,
-        msg: tempMsgForUpd,
-      }).then((response) => {
-        console.log(response)
-      })
-    } else {
-      Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
-        username: usernameConst,
-        studentname: studentnameConst,
-        msg: tempMsgForUpd,
-      }).then((response) => {
-        console.log(response)
-      })
-    }
-    let content = 'Your student ' + studentnameConst + ' has sent a message'
-    console.log(content, content)
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
-      username: usernameConst,
-      type: '/message',
-      title: 'Message',
-      content: content,
-      isnew: true,
-    }).then((response) => {
-      console.log(response)
-    })
-    setMsgForUpd(tempMsgForUpd)
-  }
   const user = useSelector((state) => state.user.value)
+  const [status, setStatus] = useState(1)
+  const [curMsg, setCurMsg] = useState('')
+  const [isLoading, setLoading] = useState(true)
+  const [allMsg, setAllMsg] = useState([]);
 
-  useEffect(() => {
-    if (isLoading) {
-      username = user.username
-      studentname = user.name
-      setStatus(user.language)
-      Axios.post(
-        'https://voluntutorcloud-server.herokuapp.com/findContactbyName',
-        {
-          studentname: studentname,
-        },
-      )
-        .then((response) => {
-          teacherusername = response.data[0].username
-          if (!hasProcessMsg) {
-            return Axios.post(
-              'https://voluntutorcloud-server.herokuapp.com/getMsg',
-              {
-                username: teacherusername,
-                studentname: studentname,
-              },
-            )
-          }
-        })
-        .then((response) => {
-          if (response.data.length) msgStr = response.data[0].msg
-          processMsg(msgStr, teacherusername, studentname)
-          setLoading(false)
-        })
-    }
-  })
+  let username = '',
+      studentname = '';
+  let tmpChtRm = [];
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
-
   let b = ['Find friends', '尋找朋友']
   let c = ['Enter your message...', '請輸入訊息...']
   let d = ['send', '傳送']
+
+  useEffect(() => {
+    console.log("user: ", user);
+    setStatus(user.language);
+    setAllMsg([]);
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
+      studentname: user.name,
+    }).then((response1) => {
+      console.log(user.name, "'s contact includes: ", response1.data);
+      for(let i = 0; i < response1.data.length; i++) {
+        username = response1.data[i].username;
+        studentname = response1.data[i].studentname;
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
+          username: response1.data[i].username,
+          studentname: response1.data[i].studentname,
+        }).then((response2) => {
+          console.log("Record of ", username, " and ", studentname, " : ", response2.data);
+          if(response2.data.length) setAllMsg(allMsg => [...allMsg, response2.data]);
+          else setAllMsg(allMsg => [...allMsg, [{username: username, studentname: studentname, msg: "", sender: "S"}]])
+          if(i === response1.data.length - 1) setLoading(false);
+        })
+      }
+    }).catch((error) => {
+      console.log(error);
+    })
+  }, [])
+
+
+  const updateMsg = () => {
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
+      username: tmpChtRm[0].username,
+      studentname: tmpChtRm[0].studentname,
+      msg: curMsg,
+      sender: "S"
+    }).then((response) => {
+      console.log(response.data);
+      let tmpAllMsg = allMsg;
+      for(let i = 0; i < tmpAllMsg.length; i++) {
+        if(tmpAllMsg[i] === tmpChtRm) {
+          tmpAllMsg[i].push({
+            username: tmpChtRm[0].username,
+            studentname: tmpChtRm[0].studentname,
+            msg: curMsg,
+            sender: "S"
+          });
+        }
+      }
+      setAllMsg(tmpAllMsg);
+    })
+    setTimeout(()=>setCurMsg(""),1)
+  }
+
   if (isLoading) {
     return <Loading />
   } else {
-    console.log('msgRec')
-    console.log(msgRec)
-    console.log(usernameConst, studentnameConst)
-
+    console.log(allMsg);
     return (
       <div>
         <div className="out">
@@ -145,7 +90,8 @@ function S_Msg() {
               </div>
             </div>
             <div className="peoplelist">
-              {num.map((e) => {
+              {allMsg.map((chtRm) => {
+                tmpChtRm = chtRm;
                 return (
                   <div className="shadowing">
                     <div className="outerbox">
@@ -153,12 +99,9 @@ function S_Msg() {
                         <FaUser className="msg_icon" />
                       </div>
                       <div className="infoboxmsg">
-                        <div className="namemsg">{usernameConst}</div>
-                        <div className="latestmsg">{lastestMsg}</div>
+                        <div className="namemsg">{chtRm[0].studentname}</div>
+                        <div className="latestmsg">{chtRm[chtRm.length-1].msg}</div>
                       </div>
-                      {/* <div className="align">
-                      <div className="numbermsg">1</div>
-                    </div> */}
                     </div>
                   </div>
                 )
@@ -166,10 +109,10 @@ function S_Msg() {
             </div>
           </div>
           <div className="chatcontent">
-            <div className="chatname">{usernameConst}</div>
+            <div className="chatname">{tmpChtRm[0].studentname}</div>
             <div className="chat">
-              {msgRec.map((e) => {
-                return <Msg_user type={e.type} text={e.text}></Msg_user>
+              {tmpChtRm.map((msg) => {
+                return <Msg_user type={(msg.sender==="S") ? "user" : "recipient"} text={msg.msg}></Msg_user>
               })}
             </div>
             <div className="send">

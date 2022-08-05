@@ -74,7 +74,8 @@ function Msg() {
       }
       setAllMsg(tmpAllMsg);
     })
-    setTimeout(()=>setCurMsg(""),1)
+    setTimeout(()=>setCurMsg(" "),1000)
+    setTimeout(()=>setCurMsg(""),1000)
   }
 
   if (isLoading) {
@@ -114,6 +115,7 @@ function Msg() {
             <div className="chatname">{tmpChtRm[0].studentname}</div>
             <div className="chat">
               {tmpChtRm.map((msg) => {
+                console.log(tmpChtRm)
                 return <Msg_user type={(msg.sender==="T") ? "user" : "recipient"} text={msg.msg}></Msg_user>
               })}
             </div>
