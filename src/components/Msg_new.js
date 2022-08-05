@@ -8,6 +8,7 @@ import { Msg_user } from './Msg_user'
 import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
 import { useSelector } from 'react-redux'
+import { render } from '@testing-library/react'
 
 function Msg() {
   const user = useSelector((state) => state.user.value)
@@ -21,6 +22,7 @@ function Msg() {
   let c = ['Enter your message...', '請輸入訊息...']
   let d = ['send', '傳送']
   const index = useRef(0)
+  const [rerender, setRerender] = useState(false);
 
   useEffect(() => {
     // console.log('user: ', user)
@@ -67,6 +69,10 @@ function Msg() {
         // console.log(error)
       })
   }, [])
+
+  function ToRerender() {
+    setRerender(!rerender);
+  }
 
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
@@ -121,6 +127,7 @@ function Msg() {
                       console.log(index.current)
                       tmpChtRm = allMsg[index.current]
                       console.log(tmpChtRm)
+                      ToRerender();
                     }}
                   >
                     <div className="outerbox">
@@ -130,7 +137,7 @@ function Msg() {
                       <div className="infoboxmsg">
                         <div className="namemsg">{chtRm[0].studentname}</div>
                         <div className="latestmsg">
-                          {chtRm[chtRm.length - 1].msg.substring(0, 8)}...
+                          {chtRm[chtRm.length - 1].msg.substring(0, 8)}{(chtRm[chtRm.length - 1].msg.length > 8) ? "..." : ""}
                         </div>
                       </div>
                     </div>
