@@ -15,15 +15,14 @@ function Msg() {
   const [curMsg, setCurMsg] = useState('')
   const [isLoading, setLoading] = useState(true)
   const [allMsg, setAllMsg] = useState([])
-  const [selected, setselected] = useState(0)
   let tmpChtRm = []
-
+  let tempmess = []
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
   let b = ['Find friends', '尋找朋友']
   let c = ['Enter your message...', '請輸入訊息...']
   let d = ['send', '傳送']
   const index = useRef(0)
-  
+
   useEffect(() => {
     // console.log('user: ', user)
     setStatus(user.language)
@@ -38,7 +37,7 @@ function Msg() {
             username: response1.data[i].username,
             studentname: response1.data[i].studentname,
           }).then((response2) => {
-            console.log(response1.data[i]);
+            console.log(response1.data[i])
             if (response2.data.length)
               setAllMsg((allMsg) => [...allMsg, response2.data])
             else
@@ -53,15 +52,15 @@ function Msg() {
                   },
                 ],
               ])
-              console.log("add ", [
-                {
-                  username: response1.data[i].username,
-                  studentname: response1.data[i].studentname,
-                  msg: '',
-                  sender: 'T',
-                },
-              ]);
-              if (i === response1.data.length - 1) setLoading(false)
+            console.log('add ', [
+              {
+                username: response1.data[i].username,
+                studentname: response1.data[i].studentname,
+                msg: '',
+                sender: 'T',
+              },
+            ])
+            if (i === response1.data.length - 1) setLoading(false)
           })
         }
       })
@@ -70,11 +69,6 @@ function Msg() {
       })
   }, [])
 
-  useEffect(() => {
-    index.current = selected
-    console.log(index.current)
-  }, [selected])
-  
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: tmpChtRm[0].username,
@@ -116,13 +110,17 @@ function Msg() {
             </div>
             <div className="peoplelist">
               {allMsg.map((chtRm, ind) => {
-                tmpChtRm = chtRm
+                if (ind === index.current) {
+                  tmpChtRm = chtRm
+                  tempmess = [[chtRm.sender], [chtRm.msg]]
+                }
                 console.log(tmpChtRm)
+                console.log(tempmess)
                 return (
                   <div
                     className="shadowing"
                     onClick={() => {
-                      setselected(ind)
+                      index.current = ind
                     }}
                   >
                     <div className="outerbox">
@@ -144,7 +142,7 @@ function Msg() {
           <div className="chatcontent">
             <div className="chatname">{tmpChtRm[0].studentname}</div>
             <div className="chat">
-              {tmpChtRm.map((msg) => {
+              {tempmess.map((msg) => {
                 return (
                   <Msg_user
                     type={msg.sender === 'T' ? 'user' : 'recipient'}
@@ -163,7 +161,15 @@ function Msg() {
                   setCurMsg(e.target.value)
                 }}
               />
-              <div className="sendword" onClick={updateMsg}>
+              <div
+                className="sendword"
+                onClick={() => {
+                  let temparr = tempmess
+                  temparr[temparr.length] = { msg: curMsg, sender: 'T' }
+                  console.log(tempmess)
+                  updateMsg()
+                }}
+              >
                 {d[status]}
               </div>
             </div>
