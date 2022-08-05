@@ -34,8 +34,7 @@ function Programusage() {
   const [isLoading, setLoading] = useState(true)
   const [stpair, setStpair] = useState([])
   const [role, setRole] = useState(true)
-  // const [contactlength, setlength] = useState(false)
-  // let flag = false
+
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
@@ -69,12 +68,8 @@ function Programusage() {
             echelon: 2,
           }).then((response) => {
             console.log(response.data);
-            if (response.data.length) {
-              setContactInfo((contactInfo) => [...contactInfo, response.data])
-              // setlength(true)
-            } else {
-              setContactInfo((contactInfo) => [...contactInfo, [{classdate: "no class", hoursleft: 8, studentname: student.studentname, username: student.username}]])
-            }
+            if (response.data.length) setContactInfo((contactInfo) => [...contactInfo, response.data])
+            else setContactInfo((contactInfo) => [...contactInfo, [{classdate: "no class", hoursleft: 8, studentname: student.studentname, username: student.username}]])
           })
         }
         setLoading(false)
@@ -111,6 +106,7 @@ function Programusage() {
         })
     }
   }, [user])
+  
   const contacttemp = contactInfo.map((item) => item).reverse()
 
   const noRecord = (stname) => {

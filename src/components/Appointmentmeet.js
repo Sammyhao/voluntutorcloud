@@ -1,29 +1,17 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import emailjs from 'emailjs-com'
 import './Appointmentmeet.css'
-import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import { Divider } from '@mui/material'
 import Axios from 'axios'
-import { MdSettingsPhone } from 'react-icons/md'
 import { FaUser } from 'react-icons/fa'
-import { BiSearchAlt } from 'react-icons/bi'
 import '../App.css'
 import { useSelector } from 'react-redux'
 import { format } from 'date-fns'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
 import Loading from './Loading.js'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Button from '@mui/material/Button'
-import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
-import IconButton from '@mui/material/IconButton'
-import { popoverClasses } from '@mui/material'
 
 import TextField from '@mui/material/TextField'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
@@ -189,11 +177,10 @@ function Appointmentmeet() {
 
   const meet = () => {
     console.log('google meet link is ', googleMeetLink)
-    // console.log("google meet link alt is ", googleMeetLinkalt);
-    // if(googleMeetLink) window.location.replace(googleMeetLink);
+
     if (googleMeetLink)
       window.open(googleMeetLink, '_blank', 'noopener,noreferrer')
-    // else window.location.replace(googlemeetlinkalt);
+
   }
   const [formatteddate, setformatteddate] = useState('')
   const [formattedstart, setformattedstart] = useState('')
@@ -226,13 +213,6 @@ function Appointmentmeet() {
       if (ending.getTime() < starting.getTime()) {
         settimeopen(true)
       } else {
-        // setfinalformat(
-        //   format(classDate, 'yyyy-MM-dd') +
-        //     ' ' +
-        //     format(starting, 'HH:mm') +
-        //     '~' +
-        //     format(ending, 'HH:mm'),
-        // )
         setformatteddate(format(classDate, 'yyyy-MM-dd'))
         setformattedstart(format(starting, 'HH:mm'))
         setformattedend(format(ending, 'HH:mm'))
@@ -303,10 +283,6 @@ function Appointmentmeet() {
       studentmail: emailaddress,
       echelon: 2,
     }).then((response) => {
-        //         if(response.data.length) {
-        //           totalhour = response.data[response.data.length-1].hoursleft
-        //         }
-        //        else totalhour = 8;
         console.log(totalhour)
 
         for (let i = 0; i < response.data.length; i++) {

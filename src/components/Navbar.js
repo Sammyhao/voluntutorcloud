@@ -51,13 +51,12 @@ function Navbar() {
     }).then((response) => {
       setNotif_data(response.data)
     })
-  }, [user])
+  }, [])
 
   const showSidebar = () => setSidebar(!sidebar)
   const shownotification = () => {
     setnotification(!notification)
     for (let i = 0; i < notif_data.length; i++) {
-      // console.log(notif_data[i])
       Axios.post(
         'https://voluntutorcloud-server.herokuapp.com/updateNotifStatus',
         {

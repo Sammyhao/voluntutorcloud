@@ -21,7 +21,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { format } from 'date-fns'
-import { BiRotateRight } from 'react-icons/bi'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -106,7 +105,6 @@ function Register_pageall() {
   const [passwordShown, setPasswordShown] = useState(false)
   const [cpasswordShown, setcPasswordShown] = useState(false)
   const [emailError, setEmailError] = useState('')
-  const navigate = useNavigate()
   const [status, setStatus] = useState(1)
   const [birthdaydate, setbirthdaydate] = useState(new Date())
   const [charlist, setcharlist] = useState([
@@ -217,7 +215,7 @@ function Register_pageall() {
   }
 
   const changestatus = () => {
-    if (status == 0) {
+    if (status === 0) {
       setStatus(1)
       setsubjectlist(['國文', '數學', '英文', '社會', '自然'])
 
@@ -260,24 +258,24 @@ function Register_pageall() {
     let school = schoolnamereg
     let gen = GenderReg
     if (
-      schoolnamereg == 'Yilan Daxi Elementary School' ||
-      schoolnamereg == '宜蘭縣大溪國民小學'
+      schoolnamereg === 'Yilan Daxi Elementary School' ||
+      schoolnamereg === '宜蘭縣大溪國民小學'
     ) {
       school = '大溪國小'
     }
     if (
-      schoolnamereg == 'Yilan Guangxing Elementary School' ||
-      schoolnamereg == '宜蘭縣廣興國民小學'
+      schoolnamereg === 'Yilan Guangxing Elementary School' ||
+      schoolnamereg === '宜蘭縣廣興國民小學'
     ) {
       school = '廣興國小'
     }
-    if (GenderReg == '女') {
+    if (GenderReg === '女') {
       gen = 'Female'
     }
-    if (GenderReg == '男') {
+    if (GenderReg === '男') {
       gen = 'Male'
     }
-    if (GenderReg == '其他') {
+    if (GenderReg === '其他') {
       gen = 'Others'
     }
     console.log(stu_chinese_name)
@@ -316,34 +314,34 @@ function Register_pageall() {
     let skl = schoolnamereg
     let gend = GenderReg
     let stugen = stugenderreg
-    if (schoolnamereg == '台北市私立薇閣高級中學') {
+    if (schoolnamereg === '台北市私立薇閣高級中學') {
       skl = 'Taipei Wego Senior High School'
     }
-    if (schoolnamereg == '台北市私立復興高級中學') {
+    if (schoolnamereg === '台北市私立復興高級中學') {
       skl = 'Taipei Fuhsing Senior High School'
     }
-    if (schoolnamereg == '康橋國際學校') {
+    if (schoolnamereg === '康橋國際學校') {
       skl = 'Kang Chiao International School'
     }
-    if (schoolnamereg == '台北市私立奎山實驗高級中學') {
+    if (schoolnamereg === '台北市私立奎山實驗高級中學') {
       skl = 'Taipei Kuei Shan School'
     }
-    if (GenderReg == '女') {
+    if (GenderReg === '女') {
       gend = 'Female'
     }
-    if (GenderReg == '男') {
+    if (GenderReg === '男') {
       gend = 'Male'
     }
-    if (GenderReg == '其他') {
+    if (GenderReg === '其他') {
       gend = 'Others'
     }
-    if (stugenderreg == '女') {
+    if (stugenderreg === '女') {
       stugen = 'Female'
     }
-    if (stugenderreg == '男') {
+    if (stugenderreg === '男') {
       stugen = 'Male'
     }
-    if (stugenderreg == '無') {
+    if (stugenderreg === '無') {
       stugen = 'No preference'
     }
     console.log(
@@ -371,18 +369,18 @@ function Register_pageall() {
 
     for (let i = 0; i < subjectReg.length; i++) {
       subjectRegforStr += subjectReg[i]
-      if (i != subjectReg.length - 1) subjectRegforStr += '/ '
+      if (i !== subjectReg.length - 1) subjectRegforStr += '/ '
       console.log(subjectRegforStr)
     }
 
     for (let i = 0; i < agereg.length; i++) {
       ageregforStr += agereg[i]
-      if (i != agereg.length - 1) ageregforStr += '/ '
+      if (i !== agereg.length - 1) ageregforStr += '/ '
       console.log(ageregforStr)
     }
     for (let i = 0; i < personalityreg.length; i++) {
       personalityregforStr += personalityreg[i]
-      if (i != personalityreg.length - 1) personalityregforStr += '/ '
+      if (i !== personalityreg.length - 1) personalityregforStr += '/ '
       console.log(personalityregforStr)
     }
 
@@ -411,8 +409,8 @@ function Register_pageall() {
   }
 
   const register = () => {
-    if (teacherstyle == false) {
-      if (googlemeet == '') {
+    if (teacherstyle === false) {
+      if (googlemeet === '') {
         console.log('errormessage')
         seterrormessage(a[status])
       } else {
@@ -422,16 +420,16 @@ function Register_pageall() {
       }
     } else {
       if (
-        PhoneReg == '' ||
-        EmailReg == '' ||
-        GenderReg == '' ||
-        birthdaydate == '' ||
-        gradereg == '' ||
-        schoolnamereg == ''
+        PhoneReg === '' ||
+        EmailReg === '' ||
+        GenderReg === '' ||
+        birthdaydate === '' ||
+        gradereg === '' ||
+        schoolnamereg === ''
       ) {
         console.log('errormessage')
         seterrormessage(c[status])
-      } else if (emailError == '') {
+      } else if (emailError === '') {
         seterrormessage('')
         setOpen(true)
         savedatastu()
@@ -450,10 +448,10 @@ function Register_pageall() {
   const pageplus5 = () => {
     console.log(pagenum)
     if (
-      subjectReg == '' ||
-      agereg == '' ||
-      stugenderreg == '' ||
-      personalityreg == ''
+      subjectReg === '' ||
+      agereg === '' ||
+      stugenderreg === '' ||
+      personalityreg === ''
     ) {
       console.log('errormessage')
       seterrormessage(c[status])
@@ -464,7 +462,7 @@ function Register_pageall() {
   }
   const pageplus4 = () => {
     console.log(pagenum)
-    if (birthdaydate == '' || gradereg == '' || schoolnamereg == '') {
+    if (birthdaydate === '' || gradereg === '' || schoolnamereg === '') {
       console.log('errormessage')
       seterrormessage(c[status])
     } else {
@@ -474,26 +472,26 @@ function Register_pageall() {
   }
   const pageplus3 = () => {
     console.log(pagenum)
-    if (teacherstyle == false) {
+    if (teacherstyle === false) {
       if (
-        FirstnameReg == '' ||
-        LastnameReg == '' ||
-        GenderReg == '' ||
-        PhoneReg == '' ||
-        EmailReg == ''
+        FirstnameReg === '' ||
+        LastnameReg === '' ||
+        GenderReg === '' ||
+        PhoneReg === '' ||
+        EmailReg === ''
       ) {
         console.log('errormessage')
         seterrormessage(c[status])
-      } else if (emailError == '') {
+      } else if (emailError === '') {
         setpagenum(pagenum + 1)
         seterrormessage('')
       }
     } else {
-      if (usernameReg == '' || passwordReg == '' || cPassword == '') {
+      if (usernameReg === '' || passwordReg === '' || cPassword === '') {
         console.log('errormessage')
         seterrormessage(c[status])
       } else {
-        if (passwordReg != cPassword) {
+        if (passwordReg !== cPassword) {
           console.log('errormessage')
           seterrormessage(d[status])
         } else {
@@ -510,12 +508,12 @@ function Register_pageall() {
   }
   const pageplus2 = () => {
     console.log(pagenum)
-    if (teacherstyle == false) {
-      if (usernameReg == '' || passwordReg == '' || cPassword == '') {
+    if (teacherstyle === false) {
+      if (usernameReg === '' || passwordReg === '' || cPassword === '') {
         console.log('errormessage')
         seterrormessage(c[status])
       } else {
-        if (passwordReg != cPassword) {
+        if (passwordReg !== cPassword) {
           console.log('errormessage')
           seterrormessage(d[status])
         } else {
@@ -529,7 +527,7 @@ function Register_pageall() {
         }
       }
     } else {
-      if (stu_chinese_name == '' || stu_chinese_name_first == '') {
+      if (stu_chinese_name === '' || stu_chinese_name_first === '') {
         seterrormessage(c[status])
       } else {
         setpagenum(pagenum + 1)
@@ -539,15 +537,15 @@ function Register_pageall() {
   }
   const pageplus1_5 = () => {
     console.log(pagenum)
-    if (teacherstyle == false) {
-      if (validationcode != 'vcwego') {
+    if (teacherstyle === false) {
+      if (validationcode !== 'vcwego') {
         seterrormessage(f[status])
       } else {
         setpagenum(pagenum + 0.5)
         seterrormessage('')
       }
     } else {
-      if (validationcode != 'vcds') {
+      if (validationcode !== 'vcds') {
         seterrormessage(f[status])
       } else {
         setpagenum(pagenum + 0.5)
@@ -557,7 +555,7 @@ function Register_pageall() {
   }
   const pageplus1 = () => {
     console.log(pagenum)
-    if (studentstyle == false || teacherstyle == false) {
+    if (studentstyle === false || teacherstyle === false) {
       setpagenum(pagenum + 0.5)
       seterrormessage('')
     } else {
@@ -592,7 +590,7 @@ function Register_pageall() {
 
   const [open, setOpen] = useState(false)
 
-  if (pagenum == 0) {
+  if (pagenum === 0) {
     return (
       <div className="all">
         <div className="bar"></div>
@@ -640,8 +638,8 @@ function Register_pageall() {
         </div>
       </div>
     )
-  } else if (pagenum == 0.5) {
-    if (teacherstyle == false) {
+  } else if (pagenum === 0.5) {
+    if (teacherstyle === false) {
       return (
         <div className="all">
           <div className="bar">
@@ -758,8 +756,8 @@ function Register_pageall() {
         </div>
       )
     }
-  } else if (pagenum == 1) {
-    if (teacherstyle == false) {
+  } else if (pagenum === 1) {
+    if (teacherstyle === false) {
       return (
         <div className="all">
           <div className="bar">
@@ -924,8 +922,8 @@ function Register_pageall() {
         </div>
       )
     }
-  } else if (pagenum == 2) {
-    if (teacherstyle == false) {
+  } else if (pagenum === 2) {
+    if (teacherstyle === false) {
       return (
         <div className="all">
           <div className="bar">
@@ -1188,8 +1186,8 @@ function Register_pageall() {
         </div>
       )
     }
-  } else if (pagenum == 3) {
-    if (teacherstyle == false) {
+  } else if (pagenum === 3) {
+    if (teacherstyle === false) {
       return (
         <div className="all">
           <div className="bar">
@@ -1764,14 +1762,13 @@ function Register_pageall() {
                 >
                   {mn[status]}
                 </button>
-                {/* </Link> */}
               </div>
             </div>
           </div>
         </div>
       )
     }
-  } else if (pagenum == 4) {
+  } else if (pagenum === 4) {
     return (
       <div className="all">
         <div className="bar">

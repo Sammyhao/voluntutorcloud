@@ -63,9 +63,7 @@ function Myfav() {
   const handlefinalclose = () => {
     setcheckopen(false)
   }
-  const [subject, setSubject] = useState('Math') // change the subject from here
-  const [schoolname, setSchoolname] = useState('')
-  const [address, setAddress] = useState('')
+
   const [status, setStatus] = useState(1)
   const [isLoading, setLoading] = useState(true)
   const [favProgramListLen, setFavProgramListLen] = useState(0)

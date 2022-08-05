@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Bookingcomp.css'
 
 import { Divider } from '@mui/material'
@@ -7,11 +7,11 @@ export const Bookingcomp = ({ msg, bookingInfo }) => {
   console.log(bookingInfo)
   let status = 0
   for (let i = 0; i < bookingInfo.length; i++) {
-    if (bookingInfo[i].length == 0) {
+    if (bookingInfo[i].length === 0) {
       status += 1
     }
   }
-  if (status == bookingInfo.length) {
+  if (status === bookingInfo.length) {
     console.log('length==0')
     return (
       <div className="bookingoutestwrap">

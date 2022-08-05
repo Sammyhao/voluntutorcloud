@@ -10,6 +10,7 @@ export default function Profile() {
   const [role, setRole] = useState(true)
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
+  
   useEffect(() => {
     setRole(user.role)
   }, [])

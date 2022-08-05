@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux'
 import '@progress/kendo-theme-default/dist/all.css'
 
 function Port_nav() {
-  window.addEventListener('resize', showButton)
   const [sidebar, setSidebar] = useState(false)
   const showSidebar = () => setSidebar(!sidebar)
   const [click, setClick] = useState(false)
@@ -28,7 +27,10 @@ function Port_nav() {
       setButton(true)
     }
   }
+
   const user = useSelector((state) => state.user.value)
+
+  window.addEventListener('resize', showButton)
 
   useEffect(() => {
     setStatus(user.language)
@@ -45,7 +47,7 @@ function Port_nav() {
       }
     }
     showButton()
-  })
+  }, [])
 
   return (
     <>

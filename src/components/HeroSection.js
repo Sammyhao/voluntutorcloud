@@ -15,7 +15,7 @@ function HeroSection() {
   const [name, setName] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [role, setRole] = useState(true)
-  // const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   // titles
   let a = ['WELCOME', '歡迎']
   let b = [
@@ -34,8 +34,10 @@ function HeroSection() {
     setStatus(user.language)
     setName(user.name)
     setRole(user.role)
-    // setLoading(false);
+    setLoading(false);
   }, [user])
+
+  if(isLoading) return <Loading/>
 
   return (
     <div className="hero-container">

@@ -40,6 +40,7 @@ export default function Admin_pair() {
   const [clickednum, setclickednum] = useState(0)
   const [account, setaccount] = useState('')
   const [password, setpassword] = useState('')
+  
   const closeopen = () => {
     setopen(false)
   }
@@ -48,10 +49,6 @@ export default function Admin_pair() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Axios.post('https://voluntutorcloud-server.herokuapp.com/addFullName').then((response) => {
-    //   console.log(response.data);
-    // })
-
     Axios.post(
       'https://voluntutorcloud-server.herokuapp.com/findAllContact',
     ).then((response) => {

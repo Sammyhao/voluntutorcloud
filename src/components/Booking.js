@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Divider } from '@mui/material'
-import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import './Booking.css'
 import emailjs from 'emailjs-com'
 import Loading from './Loading'
@@ -46,8 +45,6 @@ BootstrapDialogTitle.propTypes = {
 }
 
 export default function Booking() {
-  const [nameclick, setnameclick] = useState(false)
-  const [multistudentname, setMultistudentname] = useState([])
   const [chosenStuname, setChosenStuname] = useState('')
   const [noneopen, setnoneopen] = useState(false)
   const [bookedwarn, setbookedwarn] = useState(false)
@@ -58,8 +55,6 @@ export default function Booking() {
     new Date('2018-01-01T00:00:00.000Z'),
   )
   const [endtime, setendtime] = useState(new Date('2018-01-01T00:00:00.000Z'))
-  const [time, settime] = useState('')
-  const [duration, setduration] = useState(0)
   const [status, setStatus] = useState(1)
   const [isLoading, setLoading] = useState(true)
   const [contactInfo, setContactInfo] = useState([])
@@ -74,13 +69,14 @@ export default function Booking() {
   const [formattedduration, setformattedduration] = useState(0.0)
   const [formatteddurationmin, setformatteddurationmin] = useState(0)
   const [formatteddurationhrs, setformatteddurationhrs] = useState(0)
-  let username = ''
-  let studentname = ''
-  let tempstudentname = ''
-  let datearr = []
   const [datedate, setdatedate] = useState(new Date())
   const [selectedstudentname, setstudentname] = useState('')
   const [selectedstudentid, setstudentid] = useState(0)
+
+  let username = ''
+  let studentname = ''
+  let datearr = []
+
   // titles
   let n = [
     "Oops, seems like you don't have any student yet.",
@@ -190,7 +186,6 @@ export default function Booking() {
   }
 
   function deleteBooking(booking) {
-    //console.log(booking)
     Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteBooking', {
       username: booking.username,
       studentname: booking.studentname,
@@ -202,12 +197,10 @@ export default function Booking() {
   }
 
   function checkBookingInfoValidity(bkinfo) {
-    //console.log(bkinfo)
     setBookingInfoLen(bkinfo.length)
     for (let i = 0; i < bkinfo.length; i++) {
       var date = bkinfo[i].date
       datearr = date.split('-')
-      //console.log(datearr)
       for (let j = 0; j < date.length; j++) {
         datearr[j] = Number(datearr[j])
       }
