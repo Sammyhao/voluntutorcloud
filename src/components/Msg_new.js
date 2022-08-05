@@ -112,7 +112,10 @@ function Msg() {
               {allMsg.map((chtRm, ind) => {
                 if (ind === index.current) {
                   tmpChtRm = chtRm
-                  tempmess = [[chtRm.sender], [chtRm.msg]]
+                  for (let i = 0; i < tmpChtRm.length; i++) {
+                    tempmess[i].msg = tmpChtRm[i].msg
+                    tempmess[i].sender = tmpChtRm[i].sender
+                  }
                 }
                 console.log(tmpChtRm)
                 console.log(tempmess)
@@ -121,6 +124,7 @@ function Msg() {
                     className="shadowing"
                     onClick={() => {
                       index.current = ind
+                      console.log(index.current)
                     }}
                   >
                     <div className="outerbox">
