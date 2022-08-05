@@ -32,7 +32,7 @@ function Msg() {
       username: user.username,
     })
       .then((response1) => {
-        // console.log(user.username, "'s contact includes: ", response1.data)
+        console.log(user.username, "'s contact includes: ", response1.data)
         for (let i = 0; i < response1.data.length; i++) {
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
             username: response1.data[i].username,
@@ -69,10 +69,12 @@ function Msg() {
         // console.log(error)
       })
   }, [])
+
   useEffect(() => {
     index.current = selected
     console.log(index.current)
   }, [selected])
+  
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: tmpChtRm[0].username,
