@@ -27,7 +27,7 @@ function S_Msg() {
     setStatus(user.language)
     setAllMsg([])
     Axios.post('https://voluntutorcloud-server.herokuapp.com/findContactbyName', {
-      username: user.name,
+      studentname: user.name,
     })
       .then((response1) => {
         console.log(user.name, "'s contact includes: ", response1.data)
@@ -67,10 +67,6 @@ function S_Msg() {
         // console.log(error)
       })
   }, [])
-
-  function ToRerender() {
-    setRerender(!rerender);
-  }
 
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
@@ -112,22 +108,11 @@ function S_Msg() {
               </div>
             </div>
             <div className="peoplelist">
-              {allMsg.map((chtRm, ind) => {
-                if (ind === index.current) {
-                  tmpChtRm = chtRm
-                }
+              {allMsg.map((chtRm) => {
+                tmpChtRm = chtRm
                 console.log(tmpChtRm)
                 return (
-                  <div
-                    className="shadowing"
-                    onClick={() => {
-                      index.current = ind
-                      console.log(index.current)
-                      tmpChtRm = allMsg[index.current]
-                      console.log(tmpChtRm)
-                      ToRerender();
-                    }}
-                  >
+                  <div className="shadowing">
                     <div className="outerbox">
                       <div className="imagemsg">
                         <FaUser className="msg_icon" />
