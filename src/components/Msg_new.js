@@ -15,9 +15,8 @@ function Msg() {
   const [curMsg, setCurMsg] = useState('')
   const [isLoading, setLoading] = useState(true)
   const [allMsg, setAllMsg] = useState([])
-  const [selected, setselected] = useState(0)
   let tmpChtRm = []
-
+  let tempmess = []
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
   let b = ['Find friends', '尋找朋友']
   let c = ['Enter your message...', '請輸入訊息...']
@@ -70,11 +69,6 @@ function Msg() {
       })
   }, [])
 
-  useEffect(() => {
-    index.current = selected
-    console.log(index.current)
-  }, [selected])
-
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: tmpChtRm[0].username,
@@ -116,13 +110,17 @@ function Msg() {
             </div>
             <div className="peoplelist">
               {allMsg.map((chtRm, ind) => {
-                if (ind === index.current) tmpChtRm = chtRm
+                if (ind === index.current) {
+                  tmpChtRm = chtRm
+                  tempmess = [[chtRm.sender], [chtRm.msg]]
+                }
                 console.log(tmpChtRm)
+                console.log(tempmess)
                 return (
                   <div
                     className="shadowing"
                     onClick={() => {
-                      setselected(ind)
+                      index.current = ind
                     }}
                   >
                     <div className="outerbox">
@@ -144,7 +142,7 @@ function Msg() {
           <div className="chatcontent">
             <div className="chatname">{tmpChtRm[0].studentname}</div>
             <div className="chat">
-              {tmpChtRm.map((msg) => {
+              {tempmess.map((msg) => {
                 return (
                   <Msg_user
                     type={msg.sender === 'T' ? 'user' : 'recipient'}
@@ -166,8 +164,9 @@ function Msg() {
               <div
                 className="sendword"
                 onClick={() => {
-                  tmpChtRm = [...tmpChtRm, curMsg]
-                  console.log(tmpChtRm)
+                  let temparr = tempmess
+                  temparr[temparr.length] = { msg: curMsg, sender: 'T' }
+                  console.log(tempmess)
                   updateMsg()
                 }}
               >
