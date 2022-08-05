@@ -145,9 +145,9 @@ export default function Portfolio() {
           setbirthday(response.data[0].birthday)
           setgrade(response.data[0].grade)
           setschool(response.data[0].schoolname)
-          if (response.data[0].bio != '') setbio(response.data[0].bio)
+          if (response.data[0].bio !== '') setbio(response.data[0].bio)
           else setbio(bio)
-          if (response.data[0].about != '') setabout(response.data[0].about)
+          if (response.data[0].about !== '') setabout(response.data[0].about)
           else setabout(about)
           setLoading(false)
         })
@@ -158,7 +158,7 @@ export default function Portfolio() {
   function multistyle() {
     console.log('into function')
     console.log(multistudentname)
-    if (multistudentname.length == 0) {
+    if (multistudentname.length === 0) {
       return <div></div>
     } else {
       console.log(multistudentname[0])

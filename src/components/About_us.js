@@ -7,9 +7,10 @@ export default function About_us() {
   const [status, setStatus] = useState(1)
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
+
   useEffect(() => {
     setStatus(user.language)
-  })
+  }, [])
 
   let a = ['About Us', '關於我們']
   let b = ['Global Connections', '教育橋梁']

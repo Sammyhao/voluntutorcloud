@@ -6,12 +6,12 @@ import Axios from 'axios'
 
 export default function Team() {
   const [status, setStatus] = useState(1)
-  let username = ''
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
+
   useEffect(() => {
     setStatus(user.language)
-  })
+  }, [])
   // titles
   let a = ['Team', '團隊介紹']
   let b = ['Ruby Chang', '張舒晴 Ruby']

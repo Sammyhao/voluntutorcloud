@@ -23,8 +23,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }))
 
-let program = 0
-
 const BootstrapDialogTitle = (props) => {
   const { children, ...other } = props
 
@@ -60,10 +58,11 @@ function Function() {
 
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
+
   useEffect(() => {
     setIsLoggedIn(user.login)
     setStatus(user.language)
-  })
+  }, [])
 
   return (
     <div className="container_func">

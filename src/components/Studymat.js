@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState, useEffect, ChangeEvent, ChangeEventHandler } from 'react'
+import { useState, useEffect } from 'react'
 import './Studymat.css'
 import PropTypes from 'prop-types'
 import { Divider } from '@mui/material'
@@ -112,10 +112,6 @@ export default function Studymat() {
 
   const [filteredarray, setfiltered] = useState([])
   let submat = []
-  const [sub, setsub] = useState('')
-  const [chinsub, setchinsub] = useState('')
-  const [gra, setgra] = useState('')
-  let username = ''
   const [isLoading, setLoading] = useState(true)
   const [status, setStatus] = useState(1)
 

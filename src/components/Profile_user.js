@@ -44,7 +44,6 @@ function Profile_user() {
   const [studentpers, setstudentpers] = useState('outgoing')
   const [bio, setbio] = useState('For Better Unity, Help Your Community ')
   const [about, setabout] = useState('Join Voluntutor Cloud!')
-  const [hasSetData, setHasSetData] = useState(false)
   const [curVolProg, setCurVolProg] = useState('')
   const [errormessage, seterrormessage] = useState('')
   const [contacterror, setcontacterror] = useState('')
@@ -105,7 +104,6 @@ function Profile_user() {
     </div>,
   )
   const navigate = useNavigate()
-  let username = ''
 
   // titles
   let b = ['Please enter a valid email.', '請輸入正確的Email']
@@ -194,7 +192,7 @@ function Profile_user() {
   }
   const handleclick_contact = () => {
     //console.log(contactclick)
-    if (phone == '' || email == '') {
+    if (phone === '' || email === '') {
       setcontacterror(c[status])
     } else {
       //console.log('cc')
@@ -225,7 +223,7 @@ function Profile_user() {
 
   const handleclick_pers = () => {
     //console.log('dd')
-    if (gender == '' || birthday == '' || grade == '' || school == '') {
+    if (gender === '' || birthday === '' || grade === '' || school === '') {
       setpersonerror(c[status])
     } else {
       setpersonerror('')

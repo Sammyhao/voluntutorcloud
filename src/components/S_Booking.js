@@ -37,8 +37,6 @@ const BootstrapDialogTitle = (props) => {
   )
 }
 
-let program = 0
-
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }

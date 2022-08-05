@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { GrFavorite, GrPin } from 'react-icons/gr'
 import { CgProfile } from 'react-icons/cg'
-import { BsCalendarCheck } from 'react-icons/bs'
 import { MdBookmarkBorder, MdOutlineSchool } from 'react-icons/md'
 import { AiOutlineMessage, AiOutlineCalendar } from 'react-icons/ai'
 import { FaBook} from 'react-icons/fa'
