@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
 import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import './Msg.css'
@@ -24,7 +24,8 @@ function Msg() {
   let b = ['Find friends', '尋找朋友']
   let c = ['Enter your message...', '請輸入訊息...']
   let d = ['send', '傳送']
-  let index = 0
+  const index = useRef(0)
+  
   useEffect(() => {
     // console.log('user: ', user)
     setStatus(user.language)
@@ -41,6 +42,7 @@ function Msg() {
             username: response1.data[i].username,
             studentname: response1.data[i].studentname,
           }).then((response2) => {
+            console.log(response2.data);
             if (response2.data.length)
               setAllMsg((allMsg) => [...allMsg, response2.data])
             else
@@ -64,8 +66,8 @@ function Msg() {
       })
   }, [])
   useEffect(() => {
-    index = selected
-    console.log(index)
+    index.current = selected
+    console.log(index.current)
   }, [selected])
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
