@@ -15,6 +15,7 @@ function Msg() {
   const [curMsg, setCurMsg] = useState('')
   const [isLoading, setLoading] = useState(true)
   const [allMsg, setAllMsg] = useState([])
+  const [temp, settemp] = useState([])
   let tmpChtRm = []
   let tempmess = []
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
@@ -93,7 +94,15 @@ function Msg() {
     setTimeout(() => setCurMsg(' '), 1000)
     setTimeout(() => setCurMsg(''), 1000)
   }
-
+  useEffect(() => {
+    for (let i = 0; i < allMsg[index].length; i++) {
+      let tempobj = {
+        msg: allMsg[index][i].msg,
+        sender: allMsg[index][i].sender,
+      }
+      tempmess[i] = tempobj
+    }
+  }, [temp])
   if (isLoading) {
     return <Loading />
   } else {
@@ -112,13 +121,7 @@ function Msg() {
               {allMsg.map((chtRm, ind) => {
                 if (ind === index.current) {
                   tmpChtRm = chtRm
-                  for (let i = 0; i < tmpChtRm.length; i++) {
-                    let tempobj = {
-                      msg: tmpChtRm[i].msg,
-                      sender: tmpChtRm[i].sender,
-                    }
-                    tempmess[i] = tempobj
-                  }
+                  settemp(chtRm)
                 }
                 console.log(tmpChtRm)
                 console.log(tempmess)
@@ -173,6 +176,7 @@ function Msg() {
                 onClick={() => {
                   let temparr = tempmess
                   temparr[temparr.length] = { msg: curMsg, sender: 'T' }
+                  tempmess = temparr
                   console.log(tempmess)
                   updateMsg()
                 }}
