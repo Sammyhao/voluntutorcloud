@@ -51,7 +51,7 @@ function Navbar() {
     }).then((response) => {
       setNotif_data(response.data)
     })
-  }, [])
+  }, [user])
 
   const showSidebar = () => setSidebar(!sidebar)
   const shownotification = () => {

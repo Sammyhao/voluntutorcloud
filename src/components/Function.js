@@ -62,7 +62,7 @@ function Function() {
   useEffect(() => {
     setIsLoggedIn(user.login)
     setStatus(user.language)
-  }, [])
+  })
 
   return (
     <div className="container_func">

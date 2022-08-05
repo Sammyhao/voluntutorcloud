@@ -116,9 +116,7 @@ function Msg() {
             </div>
             <div className="peoplelist">
               {allMsg.map((chtRm, ind) => {
-                console.log(index)
-                console.log(ind)
-                if (ind === index) tmpChtRm = chtRm
+                if (ind === index.current) tmpChtRm = chtRm
                 console.log(tmpChtRm)
                 return (
                   <div
