@@ -113,7 +113,7 @@ function Msg() {
                 if (ind === index.current) {
                   tmpChtRm = chtRm
                   for (let i = 0; i < tmpChtRm.length; i++) {
-                    tempobj = {
+                    let tempobj = {
                       msg: tmpChtRm[i].msg,
                       sender: tmpChtRm[i].sender,
                     }
