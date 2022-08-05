@@ -16,8 +16,6 @@ function Msg() {
   const [isLoading, setLoading] = useState(true)
   const [allMsg, setAllMsg] = useState([])
   const [selected, setselected] = useState(0)
-  let username = '',
-    studentname = ''
   let tmpChtRm = []
 
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
@@ -36,13 +34,11 @@ function Msg() {
       .then((response1) => {
         // console.log(user.username, "'s contact includes: ", response1.data)
         for (let i = 0; i < response1.data.length; i++) {
-          username = response1.data[i].username
-          studentname = response1.data[i].studentname
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
             username: response1.data[i].username,
             studentname: response1.data[i].studentname,
           }).then((response2) => {
-            console.log(response2.data);
+            console.log(response1.data[i]);
             if (response2.data.length)
               setAllMsg((allMsg) => [...allMsg, response2.data])
             else
@@ -50,14 +46,22 @@ function Msg() {
                 ...allMsg,
                 [
                   {
-                    username: username,
-                    studentname: studentname,
+                    username: response1.data[i].username,
+                    studentname: response1.data[i].studentname,
                     msg: '',
                     sender: 'T',
                   },
                 ],
               ])
-            if (i === response1.data.length - 1) setLoading(false)
+              console.log("add ", [
+                {
+                  username: response1.data[i].username,
+                  studentname: response1.data[i].studentname,
+                  msg: '',
+                  sender: 'T',
+                },
+              ]);
+              if (i === response1.data.length - 1) setLoading(false)
           })
         }
       })
