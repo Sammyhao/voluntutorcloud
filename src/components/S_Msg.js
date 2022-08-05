@@ -133,7 +133,7 @@ function S_Msg() {
                         <FaUser className="msg_icon" />
                       </div>
                       <div className="infoboxmsg">
-                        <div className="namemsg">{chtRm[0].studentname}</div>
+                        <div className="namemsg">{chtRm[0].username}</div>
                         <div className="latestmsg">
                           {chtRm[chtRm.length - 1].msg.substring(0, 8)}{(chtRm[chtRm.length - 1].msg.length > 8) ? "..." : ""}
                         </div>
@@ -145,7 +145,7 @@ function S_Msg() {
             </div>
           </div>
           <div className="chatcontent">
-            <div className="chatname">{tmpChtRm[0].studentname}</div>
+            <div className="chatname">{tmpChtRm[0].username}</div>
             <div className="chat">
               {tmpChtRm.map((msg) => {
                 return (
