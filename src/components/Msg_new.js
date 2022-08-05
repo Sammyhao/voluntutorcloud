@@ -23,7 +23,7 @@ function Msg() {
   let c = ['Enter your message...', '請輸入訊息...']
   let d = ['send', '傳送']
   const index = useRef(0)
-  
+
   useEffect(() => {
     // console.log('user: ', user)
     setStatus(user.language)
@@ -38,7 +38,7 @@ function Msg() {
             username: response1.data[i].username,
             studentname: response1.data[i].studentname,
           }).then((response2) => {
-            console.log(response1.data[i]);
+            console.log(response1.data[i])
             if (response2.data.length)
               setAllMsg((allMsg) => [...allMsg, response2.data])
             else
@@ -53,15 +53,15 @@ function Msg() {
                   },
                 ],
               ])
-              console.log("add ", [
-                {
-                  username: response1.data[i].username,
-                  studentname: response1.data[i].studentname,
-                  msg: '',
-                  sender: 'T',
-                },
-              ]);
-              if (i === response1.data.length - 1) setLoading(false)
+            console.log('add ', [
+              {
+                username: response1.data[i].username,
+                studentname: response1.data[i].studentname,
+                msg: '',
+                sender: 'T',
+              },
+            ])
+            if (i === response1.data.length - 1) setLoading(false)
           })
         }
       })
@@ -74,7 +74,7 @@ function Msg() {
     index.current = selected
     console.log(index.current)
   }, [selected])
-  
+
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: tmpChtRm[0].username,
@@ -142,9 +142,9 @@ function Msg() {
             </div>
           </div>
           <div className="chatcontent">
-            <div className="chatname">{tmpChtRm[0].studentname}</div>
+            <div className="chatname">{allMsg[index][0].studentname}</div>
             <div className="chat">
-              {tmpChtRm.map((msg) => {
+              {allMsg[index].map((msg) => {
                 return (
                   <Msg_user
                     type={msg.sender === 'T' ? 'user' : 'recipient'}
@@ -163,7 +163,14 @@ function Msg() {
                   setCurMsg(e.target.value)
                 }}
               />
-              <div className="sendword" onClick={updateMsg}>
+              <div
+                className="sendword"
+                onClick={() => {
+                  tmpChtRm = [...tmpChtRm, curMsg]
+                  console.log(tmpChtRm)
+                  updateMsg()
+                }}
+              >
                 {d[status]}
               </div>
             </div>
