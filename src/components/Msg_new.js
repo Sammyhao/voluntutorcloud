@@ -116,7 +116,7 @@ function Msg() {
             </div>
             <div className="peoplelist">
               {allMsg.map((chtRm, ind) => {
-                tmpChtRm = chtRm
+                if (ind === index) tmpChtRm = chtRm
                 console.log(tmpChtRm)
                 return (
                   <div
@@ -142,9 +142,9 @@ function Msg() {
             </div>
           </div>
           <div className="chatcontent">
-            <div className="chatname">{allMsg[index][0].studentname}</div>
+            <div className="chatname">{tmpChtRm[0].studentname}</div>
             <div className="chat">
-              {allMsg[index].map((msg) => {
+              {tmpChtRm.map((msg) => {
                 return (
                   <Msg_user
                     type={msg.sender === 'T' ? 'user' : 'recipient'}
