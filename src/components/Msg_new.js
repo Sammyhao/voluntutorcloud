@@ -67,9 +67,6 @@ function Msg() {
         // console.log(error)
       })
   }, [])
-  useEffect(() => {
-    updatelayout()
-  }, [tmpChtRm])
   const updatelayout = () => {
     return (
       <div className="chatcontent">
@@ -151,6 +148,7 @@ function Msg() {
                   tmpChtRm = chtRm
                 }
                 console.log(tmpChtRm)
+                updatelayout()
                 return (
                   <div
                     className="shadowing"
@@ -159,6 +157,7 @@ function Msg() {
                       console.log(index.current)
                       tmpChtRm = allMsg[index.current]
                       console.log(tmpChtRm)
+                      updatelayout()
                     }}
                   >
                     <div className="outerbox">
