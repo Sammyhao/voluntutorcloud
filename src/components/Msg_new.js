@@ -113,8 +113,11 @@ function Msg() {
                 if (ind === index.current) {
                   tmpChtRm = chtRm
                   for (let i = 0; i < tmpChtRm.length; i++) {
-                    tempmess[i]['msg'] = tmpChtRm[i].msg
-                    tempmess[i]['sender'] = tmpChtRm[i].sender
+                    tempobj = {
+                      msg: tmpChtRm[i].msg,
+                      sender: tmpChtRm[i].sender,
+                    }
+                    tempmess[i] = tempobj
                   }
                 }
                 console.log(tmpChtRm)
