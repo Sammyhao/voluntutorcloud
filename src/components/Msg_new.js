@@ -15,6 +15,7 @@ function Msg() {
   const [curMsg, setCurMsg] = useState('')
   const [isLoading, setLoading] = useState(true)
   const [allMsg, setAllMsg] = useState([])
+  const [selected, setselected] = useState(0)
   let username = '',
     studentname = ''
   let tmpChtRm = []
@@ -23,7 +24,7 @@ function Msg() {
   let b = ['Find friends', '尋找朋友']
   let c = ['Enter your message...', '請輸入訊息...']
   let d = ['send', '傳送']
-
+  let index = 0
   useEffect(() => {
     // console.log('user: ', user)
     setStatus(user.language)
@@ -40,14 +41,6 @@ function Msg() {
             username: response1.data[i].username,
             studentname: response1.data[i].studentname,
           }).then((response2) => {
-            // console.log(
-            //   'Record of ',
-            //   username,
-            //   ' and ',
-            //   studentname,
-            //   ' : ',
-            //   response2.data,
-            // )
             if (response2.data.length)
               setAllMsg((allMsg) => [...allMsg, response2.data])
             else
@@ -70,7 +63,10 @@ function Msg() {
         // console.log(error)
       })
   }, [])
-
+  useEffect(() => {
+    index = selected
+    console.log(index)
+  }, [selected])
   const updateMsg = () => {
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: tmpChtRm[0].username,
@@ -111,10 +107,16 @@ function Msg() {
               </div>
             </div>
             <div className="peoplelist">
-              {allMsg.map((chtRm) => {
+              {allMsg.map((chtRm, ind) => {
                 tmpChtRm = chtRm
+                console.log(tmpChtRm)
                 return (
-                  <div className="shadowing">
+                  <div
+                    className="shadowing"
+                    onClick={() => {
+                      setselected(ind)
+                    }}
+                  >
                     <div className="outerbox">
                       <div className="imagemsg">
                         <FaUser className="msg_icon" />
@@ -122,7 +124,7 @@ function Msg() {
                       <div className="infoboxmsg">
                         <div className="namemsg">{chtRm[0].studentname}</div>
                         <div className="latestmsg">
-                          {chtRm[chtRm.length - 1].msg.substring(0, 100)}...
+                          {chtRm[chtRm.length - 1].msg.substring(0, 8)}...
                         </div>
                       </div>
                     </div>
@@ -135,7 +137,6 @@ function Msg() {
             <div className="chatname">{tmpChtRm[0].studentname}</div>
             <div className="chat">
               {tmpChtRm.map((msg) => {
-                // console.log(tmpChtRm)
                 return (
                   <Msg_user
                     type={msg.sender === 'T' ? 'user' : 'recipient'}
