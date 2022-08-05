@@ -15,9 +15,7 @@ function Msg() {
   const [curMsg, setCurMsg] = useState('')
   const [isLoading, setLoading] = useState(true)
   const [allMsg, setAllMsg] = useState([])
-  const [temp, settemp] = useState([])
   let tmpChtRm = []
-  let tempmess = []
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
   let b = ['Find friends', '尋找朋友']
   let c = ['Enter your message...', '請輸入訊息...']
@@ -94,15 +92,7 @@ function Msg() {
     setTimeout(() => setCurMsg(' '), 1000)
     setTimeout(() => setCurMsg(''), 1000)
   }
-  useEffect(() => {
-    for (let i = 0; i < allMsg[index].length; i++) {
-      let tempobj = {
-        msg: allMsg[index][i].msg,
-        sender: allMsg[index][i].sender,
-      }
-      tempmess[i] = tempobj
-    }
-  }, [temp])
+
   if (isLoading) {
     return <Loading />
   } else {
@@ -120,11 +110,9 @@ function Msg() {
             <div className="peoplelist">
               {allMsg.map((chtRm, ind) => {
                 if (ind === index.current) {
-                  tmpChtRm = chtRm
-                  settemp(chtRm)
+                  tmpChtRm = tmpChtRm
                 }
                 console.log(tmpChtRm)
-                console.log(tempmess)
                 return (
                   <div
                     className="shadowing"
@@ -152,7 +140,7 @@ function Msg() {
           <div className="chatcontent">
             <div className="chatname">{tmpChtRm[0].studentname}</div>
             <div className="chat">
-              {tempmess.map((msg) => {
+              {allMsg[index].map((msg) => {
                 return (
                   <Msg_user
                     type={msg.sender === 'T' ? 'user' : 'recipient'}
@@ -174,10 +162,6 @@ function Msg() {
               <div
                 className="sendword"
                 onClick={() => {
-                  let temparr = tempmess
-                  temparr[temparr.length] = { msg: curMsg, sender: 'T' }
-                  tempmess = temparr
-                  console.log(tempmess)
                   updateMsg()
                 }}
               >
