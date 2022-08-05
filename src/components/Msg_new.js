@@ -120,6 +120,7 @@ function Msg() {
                       index.current = ind
                       console.log(index.current)
                       tmpChtRm = allMsg[index.current]
+                      console.log(tmpChtRm)
                     }}
                   >
                     <div className="outerbox">
