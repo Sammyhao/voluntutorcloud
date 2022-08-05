@@ -110,7 +110,7 @@ function Msg() {
             <div className="peoplelist">
               {allMsg.map((chtRm, ind) => {
                 if (ind === index.current) {
-                  tmpChtRm = tmpChtRm
+                  tmpChtRm = chtRm
                 }
                 console.log(tmpChtRm)
                 return (
