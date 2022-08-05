@@ -107,6 +107,7 @@
   width: 70%;
   color: #745140;
   padding: 20px;
+  white-space: pre-line;
   font-size: 15px;
   background-color: #efe9e5;
   word-wrap: break-word;
@@ -118,6 +119,7 @@
 .content_content_rec {
   color: #745140;
   font-size: 12px;
+  white-space: pre-line;
   margin-top: 5px;
 }
 .content_rec_sec {
