@@ -1,16 +1,68 @@
 .team_pic {
-    height: 300px;
+  height: 300px;
+}
+.team_name {
+  text-align: center;
+  padding-bottom: 20px;
+  color: #745140;
+  font-size: 30px;
+}
+.team_role {
+  text-align: center;
+  color: #745140;
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+.team_line {
+  background-color: #c49483;
+}
+.team_role_wrap {
+  margin-top: 20px;
+}
+.about_uscont {
+  width: 100%;
+  padding-bottom: 200px;
+}
+.first {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.teamwrap {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.second_team {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.person2 {
+  top: 0;
+  padding-left: 20px;
+}
+
+@media screen and (max-width: 1020px) {
+  .team_pic {
+    height: 200px;
   }
   .team_name {
     text-align: center;
     padding-bottom: 20px;
     color: #745140;
-    font-size: 30px;
+    font-size: 25px;
   }
   .team_role {
     text-align: center;
     color: #745140;
-    font-size: 20px;
+    font-size: 17px;
     padding-bottom: 15px;
   }
   .team_line {
@@ -21,7 +73,6 @@
   }
   .about_uscont {
     width: 100%;
-    padding-bottom: 100px;
   }
   .first {
     display: flex;
@@ -48,110 +99,58 @@
     top: 0;
     padding-left: 20px;
   }
-  
-  @media screen and (max-width: 1020px) {
-    .team_pic {
-      height: 200px;
-    }
-    .team_name {
-      text-align: center;
-      padding-bottom: 20px;
-      color: #745140;
-      font-size: 25px;
-    }
-    .team_role {
-      text-align: center;
-      color: #745140;
-      font-size: 17px;
-      padding-bottom: 15px;
-    }
-    .team_line {
-      background-color: #c49483;
-    }
-    .team_role_wrap {
-      margin-top: 20px;
-    }
-    .about_uscont {
-      width: 100%;
-    }
-    .first {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      width: 100%;
-      justify-content: space-evenly;
-    }
-    .teamwrap {
-      margin-top: 50px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    .second_team {
-      margin-top: 30px;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-    }
-    .person2 {
-      top: 0;
-      padding-left: 20px;
-    }
+}
+
+@media screen and (max-width: 760px) {
+  .team_pic {
+    height: 300px;
   }
-  
-  @media screen and (max-width: 760px) {
-    .team_pic {
-      height: 300px;
-    }
-    .team_name {
-      text-align: center;
-      padding-bottom: 20px;
-      color: #745140;
-      font-size: 30px;
-    }
-    .team_role {
-      text-align: center;
-      color: #745140;
-      font-size: 20px;
-      padding-bottom: 15px;
-    }
-    .team_line {
-      background-color: #c49483;
-    }
-    .team_role_wrap {
-      margin-top: 20px;
-    }
-    .about_uscont {
-      width: 100%;
-    }
-    .first {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-    }
-    .teamwrap {
-      margin-top: 50px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    .second_team {
-      margin-top: 30px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .person2 {
-      top: 0;
-      padding-left: 20px;
-    }
+  .team_name {
+    text-align: center;
+    padding-bottom: 20px;
+    color: #745140;
+    font-size: 30px;
   }
-  
+  .team_role {
+    text-align: center;
+    color: #745140;
+    font-size: 20px;
+    padding-bottom: 15px;
+  }
+  .team_line {
+    background-color: #c49483;
+  }
+  .team_role_wrap {
+    margin-top: 20px;
+  }
+  .about_uscont {
+    width: 100%;
+  }
+  .first {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .teamwrap {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .second_team {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .person2 {
+    top: 0;
+    padding-left: 20px;
+  }
+}
