@@ -51,7 +51,7 @@ function Programusage() {
   let g = ['Date', '課堂日期']
   let h = ['Notes', '課堂筆記']
   let i = ['No records yet', '暫無紀錄']
-  let j = ['Search records: ', '查詢服務歷史']
+  let j = ['Search records: ', '查詢服務歷史：']
   let k = ['Select a time', '請選擇欲查詢時間']
   const user = useSelector((state) => state.user.value)
 
