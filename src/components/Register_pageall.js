@@ -196,6 +196,8 @@ function Register_pageall() {
   let yyzy = ['Yilan Guangxing Elementary School', '宜蘭縣廣興國民小學']
   let zzz = ['Taitung Hotspring Elementary School', '臺東縣溫泉國民小學']
   let yyzz = ['Taitung Kanding Elementary School', '臺東縣崁頂國民小學']
+  let aaaa = ['New Taipei Yifan Elementary School', '新北市義方國民小學']
+  let bbbb = ['Taitung Dongcheng Elementary School', '臺東縣東成國民小學']
   let asdbf = ['Select your preferred subjects', '請選擇你想要教導的科目']
   let abb = ['Select your preferred student grade', '請選擇學生年級']
   let abc = ['Select your preferred student gender', '請選擇學生性別']
@@ -268,6 +270,31 @@ function Register_pageall() {
       schoolnamereg === '宜蘭縣廣興國民小學'
     ) {
       school = '廣興國小'
+    }
+    if (
+      schoolnamereg === 'Taitung Hotspring Elementary School' ||
+      schoolnamereg === '臺東縣溫泉國民小學'
+    ) {
+      school = '溫泉國小'
+    }
+    if (
+      schoolnamereg === 'Taitung Kanding Elementary School' ||
+      schoolnamereg === '臺東縣崁頂國民小學'
+    ) {
+      school = '崁頂國小'
+    }
+
+    if (
+      schoolnamereg === 'Taitung Dongcheng Elementary School' ||
+      schoolnamereg === '臺東縣東成國民小學'
+    ) {
+      school = '東成國小'
+    }
+    if (
+      schoolnamereg === 'New Taipei Yifan Elementary School' ||
+      schoolnamereg === '新北市義方國民小學'
+    ) {
+      school = '義方國小'
     }
     if (GenderReg === '女') {
       gen = 'Female'
@@ -1714,6 +1741,8 @@ function Register_pageall() {
                     <MenuItem value={yyzy[status]}>{yyzy[status]}</MenuItem>
                     <MenuItem value={zzz[status]}>{zzz[status]}</MenuItem>
                     <MenuItem value={yyzz[status]}>{yyzz[status]}</MenuItem>
+                    <MenuItem value={aaaa[status]}>{aaaa[status]}</MenuItem>
+                    <MenuItem value={bbbb[status]}>{bbbb[status]}</MenuItem>
                   </Select>
                 </div>
 

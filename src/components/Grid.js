@@ -83,16 +83,17 @@ function Grid_sub() {
     setcheckopen(false)
   }
 
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     Axios.post(
       'https://voluntutorcloud-server.herokuapp.com/programWithoutSub',
     ).then((response) => {
+      console.log(response)
       if (response.data.length) {
         setProgramInfo(response.data)
       }
-      setLoading(false);
+      setLoading(false)
     })
   }, [])
 
@@ -167,7 +168,7 @@ function Grid_sub() {
   let q = ['Stay tuned!', '敬請期待！']
   let z = ['Added to favorite list.', '已加入最愛']
 
-  if(isLoading) return <Loading/>
+  if (isLoading) return <Loading />
   else {
     if (programInfo.length === 0) {
       return (

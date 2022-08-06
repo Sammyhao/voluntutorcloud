@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import './Programusage.css'
 import '../App.css'
+import MenuItem from '@mui/material/MenuItem'
 import { FaUser } from 'react-icons/fa'
 import Loading from './Loading'
 import { useSelector } from 'react-redux'
+import Select from '@mui/material/Select'
 import Axios from 'axios'
 const Progress = ({ done }) => {
   const [style, setStyle] = React.useState({})
@@ -34,7 +36,9 @@ function Programusage() {
   const [isLoading, setLoading] = useState(true)
   const [stpair, setStpair] = useState([])
   const [role, setRole] = useState(true)
+  const [months, setmonths] = useState('')
 
+  const monthlist = ['5/1~6/30', '7/1~8/31']
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢。',
@@ -46,7 +50,9 @@ function Programusage() {
   let f = ['Agenda', '課堂進度']
   let g = ['Date', '課堂日期']
   let h = ['Notes', '課堂筆記']
-
+  let i = ['No records yet', '暫無紀錄']
+  let j = ['Search records: ', '查詢服務歷史']
+  let k = ['Select a time', '請選擇欲查詢時間']
   const user = useSelector((state) => state.user.value)
 
   useEffect(() => {
@@ -67,9 +73,21 @@ function Programusage() {
             studentmail: student.studentmail,
             echelon: 2,
           }).then((response) => {
-            console.log(response.data);
-            if (response.data.length) setContactInfo((contactInfo) => [...contactInfo, response.data])
-            else setContactInfo((contactInfo) => [...contactInfo, [{classdate: "no class", hoursleft: 8, studentname: student.studentname, username: student.username}]])
+            console.log(response.data)
+            if (response.data.length)
+              setContactInfo((contactInfo) => [...contactInfo, response.data])
+            else
+              setContactInfo((contactInfo) => [
+                ...contactInfo,
+                [
+                  {
+                    classdate: 'no class',
+                    hoursleft: 8,
+                    studentname: student.studentname,
+                    username: student.username,
+                  },
+                ],
+              ])
           })
         }
         setLoading(false)
@@ -81,32 +99,38 @@ function Programusage() {
         {
           studentname: studentname,
         },
-      )
-        .then((response) => {
-          if (response.data.length === 0) setLoading(false)
-          let student = response.data[0]
-          setStpair((stpair) => [...stpair, student])
-          Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/getRecord',
-            {
-              username: student.username,
-              studentname: student.studentname,
-              studentmail: student.studentmail,
-              echelon: 2,
-            },
-          ).then((response) => {
-            if (response.data.length) {
-              setContactInfo((contactInfo) => [...contactInfo, response.data])
-              // setlength(true)
-            } else {
-              setContactInfo((contactInfo) => [...contactInfo, [{classdate: "no class", hoursleft: 8, studentname: student.studentname, username: student.username}]])
-            }
-            setLoading(false)
-          })
+      ).then((response) => {
+        if (response.data.length === 0) setLoading(false)
+        let student = response.data[0]
+        setStpair((stpair) => [...stpair, student])
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
+          username: student.username,
+          studentname: student.studentname,
+          studentmail: student.studentmail,
+          echelon: 2,
+        }).then((response) => {
+          if (response.data.length) {
+            setContactInfo((contactInfo) => [...contactInfo, response.data])
+            // setlength(true)
+          } else {
+            setContactInfo((contactInfo) => [
+              ...contactInfo,
+              [
+                {
+                  classdate: 'no class',
+                  hoursleft: 8,
+                  studentname: student.studentname,
+                  username: student.username,
+                },
+              ],
+            ])
+          }
+          setLoading(false)
         })
+      })
     }
   }, [user])
-  
+
   const contacttemp = contactInfo.map((item) => item).reverse()
 
   const noRecord = (stname) => {
@@ -137,6 +161,13 @@ function Programusage() {
               <div className="title_not">{f[status]}</div>
             </div>
           </div>
+          <div className="programusagewr">
+            <div className="wrapwrap">
+              <div className="gridwrapprog">
+                <div className="row_none">{i[status]}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -152,18 +183,76 @@ function Programusage() {
       </div>
     )
   } else {
-    console.log(contactInfo);
-    console.log(contacttemp);
     return (
       <div className="outcontainerprog">
+        <div className="selectorwrap_pu">
+          <div className="helpertitle">{j[status]}</div>
+          <div className="">
+            <Select
+              labelId="demo-simple-select-helper-label"
+              variant="standard"
+              className="inputstudentname"
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              value={months}
+              onChange={(e) => {
+                setmonths(e.target.value)
+              }}
+              renderValue={(selected) => {
+                if (selected.length === 0) {
+                  return <div className="selectplaceholder">{k[status]}</div>
+                }
+                return selected
+              }}
+              sx={{
+                color: '#745140',
+                fontFamily: 'Lora',
+                fontSize: '15px',
+                padding: '0px',
+                paddingLeft: '5px',
+                paddingRight: '5px',
+                width: '150px',
+                '&:focus': {
+                  backgroundColor: '#00000000',
+                },
+                '&:not(.Mui-disabled):hover::before': {
+                  borderBottom: '0px',
+                },
+                '&:before': {
+                  borderBottom: '0px',
+                },
+                '&:after': {
+                  borderBottom: '0px',
+                },
+                '& .MuiSvgIcon-root': {
+                  color: '#745140',
+                },
+                '& .MuiSvgIcon-root::before': {
+                  borderBottom: '1.5px solid #745140',
+                },
+                '& .MuiSvgIcon-root::after': {
+                  borderBottom: '1.5px solid #745140',
+                },
+              }}
+            >
+              {monthlist.map((e, i) => {
+                return (
+                  <MenuItem id={i} value={e}>
+                    {e}
+                  </MenuItem>
+                )
+              })}
+            </Select>
+          </div>
+        </div>
         <div className="subjectlist">
           {contacttemp.map((st) => {
-            console.log(st);
-            if(st[0].classdate === "no class") {
+            console.log(st)
+            if (st[0].classdate === 'no class') {
               return noRecord(st[0].studentname)
             } else {
               let time = st[st.length - 1].hoursleft
-              console.log(time);
+              console.log(time)
               return (
                 <div className="outsidewrapsub">
                   <div className="wrapsubj">
@@ -173,9 +262,7 @@ function Programusage() {
                           <FaUser className="prog_avatar" />
                         </div>
                         <div className="total">
-                          <div className="sub">
-                              {st[0].studentname}
-                          </div>
+                          <div className="sub">{st[0].studentname}</div>
                           <div className="time">
                             {c[status]}
                             {time}
@@ -197,7 +284,7 @@ function Programusage() {
                     </div>
                     <div className="programusagewr">
                       {st.map((record) => {
-                        console.log(record);
+                        console.log(record)
                         return (
                           <div className="wrapwrap">
                             <div className="gridwrapprog">

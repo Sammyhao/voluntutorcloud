@@ -81,7 +81,7 @@ function Function() {
           </Link>
         </BootstrapDialog>
       </div>
-      <div className="title_function">{a[status]}</div>
+      <div className="about_ustitle">{a[status]}</div>
       <div className="list_function">
         <div className="temprow">
           <div

@@ -1,32 +1,154 @@
 .title_function {
-    color: #745140;
-    font-weight: 100;
-    font-size: 40px;
-    margin-top: 20px;
-    letter-spacing: 1px;
-    margin-bottom: 30px;
-  }
-  .container_func {
-    margin: 0;
-    position: relative;
-    background-color: #efe9e5;
-    width: wrap;
-    height: wrap;
-    display: flex;
-    overflow: block;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    text-decoration: none;
-  }
-  .temprow {
-    display: flex;
-    flex-direction: row;
-  }
+  color: #745140;
+  font-weight: 100;
+  font-size: 40px;
+  margin-top: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+.container_func {
+  margin: 0;
+  position: relative;
+  background-color: #efe9e5;
+  width: wrap;
+  height: wrap;
+  display: flex;
+  overflow: block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: none;
+  padding-bottom: 100px;
+}
+.temprow {
+  display: flex;
+  flex-direction: row;
+}
+.list_function {
+  display: flex;
+  margin-top: 50px;
+  flex-direction: row;
+  text-decoration: none;
+}
+.outcont_function {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
+  cursor: pointer;
+  padding: 40px;
+}
+
+path {
+  stroke: #efe9e5;
+}
+.icon_func_even {
+  height: 130px;
+  width: 130px;
+  color: #efe9e5;
+  border-radius: 50%;
+  background-color: #c49483;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-decoration: none;
+  align-items: center;
+}
+.icon_func {
+  height: 130px;
+  width: 130px;
+  padding: 30px;
+  text-decoration: none;
+}
+.icon_func_odd {
+  width: 130px;
+  height: 130px;
+  color: #efe9e5;
+  border-radius: 50%;
+  background-color: #b25634;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.subtitle_func {
+  color: #745140;
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+}
+.func_link {
+  text-decoration: none;
+}
+@media screen and (max-width: 1260px) {
   .list_function {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     text-decoration: none;
+    justify-content: center;
+    align-items: center;
+  }
+  .icon_func_even {
+    height: 100px;
+    width: 100px;
+  }
+  .icon_func_odd {
+    height: 100px;
+    width: 100px;
+  }
+  .title_function {
+    color: #745140;
+    font-weight: 100;
+    font-size: 27px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    letter-spacing: 1px;
+  }
+  .subtitle_func {
+    color: #745140;
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: none;
+  }
+}
+.icon_func_even {
+  transition: transform 0.3s;
+}
+.icon_func_odd {
+  transition: transform 0.3s;
+}
+.icon_func_odd:hover {
+  transform: scale(1.1);
+}
+
+.icon_func_even:hover {
+  transform: scale(1.1);
+}
+@media screen and (max-width: 768px) {
+  .temprow {
+    display: flex;
+    flex-direction: column;
+  }
+  .icon_func_even {
+    height: 140px;
+    width: 140px;
+  }
+  .icon_func_odd {
+    height: 140px;
+    width: 140px;
+  }
+  .title_function {
+    color: #745140;
+    font-weight: 100;
+    font-size: 20px;
+    margin-bottom: 20px;
+    /* margin-top: 700px; */
+    letter-spacing: 1px;
   }
   .outcont_function {
     display: flex;
@@ -34,134 +156,13 @@
     align-items: center;
     text-decoration: none;
     justify-content: center;
-    cursor: pointer;
-    padding: 40px;
-  }
-  
-  path {
-    stroke: #efe9e5;
-  }
-  .icon_func_even {
-    height: 130px;
-    width: 130px;
-    color: #efe9e5;
-    border-radius: 50%;
-    background-color: #c49483;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-decoration: none;
-    align-items: center;
-  }
-  .icon_func {
-    height: 130px;
-    width: 130px;
-    padding: 30px;
-    text-decoration: none;
-  }
-  .icon_func_odd {
-    width: 130px;
-    height: 130px;
-    color: #efe9e5;
-    border-radius: 50%;
-    background-color: #b25634;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+    padding: 15px;
   }
   .subtitle_func {
     color: #745140;
     margin-top: 40px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     text-decoration: none;
-    text-align: center;
   }
-  .func_link {
-    text-decoration: none;
-  }
-  @media screen and (max-width: 1260px) {
-    .list_function {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      justify-content: center;
-      align-items: center;
-    }
-    .icon_func_even {
-      height: 100px;
-      width: 100px;
-    }
-    .icon_func_odd {
-      height: 100px;
-      width: 100px;
-    }
-    .title_function {
-      color: #745140;
-      font-weight: 100;
-      font-size: 27px;
-      margin-bottom: 30px;
-      margin-top: 20px;
-      letter-spacing: 1px;
-    }
-    .subtitle_func {
-      color: #745140;
-      margin-top: 40px;
-      font-size: 18px;
-      font-weight: 400;
-      text-decoration: none;
-    }
-  }
-  .icon_func_even {
-    transition: transform 0.3s;
-  }
-  .icon_func_odd {
-    transition: transform 0.3s;
-  }
-  .icon_func_odd:hover {
-    transform: scale(1.1);
-  }
-  
-  .icon_func_even:hover {
-    transform: scale(1.1);
-  }
-  @media screen and (max-width: 768px) {
-    .temprow {
-      display: flex;
-      flex-direction: column;
-    }
-    .icon_func_even {
-      height: 140px;
-      width: 140px;
-    }
-    .icon_func_odd {
-      height: 140px;
-      width: 140px;
-    }
-    .title_function {
-      color: #745140;
-      font-weight: 100;
-      font-size: 20px;
-      margin-bottom: 20px;
-      /* margin-top: 700px; */
-      letter-spacing: 1px;
-    }
-    .outcont_function {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      justify-content: center;
-      padding: 15px;
-    }
-    .subtitle_func {
-      color: #745140;
-      margin-top: 40px;
-      font-size: 18px;
-      font-weight: 400;
-      text-decoration: none;
-    }
-  }
-  
+}
