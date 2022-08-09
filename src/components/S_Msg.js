@@ -48,6 +48,7 @@ function S_Msg() {
                     studentname: response1.data[i].studentname,
                     msg: '',
                     sender: 'S',
+                    sendtime: ''
                   },
                 ],
               ])
@@ -57,6 +58,7 @@ function S_Msg() {
                 studentname: response1.data[i].studentname,
                 msg: '',
                 sender: 'S',
+                sendtime: ''
               },
             ])
             if (i === response1.data.length - 1) setLoading(false)
@@ -69,11 +71,15 @@ function S_Msg() {
   }, [])
 
   const updateMsg = () => {
+    var curTime = new Date();
+    curTime = curTime.getFullYear() + "/" + curTime.getMonth() + "/" + curTime.getDate() + " " + curTime.getHours() + ":" + curTime.getMinutes() + ":" + curTime.getSeconds();
+    console.log(curTime);
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: tmpChtRm[0].username,
       studentname: tmpChtRm[0].studentname,
       msg: curMsg,
       sender: 'S',
+      sendtime: curTime
     }).then((response) => {
       // console.log(response.data)
       let tmpAllMsg = allMsg
@@ -84,6 +90,7 @@ function S_Msg() {
             studentname: tmpChtRm[0].studentname,
             msg: curMsg,
             sender: 'S',
+            sendtime: curTime
           })
         }
       }

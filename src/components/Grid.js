@@ -51,6 +51,7 @@ function Grid_sub() {
   const [open_fav, setFavOpen] = useState(false)
   const [status, setStatus] = useState(1)
   const [programInfo, setProgramInfo] = useState([])
+  const [favProgramInfo, setFavProgramInfo] = useState([]); // 最愛programの大大在此
   const [username, setUsername] = useState('')
 
   const studentlink = 'https://forms.gle/6BaZovfFSLwtSGkF8'
@@ -91,6 +92,16 @@ function Grid_sub() {
     ).then((response) => {
       console.log(response)
       if (response.data.length) {
+        for(let i = 0; i < response.data.length; i++) {
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/existInFav',
+            {
+              schoolname: response.data[i].schoolname
+            }
+          ).then((response2) => {
+            if(response2.data.exist) setFavProgramInfo(favProgramInfo => [...favProgramInfo, response.data[i]]);
+          })
+        }
         setProgramInfo(response.data)
       }
       setLoading(false)
