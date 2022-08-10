@@ -38,6 +38,7 @@ const BootstrapDialogTitle = (props) => {
 
 let program = 0
 let index = 0
+let heartclass = 'heart'
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
@@ -54,7 +55,6 @@ function Grid_sub() {
   const [favProgramInfo, setFavProgramInfo] = useState([]) // 最愛programの大大在此
   const [username, setUsername] = useState('')
   const [heart, setheart] = useState([])
-  const [heartclass, setheartclass] = useState('heart')
   const studentlink = 'https://forms.gle/6BaZovfFSLwtSGkF8'
   const wegolink = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
   const fuhlink = 'https://forms.gle/gT91p6xLSNExWYmh7'
@@ -71,7 +71,7 @@ function Grid_sub() {
 
   const handleClose = () => {
     setOpen(false)
-    setheartclass('heart')
+    heartclass = 'heart'
   }
   const handlefav = () => {
     setFavOpen(false)
@@ -387,7 +387,7 @@ function Grid_sub() {
                         <div
                           class="image_overlay image_overlay -- blur"
                           onClick={() => {
-                            setheartclass('heart_dialog')
+                            heartclass = 'heart_dialog'
                             program = e
                             index = ind
                             setOpen(true)
