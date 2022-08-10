@@ -54,6 +54,7 @@ function Grid_sub() {
   const [favProgramInfo, setFavProgramInfo] = useState([]) // 最愛programの大大在此
   const [username, setUsername] = useState('')
   const [heart, setheart] = useState([])
+  const [heartclass, setheartclass] = useState('heart')
   const studentlink = 'https://forms.gle/6BaZovfFSLwtSGkF8'
   const wegolink = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
   const fuhlink = 'https://forms.gle/gT91p6xLSNExWYmh7'
@@ -70,6 +71,7 @@ function Grid_sub() {
 
   const handleClose = () => {
     setOpen(false)
+    setheartclass('heart')
   }
   const handlefav = () => {
     setFavOpen(false)
@@ -94,7 +96,7 @@ function Grid_sub() {
       if (response.data.length) {
         let array = []
         for (let i = 0; i < response.data.length; i++) {
-          array[i] = <RiHeart3Line className="heart"></RiHeart3Line>
+          array[i] = <RiHeart3Line className={heartclass}></RiHeart3Line>
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/existInFav',
             {
@@ -102,7 +104,7 @@ function Grid_sub() {
             },
           ).then((response2) => {
             if (response2.data.exist) {
-              array[i] = <RiHeart3Fill className="heart"></RiHeart3Fill>
+              array[i] = <RiHeart3Fill className={heartclass}></RiHeart3Fill>
 
               setFavProgramInfo((favProgramInfo) => [
                 ...favProgramInfo,
@@ -304,17 +306,17 @@ function Grid_sub() {
                       size="small"
                       onClick={() => {
                         console.log(heart[index].type.name)
-                        if (heart[index].type.name === 'RiHeart3Fill') {
+                        if (heart[index].type.name === 'We') {
                           let temp_array = heart
                           temp_array[index] = (
-                            <RiHeart3Line className="heart"></RiHeart3Line>
+                            <RiHeart3Line className={heartclass}></RiHeart3Line>
                           )
                           setheart([...temp_array])
                           removefromlist(program)
                         } else {
                           let temp_array = heart
                           temp_array[index] = (
-                            <RiHeart3Fill className="heart"></RiHeart3Fill>
+                            <RiHeart3Fill className={heartclass}></RiHeart3Fill>
                           )
                           setheart([...temp_array])
                           updateFavList(program)
@@ -385,6 +387,7 @@ function Grid_sub() {
                         <div
                           class="image_overlay image_overlay -- blur"
                           onClick={() => {
+                            setheartclass('heart_dialog')
                             program = e
                             index = ind
                             setOpen(true)
@@ -419,17 +422,21 @@ function Grid_sub() {
                           onClick={() => {
                             console.log(heart[ind])
                             console.log(heart[ind].type.name)
-                            if (heart[ind].type.name === 'RiHeart3Fill') {
+                            if (heart[ind].type.name === 'We') {
                               let temp_array = heart
                               temp_array[ind] = (
-                                <RiHeart3Line className="heart"></RiHeart3Line>
+                                <RiHeart3Line
+                                  className={heartclass}
+                                ></RiHeart3Line>
                               )
                               setheart([...temp_array])
                               removefromlist(program)
                             } else {
                               let temp_array = heart
                               temp_array[ind] = (
-                                <RiHeart3Fill className="heart"></RiHeart3Fill>
+                                <RiHeart3Fill
+                                  className={heartclass}
+                                ></RiHeart3Fill>
                               )
                               setheart([...temp_array])
                               updateFavList(program)
