@@ -71,7 +71,6 @@ function Grid_sub() {
 
   const handleClose = () => {
     setOpen(false)
-    heartclass = 'heart'
   }
   const handlefav = () => {
     setFavOpen(false)
@@ -387,7 +386,6 @@ function Grid_sub() {
                         <div
                           class="image_overlay image_overlay -- blur"
                           onClick={() => {
-                            heartclass = 'heart_dialog'
                             program = e
                             index = ind
                             setOpen(true)
