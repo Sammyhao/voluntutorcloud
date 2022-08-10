@@ -53,7 +53,6 @@ function Myfav() {
     true,
     <RiHeart3Fill className="heart_dialog"></RiHeart3Fill>,
   ])
-  const [myfavLen, setMyfavlen] = useState([])
   const handleClose = () => {
     setOpen(false)
   }
@@ -238,7 +237,7 @@ function Myfav() {
                         setdelete(true)
                       }}
                     >
-                      <div onClick={() => {}}>{heart[1]}</div>
+                      <div>{heart[1]}</div>
                       {g[status]}
                     </Button>
                   </div>

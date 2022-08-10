@@ -37,7 +37,7 @@ const BootstrapDialogTitle = (props) => {
 }
 
 let program = 0
-
+let index = 0
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
@@ -51,9 +51,9 @@ function Grid_sub() {
   const [open_fav, setFavOpen] = useState(false)
   const [status, setStatus] = useState(1)
   const [programInfo, setProgramInfo] = useState([])
-  const [favProgramInfo, setFavProgramInfo] = useState([]); // 最愛programの大大在此
+  const [favProgramInfo, setFavProgramInfo] = useState([]) // 最愛programの大大在此
   const [username, setUsername] = useState('')
-
+  const [heart, setheart] = useState([])
   const studentlink = 'https://forms.gle/6BaZovfFSLwtSGkF8'
   const wegolink = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
   const fuhlink = 'https://forms.gle/gT91p6xLSNExWYmh7'
@@ -92,16 +92,26 @@ function Grid_sub() {
     ).then((response) => {
       console.log(response)
       if (response.data.length) {
-        for(let i = 0; i < response.data.length; i++) {
+        let array = []
+        for (let i = 0; i < response.data.length; i++) {
+          array[i] = <RiHeart3Line className="heart"></RiHeart3Line>
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/existInFav',
             {
-              schoolname: response.data[i].schoolname
-            }
+              schoolname: response.data[i].schoolname,
+            },
           ).then((response2) => {
-            if(response2.data.exist) setFavProgramInfo(favProgramInfo => [...favProgramInfo, response.data[i]]);
+            if (response2.data.exist) {
+              array[i] = <RiHeart3Fill className="heart"></RiHeart3Fill>
+
+              setFavProgramInfo((favProgramInfo) => [
+                ...favProgramInfo,
+                response.data[i],
+              ])
+            }
           })
         }
+        setheart(array)
         setProgramInfo(response.data)
       }
       setLoading(false)
@@ -131,7 +141,9 @@ function Grid_sub() {
   const openkanglink = () => {
     window.open(kanglink, '_blank', 'noopener,noreferrer')
   }
-
+  const removefromlist = (program) => {
+    console.log('removed from list')
+  }
   const updateFavList = (program) => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
       .then((response) => {
@@ -161,7 +173,7 @@ function Grid_sub() {
   ]
   let d = ['You are already enrolled in a program.', '你已經在志工計畫當中囉~']
   let f = ['BOOK NOW!', '現在報名！']
-  let g = ['Add to list', '加入最愛']
+  let g = ['Add to/Remove from list', '加入/移除最愛']
   let h = ['Dates/Service hours', '日期/服務時間']
   let i = ['Coordinator', '聯絡窗口']
   let j = ['Target Student', '學生年段']
@@ -178,7 +190,6 @@ function Grid_sub() {
   ]
   let q = ['Stay tuned!', '敬請期待！']
   let z = ['Added to favorite list.', '已加入最愛']
-
   if (isLoading) return <Loading />
   else {
     if (programInfo.length === 0) {
@@ -189,6 +200,8 @@ function Grid_sub() {
         </div>
       )
     } else {
+      console.log(favProgramInfo)
+      console.log(heart)
       return (
         <div id="outcontainer">
           <div id="dialog_reg_wrap">
@@ -289,10 +302,28 @@ function Grid_sub() {
                     <Button
                       id="dialog_add"
                       size="small"
-                      onClick={() => updateFavList(program)}
+                      onClick={() => {
+                        console.log(heart[index].type.name)
+                        if (heart[index].type.name === 'RiHeart3Fill') {
+                          let temp_array = heart
+                          temp_array[index] = (
+                            <RiHeart3Line className="heart"></RiHeart3Line>
+                          )
+                          setheart([...temp_array])
+                          removefromlist(program)
+                        } else {
+                          let temp_array = heart
+                          temp_array[index] = (
+                            <RiHeart3Fill className="heart"></RiHeart3Fill>
+                          )
+                          setheart([...temp_array])
+                          updateFavList(program)
+                        }
+                      }}
                     >
-                      <RiHeart3Line className="heart_dialog" />
-                      {g[status]}
+                      <>{heart[index]}</>
+
+                      <>{g[status]}</>
                     </Button>
                   </div>
                 </div>
@@ -337,7 +368,7 @@ function Grid_sub() {
           </div>
           <div id="gridcontainer">
             <Grid container id="container" spacing={4}>
-              {programInfo.map((e) => {
+              {programInfo.map((e, ind) => {
                 return (
                   <Grid item xs={12} sm={6} md={4} lg={3} className="column">
                     <Card id="cardbox" justify="space-between">
@@ -355,6 +386,7 @@ function Grid_sub() {
                           class="image_overlay image_overlay -- blur"
                           onClick={() => {
                             program = e
+                            index = ind
                             setOpen(true)
                             console.log(program)
                           }}
@@ -384,10 +416,28 @@ function Grid_sub() {
                         <Button
                           id="add"
                           size="small"
-                          onClick={() => updateFavList(e)}
+                          onClick={() => {
+                            console.log(heart[ind])
+                            console.log(heart[ind].type.name)
+                            if (heart[ind].type.name === 'RiHeart3Fill') {
+                              let temp_array = heart
+                              temp_array[ind] = (
+                                <RiHeart3Line className="heart"></RiHeart3Line>
+                              )
+                              setheart([...temp_array])
+                              removefromlist(program)
+                            } else {
+                              let temp_array = heart
+                              temp_array[ind] = (
+                                <RiHeart3Fill className="heart"></RiHeart3Fill>
+                              )
+                              setheart([...temp_array])
+                              updateFavList(program)
+                            }
+                          }}
                         >
-                          <RiHeart3Line className="heart" />
-                          {g[status]}
+                          <>{heart[ind]}</>
+                          <>{g[status]}</>
                         </Button>
                       </CardActions>
                     </Card>

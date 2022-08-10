@@ -22,7 +22,7 @@ function Msg() {
   let c = ['Enter your message...', '請輸入訊息...']
   let d = ['send', '傳送']
   const index = useRef(0)
-  const [rerender, setRerender] = useState(false);
+  const [rerender, setRerender] = useState(false)
 
   useEffect(() => {
     // console.log('user: ', user)
@@ -73,19 +73,30 @@ function Msg() {
   }, [])
 
   function ToRerender() {
-    setRerender(!rerender);
+    setRerender(!rerender)
   }
 
   const updateMsg = () => {
-    var curTime = new Date();
-    curTime = curTime.getFullYear() + "/" + curTime.getMonth() + "/" + curTime.getDate() + " " + curTime.getHours() + ":" + curTime.getMinutes() + ":" + curTime.getSeconds();
-    console.log(curTime);
+    var curTime = new Date()
+    curTime =
+      curTime.getFullYear() +
+      '/' +
+      curTime.getMonth() +
+      '/' +
+      curTime.getDate() +
+      ' ' +
+      curTime.getHours() +
+      ':' +
+      curTime.getMinutes() +
+      ':' +
+      curTime.getSeconds()
+    console.log(curTime)
     Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: tmpChtRm[0].username,
       studentname: tmpChtRm[0].studentname,
       msg: curMsg,
       sender: 'T',
-      sendtime: curTime
+      sendtime: curTime,
     }).then((response) => {
       // console.log(response.data)
       let tmpAllMsg = allMsg
@@ -96,7 +107,7 @@ function Msg() {
             studentname: tmpChtRm[0].studentname,
             msg: curMsg,
             sender: 'T',
-            sendtime: curTime
+            sendtime: curTime,
           })
         }
       }
@@ -134,7 +145,7 @@ function Msg() {
                       console.log(index.current)
                       tmpChtRm = allMsg[index.current]
                       console.log(tmpChtRm)
-                      ToRerender();
+                      ToRerender()
                     }}
                   >
                     <div className="outerbox">
@@ -144,7 +155,8 @@ function Msg() {
                       <div className="infoboxmsg">
                         <div className="namemsg">{chtRm[0].studentname}</div>
                         <div className="latestmsg">
-                          {chtRm[chtRm.length - 1].msg.substring(0, 8)}{(chtRm[chtRm.length - 1].msg.length > 8) ? "..." : ""}
+                          {chtRm[chtRm.length - 1].msg.substring(0, 8)}
+                          {chtRm[chtRm.length - 1].msg.length > 8 ? '...' : ''}
                         </div>
                       </div>
                     </div>
@@ -159,6 +171,7 @@ function Msg() {
               {tmpChtRm.map((msg) => {
                 return (
                   <Msg_user
+                    time={msg.sendtime}
                     type={msg.sender === 'T' ? 'user' : 'recipient'}
                     text={msg.msg}
                   ></Msg_user>
