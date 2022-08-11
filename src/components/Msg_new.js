@@ -25,20 +25,32 @@ function Msg() {
   const [rerender, setRerender] = useState(false);
 
   useEffect(() => {
-    // console.log('user: ', user)
+    console.log('user: ', user)
     setStatus(user.language)
     setAllMsg([])
     Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
       username: user.username,
     })
       .then((response1) => {
+
         console.log(user.username, "'s contact includes: ", response1.data)
+
         for (let i = 0; i < response1.data.length; i++) {
-          Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
-            username: response1.data[i].username,
-            studentname: response1.data[i].studentname,
-          }).then((response2) => {
-            console.log(response1.data[i])
+          Axios.all([
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/getMsg', {
+              username: response1.data[i].username,
+              studentname: response1.data[i].studentname,
+            }),
+            Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsgStatus', {
+              username: response1.data[i].username,
+              studentname: response1.data[i].studentname,
+              sender: 'S',
+              isread: true
+            })
+          ]).then(Axios.spread((response2, response3) => {
+            console.log(response1.data[i], ':', response2.data);
+            console.log(response3.data);
+
             if (response2.data.length)
               setAllMsg((allMsg) => [...allMsg, response2.data])
             else
@@ -51,24 +63,19 @@ function Msg() {
                     msg: '',
                     sender: 'T',
                     sendtime: '',
+                    isread: false
                   },
                 ],
               ])
-            console.log('add ', [
-              {
-                username: response1.data[i].username,
-                studentname: response1.data[i].studentname,
-                msg: '',
-                sender: 'T',
-                sendtime: '',
-              },
-            ])
+
             if (i === response1.data.length - 1) setLoading(false)
           })
+          )
         }
+
       })
       .catch((error) => {
-        // console.log(error)
+        console.log(error)
       })
   }, [])
 
@@ -85,9 +92,10 @@ function Msg() {
       studentname: tmpChtRm[0].studentname,
       msg: curMsg,
       sender: 'T',
-      sendtime: curTime
+      sendtime: curTime,
+      isread: false
     }).then((response) => {
-      // console.log(response.data)
+      console.log(response.data)
       let tmpAllMsg = allMsg
       for (let i = 0; i < tmpAllMsg.length; i++) {
         if (tmpAllMsg[i] === tmpChtRm) {
@@ -96,7 +104,8 @@ function Msg() {
             studentname: tmpChtRm[0].studentname,
             msg: curMsg,
             sender: 'T',
-            sendtime: curTime
+            sendtime: curTime,
+            isread: false
           })
         }
       }
