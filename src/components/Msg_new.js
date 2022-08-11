@@ -16,7 +16,7 @@ function Msg() {
   const [curMsg, setCurMsg] = useState('')
   const [isLoading, setLoading] = useState(true)
   const [allMsg, setAllMsg] = useState([])
-  let tmpChtRm = []
+  const tmpChtRm = useRef([])
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
   let b = ['Find friends', '尋找朋友']
   let c = ['Enter your message...', '請輸入訊息...']
@@ -100,21 +100,27 @@ function Msg() {
       ':' +
       curTime.getSeconds()
     console.log(curTime)
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
-      username: tmpChtRm[0].username,
-      studentname: tmpChtRm[0].studentname,
+    Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
+      username: tmpChtRm.current[0].username,
+      studentname: tmpChtRm.current[0].studentname,
       msg: curMsg,
       sender: 'T',
       sendtime: curTime,
       isread: false,
-    }).then((response) => {
-      console.log(response.data)
+    }), Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
+      username: tmpChtRm.current[0].studentname,
+      type: '/message',
+      title: 'Message',
+      content: tmpChtRm.current[0].username + ' has sent a message',
+      isnew: true,
+    })]).then(Axios.spread((response, response2) => {
+      console.log(response.data, response2.data);
       let tmpAllMsg = allMsg
       for (let i = 0; i < tmpAllMsg.length; i++) {
-        if (tmpAllMsg[i] === tmpChtRm) {
+        if (tmpAllMsg[i] === tmpChtRm.current) {
           tmpAllMsg[i].push({
-            username: tmpChtRm[0].username,
-            studentname: tmpChtRm[0].studentname,
+            username: tmpChtRm.current[0].username,
+            studentname: tmpChtRm.current[0].studentname,
             msg: curMsg,
             sender: 'T',
             sendtime: curTime,
@@ -123,9 +129,10 @@ function Msg() {
         }
       }
       setAllMsg(tmpAllMsg)
-    })
+    }))
     setTimeout(() => setCurMsg(' '), 1000)
     setTimeout(() => setCurMsg(''), 1000)
+    // setCurMsg('');
   }
 
   if (isLoading) {
@@ -145,17 +152,17 @@ function Msg() {
             <div className="peoplelist">
               {allMsg.map((chtRm, ind) => {
                 if (ind === index.current) {
-                  tmpChtRm = chtRm
+                  tmpChtRm.current = chtRm
                 }
-                console.log(tmpChtRm)
+                console.log(tmpChtRm.current)
                 return (
                   <div
                     className="shadowing"
                     onClick={() => {
                       index.current = ind
                       console.log(index.current)
-                      tmpChtRm = allMsg[index.current]
-                      console.log(tmpChtRm)
+                      tmpChtRm.current = allMsg[index.current]
+                      console.log(tmpChtRm.current)
                       ToRerender()
                     }}
                   >
@@ -177,9 +184,9 @@ function Msg() {
             </div>
           </div>
           <div className="chatcontent">
-            <div className="chatname">{tmpChtRm[0].studentname}</div>
+            <div className="chatname">{tmpChtRm.current[0].studentname}</div>
             <div className="chat">
-              {tmpChtRm.map((msg) => {
+              {tmpChtRm.current.map((msg) => {
                 return (
                   <Msg_user
                     time={msg.sendtime}

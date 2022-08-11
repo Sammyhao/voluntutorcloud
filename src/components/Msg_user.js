@@ -11,7 +11,7 @@ export const Msg_user = ({ read, time, type, text }) => {
   }, [])
   let a = ['Sent at', '傳送於']
   let b = ['Read', '已讀']
-  if (type == 'user') {
+  if (type === 'user') {
     return (
       <div className="teacher_msg">
         <div className="msg_time">

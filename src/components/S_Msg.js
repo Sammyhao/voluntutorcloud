@@ -14,7 +14,8 @@ function S_Msg() {
   const [curMsg, setCurMsg] = useState('')
   const [isLoading, setLoading] = useState(true)
   const [allMsg, setAllMsg] = useState([])
-  let tmpChtRm = []
+  const tmpChtRm = useRef([])
+
   let a = ['Function will be completed soon', '此功能即將完成，請敬請期待！']
   let b = ['Find friends', '尋找朋友']
   let c = ['Enter your message...', '請輸入訊息...']
@@ -85,21 +86,27 @@ function S_Msg() {
     var curTime = new Date();
     curTime = curTime.getFullYear() + "/" + curTime.getMonth() + "/" + curTime.getDate() + " " + curTime.getHours() + ":" + curTime.getMinutes() + ":" + curTime.getSeconds();
     console.log(curTime);
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
-      username: tmpChtRm[0].username,
-      studentname: tmpChtRm[0].studentname,
+    Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
+      username: tmpChtRm.current[0].username,
+      studentname: tmpChtRm.current[0].studentname,
       msg: curMsg,
       sender: 'S',
       sendtime: curTime,
       isread: false
-    }).then((response) => {
-      console.log(response.data)
+    }), Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
+      username: tmpChtRm.current[0].username,
+      type: '/message',
+      title: 'Message',
+      content: tmpChtRm.current[0].studentname + ' has sent a message',
+      isnew: true
+    })]).then(Axios.spread((response, response2) => {
+      console.log(response.data, response2.data);
       let tmpAllMsg = allMsg
       for (let i = 0; i < tmpAllMsg.length; i++) {
-        if (tmpAllMsg[i] === tmpChtRm) {
+        if (tmpAllMsg[i] === tmpChtRm.current) {
           tmpAllMsg[i].push({
-            username: tmpChtRm[0].username,
-            studentname: tmpChtRm[0].studentname,
+            username: tmpChtRm.current[0].username,
+            studentname: tmpChtRm.current[0].studentname,
             msg: curMsg,
             sender: 'S',
             sendtime: curTime,
@@ -108,7 +115,7 @@ function S_Msg() {
         }
       }
       setAllMsg(tmpAllMsg)
-    })
+    }))
     setTimeout(() => setCurMsg(' '), 1000)
     setTimeout(() => setCurMsg(''), 1000)
   }
@@ -129,8 +136,8 @@ function S_Msg() {
             </div>
             <div className="peoplelist">
               {allMsg.map((chtRm) => {
-                tmpChtRm = chtRm
-                console.log(tmpChtRm)
+                tmpChtRm.current = chtRm
+                console.log(tmpChtRm.current)
                 return (
                   <div className="shadowing">
                     <div className="outerbox">
@@ -150,13 +157,15 @@ function S_Msg() {
             </div>
           </div>
           <div className="chatcontent">
-            <div className="chatname">{tmpChtRm[0].username}</div>
+            <div className="chatname">{tmpChtRm.current[0].username}</div>
             <div className="chat">
-              {tmpChtRm.map((msg) => {
+              {tmpChtRm.current.map((msg) => {
                 return (
                   <Msg_user
-                    type={msg.sender === 'S' ? 'user' : 'recipient'}
-                    text={msg.msg}
+                  time={msg.sendtime}
+                  type={msg.sender === 'S' ? 'user' : 'recipient'}
+                  text={msg.msg}
+                  read={msg.isread}
                   ></Msg_user>
                 )
               })}

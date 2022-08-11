@@ -199,6 +199,7 @@
 }
 .words_student {
   background-color: #c49483;
+  width: -moz-fit-content;
   width: fit-content;
   padding: 15px;
   margin-left: 10px;
@@ -207,6 +208,7 @@
 }
 .words {
   background-color: #d6b7a8;
+  width: -moz-fit-content;
   width: fit-content;
   padding: 15px;
   border-radius: 7px;

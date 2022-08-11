@@ -49,6 +49,7 @@ function Navbar() {
       username: name,
       isnew: true,
     }).then((response) => {
+      console.log(response.data);
       setNotif_data(response.data)
     })
   }, [user])
