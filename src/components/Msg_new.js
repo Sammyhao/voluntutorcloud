@@ -104,10 +104,7 @@ function Msg() {
       msg: curMsg,
       sender: 'T',
       sendtime: curTime,
-<<<<<<< HEAD
       isread: false
-=======
->>>>>>> 79dc39b546db1f7363bca1e089e377157fc9f68b
     }).then((response) => {
       console.log(response.data)
       let tmpAllMsg = allMsg
@@ -119,10 +116,7 @@ function Msg() {
             msg: curMsg,
             sender: 'T',
             sendtime: curTime,
-<<<<<<< HEAD
             isread: false
-=======
->>>>>>> 79dc39b546db1f7363bca1e089e377157fc9f68b
           })
         }
       }
