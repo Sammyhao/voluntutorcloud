@@ -218,9 +218,9 @@
 }
 #dialog_add {
   margin-left: 15px;
-  color: #fdfaf1;
   font-family: 'Lora';
-  background-color: #eba68a;
+  background-color: whitesmoke;
+  color: #b25634;
   padding-right: 7px;
   padding-left: 7px;
 }
