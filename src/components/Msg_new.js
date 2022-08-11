@@ -32,7 +32,6 @@ function Msg() {
       username: user.username,
     })
       .then((response1) => {
-
         console.log(user.username, "'s contact includes: ", response1.data)
 
         for (let i = 0; i < response1.data.length; i++) {
@@ -41,38 +40,41 @@ function Msg() {
               username: response1.data[i].username,
               studentname: response1.data[i].studentname,
             }),
-            Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsgStatus', {
-              username: response1.data[i].username,
-              studentname: response1.data[i].studentname,
-              sender: 'S',
-              isread: true
-            })
-          ]).then(Axios.spread((response2, response3) => {
-            console.log(response1.data[i], ':', response2.data);
-            console.log(response3.data);
+            Axios.post(
+              'https://voluntutorcloud-server.herokuapp.com/updateMsgStatus',
+              {
+                username: response1.data[i].username,
+                studentname: response1.data[i].studentname,
+                sender: 'S',
+                isread: true,
+              },
+            ),
+          ]).then(
+            Axios.spread((response2, response3) => {
+              console.log(response1.data[i], ':', response2.data)
+              console.log(response3.data)
 
-            if (response2.data.length)
-              setAllMsg((allMsg) => [...allMsg, response2.data])
-            else
-              setAllMsg((allMsg) => [
-                ...allMsg,
-                [
-                  {
-                    username: response1.data[i].username,
-                    studentname: response1.data[i].studentname,
-                    msg: '',
-                    sender: 'T',
-                    sendtime: '',
-                    isread: false
-                  },
-                ],
-              ])
+              if (response2.data.length)
+                setAllMsg((allMsg) => [...allMsg, response2.data])
+              else
+                setAllMsg((allMsg) => [
+                  ...allMsg,
+                  [
+                    {
+                      username: response1.data[i].username,
+                      studentname: response1.data[i].studentname,
+                      msg: '',
+                      sender: 'T',
+                      sendtime: '',
+                      isread: false,
+                    },
+                  ],
+                ])
 
-            if (i === response1.data.length - 1) setLoading(false)
-          })
+              if (i === response1.data.length - 1) setLoading(false)
+            }),
           )
         }
-
       })
       .catch((error) => {
         console.log(error)
@@ -104,10 +106,7 @@ function Msg() {
       msg: curMsg,
       sender: 'T',
       sendtime: curTime,
-<<<<<<< HEAD
-      isread: false
-=======
->>>>>>> 79dc39b546db1f7363bca1e089e377157fc9f68b
+      isread: false,
     }).then((response) => {
       console.log(response.data)
       let tmpAllMsg = allMsg
@@ -119,10 +118,7 @@ function Msg() {
             msg: curMsg,
             sender: 'T',
             sendtime: curTime,
-<<<<<<< HEAD
-            isread: false
-=======
->>>>>>> 79dc39b546db1f7363bca1e089e377157fc9f68b
+            isread: false,
           })
         }
       }
@@ -189,6 +185,7 @@ function Msg() {
                     time={msg.sendtime}
                     type={msg.sender === 'T' ? 'user' : 'recipient'}
                     text={msg.msg}
+                    read={msg.isread}
                   ></Msg_user>
                 )
               })}

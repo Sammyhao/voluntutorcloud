@@ -228,9 +228,18 @@
   color: gray;
   font-size: 13px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.msg_time_student {
+  margin-left: 15px;
+  color: gray;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 .teacher_msg {
   height: auto;
