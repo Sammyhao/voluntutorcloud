@@ -142,9 +142,17 @@ function Grid_sub() {
   const openkanglink = () => {
     window.open(kanglink, '_blank', 'noopener,noreferrer')
   }
+
   const removefromlist = (program) => {
     console.log('removed from list')
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteFavList', {
+      username: program.username,
+      programId: program.programId,
+    }).then((response) => {
+      console.log(response)
+    })
   }
+
   const updateFavList = (program) => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
       .then((response) => {

@@ -109,11 +109,11 @@ function Myfav() {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/getFavList', {
         username: username,
       }).then((response) => {
-        //console.log(response.data)
+        console.log(response.data)
         setFavProgramListLen(response.data.length)
         if (response.data.length) {
           for (let i = 0; i < response.data.length; i++) {
-            if (response.data[i].isBooked == false)
+            if (response.data[i].isBooked === false)
               setFavProgramList((favProgramList) => [
                 ...favProgramList,
                 response.data[i],
@@ -134,16 +134,14 @@ function Myfav() {
       username: program.username,
       programId: program.programId,
     }).then((response) => {
-      //console.log(response)
+      console.log(response)
     })
   }
 
   if (isLoading) {
-    //console.log(favProgramList)
-    //console.log('favProgramList null')
     return <Loading></Loading>
   } else {
-    if (favProgramList.length == 0) {
+    if (favProgramList.length === 0) {
       return (
         <div id="nofav">
           <div className="noStudentFont">{a[status]}</div>
@@ -254,15 +252,6 @@ function Myfav() {
                   <div id="content">
                     <div id="school_content">{program.content}</div>
                     <div id="misc">
-                      {/* <div className="basicinfo" id="date_topic">
-                      {h[status]}
-                    </div>
-                    <div className="basicinfo" id="day">
-                      {program.day}
-                    </div>
-                    <div className="basicinfo" id="time">
-                      {program.sttime}
-                    </div> */}
                       <div className="basicinfo" id="target_topic">
                         {nn[status]}
                       </div>

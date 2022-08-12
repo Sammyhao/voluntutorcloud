@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
-import { MdOutlineArrowForwardIos, MdArrowBackIos } from 'react-icons/md'
 import './Msg.css'
 import '../App.css'
 import Loading from './Loading'
@@ -8,7 +7,6 @@ import { Msg_user } from './Msg_user'
 import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
 import { useSelector } from 'react-redux'
-import { render } from '@testing-library/react'
 
 function Msg() {
   const user = useSelector((state) => state.user.value)
@@ -22,7 +20,6 @@ function Msg() {
   let c = ['Enter your message...', '請輸入訊息...']
   let d = ['send', '傳送']
   const index = useRef(0)
-  const [rerender, setRerender] = useState(false)
 
   useEffect(() => {
     console.log('user: ', user)
@@ -81,10 +78,6 @@ function Msg() {
       })
   }, [])
 
-  function ToRerender() {
-    setRerender(!rerender)
-  }
-
   const updateMsg = () => {
     var curTime = new Date()
     curTime =
@@ -100,10 +93,15 @@ function Msg() {
       ':' +
       curTime.getSeconds()
     console.log(curTime)
+
+    let tmpCurMsg = curMsg;
+    console.log(tmpCurMsg);
+    setCurMsg(' ');
+
     Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
       username: tmpChtRm.current[0].username,
       studentname: tmpChtRm.current[0].studentname,
-      msg: curMsg,
+      msg: tmpCurMsg,
       sender: 'T',
       sendtime: curTime,
       isread: false,
@@ -121,24 +119,23 @@ function Msg() {
           tmpAllMsg[i].push({
             username: tmpChtRm.current[0].username,
             studentname: tmpChtRm.current[0].studentname,
-            msg: curMsg,
+            msg: tmpCurMsg,
             sender: 'T',
             sendtime: curTime,
             isread: false,
           })
+          setCurMsg('');
         }
       }
+
+      setCurMsg('');
       setAllMsg(tmpAllMsg)
     }))
-    setTimeout(() => setCurMsg(' '), 1000)
-    setTimeout(() => setCurMsg(''), 1000)
-    // setCurMsg('');
   }
 
   if (isLoading) {
     return <Loading />
   } else {
-    console.log(allMsg)
     return (
       <div>
         <div className="out">
@@ -153,17 +150,17 @@ function Msg() {
               {allMsg.map((chtRm, ind) => {
                 if (ind === index.current) {
                   tmpChtRm.current = chtRm
+                  console.log("tmpChtRm.current = chtRm");
                 }
-                console.log(tmpChtRm.current)
+                console.log("tmpChtRm.current = ", tmpChtRm.current)
                 return (
                   <div
                     className="shadowing"
                     onClick={() => {
                       index.current = ind
-                      console.log(index.current)
+                      console.log("index.current = ind")
                       tmpChtRm.current = allMsg[index.current]
-                      console.log(tmpChtRm.current)
-                      ToRerender()
+                      console.log("tmpChtRm.current = allMsg[index.current]")
                     }}
                   >
                     <div className="outerbox">
