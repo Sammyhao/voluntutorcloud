@@ -61,12 +61,14 @@ export default function Studymat() {
     廣興國小: false,
     崁頂國小: false,
     溫泉國小: false,
+    義方國小: false,
+    東成國小: false,
   })
   const { 一年級, 二年級, 三年級, 四年級, 五年級, 六年級 } = grade
 
   const { 國文, 數學, 英文, 生活, 社會, 自然 } = subject
 
-  const { 大溪國小, 廣興國小, 崁頂國小, 溫泉國小 } = school
+  const { 大溪國小, 廣興國小, 崁頂國小, 溫泉國小, 義方國小, 東成國小 } = school
 
   let aa = ['Filter Study Materials', '分類課堂教材']
   let a = ['By Grades', '依年級分類']
@@ -191,7 +193,7 @@ export default function Studymat() {
       if (gradearr.length === 6) {
         gradeflag = true
       }
-      if (schoolarr.length == 4) {
+      if (schoolarr.length == 6) {
         schoolflag = true
       }
       if (subjectarr.length == 6) {
@@ -203,7 +205,7 @@ export default function Studymat() {
         }
       }
       for (let s = 0; s < schoolarr.length; s++) {
-        if (obj.school.length == 4) {
+        if (obj.school.length == 6) {
           schoolflag = true
         }
         for (let x = 0; x < obj.school.length; x++) {
@@ -621,6 +623,52 @@ export default function Studymat() {
                   />
                 }
                 label="溫泉國小"
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={義方國小}
+                    name="義方國小"
+                    onChange={(e) => {
+                      setschoolstate({
+                        ...school,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label="義方國小"
+                sx={{
+                  color: '#745140',
+                  height: '30px',
+                  fontFamily: 'Lora',
+                }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={東成國小}
+                    name="東成國小"
+                    onChange={(e) => {
+                      setschoolstate({
+                        ...school,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }}
+                    style={{
+                      color: '#745140',
+                    }}
+                  />
+                }
+                label="東成國小"
                 sx={{
                   color: '#745140',
                   height: '30px',
