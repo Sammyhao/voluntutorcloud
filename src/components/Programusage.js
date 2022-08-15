@@ -63,20 +63,19 @@ function Programusage() {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
         username: username,
       }).then((response) => {
-        for (let i = 0; i < response.data.length; i++) {
-          const student = response.data[i]
-          setStpair((stpair) => [...stpair, student])
-          console.log(student)
+        const student = response.data[0]
+        setStpair((stpair) => [...stpair, student])
+        for(let i = 1; i <= monthlist.length; i++) {
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
             username: student.username,
             studentname: student.studentname,
             studentmail: student.studentmail,
-            echelon: 2,
+            echelon: i,
           }).then((response) => {
-            console.log(response.data)
-            if (response.data.length)
+            if (response.data.length) {
               setContactInfo((contactInfo) => [...contactInfo, response.data])
-            else
+              // setlength(true)
+            } else {
               setContactInfo((contactInfo) => [
                 ...contactInfo,
                 [
@@ -88,9 +87,11 @@ function Programusage() {
                   },
                 ],
               ])
+            }
+            if(i === monthlist.length) setLoading(false)
           })
         }
-        setLoading(false)
+        if(monthlist.length === 0) setLoading(false);
       })
     } else {
       studentname = user.name
@@ -103,35 +104,39 @@ function Programusage() {
         if (response.data.length === 0) setLoading(false)
         let student = response.data[0]
         setStpair((stpair) => [...stpair, student])
-        Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
-          username: student.username,
-          studentname: student.studentname,
-          studentmail: student.studentmail,
-          echelon: 2,
-        }).then((response) => {
-          if (response.data.length) {
-            setContactInfo((contactInfo) => [...contactInfo, response.data])
-            // setlength(true)
-          } else {
-            setContactInfo((contactInfo) => [
-              ...contactInfo,
-              [
-                {
-                  classdate: 'no class',
-                  hoursleft: 8,
-                  studentname: student.studentname,
-                  username: student.username,
-                },
-              ],
-            ])
-          }
-          setLoading(false)
-        })
+        for(let i = 1; i <= monthlist.length; i++) {
+          Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
+            username: student.username,
+            studentname: student.studentname,
+            studentmail: student.studentmail,
+            echelon: i,
+          }).then((response) => {
+            if (response.data.length) {
+              setContactInfo((contactInfo) => [...contactInfo, response.data])
+              // setlength(true)
+            } else {
+              setContactInfo((contactInfo) => [
+                ...contactInfo,
+                [
+                  {
+                    classdate: 'no class',
+                    hoursleft: 8,
+                    studentname: student.studentname,
+                    username: student.username,
+                  },
+                ],
+              ])
+            }
+            if(i === monthlist.length) setLoading(false)
+          })
+        }
+        if(monthlist.length === 0) setLoading(false);
       })
     }
   }, [user])
 
-  const contacttemp = contactInfo.map((item) => item).reverse()
+  // const contacttemp = contactInfo.map((item) => item).reverse()
+  const contacttemp = contactInfo
 
   const noRecord = (stname) => {
     return (
@@ -173,6 +178,8 @@ function Programusage() {
     )
   }
 
+  var echelon = 0;
+
   if (isLoading) {
     return <Loading />
   } else if (stpair.length === 0) {
@@ -183,6 +190,7 @@ function Programusage() {
       </div>
     )
   } else {
+    console.log(contacttemp)
     return (
       <div className="outcontainerprog">
         <div className="selectorwrap_pu">
@@ -246,14 +254,10 @@ function Programusage() {
           </div>
         </div>
         <div className="subjectlist">
-          {contacttemp.map((st) => {
-            console.log(st)
-            if (st[0].classdate === 'no class') {
-              return noRecord(st[0].studentname)
-            } else {
-              let time = st[st.length - 1].hoursleft
-              console.log(time)
-              return (
+            {
+              (contacttemp[echelon][0].classdate === "no class") ? 
+                noRecord(contacttemp[echelon][0].studentname)
+              :
                 <div className="outsidewrapsub">
                   <div className="wrapsubj">
                     <div className="subject">
@@ -262,16 +266,16 @@ function Programusage() {
                           <FaUser className="prog_avatar" />
                         </div>
                         <div className="total">
-                          <div className="sub">{st[0].studentname}</div>
+                          <div className="sub">{contacttemp[echelon][0].studentname}</div>
                           <div className="time">
                             {c[status]}
-                            {time}
+                            {contacttemp[echelon][contacttemp[echelon].length - 1].hoursleft}
                             {d[status]}
                           </div>
                         </div>
                       </div>
                       <div className="progressbar">
-                        <Progress done={time} />
+                        <Progress done={contacttemp[echelon][contacttemp[echelon].length - 1].hoursleft} />
                       </div>
                     </div>
                   </div>
@@ -283,7 +287,7 @@ function Programusage() {
                       </div>
                     </div>
                     <div className="programusagewr">
-                      {st.map((record) => {
+                      {contacttemp[echelon].map((record) => {
                         console.log(record)
                         return (
                           <div className="wrapwrap">
@@ -318,9 +322,7 @@ function Programusage() {
                     </div>
                   </div>
                 </div>
-              )
             }
-          })}
         </div>
       </div>
     )
