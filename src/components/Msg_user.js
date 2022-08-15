@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Msg.css'
 import { FaUser } from 'react-icons/fa'
+import { Contextmenu } from './Contextmenu'
 import { useSelector } from 'react-redux'
 
 export const Msg_user = ({ read, time, type, text }) => {

@@ -3,7 +3,7 @@ import { BiSearchAlt } from 'react-icons/bi'
 import './Msg.css'
 import '../App.css'
 import Loading from './Loading'
-import { Msg_user } from './Msg_user'
+import { Msg_container } from './Msg_container'
 import { FaUser } from 'react-icons/fa'
 import Axios from 'axios'
 import { useSelector } from 'react-redux'
@@ -94,43 +94,48 @@ function Msg() {
       curTime.getSeconds()
     console.log(curTime)
 
-    let tmpCurMsg = curMsg;
-    console.log(tmpCurMsg);
-    setCurMsg(' ');
+    let tmpCurMsg = curMsg
+    console.log(tmpCurMsg)
+    setCurMsg(' ')
 
-    Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
-      username: tmpChtRm.current[0].username,
-      studentname: tmpChtRm.current[0].studentname,
-      msg: tmpCurMsg,
-      sender: 'T',
-      sendtime: curTime,
-      isread: false,
-    }), Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
-      username: tmpChtRm.current[0].studentname,
-      type: '/message',
-      title: 'Message',
-      content: tmpChtRm.current[0].username + ' has sent a message',
-      isnew: true,
-    })]).then(Axios.spread((response, response2) => {
-      console.log(response.data, response2.data);
-      let tmpAllMsg = allMsg
-      for (let i = 0; i < tmpAllMsg.length; i++) {
-        if (tmpAllMsg[i] === tmpChtRm.current) {
-          tmpAllMsg[i].push({
-            username: tmpChtRm.current[0].username,
-            studentname: tmpChtRm.current[0].studentname,
-            msg: tmpCurMsg,
-            sender: 'T',
-            sendtime: curTime,
-            isread: false,
-          })
-          setCurMsg('');
+    Axios.all([
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/updateMsg', {
+        username: tmpChtRm.current[0].username,
+        studentname: tmpChtRm.current[0].studentname,
+        msg: tmpCurMsg,
+        sender: 'T',
+        sendtime: curTime,
+        isread: false,
+      }),
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
+        username: tmpChtRm.current[0].studentname,
+        type: '/message',
+        title: 'Message',
+        content: tmpChtRm.current[0].username + ' has sent a message',
+        isnew: true,
+      }),
+    ]).then(
+      Axios.spread((response, response2) => {
+        console.log(response.data, response2.data)
+        let tmpAllMsg = allMsg
+        for (let i = 0; i < tmpAllMsg.length; i++) {
+          if (tmpAllMsg[i] === tmpChtRm.current) {
+            tmpAllMsg[i].push({
+              username: tmpChtRm.current[0].username,
+              studentname: tmpChtRm.current[0].studentname,
+              msg: tmpCurMsg,
+              sender: 'T',
+              sendtime: curTime,
+              isread: false,
+            })
+            setCurMsg('')
+          }
         }
-      }
 
-      setCurMsg('');
-      setAllMsg(tmpAllMsg)
-    }))
+        setCurMsg('')
+        setAllMsg(tmpAllMsg)
+      }),
+    )
   }
 
   if (isLoading) {
@@ -150,17 +155,17 @@ function Msg() {
               {allMsg.map((chtRm, ind) => {
                 if (ind === index.current) {
                   tmpChtRm.current = chtRm
-                  console.log("tmpChtRm.current = chtRm");
+                  console.log('tmpChtRm.current = chtRm')
                 }
-                console.log("tmpChtRm.current = ", tmpChtRm.current)
+                console.log('tmpChtRm.current = ', tmpChtRm.current)
                 return (
                   <div
                     className="shadowing"
                     onClick={() => {
                       index.current = ind
-                      console.log("index.current = ind")
+                      console.log('index.current = ind')
                       tmpChtRm.current = allMsg[index.current]
-                      console.log("tmpChtRm.current = allMsg[index.current]")
+                      console.log('tmpChtRm.current = allMsg[index.current]')
                     }}
                   >
                     <div className="outerbox">
@@ -183,16 +188,10 @@ function Msg() {
           <div className="chatcontent">
             <div className="chatname">{tmpChtRm.current[0].studentname}</div>
             <div className="chat">
-              {tmpChtRm.current.map((msg) => {
-                return (
-                  <Msg_user
-                    time={msg.sendtime}
-                    type={msg.sender === 'T' ? 'user' : 'recipient'}
-                    text={msg.msg}
-                    read={msg.isread}
-                  ></Msg_user>
-                )
-              })}
+              <Msg_container
+                message={tmpChtRm.current}
+                role={user.role}
+              ></Msg_container>
             </div>
             <div className="send">
               <textarea

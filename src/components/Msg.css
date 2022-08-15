@@ -226,6 +226,24 @@
   border: none;
   cursor: pointer;
 }
+.contextdropdownmenu {
+  width: 83px;
+  position: absolute;
+  background-color: #fdfafe;
+  padding: 10px;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
+  cursor: pointer;
+  color: #b17b67;
+  font-size: 15px;
+  transition: 150ms;
+  text-align: left;
+}
+.contextdropdownmenu:hover {
+  background-color: whitesmoke;
+}
 .msg_time {
   margin-right: 15px;
   color: gray;

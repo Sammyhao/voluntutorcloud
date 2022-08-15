@@ -20,12 +20,12 @@ export const C_SidebarData = [
     cName: 'nav-text',
     icon: <MdOutlineSchool />,
   },
-  {
-    title: '我的最愛',
-    path: '/mylist',
-    cName: 'nav-text',
-    icon: <GrFavorite />,
-  },
+  // {
+  //   title: '我的最愛',
+  //   path: '/mylist',
+  //   cName: 'nav-text',
+  //   icon: <GrFavorite />,
+  // },
   {
     title: '預約會議',
     path: '/book',
