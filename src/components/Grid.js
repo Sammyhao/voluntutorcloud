@@ -53,7 +53,8 @@ function Grid_sub() {
   const [programInfo, setProgramInfo] = useState([])
   const [favProgramInfo, setFavProgramInfo] = useState([]) // 最愛programの大大在此
   const [username, setUsername] = useState('')
-  const [heart, setheart] = useState([])
+  const [loggedopen, setloggedopen] = useState(false)
+  const [heart, setheart] = useState([false, false, false, false, false, false])
   const studentlink = 'https://forms.gle/6BaZovfFSLwtSGkF8'
   const wegolink = 'https://forms.gle/qvM9eLJZiAjUvhEN7'
   const fuhlink = 'https://forms.gle/gT91p6xLSNExWYmh7'
@@ -99,7 +100,7 @@ function Grid_sub() {
               schoolname: response.data[i].schoolname,
             },
           ).then((response2) => {
-            console.log(response2.data, " ", response.data[i]);
+            console.log(response2.data, ' ', response.data[i])
             if (response2.data.exist) {
               array[i] = true
 
@@ -146,7 +147,7 @@ function Grid_sub() {
     console.log({
       username: username,
       program: program,
-    });
+    })
     Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteFavList', {
       username: username,
       program: program,
@@ -162,15 +163,13 @@ function Grid_sub() {
         program: program,
         isBooked: false,
       })
-      Axios.post(
-        'https://voluntutorcloud-server.herokuapp.com/updateFavList',
-        {
-          username: username,
-          program: program,
-          isBooked: false,
-        }).then((response) => {
-          console.log(response.data);
-        })
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFavList', {
+        username: username,
+        program: program,
+        isBooked: false,
+      }).then((response) => {
+        console.log(response.data)
+      })
     } else {
       console.log('user not logged in')
     }
@@ -180,6 +179,9 @@ function Grid_sub() {
     'You cannot enroll in two programs at the same time.',
     '目前不得同時報名多個志工計畫',
   ]
+
+  let gg = ['Sign in to add to your favorite list!!', '登入以加入最愛！']
+  let hh = ['SIGN IN', '登入']
   let d = ['You are already enrolled in a program.', '你已經在志工計畫當中囉~']
   let f = ['BOOK NOW!', '現在報名！']
   let g = ['Add to/Remove from list', '加入/移除最愛']
@@ -213,6 +215,21 @@ function Grid_sub() {
       console.log(heart)
       return (
         <div id="outcontainer">
+          <div id="dialog_reg_wrap">
+            <BootstrapDialog
+              onClose={() => {
+                setloggedopen(false)
+              }}
+              id="dialog_registered"
+              aria-labelledby="customized-dialog-title"
+              open={loggedopen}
+            >
+              <div id="registeredsucc">{gg[status]}</div>
+              <Link to="/sign-in">
+                <div id="return">{hh[status]}</div>
+              </Link>
+            </BootstrapDialog>
+          </div>
           <div id="dialog_reg_wrap">
             <BootstrapDialog
               onClose={handlebookclose}
@@ -302,16 +319,20 @@ function Grid_sub() {
                       id="dialog_add"
                       size="small"
                       onClick={() => {
-                        if (heart[index]) {
-                          let temp_array = heart
-                          temp_array[index] = false
-                          setheart([...temp_array])
-                          removefromlist(program)
+                        if (islogged) {
+                          if (heart[index]) {
+                            let temp_array = heart
+                            temp_array[index] = false
+                            setheart([...temp_array])
+                            removefromlist(program)
+                          } else {
+                            let temp_array = heart
+                            temp_array[index] = true
+                            setheart([...temp_array])
+                            updateFavList(program)
+                          }
                         } else {
-                          let temp_array = heart
-                          temp_array[index] = true
-                          setheart([...temp_array])
-                          updateFavList(program)
+                          setloggedopen(true)
                         }
                       }}
                     >
@@ -417,16 +438,20 @@ function Grid_sub() {
                           id="add"
                           size="small"
                           onClick={() => {
-                            if (heart[ind]) {
-                              let temp_array = heart
-                              temp_array[ind] = false
-                              setheart([...temp_array])
-                              removefromlist(e)
+                            if (islogged) {
+                              if (heart[ind]) {
+                                let temp_array = heart
+                                temp_array[ind] = false
+                                setheart([...temp_array])
+                                removefromlist(e)
+                              } else {
+                                let temp_array = heart
+                                temp_array[ind] = true
+                                setheart([...temp_array])
+                                updateFavList(e)
+                              }
                             } else {
-                              let temp_array = heart
-                              temp_array[ind] = true
-                              setheart([...temp_array])
-                              updateFavList(e)
+                              setloggedopen(true)
                             }
                           }}
                         >
