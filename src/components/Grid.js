@@ -95,9 +95,11 @@ function Grid_sub() {
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/existInFav',
             {
+              username: user.username,
               schoolname: response.data[i].schoolname,
             },
           ).then((response2) => {
+            console.log(response2.data, " ", response.data[i]);
             if (response2.data.exist) {
               array[i] = true
 
@@ -141,34 +143,37 @@ function Grid_sub() {
 
   const removefromlist = (program) => {
     console.log('removed from list')
+    console.log({
+      username: username,
+      program: program,
+    });
     Axios.post('https://voluntutorcloud-server.herokuapp.com/deleteFavList', {
-      username: program.username,
-      programId: program.programId,
+      username: username,
+      program: program,
     }).then((response) => {
       console.log(response)
     })
   }
 
   const updateFavList = (program) => {
-    Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
-      .then((response) => {
-        console.log(response)
-        if (response.data.isLoggedIn) {
-          return Axios.post(
-            'https://voluntutorcloud-server.herokuapp.com/updateFavList',
-            {
-              username: username,
-              program: program,
-              isBooked: false,
-            },
-          )
-        } else {
-          console.log('user not logged in')
-        }
+    if (user.login) {
+      console.log({
+        username: username,
+        program: program,
+        isBooked: false,
       })
-      .then((response) => {
-        console.log(response)
-      })
+      Axios.post(
+        'https://voluntutorcloud-server.herokuapp.com/updateFavList',
+        {
+          username: username,
+          program: program,
+          isBooked: false,
+        }).then((response) => {
+          console.log(response.data);
+        })
+    } else {
+      console.log('user not logged in')
+    }
   }
 
   let e = [
@@ -416,12 +421,12 @@ function Grid_sub() {
                               let temp_array = heart
                               temp_array[ind] = false
                               setheart([...temp_array])
-                              removefromlist(program)
+                              removefromlist(e)
                             } else {
                               let temp_array = heart
                               temp_array[ind] = true
                               setheart([...temp_array])
-                              updateFavList(program)
+                              updateFavList(e)
                             }
                           }}
                         >
