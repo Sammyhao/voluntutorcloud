@@ -24,6 +24,7 @@ function Navbar() {
   const [button, setButton] = useState(true)
   const [notification, setnotification] = useState(false)
   const [name, setName] = useState('')
+  const [notif_data, setNotif_data] = useState([])
   const [data, setdata] = useState(SidebarData)
   const user = useSelector((state) => state.user.value)
 
@@ -46,11 +47,11 @@ function Navbar() {
       }
     }
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getNotif', {
-      username: name,
+      username: user.username,
       isnew: true,
     }).then((response) => {
-      console.log(response.data);
       setNotif_data(response.data)
+      console.log(response.data)
     })
   }, [user])
 
@@ -82,7 +83,6 @@ function Navbar() {
     }
   }
   window.addEventListener('resize', showButton)
-  const [notif_data, setNotif_data] = useState([])
 
   // titles
   let a = ['Home', '首頁']
@@ -131,6 +131,13 @@ function Navbar() {
             </li>
             {isLoggedIn ? (
               <li className="menu-bell">
+                <>
+                  {notif_data.length === 0 ? (
+                    <></>
+                  ) : (
+                    <div className="red_notif">{notif_data.length}</div>
+                  )}
+                </>
                 <FiBell
                   className="icons_nav"
                   onClick={shownotification}

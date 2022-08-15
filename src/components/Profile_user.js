@@ -4,6 +4,7 @@ import { BiEdit } from 'react-icons/bi'
 import { FaUser } from 'react-icons/fa'
 import { AiFillLock } from 'react-icons/ai'
 import { BsCheckLg } from 'react-icons/bs'
+import { changelang } from '../reducer/user'
 import './Profile_user.css'
 import { Divider } from '@mui/material'
 import { BsFillEmojiSmileFill } from 'react-icons/bs'
@@ -31,6 +32,10 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 function Profile_user() {
   const dispatch = useDispatch()
 
+  const store = () => {
+    dispatch(changelang())
+    console.log('dispatched')
+  }
   const [name, setname] = useState('VolunTutor Cloud')
   const [phone, setphone] = useState('0912345678')
   const [email, setemail] = useState('vc@gmail.com')
@@ -142,6 +147,8 @@ function Profile_user() {
   let jjj = ['Total volunteer hours: ', '總服務小時數：']
   let jjjj = ['hours', '小時']
   let rr = ['Session ', '梯次']
+  let rrrr = ['Click me to switch to ', '點我以更改語言為']
+  let rrrrrr = ['Chinese', '英文']
   let rrr = [': ', '：']
   let hi = ['Change Password', '更改密碼']
   let ij = ['Log Out', '登出']
@@ -364,6 +371,7 @@ function Profile_user() {
   }
 
   const changeLang = (lang) => {
+    store()
     Axios.post('https://voluntutorcloud-server.herokuapp.com/setLang', {
       username: name,
       lang: lang,
@@ -412,7 +420,7 @@ function Profile_user() {
   }
 
   const user = useSelector((state) => state.user.value)
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true)
   console.log('store data: ', user)
 
   useEffect(() => {
@@ -438,7 +446,7 @@ function Profile_user() {
         setGooglemeetlink(response.data.user[0].googlemeetlink)
         setCurVolProg(response.data.user[0].curvolprog)
         addHis(response.data.user[0].username)
-        setLoading(false);
+        setLoading(false)
       },
     )
   }, [])
@@ -446,7 +454,7 @@ function Profile_user() {
   let ech1total = 0,
     ech2total = 0
 
-  if(isLoading) return <Loading/>
+  if (isLoading) return <Loading />
 
   return (
     <div className="frame">
@@ -774,23 +782,22 @@ function Profile_user() {
               <div className="information">
                 <div className="language">
                   <div
+                    style={{
+                      textDecoration: 'underline',
+                    }}
                     className="lang"
                     onClick={() => {
-                      setStatus(1)
-                      changeLang('chinese')
+                      if (status == 0) {
+                        setStatus(1)
+                        changeLang('chinese')
+                      } else {
+                        setStatus(0)
+                        changeLang('english')
+                      }
                     }}
                   >
-                    中文
-                  </div>
-                  <div className="slash">/</div>
-                  <div
-                    className="lang"
-                    onClick={() => {
-                      setStatus(0)
-                      changeLang('english')
-                    }}
-                  >
-                    English
+                    {rrrr[status]}
+                    {rrrrrr[status]}
                   </div>
                 </div>
               </div>

@@ -49,7 +49,6 @@ function Grid_sub() {
   const [check_open_book, setcheckopen] = useState(false)
   const [open_book, setBookOpen] = useState(false)
   const [open_notlogged, setnotlogged] = useState(false)
-  const [open_fav, setFavOpen] = useState(false)
   const [status, setStatus] = useState(1)
   const [programInfo, setProgramInfo] = useState([])
   const [favProgramInfo, setFavProgramInfo] = useState([]) // 最愛programの大大在此
@@ -72,9 +71,6 @@ function Grid_sub() {
   const handleClose = () => {
     setOpen(false)
   }
-  const handlefav = () => {
-    setFavOpen(false)
-  }
   const handlebookclose = () => {
     setBookOpen(false)
   }
@@ -95,7 +91,7 @@ function Grid_sub() {
       if (response.data.length) {
         let array = []
         for (let i = 0; i < response.data.length; i++) {
-          array[i] = <RiHeart3Line className={heartclass}></RiHeart3Line>
+          array[i] = false
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/existInFav',
             {
@@ -103,7 +99,7 @@ function Grid_sub() {
             },
           ).then((response2) => {
             if (response2.data.exist) {
-              array[i] = <RiHeart3Fill className={heartclass}></RiHeart3Fill>
+              array[i] = true
 
               setFavProgramInfo((favProgramInfo) => [
                 ...favProgramInfo,
@@ -157,7 +153,6 @@ function Grid_sub() {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
       .then((response) => {
         console.log(response)
-        setFavOpen(true)
         if (response.data.isLoggedIn) {
           return Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/updateFavList',
@@ -213,16 +208,6 @@ function Grid_sub() {
       console.log(heart)
       return (
         <div id="outcontainer">
-          <div id="dialog_reg_wrap">
-            <BootstrapDialog
-              onClose={handlefav}
-              id="dialog_registered"
-              aria-labelledby="customized-dialog-title"
-              open={open_fav}
-            >
-              <div id="favoritetitle">{z[status]}</div>
-            </BootstrapDialog>
-          </div>
           <div id="dialog_reg_wrap">
             <BootstrapDialog
               onClose={handlebookclose}
@@ -312,25 +297,26 @@ function Grid_sub() {
                       id="dialog_add"
                       size="small"
                       onClick={() => {
-                        console.log(heart[index].type.name)
-                        if (heart[index].type.name === 'We') {
+                        if (heart[index]) {
                           let temp_array = heart
-                          temp_array[index] = (
-                            <RiHeart3Line className={heartclass}></RiHeart3Line>
-                          )
+                          temp_array[index] = false
                           setheart([...temp_array])
                           removefromlist(program)
                         } else {
                           let temp_array = heart
-                          temp_array[index] = (
-                            <RiHeart3Fill className={heartclass}></RiHeart3Fill>
-                          )
+                          temp_array[index] = true
                           setheart([...temp_array])
                           updateFavList(program)
                         }
                       }}
                     >
-                      <>{heart[index]}</>
+                      <>
+                        {heart[index] ? (
+                          <RiHeart3Fill className={heartclass}></RiHeart3Fill>
+                        ) : (
+                          <RiHeart3Line className={heartclass}></RiHeart3Line>
+                        )}
+                      </>
 
                       <>{g[status]}</>
                     </Button>
@@ -426,30 +412,30 @@ function Grid_sub() {
                           id="add"
                           size="small"
                           onClick={() => {
-                            console.log(heart[ind])
-                            console.log(heart[ind].type.name)
-                            if (heart[ind].type.name === 'We') {
+                            if (heart[ind]) {
                               let temp_array = heart
-                              temp_array[ind] = (
-                                <RiHeart3Line
-                                  className={heartclass}
-                                ></RiHeart3Line>
-                              )
+                              temp_array[ind] = false
                               setheart([...temp_array])
                               removefromlist(program)
                             } else {
                               let temp_array = heart
-                              temp_array[ind] = (
-                                <RiHeart3Fill
-                                  className={heartclass}
-                                ></RiHeart3Fill>
-                              )
+                              temp_array[ind] = true
                               setheart([...temp_array])
                               updateFavList(program)
                             }
                           }}
                         >
-                          <>{heart[ind]}</>
+                          <>
+                            {heart[ind] ? (
+                              <RiHeart3Fill
+                                className={heartclass}
+                              ></RiHeart3Fill>
+                            ) : (
+                              <RiHeart3Line
+                                className={heartclass}
+                              ></RiHeart3Line>
+                            )}
+                          </>
                           <>{g[status]}</>
                         </Button>
                       </CardActions>

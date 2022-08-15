@@ -18,7 +18,6 @@ export const userSlice = createSlice({
     },
     login: (state = Initialstate, action) => {
       state.value = action.payload
-      console.log('into userslice and completed')
     },
     getloggedout: (state) => {
       return state
@@ -26,9 +25,23 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.value = Initialstate
     },
+    changelanguage: (state) => {
+      if (state.value['language'] == 0) state.value['language'] = 1
+      else state.value['language'] = 0
+    },
+    changelang: (state) => {
+      return state
+    },
   },
 })
 
-export const { login, logout, getloggedin, getloggedout } = userSlice.actions
+export const {
+  login,
+  logout,
+  getloggedin,
+  getloggedout,
+  changelanguage,
+  changelang,
+} = userSlice.actions
 
 export default userSlice.reducer
