@@ -11,15 +11,15 @@ export const Msg_container = ({ message, role }) => {
   const user = useSelector((state) => state.user.value)
   const [status, setStatus] = useState(1)
 
-  console.log(role)
   useEffect(() => {
     setStatus(user.language)
     const handleclick = () => {
       setshow(false)
     }
+    console.log(message);
     window.addEventListener('click', handleclick)
     return () => window.removeEventListener('click', handleclick)
-  }, [])
+  }, [message, role])
 
   return (
     <div
