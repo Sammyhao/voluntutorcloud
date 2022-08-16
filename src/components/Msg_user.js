@@ -3,10 +3,10 @@ import './Msg.css'
 import { FaUser } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 
-export const Msg_user = ({ read, time, type, text }) => {
+export const Msg_user = ({ read, time, type, text, unsend }) => {
   const user = useSelector((state) => state.user.value)
   const [status, setStatus] = useState(1)
-  
+
   useEffect(() => {
     setStatus(user.language)
   }, [])
