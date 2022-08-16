@@ -64,6 +64,7 @@ function Msg() {
                       sender: 'T',
                       sendtime: '',
                       isread: false,
+                      hidden: false,
                     },
                   ],
                 ])
@@ -106,6 +107,7 @@ function Msg() {
         sender: 'T',
         sendtime: curTime,
         isread: false,
+        hidden: false,
       }),
       Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
         username: tmpChtRm.current[0].studentname,
@@ -127,6 +129,7 @@ function Msg() {
               sender: 'T',
               sendtime: curTime,
               isread: false,
+              hidden: false,
             })
             setCurMsg('')
           }
