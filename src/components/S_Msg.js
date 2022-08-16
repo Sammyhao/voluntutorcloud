@@ -66,6 +66,7 @@ function S_Msg() {
                       sender: 'S',
                       sendtime: '',
                       isread: false,
+                      hidden: false
                     },
                   ],
                 ])
@@ -77,6 +78,7 @@ function S_Msg() {
                   sender: 'S',
                   sendtime: '',
                   isread: false,
+                  hidden: false
                 },
               ])
               if (i === response1.data.length - 1) setLoading(false)
@@ -116,6 +118,7 @@ function S_Msg() {
         sender: 'S',
         sendtime: curTime,
         isread: false,
+        hidden: false
       }),
       Axios.post('https://voluntutorcloud-server.herokuapp.com/addNotif', {
         username: tmpChtRm.current[0].username,
@@ -137,6 +140,7 @@ function S_Msg() {
               sender: 'S',
               sendtime: curTime,
               isread: false,
+              hidden: false
             })
             setCurMsg('')
           }
