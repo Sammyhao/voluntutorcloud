@@ -180,7 +180,6 @@ function Appointmentmeet() {
 
     if (googleMeetLink)
       window.open(googleMeetLink, '_blank', 'noopener,noreferrer')
-
   }
   const [formatteddate, setformatteddate] = useState('')
   const [formattedstart, setformattedstart] = useState('')
@@ -282,7 +281,8 @@ function Appointmentmeet() {
       studentname: selectedstudentname,
       studentmail: emailaddress,
       echelon: 2,
-    }).then((response) => {
+    })
+      .then((response) => {
         console.log(totalhour)
 
         for (let i = 0; i < response.data.length; i++) {

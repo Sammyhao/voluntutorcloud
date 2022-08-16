@@ -65,7 +65,7 @@ function Programusage() {
       }).then((response) => {
         const student = response.data[0]
         setStpair((stpair) => [...stpair, student])
-        for(let i = 1; i <= monthlist.length; i++) {
+        for (let i = 1; i <= monthlist.length; i++) {
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
             username: student.username,
             studentname: student.studentname,
@@ -88,10 +88,10 @@ function Programusage() {
                 ],
               ])
             }
-            if(i === monthlist.length) setLoading(false)
+            if (i === monthlist.length) setLoading(false)
           })
         }
-        if(monthlist.length === 0) setLoading(false);
+        if (monthlist.length === 0) setLoading(false)
       })
     } else {
       studentname = user.name
@@ -104,7 +104,7 @@ function Programusage() {
         if (response.data.length === 0) setLoading(false)
         let student = response.data[0]
         setStpair((stpair) => [...stpair, student])
-        for(let i = 1; i <= monthlist.length; i++) {
+        for (let i = 1; i <= monthlist.length; i++) {
           Axios.post('https://voluntutorcloud-server.herokuapp.com/getRecord', {
             username: student.username,
             studentname: student.studentname,
@@ -127,10 +127,10 @@ function Programusage() {
                 ],
               ])
             }
-            if(i === monthlist.length) setLoading(false)
+            if (i === monthlist.length) setLoading(false)
           })
         }
-        if(monthlist.length === 0) setLoading(false);
+        if (monthlist.length === 0) setLoading(false)
       })
     }
   }, [user])
@@ -178,7 +178,7 @@ function Programusage() {
     )
   }
 
-  var echelon = 0;
+  const [echelon, setechelon] = useState(1)
 
   if (isLoading) {
     return <Loading />
@@ -203,8 +203,9 @@ function Programusage() {
               displayEmpty
               inputProps={{ 'aria-label': 'Without label' }}
               value={months}
-              onChange={(e) => {
+              onChange={(e, child) => {
                 setmonths(e.target.value)
+                setechelon(child.props.id)
               }}
               renderValue={(selected) => {
                 if (selected.length === 0) {
@@ -254,75 +255,82 @@ function Programusage() {
           </div>
         </div>
         <div className="subjectlist">
-            {
-              (contacttemp[echelon][0].classdate === "no class") ? 
-                noRecord(contacttemp[echelon][0].studentname)
-              :
-                <div className="outsidewrapsub">
-                  <div className="wrapsubj">
-                    <div className="subject">
-                      <div className="second">
-                        <div className="imageprog">
-                          <FaUser className="prog_avatar" />
-                        </div>
-                        <div className="total">
-                          <div className="sub">{contacttemp[echelon][0].studentname}</div>
-                          <div className="time">
-                            {c[status]}
-                            {contacttemp[echelon][contacttemp[echelon].length - 1].hoursleft}
-                            {d[status]}
-                          </div>
-                        </div>
+          {contacttemp[echelon][0].classdate === 'no class' ? (
+            noRecord(contacttemp[echelon][0].studentname)
+          ) : (
+            <div className="outsidewrapsub">
+              <div className="wrapsubj">
+                <div className="subject">
+                  <div className="second">
+                    <div className="imageprog">
+                      <FaUser className="prog_avatar" />
+                    </div>
+                    <div className="total">
+                      <div className="sub">
+                        {contacttemp[echelon][0].studentname}
                       </div>
-                      <div className="progressbar">
-                        <Progress done={contacttemp[echelon][contacttemp[echelon].length - 1].hoursleft} />
+                      <div className="time">
+                        {c[status]}
+                        {
+                          contacttemp[echelon][contacttemp[echelon].length - 1]
+                            .hoursleft
+                        }
+                        {d[status]}
                       </div>
                     </div>
                   </div>
-                  <div className="outestwrapprogram">
-                    <div className="rowwrap">
-                      <div className="row1">
-                        <div className="title_rec">{e[status]}</div>
-                        <div className="title_not">{f[status]}</div>
-                      </div>
-                    </div>
-                    <div className="programusagewr">
-                      {contacttemp[echelon].map((record) => {
-                        console.log(record)
-                        return (
-                          <div className="wrapwrap">
-                            <div className="gridwrapprog">
-                              <div className="row_rest">
-                                <div className="content_rec">
-                                  <div className="content_rec_sec">
-                                    <div className="title_content_rec">
-                                      {g[status]}
-                                    </div>
-                                    <div className="content_content_rec">
-                                      {record.classdate}
-                                    </div>
-                                  </div>
-                                  <div className="content_rec_sec_ag">
-                                    <div className="title_content_rec">
-                                      {h[status]}
-                                    </div>
-                                    <div className="content_content_rec">
-                                      {record.notes}
-                                    </div>
-                                  </div>
+                  <div className="progressbar">
+                    <Progress
+                      done={
+                        contacttemp[echelon][contacttemp[echelon].length - 1]
+                          .hoursleft
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="outestwrapprogram">
+                <div className="rowwrap">
+                  <div className="row1">
+                    <div className="title_rec">{e[status]}</div>
+                    <div className="title_not">{f[status]}</div>
+                  </div>
+                </div>
+                <div className="programusagewr">
+                  {contacttemp[echelon].map((record) => {
+                    console.log(record)
+                    return (
+                      <div className="wrapwrap">
+                        <div className="gridwrapprog">
+                          <div className="row_rest">
+                            <div className="content_rec">
+                              <div className="content_rec_sec">
+                                <div className="title_content_rec">
+                                  {g[status]}
                                 </div>
-                                <div className="content_not">
-                                  {record.agenda}
+                                <div className="content_content_rec">
+                                  {record.classdate}
+                                </div>
+                              </div>
+                              <div className="content_rec_sec_ag">
+                                <div className="title_content_rec">
+                                  {h[status]}
+                                </div>
+                                <div className="content_content_rec">
+                                  {record.notes}
                                 </div>
                               </div>
                             </div>
+                            <div className="content_not">{record.agenda}</div>
                           </div>
-                        )
-                      })}
-                    </div>
-                  </div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
-            }
+              </div>
+            </div>
+          )}
         </div>
       </div>
     )
