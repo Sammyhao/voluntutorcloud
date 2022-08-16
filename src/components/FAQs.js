@@ -15,9 +15,9 @@ export default function FAQs() {
     'Here are some frequently asked questions. Please refer to this page if you have any questions about us or the website!',
     '此頁列出了關於網站或者是Voluntutor Cloud團隊的常見問題，有任何問題都可以在這邊找到解答喔！',
   ]
-  let c = ['Find all the ', '我們幫']
-  let cc = ['ANSWERS', '你']
-  let ccc = [' you need!', '解惑！']
+  let c = ['Answer ', '我們幫']
+  let cc = ['\xa0' + 'YOUR' + '\xa0', '你']
+  let ccc = [' questions!', '解惑！']
   let d = [
     "1. Which web browser should I use when I'm using the Voluntutor Cloud website?",
     '1. 在使用Voluntutor Cloud網站時，我應該使用哪一個瀏覽器呢？',
@@ -42,10 +42,10 @@ export default function FAQs() {
     '2. If the website keeps loading, what should I do?',
     '2. 若網站一直在loading，我要如何處理？',
   ]
-  let j = ['• Please return to the homepage or ', '• 請回到主頁面或']
+  let j = ['• Please return to the homepage or ' + '\xa0', '• 請回到主頁面或']
   let jj = ['click me', '點我']
   let jjj = [
-    ' After signing in, you should be good to go!',
+    '\xa0' + 'After signing in, you should be good to go!',
     '重新進入主頁，並且重新登入即可使用。',
   ]
   let k = [
