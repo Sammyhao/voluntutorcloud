@@ -15,6 +15,7 @@ import Program_usage from './components/pages/Program_usage'
 import Book from './components/pages/Book'
 import Student_portfolio from './components/pages/Student_portfolio'
 import Message from './components/pages/Message'
+import FAQ from './components/pages/FAQ'
 import Studymat from './components/pages/Study'
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/admin" element={<Admin />}></Route>
           <Route exact path="/pair" element={<Admin_pair />}></Route>
           <Route exact path="/studymat" element={<Studymat />}></Route>
+          <Route exact path="/faq" element={<FAQ />}></Route>
 
           <Route
             exact

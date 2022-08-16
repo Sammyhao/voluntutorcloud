@@ -1,0 +1,140 @@
+.faqwrap {
+  width: 100%;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 200px;
+}
+.faqtitle {
+  color: #b17b67;
+  font-family: 'Playfair Display';
+  font-size: 90px;
+  margin: 50px;
+  padding: 100px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 20px;
+}
+.linkclickable {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#answerlink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.faqintro {
+  color: #745140;
+  text-align: center;
+  font-size: 23px;
+  padding: 100px;
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-bottom: 250px;
+}
+.qabackground {
+  background-color: #b17b67;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.qawrap {
+  background-color: #f6f1ef;
+  width: 80%;
+  margin-bottom: -150px;
+  margin-top: -150px;
+  display: flex;
+  padding: 100px;
+  border-radius: 15px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.qatitle {
+  color: #b17b67;
+  font-size: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  width: 100%;
+}
+.emphasis {
+  color: #d69d88;
+  font-size: 70px;
+}
+.question {
+  color: #745140;
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.answer {
+  font-size: 16px;
+  color: #b17b67;
+  margin-bottom: 7px;
+  margin-top: 7px;
+}
+.linkqa {
+  color: #d69d88;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  width: wrap;
+}
+.qaprocedure {
+  color: #d69d88;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.questionwrap {
+  margin-bottom: 30px;
+}
+.linkwrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 1080px) {
+  .faqtitle {
+    font-size: 70px;
+    padding: 70px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  .faqintro {
+    font-size: 20px;
+    padding: 80px;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-bottom: 250px;
+  }
+  .qatitle {
+    font-size: 40px;
+  }
+  .emphasis {
+    font-size: 60px;
+  }
+  .qawrap {
+    padding: 60px;
+  }
+}
+@media screen and (max-width: 780px) {
+  #answerlink {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .qatitle {
+    flex-direction: column;
+  }
+}

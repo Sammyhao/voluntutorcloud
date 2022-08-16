@@ -15,13 +15,13 @@ export default function Team() {
   // titles
   let a = ['Team', '團隊介紹']
   let b = ['Ruby Chang', '張舒晴 Ruby']
-  let c = ['Team Leader', '團隊領導者']
-  let d = ['Programmer', '編程']
+  let c = ['President', '領導者']
+  let d = ['Engineering Director', '網站工程師']
   let e = ['Sam Hao', '郝胤翔 Sam']
-  let f = ['Vice Team Leader', '團隊副領導者']
+  let f = ['Vice President', '副領導者']
   let g = ['Carol Kao', '高婉予 Carol']
-  let h = ['Artistic Director', '網站頁面設計']
-  let i = ['Public Relation', '公關']
+  let h = ['Marketing Director', '行銷總編']
+  let i = ['PR Director', '公關領導']
   let j = ['Zachary Lai', '賴元斌 Zachary']
   let k = ['Daniel Yu', '余浩瑋 Daniel']
 
@@ -31,53 +31,115 @@ export default function Team() {
       <div className="teamwrap">
         <div className="first">
           <div className="person">
-            <img className="team_pic" src="/images/Ruby.png"></img>
+            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
+            <div className="temp_pic"></div>
 
-            <div className="team_name">{b[status]}</div>
-            <Divider className="team_line"></Divider>
-            <div className="team_role_wrap">
-              <div className="team_role">{c[status]}</div>
-              <div className="team_role">{d[status]}</div>
+            <div class="image_team_overlay image_team_overlay -- blur">
+              <div class="image_text_team">
+                <b className="image_text_head">{b[status]}</b>
+                <div
+                  style={{
+                    marginTop: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div className="image_text_roles">{c[status]}</div>
+                  <div className="image_text_roles">{d[status]}</div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="person">
-            <img className="team_pic" src="/images/Sam.png"></img>
+            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
+            <div className="temp_pic"></div>
 
-            <div className="team_name">{e[status]}</div>
-            <Divider className="team_line"></Divider>
-            <div className="team_role_wrap">
-              <div className="team_role">{f[status]}</div>
-              <div className="team_role">{d[status]}</div>
+            <div class="image_team_overlay image_team_overlay -- blur">
+              <div class="image_text_team">
+                <b className="image_text_head">{g[status]}</b>
+                <div
+                  style={{
+                    marginTop: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div className="image_text_roles">{f[status]}</div>
+                  <div className="image_text_roles">{h[status]}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="person">
+            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
+            <div className="temp_pic"></div>
+
+            <div class="image_team_overlay image_team_overlay -- blur">
+              <div class="image_text_team">
+                <b className="image_text_head">{e[status]}</b>
+                <div
+                  style={{
+                    marginTop: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div className="image_text_roles">{f[status]}</div>
+                  <div className="image_text_roles">{h[status]}</div>
+                </div>{' '}
+              </div>
             </div>
           </div>
         </div>
         <div className="second_team">
-          <div className="person2">
-            <img className="team_pic" src="/images/Carol.png"></img>
+          <div className="person">
+            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
+            <div className="temp_pic"></div>
 
-            <div className="team_name">{g[status]}</div>
-            <Divider className="team_line"></Divider>
-            <div className="team_role_wrap">
-              <div className="team_role">{h[status]}</div>
-              <div className="team_role">{i[status]}</div>
+            <div class="image_team_overlay image_team_overlay -- blur">
+              <div class="image_text_team">
+                <b className="image_text_head">{j[status]}</b>
+                <div
+                  style={{
+                    marginTop: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div className="image_text_roles">{i[status]}</div>
+                  <div className="image_text_roles">{i[status]}</div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="person2">
-            <img className="team_pic" src="/images/Daniel.JPG"></img>
+          <div className="person">
+            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
+            <div className="temp_pic"></div>
 
-            <div className="team_name">{k[status]}</div>
-            <Divider className="team_line"></Divider>
-            <div className="team_role_wrap">
-              <div className="team_role">{i[status]}</div>
-            </div>
-          </div>
-          <div className="person2">
-            <img className="team_pic" src="/images/Zachary.png"></img>
-
-            <div className="team_name">{j[status]}</div>
-            <Divider className="team_line"></Divider>
-            <div className="team_role_wrap">
-              <div className="team_role">{i[status]}</div>
+            <div class="image_team_overlay image_team_overlay -- blur">
+              <div class="image_text_team">
+                <b className="image_text_head">{k[status]}</b>
+                <div
+                  style={{
+                    marginTop: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div className="image_text_roles">{i[status]}</div>
+                  <div className="image_text_roles">{i[status]}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

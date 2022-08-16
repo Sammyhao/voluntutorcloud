@@ -88,7 +88,7 @@ function Navbar() {
   let a = ['Home', '首頁']
   let b = ['Programs', '志工計畫']
   let bb = ['Bookings', '會議預約']
-  let c = ['Contact', '聯絡我們']
+  let c = ['FAQs', '常見問題']
   let d = ['SIGN IN/UP', '登入/註冊']
 
   useEffect(() => {
@@ -125,7 +125,7 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              <Link to="/faq" className="nav-links" onClick={closeMobileMenu}>
                 {c[status]}
               </Link>
             </li>
