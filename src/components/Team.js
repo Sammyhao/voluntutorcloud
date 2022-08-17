@@ -91,7 +91,7 @@ export default function Team() {
                   }}
                 >
                   <div className="image_text_roles">{f[status]}</div>
-                  <div className="image_text_roles">{h[status]}</div>
+                  <div className="image_text_roles">{d[status]}</div>
                 </div>{' '}
               </div>
             </div>

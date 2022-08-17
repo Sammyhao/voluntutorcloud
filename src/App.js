@@ -13,6 +13,7 @@ import Appointment from './components/pages/Appointment'
 import Admin from './components/pages/Admin'
 import Program_usage from './components/pages/Program_usage'
 import Book from './components/pages/Book'
+import Admin_bookings from './components/pages/Admin_bookings'
 import Student_portfolio from './components/pages/Student_portfolio'
 import Message from './components/pages/Message'
 import FAQ from './components/pages/FAQ'
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/admin" element={<Admin />}></Route>
           <Route exact path="/pair" element={<Admin_pair />}></Route>
           <Route exact path="/studymat" element={<Studymat />}></Route>
+          <Route exact path="/adminbook" element={<Admin_bookings />}></Route>
           <Route exact path="/faq" element={<FAQ />}></Route>
 
           <Route

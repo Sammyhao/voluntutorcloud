@@ -12,7 +12,7 @@ export default function FAQs() {
   }, [])
   let a = ['Common Questions', '常見問題']
   let b = [
-    'Here are some frequently asked questions. Please refer to this page if you have any questions about us or the website!',
+    'Here are some frequently asked questions. Please refer to this page if you have any questions!',
     '此頁列出了關於網站或者是Voluntutor Cloud團隊的常見問題，有任何問題都可以在這邊找到解答喔！',
   ]
   let c = ['Answer ', '我們幫']

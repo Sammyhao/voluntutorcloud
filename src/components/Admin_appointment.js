@@ -314,27 +314,17 @@ export default function Admin_appointment() {
       >
         查看學生老師配對
       </div>
+      <div
+        className="backtosignin"
+        onClick={() => {
+          navigate('/adminbook')
+        }}
+      >
+        查看會議預約
+      </div>
       <div className="admin_title">會議記錄表</div>
       <div className="subtitle">大溪國小</div>
       <div className="chart">
-        {/* <div className="admin_chart">
-          <div className="content">老師 - 學生</div>
-          <div className="content">
-            {date[0]}~{date[1]}
-          </div>
-          <div className="content">
-            {date[2]}~{date[3]}
-          </div>
-          <div className="content">
-            {date[4]}~{date[5]}
-          </div>
-          <div className="content">
-            {date[6]}~{date[7]}
-          </div>
-          <div className="content">
-            {date[8]}~{date[9]}
-          </div>
-        </div> */}
         {ds.map((e, ind) => {
           let data = e.data
           return (
@@ -379,56 +369,9 @@ export default function Admin_appointment() {
           )
         })}
       </div>
-      {/* <div className="chart">
-        <div className="admin_chart">
-          <div className="content">老師 - 學生</div>
-          <div className="content">
-            {date[10]}~{date[11]}
-          </div>
-          <div className="content">
-            {date[12]}~{date[13]}
-          </div>
-          <div className="content">
-            {date[14]}~{date[15]}
-          </div>
-          <div className="content">
-            {date[16]}~{date[17]}
-          </div>
-          <div className="content">{date[18]}</div>
-        </div>
-        {student1.map((e, ind) => {
-          return (
-            <div className="admin_chart">
-              <div className="content">{e.pair}</div>
-              <div className="content">{e.sixth}</div>
-              <div className="content">{e.seventh}</div>
-              <div className="content">{e.eighth}</div>
-              <div className="content">{e.ninth}</div>
-              <div className="content">{e.tenth}</div>
-            </div>
-          )
-        })}
-      </div> */}
+
       <div className="subtitle">溫泉國小</div>
       <div className="chart">
-        {/* <div className="admin_chart">
-          <div className="content">老師 - 學生</div>
-          <div className="content">
-            {date[0]}~{date[1]}
-          </div>
-          <div className="content">
-            {date[2]}~{date[3]}
-          </div>
-          <div className="content">
-            {date[4]}~{date[5]}
-          </div>
-          <div className="content">
-            {date[6]}~{date[7]}
-          </div>
-          <div className="content">
-            {date[8]}~{date[9]}
-          </div>
-        </div> */}
         {wc.map((e, ind) => {
           let data = e.data
           return (
@@ -450,56 +393,9 @@ export default function Admin_appointment() {
           )
         })}
       </div>
-      {/* <div className="chart">
-        <div className="admin_chart">
-          <div className="content">老師 - 學生</div>
-          <div className="content">
-            {date[10]}~{date[11]}
-          </div>
-          <div className="content">
-            {date[12]}~{date[13]}
-          </div>
-          <div className="content">
-            {date[14]}~{date[15]}
-          </div>
-          <div className="content">
-            {date[16]}~{date[17]}
-          </div>
-          <div className="content">{date[18]}</div>
-        </div>
-        {student1.map((e, ind) => {
-          return (
-            <div className="admin_chart">
-              <div className="content">{e.pair}</div>
-              <div className="content">{e.sixth}</div>
-              <div className="content">{e.seventh}</div>
-              <div className="content">{e.eighth}</div>
-              <div className="content">{e.ninth}</div>
-              <div className="content">{e.tenth}</div>
-            </div>
-          )
-        })}
-      </div> */}
+
       <div className="subtitle">崁頂國小</div>
       <div className="chart">
-        {/* <div className="admin_chart">
-          <div className="content">老師 - 學生</div>
-          <div className="content">
-            {date[0]}~{date[1]}
-          </div>
-          <div className="content">
-            {date[2]}~{date[3]}
-          </div>
-          <div className="content">
-            {date[4]}~{date[5]}
-          </div>
-          <div className="content">
-            {date[6]}~{date[7]}
-          </div>
-          <div className="content">
-            {date[8]}~{date[9]}
-          </div>
-        </div> */}
         {cd.map((e, ind) => {
           let data = e.data
           return (
@@ -521,32 +417,48 @@ export default function Admin_appointment() {
           )
         })}
       </div>
+      <div className="subtitle">義方國小</div>
       {/* <div className="chart">
-        <div className="admin_chart">
-          <div className="content">老師 - 學生</div>
-          <div className="content">
-            {date[10]}~{date[11]}
-          </div>
-          <div className="content">
-            {date[12]}~{date[13]}
-          </div>
-          <div className="content">
-            {date[14]}~{date[15]}
-          </div>
-          <div className="content">
-            {date[16]}~{date[17]}
-          </div>
-          <div className="content">{date[18]}</div>
-        </div>
-        {student1.map((e, ind) => {
+        {gx.map((e, ind) => {
+          let data = e.data
           return (
             <div className="admin_chart">
-              <div className="content">{e.pair}</div>
-              <div className="content">{e.sixth}</div>
-              <div className="content">{e.seventh}</div>
-              <div className="content">{e.eighth}</div>
-              <div className="content">{e.ninth}</div>
-              <div className="content">{e.tenth}</div>
+              <div className="content" key={ind}>
+                {e.teacher} - {e.studentname}
+              </div>
+              {data.map((rec, i) => {
+                return (
+                  <div className="content" key={i}>
+                    {rec.classdate} :{' '}
+                    {trans[rec.studentabsence]
+                      ? trans[rec.studentabsence]
+                      : rec.studentabsence}
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })}
+      </div> */}
+      <div className="subtitle">東成國小</div>
+      {/* <div className="chart">
+        {gx.map((e, ind) => {
+          let data = e.data
+          return (
+            <div className="admin_chart">
+              <div className="content" key={ind}>
+                {e.teacher} - {e.studentname}
+              </div>
+              {data.map((rec, i) => {
+                return (
+                  <div className="content" key={i}>
+                    {rec.classdate} :{' '}
+                    {trans[rec.studentabsence]
+                      ? trans[rec.studentabsence]
+                      : rec.studentabsence}
+                  </div>
+                )
+              })}
             </div>
           )
         })}

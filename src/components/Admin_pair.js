@@ -31,8 +31,8 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
 }
 
-let curPair = 0;
-let role = "";
+let curPair = 0
+let role = ''
 
 export default function Admin_pair() {
   const navigate = useNavigate()
@@ -40,13 +40,13 @@ export default function Admin_pair() {
   const [clickednum, setclickednum] = useState(0)
   const [account, setaccount] = useState('')
   const [password, setpassword] = useState('')
-  
+
   const closeopen = () => {
     setopen(false)
   }
 
-  const [stpair, setStpair] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [stpair, setStpair] = useState([])
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     Axios.post(
@@ -55,14 +55,46 @@ export default function Admin_pair() {
       for (let i = 0; i < response.data.length; i++) {
         let tempStpair = response.data[i]
         console.log(tempStpair)
-        Axios.all([Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
-          username: tempStpair.username,
-        }), Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
-          username: tempStpair.studentname,
-        })]).then(Axios.spread((response1, response2) => {
-          console.log({teacher: tempStpair.username, teacherRN: response1.data[0].lastname + response1.data[0].firstname, teacherPW: response1.data[0].password, studentRN: tempStpair.studentname, meetlink: response1.data[0].googlemeetlink, student: response2.data[0].username, studentPW: response2.data[0].password});
-          setStpair(stpair => [...stpair, {teacher: tempStpair.username, teacherRN: response1.data[0].lastname + response1.data[0].firstname, teacherPW: response1.data[0].password, studentRN: tempStpair.studentname, meetlink: response1.data[0].googlemeetlink, student: response2.data[0].username, studentPW: response2.data[0].password}])
-        }))
+        Axios.all([
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
+            {
+              username: tempStpair.username,
+            },
+          ),
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
+            {
+              username: tempStpair.studentname,
+            },
+          ),
+        ]).then(
+          Axios.spread((response1, response2) => {
+            console.log({
+              teacher: tempStpair.username,
+              teacherRN:
+                response1.data[0].lastname + response1.data[0].firstname,
+              teacherPW: response1.data[0].password,
+              studentRN: tempStpair.studentname,
+              meetlink: response1.data[0].googlemeetlink,
+              student: response2.data[0].username,
+              studentPW: response2.data[0].password,
+            })
+            setStpair((stpair) => [
+              ...stpair,
+              {
+                teacher: tempStpair.username,
+                teacherRN:
+                  response1.data[0].lastname + response1.data[0].firstname,
+                teacherPW: response1.data[0].password,
+                studentRN: tempStpair.studentname,
+                meetlink: response1.data[0].googlemeetlink,
+                student: response2.data[0].username,
+                studentPW: response2.data[0].password,
+              },
+            ])
+          }),
+        )
       }
       setLoading(false)
     })
@@ -154,17 +186,31 @@ export default function Admin_pair() {
           onClose={closeopen}
         >
           <div className="admin_dialog_wrap">
-            {(role === "teacher") ? 
+            {role === 'teacher' ? (
               <>
-                <div className="admin_dialog_text" onClick={() => console.log(curPair, ' ', role)}>帳號：{curPair.teacher}</div> 
-                <div className="admin_dialog_text">密碼：{curPair.teacherPW}</div>
-              </> 
-              : 
-              <>
-                <div className="admin_dialog_text" onClick={() => console.log(curPair, ' ', role)}>帳號：{curPair.student}</div> 
-                <div className="admin_dialog_text">密碼：{curPair.studentPW}</div>
+                <div
+                  className="admin_dialog_text"
+                  onClick={() => console.log(curPair, ' ', role)}
+                >
+                  帳號：{curPair.teacher}
+                </div>
+                <div className="admin_dialog_text">
+                  密碼：{curPair.teacherPW}
+                </div>
               </>
-            }
+            ) : (
+              <>
+                <div
+                  className="admin_dialog_text"
+                  onClick={() => console.log(curPair, ' ', role)}
+                >
+                  帳號：{curPair.student}
+                </div>
+                <div className="admin_dialog_text">
+                  密碼：{curPair.studentPW}
+                </div>
+              </>
+            )}
           </div>
         </BootstrapDialog>
       </div>
@@ -184,6 +230,15 @@ export default function Admin_pair() {
       >
         查看會議記錄表
       </div>
+
+      <div
+        className="backtosignin"
+        onClick={() => {
+          navigate('/adminbook')
+        }}
+      >
+        查看會議預約
+      </div>
       <div className="admin_title">學生老師配對</div>
       <div className="admin_notif">點擊老師或學生帳號以查看帳號密碼</div>
       {/* <div className="subtitle">大溪國小</div> */}
@@ -199,9 +254,9 @@ export default function Admin_pair() {
               <div
                 className="content_pair"
                 onClick={() => {
-                  curPair = e;
-                  role = "teacher";
-                  console.log(curPair);
+                  curPair = e
+                  role = 'teacher'
+                  console.log(curPair)
                   setclickednum(ind)
                   setopen(true)
                 }}
@@ -211,9 +266,9 @@ export default function Admin_pair() {
               <div
                 className="content_pair"
                 onClick={() => {
-                  curPair = e;
-                  role = "student";
-                  console.log(curPair);
+                  curPair = e
+                  role = 'student'
+                  console.log(curPair)
                   setclickednum(ind)
                   setopen(true)
                 }}
