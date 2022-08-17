@@ -45,7 +45,7 @@
     "react-router-dom": "^6.1.1",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "^5.0.0",
-    "react-spring": "^9.4.2",
+    "react-spring": "^9.5.2",
     "react-tinder-card": "^1.4.5",
     "react-transition-group": "^4.4.2",
     "redux": "^4.2.0",
