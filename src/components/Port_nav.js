@@ -8,7 +8,6 @@ import { C_S_SidebarData } from './C_S_SidebarData'
 import { S_SidebarData } from './S_SidebarData'
 import { C_SidebarData } from './C_SidebarData'
 import { useSelector } from 'react-redux'
-import '@progress/kendo-theme-default/dist/all.css'
 
 function Port_nav() {
   const [sidebar, setSidebar] = useState(false)
