@@ -18,6 +18,27 @@
   padding-bottom: 0px;
   margin-bottom: 20px;
 }
+.tutorialinksbottom {
+  background-color: #d6b7a8;
+  color: white;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 40px;
+  width: wrap;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 150ms;
+}
+.tutorialinksbottom:hover {
+  background-color: #c49483;
+}
+.tutoriallinkswrap {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+}
 .linkclickable {
   text-decoration: underline;
   cursor: pointer;
@@ -48,7 +69,7 @@
 .qawrap {
   background-color: #f6f1ef;
   width: 80%;
-  margin-bottom: -150px;
+  margin-bottom: 150px;
   margin-top: -150px;
   display: flex;
   padding: 100px;
@@ -56,6 +77,18 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+}
+.faqimage {
+  margin-top: 50px;
+  width: 50vw;
+  height: 100%;
+  margin-bottom: 50px;
+}
+#googleaccount {
+  width: 20vw;
+}
+#imgstudentsattendance {
+  margin-bottom: 0px;
 }
 .qatitle {
   color: #b17b67;
@@ -137,5 +170,9 @@
   }
   .qatitle {
     flex-direction: column;
+  }
+
+  .tutoriallinkswrap {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

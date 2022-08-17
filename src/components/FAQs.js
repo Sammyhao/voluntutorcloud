@@ -93,9 +93,22 @@ export default function FAQs() {
     '• For example: If the session is initially planned to be from 8:00 am to 9:00 am, but the student is late for 15 minutes, please fill in the appointment form as following.',
     '• 例如：若原本預約8:00-9:00上課、遲到15分鐘，請依照以下填寫。',
   ]
+  let w = ['Tutorials', '教學影片']
+  let x = ['Phone/tablet setting tutorial (Eng)', '平板手機網站使用設定 (英文)']
+  let xx = ['Phone/tablet setting tutorial (Ch)', '平板手機網站使用設定 (中文)']
+  let y = ['Account registration', '註冊帳號']
+  let yy = ['How to book a meeting (student)', '會議預約教學 (學生)']
+  let yyy = ['How to book a meeting (teacher)', '會議預約教學 (老師)']
+  let z = ['How to join a meeting (student)', '如何加入上課會議 (學生)']
+  let zz = ['How to join a meeting (teacher)', '如何加入上課會議 (老師)']
   const phonesettingtutorialchi = 'https://www.youtube.com/shorts/4pt_JmFWGOQ'
   const phonesettingtutorialeng = 'https://www.youtube.com/shorts/Ojl9JxCmgu4'
   const homepagelink = 'https://voluntutorcloud.org/'
+  const registration = 'https://www.youtube.com/watch?v=_EA9h2ajJZ8'
+  const bookmeetstu = 'https://www.youtube.com/watch?v=k9FvF23QEA0'
+  const bookmeetteach = 'https://www.youtube.com/watch?v=rlLfw9H7EwI'
+  const joinmeetstu = 'https://www.youtube.com/watch?v=AEMLtAJ_Mc0'
+  const joinmeetteach = 'https://www.youtube.com/watch?v=5V7T9DnTdtI'
   const phonesettingtutorial1 = () => {
     window.open(phonesettingtutorialeng, '_blank', 'noopener,noreferrer')
   }
@@ -104,6 +117,21 @@ export default function FAQs() {
   }
   const openhomepage = () => {
     window.open(homepagelink, '_blank', 'noopener,noreferrer')
+  }
+  const openreg = () => {
+    window.open(registration, '_blank', 'noopener,noreferrer')
+  }
+  const openbookmeets = () => {
+    window.open(bookmeetstu, '_blank', 'noopener,noreferrer')
+  }
+  const openbookmeett = () => {
+    window.open(bookmeetteach, '_blank', 'noopener,noreferrer')
+  }
+  const openjoinmeets = () => {
+    window.open(joinmeetstu, '_blank', 'noopener,noreferrer')
+  }
+  const openjoinmeett = () => {
+    window.open(joinmeetteach, '_blank', 'noopener,noreferrer')
   }
   return (
     <div className="faqwrap">
@@ -149,10 +177,17 @@ export default function FAQs() {
               <div className="answerdots">{l[status]}</div>
               <div className="answerdots">{m[status]}</div>
             </div>
+            <img className="faqimage" src="/images/google_meet 1.jpg"></img>
             <div className="qaprocedure">{n[status]}</div>
-
+            <img className="faqimage" src="/images/google_meet 2.jpg"></img>
             <div className="qaprocedure">{o[status]}</div>
+            <img
+              className="faqimage"
+              id="googleaccount"
+              src="/images/change_google_account.jpg"
+            ></img>
             <div className="qaprocedure">{p[status]}</div>
+            <img className="faqimage" src="/images/google_meet 3.jpg"></img>
           </div>
           <div className="questionwrap">
             <div className="question">{q[status]}</div>
@@ -167,7 +202,40 @@ export default function FAQs() {
               <div className="answerdots">{u[status]}</div>
               <div className="answerdots">{v[status]}</div>
             </div>
+
+            <img
+              className="faqimage"
+              id="imgstudentsattendance"
+              src="/images/student's_attendance.jpg"
+            ></img>
+
+            <img className="faqimage" src="/images/class_time.jpg"></img>
           </div>
+        </div>
+      </div>
+
+      <b className="faqtitle">{w[status]}</b>
+      <div className="tutoriallinkswrap">
+        <div className="tutorialinksbottom" onClick={phonesettingtutorial1}>
+          {x[status]}
+        </div>
+        <div className="tutorialinksbottom" onClick={phonesettingtutorial2}>
+          {xx[status]}
+        </div>
+        <div className="tutorialinksbottom" onClick={openreg}>
+          {y[status]}
+        </div>
+        <div className="tutorialinksbottom" onClick={openbookmeets}>
+          {yy[status]}
+        </div>
+        <div className="tutorialinksbottom" onClick={openbookmeett}>
+          {yyy[status]}
+        </div>
+        <div className="tutorialinksbottom" onClick={openjoinmeets}>
+          {z[status]}
+        </div>
+        <div className="tutorialinksbottom" onClick={openjoinmeett}>
+          {zz[status]}
         </div>
       </div>
     </div>
