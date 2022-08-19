@@ -27,55 +27,140 @@ export default function Admin_booking() {
 
   const [isLoading, setLoading] = useState(true)
   const [stpair, setStpair] = useState([])
+
+  // useEffect(() => {
+  //   setDs([
+  //     {
+  //       teacher: '張曉明',
+  //       studentname: '王曉明',
+  //       data: ['09/20 18:00', '09/27 19:00'],
+  //     },
+  //   ])
+  //   setGx([
+  //     {
+  //       teacher: '張曉明',
+  //       studentname: '王曉明',
+  //       data: ['09/20 18:00', '09/27 19:00'],
+  //     },
+  //   ])
+  //   setWc([
+  //     {
+  //       teacher: '張曉明',
+  //       studentname: '王曉明',
+  //       data: ['09/20 18:00', '09/27 19:00'],
+  //     },
+  //   ])
+  //   setCd([
+  //     {
+  //       teacher: '張曉明',
+  //       studentname: '王曉明',
+  //       data: ['09/20 18:00', '09/27 19:00'],
+  //     },
+  //   ])
+
+  //   setYf([
+  //     {
+  //       teacher: '張曉明',
+  //       studentname: '王曉明',
+  //       data: ['09/20 18:00', '09/27 19:00'],
+  //     },
+  //   ])
+
+  //   setDc([
+  //     {
+  //       teacher: '張曉明',
+  //       studentname: '王曉明',
+  //       data: ['09/20 18:00', '09/27 19:00'],
+  //     },
+  //   ])
+  // }, [])
+
+  function fillInData(data) {
+    let outputArr = [];
+    for(let i = 0; i < data.length; i++) {
+      outputArr.push(data[i].date + " " + data[i].time);
+    }
+    console.log(outputArr);
+    return outputArr;
+  }
+
   useEffect(() => {
-    setDs([
-      {
-        teacher: '張曉明',
-        studentname: '王曉明',
-        data: ['09/20 18:00', '09/27 19:00'],
-      },
-    ])
-    setGx([
-      {
-        teacher: '張曉明',
-        studentname: '王曉明',
-        data: ['09/20 18:00', '09/27 19:00'],
-      },
-    ])
-    setWc([
-      {
-        teacher: '張曉明',
-        studentname: '王曉明',
-        data: ['09/20 18:00', '09/27 19:00'],
-      },
-    ])
-    setCd([
-      {
-        teacher: '張曉明',
-        studentname: '王曉明',
-        data: ['09/20 18:00', '09/27 19:00'],
-      },
-    ])
-
-    setYf([
-      {
-        teacher: '張曉明',
-        studentname: '王曉明',
-        data: ['09/20 18:00', '09/27 19:00'],
-      },
-    ])
-
-    setDc([
-      {
-        teacher: '張曉明',
-        studentname: '王曉明',
-        data: ['09/20 18:00', '09/27 19:00'],
-      },
-    ])
+    Axios.post(
+      'https://voluntutorcloud-server.herokuapp.com/findAllContact',
+    ).then((response) => {
+      for (let i = 0; i < response.data.length; i++) {
+        let tempStpair = response.data[i]
+        setStpair((stpair) => [...stpair, tempStpair])
+        console.log(tempStpair)
+        Axios.post('https://voluntutorcloud-server.herokuapp.com/getBooking', {
+          username: tempStpair.username,
+          studentname: tempStpair.studentname,
+          status: 'confirmed',
+        }).then((bookingResponse) => {
+          console.log(bookingResponse.data)
+          // recData.sort((a, b) => {return a.classdate - b.classdate})
+          Axios.post(
+            'https://voluntutorcloud-server.herokuapp.com/getProfolio',
+            {
+              name: tempStpair.studentname,
+            },
+          ).then((response) => {
+            let school = response.data[0].school
+            console.log(school)
+            Axios.post(
+              'https://voluntutorcloud-server.herokuapp.com/getUserProfile',
+              {
+                username: tempStpair.username,
+              },
+            ).then((response) => {
+              console.log(response.data)
+              if (school === '大溪國小')
+                setDs((ds) => [
+                  ...ds,
+                  {
+                    teacher:
+                      response.data[0].lastname + response.data[0].firstname,
+                    studentname: tempStpair.studentname,
+                    data: fillInData(bookingResponse.data),
+                  },
+                ])
+              else if (school === '廣興國小')
+                setGx((gx) => [
+                  ...gx,
+                  {
+                    teacher:
+                      response.data[0].lastname + response.data[0].firstname,
+                    studentname: tempStpair.studentname,
+                    data: fillInData(bookingResponse.data),
+                  },
+                ])
+              else if (school === '溫泉國小')
+                setWc((wc) => [
+                  ...wc,
+                  {
+                    teacher:
+                      response.data[0].lastname + response.data[0].firstname,
+                    studentname: tempStpair.studentname,
+                    data: fillInData(bookingResponse.data),
+                  },
+                ])
+              else if (school === '崁頂國小')
+                setCd((cd) => [
+                  ...cd,
+                  {
+                    teacher:
+                      response.data[0].lastname + response.data[0].firstname,
+                    studentname: tempStpair.studentname,
+                    data: fillInData(bookingResponse.data),
+                  },
+                ])
+            })
+          })
+        })
+      }
+      setLoading(false)
+    })
   }, [])
-  // if (isLoading) {
-  //   return <Loading />
-  // }
 
   return (
     <div className="admin_wrap">
