@@ -5,11 +5,40 @@ export default function News() {
   return (
     <div className="about_uscont">
       <div className="newswrap">
-        <div className="slidingimage">
-          <img></img>
+        <div className="wrapslidingimage">
+          <div className="slidingimage" id="titlenews">
+            <img
+              classname="slidingimage_img"
+              src="/images/news-international.png"
+            ></img>
+          </div>
+          <div className="slidingimage" id="titlenews">
+            <img
+              classname="slidingimage_img"
+              src="/images/news-Hualian.png"
+            ></img>
+          </div>
+          <div className="slidingimage" id="titlenews">
+            <img
+              classname="slidingimage_img"
+              src="/images/news-feature.png"
+            ></img>
+          </div>
+          <div className="slidingimage" id="titlenews">
+            <img
+              classname="slidingimage_img"
+              src="/images/news-溫泉國小.png"
+            ></img>
+          </div>
+          <div className="slidingimage" id="titlenews">
+            <img
+              classname="slidingimage_img"
+              src="/images/news-義方國小.png"
+            ></img>
+          </div>
         </div>
         <div className="upcomingnewswrap">
-          <div className="upcoming">UPCOMING</div>
+          <div className="upcoming">BREAKING</div>
           <b className="newswords">NEWS</b>
           <div className="wrapslidingwords">
             <div className="slidingwords" id="titlenews">

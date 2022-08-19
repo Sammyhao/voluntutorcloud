@@ -31,9 +31,11 @@ export default function Team() {
       <div className="teamwrap">
         <div className="first">
           <div className="person">
-            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
-
+            <img
+              className="team_pic"
+              id="teamimage_bg"
+              src="/images/Ruby.PNG"
+            ></img>
             <div class="image_team_overlay image_team_overlay -- blur">
               <div class="image_text_team">
                 <b className="image_text_head">{b[status]}</b>
@@ -53,8 +55,11 @@ export default function Team() {
             </div>
           </div>
           <div className="person">
-            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <img
+              className="team_pic"
+              id="teamimage_bg"
+              src="/images/Carol.PNG"
+            ></img>
 
             <div class="image_team_overlay image_team_overlay -- blur">
               <div class="image_text_team">
@@ -75,9 +80,11 @@ export default function Team() {
             </div>
           </div>
           <div className="person">
-            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
-
+            <img
+              className="team_pic"
+              id="teamimage_bg"
+              src="/images/Sam.PNG"
+            ></img>
             <div class="image_team_overlay image_team_overlay -- blur">
               <div class="image_text_team">
                 <b className="image_text_head">{e[status]}</b>
@@ -99,8 +106,11 @@ export default function Team() {
         </div>
         <div className="second_team">
           <div className="person">
-            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <img
+              className="team_pic"
+              id="teamimage_bg"
+              src="/images/Zachary.PNG"
+            ></img>
 
             <div class="image_team_overlay image_team_overlay -- blur">
               <div class="image_text_team">
@@ -121,9 +131,11 @@ export default function Team() {
             </div>
           </div>
           <div className="person">
-            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
-
+            <img
+              className="team_pic"
+              id="teamimage_bg"
+              src="/images/Daniel.PNG"
+            ></img>
             <div class="image_team_overlay image_team_overlay -- blur">
               <div class="image_text_team">
                 <b className="image_text_head">{k[status]}</b>

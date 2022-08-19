@@ -21,32 +21,26 @@ export default function Specialthanks() {
       <div className="stwrap">
         <div className="first_st">
           <div className="stwrapwrap">
-            {/* <img className="st_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <img className="st_pic" src="/images/大溪國小.png"></img>
           </div>
           <div className="stwrapwrap">
-            {/* <img className="st_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <img className="st_pic" src="/images/廣興國小.png"></img>
           </div>
         </div>
         <div className="first_st">
           <div className="stwrapwrap">
-            {/* <img className="st_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <img className="st_pic" src="/images/溫泉國小.png"></img>
           </div>
           <div className="stwrapwrap">
-            {/* <img className="st_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <img className="st_pic" src="/images/崁頂國小.png"></img>
           </div>
         </div>
         <div className="first_st">
           <div className="stwrapwrap">
-            {/* <img className="st_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <img className="st_pic" src="/images/義方國小.png"></img>
           </div>
           <div className="stwrapwrap">
-            {/* <img className="st_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <img className="st_pic" src="/images/瑞穗國小.png"></img>
           </div>
         </div>
       </div>

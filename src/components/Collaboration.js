@@ -21,16 +21,19 @@ export default function Collaboration() {
       <div className="teamwrap">
         <div className="second_team">
           <div className="person">
-            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <div className="team_pic">
+              <img className="team_pic_colab" src="/images/薇閣.png"></img>
+            </div>
           </div>
           <div className="person">
-            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <div className="team_pic">
+              <img className="team_pic_colab" src="/images/復興.png"></img>
+            </div>
           </div>
           <div className="person">
-            {/* <img className="team_pic" src="/images/Carol.jpg"></img> */}
-            <div className="temp_pic"></div>
+            <div className="team_pic">
+              <img className="team_pic_colab" src="/images/康橋.png"></img>
+            </div>
           </div>
         </div>
       </div>
