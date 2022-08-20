@@ -146,7 +146,7 @@
   opacity: 0;
   overflow: hidden;
   position: absolute;
-  width: 450px;
+  width: 500px;
 }
 .slidingimage {
   animation: image_top_to_bottom 25s linear infinite 0s;
