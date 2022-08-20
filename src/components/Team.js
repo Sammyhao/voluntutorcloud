@@ -16,14 +16,15 @@ export default function Team() {
   let a = ['Team', '團隊介紹']
   let b = ['Ruby Chang', '張舒晴 Ruby']
   let c = ['President', '領導者']
-  let d = ['Engineering Director', '網站工程師']
+  let d = ['Engineering Director', '開發總監']
   let e = ['Sam Hao', '郝胤翔 Sam']
   let f = ['Vice President', '副領導者']
   let g = ['Carol Kao', '高婉予 Carol']
-  let h = ['Marketing Director', '行銷總編']
+  let h = ['Marketing Director', '行銷總監']
   let i = ['PR Director', '公關領導']
   let j = ['Zachary Lai', '賴元斌 Zachary']
   let k = ['Daniel Yu', '余浩瑋 Daniel']
+  let l = ['HR Director', '人資領導']
 
   return (
     <div className="about_uscont">
@@ -125,7 +126,7 @@ export default function Team() {
                   }}
                 >
                   <div className="image_text_roles">{i[status]}</div>
-                  <div className="image_text_roles">{i[status]}</div>
+                  <div className="image_text_roles">{l[status]}</div>
                 </div>
               </div>
             </div>
@@ -149,7 +150,7 @@ export default function Team() {
                   }}
                 >
                   <div className="image_text_roles">{i[status]}</div>
-                  <div className="image_text_roles">{i[status]}</div>
+                  <div className="image_text_roles">{l[status]}</div>
                 </div>
               </div>
             </div>
