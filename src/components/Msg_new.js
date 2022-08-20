@@ -191,10 +191,13 @@ function Msg() {
           <div className="chatcontent">
             <div className="chatname">{tmpChtRm.current[0].studentname}</div>
             <div className="chat">
+              {(tmpChtRm.current[0].msg !== "") ?
               <Msg_container
                 message={tmpChtRm.current}
                 role={user.role}
-              ></Msg_container>
+              />
+              :
+              <></>}
             </div>
             <div className="send">
               <textarea
