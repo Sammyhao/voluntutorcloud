@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { BsFillEyeSlashFill } from 'react-icons/bs'
 import { ImCross } from 'react-icons/im'
+import { useSelector } from 'react-redux'
 
 function SignIn_design() {
   const user = useSelector((state) => state.user.value)
