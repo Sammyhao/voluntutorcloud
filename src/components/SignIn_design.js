@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import './SignIn_design.css'
 import '../App.css'
@@ -10,6 +10,8 @@ import { BsFillEyeSlashFill } from 'react-icons/bs'
 import { ImCross } from 'react-icons/im'
 
 function SignIn_design() {
+  const user = useSelector((state) => state.user.value)
+
   const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState('')
   const [username, setUsername] = useState('')
@@ -28,14 +30,20 @@ function SignIn_design() {
       } else {
         console.log(response)
         setLoginStatus('Hello, ' + response.data[0].username + '.')
-        navigate('/')
         if (username === 'admin') navigate('/admin') // here
+        else navigate('/');
         //change the global variable that saves the user's status
         changeStatus()
         store()
       }
     })
   }
+
+  useEffect(() => {
+    if(user.login) {
+      navigate('/')
+    }
+  }, [])
 
   const store = () => {
     dispatch(getloggedin())
