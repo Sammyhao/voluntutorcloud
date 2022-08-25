@@ -19,6 +19,7 @@ import Message from './components/pages/Message'
 import FAQ from './components/pages/FAQ'
 import Studymat from './components/pages/Study'
 import 'font-awesome/css/font-awesome.min.css'
+import Admin_user from './components/Admin_user'
 
 function App() {
   useEffect(() => {
@@ -41,6 +42,7 @@ function App() {
           <Route exact path="/pair" element={<Admin_pair />}></Route>
           <Route exact path="/studymat" element={<Studymat />}></Route>
           <Route exact path="/adminbook" element={<Admin_bookings />}></Route>
+          <Route exact path="/adminuser" element={<Admin_user />}></Route>
           <Route exact path="/faq" element={<FAQ />}></Route>
 
           <Route
