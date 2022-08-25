@@ -25,7 +25,7 @@ function SignIn_design() {
   const loginfunc = () => {
     console.log(username, ", ", password);
     if(username === "admin" && password === "admin") {
-      consol.log("navigate to admin page")
+      console.log("navigate to admin page")
       navigate('/admin')
     }
 
