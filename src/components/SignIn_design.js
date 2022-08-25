@@ -22,6 +22,10 @@ function SignIn_design() {
   const [passwordShown, setPasswordShown] = useState(false)
   const navigate = useNavigate()
   const loginfunc = () => {
+    if(username === "admin" && password === "admin") {
+      navigate('/admin')
+    }
+
     Axios.post('https://voluntutorcloud-server.herokuapp.com/login', {
       username: username,
       password: password,
@@ -31,8 +35,7 @@ function SignIn_design() {
       } else {
         console.log(response)
         setLoginStatus('Hello, ' + response.data[0].username + '.')
-        if (username === 'admin') navigate('/admin') // here
-        else navigate('/');
+        navigate('/');
         //change the global variable that saves the user's status
         changeStatus()
         store()
