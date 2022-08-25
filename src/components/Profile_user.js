@@ -430,7 +430,6 @@ function Profile_user() {
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-        if(response.data.length) {
           setname(response.data.user[0].username)
           setphone(response.data.user[0].phone)
           setemail(response.data.user[0].email)
@@ -448,7 +447,6 @@ function Profile_user() {
           setCurVolProg(response.data.user[0].curvolprog)
           addHis(response.data.user[0].username)
           setLoading(false)
-        }
       },
     )
   }, [])
