@@ -21,7 +21,14 @@
   border: 1.5px solid lightgray;
   border-radius: 5px;
   padding: 5px;
-  overflow: hidden;
+  overflow: auto;
+}
+.content_special {
+  border: 1.5px solid lightgray;
+  border-radius: 5px;
+  padding: 5px;
+  overflow: auto;
+  color: darkgray;
 }
 .admin_chart {
   margin-top: 40px;

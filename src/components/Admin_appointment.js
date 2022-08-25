@@ -317,6 +317,14 @@ export default function Admin_appointment() {
       <div
         className="backtosignin"
         onClick={() => {
+          navigate('/adminuser')
+        }}
+      >
+        查看註冊資料
+      </div>
+      <div
+        className="backtosignin"
+        onClick={() => {
           navigate('/adminbook')
         }}
       >

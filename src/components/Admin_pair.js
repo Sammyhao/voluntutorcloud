@@ -230,7 +230,14 @@ export default function Admin_pair() {
       >
         查看會議記錄表
       </div>
-
+      <div
+        className="backtosignin"
+        onClick={() => {
+          navigate('/adminuser')
+        }}
+      >
+        查看註冊資料
+      </div>
       <div
         className="backtosignin"
         onClick={() => {

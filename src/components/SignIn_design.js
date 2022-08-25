@@ -23,12 +23,11 @@ function SignIn_design() {
   const navigate = useNavigate()
 
   const loginfunc = () => {
-    console.log(username, ", ", password);
-    if(username === "admin" && password === "admin") {
-      console.log("navigate to admin page")
+    console.log(username, ', ', password)
+    if (username === 'admin' && password === 'admin') {
+      console.log('navigate to admin page')
       navigate('/admin')
     }
-
     Axios.post('https://voluntutorcloud-server.herokuapp.com/login', {
       username: username,
       password: password,
@@ -38,7 +37,7 @@ function SignIn_design() {
       } else {
         console.log(response)
         setLoginStatus('Hello, ' + response.data[0].username + '.')
-        navigate('/');
+        navigate('/')
         //change the global variable that saves the user's status
         changeStatus()
         store()
@@ -47,7 +46,7 @@ function SignIn_design() {
   }
 
   useEffect(() => {
-    if(user.login) {
+    if (user.login) {
       navigate('/')
     }
   }, [])

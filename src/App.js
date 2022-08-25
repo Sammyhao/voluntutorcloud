@@ -9,6 +9,7 @@ import Subjects from './components/pages/Subjects'
 import MyList from './components/pages/MyFavList'
 import Admin_pair from './components/pages/Admin_pairing'
 import Profile from './components/pages/Profile'
+import Admin_user from './components/pages/Admin_users'
 import Appointment from './components/pages/Appointment'
 import Admin from './components/pages/Admin'
 import Program_usage from './components/pages/Program_usage'
@@ -19,7 +20,6 @@ import Message from './components/pages/Message'
 import FAQ from './components/pages/FAQ'
 import Studymat from './components/pages/Study'
 import 'font-awesome/css/font-awesome.min.css'
-import Admin_user from './components/Admin_user'
 
 function App() {
   useEffect(() => {

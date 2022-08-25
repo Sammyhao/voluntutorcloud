@@ -76,12 +76,12 @@ export default function Admin_booking() {
   // }, [])
 
   function fillInData(data) {
-    let outputArr = [];
-    for(let i = 0; i < data.length; i++) {
-      outputArr.push(data[i].date + " " + data[i].time);
+    let outputArr = []
+    for (let i = 0; i < data.length; i++) {
+      outputArr.push(data[i].date + ' ' + data[i].time)
     }
-    console.log(outputArr);
-    return outputArr;
+    console.log(outputArr)
+    return outputArr
   }
 
   useEffect(() => {
@@ -179,6 +179,14 @@ export default function Admin_booking() {
         }}
       >
         查看學生老師配對
+      </div>
+      <div
+        className="backtosignin"
+        onClick={() => {
+          navigate('/adminuser')
+        }}
+      >
+        查看註冊資料
       </div>
 
       <div
