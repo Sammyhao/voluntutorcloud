@@ -149,7 +149,7 @@ function Appointmentmeet() {
   }
 
   const checkblank = (content) => {
-    if (content == '') {
+    if (content === '') {
       return zzz[status]
     } else {
       return content
@@ -242,7 +242,7 @@ function Appointmentmeet() {
   const actualsend = () => {
     let emailaddress = ''
     for (let i = 0; i < contactInfo.length; i++) {
-      if (contactInfo[i].studentname == selectedstudentname)
+      if (contactInfo[i].studentname === selectedstudentname)
         emailaddress = contactInfo[i].studentmail
     }
     let tempFinalFormat =
@@ -347,7 +347,7 @@ function Appointmentmeet() {
   if (isLoading) {
     return <Loading />
   } else {
-    if (contactInfo.length == 0) {
+    if (contactInfo.length === 0) {
       return (
         <div className="nokid">
           <div className="noStudentFont">{a[status]}</div>

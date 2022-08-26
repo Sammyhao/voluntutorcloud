@@ -135,27 +135,27 @@ export default function Admin_user() {
                 <div className="content">{e.role}</div>
                 <div className="content">{e.firstname}</div>
                 <div className="content">{e.lastname}</div>
-                {e.role == 'teacher' ? (
+                {e.role === 'teacher' ? (
                   <div className="content_special">{e.schoolname}</div>
                 ) : (
                   <></>
                 )}
-                {e.role == 'teacher' ? (
+                {e.role === 'teacher' ? (
                   <div className="content_special">{e.preferredSubjects}</div>
                 ) : (
                   <></>
                 )}
-                {e.role == 'teacher' ? (
+                {e.role === 'teacher' ? (
                   <div className="content_special">{e.targetStuAge}</div>
                 ) : (
                   <></>
                 )}
-                {e.role == 'teacher' ? (
+                {e.role === 'teacher' ? (
                   <div className="content_special">{e.targetStuGen}</div>
                 ) : (
                   <></>
                 )}
-                {e.role == 'teacher' ? (
+                {e.role === 'teacher' ? (
                   <div className="content_special">{e.targetStuPerso}</div>
                 ) : (
                   <></>

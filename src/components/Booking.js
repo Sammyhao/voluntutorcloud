@@ -147,7 +147,7 @@ export default function Booking() {
   // functions
   const sendfirst = () => {
     //console.log('Date entered')
-    if (selectedstudentname == '') {
+    if (selectedstudentname === '') {
       setnoneopen(true)
     } else {
       if (endtime.getTime() < starttime.getTime()) {
@@ -217,7 +217,7 @@ export default function Booking() {
         bkinfo.splice(i, 1)
         setBookingInfoLen(bkinfo.length - 1)
         i--
-      } else if (datearr[0] == y) {
+      } else if (datearr[0] === y) {
         if (datearr[1] < m) {
           // delete booking
           //console.log(m + ' is greater than ' + datearr[1])
@@ -225,7 +225,7 @@ export default function Booking() {
           bkinfo.splice(i, 1)
           setBookingInfoLen(bkinfo.length - 1)
           i--
-        } else if (datearr[1] == m) {
+        } else if (datearr[1] === m) {
           if (datearr[2] < d) {
             // delete booking
             //console.log(d + ' is greater than ' + datearr[2])
@@ -347,7 +347,7 @@ export default function Booking() {
     //console.log('contactinfo length: ', contactInfo.length)
     return <Loading></Loading>
   } else {
-    if (contactInfo.length == 0) {
+    if (contactInfo.length === 0) {
       return (
         <div className="nokid">
           <div className="noStudentFont">{n[status]}</div>

@@ -27,22 +27,23 @@ function SignIn_design() {
     if (username === 'admin' && password === 'admin') {
       console.log('navigate to admin page')
       navigate('/admin')
+    } else {
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/login', {
+        username: username,
+        password: password,
+      }).then((response) => {
+        if (response.data.message) {
+          setLoginStatus(response.data.message)
+        } else {
+          console.log(response)
+          setLoginStatus('Hello, ' + response.data[0].username + '.')
+          navigate('/')
+          //change the global variable that saves the user's status
+          changeStatus()
+          store()
+        }
+      })
     }
-    Axios.post('https://voluntutorcloud-server.herokuapp.com/login', {
-      username: username,
-      password: password,
-    }).then((response) => {
-      if (response.data.message) {
-        setLoginStatus(response.data.message)
-      } else {
-        console.log(response)
-        setLoginStatus('Hello, ' + response.data[0].username + '.')
-        navigate('/')
-        //change the global variable that saves the user's status
-        changeStatus()
-        store()
-      }
-    })
   }
 
   useEffect(() => {
