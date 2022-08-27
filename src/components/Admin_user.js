@@ -38,8 +38,12 @@ export default function Admin_user() {
   const [userList, setUserList] = useState([])
   const [isLoading, setLoading] = useState(true)
 
+
   useEffect(() => {
     //fetch data here
+    Axios.post('https://voluntutorcloud-server.herokuapp.com/addFullName').then((response) => {
+      console.log(response.data);
+    })
     Axios.post('https://voluntutorcloud-server.herokuapp.com/getUser').then(
       (response) => {
         setUserList(response.data)
