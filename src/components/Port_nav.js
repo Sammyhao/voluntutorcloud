@@ -34,7 +34,7 @@ function Port_nav() {
   useEffect(() => {
     setStatus(user.language)
     setRole(user.role)
-    if (role) {
+    if (user.role) {
       if (user.language == 1) {
         setdata(C_SidebarData)
       }

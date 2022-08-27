@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom'
 import { GrFavorite, GrPin } from 'react-icons/gr'
 import { AiOutlineMessage, AiOutlineCalendar } from 'react-icons/ai'
 import { SiGooglemeet } from 'react-icons/si'
+
+import { CgProfile } from 'react-icons/cg'
+import { RiFolder3Line } from 'react-icons/ri'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
@@ -43,27 +46,47 @@ function Function() {
   // usestates
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [open, setOpen] = useState(false)
+  const [role, setrole] = useState(true)
   const [status, setStatus] = useState(1)
-
+  const [b, setb] = useState(['My List', '我的最愛'])
+  const [c, setc] = useState(['Appointment', '會議安排'])
+  const [d, setd] = useState(['Usage', '服務時數'])
+  const [e, sete] = useState(['Message', '訊息'])
+  const [f, setf] = useState(['Booking', '預約會議'])
   const navigate = useNavigate()
   // titles
   let a = ['BEGIN YOUR JOURNEY!', '開始你的旅程！']
-  let b = ['My List', '我的最愛']
-  let c = ['Appointment', '會議安排']
-  let d = ['Usage', '服務時數']
-  let e = ['Message', '訊息']
-  let f = ['Booking', '預約會議']
   let g = ['Sign in to unlock functions!!', '登入以解鎖功能！']
   let h = ['SIGN IN', '登入']
-
+  let logged = [
+    '/mylist',
+    '/appointment',
+    '/program_usage',
+    '/book',
+    '/message',
+  ]
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
 
   useEffect(() => {
     setIsLoggedIn(user.login)
     setStatus(user.language)
+    setrole(user.role)
+    if (!user.role) {
+      logged = [
+        '/profile',
+        '/book',
+        '/program_usage',
+        '/message',
+        '/Student_portfolio',
+      ]
+      setb(['Profile', '我的檔案'])
+      setc(['Booking', '預約會議'])
+      setd(['Usage', '服務時數'])
+      setf(['Message', '訊息'])
+      sete(['Teacher Portfolio', '老師檔案'])
+    }
   })
-
   return (
     <div className="container_func">
       <div id="dialog_reg_wrap">
@@ -90,12 +113,16 @@ function Function() {
               if (!isLoggedIn) {
                 setOpen(true)
               } else {
-                navigate('/mylist')
+                navigate(logged[0])
               }
             }}
           >
             <div className="icon_func_odd">
-              <GrFavorite className="icon_func"></GrFavorite>
+              {role ? (
+                <GrFavorite className="icon_func"></GrFavorite>
+              ) : (
+                <CgProfile className="icon_func"></CgProfile>
+              )}
             </div>
             <div className="subtitle_func">{b[status]}</div>
           </div>
@@ -105,12 +132,16 @@ function Function() {
               if (!isLoggedIn) {
                 setOpen(true)
               } else {
-                navigate('/appointment')
+                navigate(logged[1])
               }
             }}
           >
             <div className="icon_func_even">
-              <SiGooglemeet className="icon_func"></SiGooglemeet>
+              {role ? (
+                <SiGooglemeet className="icon_func"></SiGooglemeet>
+              ) : (
+                <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+              )}
             </div>
             <div className="subtitle_func">{c[status]}</div>
           </div>
@@ -120,7 +151,7 @@ function Function() {
               if (!isLoggedIn) {
                 setOpen(true)
               } else {
-                navigate('/program_usage')
+                navigate(logged[2])
               }
             }}
           >
@@ -137,12 +168,16 @@ function Function() {
               if (!isLoggedIn) {
                 setOpen(true)
               } else {
-                navigate('/book')
+                navigate(logged[3])
               }
             }}
           >
             <div className="icon_func_even">
-              <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+              {role ? (
+                <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+              ) : (
+                <AiOutlineMessage className="icon_func"></AiOutlineMessage>
+              )}
             </div>
             <div className="subtitle_func">{f[status]}</div>
           </div>
@@ -152,12 +187,16 @@ function Function() {
               if (!isLoggedIn) {
                 setOpen(true)
               } else {
-                navigate('/message')
+                navigate(logged[4])
               }
             }}
           >
             <div className="icon_func_odd">
-              <AiOutlineMessage className="icon_func"></AiOutlineMessage>
+              {role ? (
+                <AiOutlineMessage className="icon_func"></AiOutlineMessage>
+              ) : (
+                <RiFolder3Line className="icon_func"></RiFolder3Line>
+              )}
             </div>
             <div className="subtitle_func">{e[status]}</div>
           </div>
