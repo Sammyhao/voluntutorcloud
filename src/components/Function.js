@@ -48,6 +48,13 @@ function Function() {
   const [open, setOpen] = useState(false)
   const [role, setrole] = useState(true)
   const [status, setStatus] = useState(1)
+  const [logged, setlogged] = useState([
+    '/mylist',
+    '/appointment',
+    '/program_usage',
+    '/book',
+    '/message',
+  ])
   const [b, setb] = useState(['My List', '我的最愛'])
   const [c, setc] = useState(['Appointment', '會議安排'])
   const [d, setd] = useState(['Usage', '服務時數'])
@@ -58,13 +65,6 @@ function Function() {
   let a = ['BEGIN YOUR JOURNEY!', '開始你的旅程！']
   let g = ['Sign in to unlock functions!!', '登入以解鎖功能！']
   let h = ['SIGN IN', '登入']
-  let logged = [
-    '/mylist',
-    '/appointment',
-    '/program_usage',
-    '/book',
-    '/message',
-  ]
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
 
@@ -73,13 +73,13 @@ function Function() {
     setStatus(user.language)
     setrole(user.role)
     if (!user.role) {
-      logged = [
+      setlogged([
         '/profile',
         '/book',
         '/program_usage',
         '/message',
         '/Student_portfolio',
-      ]
+      ])
       setb(['Profile', '我的檔案'])
       setc(['Booking', '預約會議'])
       setd(['Usage', '服務時數'])
