@@ -84,7 +84,7 @@ function Msg() {
     curTime =
       curTime.getFullYear() +
       '/' +
-      curTime.getMonth() +
+      (curTime.getMonth()+1) +
       '/' +
       curTime.getDate() +
       ' ' +
