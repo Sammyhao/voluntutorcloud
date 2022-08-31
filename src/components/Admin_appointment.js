@@ -211,6 +211,7 @@ export default function Admin_appointment() {
 
   const [isLoading, setLoading] = useState(true)
   const [stpair, setStpair] = useState([])
+  const [servHr, setServHr] = useState([])
 
   useEffect(() => {
     Axios.post(
@@ -228,7 +229,12 @@ export default function Admin_appointment() {
         }).then((response) => {
           console.log(response.data)
           let recData = response.data
-          // recData.sort((a, b) => {return a.classdate - b.classdate})
+          let hr = 0;
+          for(let i = 0; i < response.data.length; i++) {
+            hr += response.data[i].duration;
+            console.log(response.data[i].duration);
+          }
+
           Axios.post(
             'https://voluntutorcloud-server.herokuapp.com/getProfolio',
             {
@@ -244,6 +250,7 @@ export default function Admin_appointment() {
               },
             ).then((response) => {
               console.log(response.data)
+              setServHr(servHr => [...servHr, {name: response.data[0].lastname + response.data[0].firstname, hr: hr}]);
               if (school == '大溪國小')
                 setDs((ds) => [
                   ...ds,
@@ -294,183 +301,184 @@ export default function Admin_appointment() {
 
   if (isLoading) {
     return <Loading />
+  } else {
+    console.log(servHr);
+    return (
+      <div className="admin_wrap">
+        <div
+          className="backtosignin"
+          onClick={() => {
+            navigate('/sign-in')
+          }}
+        >
+          回到登入頁面
+        </div>
+        <div
+          className="backtosignin"
+          onClick={() => {
+            navigate('/pair')
+          }}
+        >
+          查看學生老師配對
+        </div>
+        <div
+          className="backtosignin"
+          onClick={() => {
+            navigate('/adminuser')
+          }}
+        >
+          查看註冊資料
+        </div>
+        <div
+          className="backtosignin"
+          onClick={() => {
+            navigate('/adminbook')
+          }}
+        >
+          查看會議預約
+        </div>
+        <div className="admin_title">會議記錄表</div>
+        <div className="subtitle">大溪國小</div>
+        <div className="chart">
+          {ds.map((e, ind) => {
+            let data = e.data
+            return (
+              <div className="admin_chart">
+                <div className="content" key={ind}>
+                  {e.teacher} - {e.studentname}
+                </div>
+                {data.map((rec, i) => {
+                  return (
+                    <div className="content" key={i}>
+                      {rec.classdate} :{' '}
+                      {trans[rec.studentabsence]
+                        ? trans[rec.studentabsence]
+                        : rec.studentabsence}
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })}
+        </div>
+        <div className="subtitle">廣興國小</div>
+        <div className="chart">
+          {gx.map((e, ind) => {
+            let data = e.data
+            return (
+              <div className="admin_chart">
+                <div className="content" key={ind}>
+                  {e.teacher} - {e.studentname}
+                </div>
+                {data.map((rec, i) => {
+                  return (
+                    <div className="content" key={i}>
+                      {rec.classdate} :{' '}
+                      {trans[rec.studentabsence]
+                        ? trans[rec.studentabsence]
+                        : rec.studentabsence}
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })}
+        </div>
+  
+        <div className="subtitle">溫泉國小</div>
+        <div className="chart">
+          {wc.map((e, ind) => {
+            let data = e.data
+            return (
+              <div className="admin_chart">
+                <div className="content" key={ind}>
+                  {e.teacher} - {e.studentname}
+                </div>
+                {data.map((rec, i) => {
+                  return (
+                    <div className="content" key={i}>
+                      {rec.classdate} :{' '}
+                      {trans[rec.studentabsence]
+                        ? trans[rec.studentabsence]
+                        : rec.studentabsence}
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })}
+        </div>
+  
+        <div className="subtitle">崁頂國小</div>
+        <div className="chart">
+          {cd.map((e, ind) => {
+            let data = e.data
+            return (
+              <div className="admin_chart">
+                <div className="content" key={ind}>
+                  {e.teacher} - {e.studentname}
+                </div>
+                {data.map((rec, i) => {
+                  return (
+                    <div className="content" key={i}>
+                      {rec.classdate} :{' '}
+                      {trans[rec.studentabsence]
+                        ? trans[rec.studentabsence]
+                        : rec.studentabsence}
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })}
+        </div>
+        <div className="subtitle">義方國小</div>
+        {/* <div className="chart">
+          {gx.map((e, ind) => {
+            let data = e.data
+            return (
+              <div className="admin_chart">
+                <div className="content" key={ind}>
+                  {e.teacher} - {e.studentname}
+                </div>
+                {data.map((rec, i) => {
+                  return (
+                    <div className="content" key={i}>
+                      {rec.classdate} :{' '}
+                      {trans[rec.studentabsence]
+                        ? trans[rec.studentabsence]
+                        : rec.studentabsence}
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })}
+        </div> */}
+        <div className="subtitle">東成國小</div>
+        {/* <div className="chart">
+          {gx.map((e, ind) => {
+            let data = e.data
+            return (
+              <div className="admin_chart">
+                <div className="content" key={ind}>
+                  {e.teacher} - {e.studentname}
+                </div>
+                {data.map((rec, i) => {
+                  return (
+                    <div className="content" key={i}>
+                      {rec.classdate} :{' '}
+                      {trans[rec.studentabsence]
+                        ? trans[rec.studentabsence]
+                        : rec.studentabsence}
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })}
+        </div> */}
+      </div>
+    )
   }
-
-  return (
-    <div className="admin_wrap">
-      <div
-        className="backtosignin"
-        onClick={() => {
-          navigate('/sign-in')
-        }}
-      >
-        回到登入頁面
-      </div>
-      <div
-        className="backtosignin"
-        onClick={() => {
-          navigate('/pair')
-        }}
-      >
-        查看學生老師配對
-      </div>
-      <div
-        className="backtosignin"
-        onClick={() => {
-          navigate('/adminuser')
-        }}
-      >
-        查看註冊資料
-      </div>
-      <div
-        className="backtosignin"
-        onClick={() => {
-          navigate('/adminbook')
-        }}
-      >
-        查看會議預約
-      </div>
-      <div className="admin_title">會議記錄表</div>
-      <div className="subtitle">大溪國小</div>
-      <div className="chart">
-        {ds.map((e, ind) => {
-          let data = e.data
-          return (
-            <div className="admin_chart">
-              <div className="content" key={ind}>
-                {e.teacher} - {e.studentname}
-              </div>
-              {data.map((rec, i) => {
-                return (
-                  <div className="content" key={i}>
-                    {rec.classdate} :{' '}
-                    {trans[rec.studentabsence]
-                      ? trans[rec.studentabsence]
-                      : rec.studentabsence}
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
-      </div>
-      <div className="subtitle">廣興國小</div>
-      <div className="chart">
-        {gx.map((e, ind) => {
-          let data = e.data
-          return (
-            <div className="admin_chart">
-              <div className="content" key={ind}>
-                {e.teacher} - {e.studentname}
-              </div>
-              {data.map((rec, i) => {
-                return (
-                  <div className="content" key={i}>
-                    {rec.classdate} :{' '}
-                    {trans[rec.studentabsence]
-                      ? trans[rec.studentabsence]
-                      : rec.studentabsence}
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
-      </div>
-
-      <div className="subtitle">溫泉國小</div>
-      <div className="chart">
-        {wc.map((e, ind) => {
-          let data = e.data
-          return (
-            <div className="admin_chart">
-              <div className="content" key={ind}>
-                {e.teacher} - {e.studentname}
-              </div>
-              {data.map((rec, i) => {
-                return (
-                  <div className="content" key={i}>
-                    {rec.classdate} :{' '}
-                    {trans[rec.studentabsence]
-                      ? trans[rec.studentabsence]
-                      : rec.studentabsence}
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
-      </div>
-
-      <div className="subtitle">崁頂國小</div>
-      <div className="chart">
-        {cd.map((e, ind) => {
-          let data = e.data
-          return (
-            <div className="admin_chart">
-              <div className="content" key={ind}>
-                {e.teacher} - {e.studentname}
-              </div>
-              {data.map((rec, i) => {
-                return (
-                  <div className="content" key={i}>
-                    {rec.classdate} :{' '}
-                    {trans[rec.studentabsence]
-                      ? trans[rec.studentabsence]
-                      : rec.studentabsence}
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
-      </div>
-      <div className="subtitle">義方國小</div>
-      {/* <div className="chart">
-        {gx.map((e, ind) => {
-          let data = e.data
-          return (
-            <div className="admin_chart">
-              <div className="content" key={ind}>
-                {e.teacher} - {e.studentname}
-              </div>
-              {data.map((rec, i) => {
-                return (
-                  <div className="content" key={i}>
-                    {rec.classdate} :{' '}
-                    {trans[rec.studentabsence]
-                      ? trans[rec.studentabsence]
-                      : rec.studentabsence}
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
-      </div> */}
-      <div className="subtitle">東成國小</div>
-      {/* <div className="chart">
-        {gx.map((e, ind) => {
-          let data = e.data
-          return (
-            <div className="admin_chart">
-              <div className="content" key={ind}>
-                {e.teacher} - {e.studentname}
-              </div>
-              {data.map((rec, i) => {
-                return (
-                  <div className="content" key={i}>
-                    {rec.classdate} :{' '}
-                    {trans[rec.studentabsence]
-                      ? trans[rec.studentabsence]
-                      : rec.studentabsence}
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
-      </div> */}
-    </div>
-  )
 }
