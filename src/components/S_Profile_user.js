@@ -92,7 +92,7 @@ function S_Profile_user(props) {
   let c = ['Please fill in the blanks.', '請完整填入資訊']
   let d = [
     'Please contact the administrator to change the password.',
-    '請聯絡主辦者以更改密碼。',
+    '請聯絡主辦者以更改密碼',
   ]
   let e = ['Enter Your Name', '請輸入你的名字']
   let f = ['Contact Information', '聯絡資訊']
@@ -120,7 +120,7 @@ function S_Profile_user(props) {
   let ij = ['Log Out', '登出']
   let jk = [
     'Please contact the administrator to change the password.',
-    '請聯絡管理者以更改密碼。',
+    '請聯絡管理者以更改密碼',
   ]
   let kl = ['Subjects ', '輔導科目']
 
@@ -229,7 +229,7 @@ function S_Profile_user(props) {
     //console.log('props failed')
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login')
       .then((response) => {
-        //console.log(response.data.user[0])
+        console.log(response.data.user[0])
         setname(response.data.user[0].username)
         setphone(response.data.user[0].phone)
         setemail(response.data.user[0].email)

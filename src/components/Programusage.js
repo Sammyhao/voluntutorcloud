@@ -38,10 +38,10 @@ function Programusage() {
   const [role, setRole] = useState(true)
   const [months, setmonths] = useState('')
 
-  const monthlist = ['5/1~6/30', '7/1~8/31']
+  const monthlist = ['5/1~6/30', '7/1~8/31', '9/1~10/31']
   let a = [
     "Oops, seems like you don't have any student yet.",
-    '噢, 看來您還沒有任何學生呢。',
+    '噢, 看來您還沒有任何學生呢',
   ]
   let b = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
   let c = ['Total hours left: ', '剩餘小時數：']

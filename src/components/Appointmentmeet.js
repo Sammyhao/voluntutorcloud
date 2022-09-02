@@ -36,22 +36,22 @@ function Appointmentmeet() {
   const [status, setStatus] = useState(1)
   let a = [
     "Oops, seems like you don't have any student yet.",
-    '噢, 看來您還沒有任何學生呢。',
+    '噢, 看來您還沒有任何學生呢',
   ]
   let zzz = ['None', '無']
   let space = [' ']
   let b = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
   let c = [
     'Please fill in everything before you submit the form.',
-    '請在傳送前完整填寫教學紀錄。',
+    '請在傳送前完整填寫教學紀錄',
   ]
   let d = [
     'You are allowed to enter NONE for tasks and notes only.',
-    '您只能在學生回家作業以及課堂筆記欄填寫無。',
+    '您只能在學生回家作業以及課堂筆記欄填寫無',
   ]
   let e = [
     "This form will be sent to student's parents and as records of your volunteering work. Please double check before sending.",
-    '此教學紀錄單會傳送給家長以及當作志工計畫的紀錄，請務必確實填寫，也嚴禁謊報。',
+    '此教學紀錄單會傳送給家長並當作志工計畫的紀錄，請務必確實填寫，嚴禁謊報',
   ]
   let f = ['Class Date', '課堂日期']
   let g = ['Class Duration (hrs)', '課堂時長 (小時)']
@@ -71,14 +71,14 @@ function Appointmentmeet() {
   ]
   let p = ['1. Review math final exam.', '1. 複習數學段考']
   let q = ['1. Read one English book.', '1. 閱讀一本英文繪本']
-  let r = ['Add additional notes!!', '請輸入課堂筆記']
+  let r = ['Add additional notes!!', '請輸入課堂筆記！']
   let rrrxx = [
     "Put the links to your course materials here! If it's a local file, please upload it onto your personal Google Drive and paste the sharing link here :)",
     '請輸入課堂教材連結，若課堂教材為本機檔案 (例如：word檔案)，請上傳至私人的Google Drive並且將共用連結貼在這裡喔！',
   ]
   let ras = [
     'Please paste the sharing link to your personal Google Drive here for homework submission.',
-    '請將您雲端硬碟共用連結貼於此，這裡會是學生作業繳交處！',
+    '您的雲端硬碟會是學生作業繳交處，請將共用連結貼於此欄位！',
   ]
   const [studentabsence, setstudentabscene] = useState('')
 
@@ -96,7 +96,7 @@ function Appointmentmeet() {
   let usss = ["Student's Name", '學生姓名']
   let ss = ['Enter the Class Starting Time', '請輸入上課開始時間']
   let sss = ['Enter the Class Ending Time', '請輸入上課結束時間']
-  let rr = ['Which student are you teaching today?', '請問此次教導哪一位學生？']
+  let rr = ["Please select your student's name", '請選擇學生姓名']
   let rrr = ["Student's name", '學生姓名']
   const [studentnamelist, setstudentnamelist] = useState([])
   let username = ''
@@ -260,7 +260,7 @@ function Appointmentmeet() {
       link: links,
       notes: notes,
       hoursleft: totalhour - classduration,
-      echelon: 2,
+      echelon: 3,
     })
     var templateParams = {
       parent_email: emailaddress,
@@ -280,7 +280,7 @@ function Appointmentmeet() {
       username: chosenContact.username,
       studentname: selectedstudentname,
       studentmail: emailaddress,
-      echelon: 2,
+      echelon: 3,
     })
       .then((response) => {
         console.log(totalhour)
@@ -307,7 +307,7 @@ function Appointmentmeet() {
             link: links,
             notes: notes,
             hoursleft: totalhour - classduration,
-            echelon: 2,
+            echelon: 3,
           },
         )
       })

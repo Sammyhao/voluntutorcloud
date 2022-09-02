@@ -8,6 +8,7 @@ import { GrFavorite, GrPin } from 'react-icons/gr'
 import { AiOutlineMessage, AiOutlineCalendar } from 'react-icons/ai'
 import { SiGooglemeet } from 'react-icons/si'
 
+import { BsGrid3X3Gap } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'
 import { RiFolder3Line } from 'react-icons/ri'
 import Axios from 'axios'
@@ -49,17 +50,17 @@ function Function() {
   const [role, setrole] = useState(true)
   const [status, setStatus] = useState(1)
   const [logged, setlogged] = useState([
-    '/mylist',
-    '/appointment',
-    '/program_usage',
+    '/subjects',
     '/book',
+    '/program_usage',
+    '/appointment',
     '/message',
   ])
-  const [b, setb] = useState(['My List', '我的最愛'])
-  const [c, setc] = useState(['Appointment', '會議安排'])
+  const [b, setb] = useState(['Programs', '志工計畫'])
+  const [c, setc] = useState(['Booking', '預約會議'])
   const [d, setd] = useState(['Usage', '服務時數'])
-  const [e, sete] = useState(['Message', '訊息'])
-  const [f, setf] = useState(['Booking', '預約會議'])
+  const [e, sete] = useState(['Appointment', '會議紀錄'])
+  const [f, setf] = useState(['Message', '訊息'])
   const navigate = useNavigate()
   // titles
   let a = ['BEGIN YOUR JOURNEY!', '開始你的旅程！']
@@ -83,8 +84,8 @@ function Function() {
       setb(['Profile', '我的檔案'])
       setc(['Booking', '預約會議'])
       setd(['Usage', '服務時數'])
-      setf(['Message', '訊息'])
-      sete(['Teacher Portfolio', '老師檔案'])
+      sete(['Message', '訊息'])
+      setf(['Teacher Portfolio', '老師檔案'])
     }
   })
   return (
@@ -119,7 +120,7 @@ function Function() {
           >
             <div className="icon_func_odd">
               {role ? (
-                <GrFavorite className="icon_func"></GrFavorite>
+                <BsGrid3X3Gap className="icon_func"></BsGrid3X3Gap>
               ) : (
                 <CgProfile className="icon_func"></CgProfile>
               )}
@@ -137,11 +138,7 @@ function Function() {
             }}
           >
             <div className="icon_func_even">
-              {role ? (
-                <SiGooglemeet className="icon_func"></SiGooglemeet>
-              ) : (
-                <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
-              )}
+              <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
             </div>
             <div className="subtitle_func">{c[status]}</div>
           </div>
@@ -174,12 +171,12 @@ function Function() {
           >
             <div className="icon_func_even">
               {role ? (
-                <AiOutlineCalendar className="icon_func"></AiOutlineCalendar>
+                <SiGooglemeet className="icon_func"></SiGooglemeet>
               ) : (
                 <AiOutlineMessage className="icon_func"></AiOutlineMessage>
               )}
             </div>
-            <div className="subtitle_func">{f[status]}</div>
+            <div className="subtitle_func">{e[status]}</div>
           </div>
           <div
             className="outcont_function"
@@ -198,7 +195,7 @@ function Function() {
                 <RiFolder3Line className="icon_func"></RiFolder3Line>
               )}
             </div>
-            <div className="subtitle_func">{e[status]}</div>
+            <div className="subtitle_func">{f[status]}</div>
           </div>
         </div>
       </div>

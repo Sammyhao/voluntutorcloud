@@ -16,6 +16,7 @@ import { Studygrid } from './Studygrid'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
+import { KEY_PREFIX } from 'redux-persist'
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
@@ -74,10 +75,13 @@ export default function Studymat() {
   let a = ['By Grades', '依年級分類']
   let b = ['By Subjects', '依科目分類']
   let bb = ['By Schools', '依學校分類']
+
+  let note = ['Notes', '備註']
+  let linkssub = ['Links', '相關連結']
   let c = ['Study Materials', '志工教學教材']
   let d = [
     'Study Materials can only be used for volunteering session purposes.',
-    '教學教材只限使用於志工教學，請勿濫用。',
+    '教學教材只限使用於志工教學，請勿濫用',
   ]
   let e = ['Grade 1', '一年級']
   let f = ['Grade 2', '二年級']
@@ -118,7 +122,18 @@ export default function Studymat() {
   const [status, setStatus] = useState(1)
 
   const user = useSelector((state) => state.user.value)
-
+  const ne = 'https://onebook.oneclass.com.tw/'
+  const neopen = () => {
+    window.open(ne, '_blank', 'noopener,noreferrer')
+  }
+  const kx = 'https://digitalmaster.knsh.com.tw/ebook/index.html'
+  const hl = 'https://edisc3.hle.com.tw/edisc_v3/index.html?t=1601339224'
+  const kxopen = () => {
+    window.open(kx, '_blank', 'noopener,noreferrer')
+  }
+  const hlopen = () => {
+    window.open(hl, '_blank', 'noopener,noreferrer')
+  }
   useEffect(() => {
     // console.log('filtered', filteredarray)
     if (isLoading) {
@@ -676,6 +691,61 @@ export default function Studymat() {
                 }}
               />
             </FormGroup>
+          </div>
+          <div className="filterunit">
+            <div className="filtersub">{note[status]}</div>
+            <Divider className="filterline"></Divider>
+            <div className="spacing"></div>
+            <div
+              style={{
+                color: '#745140',
+                fontFamily: 'Lora',
+                marginBottom: '50px',
+                fontSize: '15px',
+              }}
+            >
+              <li
+                style={{
+                  marginBottom: '15px',
+                }}
+              >
+                南一教科書：能透過網站夠正常開啟
+              </li>
+              <li
+                style={{
+                  marginBottom: '15px',
+                }}
+              >
+                康軒教科書：需要請志工在使用教科書之前先至網站上登入帳號，登入後，即可回到網站透過網站打開教科書做使用
+              </li>
+              <li>
+                翰林教科書：由於帳號登入權限，無法透過網站開啟，請各位志工要使用教材時自行登入翰林教科書頁面並選取欲使用的教科書
+              </li>
+            </div>
+          </div>
+          <div className="filterunit">
+            <div className="filtersub">{linkssub[status]}</div>
+            <Divider className="filterline"></Divider>
+            <div className="spacing"></div>
+            <div className="linkstyle" onClick={neopen}>
+              點我進入南一版網站
+            </div>
+            <div className="passcodes">
+              帳號：hsesteacher<br></br>
+              密碼：hses512354
+            </div>
+            <div className="linkstyle" onClick={kxopen}>
+              點我進入康軒版網站
+            </div>
+            <div className="passcodes">
+              帳號：elson0314<br></br> 密碼：0975252670
+            </div>
+            <div className="linkstyle" onClick={hlopen}>
+              點我進入翰林版網站
+            </div>
+            <div className="passcodes">
+              帳號：hsesteacher <br></br>密碼：hses512354
+            </div>
           </div>
         </div>
         <div className="studymatsecondwrap">
