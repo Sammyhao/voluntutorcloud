@@ -71,7 +71,7 @@ function Myfav() {
 
   let a = [
     "There's nothing in your favorite list!",
-    '目前沒有志工計畫被加入我的最愛。',
+    '目前沒有志工計畫被加入我的最愛',
   ]
   let b = ['Go and check out some new programs!', '去看看我們的志工計畫吧！！']
   let c = ['My List', '我的最愛']
@@ -90,7 +90,7 @@ function Myfav() {
   let k = ['View School', '查看學校']
   let l = [
     'Are you sure you want to book this program?',
-    '你確定你要報名此志工計畫？按下送出後即無法收回。',
+    '你確定你要報名此志工計畫？按下送出後即無法收回',
   ]
   let m = ['Yes', '確定送出']
   let zz = [

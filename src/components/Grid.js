@@ -192,14 +192,11 @@ function Grid_sub() {
   let l = ['Learn more...', '了解更多...']
   let n = [
     'Are you sure you want to book this program?',
-    '你確定你要報名此志工計畫？按下送出後即無法收回。',
+    '你確定你要報名此志工計畫？按下送出後即無法收回',
   ]
   let nn = ['Subject', '科目']
   let m = ['Yes', '確定送出']
-  let o = [
-    'There is no volunteering programs yet.',
-    '目前沒有進行中的志工計畫。',
-  ]
+  let o = ['There is no volunteering programs yet.', '目前沒有進行中的志工計畫']
   let q = ['Stay tuned!', '敬請期待！']
   let z = ['Added to favorite list.', '已加入最愛']
   if (isLoading) return <Loading />

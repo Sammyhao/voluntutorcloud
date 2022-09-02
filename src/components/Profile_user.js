@@ -71,15 +71,19 @@ function Profile_user() {
   const [googlemeetlink, setGooglemeetlink] = useState('')
   const [open, setOpen] = useState(false)
   const [status, setStatus] = useState(1)
-  const [totalhours, settotalhours] = useState(23)
+  const [totalhours, settotalhours] = useState(0)
   const [detailedhours, setdetailedhours] = useState([
     {
       date: '5/1 ~ 6/30',
-      hours: 8,
+      hours: 0,
     },
     {
       date: '7/1 ~ 8/31',
-      hours: 4,
+      hours: 0,
+    },
+    {
+      date: '9/1 ~ 10/31',
+      hours: 0,
     },
   ])
   const [contactstyle, setcontactstyle] = useState(
@@ -154,7 +158,7 @@ function Profile_user() {
   let ij = ['Log Out', '登出']
   let jk = [
     'Please contact the administrator to change the password.',
-    '請聯絡管理者以更改密碼。',
+    '請聯絡管理者以更改密碼',
   ]
   let no = ['You are now enrolled in: ', '目前參與的計畫為：']
   let op = [' volunteering program', ' 志工計畫']
@@ -162,12 +166,12 @@ function Profile_user() {
   // google meet changing for future uses
   let kl = [
     'Make sure the Google Meet Link is set up with your PERSONAL account, not school account. If your link is incorrect, update the correct link down below.',
-    '請確認你的Google Meet連結是用你的私人帳號設定的，而非學校帳號。若你的連結於一開始設定時錯誤，請將正確的連結填入以下欄位。',
+    '請確認你的Google Meet連結是用你的私人帳號設定的，而非學校帳號。若你的連結於一開始設定時錯誤，請將正確的連結填入以下欄位',
   ]
   let lm = ['Save', '儲存']
   let mn = [
     'The following Google Meet Link is the link you provided during registration.',
-    '以下連結為你當時報名時提供的Google Meet 連結。',
+    '以下連結為你當時報名時提供的Google Meet 連結',
   ]
 
   // dialog
@@ -394,8 +398,16 @@ function Profile_user() {
           echelon: 2,
         },
       ),
+      Axios.post(
+        'https://voluntutorcloud-server.herokuapp.com/getRecordByUsername',
+        {
+          username: name,
+          echelon: 3,
+        },
+      ),
+      ,
     ]).then(
-      Axios.spread((response1, response2) => {
+      Axios.spread((response1, response2, response3) => {
         //console.log(response1.data)
         //console.log(response2.data)
         if (response1.data.length > 0) {
@@ -408,11 +420,17 @@ function Profile_user() {
             ech2total += response2.data[i].duration
           }
         }
+        if (response3.data.length > 0) {
+          for (let i = 0; i < response3.data.length; i++) {
+            ech3total += response3.data[i].duration
+          }
+        }
         //console.log(ech1total, ' ', ech2total)
-        settotalhours(ech1total + ech2total)
+        settotalhours(ech1total + ech2total + ech3total)
         setdetailedhours([
           { date: '5/1 ~ 6/30', hours: ech1total },
           { date: '7/1 ~ 8/31', hours: ech2total },
+          { date: '9/1 ~ 10/31', hours: ech3total },
         ])
       }),
     )
@@ -429,32 +447,33 @@ function Profile_user() {
   useEffect(() => {
     Axios.get('https://voluntutorcloud-server.herokuapp.com/login').then(
       (response) => {
-          console.log(response.data.user);
-          if(response.data.user) {
-            setname(response.data.user[0].username)
-            setphone(response.data.user[0].phone)
-            setemail(response.data.user[0].email)
-            setgender(response.data.user[0].gender)
-            setbirthday(response.data.user[0].birthday)
-            setgrade(response.data.user[0].grade)
-            setschool(response.data.user[0].schoolname)
-            setpreferredsubject(response.data.user[0].preferredSubjects)
-            setstudentage(response.data.user[0].targetStuAge)
-            setstudentgender(response.data.user[0].targetStuGen)
-            setstudentpers(response.data.user[0].targetStuPerso)
-            setbio(response.data.user[0].bio)
-            setabout(response.data.user[0].about)
-            setGooglemeetlink(response.data.user[0].googlemeetlink)
-            setCurVolProg(response.data.user[0].curvolprog)
-            addHis(response.data.user[0].username)
-          }
-          setLoading(false)
+        console.log(response.data.user)
+        if (response.data.user) {
+          setname(response.data.user[0].username)
+          setphone(response.data.user[0].phone)
+          setemail(response.data.user[0].email)
+          setgender(response.data.user[0].gender)
+          setbirthday(response.data.user[0].birthday)
+          setgrade(response.data.user[0].grade)
+          setschool(response.data.user[0].schoolname)
+          setpreferredsubject(response.data.user[0].preferredSubjects)
+          setstudentage(response.data.user[0].targetStuAge)
+          setstudentgender(response.data.user[0].targetStuGen)
+          setstudentpers(response.data.user[0].targetStuPerso)
+          setbio(response.data.user[0].bio)
+          setabout(response.data.user[0].about)
+          setGooglemeetlink(response.data.user[0].googlemeetlink)
+          setCurVolProg(response.data.user[0].curvolprog)
+          addHis(response.data.user[0].username)
+        }
+        setLoading(false)
       },
     )
   }, [])
 
   let ech1total = 0,
-    ech2total = 0
+    ech2total = 0,
+    ech3total = 0
 
   if (isLoading) return <Loading />
 

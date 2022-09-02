@@ -34,7 +34,7 @@ export default function Portfolio() {
   // titles
   let a = [
     "Oops, seems like you don't have any student yet.",
-    '噢, 看來您還沒有任何學生呢。',
+    '噢, 看來您還沒有任何學生呢',
   ]
   let b = ['Go and Join a Volunteering Program!!', '趕快去報名志工活動吧！！']
   let c = ["Student's Portfolio", '學生檔案']

@@ -80,7 +80,7 @@ export default function Booking() {
   // titles
   let n = [
     "Oops, seems like you don't have any student yet.",
-    '噢, 看來您還沒有任何學生呢。',
+    '噢, 看來您還沒有任何學生呢',
   ]
 
   const [studentnamelist, setstudentnamelist] = useState([])
@@ -111,18 +111,15 @@ export default function Booking() {
   let hh = ["Student's name: ", '學生姓名：']
   let i = [
     'Please double check before you send the invitation.',
-    '在傳送前請再次確認資料是否有誤。',
+    '請確認資料是否有誤',
   ]
   let j = ['Please fill in all the fields.', '請完整填入資訊']
   let k = [
     'Booking Invitation sent. Please check the message box if the student is unavailable during the time.',
-    '會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議。',
+    '會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議',
   ]
-  let mm = [
-    "There isn't any upcoming meetings yet :)",
-    '目前沒有即將到來的會議 :)',
-  ]
-  let nn = ["There isn't any pending requests :)", '目前沒有待確認的會議邀請']
+  let mm = ['There is no confirmed upcoming meetings', '目前沒有即將到來的會議']
+  let nn = ['There is no pending requests', '目前沒有待確認的會議邀請']
   let l = ['Upcoming Meetings', '即將到來的會議']
   let q = ['Pending Requests', '待確認的會議邀請']
   let x = ['Ending time: ', '課堂結束時間：']

@@ -9,6 +9,17 @@
   padding-top: 70px;
   padding-bottom: 200px;
 }
+.linkstyle {
+  color: #745140;
+  text-decoration: underline;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.passcodes {
+  color: #745140;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
 .filter {
   width: 30%;
   padding-right: 30px;
