@@ -363,7 +363,10 @@ export default function Booking() {
               aria-labelledby="customized-dialog-title"
               open={open}
             >
-              <div className="bookingprogramdia"> {i[status]}</div>
+              <b className="bookingprogramdia" id="largerpadding">
+                {' '}
+                {i[status]}
+              </b>
               <div className="bookingprogramdia_sub">
                 {cc[status]}
                 {selectedstudentname}
