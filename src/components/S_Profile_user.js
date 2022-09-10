@@ -329,7 +329,7 @@ function S_Profile_user(props) {
                           phone: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        console.log(response.data)
                       })
                       setstudentphone(e.target.value)
                     }}
@@ -354,7 +354,7 @@ function S_Profile_user(props) {
                           phone: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        //console.log(response.data)
                       })
                       setphone(e.target.value)
                     }}
@@ -377,7 +377,7 @@ function S_Profile_user(props) {
                           email: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        console.log(response.data)
                       })
                       setemail(e.target.value)
                     }}
@@ -413,7 +413,7 @@ function S_Profile_user(props) {
                           gender: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        console.log(response.data)
                       })
                       setgender(e.target.value)
                     }}
@@ -429,7 +429,7 @@ function S_Profile_user(props) {
                     value={birthday}
                     maxLength={20}
                     onChange={(e) => {
-                      //console.log(birthday)
+                      console.log(birthday)
                       Axios.post(
                         'https://voluntutorcloud-server.herokuapp.com/updateBirthday',
                         {
@@ -437,7 +437,7 @@ function S_Profile_user(props) {
                           birthday: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        console.log(response.data)
                       })
                       setbirthday(e.target.value)
                     }}
@@ -460,7 +460,7 @@ function S_Profile_user(props) {
                           grade: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        console.log(response.data)
                       })
                       setgrade(e.target.value)
                     }}
@@ -482,7 +482,7 @@ function S_Profile_user(props) {
                           schoolname: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        console.log(response.data)
                       })
                       setschool(e.target.value)
                     }}
@@ -515,7 +515,7 @@ function S_Profile_user(props) {
                           requiredsub: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        console.log(response.data)
                       })
                       setRequiredsubject(e.target.value)
                     }}
@@ -552,7 +552,7 @@ function S_Profile_user(props) {
                           bio: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        console.log(response.data)
                       })
                       setbio(e.target.value)
                     }}
@@ -586,7 +586,7 @@ function S_Profile_user(props) {
                           about: e.target.value,
                         },
                       ).then((response) => {
-                        //console.log(response)
+                        console.log(response.data)
                       })
                       setabout(e.target.value)
                     }}
