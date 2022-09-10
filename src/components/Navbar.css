@@ -60,6 +60,7 @@
 
 .nav-menu.active {
   right: 0;
+  overflow-y: scroll;
   z-index: 999;
   transition: 350ms;
   background-color: #c49483;
