@@ -36,7 +36,7 @@ function Programusage() {
   const [isLoading, setLoading] = useState(true)
   const [stpair, setStpair] = useState([])
   const [role, setRole] = useState(true)
-  const [months, setmonths] = useState('')
+  const [months, setmonths] = useState('9/1~10/31')
 
   const monthlist = ['5/1~6/30', '7/1~8/31', '9/1~10/31']
   let a = [
@@ -178,7 +178,7 @@ function Programusage() {
     )
   }
 
-  const [echelon, setechelon] = useState(1)
+  const [echelon, setechelon] = useState(2)
 
   if (isLoading) {
     return <Loading />
