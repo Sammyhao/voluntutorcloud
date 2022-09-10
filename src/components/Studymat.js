@@ -72,6 +72,7 @@ export default function Studymat() {
   const { 大溪國小, 廣興國小, 崁頂國小, 溫泉國小, 義方國小, 東成國小 } = school
 
   let aa = ['Filter Study Materials', '分類課堂教材']
+  let aaa = ['IMPORTANT!!', '重要通知！！']
   let a = ['By Grades', '依年級分類']
   let b = ['By Subjects', '依科目分類']
   let bb = ['By Schools', '依學校分類']
@@ -254,497 +255,502 @@ export default function Studymat() {
   } else {
     return (
       <div className="outerwrapstudy">
-        <div className="filter">
-          <div className="filtertitle">{aa[status]}</div>
-          <div className="filterunit">
-            <div className="filtersub">{a[status]}</div>
-            <Divider className="filterline"></Divider>
-            <div className="spacing"></div>
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={一年級}
-                    name="一年級"
-                    onChange={(e) => {
-                      setgradestate({
-                        ...grade,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={e[status]}
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={二年級}
-                    name="二年級"
-                    onChange={(e) => {
-                      setgradestate({
-                        ...grade,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={f[status]}
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={三年級}
-                    name="三年級"
-                    onChange={(e) => {
-                      setgradestate({
-                        ...grade,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={g[status]}
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={四年級}
-                    name="四年級"
-                    onChange={(e) => {
-                      setgradestate({
-                        ...grade,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={h[status]}
-                sx={{
+        <div className="filterwrap">
+          <div className="filter">
+            <div className="filtertitle">{aaa[status]}</div>
+            <div className="filterunit">
+              <div className="filtersub">{note[status]}</div>
+              <Divider className="filterline"></Divider>
+              <div className="spacing"></div>
+              <div
+                style={{
                   color: '#745140',
                   fontFamily: 'Lora',
-                  height: '30px',
+                  marginBottom: '50px',
+                  fontSize: '15px',
                 }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={五年級}
-                    name="五年級"
-                    onChange={(e) => {
-                      setgradestate({
-                        ...grade,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={i[status]}
-                sx={{
-                  color: '#745140',
-                  fontFamily: 'Lora',
-                  height: '30px',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={六年級}
-                    name="六年級"
-                    onChange={(e) => {
-                      setgradestate({
-                        ...grade,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={j[status]}
-                sx={{
-                  color: '#745140',
-                  fontFamily: 'Lora',
-                  height: '30px',
-                }}
-              />
-            </FormGroup>
+              >
+                <li
+                  style={{
+                    marginBottom: '15px',
+                  }}
+                >
+                  南一教科書：能透過網站夠正常開啟
+                </li>
+                <li
+                  style={{
+                    marginBottom: '15px',
+                  }}
+                >
+                  康軒教科書：需要請志工在使用教科書之前先至網站上登入帳號，登入後，即可回到網站透過網站打開教科書做使用
+                </li>
+                <li>
+                  翰林教科書：由於帳號登入權限，無法透過網站開啟，請各位志工要使用教材時自行登入翰林教科書頁面並選取欲使用的教科書
+                </li>
+              </div>
+            </div>
+            <div className="filterunit">
+              <div className="filtersub">{linkssub[status]}</div>
+              <Divider className="filterline"></Divider>
+              <div className="spacing"></div>
+              <div className="linkstyle" onClick={neopen}>
+                點我進入南一版網站
+              </div>
+              <div className="passcodes">
+                帳號：hsesteacher<br></br>
+                密碼：hses512354
+              </div>
+              <div className="linkstyle" onClick={kxopen}>
+                點我進入康軒版網站
+              </div>
+              <div className="passcodes">
+                帳號：elson0314<br></br> 密碼：0975252670
+              </div>
+              <div className="linkstyle" onClick={hlopen}>
+                點我進入翰林版網站
+              </div>
+              <div className="passcodes">
+                帳號：hanlin1001 <br></br>密碼：88888888
+              </div>
+            </div>
           </div>
-          <div className="filterunit">
-            <div className="filtersub">{b[status]}</div>
-            <Divider className="filterline"></Divider>
-            <div className="spacing"></div>
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={國文}
-                    name="國文"
-                    onChange={(e) => {
-                      setsubjectstate({
-                        ...subject,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={k[status]}
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={數學}
-                    name="數學"
-                    onChange={(e) => {
-                      setsubjectstate({
-                        ...subject,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={l[status]}
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
+          <div className="filter">
+            <div className="filtertitle">{aa[status]}</div>
+            <div className="filterunit">
+              <div className="filtersub">{a[status]}</div>
+              <Divider className="filterline"></Divider>
+              <div className="spacing"></div>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={一年級}
+                      name="一年級"
+                      onChange={(e) => {
+                        setgradestate({
+                          ...grade,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={e[status]}
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={二年級}
+                      name="二年級"
+                      onChange={(e) => {
+                        setgradestate({
+                          ...grade,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={f[status]}
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={三年級}
+                      name="三年級"
+                      onChange={(e) => {
+                        setgradestate({
+                          ...grade,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={g[status]}
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={四年級}
+                      name="四年級"
+                      onChange={(e) => {
+                        setgradestate({
+                          ...grade,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={h[status]}
+                  sx={{
+                    color: '#745140',
+                    fontFamily: 'Lora',
+                    height: '30px',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={五年級}
+                      name="五年級"
+                      onChange={(e) => {
+                        setgradestate({
+                          ...grade,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={i[status]}
+                  sx={{
+                    color: '#745140',
+                    fontFamily: 'Lora',
+                    height: '30px',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={六年級}
+                      name="六年級"
+                      onChange={(e) => {
+                        setgradestate({
+                          ...grade,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={j[status]}
+                  sx={{
+                    color: '#745140',
+                    fontFamily: 'Lora',
+                    height: '30px',
+                  }}
+                />
+              </FormGroup>
+            </div>
+            <div className="filterunit">
+              <div className="filtersub">{b[status]}</div>
+              <Divider className="filterline"></Divider>
+              <div className="spacing"></div>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={國文}
+                      name="國文"
+                      onChange={(e) => {
+                        setsubjectstate({
+                          ...subject,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={k[status]}
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={數學}
+                      name="數學"
+                      onChange={(e) => {
+                        setsubjectstate({
+                          ...subject,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={l[status]}
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
 
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={英文}
-                    name="英文"
-                    onChange={(e) => {
-                      setsubjectstate({
-                        ...subject,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={m[status]}
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={生活}
-                    name="生活"
-                    onChange={(e) => {
-                      setsubjectstate({
-                        ...subject,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={p[status]}
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={社會}
-                    name="社會"
-                    onChange={(e) => {
-                      setsubjectstate({
-                        ...subject,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={n[status]}
-                sx={{
-                  color: '#745140',
-                  fontFamily: 'Lora',
-                  height: '30px',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={自然}
-                    name="自然"
-                    onChange={(e) => {
-                      setsubjectstate({
-                        ...subject,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label={o[status]}
-                sx={{
-                  color: '#745140',
-                  fontFamily: 'Lora',
-                  height: '30px',
-                }}
-              />
-            </FormGroup>
-          </div>
-          <div className="filterunit">
-            <div className="filtersub">{bb[status]}</div>
-            <Divider className="filterline"></Divider>
-            <div className="spacing"></div>
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={大溪國小}
-                    name="大溪國小"
-                    onChange={(e) => {
-                      setschoolstate({
-                        ...school,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label="大溪國小"
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={廣興國小}
-                    name="廣興國小"
-                    onChange={(e) => {
-                      setschoolstate({
-                        ...school,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label="廣興國小"
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={崁頂國小}
-                    name="崁頂國小"
-                    onChange={(e) => {
-                      setschoolstate({
-                        ...school,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label="崁頂國小"
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={溫泉國小}
-                    name="溫泉國小"
-                    onChange={(e) => {
-                      setschoolstate({
-                        ...school,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label="溫泉國小"
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={義方國小}
-                    name="義方國小"
-                    onChange={(e) => {
-                      setschoolstate({
-                        ...school,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label="義方國小"
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={東成國小}
-                    name="東成國小"
-                    onChange={(e) => {
-                      setschoolstate({
-                        ...school,
-                        [e.target.name]: e.target.checked,
-                      })
-                    }}
-                    style={{
-                      color: '#745140',
-                    }}
-                  />
-                }
-                label="東成國小"
-                sx={{
-                  color: '#745140',
-                  height: '30px',
-                  fontFamily: 'Lora',
-                }}
-              />
-            </FormGroup>
-          </div>
-          <div className="filterunit">
-            <div className="filtersub">{note[status]}</div>
-            <Divider className="filterline"></Divider>
-            <div className="spacing"></div>
-            <div
-              style={{
-                color: '#745140',
-                fontFamily: 'Lora',
-                marginBottom: '50px',
-                fontSize: '15px',
-              }}
-            >
-              <li
-                style={{
-                  marginBottom: '15px',
-                }}
-              >
-                南一教科書：能透過網站夠正常開啟
-              </li>
-              <li
-                style={{
-                  marginBottom: '15px',
-                }}
-              >
-                康軒教科書：需要請志工在使用教科書之前先至網站上登入帳號，登入後，即可回到網站透過網站打開教科書做使用
-              </li>
-              <li>
-                翰林教科書：由於帳號登入權限，無法透過網站開啟，請各位志工要使用教材時自行登入翰林教科書頁面並選取欲使用的教科書
-              </li>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={英文}
+                      name="英文"
+                      onChange={(e) => {
+                        setsubjectstate({
+                          ...subject,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={m[status]}
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={生活}
+                      name="生活"
+                      onChange={(e) => {
+                        setsubjectstate({
+                          ...subject,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={p[status]}
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={社會}
+                      name="社會"
+                      onChange={(e) => {
+                        setsubjectstate({
+                          ...subject,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={n[status]}
+                  sx={{
+                    color: '#745140',
+                    fontFamily: 'Lora',
+                    height: '30px',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={自然}
+                      name="自然"
+                      onChange={(e) => {
+                        setsubjectstate({
+                          ...subject,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label={o[status]}
+                  sx={{
+                    color: '#745140',
+                    fontFamily: 'Lora',
+                    height: '30px',
+                  }}
+                />
+              </FormGroup>
             </div>
-          </div>
-          <div className="filterunit">
-            <div className="filtersub">{linkssub[status]}</div>
-            <Divider className="filterline"></Divider>
-            <div className="spacing"></div>
-            <div className="linkstyle" onClick={neopen}>
-              點我進入南一版網站
-            </div>
-            <div className="passcodes">
-              帳號：hsesteacher<br></br>
-              密碼：hses512354
-            </div>
-            <div className="linkstyle" onClick={kxopen}>
-              點我進入康軒版網站
-            </div>
-            <div className="passcodes">
-              帳號：elson0314<br></br> 密碼：0975252670
-            </div>
-            <div className="linkstyle" onClick={hlopen}>
-              點我進入翰林版網站
-            </div>
-            <div className="passcodes">
-              帳號：hanlin1001 <br></br>密碼：88888888
+            <div className="filterunit">
+              <div className="filtersub">{bb[status]}</div>
+              <Divider className="filterline"></Divider>
+              <div className="spacing"></div>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={大溪國小}
+                      name="大溪國小"
+                      onChange={(e) => {
+                        setschoolstate({
+                          ...school,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label="大溪國小"
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={廣興國小}
+                      name="廣興國小"
+                      onChange={(e) => {
+                        setschoolstate({
+                          ...school,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label="廣興國小"
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={崁頂國小}
+                      name="崁頂國小"
+                      onChange={(e) => {
+                        setschoolstate({
+                          ...school,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label="崁頂國小"
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={溫泉國小}
+                      name="溫泉國小"
+                      onChange={(e) => {
+                        setschoolstate({
+                          ...school,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label="溫泉國小"
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={義方國小}
+                      name="義方國小"
+                      onChange={(e) => {
+                        setschoolstate({
+                          ...school,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label="義方國小"
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={東成國小}
+                      name="東成國小"
+                      onChange={(e) => {
+                        setschoolstate({
+                          ...school,
+                          [e.target.name]: e.target.checked,
+                        })
+                      }}
+                      style={{
+                        color: '#745140',
+                      }}
+                    />
+                  }
+                  label="東成國小"
+                  sx={{
+                    color: '#745140',
+                    height: '30px',
+                    fontFamily: 'Lora',
+                  }}
+                />
+              </FormGroup>
             </div>
           </div>
         </div>

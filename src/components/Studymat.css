@@ -20,9 +20,13 @@
   margin-bottom: 10px;
   font-size: 13px;
 }
-.filter {
+.filterwrap {
   width: 30%;
+}
+.filter {
   padding-right: 30px;
+  margin: 0;
+  margin-bottom: 50px;
 }
 .studymatsecondwrap {
   width: 70%;

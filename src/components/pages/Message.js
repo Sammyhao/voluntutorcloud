@@ -6,17 +6,12 @@ import Navbar from '../Navbar'
 import { useSelector } from 'react-redux'
 
 export default function Messages() {
-  const [role, setRole] = useState(true)
   const user = useSelector((state) => state.user.value)
-
-  useEffect(() => {
-    setRole(user.role)
-  }, [])
 
   return (
     <>
       <Navbar></Navbar>
-      {role ? <Message></Message> : <S_Message></S_Message>}
+      {user.role ? <Message></Message> : <S_Message></S_Message>}
     </>
   )
 }
