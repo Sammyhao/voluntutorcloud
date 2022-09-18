@@ -44,7 +44,6 @@ function App() {
           <Route exact path="/adminbook" element={<Admin_bookings />}></Route>
           <Route exact path="/adminuser" element={<Admin_user />}></Route>
           <Route exact path="/faq" element={<FAQ />}></Route>
-
           <Route
             exact
             path="/program_usage"

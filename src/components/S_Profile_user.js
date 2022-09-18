@@ -239,7 +239,9 @@ function S_Profile_user(props) {
         setschool(response.data.user[0].schoolname)
         setstudentage(response.data.user[0].targetStuAge)
         setstudentgender(response.data.user[0].targetStuGen)
+        console.log(response.data.user[0].targetStuPerso);
         setstudentpers(response.data.user[0].targetStuPerso)
+        console.log(response.data.user[0].bio);
         setbio(response.data.user[0].bio)
         setabout(response.data.user[0].about)
         return Axios.post(

@@ -87,7 +87,7 @@ function Function() {
       sete(['Message', '訊息'])
       setf(['Teacher Portfolio', '老師檔案'])
     }
-  })
+  }, [])
   return (
     <div className="container_func">
       <div id="dialog_reg_wrap">
