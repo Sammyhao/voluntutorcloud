@@ -7,18 +7,12 @@ import S_Prof from '../S_Profile_user'
 import { useSelector } from 'react-redux'
 
 export default function Profile() {
-  const [role, setRole] = useState(true)
   const user = useSelector((state) => state.user.value)
-  console.log('store data: ', user)
-  
-  useEffect(() => {
-    setRole(user.role)
-  }, [])
 
   return (
     <>
       <Navbar></Navbar>
-      {role ? <Prof></Prof> : <S_Prof></S_Prof>}
+      {user.role ? <Prof></Prof> : <S_Prof></S_Prof>}
       <Footer></Footer>
     </>
   )

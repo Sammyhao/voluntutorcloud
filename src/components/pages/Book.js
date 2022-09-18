@@ -7,18 +7,12 @@ import Book from '../Booking'
 import { useSelector } from 'react-redux'
 
 export default function Appointment() {
-  const [role, setRole] = useState(true)
   const user = useSelector((state) => state.user.value)
-  console.log('store data: ', user)
-  
-  useEffect(() => {
-    setRole(user.role)
-  }, [])
 
   return (
     <>
       <Navbar></Navbar>
-      {role ? <Book></Book> : <S_Booking></S_Booking>}
+      {user.role ? <Book></Book> : <S_Booking></S_Booking>}
       <Footer></Footer>
     </>
   )

@@ -547,6 +547,7 @@ function S_Profile_user(props) {
                     disabled={readonlybio}
                     value={bio}
                     onChange={(e) => {
+                      setbio(e.target.value)
                       Axios.post(
                         'https://voluntutorcloud-server.herokuapp.com/updateBio',
                         {
@@ -556,7 +557,6 @@ function S_Profile_user(props) {
                       ).then((response) => {
                         console.log(response.data)
                       })
-                      setbio(e.target.value)
                     }}
                   />
                 </div>
@@ -581,6 +581,7 @@ function S_Profile_user(props) {
                     disabled={readonlyabout}
                     value={about}
                     onChange={(e) => {
+                      setabout(e.target.value)
                       Axios.post(
                         'https://voluntutorcloud-server.herokuapp.com/updateAbout',
                         {
@@ -590,7 +591,6 @@ function S_Profile_user(props) {
                       ).then((response) => {
                         console.log(response.data)
                       })
-                      setabout(e.target.value)
                     }}
                   />
                 </div>

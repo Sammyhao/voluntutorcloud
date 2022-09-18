@@ -425,6 +425,9 @@ function Profile_user() {
             ech3total += response3.data[i].duration
           }
         }
+        ech1total = Math.round(ech1total * 100.0) / 100.0
+        ech2total = Math.round(ech2total * 100.0) / 100.0
+        ech3total = Math.round(ech3total * 100.0) / 100.0
         //console.log(ech1total, ' ', ech2total)
         settotalhours(ech1total + ech2total + ech3total)
         setdetailedhours([

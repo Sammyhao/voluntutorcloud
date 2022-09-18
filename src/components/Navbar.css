@@ -60,6 +60,7 @@
 
 .nav-menu.active {
   right: 0;
+  overflow-y: auto;
   z-index: 999;
   transition: 350ms;
   background-color: #c49483;
@@ -206,6 +207,7 @@
     margin-left: 20px;
     top: 0;
     text-align: start;
+    white-space: nowrap;
     position: relative;
     align-self: flex-start;
     transform: translate(20%, 50%);
@@ -214,6 +216,7 @@
   .navbar-logo-notlogged {
     margin-left: 20px;
     position: relative;
+    white-space: nowrap;
     top: 0;
     text-align: start;
     align-self: flex-start;
@@ -285,6 +288,7 @@ path {
   margin-left: 20px;
   top: 0;
   text-align: start;
+  white-space: nowrap;
   left: 0;
   position: relative;
   cursor: pointer;
@@ -304,6 +308,7 @@ path {
   top: 0;
   text-align: start;
   left: 0;
+  white-space: nowrap;
   position: relative;
   cursor: pointer;
   text-decoration: none;
