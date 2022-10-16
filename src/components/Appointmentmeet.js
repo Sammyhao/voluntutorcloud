@@ -312,7 +312,7 @@ function Appointmentmeet() {
         )
       })
       .then((response) => {
-        console.log(response)
+        console.log(response.data)
       })
 
     emailjs
