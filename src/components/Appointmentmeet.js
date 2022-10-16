@@ -100,6 +100,21 @@ function Appointmentmeet() {
   let rrr = ["Student's name", '學生姓名']
   const [studentnamelist, setstudentnamelist] = useState([])
   let username = ''
+  let ParticipateTitle = ["Participate level", "學生參與度"]
+  let participate = ["Please select student's participate level (worst = 1, best = 10)", 
+                     "請選擇學生今日上課參與度(e.g., 回答問題的次數很多)"]
+  let pone = ["level 1 (not answering questions)", "第一等 (不回答問題)"]
+  let ptwo = ["level 2 (answering one to two questions)", "第二等 (回答一兩的問題) "]
+  let pthree = ["level 3 (answer about 30% of questions)", "第三等 (回答30%的問題)"]
+  let pfour = ["level 4 (answer about 40% of questions)", "第四等 (回答40%的問題)"]
+  let pfive = ["level 5 (answer about 50% of questions)", "第五等 (回答50%的問題)"]
+  let psix = ["level 6 (answer about 60% of questions)", "第六等 (回答60%的問題)"]  
+  let pseven = ["level 7 (answer about 70% of questions)", "第七等 (回答70%的問題)"]
+  let peight = ["level 8 (answer about 80% of questions)", "第八等 (回答80%的問題)"]
+  let pnine = ["level 9 (answer about 90% of questions, interact with teacher)",
+               "第九等 (回答90%的問題，與老師互動)"]
+  let pten = ["level 10 (answer all the questions, fully interact with teacher)",
+              "第十等 (回答所有問題，與老師充分互動)"]
   const [contactInfo, setContactInfo] = useState([])
   let totalhour = 8
   const [timeopen, settimeopen] = useState(false)
@@ -394,6 +409,8 @@ function Appointmentmeet() {
               <div className="appointment_content">{classduration}</div>
               <div className="appointment_subtitles">{h[status]}</div>
               <div className="appointment_content">{agenda}</div>
+              <div className='appointment_subtitles'>{ParticipateTitle[status]}</div>
+              <div className='appointment_content'>{participate[status]}</div>
               <div className="appointment_subtitles">{jjjjj[status]}</div>
               <div className="appointment_content">
                 {checkblank(submissionlink)}
@@ -576,6 +593,75 @@ function Appointmentmeet() {
             <Divider className="app_line"></Divider>
 
             <div className="appwrap">
+            <div className="classdate">
+            <div className="app_title">{ParticipateTitle[status]}</div>
+            <Divider className="app_line"></Divider>
+            <Select
+              labelId="demo-simple-select-helper-label"
+              variant="standard"
+              id="editdate"
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              value={studentabsence}
+              onChange={(e) => {
+                setstudentabscene(e.target.value)
+              }}
+              renderValue={(selected) => {
+                if (selected.length === 0) {
+                  return <div className="selectplace">{participate[status]}</div>
+                }
+
+                return selected
+              }}
+              sx={{
+                color: '#745140',
+                paddingLeft: '0px',
+                paddingBottom: '5px',
+                fontFamily: 'Lora',
+                letterSpacing: '0.8px',
+                fontSize: '15px',
+                '&:hover': {
+                  color: '#b25634',
+                },
+                '&:focus': {
+                  backgroundColor: '#00000000',
+                },
+                '&:not(.Mui-disabled):hover::before': {
+                  borderBottom: '0px',
+                },
+                '&:before': {
+                  borderBottom: '0px',
+                },
+                '&:after': {
+                  borderBottom: '0px',
+                },
+                '& .MuiSvgIcon-root': {
+                  marginRight: '20px',
+                  marginTop: '10px',
+                  fontSize: '30px',
+                  color: '#b25634',
+                  fill: '#b25634',
+                },
+                '& .MuiSvgIcon-root::before': {
+                  border: '1.5px solid #D6A796',
+                },
+                '& .MuiSvgIcon-root::after': {
+                  border: '1.5px solid #D6A796',
+                },
+              }}
+            >
+              <MenuItem value={pone[status]}>{pone[status]}</MenuItem>
+              <MenuItem value={ptwo[status]}>{ptwo[status]}</MenuItem>
+              <MenuItem value={pthree[status]}>{pthree[status]}</MenuItem>
+              <MenuItem value={pfour[status]}>{pfour[status]}</MenuItem>
+              <MenuItem value={pfive[status]}>{five[status]}</MenuItem>
+              <MenuItem value={psix[status]}>{psix[status]}</MenuItem>
+              <MenuItem value={pseven[status]}>{pseven[status]}</MenuItem>
+              <MenuItem value={peight[status]}>{peight[status]}</MenuItem>
+              <MenuItem value={pnine[status]}>{pnine[status]}</MenuItem>
+              <MenuItem value={pfive[status]}>{pten[status]}</MenuItem>
+            </Select>
+          </div>
               <LocalizationProvider
                 className="datedatewrap"
                 dateAdapter={AdapterDateFns}
