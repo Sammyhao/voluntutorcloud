@@ -198,6 +198,7 @@ function Register_pageall() {
   let yyzz = ['Taitung Kanding Elementary School', '臺東縣崁頂國民小學']
   let aaaa = ['New Taipei Yifan Elementary School', '新北市義方國民小學']
   let bbbb = ['Taitung Dongcheng Elementary School', '臺東縣東成國民小學']
+  let cccc = ['Nanwang Huahuan Elementary School', '臺東縣南王花環小學']
   let asdbf = ['Select your preferred subjects', '請選擇你想要教導的科目']
   let abb = ['Select your preferred student grade', '請選擇學生年級']
   let abc = ['Select your preferred student gender', '請選擇學生性別']
@@ -264,6 +265,12 @@ function Register_pageall() {
       schoolnamereg === '宜蘭縣大溪國民小學'
     ) {
       school = '大溪國小'
+    }
+    if (
+      schoolnamereg === 'Nanwang Huahuan Elementary School' ||
+      schoolnamereg === '臺東縣南王花環小學'
+    ) {
+      school = '南王國小'
     }
     if (
       schoolnamereg === 'Yilan Guangxing Elementary School' ||
@@ -1743,6 +1750,7 @@ function Register_pageall() {
                     <MenuItem value={yyzz[status]}>{yyzz[status]}</MenuItem>
                     <MenuItem value={aaaa[status]}>{aaaa[status]}</MenuItem>
                     <MenuItem value={bbbb[status]}>{bbbb[status]}</MenuItem>
+                    <MenuItem value={cccc[status]}>{cccc[status]}</MenuItem>
                   </Select>
                 </div>
 
