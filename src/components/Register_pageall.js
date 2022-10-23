@@ -190,7 +190,7 @@ function Register_pageall() {
   let yy = ['Select your gender', '選擇你的性別']
   let wv = ['Taipei Wego Senior High School', '台北市私立薇閣高級中學']
   let ww = ['Taipei Fuhsing Senior High School', '台北市私立復興高級中學']
-  let www = ['Kang Chiao International School', '康橋國際學校']
+  let www = ['Taipei Kang Chiao International School', '台北市康橋國際學校']
   let wwww = ['Taipei Kuei Shan School', '台北市私立奎山實驗高級中學']
   let xx = ['Yilan Daxi Elementary School', '宜蘭縣大溪國民小學']
   let yyzy = ['Yilan Guangxing Elementary School', '宜蘭縣廣興國民小學']
@@ -198,7 +198,8 @@ function Register_pageall() {
   let yyzz = ['Taitung Kanding Elementary School', '臺東縣崁頂國民小學']
   let aaaa = ['New Taipei Yifan Elementary School', '新北市義方國民小學']
   let bbbb = ['Taitung Dongcheng Elementary School', '臺東縣東成國民小學']
-  let cccc = ['Nanwang Huahuan Elementary School', '臺東縣南王花環小學']
+  let cccc = ['Taitung Nanwang Huahuan Elementary School', '臺東縣南王花環小學']
+  let dddd = ['Kinmen Kai Xuan Elementary School', '金門縣開瑄國民小學']
   let asdbf = ['Select your preferred subjects', '請選擇你想要教導的科目']
   let abb = ['Select your preferred student grade', '請選擇學生年級']
   let abc = ['Select your preferred student gender', '請選擇學生性別']
@@ -217,45 +218,39 @@ function Register_pageall() {
     children: PropTypes.node,
   }
 
+  const changestatuschin = () => {
+    console.log('change to chinese')
+    setStatus(1)
+    setsubjectlist(['國文', '數學', '英文', '社會', '自然'])
+    setcharlist([
+      '開朗',
+      '外向',
+      '安靜',
+      '認真',
+      '積極',
+      '好學',
+      '勤奮',
+      '謹慎',
+      '誠實',
+      '守規矩',
+    ])
+  }
   const changestatus = () => {
-    if (status === 0) {
-      setStatus(1)
-      setsubjectlist(['國文', '數學', '英文', '社會', '自然'])
-
-      setcharlist([
-        '開朗',
-        '外向',
-        '安靜',
-        '認真',
-        '積極',
-        '好學',
-        '勤奮',
-        '謹慎',
-        '誠實',
-        '守規矩',
-      ])
-    } else {
-      setStatus(0)
-      setsubjectlist([
-        'Chinese',
-        'Math',
-        'English',
-        'Social Studies',
-        'Science',
-      ])
-      setcharlist([
-        'open-minded',
-        'outgoing',
-        'reserved',
-        'conscientious',
-        'hard-working',
-        'proactive',
-        'indefatigable',
-        'discreet',
-        'honest',
-        'well-behaved',
-      ])
-    }
+    console.log('change to english')
+    setStatus(0)
+    setsubjectlist(['Chinese', 'Math', 'English', 'Social Studies', 'Science'])
+    setcharlist([
+      'open-minded',
+      'outgoing',
+      'reserved',
+      'conscientious',
+      'hard-working',
+      'proactive',
+      'indefatigable',
+      'discreet',
+      'honest',
+      'well-behaved',
+    ])
   }
   const savedatastu = () => {
     let school = schoolnamereg
@@ -267,10 +262,16 @@ function Register_pageall() {
       school = '大溪國小'
     }
     if (
-      schoolnamereg === 'Nanwang Huahuan Elementary School' ||
+      schoolnamereg === 'Taitung Nanwang Huahuan Elementary School' ||
       schoolnamereg === '臺東縣南王花環小學'
     ) {
       school = '南王國小'
+    }
+    if (
+      schoolnamereg === 'Kinmen Kai Xuan Elementary School' ||
+      schoolnamereg === '金門縣開瑄國民小學'
+    ) {
+      school = '開瑄國小'
     }
     if (
       schoolnamereg === 'Yilan Guangxing Elementary School' ||
@@ -354,8 +355,8 @@ function Register_pageall() {
     if (schoolnamereg === '台北市私立復興高級中學') {
       skl = 'Taipei Fuhsing Senior High School'
     }
-    if (schoolnamereg === '康橋國際學校') {
-      skl = 'Kang Chiao International School'
+    if (schoolnamereg === '台北市康橋國際學校') {
+      skl = 'Taipei Kang Chiao International School'
     }
     if (schoolnamereg === '台北市私立奎山實驗高級中學') {
       skl = 'Taipei Kuei Shan School'
@@ -630,7 +631,7 @@ function Register_pageall() {
         <div className="bar"></div>
         <div className="role_full">
           <div className="languagereg">
-            <div className="wordslog" onClick={changestatus}>
+            <div className="wordslog" onClick={changestatuschin}>
               中
             </div>
             <div className="wordslog">/</div>
@@ -688,7 +689,7 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div className="wordslog" onClick={changestatus}>
+              <div className="wordslog" onClick={changestatuschin}>
                 中
               </div>
               <div className="wordslog">/</div>
@@ -745,7 +746,7 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div className="wordslog" onClick={changestatus}>
+              <div className="wordslog" onClick={changestatuschin}>
                 中
               </div>
               <div className="wordslog">/</div>
@@ -808,7 +809,7 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div className="wordslog" onClick={changestatus}>
+              <div className="wordslog" onClick={changestatuschin}>
                 中
               </div>
               <div className="wordslog">/</div>
@@ -897,7 +898,7 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div className="wordslog" onClick={changestatus}>
+              <div className="wordslog" onClick={changestatuschin}>
                 中
               </div>
               <div className="wordslog">/</div>
@@ -976,7 +977,7 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div className="wordslog" onClick={changestatus}>
+              <div className="wordslog" onClick={changestatuschin}>
                 中
               </div>
               <div className="wordslog">/</div>
@@ -1145,7 +1146,7 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div className="wordslog" onClick={changestatus}>
+              <div className="wordslog" onClick={changestatuschin}>
                 中
               </div>
               <div className="wordslog">/</div>
@@ -1242,7 +1243,7 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div className="wordslog" onClick={changestatus}>
+              <div className="wordslog" onClick={changestatuschin}>
                 中
               </div>
               <div className="wordslog">/</div>
@@ -1489,7 +1490,7 @@ function Register_pageall() {
           </div>
           <div className="full">
             <div className="languagereg">
-              <div className="wordslog" onClick={changestatus}>
+              <div className="wordslog" onClick={changestatuschin}>
                 中
               </div>
               <div className="wordslog">/</div>
@@ -1751,6 +1752,7 @@ function Register_pageall() {
                     <MenuItem value={aaaa[status]}>{aaaa[status]}</MenuItem>
                     <MenuItem value={bbbb[status]}>{bbbb[status]}</MenuItem>
                     <MenuItem value={cccc[status]}>{cccc[status]}</MenuItem>
+                    <MenuItem value={dddd[status]}>{dddd[status]}</MenuItem>
                   </Select>
                 </div>
 
@@ -1829,7 +1831,7 @@ function Register_pageall() {
         </div>
         <div className="full">
           <div className="languagereg">
-            <div className="wordslog" onClick={changestatus}>
+            <div className="wordslog" onClick={changestatuschin}>
               中
             </div>
             <div className="wordslog">/</div>
@@ -2247,7 +2249,7 @@ function Register_pageall() {
         </div>
         <div className="full">
           <div className="languagereg">
-            <div className="wordslog" onClick={changestatus}>
+            <div className="wordslog" onClick={changestatuschin}>
               中
             </div>
             <div className="wordslog">/</div>

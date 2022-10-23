@@ -19,7 +19,7 @@ function Footer() {
 
   const user = useSelector((state) => state.user.value)
   console.log('store data: ', user)
-  
+
   useEffect(() => {
     setStatus(user.language)
   }, [])
@@ -74,44 +74,39 @@ function Footer() {
           </div>
           <small class="website-rights">Voluntutor Cloud © 2022</small>
           <div class="social-icons">
-            <i
-              class="social-icon-link line"
-              href="https://line.me/R/ti/p/@564usgab"
-              target="_blank"
-              aria-label="Line"
-            />
             <a
-              class="social-icon-link instagram"
+              class="social-icon-link line"
               href="https://www.instagram.com/voluntutor_cloud/"
               target="_blank"
               aria-label="Instagram"
             >
               <i class="fab fa-instagram" />
             </a>
-            <Link
-              class="social-icon-link youtube"
-              to="/"
+            <a
+              class="social-icon-link line"
+              href="https://lin.ee/NOm1W9F"
               target="_blank"
-              aria-label="Youtube"
+              aria-label="Instagram"
+            >
+              <i class="fab fa-line" />
+            </a>
+
+            <a
+              class="social-icon-link line"
+              href="https://www.youtube.com/channel/UCsW6RDiUIRPiyKyJ6_HTtFw"
+              target="_blank"
+              aria-label="Instagram"
             >
               <i class="fab fa-youtube" />
-            </Link>
-            <Link
-              class="social-icon-link twitter"
-              to="/"
+            </a>
+            <a
+              class="social-icon-link line"
+              href="https://twitter.com/voluntutor"
               target="_blank"
-              aria-label="Twitter"
+              aria-label="Instagram"
             >
               <i class="fab fa-twitter" />
-            </Link>
-            <Link
-              class="social-icon-link twitter"
-              to="/"
-              target="_blank"
-              aria-label="LinkedIn"
-            >
-              <i class="fab fa-linkedin" />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

@@ -147,19 +147,19 @@
 
 @media screen and (max-width: 768px) {
   .left_hero {
-    width: 60%;
-    display: flex;
+    width: 0px;
+    display: none;
     flex-direction: row;
     align-items: center;
     justify-content: center;
   }
   .right_hero {
-    width: 40%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-right: 30px;
+    margin: 0;
   }
   .btn-mobile {
     display: block;
@@ -172,23 +172,25 @@
     flex-direction: column;
   }
   .hero-btns .btn-hero {
-    font-size: 15px;
+    font-size: 20px;
     margin: 10px;
-    width: 150px;
-    height: 38px;
+    width: 200px;
+    height: 45px;
   }
   #loggedintitle {
-    font-size: 30px;
+    font-size: 50px;
     letter-spacing: 8px;
   }
   #loggedinsub {
-    font-size: 14px;
+    font-size: 25px;
+    margin-bottom: 35px;
   }
   #homePageSubTitle {
-    font-size: 14px;
+    font-size: 25px;
+    margin-bottom: 35px;
   }
   #homePageTitle {
-    font-size: 30px;
+    font-size: 50px;
     letter-spacing: 8px;
   }
 }
