@@ -135,6 +135,10 @@ function Appointmentmeet() {
   const [ending, setending] = useState(new Date())
   const [finalformat, setfinalformat] = useState('')
   const [selectedstudentname, setstudentname] = useState('')
+  const [selectedparticipate, setparticipate] = useState('')
+
+  // selectedparticipate: 50 ~ 500, each level increasing 50 pts
+  // studentabsence: 500 pts
 
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
@@ -593,75 +597,6 @@ function Appointmentmeet() {
             <Divider className="app_line"></Divider>
 
             <div className="appwrap">
-            <div className="classdate">
-            <div className="app_title">{ParticipateTitle[status]}</div>
-            <Divider className="app_line"></Divider>
-            <Select
-              labelId="demo-simple-select-helper-label"
-              variant="standard"
-              id="editdate"
-              displayEmpty
-              inputProps={{ 'aria-label': 'Without label' }}
-              value={studentabsence}
-              onChange={(e) => {
-                setstudentabscene(e.target.value)
-              }}
-              renderValue={(selected) => {
-                if (selected.length === 0) {
-                  return <div className="selectplace">{participate[status]}</div>
-                }
-
-                return selected
-              }}
-              sx={{
-                color: '#745140',
-                paddingLeft: '0px',
-                paddingBottom: '5px',
-                fontFamily: 'Lora',
-                letterSpacing: '0.8px',
-                fontSize: '15px',
-                '&:hover': {
-                  color: '#b25634',
-                },
-                '&:focus': {
-                  backgroundColor: '#00000000',
-                },
-                '&:not(.Mui-disabled):hover::before': {
-                  borderBottom: '0px',
-                },
-                '&:before': {
-                  borderBottom: '0px',
-                },
-                '&:after': {
-                  borderBottom: '0px',
-                },
-                '& .MuiSvgIcon-root': {
-                  marginRight: '20px',
-                  marginTop: '10px',
-                  fontSize: '30px',
-                  color: '#b25634',
-                  fill: '#b25634',
-                },
-                '& .MuiSvgIcon-root::before': {
-                  border: '1.5px solid #D6A796',
-                },
-                '& .MuiSvgIcon-root::after': {
-                  border: '1.5px solid #D6A796',
-                },
-              }}
-            >
-              <MenuItem value={pone[status]}>{pone[status]}</MenuItem>
-              <MenuItem value={ptwo[status]}>{ptwo[status]}</MenuItem>
-              <MenuItem value={pthree[status]}>{pthree[status]}</MenuItem>
-              <MenuItem value={pfour[status]}>{pfour[status]}</MenuItem>
-              <MenuItem value={pfive[status]}>{pfive[status]}</MenuItem>
-              <MenuItem value={psix[status]}>{psix[status]}</MenuItem>
-              <MenuItem value={pseven[status]}>{pseven[status]}</MenuItem>
-              <MenuItem value={peight[status]}>{peight[status]}</MenuItem>
-              <MenuItem value={pnine[status]}>{pnine[status]}</MenuItem>
-              <MenuItem value={pfive[status]}>{pten[status]}</MenuItem>
-            </Select>
-          </div>
               <LocalizationProvider
                 className="datedatewrap"
                 dateAdapter={AdapterDateFns}
@@ -732,6 +667,75 @@ function Appointmentmeet() {
                 />
               </LocalizationProvider>
             </div>
+          </div>
+          <div className="classdate">
+            <div className="app_title">{ParticipateTitle[status]}</div>
+            <Divider className="app_line"></Divider>
+            <Select
+              labelId="demo-simple-select-helper-label"
+              variant="standard"
+              id="editdate"
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              value={studentabsence}
+              onChange={(e) => {
+                setparticipate(e.target.value)
+              }}
+              renderValue={(selected) => {
+                if (selected.length === 0) {
+                  return <div className="selectplace">{participate[status]}</div>
+                }
+
+                return selected
+              }}
+              sx={{
+                color: '#745140',
+                paddingLeft: '0px',
+                paddingBottom: '5px',
+                fontFamily: 'Lora',
+                letterSpacing: '0.8px',
+                fontSize: '15px',
+                '&:hover': {
+                  color: '#b25634',
+                },
+                '&:focus': {
+                  backgroundColor: '#00000000',
+                },
+                '&:not(.Mui-disabled):hover::before': {
+                  borderBottom: '0px',
+                },
+                '&:before': {
+                  borderBottom: '0px',
+                },
+                '&:after': {
+                  borderBottom: '0px',
+                },
+                '& .MuiSvgIcon-root': {
+                  marginRight: '20px',
+                  marginTop: '10px',
+                  fontSize: '30px',
+                  color: '#b25634',
+                  fill: '#b25634',
+                },
+                '& .MuiSvgIcon-root::before': {
+                  border: '1.5px solid #D6A796',
+                },
+                '& .MuiSvgIcon-root::after': {
+                  border: '1.5px solid #D6A796',
+                },
+              }}
+            >
+              <MenuItem value={pone[status]}>{pone[status]}</MenuItem>
+              <MenuItem value={ptwo[status]}>{ptwo[status]}</MenuItem>
+              <MenuItem value={pthree[status]}>{pthree[status]}</MenuItem>
+              <MenuItem value={pfour[status]}>{pfour[status]}</MenuItem>
+              <MenuItem value={pfive[status]}>{pfive[status]}</MenuItem>
+              <MenuItem value={psix[status]}>{psix[status]}</MenuItem>
+              <MenuItem value={pseven[status]}>{pseven[status]}</MenuItem>
+              <MenuItem value={peight[status]}>{peight[status]}</MenuItem>
+              <MenuItem value={pnine[status]}>{pnine[status]}</MenuItem>
+              <MenuItem value={pfive[status]}>{pten[status]}</MenuItem>
+            </Select>
           </div>
           <div className="classdate">
             <div className="app_title">{ss[status]}</div>
