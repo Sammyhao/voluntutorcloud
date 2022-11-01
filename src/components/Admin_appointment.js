@@ -225,7 +225,7 @@ export default function Admin_appointment() {
           username: tempStpair.username,
           studentname: tempStpair.studentname,
           studentmail: tempStpair.studentmail,
-          echelon: 2,
+          echelon: 3,
         }).then((response) => {
           console.log(response.data)
           let recData = response.data
