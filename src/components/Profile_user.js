@@ -85,6 +85,11 @@ function Profile_user() {
       date: '9/1 ~ 10/31',
       hours: 0,
     },
+
+    {
+      date: '11/1 ~ 1/31',
+      hours: 0,
+    },
   ])
   const [contactstyle, setcontactstyle] = useState(
     <div>
@@ -382,7 +387,7 @@ function Profile_user() {
   }
 
   function addHis(name) {
-    //console.log(name)
+    console.log(name)
     Axios.all([
       Axios.post(
         'https://voluntutorcloud-server.herokuapp.com/getRecordByUsername',
@@ -405,11 +410,23 @@ function Profile_user() {
           echelon: 3,
         },
       ),
+
+      Axios.post(
+        'https://voluntutorcloud-server.herokuapp.com/getRecordByUsername',
+        {
+          username: name,
+          echelon: 4,
+        },
+      ),
       ,
     ]).then(
-      Axios.spread((response1, response2, response3) => {
+      Axios.spread((response1, response2, response3, response4) => {
         //console.log(response1.data)
         //console.log(response2.data)
+        console.log(response1);
+        console.log(response2);
+        console.log(response3);
+        console.log(response4);
         if (response1.data.length > 0) {
           for (let i = 0; i < response1.data.length; i++) {
             ech1total += response1.data[i].duration
@@ -425,15 +442,23 @@ function Profile_user() {
             ech3total += response3.data[i].duration
           }
         }
+
+        if (response3.data.length > 0) {
+          for (let i = 0; i < response4.data.length; i++) {
+            ech4total += response4.data[i].duration
+          }
+        }
         ech1total = Math.round(ech1total * 100.0) / 100.0
         ech2total = Math.round(ech2total * 100.0) / 100.0
         ech3total = Math.round(ech3total * 100.0) / 100.0
+        ech4total = Math.round(ech4total * 100.0) / 100.0
         //console.log(ech1total, ' ', ech2total)
-        settotalhours(ech1total + ech2total + ech3total)
+        settotalhours(ech1total + ech2total + ech3total+ech4total)
         setdetailedhours([
           { date: '5/1 ~ 6/30', hours: ech1total },
           { date: '7/1 ~ 8/31', hours: ech2total },
           { date: '9/1 ~ 10/31', hours: ech3total },
+          { date: '11/1 ~ 1/31', hours: ech4total },
         ])
       }),
     )
@@ -476,7 +501,8 @@ function Profile_user() {
 
   let ech1total = 0,
     ech2total = 0,
-    ech3total = 0
+    ech3total = 0,
+    ech4total = 0
 
   if (isLoading) return <Loading />
 

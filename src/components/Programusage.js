@@ -38,7 +38,7 @@ function Programusage() {
   const [role, setRole] = useState(true)
   const [months, setmonths] = useState('9/1~10/31')
 
-  const monthlist = ['5/1~6/30', '7/1~8/31', '9/1~10/31']
+  const monthlist = ['5/1~6/30', '7/1~8/31', '9/1~10/31','11/1~1/31']
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢',
@@ -181,7 +181,7 @@ function Programusage() {
     )
   }
 
-  const [echelon, setechelon] = useState(2)
+  const [echelon, setechelon] = useState(3)
 
   if (isLoading) {
     return <Loading />

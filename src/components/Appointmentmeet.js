@@ -279,7 +279,7 @@ function Appointmentmeet() {
       link: links,
       notes: notes,
       hoursleft: totalhour - classduration,
-      echelon: 3,
+      echelon: 4,
     })
     var templateParams = {
       parent_email: emailaddress,
@@ -299,7 +299,7 @@ function Appointmentmeet() {
       username: chosenContact.username,
       studentname: selectedstudentname,
       studentmail: emailaddress,
-      echelon: 3,
+      echelon: 4,
     })
       .then((response) => {
         console.log(totalhour)
@@ -326,7 +326,7 @@ function Appointmentmeet() {
             link: links,
             notes: notes,
             hoursleft: totalhour - classduration,
-            echelon: 3,
+            echelon: 4,
           },
         )
       })
