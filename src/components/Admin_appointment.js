@@ -302,6 +302,7 @@ export default function Admin_appointment() {
   if (isLoading) {
     return <Loading />
   } else {
+    console.log("Echelon: 3");
     console.log(servHr);
     return (
       <div className="admin_wrap">
