@@ -113,18 +113,8 @@ function Appointmentmeet() {
   let peight = ["level 8 (answer about 80% of questions)", "第八等 (回答80%的問題)"]
   let pnine = ["level 9 (answer about 90% of questions, interact with teacher)",
                "第九等 (回答90%的問題，與老師互動)"]
-<<<<<<< Updated upstream
   let pten = ["answer the questions",
               "有回答問題"]
-=======
-  let pten = ["level 10 (answer all the questions, fully interact with teacher)",
-              "第十等 (回答所有問題，與老師充分互動)"]
-
-
-  const [studentnamelist, setstudentnamelist] = useState([])
-  let username = ''
-
->>>>>>> Stashed changes
   const [contactInfo, setContactInfo] = useState([])
   let totalhour = 8
   const [timeopen, settimeopen] = useState(false)
