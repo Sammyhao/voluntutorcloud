@@ -22,6 +22,7 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker'
 
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import { StaticRouter } from 'react-router-dom'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -98,8 +99,7 @@ function Appointmentmeet() {
   let sss = ['Enter the Class Ending Time', '請輸入上課結束時間']
   let rr = ["Please select your student's name", '請選擇學生姓名']
   let rrr = ["Student's name", '學生姓名']
-  const [studentnamelist, setstudentnamelist] = useState([])
-  let username = ''
+  
   let ParticipateTitle = ["Participate level", "學生參與度"]
   let participate = ["Please select student's participate level (worst = 1, best = 10)", 
                      "請選擇學生今日上課參與度(e.g., 回答問題的次數很多)"]
@@ -113,8 +113,18 @@ function Appointmentmeet() {
   let peight = ["level 8 (answer about 80% of questions)", "第八等 (回答80%的問題)"]
   let pnine = ["level 9 (answer about 90% of questions, interact with teacher)",
                "第九等 (回答90%的問題，與老師互動)"]
+<<<<<<< Updated upstream
   let pten = ["answer the questions",
               "有回答問題"]
+=======
+  let pten = ["level 10 (answer all the questions, fully interact with teacher)",
+              "第十等 (回答所有問題，與老師充分互動)"]
+
+
+  const [studentnamelist, setstudentnamelist] = useState([])
+  let username = ''
+
+>>>>>>> Stashed changes
   const [contactInfo, setContactInfo] = useState([])
   let totalhour = 8
   const [timeopen, settimeopen] = useState(false)
@@ -409,6 +419,7 @@ function Appointmentmeet() {
                 {space}
                 {formattedstart} ~ {formattedend}
               </div>
+              
               <div className="appointment_subtitles">{g[status]}</div>
               <div className="appointment_content">{classduration}</div>
               <div className="appointment_subtitles">{h[status]}</div>
@@ -528,6 +539,8 @@ function Appointmentmeet() {
               })}
             </Select>
           </div>
+          
+
           <div className="classdate">
             <div className="app_title">{us[status]}</div>
             <Divider className="app_line"></Divider>
