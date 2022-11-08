@@ -677,7 +677,7 @@ function Appointmentmeet() {
               id="editdate"
               displayEmpty
               inputProps={{ 'aria-label': 'Without label' }}
-              value={studentabsence}
+              value={participate}
               onChange={(e) => {
                 setparticipate(e.target.value)
               }}
