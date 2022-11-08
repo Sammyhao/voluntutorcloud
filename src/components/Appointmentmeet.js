@@ -103,7 +103,7 @@ function Appointmentmeet() {
   let ParticipateTitle = ["Participate level", "學生參與度"]
   let participate = ["Please select student's participate level (worst = 1, best = 10)", 
                      "請選擇學生今日上課參與度(e.g., 回答問題的次數很多)"]
-  let pone = ["level 1 (not answering questions)", "第一等 (不回答問題)"]
+  let pone = ["didn't answer the question", "沒有回答問題"]
   let ptwo = ["level 2 (answering one to two questions)", "第二等 (回答一兩的問題) "]
   let pthree = ["level 3 (answer about 30% of questions)", "第三等 (回答30%的問題)"]
   let pfour = ["level 4 (answer about 40% of questions)", "第四等 (回答40%的問題)"]
@@ -113,8 +113,8 @@ function Appointmentmeet() {
   let peight = ["level 8 (answer about 80% of questions)", "第八等 (回答80%的問題)"]
   let pnine = ["level 9 (answer about 90% of questions, interact with teacher)",
                "第九等 (回答90%的問題，與老師互動)"]
-  let pten = ["level 10 (answer all the questions, fully interact with teacher)",
-              "第十等 (回答所有問題，與老師充分互動)"]
+  let pten = ["answer the questions",
+              "有回答問題"]
   const [contactInfo, setContactInfo] = useState([])
   let totalhour = 8
   const [timeopen, settimeopen] = useState(false)
@@ -726,15 +726,7 @@ function Appointmentmeet() {
               }}
             >
               <MenuItem value={pone[status]}>{pone[status]}</MenuItem>
-              <MenuItem value={ptwo[status]}>{ptwo[status]}</MenuItem>
-              <MenuItem value={pthree[status]}>{pthree[status]}</MenuItem>
-              <MenuItem value={pfour[status]}>{pfour[status]}</MenuItem>
-              <MenuItem value={pfive[status]}>{pfive[status]}</MenuItem>
-              <MenuItem value={psix[status]}>{psix[status]}</MenuItem>
-              <MenuItem value={pseven[status]}>{pseven[status]}</MenuItem>
-              <MenuItem value={peight[status]}>{peight[status]}</MenuItem>
-              <MenuItem value={pnine[status]}>{pnine[status]}</MenuItem>
-              <MenuItem value={pfive[status]}>{pten[status]}</MenuItem>
+              <MenuItem value={pten[status]}>{pten[status]}</MenuItem>
             </Select>
           </div>
           <div className="classdate">
