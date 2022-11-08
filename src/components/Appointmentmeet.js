@@ -137,7 +137,7 @@ function Appointmentmeet() {
   const [selectedstudentname, setstudentname] = useState('')
   const [selectedparticipate, setparticipate] = useState('')
 
-  // selectedparticipate: 50 ~ 500, each level increasing 50 pts
+  // selectedparticipate: if student answered, +200
   // studentabsence: 500 pts
 
   const BootstrapDialogTitle = (props) => {
