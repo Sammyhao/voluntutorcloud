@@ -147,7 +147,7 @@ function Appointmentmeet() {
   const [selectedstudentname, setstudentname] = useState('')
   const [selectedparticipate, setparticipate] = useState('')
 
-  // selectedparticipate: 50 ~ 500, each level increasing 50 pts
+  // selectedparticipate: if student answered, +200
   // studentabsence: 500 pts
 
   const BootstrapDialogTitle = (props) => {
@@ -690,7 +690,7 @@ function Appointmentmeet() {
               id="editdate"
               displayEmpty
               inputProps={{ 'aria-label': 'Without label' }}
-              value={studentabsence}
+              value={selectedparticipate}
               onChange={(e) => {
                 setparticipate(e.target.value)
               }}
