@@ -310,7 +310,7 @@ export default function Studymat() {
                 點我進入翰林版網站
               </div>
               <div className="passcodes">
-                帳號：hanlin1001 <br></br>密碼：88888888
+                帳號：m6116789@gmail.com <br></br>密碼：666666
               </div>
             </div>
           </div>
