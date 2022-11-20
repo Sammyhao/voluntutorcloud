@@ -99,22 +99,46 @@ function Appointmentmeet() {
   let sss = ['Enter the Class Ending Time', '請輸入上課結束時間']
   let rr = ["Please select your student's name", '請選擇學生姓名']
   let rrr = ["Student's name", '學生姓名']
-  
-  let ParticipateTitle = ["Participate level", "學生參與度"]
-  let participate = ["Please select student's participate level (worst = 1, best = 10)", 
-                     "請選擇學生今日上課參與度(e.g., 回答問題的次數很多)"]
-  let pone = ["didn't answer the question", "沒有回答問題"]
-  let ptwo = ["level 2 (answering one to two questions)", "第二等 (回答一兩的問題) "]
-  let pthree = ["level 3 (answer about 30% of questions)", "第三等 (回答30%的問題)"]
-  let pfour = ["level 4 (answer about 40% of questions)", "第四等 (回答40%的問題)"]
-  let pfive = ["level 5 (answer about 50% of questions)", "第五等 (回答50%的問題)"]
-  let psix = ["level 6 (answer about 60% of questions)", "第六等 (回答60%的問題)"]  
-  let pseven = ["level 7 (answer about 70% of questions)", "第七等 (回答70%的問題)"]
-  let peight = ["level 8 (answer about 80% of questions)", "第八等 (回答80%的問題)"]
-  let pnine = ["level 9 (answer about 90% of questions, interact with teacher)",
-               "第九等 (回答90%的問題，與老師互動)"]
-  let pten = ["answer the questions",
-              "有回答問題"]
+
+  let ParticipateTitle = ['Participate level', '學生參與度']
+  let participate = [
+    "Please select student's participate level (worst = 1, best = 10)",
+    '請選擇學生今日上課參與度(e.g., 回答問題的次數很多)',
+  ]
+  let pone = ["didn't answer the question", '沒有回答問題']
+  let ptwo = [
+    'level 2 (answering one to two questions)',
+    '第二等 (回答一兩的問題) ',
+  ]
+  let pthree = [
+    'level 3 (answer about 30% of questions)',
+    '第三等 (回答30%的問題)',
+  ]
+  let pfour = [
+    'level 4 (answer about 40% of questions)',
+    '第四等 (回答40%的問題)',
+  ]
+  let pfive = [
+    'level 5 (answer about 50% of questions)',
+    '第五等 (回答50%的問題)',
+  ]
+  let psix = [
+    'level 6 (answer about 60% of questions)',
+    '第六等 (回答60%的問題)',
+  ]
+  let pseven = [
+    'level 7 (answer about 70% of questions)',
+    '第七等 (回答70%的問題)',
+  ]
+  let peight = [
+    'level 8 (answer about 80% of questions)',
+    '第八等 (回答80%的問題)',
+  ]
+  let pnine = [
+    'level 9 (answer about 90% of questions, interact with teacher)',
+    '第九等 (回答90%的問題，與老師互動)',
+  ]
+  let pten = ['answer the questions', '有回答問題']
   const [contactInfo, setContactInfo] = useState([])
   let totalhour = 8
   const [timeopen, settimeopen] = useState(false)
@@ -136,7 +160,7 @@ function Appointmentmeet() {
   const [finalformat, setfinalformat] = useState('')
   const [selectedstudentname, setstudentname] = useState('')
   const [selectedparticipate, setparticipate] = useState('')
-
+  const [setstudentnamelist, studentnamelist] = useState([])
   // selectedparticipate: if student answered, +200
   // studentabsence: 500 pts
 
@@ -175,6 +199,7 @@ function Appointmentmeet() {
     }
   }
   const user = useSelector((state) => state.user.value)
+  let username
   useEffect(() => {
     setStatus(user.language)
     setGoogleMeetLink(user.googlemeetlink)
@@ -409,13 +434,15 @@ function Appointmentmeet() {
                 {space}
                 {formattedstart} ~ {formattedend}
               </div>
-              
+
               <div className="appointment_subtitles">{g[status]}</div>
               <div className="appointment_content">{classduration}</div>
               <div className="appointment_subtitles">{h[status]}</div>
               <div className="appointment_content">{agenda}</div>
-              <div className='appointment_subtitles'>{ParticipateTitle[status]}</div>
-              <div className='appointment_content'>{participate[status]}</div>
+              <div className="appointment_subtitles">
+                {ParticipateTitle[status]}
+              </div>
+              <div className="appointment_content">{participate[status]}</div>
               <div className="appointment_subtitles">{jjjjj[status]}</div>
               <div className="appointment_content">
                 {checkblank(submissionlink)}
@@ -529,7 +556,6 @@ function Appointmentmeet() {
               })}
             </Select>
           </div>
-          
 
           <div className="classdate">
             <div className="app_title">{us[status]}</div>
@@ -686,7 +712,9 @@ function Appointmentmeet() {
               }}
               renderValue={(selected) => {
                 if (selected.length === 0) {
-                  return <div className="selectplace">{participate[status]}</div>
+                  return (
+                    <div className="selectplace">{participate[status]}</div>
+                  )
                 }
 
                 return selected
