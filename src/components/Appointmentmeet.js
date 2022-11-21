@@ -160,7 +160,7 @@ function Appointmentmeet() {
   const [finalformat, setfinalformat] = useState('')
   const [selectedstudentname, setstudentname] = useState('')
   const [selectedparticipate, setparticipate] = useState('')
-  const [setstudentnamelist, studentnamelist] = useState([])
+  const [studentnamelist, setstudentnamelist] = useState([])
   // selectedparticipate: if student answered, +200
   // studentabsence: 500 pts
 
