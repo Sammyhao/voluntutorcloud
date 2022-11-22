@@ -164,14 +164,6 @@ function Appointmentmeet() {
   // selectedparticipate: if student answered, +200
   // studentabsence: 500 pts
 
-  if (selectedparticipate[pten] == true){
-    
-  }
-
-  if(pr[status] ==  1){
-    
-  }
-
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
 
@@ -365,7 +357,7 @@ function Appointmentmeet() {
           console.log(response.data)
         })
         // update method
-        
+        if (selectedparticipate == )
       })
 
     emailjs
