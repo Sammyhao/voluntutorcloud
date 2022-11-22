@@ -336,7 +336,7 @@ function Appointmentmeet() {
 
         console.log(totalhour)
 
-        return Axios.post(
+        Axios.post(
           'https://voluntutorcloud-server.herokuapp.com/updateRecord',
           {
             username: chosenContact.username,
@@ -353,10 +353,11 @@ function Appointmentmeet() {
             hoursleft: totalhour - classduration,
             echelon: 4,
           },
-        )
-      })
-      .then((response) => {
-        console.log(response.data)
+        ).then((response) => {
+          console.log(response.data)
+        })
+        // update method
+        
       })
 
     emailjs
