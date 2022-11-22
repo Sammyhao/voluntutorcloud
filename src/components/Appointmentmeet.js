@@ -81,7 +81,7 @@ function Appointmentmeet() {
     'Please paste the sharing link to your personal Google Drive here for homework submission.',
     '您的雲端硬碟會是學生作業繳交處，請將共用連結貼於此欄位！',
   ]
-  const [studentabsence, setstudentabscene] = useState('')
+  const [studentabsence, setstudentabsence] = useState('')
 
   let tu = [
     "Please select student's attendance status",
@@ -163,6 +163,14 @@ function Appointmentmeet() {
   const [studentnamelist, setstudentnamelist] = useState([])
   // selectedparticipate: if student answered, +200
   // studentabsence: 500 pts
+
+  if (selectedparticipate[pten] == true){
+    
+  }
+
+  if(pr[status] ==  1){
+    
+  }
 
   const BootstrapDialogTitle = (props) => {
     const { children, ...other } = props
@@ -569,7 +577,7 @@ function Appointmentmeet() {
               inputProps={{ 'aria-label': 'Without label' }}
               value={studentabsence}
               onChange={(e) => {
-                setstudentabscene(e.target.value)
+                setstudentabsence(e.target.value)
               }}
               renderValue={(selected) => {
                 if (selected.length === 0) {
