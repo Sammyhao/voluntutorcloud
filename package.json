@@ -2,6 +2,7 @@
   "name": "voluntutorcloud",
   "version": "0.1.0",
   "private": true,
+  "Access-Control-Allow-Origin": "*",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
@@ -52,7 +53,7 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

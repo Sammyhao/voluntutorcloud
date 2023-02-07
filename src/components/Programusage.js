@@ -36,9 +36,9 @@ function Programusage() {
   const [isLoading, setLoading] = useState(true)
   const [stpair, setStpair] = useState([])
   const [role, setRole] = useState(true)
-  const [months, setmonths] = useState('9/1~10/31')
+  const [months, setmonths] = useState('5/1~6/30')
 
-  const monthlist = ['5/1~6/30', '7/1~8/31', '9/1~10/31','11/1~1/31']
+  const monthlist = ['5/1~6/30', '7/1~8/31', '9/1~10/31', '11/1~1/31']
   let a = [
     "Oops, seems like you don't have any student yet.",
     '噢, 看來您還沒有任何學生呢',
@@ -54,7 +54,7 @@ function Programusage() {
   let j = ['Search records: ', '查詢服務歷史：']
   let k = ['Select a time', '請選擇欲查詢時間']
   let l = ['Homework', '作業']
-  let m = ['Update homework link', '作業上傳連結']
+  let m = ['Homework upload link', '作業上傳連結']
 
   const user = useSelector((state) => state.user.value)
 
@@ -140,7 +140,6 @@ function Programusage() {
 
   // const contacttemp = contactInfo.map((item) => item).reverse()
   const contacttemp = contactInfo
-
   const noRecord = (stname) => {
     return (
       <div className="outsidewrapsub">
@@ -180,8 +179,7 @@ function Programusage() {
       </div>
     )
   }
-
-  const [echelon, setechelon] = useState(3)
+  const [echelon, setechelon] = useState(0)
 
   if (isLoading) {
     return <Loading />
@@ -193,7 +191,6 @@ function Programusage() {
       </div>
     )
   } else {
-    console.log(contacttemp)
     return (
       <div className="outcontainerprog">
         <div className="selectorwrap_pu">
@@ -307,7 +304,6 @@ function Programusage() {
                         <div className="gridwrapprog">
                           <div className="row_rest">
                             <div className="content_rec">
-                              
                               <div className="content_rec_sec">
                                 <div className="title_content_rec">
                                   {g[status]}
@@ -317,7 +313,7 @@ function Programusage() {
                                 </div>
                               </div>
 
-                              <div className="content_rec_sec_ag">
+                              <div className="content_rec_sec">
                                 <div className="title_content_rec">
                                   {h[status]}
                                 </div>
@@ -326,29 +322,39 @@ function Programusage() {
                                 </div>
                               </div>
 
-                              <br/>
+                              {record.task ? (
+                                <div className="content_rec_sec">
+                                  <div className="title_content_rec">
+                                    {l[status]}
+                                  </div>
+                                  <div className="content_content_rec">
+                                    {record.task}
+                                  </div>
+                                </div>
+                              ) : (
+                                <></>
+                              )}
 
-                              {(record.task) ?
-                              <div className="content_rec_sec_ag">
-                                <div className="title_content_rec">
-                                  {l[status]}
+                              {record.link ? (
+                                <div className="content_rec_sec">
+                                  <div className="title_content_rec">
+                                    {m[status]}
+                                  </div>
+                                  <div className="content_content_rec">
+                                    <a
+                                      style={{
+                                        textDecoration: 'none',
+                                        color: '#745140',
+                                      }}
+                                      href={record.link}
+                                    >
+                                      {record.link}
+                                    </a>
+                                  </div>
                                 </div>
-                                <div className="content_content_rec">
-                                  {record.task}
-                                </div>
-                              </div>
-                               : <></>}
-
-                              {(record.link) ?
-                              <div className="content_rec_sec_ag">
-                                <div className="title_content_rec">
-                                  {m[status]}
-                                </div>
-                                <div className="content_content_rec">
-                                  <a href={record.link}>{record.link}</a>
-                                </div>
-                              </div>
-                               : <></>}
+                              ) : (
+                                <></>
+                              )}
                             </div>
 
                             <div className="content_not">{record.agenda}</div>

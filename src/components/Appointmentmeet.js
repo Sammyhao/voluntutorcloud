@@ -325,40 +325,34 @@ function Appointmentmeet() {
       studentname: selectedstudentname,
       studentmail: emailaddress,
       echelon: 4,
-    })
-      .then((response) => {
+    }).then((response) => {
+      console.log(totalhour)
+
+      for (let i = 0; i < response.data.length; i++) {
+        totalhour -= response.data[i].duration
         console.log(totalhour)
+      }
 
-        for (let i = 0; i < response.data.length; i++) {
-          totalhour -= response.data[i].duration
-          console.log(totalhour)
-        }
+      console.log(totalhour)
 
-        console.log(totalhour)
-
-        Axios.post(
-          'https://voluntutorcloud-server.herokuapp.com/updateRecord',
-          {
-            username: chosenContact.username,
-            studentname: selectedstudentname,
-            studentmail: emailaddress,
-            classDate: tempFinalFormat,
-            duration: classduration,
-            studentabsence: studentabsence,
-            agenda: agenda,
-            sublink: submissionlink,
-            task: task,
-            link: links,
-            notes: notes,
-            hoursleft: totalhour - classduration,
-            echelon: 4,
-          },
-        ).then((response) => {
-          console.log(response.data)
-        })
-        // update method
-        if (selectedparticipate == )
+      Axios.post('https://voluntutorcloud-server.herokuapp.com/updateRecord', {
+        username: chosenContact.username,
+        studentname: selectedstudentname,
+        studentmail: emailaddress,
+        classDate: tempFinalFormat,
+        duration: classduration,
+        studentabsence: studentabsence,
+        agenda: agenda,
+        sublink: submissionlink,
+        task: task,
+        link: links,
+        notes: notes,
+        hoursleft: totalhour - classduration,
+        echelon: 4,
+      }).then((response) => {
+        console.log(response.data)
       })
+    })
 
     emailjs
       .send(
@@ -440,10 +434,13 @@ function Appointmentmeet() {
               <div className="appointment_content">{classduration}</div>
               <div className="appointment_subtitles">{h[status]}</div>
               <div className="appointment_content">{agenda}</div>
-              <div className="appointment_subtitles">
+
+              {/* participation */}
+              {/* <div className="appointment_subtitles">
                 {ParticipateTitle[status]}
               </div>
-              <div className="appointment_content">{participate[status]}</div>
+              <div className="appointment_content">{participate[status]}</div> */}
+              {/* participation */}
               <div className="appointment_subtitles">{jjjjj[status]}</div>
               <div className="appointment_content">
                 {checkblank(submissionlink)}
@@ -698,7 +695,7 @@ function Appointmentmeet() {
               </LocalizationProvider>
             </div>
           </div>
-          <div className="classdate">
+          {/* <div className="classdate">
             <div className="app_title">{ParticipateTitle[status]}</div>
             <Divider className="app_line"></Divider>
             <Select
@@ -760,7 +757,7 @@ function Appointmentmeet() {
               <MenuItem value={pone[status]}>{pone[status]}</MenuItem>
               <MenuItem value={pten[status]}>{pten[status]}</MenuItem>
             </Select>
-          </div>
+          </div> */}
           <div className="classdate">
             <div className="app_title">{ss[status]}</div>
             <Divider className="app_line"></Divider>

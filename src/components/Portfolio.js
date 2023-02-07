@@ -99,7 +99,7 @@ export default function Portfolio() {
       Axios.post('https://voluntutorcloud-server.herokuapp.com/findContact', {
         username: username,
       }).then((response) => {
-        console.log(response.data);
+        console.log(response.data)
         setContactInfo(response.data)
         if (response.data.length == 2) {
           setMultistudentname([response.data[1].studentname])
@@ -111,7 +111,7 @@ export default function Portfolio() {
               name: response.data[i].studentname,
             },
           ).then((response) => {
-            console.log(response);
+            console.log(response)
             if (response.data.length) {
               setStudentProfolio((studentProfolio) => [
                 ...studentProfolio,
@@ -235,7 +235,7 @@ export default function Portfolio() {
       </div>
     )
   } else {
-    console.log(studentProfolio);
+    console.log(studentProfolio)
     return (
       <div className="outcontainer_port">
         {role ? <>{multistyle()}</> : <></>}

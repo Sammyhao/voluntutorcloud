@@ -118,8 +118,11 @@ export default function Booking() {
     'Booking Invitation sent. Please check the message box if the student is unavailable during the time.',
     '會議邀請已傳送，請留意聊天室訊息以確定學生能參加此時段的會議',
   ]
-  let mm = ['There is no confirmed upcoming meetings', '目前沒有即將到來的會議']
-  let nn = ['There is no pending requests', '目前沒有待確認的會議邀請']
+  let mm = [
+    'There are no confirmed upcoming meetings',
+    '目前沒有即將到來的會議',
+  ]
+  let nn = ['There are no pending requests', '目前沒有待確認的會議邀請']
   let l = ['Upcoming Meetings', '即將到來的會議']
   let q = ['Pending Requests', '待確認的會議邀請']
   let x = ['Ending time: ', '課堂結束時間：']

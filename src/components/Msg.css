@@ -1,10 +1,8 @@
-.chatengine {
-  margin-top: 80px;
-}
 .out {
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-top: 80px;
   height: 100%;
 }
 .unsentmsg {
@@ -41,7 +39,6 @@
 .chathistory {
   background-color: #e1d7d2;
   width: 30%;
-  margin-top: 80px;
   display: flex;
   flex-direction: column;
 }
@@ -71,7 +68,6 @@
 }
 .chatcontent {
   background-color: #d8ccc7;
-  margin-top: 80px;
   width: 70%;
   height: 100%;
   display: flex;
@@ -89,13 +85,19 @@
   font-size: 18px;
   background-color: rgb(225, 215, 210, 0.5);
 }
-.chat {
+.chatwraps {
   height: calc(100vh - 260px);
-  width: 100%;
-  padding: 15px;
-  overflow-y: scroll;
+  overflow: hidden;
   margin-top: 60px;
   margin-bottom: 120px;
+}
+.chat {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 260px);
+  width: 100%;
+  padding: 15px;
+  overflow-y: auto;
 }
 
 .send {
@@ -196,10 +198,6 @@
   outline: none;
   border: none;
 }
-.chat {
-  display: flex;
-  flex-direction: column;
-}
 .chatava {
   width: 50px;
   height: 50px;
@@ -296,6 +294,12 @@
     display: none;
   }
   .chatcontent {
+    width: 100%;
+  }
+  .chatname {
+    width: 100%;
+  }
+  .send {
     width: 100%;
   }
 }

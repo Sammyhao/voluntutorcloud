@@ -423,10 +423,10 @@ function Profile_user() {
       Axios.spread((response1, response2, response3, response4) => {
         //console.log(response1.data)
         //console.log(response2.data)
-        console.log(response1);
-        console.log(response2);
-        console.log(response3);
-        console.log(response4);
+        console.log(response1)
+        console.log(response2)
+        console.log(response3)
+        console.log(response4)
         if (response1.data.length > 0) {
           for (let i = 0; i < response1.data.length; i++) {
             ech1total += response1.data[i].duration
@@ -453,7 +453,7 @@ function Profile_user() {
         ech3total = Math.round(ech3total * 100.0) / 100.0
         ech4total = Math.round(ech4total * 100.0) / 100.0
         //console.log(ech1total, ' ', ech2total)
-        settotalhours(ech1total + ech2total + ech3total+ech4total)
+        settotalhours(ech1total + ech2total + ech3total + ech4total)
         setdetailedhours([
           { date: '5/1 ~ 6/30', hours: ech1total },
           { date: '7/1 ~ 8/31', hours: ech2total },
