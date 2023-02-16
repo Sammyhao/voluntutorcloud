@@ -474,7 +474,7 @@ function Profile_user() {
 				ech4total = Math.round(ech4total * 100.0) / 100.0
 				ech5total = Math.round(ech5total * 100.0) / 100.0
 				//console.log(ech1total, ' ', ech2total)
-				settotalhours(ech1total + ech2total + ech3total + ech4total)
+				settotalhours(ech1total + ech2total + ech3total + ech4total + ech5total)
 				setdetailedhours([
 					{ date: '5/1 ~ 6/30', hours: ech1total },
 					{ date: '7/1 ~ 8/31', hours: ech2total },
