@@ -317,7 +317,7 @@ function Profile_user() {
 				preferredSubjects: preferredsubject,
 			},
 		).then((response) => {
-			//console.log(response)
+			console.log(response)
 		})
 		Axios.post(
 			'https://voluntutorcloud-server.herokuapp.com/updateTargetStuAge',
@@ -326,7 +326,7 @@ function Profile_user() {
 				targetStuAge: studentage,
 			},
 		).then((response) => {
-			//console.log(response)
+			console.log(response)
 		})
 		Axios.post(
 			'https://voluntutorcloud-server.herokuapp.com/updateTargetStuGen',
@@ -335,7 +335,7 @@ function Profile_user() {
 				targetStuGen: studentgender,
 			},
 		).then((response) => {
-			//console.log(response)
+			console.log(response)
 		})
 		Axios.post(
 			'https://voluntutorcloud-server.herokuapp.com/updateTargetStuPerso',
@@ -344,7 +344,7 @@ function Profile_user() {
 				targetStuPerso: studentpers,
 			},
 		).then((response) => {
-			//console.log(response)
+			console.log(response)
 		})
 	}
 
