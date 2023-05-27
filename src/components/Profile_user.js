@@ -39,6 +39,7 @@ function Profile_user() {
 	const [name, setname] = useState('VolunTutor Cloud')
 	const [phone, setphone] = useState('0912345678')
 	const [email, setemail] = useState('vc@gmail.com')
+	const [password, setPassword] = useState("");
 	const [gender, setgender] = useState('other')
 	const [birthday, setbirthday] = useState('20040101')
 	const [grade, setgrade] = useState('11th')
@@ -211,6 +212,17 @@ function Profile_user() {
 			setEmailError('')
 		}
 	}
+
+	const handleclick_password = () => {
+		Axios.post('https://voluntutorcloud-server.herokuapp.com/updatePassword', {
+			username: name,
+			password: password,
+		}).then((response) => {
+			// console.log(response);
+		})
+		setOpen(false);
+	}
+
 	const handleclick_contact = () => {
 		//console.log(contactclick)
 		if (phone === '' || email === '') {
@@ -434,13 +446,9 @@ function Profile_user() {
 			,
 		]).then(
 			Axios.spread((response1, response2, response3, response4, response5) => {
-				//console.log(response1.data)
-				//console.log(response2.data)
-				console.log(response1)
-				console.log(response2)
-				console.log(response3)
-				console.log(response4)
-				console.log(response5)
+				if(response1.status == 200 && response2.status == 200 && response3.status == 200 && response4.status == 200 && response5.status == 200) {
+					console.log("Get session records successfully")
+				}
 				if (response1.data.length > 0) {
 					for (let i = 0; i < response1.data.length; i++) {
 						ech1total += response1.data[i].duration
@@ -488,7 +496,6 @@ function Profile_user() {
 
 	const user = useSelector((state) => state.user.value)
 	const [isLoading, setLoading] = useState(true)
-	console.log('store data: ', user)
 
 	useEffect(() => {
 		setStatus(user.language)
@@ -538,7 +545,18 @@ function Profile_user() {
 					aria-labelledby="customized-dialog-title"
 					open={open}
 				>
-					<div id="prof_registeredsucc">{jk[status]}</div>
+					<div id="prof_registeredsucc">Enter new password: </div>
+					<input
+						className={contactclick ? 'edittabley' : 'edittablen'}
+						type="text"
+						placeholder="please enter password"
+						disabled={readonlycontact}
+						value={password}
+						onChange={(e) => {
+							setPassword(e.target.value)
+						}}
+					/>
+					<div onClick={handleclick_password}>Confirm</div>
 				</BootstrapDialog>
 			</div>
 			<div className="background">
