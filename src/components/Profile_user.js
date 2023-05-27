@@ -550,7 +550,6 @@ function Profile_user() {
 						className={contactclick ? 'edittabley' : 'edittablen'}
 						type="text"
 						placeholder="please enter password"
-						disabled={readonlycontact}
 						value={password}
 						onChange={(e) => {
 							setPassword(e.target.value)
