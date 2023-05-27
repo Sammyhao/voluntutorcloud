@@ -547,7 +547,6 @@ function Profile_user() {
 				>
 					<div id="prof_registeredsucc">Enter new password: </div>
 					<input
-						className={contactclick ? 'edittabley' : 'edittablen'}
 						type="text"
 						placeholder="please enter password"
 						value={password}
