@@ -56,8 +56,6 @@ function App() {
           ></Route>
           <Route exact path="/message" element={<Message />}></Route>
         </Routes>
-
-        {/* <Footer></Footer> */}
       </Router>
     </div>
   )

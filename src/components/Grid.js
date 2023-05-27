@@ -52,7 +52,7 @@ function Grid_sub() {
   const [open_notlogged, setnotlogged] = useState(false)
   const [status, setStatus] = useState(1)
   const [programInfo, setProgramInfo] = useState([])
-  const [favProgramInfo, setFavProgramInfo] = useState([]) // 最愛programの大大在此
+  const [favProgramInfo, setFavProgramInfo] = useState([])
   const [username, setUsername] = useState('')
   const [loggedopen, setloggedopen] = useState(false)
   const [heart, setheart] = useState([false, false, false, false, false, false])

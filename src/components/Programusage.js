@@ -205,7 +205,7 @@ function Programusage() {
               value={months}
               onChange={(e, child) => {
                 setmonths(e.target.value)
-                setechelon(child.props.id)
+                setechelon(child.props.id+1)
               }}
               renderValue={(selected) => {
                 if (selected.length === 0) {
