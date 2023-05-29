@@ -446,7 +446,7 @@ function Profile_user() {
 			,
 		]).then(
 			Axios.spread((response1, response2, response3, response4, response5) => {
-				if(response1.status == 200 && response2.status == 200 && response3.status == 200 && response4.status == 200 && response5.status == 200) {
+				if (response1.status == 200 && response2.status == 200 && response3.status == 200 && response4.status == 200 && response5.status == 200) {
 					console.log("Get session records successfully")
 				}
 				if (response1.data.length > 0) {
@@ -545,16 +545,24 @@ function Profile_user() {
 					aria-labelledby="customized-dialog-title"
 					open={open}
 				>
-					<div id="prof_registeredsucc">Enter new password: </div>
-					<input
-						type="text"
-						placeholder="please enter password"
-						value={password}
-						onChange={(e) => {
-							setPassword(e.target.value)
-						}}
-					/>
-					<div onClick={handleclick_password}>Confirm</div>
+					<div style={{
+						backgroundColor: "whitesmoke",
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+						justifyContent: "center"
+					}}>
+						<div id="prof_registeredsucc">Enter new password: </div>
+						<input
+							type="text"
+							placeholder="please enter password"
+							value={password}
+							onChange={(e) => {
+								setPassword(e.target.value)
+							}}
+						/>
+						<div onClick={handleclick_password}>Confirm</div>
+					</div>
 				</BootstrapDialog>
 			</div>
 			<div className="background">
