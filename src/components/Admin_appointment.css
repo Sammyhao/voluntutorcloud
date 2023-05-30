@@ -1,54 +1,97 @@
 .admin_wrap {
-  width: auto;
-  height: wrap;
-  padding: 50px;
-  background: white;
+	width: auto;
+	height: wrap;
+	padding: 50px;
+	background: #e1d7d2;
 }
+
 .admin_title {
-  text-align: left;
-  color: black;
-  font-size: 30px;
-  margin-top: 30px;
+	text-align: left;
+	color: black;
+	font-size: 30px;
+	margin-top: 30px;
 }
+
 .backtosignin {
-  width: 100%;
-  text-align: left;
-  text-decoration: underline;
-  cursor: pointer;
-  margin-bottom: 5px;
+	width: 100%;
+	text-align: left;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-bottom: 5px;
 }
+
 .content {
-  border: 1.5px solid lightgray;
-  border-radius: 5px;
-  padding: 5px;
-  overflow: auto;
+	border: 1.5px solid lightgray;
+	border-radius: 5px;
+	padding: 5px;
+	overflow: auto;
 }
+
 .content_special {
-  border: 1.5px solid lightgray;
-  border-radius: 5px;
-  padding: 5px;
-  overflow: auto;
-  color: darkgray;
+	border: 1.5px solid lightgray;
+	border-radius: 5px;
+	padding: 5px;
+	overflow: auto;
+	color: darkgray;
 }
-.admin_chart {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  column-gap: 10px;
-  row-gap: 10px;
+
+.admin_chart_pu {
+	margin-top: 40px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 10px;
+	row-gap: 10px;
 }
+
 .chart {
-  margin-top: 30px;
+	margin-top: 30px;
 }
+
 .subtitle {
-  text-align: center;
-  color: black;
-  font-size: 20px;
-  margin-top: 30px;
+	text-align: center;
+	color: black;
+	font-size: 20px;
+	margin-top: 30px;
 }
+
+.admin_input {
+	width: 200px;
+	padding: 10px 10px;
+	color: gray;
+	border: none;
+	margin-top: 20px;
+	border-bottom: 1.5px solid gray
+}
+
+.admin_input:focus {
+	border: none;
+	color: black;
+	outline: none;
+	opacity: 0.9;
+	border-bottom: 1.5px solid black;
+}
+
+.admin_button {
+	width: wrap;
+	height: wrap;
+	cursor: pointer;
+	margin-left: 30px;
+	background-color: #00000000;
+	color: gray;
+	border: 1px solid gray;
+	border-radius: 5px;
+	padding: 4px 8px;
+}
+
+.admin_button:hover {
+	background: gray;
+	color: white;
+	transition: 250ms;
+}
+
 @media (max-width: 800px) {
-  .admin_chart {
-    width: max-content;
-    grid-template-columns: repeat(6, 100px);
-  }
+	.admin_chart_pu {
+		width: max-content;
+		grid-template-columns: repeat(6, 100px);
+	}
 }
