@@ -58,7 +58,6 @@ export default function Admin_appointment() {
 						onClick={() => {
 							setEch(inputech);
 							setinputech("");
-
 							setServHr([])
 						}}>
 						Search
