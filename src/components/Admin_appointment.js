@@ -36,10 +36,10 @@ export default function Admin_appointment() {
 						} else {
 							fullname = response.data[0].lastname + response.data[0].firstname;
 						}
-						Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFullName', {
-							username: tempStpair.username,
-							fullname: fullname,
-						})
+						// Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFullName', {
+						// 	username: tempStpair.username,
+						// 	fullname: fullname,
+						// })
 						setServHr(servHr => [...servHr, { trUsername: fullname, stuName: tempStpair.studentname, hr: hr }]);
 					})
 				})
