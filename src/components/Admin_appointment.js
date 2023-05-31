@@ -29,13 +29,17 @@ export default function Admin_appointment() {
 						username: tempStpair.username,
 					}).then((response) => {
 						let fullname = "";
-						let det = charCodeAt(response.data[0].firstname[0]);
+						let det = response.data[0].firstname.charCodeAt(0);
 						console.log(det);
 						if((det >= 65 && det <= 90) || (det >= 97 && det <= 122)) {
 							fullname = response.data[0].firstname + ' ' + response.data[0].lastname;
 						} else {
 							fullname = response.data[0].lastname + response.data[0].firstname;
 						}
+						Axios.post('https://voluntutorcloud-server.herokuapp.com/updateFullName', {
+							username: tempStpair.username,
+							fullname: fullname,
+						})
 						setServHr(servHr => [...servHr, { trUsername: fullname, stuName: tempStpair.studentname, hr: hr }]);
 					})
 				})
@@ -47,6 +51,7 @@ export default function Admin_appointment() {
 	useEffect(() => {
 		fetchdata()
 	}, [ech])
+
 	if (isLoading) {
 		return <Loading />
 	} else {
