@@ -24,9 +24,20 @@ export default function Admin_appointment() {
 					let hr = 0;
 					for (let i = 0; i < response.data.length; i++) {
 						hr += response.data[i].duration;
-						// console.log(response.data[i].duration);
 					}
-					setServHr(servHr => [...servHr, { trUsername: tempStpair.username, stuName: tempStpair.studentname, hr: hr }]);
+					Axios.post('https://voluntutorcloud-server.herokuapp.com/getUserProfile', {
+						username: tempStpair.username,
+					}).then((response) => {
+						let fullname = "";
+						let det = charCodeAt(response.data[0].firstname[0]);
+						console.log(det);
+						if((det >= 65 && det <= 90) || (det >= 97 && det <= 122)) {
+							fullname = response.data[0].firstname + ' ' + response.data[0].lastname;
+						} else {
+							fullname = response.data[0].lastname + response.data[0].firstname;
+						}
+						setServHr(servHr => [...servHr, { trUsername: fullname, stuName: tempStpair.studentname, hr: hr }]);
+					})
 				})
 			}
 			setLoading(false);
