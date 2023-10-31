@@ -462,7 +462,7 @@
 		width: 100%;
 	}
 
-	.first {
+	.current_team {
 		display: flex;
 		flex-direction: row;
 		align-items: flex-start;
@@ -478,7 +478,7 @@
 		width: 100%;
 	}
 
-	.second_team {
+	.previous_team {
 		margin-top: 30px;
 		width: 100%;
 		display: flex;

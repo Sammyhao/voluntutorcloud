@@ -30,8 +30,11 @@ export default function Team() {
     <div className="about_uscont">
       <div className="about_ustitle">{a[status]}</div>
       <div className="teamwrap">
-        <div className="first">
-          <div className="person">
+        <div className="current_team">
+        {' '}
+        </div>
+        <div className="previous_team">
+        <div className="person">
             <img
               className="team_pic"
               id="teamimage_bg"
@@ -100,12 +103,10 @@ export default function Team() {
                 >
                   <div className="image_text_roles">{f[status]}</div>
                   <div className="image_text_roles">{d[status]}</div>
-                </div>{' '}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="second_team">
           <div className="person">
             <img
               className="team_pic"
