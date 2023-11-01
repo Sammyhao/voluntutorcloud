@@ -41,6 +41,29 @@ export default function Team() {
             <img
               className="team_pic"
               id="teamimage_bg"
+              src="/images/Ethan.png"
+            ></img>
+            <div class="image_team_overlay image_team_overlay -- blur">
+              <div class="image_text_team">
+                <b className="image_text_head">{m[status]}</b>
+                <div
+                  style={{
+                    marginTop: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div className="image_text_roles">{n[status]}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div className="person">
+            <img
+              className="team_pic"
+              id="teamimage_bg"
               src="/images/Kyle.jpeg"
             ></img>
             <div class="image_team_overlay image_team_overlay -- blur">
