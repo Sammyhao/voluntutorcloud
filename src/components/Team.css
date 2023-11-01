@@ -458,24 +458,12 @@
 		margin-top: 20px;
 	}
 
-	.about_uscont {
-		width: 100%;
-	}
-
 	.current_team {
 		display: flex;
 		flex-direction: row;
 		align-items: flex-start;
 		width: 100%;
 		justify-content: space-evenly;
-	}
-
-	.teamwrap {
-		margin-top: 50px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
 	}
 
 	.previous_team {
@@ -610,10 +598,6 @@
 		margin-top: 20px;
 	}
 
-	.about_uscont {
-		width: 100%;
-	}
-
 	.first {
 		display: flex;
 		flex-direction: column;
@@ -621,14 +605,6 @@
 		width: 100%;
 		align-items: center;
 		justify-content: center;
-	}
-
-	.teamwrap {
-		margin-top: 50px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
 	}
 
 	.second_team {

@@ -13,7 +13,7 @@ export default function Team() {
     setStatus(user.language)
   }, [])
   // titles
-  let a = ['Team', '團隊介紹']
+  let a = ['Founders Team', '創辦團隊 執行總監']
   let b = ['Ruby Chang', '張舒晴 Ruby']
   let c = ['President', '領導者']
   let d = ['Engineering Director', '開發總監']
