@@ -466,6 +466,9 @@
 	}
 
 	.first {
+<<<<<<< HEAD
+>>>>>>> parent of e1cffb9 (second_team -> previous_team)
+=======
 >>>>>>> parent of e1cffb9 (second_team -> previous_team)
 		display: flex;
 		flex-direction: row;
@@ -486,6 +489,9 @@
 	}
 
 	.second_team {
+<<<<<<< HEAD
+>>>>>>> parent of e1cffb9 (second_team -> previous_team)
+=======
 >>>>>>> parent of e1cffb9 (second_team -> previous_team)
 		margin-top: 30px;
 		width: 100%;

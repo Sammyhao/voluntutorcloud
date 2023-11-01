@@ -31,10 +31,14 @@ export default function Team() {
       <div className="about_ustitle">{a[status]}</div>
       <div className="teamwrap">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className="current_team">
         {' '}
         </div>
         <div className="previous_team">
+=======
+        <div className="first">
+>>>>>>> parent of e1cffb9 (second_team -> previous_team)
 =======
         <div className="first">
 >>>>>>> parent of e1cffb9 (second_team -> previous_team)
