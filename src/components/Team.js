@@ -25,8 +25,13 @@ export default function Team() {
   let j = ['Zachary Lai', '賴元斌 Zachary']
   let k = ['Daniel Yu', '余浩瑋 Daniel']
   let l = ['HR Director', '人資領導']
-  let m = ['Kyle Wang', '王聖元']
-  let n = ['Vice President', '副領導者']
+  let m = ['Ethan Ho', '何秉軒']
+  let n = ['President', '領導者']
+  let o = ['Kyle Wang', '王聖元']
+  let p = ['Vice President', '副領導者']
+  let q = ['Justin Chiang', '江家慶']
+  let r = ['Vice President', '副領導者']
+
 
   return (
     <div className="about_uscont">
@@ -41,7 +46,7 @@ export default function Team() {
             ></img>
             <div class="image_team_overlay image_team_overlay -- blur">
               <div class="image_text_team">
-                <b className="image_text_head">{m[status]}</b>
+                <b className="image_text_head">{o[status]}</b>
                 <div
                   style={{
                     marginTop: '10px',
@@ -51,8 +56,30 @@ export default function Team() {
                     justifyContent: 'center',
                   }}
                 >
-                  <div className="image_text_roles">{n[status]}</div>
-                  <div className="image_text_roles">{d[status]}</div>
+                  <div className="image_text_roles">{p[status]}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="person">
+            <img
+              className="team_pic"
+              id="teamimage_bg"
+              src="/images/Justin.jpeg"
+            ></img>
+            <div class="image_team_overlay image_team_overlay -- blur">
+              <div class="image_text_team">
+                <b className="image_text_head">{q[status]}</b>
+                <div
+                  style={{
+                    marginTop: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div className="image_text_roles">{r[status]}</div>
                 </div>
               </div>
             </div>
