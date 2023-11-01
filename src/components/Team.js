@@ -119,7 +119,7 @@ export default function Team() {
                 <b className="image_text_head">{j[status]}</b>
                 <div
                   style={{
-                    marginTop: '10px',
+                    marginTop: '100px',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
