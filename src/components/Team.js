@@ -44,7 +44,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -69,7 +69,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -93,7 +93,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -121,7 +121,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -145,7 +145,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
