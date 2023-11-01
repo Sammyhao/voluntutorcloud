@@ -30,10 +30,14 @@ export default function Team() {
     <div className="about_uscont">
       <div className="about_ustitle">{a[status]}</div>
       <div className="teamwrap">
+<<<<<<< HEAD
         <div className="current_team">
         {' '}
         </div>
         <div className="previous_team">
+=======
+        <div className="first">
+>>>>>>> parent of e1cffb9 (second_team -> previous_team)
           <div className="person">
             <img
               className="team_pic"
@@ -103,10 +107,12 @@ export default function Team() {
                 >
                   <div className="image_text_roles">{f[status]}</div>
                   <div className="image_text_roles">{d[status]}</div>
-                </div>
+                </div>{' '}
               </div>
             </div>
           </div>
+        </div>
+        <div className="second_team">
           <div className="person">
             <img
               className="team_pic"
