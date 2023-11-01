@@ -51,6 +51,10 @@
 	padding-bottom: 200px;
 }
 
+.about_uscont {
+	width: 100%;
+}
+
 .first {
 	display: flex;
 	flex-direction: row;
