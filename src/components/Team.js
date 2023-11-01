@@ -30,7 +30,6 @@ export default function Team() {
   let o = ['Kyle Wang', '王聖元']
   let p = ['Vice President', '副領導者']
   let q = ['Justin Chiang', '江家慶']
-  let r = ['Vice President', '副領導者']
 
 
   return (
@@ -79,7 +78,7 @@ export default function Team() {
                     justifyContent: 'center',
                   }}
                 >
-                  <div className="image_text_roles">{r[status]}</div>
+                  <div className="image_text_roles">{p[status]}</div>
                 </div>
               </div>
             </div>
