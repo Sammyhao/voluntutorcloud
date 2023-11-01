@@ -34,7 +34,7 @@ export default function Team() {
         {' '}
         </div>
         <div className="previous_team">
-        <div className="person">
+          <div className="person">
             <img
               className="team_pic"
               id="teamimage_bg"
