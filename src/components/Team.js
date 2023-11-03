@@ -50,7 +50,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -73,7 +73,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -96,7 +96,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -119,7 +119,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -143,7 +143,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -167,7 +167,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -195,7 +195,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -219,7 +219,7 @@ export default function Team() {
                   style={{
                     marginTop: '10px',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
