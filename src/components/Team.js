@@ -106,6 +106,9 @@ export default function Team() {
               </div>
             </div>
           </div>
+		  </div>
+
+<div className="current_team">
           <div className="person">
             <img
               className="team_pic"
@@ -177,9 +180,9 @@ export default function Team() {
                 </div>
               </div>
             </div>
-          </div>{' '}
+          </div>
         </div>
-        <div className="previous_team">
+        <div className="current_team">
           <div className="person">
             <img
               className="team_pic"
